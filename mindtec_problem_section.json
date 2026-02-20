@@ -1,0 +1,542 @@
+{
+    "version": "0.4",
+    "title": "Problem Section Output",
+    "type": "section",
+    "content": [
+        {
+            "id": "9b6a695",
+            "elType": "section",
+            "settings": {
+                "layout": "boxed",
+                "boxed_width": {
+                    "unit": "px",
+                    "size": 1240
+                },
+                "padding": {
+                    "unit": "rem",
+                    "top": 8,
+                    "right": 0,
+                    "bottom": 8,
+                    "left": 0,
+                    "isLinked": false
+                },
+                "background_background": "classic",
+                "background_image": {
+                    "url": "background_neural_mesh_1771034277513.png",
+                    "id": ""
+                },
+                "background_position": "center center",
+                "background_size": "cover",
+                "background_attachment": "fixed",
+                "background_overlay_background": "classic",
+                "background_overlay_color": "rgba(255, 255, 255, 0.9)"
+            },
+            "elements": [
+                {
+                    "id": "a0e9315",
+                    "elType": "column",
+                    "settings": {
+                        "_column_size": 100
+                    },
+                    "elements": [
+                        {
+                            "id": "c7716db",
+                            "elType": "widget",
+                            "settings": {
+                                "title": "EL CONTEXTO EMPRESARIAL ACTUAL",
+                                "header_size": "h6",
+                                "align": "center",
+                                "title_color": "#FF6600",
+                                "typography_typography": "custom",
+                                "typography_font_family": "Inter",
+                                "typography_font_size": {
+                                    "unit": "rem",
+                                    "size": 0.85
+                                },
+                                "typography_font_weight": "700",
+                                "typography_letter_spacing": {
+                                    "unit": "px",
+                                    "size": 2.5
+                                },
+                                "typography_transform": "uppercase",
+                                "_margin": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 24,
+                                    "left": 0,
+                                    "isLinked": false
+                                }
+                            },
+                            "elements": [],
+                            "isInner": false,
+                            "widgetType": "heading"
+                        },
+                        {
+                            "id": "a01574b",
+                            "elType": "widget",
+                            "settings": {
+                                "title": "CUANDO LA DECISIÓN ES IMPORTANTE, EL ANÁLISIS DEBE SER MÁS PROFUNDO",
+                                "header_size": "h2",
+                                "align": "center",
+                                "title_color": "#0B2B40",
+                                "typography_typography": "custom",
+                                "typography_font_family": "Inter",
+                                "typography_font_size": {
+                                    "unit": "rem",
+                                    "size": 2.5
+                                },
+                                "typography_font_weight": "800",
+                                "typography_line_height": {
+                                    "unit": "em",
+                                    "size": 1.2
+                                },
+                                "_margin": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 32,
+                                    "left": 0,
+                                    "isLinked": false
+                                }
+                            },
+                            "elements": [],
+                            "isInner": false,
+                            "widgetType": "heading"
+                        },
+                        {
+                            "id": "5b6ebc2",
+                            "elType": "section",
+                            "settings": {
+                                "content_width": "boxed",
+                                "gap": "wide"
+                            },
+                            "elements": [
+                                {
+                                    "id": "8d7d020",
+                                    "elType": "column",
+                                    "settings": {
+                                        "_column_size": 33
+                                    },
+                                    "elements": [
+                                        {
+                                            "id": "5591c15",
+                                            "elType": "widget",
+                                            "settings": {
+                                                "icon": "fa fa-exclamation-triangle",
+                                                "view": "framed",
+                                                "title_text": "Lanzamiento de nuevos productos",
+                                                "position": "left",
+                                                "title_size": "h3",
+                                                "icon_color": "#FF6600",
+                                                "content_vertical_alignment": "middle",
+                                                "title_color": "#0B2B40",
+                                                "typography_title_typography": "custom",
+                                                "typography_title_font_family": "Inter",
+                                                "typography_title_font_size": {
+                                                    "unit": "rem",
+                                                    "size": 1.1
+                                                },
+                                                "typography_title_font_weight": "600",
+                                                "background_color": "rgba(255, 255, 255, 0.7)",
+                                                "border_radius": {
+                                                    "unit": "px",
+                                                    "top": 16,
+                                                    "right": 16,
+                                                    "bottom": 16,
+                                                    "left": 16,
+                                                    "isLinked": true
+                                                },
+                                                "box_shadow": {
+                                                    "horizontal": 0,
+                                                    "vertical": 10,
+                                                    "blur": 30,
+                                                    "spread": 0,
+                                                    "color": "rgba(11, 43, 64, 0.08)"
+                                                },
+                                                "_padding": {
+                                                    "unit": "rem",
+                                                    "top": 1.5,
+                                                    "right": 1.5,
+                                                    "bottom": 1.5,
+                                                    "left": 1.5,
+                                                    "isLinked": true
+                                                },
+                                                "_margin": {
+                                                    "unit": "px",
+                                                    "top": 0,
+                                                    "right": 0,
+                                                    "bottom": 24,
+                                                    "left": 0,
+                                                    "isLinked": false
+                                                }
+                                            },
+                                            "elements": [],
+                                            "isInner": false,
+                                            "widgetType": "icon-box"
+                                        }
+                                    ],
+                                    "isInner": true
+                                },
+                                {
+                                    "id": "ce68137",
+                                    "elType": "column",
+                                    "settings": {
+                                        "_column_size": 33
+                                    },
+                                    "elements": [
+                                        {
+                                            "id": "f6355fe",
+                                            "elType": "widget",
+                                            "settings": {
+                                                "icon": "fa fa-exclamation-triangle",
+                                                "view": "framed",
+                                                "title_text": "Ajustes de precios",
+                                                "position": "left",
+                                                "title_size": "h3",
+                                                "icon_color": "#FF6600",
+                                                "content_vertical_alignment": "middle",
+                                                "title_color": "#0B2B40",
+                                                "typography_title_typography": "custom",
+                                                "typography_title_font_family": "Inter",
+                                                "typography_title_font_size": {
+                                                    "unit": "rem",
+                                                    "size": 1.1
+                                                },
+                                                "typography_title_font_weight": "600",
+                                                "background_color": "rgba(255, 255, 255, 0.7)",
+                                                "border_radius": {
+                                                    "unit": "px",
+                                                    "top": 16,
+                                                    "right": 16,
+                                                    "bottom": 16,
+                                                    "left": 16,
+                                                    "isLinked": true
+                                                },
+                                                "box_shadow": {
+                                                    "horizontal": 0,
+                                                    "vertical": 10,
+                                                    "blur": 30,
+                                                    "spread": 0,
+                                                    "color": "rgba(11, 43, 64, 0.08)"
+                                                },
+                                                "_padding": {
+                                                    "unit": "rem",
+                                                    "top": 1.5,
+                                                    "right": 1.5,
+                                                    "bottom": 1.5,
+                                                    "left": 1.5,
+                                                    "isLinked": true
+                                                },
+                                                "_margin": {
+                                                    "unit": "px",
+                                                    "top": 0,
+                                                    "right": 0,
+                                                    "bottom": 24,
+                                                    "left": 0,
+                                                    "isLinked": false
+                                                }
+                                            },
+                                            "elements": [],
+                                            "isInner": false,
+                                            "widgetType": "icon-box"
+                                        }
+                                    ],
+                                    "isInner": true
+                                },
+                                {
+                                    "id": "dae543d",
+                                    "elType": "column",
+                                    "settings": {
+                                        "_column_size": 33
+                                    },
+                                    "elements": [
+                                        {
+                                            "id": "a39b9b3",
+                                            "elType": "widget",
+                                            "settings": {
+                                                "icon": "fa fa-exclamation-triangle",
+                                                "view": "framed",
+                                                "title_text": "Rebranding o cambio de imagen",
+                                                "position": "left",
+                                                "title_size": "h3",
+                                                "icon_color": "#FF6600",
+                                                "content_vertical_alignment": "middle",
+                                                "title_color": "#0B2B40",
+                                                "typography_title_typography": "custom",
+                                                "typography_title_font_family": "Inter",
+                                                "typography_title_font_size": {
+                                                    "unit": "rem",
+                                                    "size": 1.1
+                                                },
+                                                "typography_title_font_weight": "600",
+                                                "background_color": "rgba(255, 255, 255, 0.7)",
+                                                "border_radius": {
+                                                    "unit": "px",
+                                                    "top": 16,
+                                                    "right": 16,
+                                                    "bottom": 16,
+                                                    "left": 16,
+                                                    "isLinked": true
+                                                },
+                                                "box_shadow": {
+                                                    "horizontal": 0,
+                                                    "vertical": 10,
+                                                    "blur": 30,
+                                                    "spread": 0,
+                                                    "color": "rgba(11, 43, 64, 0.08)"
+                                                },
+                                                "_padding": {
+                                                    "unit": "rem",
+                                                    "top": 1.5,
+                                                    "right": 1.5,
+                                                    "bottom": 1.5,
+                                                    "left": 1.5,
+                                                    "isLinked": true
+                                                },
+                                                "_margin": {
+                                                    "unit": "px",
+                                                    "top": 0,
+                                                    "right": 0,
+                                                    "bottom": 24,
+                                                    "left": 0,
+                                                    "isLinked": false
+                                                }
+                                            },
+                                            "elements": [],
+                                            "isInner": false,
+                                            "widgetType": "icon-box"
+                                        }
+                                    ],
+                                    "isInner": true
+                                }
+                            ],
+                            "isInner": true
+                        },
+                        {
+                            "id": "f5112b8",
+                            "elType": "section",
+                            "settings": {
+                                "content_width": "boxed",
+                                "gap": "wide"
+                            },
+                            "elements": [
+                                {
+                                    "id": "7f4e08b",
+                                    "elType": "column",
+                                    "settings": {
+                                        "_column_size": 33
+                                    },
+                                    "elements": [
+                                        {
+                                            "id": "5e130b5",
+                                            "elType": "widget",
+                                            "settings": {
+                                                "icon": "fa fa-exclamation-triangle",
+                                                "view": "framed",
+                                                "title_text": "Expansión geográfica",
+                                                "position": "left",
+                                                "title_size": "h3",
+                                                "icon_color": "#FF6600",
+                                                "content_vertical_alignment": "middle",
+                                                "title_color": "#0B2B40",
+                                                "typography_title_typography": "custom",
+                                                "typography_title_font_family": "Inter",
+                                                "typography_title_font_size": {
+                                                    "unit": "rem",
+                                                    "size": 1.1
+                                                },
+                                                "typography_title_font_weight": "600",
+                                                "background_color": "rgba(255, 255, 255, 0.7)",
+                                                "border_radius": {
+                                                    "unit": "px",
+                                                    "top": 16,
+                                                    "right": 16,
+                                                    "bottom": 16,
+                                                    "left": 16,
+                                                    "isLinked": true
+                                                },
+                                                "box_shadow": {
+                                                    "horizontal": 0,
+                                                    "vertical": 10,
+                                                    "blur": 30,
+                                                    "spread": 0,
+                                                    "color": "rgba(11, 43, 64, 0.08)"
+                                                },
+                                                "_padding": {
+                                                    "unit": "rem",
+                                                    "top": 1.5,
+                                                    "right": 1.5,
+                                                    "bottom": 1.5,
+                                                    "left": 1.5,
+                                                    "isLinked": true
+                                                },
+                                                "_margin": {
+                                                    "unit": "px",
+                                                    "top": 0,
+                                                    "right": 0,
+                                                    "bottom": 24,
+                                                    "left": 0,
+                                                    "isLinked": false
+                                                }
+                                            },
+                                            "elements": [],
+                                            "isInner": false,
+                                            "widgetType": "icon-box"
+                                        }
+                                    ],
+                                    "isInner": true
+                                },
+                                {
+                                    "id": "4b59ec2",
+                                    "elType": "column",
+                                    "settings": {
+                                        "_column_size": 33
+                                    },
+                                    "elements": [
+                                        {
+                                            "id": "bb12814",
+                                            "elType": "widget",
+                                            "settings": {
+                                                "icon": "fa fa-exclamation-triangle",
+                                                "view": "framed",
+                                                "title_text": "Caída en desempeño comercial",
+                                                "position": "left",
+                                                "title_size": "h3",
+                                                "icon_color": "#FF6600",
+                                                "content_vertical_alignment": "middle",
+                                                "title_color": "#0B2B40",
+                                                "typography_title_typography": "custom",
+                                                "typography_title_font_family": "Inter",
+                                                "typography_title_font_size": {
+                                                    "unit": "rem",
+                                                    "size": 1.1
+                                                },
+                                                "typography_title_font_weight": "600",
+                                                "background_color": "rgba(255, 255, 255, 0.7)",
+                                                "border_radius": {
+                                                    "unit": "px",
+                                                    "top": 16,
+                                                    "right": 16,
+                                                    "bottom": 16,
+                                                    "left": 16,
+                                                    "isLinked": true
+                                                },
+                                                "box_shadow": {
+                                                    "horizontal": 0,
+                                                    "vertical": 10,
+                                                    "blur": 30,
+                                                    "spread": 0,
+                                                    "color": "rgba(11, 43, 64, 0.08)"
+                                                },
+                                                "_padding": {
+                                                    "unit": "rem",
+                                                    "top": 1.5,
+                                                    "right": 1.5,
+                                                    "bottom": 1.5,
+                                                    "left": 1.5,
+                                                    "isLinked": true
+                                                },
+                                                "_margin": {
+                                                    "unit": "px",
+                                                    "top": 0,
+                                                    "right": 0,
+                                                    "bottom": 24,
+                                                    "left": 0,
+                                                    "isLinked": false
+                                                }
+                                            },
+                                            "elements": [],
+                                            "isInner": false,
+                                            "widgetType": "icon-box"
+                                        }
+                                    ],
+                                    "isInner": true
+                                },
+                                {
+                                    "id": "377fb23",
+                                    "elType": "column",
+                                    "settings": {
+                                        "_column_size": 33
+                                    },
+                                    "elements": [
+                                        {
+                                            "id": "7ab9531",
+                                            "elType": "widget",
+                                            "settings": {
+                                                "icon": "fa fa-exclamation-triangle",
+                                                "view": "framed",
+                                                "title_text": "Dudas sobre posicionamiento frente a competencia",
+                                                "position": "left",
+                                                "title_size": "h3",
+                                                "icon_color": "#FF6600",
+                                                "content_vertical_alignment": "middle",
+                                                "title_color": "#0B2B40",
+                                                "typography_title_typography": "custom",
+                                                "typography_title_font_family": "Inter",
+                                                "typography_title_font_size": {
+                                                    "unit": "rem",
+                                                    "size": 1.1
+                                                },
+                                                "typography_title_font_weight": "600",
+                                                "background_color": "rgba(255, 255, 255, 0.7)",
+                                                "border_radius": {
+                                                    "unit": "px",
+                                                    "top": 16,
+                                                    "right": 16,
+                                                    "bottom": 16,
+                                                    "left": 16,
+                                                    "isLinked": true
+                                                },
+                                                "box_shadow": {
+                                                    "horizontal": 0,
+                                                    "vertical": 10,
+                                                    "blur": 30,
+                                                    "spread": 0,
+                                                    "color": "rgba(11, 43, 64, 0.08)"
+                                                },
+                                                "_padding": {
+                                                    "unit": "rem",
+                                                    "top": 1.5,
+                                                    "right": 1.5,
+                                                    "bottom": 1.5,
+                                                    "left": 1.5,
+                                                    "isLinked": true
+                                                },
+                                                "_margin": {
+                                                    "unit": "px",
+                                                    "top": 0,
+                                                    "right": 0,
+                                                    "bottom": 24,
+                                                    "left": 0,
+                                                    "isLinked": false
+                                                }
+                                            },
+                                            "elements": [],
+                                            "isInner": false,
+                                            "widgetType": "icon-box"
+                                        }
+                                    ],
+                                    "isInner": true
+                                }
+                            ],
+                            "isInner": true
+                        },
+                        {
+                            "id": "f1d2edd",
+                            "elType": "widget",
+                            "settings": {
+                                "editor": "<div style='text-align: center; border-left: 4px solid #FF6600; background: rgba(255, 102, 0, 0.03); padding: 3rem; margin: 3rem auto 0; max-width: 900px;'><p style='font-size: 1.5rem; font-style: italic; color: #2D3E50; margin: 0;'>La información superficial no es suficiente. Se necesita análisis avanzado.</p></div>"
+                            },
+                            "elements": [],
+                            "isInner": false,
+                            "widgetType": "text-editor"
+                        }
+                    ],
+                    "isInner": false
+                }
+            ],
+            "isInner": false
+        }
+    ]
+}

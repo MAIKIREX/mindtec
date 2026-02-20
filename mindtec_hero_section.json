@@ -1,0 +1,283 @@
+{
+    "version": "0.4",
+    "title": "Hero Section Output",
+    "type": "section",
+    "content": [
+        {
+            "id": "faee47e",
+            "elType": "section",
+            "settings": {
+                "layout": "boxed",
+                "boxed_width": {
+                    "unit": "px",
+                    "size": 1240
+                },
+                "min_height": {
+                    "unit": "vh",
+                    "size": 100
+                },
+                "content_position": "middle",
+                "gap": "extended",
+                "structure": "20",
+                "padding": {
+                    "unit": "px",
+                    "top": 160,
+                    "right": 0,
+                    "bottom": 100,
+                    "left": 0,
+                    "isLinked": false
+                },
+                "background_background": "classic",
+                "background_color": "#ffffff"
+            },
+            "elements": [
+                {
+                    "id": "934f7d1",
+                    "elType": "column",
+                    "settings": {
+                        "_column_size": 55,
+                        "_inline_size": 55,
+                        "valign": "middle"
+                    },
+                    "elements": [
+                        {
+                            "id": "b12812c",
+                            "elType": "widget",
+                            "settings": {
+                                "title": "INTELIGENCIA ESTRATÉGICA",
+                                "header_size": "h6",
+                                "align": "left",
+                                "title_color": "#FF6600",
+                                "typography_typography": "custom",
+                                "typography_font_family": "Inter",
+                                "typography_font_size": {
+                                    "unit": "rem",
+                                    "size": 0.85
+                                },
+                                "typography_font_weight": "700",
+                                "typography_letter_spacing": {
+                                    "unit": "px",
+                                    "size": 2.5
+                                },
+                                "typography_transform": "uppercase",
+                                "_margin": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 24,
+                                    "left": 0,
+                                    "isLinked": false
+                                }
+                            },
+                            "elements": [],
+                            "isInner": false,
+                            "widgetType": "heading"
+                        },
+                        {
+                            "id": "3744e35",
+                            "elType": "widget",
+                            "settings": {
+                                "title": "Investigación de Mercados en Bolivia con Inteligencia Estratégica Avanzada",
+                                "header_size": "h1",
+                                "align": "left",
+                                "title_color": "#0B2B40",
+                                "typography_typography": "custom",
+                                "typography_font_family": "Inter",
+                                "typography_font_size": {
+                                    "unit": "rem",
+                                    "size": 3.5
+                                },
+                                "typography_font_weight": "800",
+                                "typography_line_height": {
+                                    "unit": "em",
+                                    "size": 1.2
+                                },
+                                "_margin": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 24,
+                                    "left": 0,
+                                    "isLinked": false
+                                }
+                            },
+                            "elements": [],
+                            "isInner": false,
+                            "widgetType": "heading"
+                        },
+                        {
+                            "id": "cbe9a12",
+                            "elType": "widget",
+                            "settings": {
+                                "editor": "<p style='color: #4A5B6F; font-family: Inter; font-size: 1.25rem; font-weight: 600;'>Antes de invertir, expandirse o redefinir su marca, valide el mercado con análisis estructurado, tecnología avanzada y lectura profunda del comportamiento del consumidor.</p>",
+                                "_margin": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 24,
+                                    "left": 0,
+                                    "isLinked": false
+                                }
+                            },
+                            "elements": [],
+                            "isInner": false,
+                            "widgetType": "text-editor"
+                        },
+                        {
+                            "id": "7492297",
+                            "elType": "widget",
+                            "settings": {
+                                "editor": "<p style='color: #64748b; font-family: Inter; font-size: 1.1rem; line-height: 1.6;'>Mindtec combina investigación de mercado, análisis con inteligencia artificial y laboratorio de neuromarketing para reducir el riesgo en decisiones críticas.</p>",
+                                "_margin": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 0,
+                                    "bottom": 48,
+                                    "left": 0,
+                                    "isLinked": false
+                                }
+                            },
+                            "elements": [],
+                            "isInner": false,
+                            "widgetType": "text-editor"
+                        },
+                        {
+                            "id": "4443ec8",
+                            "elType": "widget",
+                            "settings": {
+                                "text": "Agendar reunión estratégica",
+                                "link": {
+                                    "url": "#contacto",
+                                    "is_external": "",
+                                    "nofollow": ""
+                                },
+                                "button_type": "default",
+                                "size": "md",
+                                "align": "center",
+                                "background_color": "#FF6600",
+                                "button_text_color": "#FFFFFF",
+                                "typography_typography": "custom",
+                                "typography_font_weight": "700",
+                                "typography_transform": "uppercase",
+                                "border_radius": {
+                                    "unit": "px",
+                                    "top": 8,
+                                    "right": 8,
+                                    "bottom": 8,
+                                    "left": 8,
+                                    "isLinked": true
+                                },
+                                "box_shadow": {
+                                    "horizontal": 0,
+                                    "vertical": 4,
+                                    "blur": 14,
+                                    "spread": 0,
+                                    "color": "rgba(255, 102, 0, 0.3)"
+                                },
+                                "button_hover_background_color": "#E65C00",
+                                "_element_width": "auto",
+                                "_margin": {
+                                    "unit": "px",
+                                    "top": 0,
+                                    "right": 20,
+                                    "bottom": 0,
+                                    "left": 0,
+                                    "isLinked": false
+                                }
+                            },
+                            "elements": [],
+                            "isInner": false,
+                            "widgetType": "button"
+                        },
+                        {
+                            "id": "4151aba",
+                            "elType": "widget",
+                            "settings": {
+                                "text": "Evaluar una decisión crítica",
+                                "link": {
+                                    "url": "#servicios",
+                                    "is_external": "",
+                                    "nofollow": ""
+                                },
+                                "button_type": "default",
+                                "size": "md",
+                                "align": "center",
+                                "background_color": "#0B2B40",
+                                "button_text_color": "#FFFFFF",
+                                "typography_typography": "custom",
+                                "typography_font_weight": "700",
+                                "typography_transform": "uppercase",
+                                "border_radius": {
+                                    "unit": "px",
+                                    "top": 8,
+                                    "right": 8,
+                                    "bottom": 8,
+                                    "left": 8,
+                                    "isLinked": true
+                                },
+                                "_element_width": "auto"
+                            },
+                            "elements": [],
+                            "isInner": false,
+                            "widgetType": "button"
+                        }
+                    ],
+                    "isInner": false
+                },
+                {
+                    "id": "2fa57ee",
+                    "elType": "column",
+                    "settings": {
+                        "_column_size": 45,
+                        "_inline_size": 45,
+                        "valign": "middle",
+                        "background_background": "classic",
+                        "background_image": {
+                            "url": "hero_neuromarketing_premium_v2_1771034234219.png",
+                            "id": ""
+                        },
+                        "background_position": "center center",
+                        "background_size": "cover",
+                        "border_radius": {
+                            "unit": "px",
+                            "top": 24,
+                            "right": 24,
+                            "bottom": 24,
+                            "left": 24,
+                            "isLinked": true
+                        },
+                        "background_overlay_background": "gradient",
+                        "background_overlay_color": "#0B2B40",
+                        "background_overlay_color_b": "#112A3A",
+                        "background_overlay_gradient_angle": {
+                            "unit": "deg",
+                            "size": 135
+                        },
+                        "background_overlay_opacity": {
+                            "unit": "px",
+                            "size": 0.8
+                        }
+                    },
+                    "elements": [
+                        {
+                            "id": "7582e59",
+                            "elType": "widget",
+                            "settings": {
+                                "space": {
+                                    "unit": "px",
+                                    "size": 400
+                                },
+                                "view": "traditional"
+                            },
+                            "elements": [],
+                            "isInner": false,
+                            "widgetType": "spacer"
+                        }
+                    ],
+                    "isInner": false
+                }
+            ],
+            "isInner": false
+        }
+    ]
+}
