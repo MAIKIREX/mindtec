@@ -11,14 +11,80 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Mindtec Bolivia",
+      "email": "info@mindtecbolivia.com",
+      "areaServed": "Bolivia",
+      "service": "Investigación de Mercados"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "name": "Estudio de Mercado en Bolivia",
+      "provider": {
+        "@type": "Organization",
+        "name": "Mindtec Bolivia"
+      },
+      "areaServed": "Bolivia",
+      "description": "Estudio de mercado estructurado y evaluación de viabilidad técnica y financiera para directorios B2B."
+    }
+    </script>
     <style>
-        .dropdown { position: relative; display: inline-block; padding: 10px 15px; }
-        .dropdown a { text-decoration: none; color: inherit; font-size: 1rem; font-weight: 600; }
-        .dropdown-content { display: none; position: absolute; background-color: #ffffff; min-width: 250px; box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.1); z-index: 100; border-radius: 8px; padding: 0.5rem 0; top: 100%; left: 0; }
-        .dropdown-content a { color: #333; padding: 12px 20px; text-decoration: none; display: block; font-size: 0.95rem; font-weight: 500; border-bottom: 1px solid #f0f0f0; }
-        .dropdown-content a:last-child { border-bottom: none; }
-        .dropdown-content a:hover { background-color: #f8fafc; color: var(--primary-color); padding-left: 25px; transition: all 0.2s ease; }
-        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            padding: 10px 15px;
+        }
+
+        .dropdown a {
+            text-decoration: none;
+            color: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 250px;
+            box-shadow: 0px 15px 30px 0px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            border-radius: 8px;
+            padding: 0.5rem 0;
+            top: 100%;
+            left: 0;
+        }
+
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 500;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f8fafc;
+            color: var(--primary-color);
+            padding-left: 25px;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
     </style>
 </head>
 
@@ -35,11 +101,11 @@
                 <div class="dropdown">
                     <a href="javascript:void(0)" style="cursor:pointer;" class="dropdown-toggle">Soluciones ▾</a>
                     <div class="dropdown-content">
-                        <a href="estudio-de-mercado-bolivia.html">Estudio de Mercado y Viabilidad</a>
-                        <a href="estudio-de-precios-bolivia.html">Estudio de Precios B2B</a>
-                        <a href="percepcion-de-marca-bolivia.html">Percepción de Marca</a>
-                        <a href="auditoria-retail-bolivia.html">Auditoría Retail en Bolivia</a>
-                        <a href="neuromarketing-bolivia.html">Neuromarketing B2B</a>
+                        <a href="estudio-de-mercado-bolivia.html">Estudio de mercado en Bolivia</a>
+                        <a href="estudio-de-precios-bolivia.html">Estudio de precios</a>
+                        <a href="percepcion-de-marca-bolivia.html">Estudio de percepción de marca</a>
+                        <a href="auditoria-retail-bolivia.html">Auditoría retail en Bolivia</a>
+                        <a href="neuromarketing-bolivia.html">Neuromarketing en Bolivia</a>
                     </div>
                 </div>
                 <a href="metodologia.html">Metodología</a>
@@ -50,44 +116,204 @@
     </header>
 
     <main class="elementor-content">
+        <!-- 🟦 HERO -->
         <section class="hero-section elementor-section" style="padding-bottom: 2rem;">
             <div class="container hero-container elementor-container e-con">
                 <div class="hero-content">
-                    <span class="eyebrow fade-in">VIABILIDAD COMERCIAL</span>
-                    <h1 class="hero-title">Estudio de Mercado en Bolivia</h1>
-                    <p class="hero-subtitle">Mapee las condiciones reales de consumo, competencia y viabilidad operativa
-                        antes de comprometer capital estructural.</p>
+                    <span class="eyebrow fade-in">VIABILIDAD Y VALIDACIÓN ESTRATÉGICA</span>
+                    <h1 class="hero-title" style="font-size: 3rem; line-height: 1.2;">Estudio de Mercado en Bolivia para
+                        Evaluar Viabilidad Comercial y Reducir Riesgo</h1>
+                    <p class="hero-subtitle">Antes de comprometer capital, valide el tamaño real del mercado, las
+                        barreras de entrada y la probabilidad de adopción. Un estudio de mercado estructurado elimina
+                        especulación y protege su inversión.</p>
+                    <div class="cta-actions" style="margin-top: 2rem;">
+                        <a href="contacto.html" class="btn btn-primary lg">Agendar diagnóstico de viabilidad</a>
+                        <a href="contacto.html" class="btn btn-navy-outline lg" style="margin-left: 1rem;">Evaluar
+                            factibilidad de proyecto</a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="problem-section elementor-section" style="background-color: #fcfcfc;">
+        <!-- 🟦 SECCIÓN 1 – EL COSTO DE NO VALIDAR -->
+        <section class="problem-section elementor-section bg-slate">
             <div class="container elementor-container">
-                <div class="offer-box-modern" style="padding: 3rem;">
-                    <h2>El costo del sesgo interno</h2>
-                    <p style="margin-top: 1rem; font-size: 1.1rem; color: #555;">La inversión sin validación de campo es
-                        especulación pura. Un <strong>estudio de mercado en Bolivia</strong> diseñado bajo un modelo
-                        híbrido (data + terreno) elimina puntos ciegos. Analizamos barreras de entrada, tamaño real del
-                        mercado, hábitos empíricos de consumo y dinámicas de distribución.</p>
-                    <hr style="margin: 2rem 0; border: 0; border-top: 1px solid #eaeaea;">
-                    <h3>Entregables Ejecutivos para el Directorio:</h3>
-                    <ul class="service-list-minimal" style="margin-top: 1rem;">
-                        <li>Evaluación de Factibilidad Técnica (Stop/Go).</li>
-                        <li>Análisis de Cuota de Mercado Alcanzable (TAM/SAM/SOM).</li>
-                        <li>Proyección de Barreras y Sensibilidad.</li>
+                <div class="premium-card-white">
+                    <h2 class="text-navy">Invertir sin estudio de mercado es asumir un riesgo innecesario</h2>
+                    <p class="text-gray-dark leading-relaxed" style="font-size: 1.1rem; margin-top: 1rem;">En Bolivia,
+                        múltiples proyectos fracasan no por falta de producto, sino por falta de validación estructurada
+                        del mercado.</p>
+                    <p class="text-gray-dark leading-relaxed" style="font-size: 1.1rem; margin-top: 1rem;">Un <strong
+                            class="text-primary">estudio de mercado para empresas</strong> permite responder preguntas
+                        críticas antes de comprometer recursos:</p>
+                    <ul class="service-list-minimal" style="margin-top: 1.5rem;">
+                        <li>¿Existe demanda real o solo intención declarada?</li>
+                        <li>¿Cuál es el tamaño del mercado alcanzable?</li>
+                        <li>¿Qué barreras culturales o económicas pueden frenar adopción?</li>
+                        <li>¿Cuál es la cuota realista que puede capturar su empresa?</li>
+                    </ul>
+                    <p style="margin-top: 1.5rem; font-size: 1.1rem; font-weight: 600;" class="text-navy">Sin este
+                        análisis, la decisión es especulativa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🟦 SECCIÓN 2 – QUÉ INCLUYE NUESTRO ESTUDIO DE MERCADO -->
+        <section class="elementor-section premium-section-padding bg-light-gray">
+            <div class="container elementor-container">
+                <div class="section-title-center">
+                    <h2 class="text-navy">Modelo estructurado de evaluación de viabilidad en Bolivia</h2>
+                </div>
+                <div class="premium-grid-4">
+                    <!-- Caja 1 -->
+                    <div class="premium-card-white">
+                        <h3 class="text-primary">1️⃣ Análisis de Mercado Potencial (TAM / SAM / SOM)</h3>
+                        <ul class="service-list-minimal text-gray-dark" style="margin-top: 1rem;">
+                            <li>Tamaño total del mercado (TAM)</li>
+                            <li>Segmento alcanzable (SAM)</li>
+                            <li>Cuota capturable realista (SOM)</li>
+                            <li>Proyección ajustada al contexto boliviano</li>
+                        </ul>
+                    </div>
+                    <!-- Caja 2 -->
+                    <div class="premium-card-white">
+                        <h3 class="text-primary">2️⃣ Validación de Demanda Real</h3>
+                        <ul class="service-list-minimal text-gray-dark" style="margin-top: 1rem;">
+                            <li>Investigación cuantitativa estructurada</li>
+                            <li>Investigación cualitativa profunda</li>
+                            <li>Identificación de barreras no conscientes</li>
+                            <li>Test de intención vs comportamiento real</li>
+                        </ul>
+                    </div>
+                    <!-- Caja 3 -->
+                    <div class="premium-card-white">
+                        <h3 class="text-primary">3️⃣ Análisis Competitivo y Barreras de Entrada</h3>
+                        <ul class="service-list-minimal text-gray-dark" style="margin-top: 1rem;">
+                            <li>Nivel de saturación</li>
+                            <li>Ventajas estructurales del líder</li>
+                            <li>Diferenciadores reales necesarios</li>
+                            <li>Sensibilidad al precio y valor percibido</li>
+                        </ul>
+                    </div>
+                    <!-- Caja 4 -->
+                    <div class="premium-card-white">
+                        <h3 class="text-primary">4️⃣ Evaluación Operativa y Distribución</h3>
+                        <ul class="service-list-minimal text-gray-dark" style="margin-top: 1rem;">
+                            <li>Accesibilidad de canales</li>
+                            <li>Complejidad logística</li>
+                            <li>Factores regulatorios</li>
+                            <li>Factibilidad territorial</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🟦 SECCIÓN 3 – DIFERENCIA VS INVESTIGACIÓN TRADICIONAL -->
+        <section class="elementor-section premium-section-padding bg-slate">
+            <div class="container elementor-container">
+                <div class="premium-card-dark text-center">
+                    <h2>No realizamos estudios descriptivos. Realizamos evaluaciones de decisión.</h2>
+                    <p class="text-gray-light leading-relaxed" style="margin-top: 1rem; font-size: 1.1rem;">La
+                        investigación tradicional entrega datos.<br>Nuestra metodología integra:</p>
+
+                    <div class="methodology-tags">
+                        <span class="method-tag">Cruce de data pública y primaria</span>
+                        <span class="method-tag">Validación en terreno cuando aplica</span>
+                        <span class="method-tag">Análisis de sesgo</span>
+                        <span class="method-tag">Escenarios comparativos</span>
+                        <span class="method-tag highlight">Recomendación Stop / Go</span>
+                    </div>
+
+                    <p class="text-white font-bold" style="margin-top: 2.5rem; font-size: 1.25rem;">Un <em
+                            style="color: var(--color-primary); font-style: normal;">estudio de mercado en Bolivia</em>
+                        debe permitir una decisión clara, no solo información.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🟦 SECCIÓN 4 – ENTREGABLES PARA DIRECTORIO -->
+        <section class="elementor-section premium-section-padding bg-white">
+            <div class="container elementor-container premium-grid-2-split">
+                <div>
+                    <h2 class="text-navy">Lo que recibe su Gerencia General</h2>
+                    <p class="text-gray-dark leading-relaxed" style="margin-top: 1rem; font-size: 1.1rem;">No entregamos
+                        reportes extensos sin conclusiones.<br><strong class="text-primary font-bold">Entregamos
+                            claridad defendible.</strong></p>
+                </div>
+                <div>
+                    <ul class="service-list-minimal text-gray-dark">
+                        <li>Executive Brief estructurado</li>
+                        <li>Evaluación de factibilidad técnica (Stop / Go)</li>
+                        <li>Escenarios de riesgo controlado</li>
+                        <li>Proyección de cuota alcanzable</li>
+                        <li>Recomendaciones priorizadas</li>
+                        <li>Presentación ejecutiva lista para directorio</li>
                     </ul>
                 </div>
             </div>
         </section>
 
+        <!-- 🟦 SECCIÓN 5 – CUÁNDO NECESITA UN ESTUDIO DE MERCADO -->
+        <section class="elementor-section premium-section-padding bg-navy text-white">
+            <div class="container elementor-container">
+                <div class="section-title-center">
+                    <h2 class="text-white">Escenarios donde un estudio de viabilidad de mercado es crítico</h2>
+                </div>
+                <div class="premium-grid-6">
+                    <div class="dark-glass-card">
+                        <h4>Lanzamiento de nueva línea</h4>
+                    </div>
+                    <div class="dark-glass-card">
+                        <h4>Entrada a nueva ciudad o país</h4>
+                    </div>
+                    <div class="dark-glass-card">
+                        <h4>Inversión en infraestructura</h4>
+                    </div>
+                    <div class="dark-glass-card">
+                        <h4>Búsqueda de financiamiento</h4>
+                    </div>
+                    <div class="dark-glass-card">
+                        <h4>Reestructuración estratégica</h4>
+                    </div>
+                    <div class="dark-glass-card">
+                        <h4>Evaluación de nuevos segmentos</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🟦 SECCIÓN 6 – SECTORES -->
+        <section class="elementor-section premium-section-padding bg-slate">
+            <div class="container elementor-container text-center">
+                <h2>Experiencia multisectorial en Bolivia</h2>
+                <p style="margin-top: 1rem; font-size: 1.1rem; color: #555;">Aplicamos nuestro análisis de mercado
+                    Bolivia para:</p>
+                <div class="sectors-wrap">
+                    <span class="sector-tag">Banca</span>
+                    <span class="sector-tag">Consumo masivo</span>
+                    <span class="sector-tag">Retail</span>
+                    <span class="sector-tag">Educación</span>
+                    <span class="sector-tag">Industria</span>
+                    <span class="sector-tag">Instituciones</span>
+                </div>
+                <p style="margin-top: 2rem; font-size: 1.1rem; color: #64748b;">Cada sector presenta dinámicas distintas
+                    de adopción y riesgo.</p>
+            </div>
+        </section>
+
+        <!-- 🟦 SECCIÓN 7 – CTA -->
         <section class="cta-section-modern elementor-section">
-            <div class="container elementor-container glass-container">
-                <div class="cta-content-v2">
-                    <h2>Antes de ejecutar, asegure su posición defensiva.</h2>
-                    <p class="cta-subtitle">Programe una revisión sobre la factibilidad de su nuevo proyecto en
-                        territorio boliviano.</p>
-                    <div class="cta-actions">
+            <div class="container elementor-container glass-container" style="max-width: 900px; margin: 0 auto;">
+                <div class="cta-content-v2 text-center">
+                    <h2 style="font-size: 2.5rem; line-height: 1.2;">Un estudio de mercado reduce exposición antes de
+                        comprometer capital.</h2>
+                    <p class="cta-subtitle">Si su próxima decisión involucra inversión estructural, valide el terreno
+                        para confirmar la <strong>factibilidad comercial Bolivia</strong>.</p>
+                    <div class="cta-actions" style="margin-top: 2rem; flex-direction: column; align-items: center;">
                         <a href="contacto.html" class="btn btn-primary lg">Agendar sesión ejecutiva confidencial</a>
+                        <p style="margin-top: 1rem; font-size: 0.9rem; color: rgba(255,255,255,0.8);">Primera sesión: 20
+                            minutos | Confidencial | Sin compromiso</p>
                     </div>
                 </div>
             </div>

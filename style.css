@@ -159,6 +159,17 @@ h2 {
     color: var(--color-white);
 }
 
+.btn-navy-outline {
+    background: transparent;
+    border: 2px solid var(--color-secondary);
+    color: var(--color-secondary);
+}
+
+.btn-navy-outline:hover {
+    background: var(--color-secondary);
+    color: var(--color-white);
+}
+
 /* Glass Card */
 .glass-card {
     background: var(--glass-bg);
@@ -664,6 +675,199 @@ h2 {
     padding-top: 2rem;
     text-align: center;
     font-size: 0.85rem;
+}
+
+/* Premium Section Alignments & Utilities (Market Study additions) */
+.premium-section-padding {
+    padding: 5rem 0;
+}
+
+.bg-white {
+    background-color: #ffffff;
+}
+
+.bg-light-gray {
+    background-color: #fcfcfc;
+}
+
+.bg-slate {
+    background-color: #f8fafc;
+}
+
+.bg-navy {
+    background-color: var(--color-secondary);
+}
+
+/* Typography Utilities (UX & Eye-tracker optimized) */
+.text-navy {
+    color: var(--color-secondary);
+}
+
+.text-primary {
+    color: var(--color-primary);
+}
+
+.text-white {
+    color: var(--color-white);
+}
+
+.text-gray-dark {
+    color: #334155;
+}
+
+.text-gray-light {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.font-medium {
+    font-weight: 500;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.font-bold {
+    font-weight: 700;
+}
+
+.leading-relaxed {
+    line-height: 1.625;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Premium Layout Components */
+.premium-card-white {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: 3rem;
+    color: var(--color-text-main);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.premium-card-white:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+}
+
+.premium-card-white h3 {
+    font-size: 1.35rem;
+    margin-bottom: 1.25rem;
+}
+
+.premium-card-dark {
+    background: var(--color-secondary);
+    border-radius: var(--radius-lg);
+    padding: 4rem 3rem;
+    color: var(--color-white);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.premium-card-dark h2,
+.premium-card-dark h3 {
+    color: var(--color-white);
+}
+
+.premium-card-dark p {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.text-white {
+    color: var(--color-white);
+}
+
+.section-title-center {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.premium-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.premium-grid-6 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+
+.premium-grid-2-split {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4rem;
+    align-items: center;
+}
+
+.premium-grid-2-split>div {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Method Tags (Differential Section) */
+.methodology-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.method-tag {
+    background: #e2e8f0;
+    color: #334155;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.method-tag.highlight {
+    background: var(--color-primary);
+    color: #fff;
+}
+
+/* Dark Mode Cards (Sectores / Escenarios) */
+.dark-glass-card {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 1.5rem;
+    border-radius: 8px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.05);
+    transition: var(--transition);
+}
+
+.dark-glass-card:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.dark-glass-card h4 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* Sectors Tags */
+.sectors-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.sector-tag {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-primary);
 }
 
 /* Animations */
