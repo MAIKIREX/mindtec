@@ -72,6 +72,68 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-table th {
+            background-color: var(--navy-color, #0f172a);
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table td:first-child {
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .comparison-table td:last-child {
+            color: #0f172a;
+            font-weight: 700;
+            background-color: #f8fafc;
+        }
+
+        .faq-item {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+            border: 1px solid #eee;
+        }
+
+        .faq-item h4 {
+            color: var(--navy-color, #0f172a);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+
+        .faq-item p {
+            color: #475569;
+            margin: 0;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
     </style>
 </head>
 
@@ -104,94 +166,391 @@
     </header>
 
     <main class="elementor-content">
-        <!-- Hero Section -->
-        <section class="hero-section elementor-section" style="padding-bottom: 2rem;">
+        <!-- 🟦 HERO -->
+        <section class="hero-section elementor-section" style="padding-bottom: 4rem; padding-top: 4rem;">
             <div class="container hero-container elementor-container e-con">
                 <div class="hero-content">
-                    <span class="eyebrow fade-in">NUESTRO EJE CIENTÍFICO Y TECNOLÓGICO</span>
-                    <h1 class="hero-title">Metodología de Investigación de Mercados en Bolivia: Cuantitativa,
-                        Cualitativa y Neuromarketing</h1>
-                    <p class="hero-subtitle">Combinamos el rigor de la recolección de campo con tecnología para entregar
-                        no solo descriptivos, sino proyecciones y escenarios sustentados que sustentan sus estrategias
-                        corporativas.
+                    <span class="eyebrow fade-in">ARQUITECTURA CIENTÍFICA Y TECNOLÓGICA</span>
+                    <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.1; margin-bottom: 1.5rem;">
+                        Metodología de Investigación de Mercados en Bolivia: Modelo Híbrido con Neuromarketing, IA y
+                        Validación en Campo
+                    </h1>
+                    <p class="hero-subtitle" style="font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 800px;">
+                        No aplicamos encuestas aisladas. Operamos con un sistema estructurado que integra análisis
+                        cuantitativo, investigación cualitativa profunda, neuromarketing y validación territorial para
+                        reducir incertidumbre estratégica.
                     </p>
+                    <div class="cta-actions" style="margin-top: 2rem;">
+                        <a href="contacto.html" class="btn btn-primary lg">Solicitar explicación metodológica
+                            ejecutiva</a>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Modelo Híbrido -->
-        <section class="problem-section elementor-section">
+        <!-- 🟦 1️⃣ EL PROBLEMA DEL MODELO TRADICIONAL -->
+        <section class="problem-section elementor-section bg-slate" style="padding: 5rem 0;">
             <div class="container elementor-container">
-                <div class="section-header text-center">
-                    <span class="eyebrow">REDUCCIÓN DEL RIESGO ESTADÍSTICO</span>
-                    <h2>Inteligencia Artificial, Big Data y dashboards para decisiones rápidas</h2>
-                </div>
-
-                <div class="problem-statement modern-quote" style="text-align: left; margin-bottom: 3rem;">
-                    <h3>El Modelo Híbrido: Control a través del Dato Cruzado</h3>
-                    <p style="margin-top: 1rem; font-size: 1.1rem;">La investigación puramente tradicional presenta
-                        brechas de sesgo. Nuestro método híbrido cruza <strong>data pública de macroentorno</strong> con
-                        <strong>data primaria obtenida directamente del mercado</strong>. Esto elimina puntos ciegos.
-                        Integramos señales de <a href="neuromarketing-bolivia.html"
-                            style="color: var(--primary-color);">neuromarketing en Bolivia</a> para captar lo que los
-                        consumidores sienten en lugar de lo que dicen, garantizando entregables defendibles y
-                        pragmáticos para altas gerencias.
+                <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
+                    <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 2rem;">La investigación tradicional
+                        tiene brechas críticas</h2>
+                    <p class="text-gray-dark leading-relaxed" style="font-size: 1.2rem; margin-bottom: 2rem;">
+                        Muchas consultoras aplican:
                     </p>
-                    <p style="margin-top: 1rem; font-size: 1.1rem;">Utilizamos <em>Social Listening</em> no para medir
-                        vanidad digital, sino como un benchmark empírico para rastrear el movimiento real de la
-                        competencia y del consumidor.</p>
-                    <h3 style="margin-top: 2rem;">Trazabilidad y Control de Sesgo</h3>
-                    <p style="margin-top: 1rem; font-size: 1.1rem;">Cada dato entregado incluye fuente, método de
-                        recolección y validación cruzada. Minimizar el sesgo no es opcional cuando se toman decisiones
-                        corporativas.</p>
+                    <ul class="service-list-minimal" style="margin-bottom: 2.5rem; font-size: 1.1rem;">
+                        <li>Encuestas declarativas</li>
+                        <li>Focus groups aislados</li>
+                        <li>Reportes descriptivos</li>
+                        <li>Datos sin cruce territorial</li>
+                    </ul>
+                    <div
+                        style="background-color: var(--navy-color, #0f172a); color: white; padding: 2rem; border-radius: 8px;">
+                        <h3 style="color: white; font-size: 1.4rem; margin-bottom: 1rem;">El problema:</h3>
+                        <p style="font-size: 1.1rem; margin-bottom: 0;">Las decisiones millonarias no pueden basarse
+                            solo en lo que la gente dice.</p>
+                        <p
+                            style="font-size: 1.2rem; font-weight: 700; color: var(--primary-color); margin-bottom: 0; margin-top: 1rem;">
+                            El comportamiento real y el subconsciente determinan resultados.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🟦 2️⃣ MODELO HÍBRIDO MINDTEC® -->
+        <section class="elementor-section premium-section-padding bg-light-gray" style="padding: 5rem 0;">
+            <div class="container elementor-container">
+                <div class="section-title-center" style="margin-bottom: 4rem;">
+                    <h2 class="text-navy" style="font-size: 2.5rem;">Sistema de Investigación Multicapa para Decisiones
+                        Defendibles</h2>
+                    <p class="text-gray-dark" style="font-size: 1.1rem; margin-top: 1rem;">Nuestro modelo integra 4
+                        niveles simultáneamente.</p>
                 </div>
 
-                <!-- Horizons -->
+                <div class="premium-grid-2">
+                    <!-- Capa 1 -->
+                    <div class="premium-card-white" style="box-shadow: 0 10px 30px rgba(0,0,0,0.04);">
+                        <h3 class="text-primary"
+                            style="font-size: 1.3rem; margin-bottom: 1.5rem; border-bottom: 2px solid #eee; padding-bottom: 1rem;">
+                            🔹 1️⃣ Capa Cuantitativa (Rigor Estadístico)
+                        </h3>
+                        <ul class="service-list-minimal text-gray-dark" style="margin-bottom: 1.5rem;">
+                            <li>Encuestas estructuradas</li>
+                            <li>Segmentación avanzada</li>
+                            <li>Análisis por ciudad y canal</li>
+                            <li>Modelos de proyección</li>
+                            <li>Muestreo representativo</li>
+                        </ul>
+                        <div
+                            style="background: #f8fafc; padding: 1rem; border-radius: 6px; font-size: 0.95rem; color: #475569;">
+                            Aplicado con red de más de 80 encuestadores activos en Bolivia.
+                        </div>
+                    </div>
+                    <!-- Capa 2 -->
+                    <div class="premium-card-white" style="box-shadow: 0 10px 30px rgba(0,0,0,0.04);">
+                        <h3 class="text-primary"
+                            style="font-size: 1.3rem; margin-bottom: 1.5rem; border-bottom: 2px solid #eee; padding-bottom: 1rem;">
+                            🔹 2️⃣ Capa Cualitativa Profunda
+                        </h3>
+                        <p style="color: #64748b; margin-bottom: 1rem; font-weight: 500;">No hacemos solo focus groups
+                            tradicionales. Aplicamos:</p>
+                        <ul class="service-list-minimal text-gray-dark">
+                            <li>Entrevistas en profundidad</li>
+                            <li>Investigación etnográfica</li>
+                            <li>Observación estructurada</li>
+                            <li>Análisis de motivadores invisibles</li>
+                            <li>Decodificación de barreras emocionales</li>
+                        </ul>
+                    </div>
+                    <!-- Capa 3 -->
+                    <div class="premium-card-white" style="box-shadow: 0 10px 30px rgba(0,0,0,0.04);">
+                        <h3 class="text-primary"
+                            style="font-size: 1.3rem; margin-bottom: 1.5rem; border-bottom: 2px solid #eee; padding-bottom: 1rem;">
+                            🔹 3️⃣ Capa Inconsciente – Neuromarketing
+                        </h3>
+                        <p style="color: #64748b; margin-bottom: 1rem; font-weight: 500;">Aquí está el diferencial real.
+                        </p>
+                        <ul class="service-list-minimal text-gray-dark" style="margin-bottom: 1.5rem;">
+                            <li>Medición de atención visual</li>
+                            <li>Evaluación emocional</li>
+                            <li>Tiempos de reacción</li>
+                            <li>Mapas de calor</li>
+                            <li>Fricción cognitiva</li>
+                        </ul>
+                        <div
+                            style="background: var(--navy-color, #0f172a); color: white; padding: 1rem; border-radius: 6px; font-size: 0.95rem;">
+                            El 85% de las decisiones se toman a nivel subconsciente.<br>
+                            <span style="color: var(--primary-color); font-weight: 700;">Medimos lo que el consumidor no
+                                verbaliza.</span>
+                        </div>
+                    </div>
+                    <!-- Capa 4 -->
+                    <div class="premium-card-white" style="box-shadow: 0 10px 30px rgba(0,0,0,0.04);">
+                        <h3 class="text-primary"
+                            style="font-size: 1.3rem; margin-bottom: 1.5rem; border-bottom: 2px solid #eee; padding-bottom: 1rem;">
+                            🔹 4️⃣ Capa Cultural – Psicoantropología de Mercado
+                        </h3>
+                        <p style="color: #64748b; margin-bottom: 1rem; font-weight: 500;">El mercado boliviano no es
+                            homogéneo. Analizamos:</p>
+                        <ul class="service-list-minimal text-gray-dark" style="margin-bottom: 1.5rem;">
+                            <li>Códigos culturales</li>
+                            <li>Narrativas sociales</li>
+                            <li>Arquetipos dominantes</li>
+                            <li>Tensiones económicas</li>
+                            <li>Significados simbólicos del consumo</li>
+                        </ul>
+                        <div
+                            style="background: #f8fafc; padding: 1rem; border-radius: 6px; font-size: 0.95rem; color: #475569;">
+                            Esto permite entender por qué una estrategia funciona en una ciudad y fracasa en otra.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🟦 3️⃣ INTEGRACIÓN TECNOLÓGICA Y BIG DATA -->
+        <section class="elementor-section premium-section-padding bg-white" style="padding: 5rem 0;">
+            <div class="container elementor-container premium-grid-2-split" style="align-items: center;">
+                <div>
+                    <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Inteligencia Artificial y
+                        análisis de datos para decisiones rápidas</h2>
+                    <p class="text-gray-dark" style="font-size: 1.1rem; margin-bottom: 2rem;">Integramos:</p>
+
+                    <ul class="service-list-minimal text-gray-dark" style="margin-bottom: 3rem;">
+                        <li>Cruce de data pública y primaria</li>
+                        <li>Modelos predictivos</li>
+                        <li>Social Listening estructurado</li>
+                        <li>Análisis masivo de percepción digital</li>
+                        <li>Dashboards ejecutivos dinámicos</li>
+                    </ul>
+
+                    <div style="font-size: 1.4rem; font-weight: 700; color: var(--navy-color);">
+                        El objetivo no es acumular datos.<br>
+                        <span style="color: var(--primary-color);">Es reducir tiempo directivo de análisis.</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="premium-card-white"
+                        style="background: linear-gradient(145deg, #ffffff, #f8fafc); border: 1px solid #e2e8f0; text-align: center; padding: 4rem;">
+                        <span style="font-size: 4rem; display: block; margin-bottom: 1.5rem;">🤖</span>
+                        <h3 class="text-navy" style="font-size: 1.6rem; margin-bottom: 1rem;">Tecnología + Estrategia
+                        </h3>
+                        <p style="color: #64748b; margin-bottom: 0;">Convertimos volúmenes masivos de información en
+                            patrones visuales y recomendaciones claras.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🟦 4️⃣ VALIDACIÓN EN CAMPO REAL -->
+        <section class="elementor-section premium-section-padding bg-slate" style="padding: 5rem 0;">
+            <div class="container elementor-container">
+                <div class="premium-card-white"
+                    style="max-width: 900px; margin: 0 auto; padding: 4rem; text-align: center;">
+                    <span style="font-size: 3rem; display: block; margin-bottom: 1.5rem;">📍</span>
+                    <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 2rem;">No operamos desde escritorio
+                    </h2>
+
+                    <p class="text-gray-dark leading-relaxed" style="font-size: 1.2rem; margin-bottom: 2rem;">
+                        Mindtec cuenta con:
+                    </p>
+                    <ul class="service-list-minimal"
+                        style="margin-bottom: 2.5rem; font-size: 1.1rem; text-align: left; display: inline-block;">
+                        <li>Más de 80 encuestadores activos a nivel Bolivia</li>
+                        <li>Cobertura en principales ciudades</li>
+                        <li>Validación en punto de venta</li>
+                        <li>Auditoría territorial</li>
+                        <li>Levantamiento fotográfico estructurado</li>
+                    </ul>
+                    <div style="font-weight: 700; font-size: 1.3rem; color: #0f172a; margin-top: 1rem;">
+                        La estrategia se contrasta con la realidad.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🟦 5️⃣ TABLA COMPARATIVA – TRADICIONAL VS MINDTEC -->
+        <section class="elementor-section premium-section-padding bg-white" style="padding: 5rem 0;">
+            <div class="container elementor-container">
+                <div class="section-title-center" style="max-width: 800px; margin: 0 auto 3rem auto;">
+                    <h2 class="text-navy" style="font-size: 2.2rem;">Por qué nuestro modelo reduce riesgo estratégico
+                    </h2>
+                </div>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Investigación Tradicional</th>
+                            <th>Modelo Híbrido Mindtec</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Encuesta declarativa</td>
+                            <td>Integración cuantitativa + cualitativa + inconsciente</td>
+                        </tr>
+                        <tr>
+                            <td>Análisis aislado</td>
+                            <td>Cruce de datos macro, micro y territorial</td>
+                        </tr>
+                        <tr>
+                            <td>Reporte descriptivo</td>
+                            <td>Diagnóstico estratégico defendible</td>
+                        </tr>
+                        <tr>
+                            <td>Sin cultura local profunda</td>
+                            <td>Psicoantropología adaptada al mercado boliviano</td>
+                        </tr>
+                        <tr>
+                            <td>Sin validación en campo</td>
+                            <td>Red nacional activa y auditoría real</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 🟦 6️⃣ HORIZONTES DE EJECUCIÓN -->
+        <section class="elementor-section premium-section-padding bg-slate" style="padding: 5rem 0;">
+            <div class="container elementor-container">
+                <div class="section-title-center" style="margin-bottom: 4rem;">
+                    <h2 class="text-navy" style="font-size: 2.5rem;">Metodología adaptada al tiempo estratégico de su
+                        decisión</h2>
+                </div>
+
                 <div class="offer-grid-modern">
                     <div class="offer-card-v2" style="background: #fff; padding: 2rem;">
-                        <h4>Horizonte 7 Días</h4>
-                        <p style="margin-top: 0.5rem; color: #666;"><strong>Respuestas Tácticas Rápidas</strong></p>
-                        <ul style="margin-top: 1rem;">
-                            <li>Diagnósticos veloces de situación</li>
-                            <li>Auditorías exprés de ejecución en punto de venta</li>
-                            <li>Monitoreo puntual de precios de la competencia</li>
-                            <li>Adecuado para destrabar embudos operativos urgentes</li>
+                        <h4 style="color: var(--primary-color);">🔹 Horizonte 7 Días</h4>
+                        <ul class="service-list-minimal text-gray-dark" style="margin-top: 1.5rem;">
+                            <li>Diagnósticos tácticos rápidos</li>
+                            <li>Auditoría exprés de precios</li>
+                            <li>Monitoreo puntual</li>
                         </ul>
                     </div>
-                    <div class="offer-card-v2 highlight" style="background: #f8f9fc; padding: 2rem;">
-                        <h4>Horizonte 30 Días</h4>
-                        <p style="margin-top: 0.5rem; color: #666;"><strong>Evaluaciones de Medio Plazo</strong></p>
-                        <ul style="margin-top: 1rem;">
-                            <li>Estudios de percepción y posicionamiento</li>
-                            <li>Análisis estructurado de experiencia de cliente</li>
-                            <li>Benchmarks competitivos moderados</li>
-                            <li>Generación de dashboards de seguimiento integrales</li>
+                    <div class="offer-card-v2"
+                        style="background: #fff; padding: 2rem; border-top: 4px solid var(--navy-color);">
+                        <h4 style="color: var(--navy-color);">🔹 Horizonte 30 Días</h4>
+                        <ul class="service-list-minimal text-gray-dark" style="margin-top: 1.5rem;">
+                            <li>Estudios de percepción</li>
+                            <li>Evaluación de experiencia de cliente</li>
+                            <li>Benchmark competitivo</li>
                         </ul>
                     </div>
-                    <div class="offer-card-v2 dark" style="padding: 2rem;">
-                        <h4 style="color: #fff;">Horizonte 60-90 Días</h4>
-                        <p style="margin-top: 0.5rem; opacity: 0.8; color: #fff;"><strong>Estrategia Corporativa
-                                Profunda</strong></p>
-                        <ul style="margin-top: 1rem; color: #fff;">
-                            <li>Estudios de viabilidad de nuevos modelos operativos</li>
-                            <li>Investigaciones de carácter nacional o multisegmento</li>
-                            <li>Mapeo complejo y modelos de proyección sustentada</li>
-                            <li>Validado mediante análisis híbrido cruzado</li>
+                    <div class="offer-card-v2 dark" style="padding: 2rem; background: var(--navy-color); color: white;">
+                        <h4 style="color: #fff;">🔹 Horizonte 60–90 Días</h4>
+                        <ul class="service-list-minimal" style="margin-top: 1.5rem; color: #cbd5e1;">
+                            <li>Estudios nacionales</li>
+                            <li>Modelos predictivos</li>
+                            <li>Proyectos de viabilidad estructural</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Final CTA -->
-        <section class="cta-section-modern elementor-section">
-            <div class="container elementor-container glass-container">
+        <!-- 🟦 7️⃣ ARQUITECTURA DE DECISIÓN -->
+        <section class="elementor-section premium-section-padding bg-white" style="padding: 5rem 0;">
+            <div class="container elementor-container text-center" style="max-width: 800px;">
+                <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 2rem;">De dato a decisión ejecutiva</h2>
+                <p class="text-gray-dark" style="font-size: 1.2rem; margin-bottom: 2rem;">La metodología no termina en
+                    análisis.</p>
+
+                <div
+                    style="text-align: left; background: #f8fafc; padding: 3rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #e2e8f0;">
+                    <h3 style="color: #0f172a; margin-bottom: 1.5rem; font-size: 1.4rem;">Entregamos:</h3>
+                    <ul class="service-list-minimal text-gray-dark" style="font-size: 1.1rem;">
+                        <li>Executive brief para directorio</li>
+                        <li>Escenarios comparativos</li>
+                        <li>Matrices de riesgo</li>
+                        <li>Recomendaciones priorizadas</li>
+                        <li>Dashboard interactivo cuando aplica</li>
+                    </ul>
+                </div>
+
+                <div style="font-size: 1.4rem; font-weight: 700; color: var(--primary-color);">
+                    La información se transforma en dirección.
+                </div>
+            </div>
+        </section>
+
+        <!-- 🟦 8️⃣ IMPACTO EN LA ORGANIZACIÓN -->
+        <section class="elementor-section premium-section-padding bg-slate" style="padding: 5rem 0;">
+            <div class="container elementor-container">
+                <div class="section-title-center" style="margin-bottom: 4rem;">
+                    <h2 class="text-navy" style="font-size: 2.5rem;">Beneficios estratégicos del modelo híbrido</h2>
+                </div>
+
+                <div class="premium-grid-5">
+                    <div class="premium-card-white"
+                        style="text-align: center; padding: 2rem 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <h4 style="margin: 0; font-weight: 600; font-size: 1.1rem; color: #0f172a;">Reducción de riesgo
+                            financiero</h4>
+                    </div>
+                    <div class="premium-card-white"
+                        style="text-align: center; padding: 2rem 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <h4 style="margin: 0; font-weight: 600; font-size: 1.1rem; color: #0f172a;">Ahorro de tiempo
+                            directivo</h4>
+                    </div>
+                    <div class="premium-card-white"
+                        style="text-align: center; padding: 2rem 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <h4 style="margin: 0; font-weight: 600; font-size: 1.1rem; color: #0f172a;">Claridad estructural
+                        </h4>
+                    </div>
+                    <div class="premium-card-white"
+                        style="text-align: center; padding: 2rem 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <h4 style="margin: 0; font-weight: 600; font-size: 1.1rem; color: #0f172a;">Disminución de
+                            improvisación</h4>
+                    </div>
+                    <div class="premium-card-white"
+                        style="text-align: center; padding: 2rem 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <h4 style="margin: 0; font-weight: 600; font-size: 1.1rem; color: #0f172a;">Decisiones
+                            defendibles ante inversionistas</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🟦 9️⃣ FAQ (SEO + Autoridad) -->
+        <section class="elementor-section premium-section-padding bg-white" style="padding: 5rem 0;">
+            <div class="container elementor-container" style="max-width: 800px;">
+                <h2 class="text-navy text-center" style="font-size: 2.5rem; margin-bottom: 3rem;">Preguntas Frecuentes
+                </h2>
+
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <h4>¿Cuál es la diferencia entre investigación cuantitativa y cualitativa?</h4>
+                        <p>La cuantitativa mide volumen y tendencia. La cualitativa explora motivadores profundos.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>¿Qué aporta el neuromarketing?</h4>
+                        <p>Permite medir atención y emoción subconsciente.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>¿Cómo integran IA en la investigación de mercados?</h4>
+                        <p>A través de modelos de cruce de datos y análisis predictivo.</p>
+                    </div>
+                    <div class="faq-item">
+                        <h4>¿Pueden ejecutar estudios a nivel nacional?</h4>
+                        <p>Sí. Contamos con red territorial activa en Bolivia.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🟦 CTA FINAL -->
+        <section class="cta-section-modern elementor-section" style="padding: 6rem 0;">
+            <div class="container elementor-container glass-container"
+                style="max-width: 900px; margin: 0 auto; text-align: center;">
                 <div class="cta-content-v2">
-                    <h2>Alinee la obtención de datos con el ritmo de su directorio.</h2>
-                    <p class="cta-subtitle">Discutamos la línea temporal que necesita asegurar para su siguiente paso.
-                    </p>
-                    <div class="cta-actions">
-                        <a href="contacto.html" class="btn btn-primary lg">Agendar sesión ejecutiva confidencial</a>
+                    <h2 style="font-size: 3rem; line-height: 1.2; margin-bottom: 1.5rem;">Si su decisión requiere
+                        certeza, nuestra metodología reduce el margen de error.</h2>
+                    <div class="cta-actions"
+                        style="justify-content: center; flex-direction: column; align-items: center; margin-top: 2.5rem;">
+                        <a href="contacto.html" class="btn btn-primary lg"
+                            style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar sesión ejecutiva confidencial</a>
+                        <p
+                            style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">
+                            Primera sesión estratégica sin compromiso
+                        </p>
                     </div>
                 </div>
             </div>
