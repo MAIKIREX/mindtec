@@ -9,31 +9,40 @@
   'use strict';
 
   /* ═══════════════════════════════════════════
-     1. NEURAL NETWORK CANVAS
+     1. NEURAL NETWORK CANVAS — Desktop + Mobile
      ═══════════════════════════════════════════ */
-  function initNeuralCanvas() {
-    var container = document.querySelector('.neuro-visual-bg');
-    if (!container) return;
+
+  /**
+   * Creates a self-contained neural canvas inside `container`.
+   * @param {Element} container  - DOM element that will host the canvas
+   * @param {Object}  opts       - { numNodes, maxDist, speed, isBg }
+   *   isBg = true  →  canvas covers the full container as a background layer
+   *                    (pointer-events: none, reduced opacity overlay)
+   */
+  function createNeuralCanvas(container, opts) {
+    opts = opts || {};
+    var NUM_NODES   = opts.numNodes  || 80;
+    var MAX_DIST    = opts.maxDist   || 160;
+    var SPEED       = opts.speed     || 0.35;
+    var IS_BG       = opts.isBg      || false;
+    var MOUSE_RADIUS = 130;
 
     var canvas = document.createElement('canvas');
-    canvas.className = 'hero-canvas';
+    canvas.className = IS_BG ? 'hero-canvas hero-canvas-bg' : 'hero-canvas';
     container.appendChild(canvas);
     var ctx = canvas.getContext('2d');
 
     var W, H, mx, my, mouseActive = false;
     var NODES = [];
-    var NUM_NODES = 80;
-    var MAX_DIST = 160;
-    var MOUSE_RADIUS = 130;
 
     function resize() {
       var rect = container.getBoundingClientRect();
       var dpr = Math.min(window.devicePixelRatio || 1, 2);
-      W = rect.width;
-      H = rect.height;
-      canvas.width = W * dpr;
+      W = rect.width  || window.innerWidth;
+      H = rect.height || window.innerHeight;
+      canvas.width  = W * dpr;
       canvas.height = H * dpr;
-      canvas.style.width = W + 'px';
+      canvas.style.width  = W + 'px';
       canvas.style.height = H + 'px';
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(dpr, dpr);
@@ -45,8 +54,8 @@
         NODES.push({
           x: Math.random() * W,
           y: Math.random() * H,
-          vx: (Math.random() - 0.5) * 0.35,
-          vy: (Math.random() - 0.5) * 0.35,
+          vx: (Math.random() - 0.5) * SPEED,
+          vy: (Math.random() - 0.5) * SPEED,
           r: 1 + Math.random() * 3,
           alpha: 0.4 + Math.random() * 0.6,
           pulse: Math.random() * Math.PI * 2,
@@ -104,7 +113,7 @@
         if (mouseActive) {
           var dx2 = n.x - mx;
           var dy2 = n.y - my;
-          var d2 = Math.sqrt(dx2 * dx2 + dy2 * dy2);
+          var d2  = Math.sqrt(dx2 * dx2 + dy2 * dy2);
           if (d2 < MOUSE_RADIUS && d2 > 0) {
             var force = (MOUSE_RADIUS - d2) / MOUSE_RADIUS;
             n.vx += (dx2 / d2) * force * 0.55;
@@ -122,43 +131,36 @@
           n.vx += (Math.random() - 0.5) * 0.05;
           n.vy += (Math.random() - 0.5) * 0.05;
         }
-        if (speed > 0.7) {
-          n.vx *= 0.94;
-          n.vy *= 0.94;
-        }
+        if (speed > 0.7) { n.vx *= 0.94; n.vy *= 0.94; }
       }
     }
 
     function draw() {
       ctx.clearRect(0, 0, W, H);
-
       for (var i = 0; i < NODES.length; i++) {
         for (var j = i + 1; j < NODES.length; j++) {
-          var dx = NODES[i].x - NODES[j].x;
-          var dy = NODES[i].y - NODES[j].y;
+          var dx   = NODES[i].x - NODES[j].x;
+          var dy   = NODES[i].y - NODES[j].y;
           var dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < MAX_DIST) drawConnection(NODES[i], NODES[j], dist);
         }
       }
-
-      for (var k = 0; k < NODES.length; k++) {
-        drawNode(NODES[k]);
-      }
+      for (var k = 0; k < NODES.length; k++) { drawNode(NODES[k]); }
     }
 
-    function loop() {
-      updateNodes();
-      draw();
-      requestAnimationFrame(loop);
-    }
+    function loop() { updateNodes(); draw(); requestAnimationFrame(loop); }
 
-    container.addEventListener('mousemove', function (e) {
-      var rect = container.getBoundingClientRect();
-      mx = e.clientX - rect.left;
-      my = e.clientY - rect.top;
-      mouseActive = true;
-    });
-    container.addEventListener('mouseleave', function () { mouseActive = false; });
+    /* Interaction — mouse + touch */
+    if (!IS_BG) {
+      container.addEventListener('mousemove', function (e) {
+        var rect = container.getBoundingClientRect();
+        mx = e.clientX - rect.left;
+        my = e.clientY - rect.top;
+        mouseActive = true;
+      });
+      container.addEventListener('mouseleave', function () { mouseActive = false; });
+    }
+    /* Touch drag always active for both modes */
     container.addEventListener('touchmove', function (e) {
       var rect = container.getBoundingClientRect();
       var t = e.touches[0];
@@ -168,14 +170,43 @@
     }, { passive: true });
     container.addEventListener('touchend', function () { mouseActive = false; });
 
-    window.addEventListener('resize', function () {
-      resize();
-      createNodes();
-    });
+    window.addEventListener('resize', function () { resize(); createNodes(); });
 
     resize();
     createNodes();
     loop();
+  }
+
+  /* ── Desktop canvas (inside .neuro-visual-bg card) */
+  function initNeuralCanvas() {
+    var container = document.querySelector('.neuro-visual-bg');
+    if (!container) return;
+    createNeuralCanvas(container, { numNodes: 80, maxDist: 160, speed: 0.35, isBg: false });
+  }
+
+  /* ── Mobile/tablet canvas (full hero background) */
+  function initMobileHeroCanvas() {
+    var mobileContainer = document.getElementById('hero-mobile-canvas');
+    var heroSection     = document.querySelector('.hero-section');
+    if (!mobileContainer || !heroSection) return;
+
+    /* Give the mobile container the full hero dimensions */
+    function syncSize() {
+      var rect = heroSection.getBoundingClientRect();
+      mobileContainer.style.width  = rect.width  + 'px';
+      mobileContainer.style.height = rect.height + 'px';
+    }
+    syncSize();
+    window.addEventListener('resize', syncSize, { passive: true });
+
+    /* Fewer nodes on mobile for performance */
+    var isMobile = window.innerWidth <= 768;
+    createNeuralCanvas(mobileContainer, {
+      numNodes: isMobile ? 45 : 60,
+      maxDist:  isMobile ? 120 : 140,
+      speed:    0.28,
+      isBg:     true
+    });
   }
 
   /* ═══════════════════════════════════════════
@@ -623,6 +654,7 @@
      ═══════════════════════════════════════════ */
   function boot() {
     initNeuralCanvas();
+    initMobileHeroCanvas();
     initNavOverlay();
     initHeaderScroll();
     initScrollProgress();
