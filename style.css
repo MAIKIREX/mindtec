@@ -3042,3 +3042,59 @@ p {
         color: var(--color-text-dark) !important;
     }
 }
+
+/* ── 27. CUSTOM SECTIONS & IMAGES (MAYA AWARD & SOLUTIONS) ── */
+.maya-award-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--spacing-md);
+    align-items: center;
+}
+
+.maya-award-card {
+    transition: transform var(--transition-slow);
+}
+
+.maya-award-card:hover {
+    transform: rotate(0deg) scale(1.02);
+}
+
+@media (max-width: 991px) {
+    .maya-award-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+        text-align: center;
+    }
+    .maya-award-grid .eyebrow {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .maya-award-grid div[style*="display: flex"] {
+        justify-content: center !important;
+    }
+}
+
+/* Custom Image Cards */
+.img-card-visual {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-sm);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-base);
+}
+
+.img-card-visual:hover {
+    transform: scale(1.03);
+    box-shadow: var(--shadow-md);
+}
+
+.solution-hero-img {
+    width: 100%;
+    max-height: 480px;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(255,255,255,0.1);
+}
