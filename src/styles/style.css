@@ -123,31 +123,33 @@ ul {
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     color: var(--color-text-dark);
-    font-weight: 800;
-    line-height: 1.08;
-    letter-spacing: -0.03em;
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.015em;
     margin-bottom: var(--spacing-sm);
     text-wrap: balance;
 }
 
 h1 {
     font-size: clamp(2.8rem, 5.5vw, 4.5rem);
-    font-weight: 900;
+    font-weight: 800;
+    letter-spacing: -0.02em;
 }
 
 h2 {
     font-size: clamp(2rem, 4vw, 3rem);
     margin-bottom: 1.5rem;
+    letter-spacing: -0.015em;
 }
 
 h3 {
     font-size: clamp(1.25rem, 2vw, 1.6rem);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
 }
 
 h4 {
     font-size: 1.1rem;
-    letter-spacing: -0.01em;
+    letter-spacing: normal;
 }
 
 p {
@@ -586,7 +588,7 @@ p {
     opacity: 0;
     transform: translateY(30px);
     transition: all 500ms var(--ease-spring);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
 }
 
 .nav-overlay.active .nav-overlay-link {
@@ -1359,7 +1361,7 @@ p {
     justify-content: center;
     overflow: hidden;
     position: relative;
-    background-image: url('hero_neuromarketing_premium_v2_1771034234219.webp');
+    background-image: url('/hero_neuromarketing_premium_v2_1771034234219.webp');
     background-size: cover;
     background-position: center;
     box-shadow: var(--shadow-xl), inset 0 0 80px rgba(0, 0, 0, 0.3);
@@ -1511,7 +1513,7 @@ p {
 /* ── 12. PROBLEM SECTION ──────────────────────────────── */
 .problem-section {
     padding: var(--spacing-xl) 0;
-    background-image: url('background_neural_mesh_1771034277513.webp');
+    background-image: url('/background_neural_mesh_1771034277513.webp');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -2172,8 +2174,8 @@ p {
     color: var(--color-white);
     font-size: clamp(1.8rem, 3.5vw, 2.5rem);
     margin-bottom: 1.25rem;
-    font-weight: 800;
-    line-height: 1.15;
+    font-weight: 700;
+    line-height: 1.25;
     position: relative;
 }
 
@@ -3059,8 +3061,8 @@ p {
 
 .featured-article-title {
     font-size: clamp(1.5rem, 3.5vw, 2.2rem);
-    line-height: 1.15;
-    font-weight: 900;
+    line-height: 1.25;
+    font-weight: 800;
     margin-bottom: var(--spacing-sm);
     color: var(--color-text-dark);
 }
@@ -3409,4 +3411,130 @@ p {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
     border: 1px solid rgba(255,255,255,0.1);
-}
+}
+
+/* ── 28. PREMIUM GRID LAYOUTS ─────────────────────────── */
+.premium-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 2rem;
+}
+@media (max-width: 768px) {
+    .premium-grid-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+.premium-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+@media (max-width: 768px) {
+    .premium-grid-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+.premium-grid-5 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+}
+@media (max-width: 768px) {
+    .premium-grid-5 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── 29. PREMIUM COMPARISON TABLE ─────────────────────── */
+.comparison-table-wrapper {
+    overflow-x: auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(11, 43, 64, 0.08);
+    margin: 2.5rem 0;
+    background: var(--color-white);
+}
+
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.comparison-table th {
+    padding: 1.25rem 2rem;
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-white);
+    background-color: var(--color-secondary);
+    border-bottom: 2px solid var(--color-primary);
+}
+
+.comparison-table td {
+    padding: 1.25rem 2rem;
+    font-size: 0.95rem;
+    color: var(--color-text-main);
+    border-bottom: 1px solid rgba(11, 43, 64, 0.06);
+    line-height: 1.6;
+}
+
+.comparison-table tr:last-child td {
+    border-bottom: none;
+}
+
+.comparison-table tr td:first-child {
+    font-weight: 500;
+    color: var(--color-text-muted);
+}
+
+.comparison-table tr td:last-child {
+    font-weight: 700;
+    color: var(--color-secondary-deep);
+    background-color: rgba(242, 101, 34, 0.02);
+}
+
+.comparison-table tr:hover td:last-child {
+    background-color: rgba(242, 101, 34, 0.04);
+}
+
+/* ── 30. PREMIUM FAQ CARD SYSTEM ──────────────────────── */
+.faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+}
+
+.faq-item {
+    background: var(--color-white);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+    border: 1px solid rgba(11, 43, 64, 0.06);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-base);
+}
+
+.faq-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(242, 101, 34, 0.15);
+}
+
+.faq-item h4 {
+    color: var(--color-secondary);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.15rem;
+    margin-bottom: 0.75rem;
+}
+
+.faq-item p {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+

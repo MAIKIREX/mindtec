@@ -55,6 +55,12 @@
       "skillPath": "skills/brutalist-skill/SKILL.md",
       "computedHash": "e66e5a2a8b73cef79ab6546459c665e8b983645689c5f3772f7eed8b9f1e8e0e"
     },
+    "marketing-psychology": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "skillPath": "skills/marketing-psychology/SKILL.md",
+      "computedHash": "d057044710ce7b7f9b90b84b3ab64e9359aaf47982b922ec10daca3822185ede"
+    },
     "minimalist-ui": {
       "source": "Leonxlnx/taste-skill",
       "sourceType": "github",

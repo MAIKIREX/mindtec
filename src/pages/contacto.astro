@@ -6,167 +6,493 @@ import Layout from '../layouts/Layout.astro';
   title="Contacto - Agende un Diagnóstico Inicial | Mindtec Bolivia"
   description="Agende un diagnóstico inicial gratuito de investigación de mercados en Bolivia. 20 minutos, confidencial, sin compromiso. Mindtec."
   keywords="contacto investigación de mercados Bolivia, agendar estudio de mercado Bolivia, contactar consultora de investigación de mercados en Bolivia"
-  headerLightBg={true}
+  headerLightBg={false}
 >
-  <main>
-<main class="elementor-content">
-        <!-- Hero Section -->
-        <section class="hero-section elementor-section" style="padding-bottom: 4rem;">
+  <main class="contact-page">
+    <!-- Contact Hero Header -->
+    <section class="contact-hero">
+      <div class="container text-center">
+        <span class="eyebrow animate-on-observe">Reserva Confidencial</span>
+        <h1 class="animate-on-observe stagger-1">Conversemos sobre su estrategia de mercado</h1>
+        <p class="contact-subtitle animate-on-observe stagger-2">
+          Reserve una sesión confidencial de 20 minutos con los analistas senior de Mindtec para analizar los desafíos comerciales de su organización.
+        </p>
+      </div>
+    </section>
 
-            <!-- Geometric floating shapes (always visible, CSS-animated) -->
-            <div class="hero-shapes" aria-hidden="true">
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-            </div>
-            <!-- Mobile-first neural canvas background -->
-            <div class="hero-mobile-canvas" id="hero-mobile-canvas" aria-hidden="true"></div>
-            <div class="container hero-container elementor-container e-con" style="text-align: center;">
-                <div class="hero-content" style="max-width: 900px; margin: 0 auto;">
-                    <span class="eyebrow fade-in">RESERVA CONFIDENCIAL</span>
-                    <h1 class="hero-title">Agende un Diagnóstico Inicial de Investigación de Mercado en Bolivia</h1>
-                    <p class="hero-subtitle" style="margin-bottom: 2rem;">Reserve un espacio confidencial con nuestros
-                        analistas senior. Proteja hoy su próxima jugada comercial.</p>
-                </div>
-            </div>
-
+    <!-- Main Contact Grid -->
+    <section class="contact-grid-section">
+      <div class="container contact-grid-container">
+        <!-- Left: Form -->
+        <div class="form-wrapper animate-on-observe stagger-3">
+          <div class="form-container">
+            <h2 class="form-title">Agendar diagnóstico inicial</h2>
+            <p class="form-desc">Complete el siguiente formulario y un analista senior se pondrá en contacto en menos de 24 horas hábiles.</p>
             
-            <div class="container elementor-container" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 4rem; align-items: start; max-width: 1100px; margin: 0 auto;">
-                <!-- COLUMNA IZQUIERDA: Formulario -->
-                <div class="form-container" style="margin: 0; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05); border: 1px solid #e2e8f0;">
-                    <form action="#" method="POST">
-                        <div class="form-group">
-                            <label for="nombre">Nombre Completo y Cargo Corporativo</label>
-                            <input type="text" id="nombre" name="nombre" class="form-control" required
-                                placeholder="Ej. Juan Pérez - Gerente General">
-                        </div>
+            <form action="#" method="POST">
+              <div class="form-group">
+                <label for="nombre">Nombre Completo y Cargo</label>
+                <input type="text" id="nombre" name="nombre" class="form-control" required placeholder="Ej. Juan Pérez - Gerente General">
+              </div>
 
-                        <div class="form-group">
-                            <label for="empresa">Empresa</label>
-                            <input type="text" id="empresa" name="empresa" class="form-control" required>
-                        </div>
+              <div class="form-group">
+                <label for="empresa">Empresa</label>
+                <input type="text" id="empresa" name="empresa" class="form-control" required placeholder="Nombre de su organización">
+              </div>
 
-                        <div class="form-group">
-                            <label for="email">Correo Institucional</label>
-                            <input type="email" id="email" name="email" class="form-control" required>
-                        </div>
+              <div class="form-group">
+                <label for="email">Correo Institucional</label>
+                <input type="email" id="email" name="email" class="form-control" required placeholder="ejemplo@empresa.com">
+              </div>
 
-                        <div class="form-group">
-                            <label for="necesidad">Tipo de Necesidad Estratégica</label>
-                            <select id="necesidad" name="necesidad" class="form-control" required>
-                                <option value="" disabled selected>Seleccione el área a resolver...</option>
-                                <option value="estudio-mercado">Estudio de Mercado y Viabilidad</option>
-                                <option value="estudio-precios">Estudio de Precios</option>
-                                <option value="rebranding">Evaluación pre-Rebranding / Packaging</option>
-                                <option value="percepcion">Estudio de Percepción de Marca</option>
-                                <option value="auditoria">Auditoría Retail / Trade Intelligence</option>
-                                <option value="neuromarketing">Neuromarketing B2B y Comportamiento</option>
-                                <option value="competencia">Análisis Estructurado de Competencia</option>
-                                <option value="otro">Otro</option>
-                            </select>
-                        </div>
+              <div class="form-group">
+                <label for="necesidad">Tipo de Necesidad Estratégica</label>
+                <select id="necesidad" name="necesidad" class="form-control" required>
+                  <option value="" disabled selected>Seleccione el área a resolver...</option>
+                  <option value="estudio-mercado">Estudio de Mercado y Viabilidad</option>
+                  <option value="estudio-precios">Estudio de Precios</option>
+                  <option value="rebranding">Evaluación pre-Rebranding / Packaging</option>
+                  <option value="percepcion">Estudio de Percepción de Marca</option>
+                  <option value="auditoria">Auditoría Retail / Trade Intelligence</option>
+                  <option value="neuromarketing">Neuromarketing B2B y Comportamiento</option>
+                  <option value="competencia">Análisis Estructurado de Competencia</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </div>
 
-                        <div class="form-group">
-                            <label for="horizonte">Horizonte de Decisión Esperado</label>
-                            <select id="horizonte" name="horizonte" class="form-control" required>
-                                <option value="" disabled selected>Seleccione la urgencia técnica...</option>
-                                <option value="7dias">Acción Rápida (Aprox. 7 días)</option>
-                                <option value="30dias">Evaluación Táctica (Aprox. 30 días)</option>
-                                <option value="90dias">Estrategia Profunda (60-90 días)</option>
-                            </select>
-                        </div>
+              <div class="form-group">
+                <label for="horizonte">Horizonte de Decisión Esperado</label>
+                <select id="horizonte" name="horizonte" class="form-control" required>
+                  <option value="" disabled selected>Seleccione la urgencia técnica...</option>
+                  <option value="7dias">Acción Rápida (Aprox. 7 días)</option>
+                  <option value="30dias">Evaluación Táctica (Aprox. 30 días)</option>
+                  <option value="90dias">Estrategia Profunda (60-90 días)</option>
+                </select>
+              </div>
 
-                        <div class="form-group">
-                            <label for="comentarios">Contexto del Desafío (Opcional)</label>
-                            <textarea id="comentarios" name="comentarios" rows="3" class="form-control"
-                                placeholder="Mencione brevemente el riesgo que desea mitigar..."></textarea>
-                        </div>
+              <div class="form-group">
+                <label for="comentarios">Contexto del Desafío (Opcional)</label>
+                <textarea id="comentarios" name="comentarios" rows="4" class="form-control" placeholder="Mencione brevemente el riesgo que desea mitigar o la oportunidad que busca explotar..."></textarea>
+              </div>
 
-                        <button type="submit" class="btn btn-primary btn-submit">Agendar sesión ejecutiva
-                            confidencial</button>
-                        <p style="text-align: center; margin-top: 1rem; font-weight: 600; color: #333;">Primera sesión:
-                            20 minutos | Confidencial | Sin compromiso</p>
-                        <p style="text-align: center; margin-top: 0.5rem; font-size: 0.85rem; color: #666;">Respuesta en
-                            menos de 24 horas hábiles.</p>
-                    
-                    </form>
+              <button type="submit" class="btn btn-primary btn-submit">
+                Agendar sesión confidencial <span class="btn-arrow">→</span>
+              </button>
+              
+              <div class="form-note">
+                <p><strong>Primera sesión:</strong> 20 minutos | Confidencial | Sin compromiso de contratación</p>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Right: Information & Trust Panel -->
+        <div class="info-sidebar animate-on-observe stagger-4">
+          <!-- What to expect -->
+          <div class="info-card expectation-card">
+            <h3>¿Qué ocurrirá a continuación?</h3>
+            <ul class="expectation-list">
+              <li>
+                <div class="step-num">1</div>
+                <div class="step-text">
+                  <strong>Recepción y análisis:</strong> El equipo de analistas senior de Mindtec evaluará la información de su solicitud bajo estricto acuerdo de confidencialidad.
                 </div>
-
-                <!-- COLUMNA DERECHA: Trust Panel -->
-                <div class="trust-panel" style="background: rgba(11, 43, 64, 0.03); padding: 3rem 2.5rem; border-radius: 12px; border-left: 4px solid var(--color-primary);">
-                    <h3 style="color: var(--color-secondary); font-size: 1.3rem; margin-bottom: 1.5rem;">Lo que puede esperar:</h3>
-                    <ul style="list-style: none; padding: 0; margin-bottom: 2.5rem; color: #475569; font-size: 1.05rem;">
-                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;"><strong style="color: var(--color-primary);">✓</strong> Respuesta en menos de 24 horas hábiles</li>
-                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;"><strong style="color: var(--color-primary);">✓</strong> Sesión de 20 minutos, directo al punto</li>
-                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;"><strong style="color: var(--color-primary);">✓</strong> Confidencialidad absoluta sobre su escenario</li>
-                        <li style="margin-bottom: 1rem; display: flex; align-items: flex-start; gap: 10px;"><strong style="color: var(--color-primary);">✓</strong> Sin compromiso de contratación</li>
-                    </ul>
-
-                    <h3 style="color: var(--color-secondary); font-size: 1.1rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">Datos de contacto directo:</h3>
-                    <ul style="list-style: none; padding: 0; margin-bottom: 2.5rem; color: #475569;">
-                        <li style="margin-bottom: 0.8rem;">📧 <a href="mailto:info@mindtecbolivia.com" style="color: inherit; text-decoration: none; font-weight: 600;">info@mindtecbolivia.com</a></li>
-                        <li style="margin-bottom: 0.8rem;">📱 WhatsApp: <a href="https://wa.me/59172599201" target="_blank" style="color: inherit; text-decoration: none; font-weight: 600;">+591 72599201</a></li>
-                        <li style="margin-bottom: 0.8rem;">📍 La Paz, Bolivia</li>
-                    </ul>
-
-                    <h3 style="color: var(--color-secondary); font-size: 1.1rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">Horario de atención:</h3>
-                    <p style="color: #475569; margin: 0;">Lunes a viernes: 8:30 – 18:00 (Bolivia)</p>
+              </li>
+              <li>
+                <div class="step-num">2</div>
+                <div class="step-text">
+                  <strong>Contacto en 24h:</strong> Le responderemos vía correo electrónico para coordinar la videollamada de 20 minutos en el horario de su conveniencia.
                 </div>
+              </li>
+              <li>
+                <div class="step-num">3</div>
+                <div class="step-text">
+                  <strong>Diagnóstico Inicial:</strong> En la sesión, estructuraremos preliminarmente el alcance metodológico ideal para mitigar sus riesgos comerciales.
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Direct Contact -->
+          <div class="info-card contact-details-card">
+            <h3>Información Directa</h3>
+            <div class="contact-methods">
+              <a href="mailto:info@mindtecbolivia.com" class="contact-method-item">
+                <span class="icon">✉️</span>
+                <div>
+                  <strong>Correo Electrónico</strong>
+                  <span>info@mindtecbolivia.com</span>
+                </div>
+              </a>
+              <a href="https://wa.me/59172599201" target="_blank" class="contact-method-item">
+                <span class="icon">💬</span>
+                <div>
+                  <strong>WhatsApp Corporativo</strong>
+                  <span>+591 72599201</span>
+                </div>
+              </a>
+              <div class="contact-method-item">
+                <span class="icon">📍</span>
+                <div>
+                  <strong>Sede Principal</strong>
+                  <span>La Paz, Bolivia</span>
+                </div>
+              </div>
+              <div class="contact-method-item">
+                <span class="icon">⏰</span>
+                <div>
+                  <strong>Horario de Atención</strong>
+                  <span>Lunes a Viernes: 8:30 – 18:00 (GMT-4)</span>
+                </div>
+              </div>
             </div>
-            
-            <style>
-                @media (max-width: 900px) {
-                    .container.elementor-container[style*="display: grid"] {
-                        grid-template-columns: 1fr !important;
-                        gap: 2rem !important;
-                    }
-                }
-            </style>
-        </section>
-    
-        <section class="elementor-section bg-white" style="padding: 3rem 0; text-align: center; border-top: 1px dashed #ccc;">
-            <div class="container">
-                <p style="color: #64748b; margin-bottom: 1rem;">¿Aún no está seguro de qué evaluar puntualmente?</p>
-                <a href="/servicios" style="color: var(--color-primary); font-weight: 600; text-decoration: none;">Revise nuestras soluciones a detalle antes de agendar →</a>
-            </div>
-        </section>
-    </main>
-</main>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Quick Link Section -->
+    <section class="services-link-section">
+      <div class="container text-center">
+        <p class="animate-on-observe">¿Desea conocer más sobre el enfoque científico de Mindtec antes de conversar?</p>
+        <a href="/servicios" class="btn btn-secondary animate-on-observe stagger-1">
+          Ver Servicios y Metodología
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    .contact-page {
+      background-color: var(--color-secondary);
+      position: relative;
+      overflow: hidden;
+      color: var(--color-text-light);
+    }
+
+    /* Decorative background shapes for dark theme */
+    .contact-page::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(242, 101, 34, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .contact-page::after {
+      content: "";
+      position: absolute;
+      bottom: 20%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(11, 43, 64, 0.6) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .contact-hero {
+      padding: 160px 0 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-hero h1 {
+      font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+      line-height: 1.25;
+      max-width: 900px;
+      margin: 0 auto 1.5rem;
+      color: var(--color-text-light);
+    }
+
+    .contact-subtitle {
+      font-size: 1.15rem;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .contact-grid-section {
+      padding: 0 0 100px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact-grid-container {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 3.5rem;
+      align-items: start;
+    }
+
+    /* Form enhancements */
+    .form-wrapper {
+      width: 100%;
+    }
+
+    .form-container {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow-xl), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-lg);
+      padding: 3.5rem;
+      max-width: 100%;
+      margin: 0;
+      color: var(--color-text-light);
+    }
+
+    .form-title {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      color: var(--color-text-light);
+    }
+
+    .form-desc {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.6);
+      margin-bottom: 2.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.6rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--color-text-light);
+      transition: all var(--transition-base);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 0 4px var(--color-primary-glow);
+    }
+
+    .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    select.form-control option {
+      background-color: var(--color-secondary-deep);
+      color: var(--color-text-light);
+    }
+
+    .form-note {
+      margin-top: 1.5rem;
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 1.25rem;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .form-note strong {
+      color: var(--color-primary);
+    }
+
+    /* Info cards & sidebar */
+    .info-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      box-shadow: var(--shadow-md);
+      transition: all var(--transition-base);
+      color: var(--color-text-light);
+    }
+
+    .info-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(242, 101, 34, 0.15);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .info-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+      color: var(--color-text-light);
+      position: relative;
+      padding-bottom: 0.75rem;
+    }
+
+    .info-card h3::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 30px;
+      height: 2px;
+      background: var(--color-primary);
+    }
+
+    .expectation-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 0;
+      margin: 0;
+    }
+
+    .expectation-list li {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 0;
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(242, 101, 34, 0.15);
+      color: var(--color-primary);
+      font-weight: 700;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid rgba(242, 101, 34, 0.3);
+    }
+
+    .step-text {
+      font-size: 0.92rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .step-text strong {
+      display: block;
+      color: var(--color-text-light);
+      margin-bottom: 0.25rem;
+      font-size: 0.95rem;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .contact-method-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all var(--transition-fast);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    a.contact-method-item:hover {
+      background: rgba(242, 101, 34, 0.1);
+      border-color: rgba(242, 101, 34, 0.25);
+    }
+
+    .contact-method-item .icon {
+      font-size: 1.5rem;
+      width: 44px;
+      height: 44px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+      flex-shrink: 0;
+    }
+
+    .contact-method-item div {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .contact-method-item strong {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .contact-method-item span {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--color-text-light);
+    }
+
+    .services-link-section {
+      padding: 5rem 0;
+      background: var(--color-secondary-deep);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .services-link-section p {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--color-text-light);
+      margin-bottom: 1.5rem;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .services-link-section .btn {
+      width: auto;
+      padding: 14px 36px;
+    }
+
+    @media (max-width: 1024px) {
+      .contact-grid-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .contact-hero {
+        padding: 120px 0 40px;
+      }
+      .contact-grid-section {
+        padding-bottom: 60px;
+      }
+      .form-container {
+        padding: 2rem;
+      }
+      .info-card {
+        padding: 2rem;
+      }
+    }
+  </style>
 </Layout>
