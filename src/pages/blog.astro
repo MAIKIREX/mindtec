@@ -28,6 +28,9 @@ const parseSpanishDate = (dateStr: string) => {
 // Sort posts descending by date
 const sortedPosts = posts.sort((a, b) => parseSpanishDate(b.data.date).getTime() - parseSpanishDate(a.data.date).getTime());
 
+const featuredPost = sortedPosts[0];
+const regularPosts = sortedPosts.slice(1);
+
 // Map category display name to original filter slugs for compatibility with filter script
 const categoryFilterMap: Record<string, string> = {
   'Investigación de Mercados': 'investigacion-de-mercados',
@@ -54,6 +57,12 @@ const getFilterSlug = (category: string) => {
     <main class="elementor-content">
         <!-- Hero Section -->
         <section class="hero-section elementor-section" style="padding: 160px 0 80px; min-height: auto; background: var(--color-secondary);">
+            <!-- Floating shapes -->
+            <div class="hero-shapes" aria-hidden="true">
+                <div class="hero-shape" style="width: 300px; height: 300px; top: -50px; right: 10%; background: radial-gradient(circle, rgba(242,101,34,0.12), transparent 70%);"></div>
+                <div class="hero-shape" style="width: 150px; height: 150px; bottom: 5%; left: 5%; border: 1.5px solid rgba(255,255,255,0.05); border-radius: 50%;"></div>
+                <div class="hero-shape" style="width: 220px; height: 220px; top: 20%; left: 15%; background: radial-gradient(circle, rgba(242,101,34,0.08), transparent 70%);"></div>
+            </div>
             <!-- Mobile-first neural canvas background -->
             <div class="hero-mobile-canvas" id="hero-mobile-canvas" aria-hidden="true"></div>
             <div class="container hero-container elementor-container e-con">
@@ -85,10 +94,39 @@ const getFilterSlug = (category: string) => {
         </section>
 
         <!-- Blog Articles Grid Section -->
-        <section class="elementor-section" style="padding: 4rem 0 8rem; background: #fcfcfc;">
-            <div class="container elementor-container">
+        <section class="elementor-section" style="padding: 5rem 0 9rem; background: #fcfcfc;">
+            <div class="container elementor-container" style="max-width: 1200px;">
+                
+                {featuredPost && (
+                    <article class="featured-article-card" data-categories={getFilterSlug(featuredPost.data.category)} data-title={featuredPost.data.title.toLowerCase()} data-excerpt={featuredPost.data.excerpt?.toLowerCase() || ''}>
+                        {featuredPost.data.img && (
+                            <div class="featured-article-image-wrapper">
+                                <img src={featuredPost.data.img} alt={featuredPost.data.title} class="featured-article-image" loading="eager" />
+                            </div>
+                        )}
+                        <div class="featured-article-body">
+                            <span class="article-tag">{featuredPost.data.category}</span>
+                            <h2 class="featured-article-title">
+                                <a href={`/blog/${featuredPost.slug}`}>{featuredPost.data.title}</a>
+                            </h2>
+                            <p class="featured-article-excerpt">{featuredPost.data.excerpt}</p>
+                            <div class="featured-article-meta">
+                                <span class="featured-article-date">
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" style="opacity: 0.8; vertical-align: middle; margin-right: 4px;"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+                                    {featuredPost.data.date}
+                                </span>
+                                <span>
+                                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" style="opacity: 0.8; vertical-align: middle; margin-right: 4px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                                    Wilmar Velasquez
+                                </span>
+                                <a href={`/blog/${featuredPost.slug}`} class="article-readmore" style="margin-left: auto;">Leer Artículo →</a>
+                            </div>
+                        </div>
+                    </article>
+                )}
+
                 <div class="blog-grid">
-                    {sortedPosts.map(post => {
+                    {regularPosts.map(post => {
                       const filterSlug = getFilterSlug(post.data.category);
                       return (
                         <article class="article-card" data-categories={filterSlug} data-title={post.data.title.toLowerCase()} data-excerpt={post.data.excerpt?.toLowerCase() || ''}>
@@ -128,7 +166,7 @@ const getFilterSlug = (category: string) => {
     document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('blog-search');
         const filterPills = document.querySelectorAll('.filter-pill');
-        const cards = document.querySelectorAll('.article-card');
+        const cards = document.querySelectorAll('.article-card, .featured-article-card');
 
         let currentCategory = 'all';
         let searchQuery = '';

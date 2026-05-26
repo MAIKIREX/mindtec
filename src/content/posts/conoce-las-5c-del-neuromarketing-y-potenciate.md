@@ -1,50 +1,132 @@
 ---
-title: "Conoce las 5C del Neuromarketing y poténciate"
-date: "junio 11, 2018"
+title: "Las 5C del Neuromarketing: El Marco que Transforma tu Comunicación"
+date: "abril 15, 2025"
+dateISO: "2025-04-15"
 category: "Neuromarketing"
 author: "Wilmar Velasquez"
-img: "/https://mindtecbolivia.com/wp-content/uploads/2018/06/5c-neuromarketing.png"
+img: "/imagenes-mindtec/blog-covers-v2/conoce-las-5c-del-neuromarketing-y-potenciate-cover-v2.webp"
+imgAlt: "Las 5C del neuromarketing: céntrate, conmueve, conecta, contrasta, comienzo y fin"
+excerpt: "¿Por qué algunas campañas generan ventas y otras desaparecen sin dejar huella? Las 5C del neuromarketing son el marco que activa el cerebro real del consumidor."
+description: "Las 5C del neuromarketing: Céntrate, Conmueve, Conecta, Contrasta, Comienzo y Fin. El marco científico para crear comunicación que activa el cerebro del consumidor boliviano."
+keywords: "5C del neuromarketing, neuromarketing Bolivia, marco de neuromarketing, comunicación efectiva neuromarketing, cerebro reptiliano marketing Bolivia"
 ---
 
-<p>&nbsp;</p>
-<p>Conoce las claves del Neuromarketing- Las 5C del neuromarketing</p>
-<p>¿Cómo llegar a tu consumidor? ¿Cómo sabes que el mensaje que envías es el adecuado? Conoce las <b> 5 “C” del Neuromarketing</b> y ten la seguridad que generarás mayor impacto en tu consumidor.</p>
-<p><span id="more-11462"></span></p>
-<p>Sigue en tus campañas estos consejos, con seguridad tendrás un mejor compromiso emocional y llamarás la atención de mejor manera que tu competencia en tu campaña de marketing.</p>
-<p>Si te gusta más verlo en video puedes verlo acá 😎 </p>
-<p>&nbsp;</p>
-<p style="text-align: center;"> <iframe src="https://www.youtube.com/embed/EFpCBnzHhTI" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen" data-mce-fragment="1"></iframe></p>
-<h2>Las 5C del Neuromarketing</h2>
-<h2><b>1. Centrate: </b></h2>
-<p>Es importante que conozca qué es lo que busca tu consumidor, lo que quiere, lo que necesita. ¿Pero cómo hacerlo, verdad? No te preocupes, no es tan complicado, sólo tienes que saber que todas las personas actuamos por<strong> instinto</strong>, por eso todo lo que compramos es algo que necesitamos para sobrevivir, para calmar ese <strong>miedo</strong> que llevamos dentro, pero que nunca nos atreveremos a decirlo en voz alta, estos son los denominados <strong>códigos reptilianos</strong>, como ser: poder, control, protección, aceptación, etc.</p>
-<p><a href="https://www.mindtecbolivia.com:443/wp-content/uploads/2018/06/Imagen1.jpg">    </a><a href="https://www.mindtecbolivia.com:443/wp-content/uploads/2018/06/Imagen3.jpg"><img loading="lazy" decoding="async" class="alignnone  wp-image-11474" src="https://www.mindtecbolivia.com:443/wp-content/uploads/2018/06/Imagen3.jpg" alt="Imagen3- investigacion de mercados bolivia" width="417" height="298" title="Conoce las 5C del Neuromarketing y poténciate 2" srcset="https://mindtecbolivia.com/wp-content/uploads/2018/06/Imagen3.jpg 543w, https://mindtecbolivia.com/wp-content/uploads/2018/06/Imagen3-300x214.jpg 300w, https://mindtecbolivia.com/wp-content/uploads/2018/06/Imagen3-350x250.jpg 350w" sizes="(max-width: 417px) 100vw, 417px" /></a></p>
-<p>Al preocuparte en la persona y colocar su nombre en los pedidos, cuando son llamados los clientes por su nombre generan un gran estímulo en sus emociones ya que nuestro nombre nos hará sentir importantes.</p>
-<p><b>Recuerda:</b>  Aplaca los miedos de tu consumidor, <b>céntrate</b> en ello.</p>
-<p>&nbsp;</p>
-<h2><b>2. Conmueve: </b></h2>
-<p>Mucho ya se habla sobre la importancia de despertar emociones en los consumidores, y en parte es, porque es cierto, ¡funciona!. Últimos estudios han demostrado que, si de decisiones de compra se trata, el 90% de las mismas las tomamos de manera irracional, por lo que a la hora de vender necesitas contar con <strong>argumentos emocionales</strong> para llegar al <strong>inconsciente</strong>, ya que al final siempre nos dejamos llevar por las emociones.</p>
-<p><a href="https://www.mindtecbolivia.com:443/wp-content/uploads/2018/06/Imagen4.jpg"></a><a href="https://www.mindtecbolivia.com:443/wp-content/uploads/2018/06/Imagen11.jpg"><img loading="lazy" decoding="async" class="alignnone  wp-image-11480" src="https://www.mindtecbolivia.com:443/wp-content/uploads/2018/06/Imagen11.jpg" alt="Imagen11- investigacion de mercados bolivia" width="482" height="361" title="Conoce las 5C del Neuromarketing y poténciate 3" srcset="https://mindtecbolivia.com/wp-content/uploads/2018/06/Imagen11.jpg 662w, https://mindtecbolivia.com/wp-content/uploads/2018/06/Imagen11-300x225.jpg 300w, https://mindtecbolivia.com/wp-content/uploads/2018/06/Imagen11-350x262.jpg 350w" sizes="(max-width: 482px) 100vw, 482px" /></a><a href="https://www.mindtecbolivia.com:443/wp-content/uploads/2018/06/Imagen4.jpg">  </a></p>
-<p>Esta imagen de Huggies en su página de Facebook tiene mayor cantidad de reacciones, esto debido a que el niño conecta de mejor manera con la audiencia, no importa un gran diseño sino lo que representa para el consumidor la imagen.</p>
-<p><b>Recuerda:</b> Una publicidad que<b> conmueve </b>es una publicidad que <b>vende.</b></p>
-<p>&nbsp;</p>
-<h2><b>3. Conecta: </b></h2>
-<p>Es importante resaltar que todas las personas tenemos más de 5 sentidos, y por lo tanto nos gusta usarlos todos, así que las publicidades deben estar dirigidas no sólo a impactar a la vista, más todo lo contrario, debes darle algo a tu consumidor para que<strong> despierte el resto de sus sentidos</strong>, algo para que toque, pruebe, escuche y hasta pueda oler, claro todo dependerá de tu producto y/o servicio.</p>
-<p><a href="https://www.mindtecbolivia.com:443/wp-content/uploads/2018/06/Imagen6.jpg"><img loading="lazy" decoding="async" class="alignnone size-full wp-image-11471" src="https://www.mindtecbolivia.com:443/wp-content/uploads/2018/06/Imagen6.jpg" alt="Imagen6- investigacion de mercados bolivia" width="601" height="336" title="Conoce las 5C del Neuromarketing y poténciate 4" srcset="https://mindtecbolivia.com/wp-content/uploads/2018/06/Imagen6.jpg 601w, https://mindtecbolivia.com/wp-content/uploads/2018/06/Imagen6-300x168.jpg 300w, https://mindtecbolivia.com/wp-content/uploads/2018/06/Imagen6-350x196.jpg 350w" sizes="(max-width: 601px) 100vw, 601px" /></a></p>
-<p>Si tus usuarios tocan, sienten, huelen, ven y escuchan tendrás las posibilidades de adquisición de producto muy muy altas.</p>
-<p><b>Recuerda:</b> <b>Conecta</b> con todos  los <b>sentidos.</b></p>
-<p>&nbsp;</p>
-<h2><b>4. Contrasta: </b></h2>
-<p>Antes de tomar una decisión siempre evaluamos diferentes posibilidades, lo mismo pasa a la hora de comprar, por eso es importante, si quieres vender algo <strong>dale opciones</strong> a tu consumidor: La mente del hombre y la mujer funcionan distinto, al hombre dale dos o tres opciones y a una mujer debes darle más, mientras más opciones tengan más felices son, eso sí no vayas a exagerar porque la confundirás y tampoco queremos eso.</p>
-<p><a href="https://www.mindtecbolivia.com:443/wp-content/uploads/2018/06/Imagen8.jpg"><img loading="lazy" decoding="async" class="alignnone size-full wp-image-11468" src="https://www.mindtecbolivia.com:443/wp-content/uploads/2018/06/Imagen8.jpg" alt="Imagen8- investigacion de mercados bolivia" width="551" height="394" title="Conoce las 5C del Neuromarketing y poténciate 5" srcset="https://mindtecbolivia.com/wp-content/uploads/2018/06/Imagen8.jpg 551w, https://mindtecbolivia.com/wp-content/uploads/2018/06/Imagen8-300x215.jpg 300w, https://mindtecbolivia.com/wp-content/uploads/2018/06/Imagen8-350x250.jpg 350w" sizes="(max-width: 551px) 100vw, 551px" />  </a><a href="https://www.mindtecbolivia.com:443/wp-content/uploads/2018/06/Imagen10.png"><img loading="lazy" decoding="async" class="alignnone  wp-image-11466" src="https://www.mindtecbolivia.com:443/wp-content/uploads/2018/06/Imagen10.png" alt="Imagen10- investigacion de mercados bolivia" width="394" height="395" title="Conoce las 5C del Neuromarketing y poténciate 6" srcset="https://mindtecbolivia.com/wp-content/uploads/2018/06/Imagen10.png 455w, https://mindtecbolivia.com/wp-content/uploads/2018/06/Imagen10-150x150.png 150w, https://mindtecbolivia.com/wp-content/uploads/2018/06/Imagen10-300x300.png 300w, https://mindtecbolivia.com/wp-content/uploads/2018/06/Imagen10-350x351.png 350w" sizes="(max-width: 394px) 100vw, 394px" /></a><a href="https://www.mindtecbolivia.com:443/wp-content/uploads/2018/06/Imagen8.jpg"></a></p>
-<p>Utiliza los sentidos que generen un antes y un después, al ver la comparación el mensaje queda mucho mejor en la mente.</p>
-<p>También algo que sea fuera de lo común y cotidiano llamará más la atención, como la imagen del pollo en el asiento de cuero haciéndose la burla de la publicidad de Corimexo que tuvo mucha controversia por mostrar a una mujer desnuda encima de sus muebles.</p>
-<p><b>Recuerda:</b> A la hora de comprar <b>contrasta</b> las opciones, ayúdale a <b>decidir.</b></p>
-<p>&nbsp;</p>
-<h2><b>5. Comienzo y fin: </b></h2>
-<p>Los niveles de<strong> atención</strong> de las persona van variando como olas, a veces sube otras baja, pero lo que más se queda en la <strong>memoria</strong> es todo lo que pasa al inicio, tu <strong>introducción</strong>, y al final, el <strong>cierre</strong>, que es lo más importante al momento de realizar una venta o la transacción en un negocio</p>
-<p><a href="https://www.mindtecbolivia.com:443/wp-content/uploads/2018/06/flowTime.png"><img loading="lazy" decoding="async" class="alignnone size-full wp-image-11481" src="https://www.mindtecbolivia.com:443/wp-content/uploads/2018/06/flowTime.png" alt="flowTime- investigacion de mercados bolivia" width="940" height="172" title="Conoce las 5C del Neuromarketing y poténciate 7" srcset="https://mindtecbolivia.com/wp-content/uploads/2018/06/flowTime.png 940w, https://mindtecbolivia.com/wp-content/uploads/2018/06/flowTime-300x55.png 300w, https://mindtecbolivia.com/wp-content/uploads/2018/06/flowTime-768x141.png 768w, https://mindtecbolivia.com/wp-content/uploads/2018/06/flowTime-350x64.png 350w" sizes="(max-width: 940px) 100vw, 940px" /></a></p>
-<p><b>Recuerda:</b> Genera<b> impacto</b> al <b>comienzo</b> y al <b>final</b>, nadie recuerda el medio</p>
-<p>&nbsp;</p>
-<p>Con estas 5 “C”, ya puedes re- diseñar tu <strong>estrategia de marketing</strong>, para que sea <strong>más exitosa</strong> de lo que ya es, utiliza estas improntas de la teoría del Neuromarketing y genera nuevos resultados.</p>
-<p>Anímate, ponlo en práctica y potencia tus producto y/o servicio.  </p>
-<p><strong>Dale like y comparte!</strong></p>
+¿Por qué algunas campañas de publicidad generan conversaciones, ventas y recuerdo de marca — mientras otras desaparecen en el ruido sin dejar huella?
+
+La respuesta casi nunca tiene que ver con el presupuesto. Tiene que ver con **si la comunicación está diseñada para el cerebro real del consumidor o para el cerebro idealizado del estratega.**
+
+Las 5C del neuromarketing son un marco práctico para asegurar que cada pieza de comunicación, cada discurso de ventas y cada experiencia de marca active los mecanismos cerebrales correctos.
+
+## Las 5C del Neuromarketing
+
+### C1: Céntrate — Apunta al Miedo, No a la Necesidad
+
+El marketing tradicional dice: "identifica la necesidad de tu consumidor y resuélvela."
+
+El neuromarketing dice: **"identifica el miedo de tu consumidor y cálmalo."**
+
+La diferencia es crucial. Las necesidades son racionales. Los miedos son reptilianos. Y como ya sabemos, el cerebro reptiliano **siempre gana.**
+
+Los llamados **códigos reptilianos** son las motivaciones más primitivas que activan el comportamiento humano: poder, control, protección, aceptación social, supervivencia, dominancia. Ningún consumidor te los va a confesar en una encuesta. Pero todos actúan desde ellos.
+
+Cuando personalizas la comunicación al nivel de los miedos reptilianos de tu segmento — por ejemplo, llamar al cliente por su nombre, reconocer su situación específica, hablarle directamente a su código dominante — el cerebro activa el sistema de recompensa. **La persona se siente vista, no vendida.**
+
+> Aplaca los miedos de tu consumidor, céntrate en ello. El cerebro que se siente comprendido, compra.
+
+**Herramienta Mindtec:** el mapa de códigos reptilianos por categoría y segmento en Bolivia. Identificamos los 1–3 miedos dominantes que activan la decisión de compra en tu mercado específico.
+
+### C2: Conmueve — El 90% de las Decisiones Son Irracionales
+
+Está documentado por múltiples estudios de neurociencia: entre el **85% y el 95% de las decisiones de compra se toman de manera inconsciente**, guiadas por el sistema emocional del cerebro.
+
+Esto significa que una publicidad que apela únicamente a la razón —"somos los mejores, tenemos 10 años de experiencia, ofrecemos calidad garantizada"— está hablando con el 5-15% del cerebro que ya tomó la decisión.
+
+**La emoción es la puerta de entrada a la memoria.** Un mensaje que conmueve se almacena en el hipocampo con una intensidad que un mensaje racional no puede igualar. Y la memoria de marca es la que se activa en el punto de venta, meses después de haber visto la publicidad.
+
+¿Cómo se mide si una pieza conmueve? En Mindtec usamos:
+- **Face analytics:** detección de las 7 emociones básicas (alegría, tristeza, sorpresa, miedo, ira, asco, desdén) en tiempo real mediante IA
+- **GSR (respuesta galvánica de la piel):** medición de la activación del sistema nervioso autónomo durante la exposición
+- **EEG:** métricas de engagement emocional y activación hemisférica durante la exposición a contenido publicitario
+
+Sin medición, no puedes saber si tu publicidad conmueve o aburre. Puedes adivinarlo. No es lo mismo.
+
+> Una publicidad que conmueve es una publicidad que vende.
+
+### C3: Conecta — El Cerebro Tiene 5+ Sentidos. Úsalos
+
+![Marketing olfativo — el sentido más poderoso para la memoria de marca](/imagenes-mindtec/olfato2.jpg)
+
+La vista domina el 83% de la publicidad. **Es el sentido más usado y el que tiene menor impacto en la memoria a largo plazo.**
+
+El sistema nervioso humano tiene al menos 9 sentidos (incluyendo propiocepción, equilibrio, temperatura y dolor, además de los cinco clásicos). Cada sentido es una vía de acceso al sistema emocional y a la memoria.
+
+Los sentidos más poderosos para el neuromarketing:
+
+**Olfato:** es el único sentido que tiene conexión directa con la amígdala sin pasar por el tálamo. Activa recuerdos y emociones con una velocidad y profundidad que ningún otro sentido alcanza. Recordamos hasta el 30% de lo que olemos vs. el 5% de lo que vemos. El **marketing olfativo y los odotipos** son la inversión de menor costo y mayor retorno en memoria de marca.
+
+**Tacto:** la textura de un empaque modifica la percepción del contenido. Un producto que se puede tocar genera el **efecto de dotación** — el consumidor siente que ya es suyo antes de comprarlo.
+
+**Audición:** el sonic branding (identidad sonora de marca) activa el sistema límbico. Una melodía de 3 notas puede ser más memorable que una campaña visual de 6 meses.
+
+**Sabor:** para categorías de alimentos y bebidas, la degustación en punto de venta tiene tasas de conversión hasta 3 veces superiores a la publicidad convencional.
+
+> Conecta con todos los sentidos. Cada sentido que activas es una vía más hacia la memoria emocional de tu consumidor.
+
+### C4: Contrasta — Ayuda al Cerebro a Decidir
+
+El cerebro no evalúa en términos absolutos. Evalúa **en relación.** Todo juicio de valor es relativo a un punto de comparación.
+
+Esto tiene implicaciones directas para el pricing, el diseño de productos y la estrategia de opciones:
+
+- **Anclaje de precio:** mostrar primero el precio más alto (plan premium, precio original, precio de competidor) hace que el precio objetivo parezca más razonable. El cerebro calibra desde el primer número que ve.
+- **El efecto señuelo:** una tercera opción estratégicamente posicionada como "mala relación calidad-precio" hace que la opción objetivo parezca la elección obvia e inteligente.
+- **Contraste antes/después:** mostrar el estado problemático antes del producto y el estado deseado después activa el sistema de recompensa mucho más efectivamente que mostrar solo el producto.
+
+En cuanto a la cantidad de opciones: el cerebro masculino tiende a preferir **2–3 opciones claras** (decisión rápida, objetivo definido). El cerebro femenino valora más opciones pero requiere que las diferencias estén bien articuladas para no generar **parálisis por análisis.**
+
+Ninguna de las dos tendencias es absoluta — varían con la cultura, el segmento y el tipo de producto. La investigación de comportamiento del consumidor en Bolivia muestra variaciones significativas entre regiones en los patrones de decisión con múltiples opciones.
+
+> A la hora de comprar, contrasta las opciones. Ayuda al cerebro a decidir — no lo obligues a trabajar solo.
+
+### C5: Comienzo y Fin — El Medio No Importa
+
+Este es uno de los hallazgos más contraintuitivos de la neurociencia del consumidor:
+
+**El cerebro no recuerda la totalidad de una experiencia. Recuerda el pico más intenso y el final.**
+
+Esto se llama la **Regla del Pico-Final** (Kahneman, 1999): la evaluación global de una experiencia está determinada casi exclusivamente por cómo se sintió el momento de mayor intensidad emocional y cómo terminó — independientemente de la duración total o de lo que ocurrió en el medio.
+
+Para el marketing y las ventas:
+
+**El comienzo importa para capturar atención:** los primeros 3 segundos de un aviso, los primeros 30 de una presentación, la primera impresión en un punto de venta. Si no capturas en el inicio, no hay segundo intento.
+
+**El final importa para la recordación y la actitud:** cómo termina la experiencia de compra, cómo se siente el cliente al salir de la tienda, cómo es el seguimiento post-venta — todo eso determina si el cliente regresa y si te recomienda.
+
+**El medio puede ser perfectamente promedio.** Los niveles de atención fluctúan naturalmente en ondas durante cualquier presentación o pieza de comunicación. No intentes sostener intensidad máxima durante todo el tiempo. Invierte en el inicio y en el cierre.
+
+> Genera impacto al comienzo y al final. Nadie recuerda el medio.
+
+## Las 5C Aplicadas al Mercado Boliviano
+
+El poder de las 5C radica en que su aplicación **varía por mercado cultural.** Los miedos que debes calmar en el consumidor cruceño no son los mismos que en el paceño. Las emociones que conmueven en un segmento popular son diferentes a las que impactan en un segmento profesional.
+
+En Mindtec aplicamos las 5C como marco de diagnóstico para evaluar campañas en desarrollo o analizar por qué una campaña existente no está generando los resultados esperados.
+
+¿Tu comunicación actual pasa el filtro de las 5C?
+
+- ¿Está centrada en el miedo correcto de tu consumidor boliviano?
+- ¿Genera emoción medible o solo información?
+- ¿Activa más de un sentido?
+- ¿Ayuda al cerebro a contrastar y decidir?
+- ¿Tiene un inicio que impacta y un final que se recuerda?
+
+Si una o más respuestas son "no sé", eso es el diagnóstico.
+
+[Hablemos de tu comunicación](/contacto) y te mostramos dónde está la oportunidad.
+
+---
+
+*Artículos relacionados:*
+- [Cómo Emocionar a tus Clientes](/blog/como-emocionar-a-mis-clientes)
+- [Qué es el Neuromarketing](/blog/que-es-el-neuromarketing)
+- [Publicidad Efectiva: ¿Cómo Saber si lo Será?](/blog/publicidad-efectiva-en-tu-campana-como-saber-si-lo-sera)

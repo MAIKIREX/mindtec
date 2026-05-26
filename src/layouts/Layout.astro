@@ -6,14 +6,28 @@ interface Props {
   description?: string;
   keywords?: string;
   headerLightBg?: boolean;
+  ogImage?: string;
+  ogType?: string;
+  canonicalUrl?: string;
 }
 
 const {
   title = "Mindtec Bolivia - Investigación de Mercados y Neuromarketing B2B",
   description = "Firma boliviana que integra neurociencia, inteligencia artificial y consultoría de mercados para decisiones críticas de alta dirección.",
   keywords = "investigación de mercados Bolivia, estudio de mercado Bolivia, neuromarketing Bolivia, consultora de mercados",
-  headerLightBg = false
+  headerLightBg = false,
+  ogImage,
+  ogType = 'website',
+  canonicalUrl,
 } = Astro.props;
+
+// Canonical URL: usa la prop si se pasa, sino la URL actual
+const canonical = canonicalUrl || Astro.url.href;
+
+// OG Image: usa la prop si existe, sino el logo por defecto
+const ogImageUrl = ogImage
+  ? new URL(ogImage, Astro.site).toString()
+  : new URL('/logo-mindtec.webp', Astro.site).toString();
 
 // Determine active state for navigation links
 const pathname = new URL(Astro.request.url).pathname;
@@ -36,11 +50,35 @@ const isCurrent = (path: string) => {
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
 
+    <!-- Canonical -->
+    <link rel="canonical" href={canonical} />
+
+    <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content={ogType} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Mindtec Bolivia" />
+    <meta property="og:locale" content="es_BO" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
     <!-- Fonts: Outfit (Display) + Plus Jakarta Sans (Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Slot for page-specific head content (JSON-LD, etc.) -->
+    <slot name="head" />
 </head>
+
 <body>
 
     <!-- Header -->
@@ -66,7 +104,7 @@ const isCurrent = (path: string) => {
                 </div>
                 <a href="/metodologia" class={isCurrent('metodologia') ? 'active' : ''}>Metodología</a>
                 <a href="/firma" class={isCurrent('firma') ? 'active' : ''}>Nuestra Firma</a>
-                <a href="/blog" class={isCurrent('blog') ? 'active' : ''}>Insights</a>
+                <a href="/blog" class={isCurrent('blog') ? 'active' : ''}>Insights y Blog</a>
                 <a href="/contacto" class={`btn btn-primary ${isCurrent('contacto') ? 'active' : ''}`}>Contacto</a>
             </nav>
             <button class="hamburger" id="hamburger" aria-label="Abrir menú">
@@ -93,7 +131,7 @@ const isCurrent = (path: string) => {
                     <li><a href="/servicios">Servicios</a></li>
                     <li><a href="/metodologia">Metodología</a></li>
                     <li><a href="/firma">Nuestra Firma</a></li>
-                    <li><a href="/blog">Insights</a></li>
+                    <li><a href="/blog">Insights y Blog</a></li>
                 </ul>
             </div>
             <div class="footer-col links">

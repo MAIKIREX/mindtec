@@ -1,9 +1,14 @@
 ---
 title: "Investigación de Mercado en Pymes- Cómo Hacerlo paso a paso"
-date: "marzo 24, 2020"
+date: "noviembre 11, 2025"
+dateISO: "2025-11-11"
 category: "Investigación de Mercados"
 author: "Wilmar Velasquez"
-img: "/https://mindtecbolivia.com/wp-content/uploads/2020/03/inv-mer.jpg"
+img: "/imagenes-mindtec/blog-covers-v2/investigacion-de-mercado-en-pymes-paso-a-paso-cover-v2.webp"
+imgAlt: "Proceso de investigación de mercado para pymes bolivianas paso a paso"
+excerpt: "La investigación de mercado en pymes no requiere grandes presupuestos. Aprende el proceso de 4 pasos para conocer realmente a tu consumidor boliviano y validar tu idea de negocio."
+description: "Guía paso a paso para hacer investigación de mercado en pymes bolivianas: define objetivos, elige técnicas, selecciona la muestra y analiza resultados con metodología Mindtec."
+keywords: "investigación de mercado pymes Bolivia, estudio de mercado pymes, cómo hacer investigación de mercado Bolivia, investigación de mercado pequeña empresa Bolivia"
 ---
 
 <p>La investigación de mercado en Pymes consiste en recoger datos que sean relevantes para que las empresas conozcan las intenciones de compra sobre su nicho de mercado, pero no es la única finalidad, también se realizan para el desarrollo de estrategias más efectivas, observando las varias métricas obtenidas dentro del estudio.</p>

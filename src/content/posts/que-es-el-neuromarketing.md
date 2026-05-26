@@ -1,321 +1,135 @@
 ---
-title: "Qué es el Neuromarketing"
-date: "julio 5, 2019"
+title: "Qué es el Neuromarketing: La Ciencia que Descifra por Qué Compras"
+date: "marzo 4, 2025"
+dateISO: "2025-03-04"
 category: "Neuromarketing"
 author: "Wilmar Velasquez"
-img: "/https://mindtecbolivia.com/wp-content/uploads/2019/07/que-es-el-neuro.png"
+img: "/imagenes-mindtec/blog-covers-v2/que-es-el-neuromarketing-cover-v2.webp"
+imgAlt: "Laboratorio de neuromarketing con equipo EEG y eye tracker aplicado al consumidor"
+excerpt: "El 95% de tus decisiones de compra ocurren en zonas del cerebro que no controlas. Descubre qué es el neuromarketing y cómo mide la mente del consumidor."
+description: "Descubre qué es el neuromarketing, cómo mide el comportamiento del consumidor con EEG, eye tracking y análisis facial. Aplicado en Bolivia por Mindtec."
+keywords: "qué es el neuromarketing, neuromarketing Bolivia, neurociencia y marketing, EEG marketing, eye tracking Bolivia, decisiones de compra inconscientes"
 ---
 
-<p>El neuromarketing es un conjunto de técnicas que pertenecen directamente a la mercadotecnia, y que básicamente lo que hacen, es analizar en los consumidores sus emociones con respecto a los tipos de publicidad que se emiten cuando se promociona un producto o servicio.</p>
+El **95% de tus decisiones de compra ocurren en zonas del cerebro que no controlas conscientemente.** Lo que crees que decides racionalmente ya fue procesado milisegundos antes en tu cerebro reptiliano.
 
+Eso es exactamente lo que estudia el neuromarketing.
 
+## Qué es el Neuromarketing
 
-<p>Seguramente te preguntaste qué es el Neuromarketing:</p>
+El neuromarketing es la disciplina que combina **neurociencia, psicología y marketing** para entender cómo el cerebro humano procesa estímulos publicitarios, toma decisiones de compra y forma vínculos emocionales con las marcas.
 
+A diferencia del marketing tradicional —que pregunta a la gente qué piensa— el neuromarketing **mide directamente lo que ocurre en el cerebro y el sistema nervioso** antes, durante y después de la exposición a un producto o campaña.
 
+> "El neuromarketing tiene como objetivo principal descifrar cómo se procesa en la mente del consumidor sus deseos y ambiciones, para descubrir la forma en que define una acción de compra." — Peter Drucker
 
-<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><p>El Neuromarketing es una herramienta que, a través de la neurociencia y la psicoantropología, potencia el quehacer del marketing.</p></blockquote>
+No se trata de adivinar. Se trata de medir.
 
+## La Historia del Neuromarketing
 
+El término fue acuñado en **2002 por el Dr. Ale Smidts**, neurocientífico holandés, aunque las investigaciones sobre comportamiento cerebral y decisión de compra ya venían desarrollándose desde los años 90.
 
-<p>La intención de utilizar el neuromarketing en campañas publicitarias, es en primer lugar, monitorear las reacciones y emociones de los consumidores para así, poder hacer uso de herramientas específicas de la mercadotecnia, por lo tanto asegurar el obtener mejores resultados en las conversiones enfocándose en el subconsciente del consumidor.</p>
+Fue en esa "década del cerebro" cuando el marketing tradicional descubrió que sus modelos racionales tenían un problema fundamental: **los consumidores no actuaban como decían que actuarían.**
 
+Los focus groups predecían éxitos que fracasaban. Las encuestas mostraban preferencias que no se traducían en ventas. Algo fallaba en el método.
 
+Ese algo era ignorar que **el cerebro decide antes que la razón pueda justificar.**
 
-<p>El Neuromarketing mide reacciones concretas
-psicofisiológicas de los individuos interesados en el producto, marca o mercado
-que se está investigando.</p>
+Empresas como Unilever, Coca-Cola y P&G comenzaron a invertir en laboratorios de neuroimagen. Los resultados fueron reveladores: el 85–95% de las decisiones de compra tienen raíces inconscientes.
 
+Hoy, el neuromarketing es una industria global. **Y en Bolivia, Mindtec lo aplica para empresas que quieren dejar de adivinar y empezar a saber.**
 
+## Para Qué Sirve el Neuromarketing
 
-<h2 class="wp-block-heading">Historia del Neuromarketing</h2>
+No es un lujo de grandes corporaciones. Es una herramienta de precisión para:
 
+- **Evaluar publicidad antes de lanzarla** y saber si impacta emocionalmente antes de gastar el presupuesto
+- **Optimizar puntos de venta** identificando qué zonas capturan atención y cuáles se ignoran
+- **Diseñar empaques y etiquetas** que activen la decisión de compra en segundos
+- **Entender por qué una campaña falló** aunque los focus groups dijeran que era perfecta
+- **Descubrir el código simbólico** de una categoría en un mercado cultural específico como Bolivia
 
+## Las 3 Dimensiones que Mide el Neuromarketing
 
-<p>El propósito de hacer marketing, es
-finalmente, tener clientes dispuestos a comprar el producto o servicio que se
-está ofertando, pero para que el marketing realizado cumpla con el objetivo,
-debe cumplir también con algunas condiciones que hagan nacer en los posibles
-compradores la necesidad de obtenerlo.</p>
+![EEG y eye tracker en laboratorio de neuromarketing Bolivia](/imagenes-mindtec/eeg-eye-mindtec.jpg)
 
+### 1. Atención
 
+¿Tu consumidor realmente mira lo que quieres que mire? ¿Lee el mensaje principal o su ojo va directo a otro elemento?
 
-<p>Uno de los visionarios en los inicios del neuromarketing, Peter Druker, dijo… </p>
+Con **eye tracking** (rastreadores oculares) medimos exactamente el recorrido visual del consumidor: dónde posa la mirada primero, cuánto tiempo permanece en cada zona, qué nunca llega a ver.
 
+Los mapas de calor resultantes revelan verdades incómodas: muchos productos bien diseñados tienen su mensaje clave en la zona que **nadie mira.**
 
+Con **EEG (electroencefalograma)** vamos más profundo: medimos estados cognitivos en tiempo real — niveles de atención, estrés, interés, relajación, enfoque — mientras el consumidor interactúa con un estímulo.
 
-<blockquote class="wp-block-quote is-layout-flow wp-block-quote-is-layout-flow"><p>&lt;&lt;El neuromarketing tiene como principal objetivo descifrar como se procesa en la mente del consumidor sus deseos, sus ambiciones, para descubrir la forma en que define una acción de compra, y darle así, lo que en verdad necesita&gt;&gt;.</p><cite>Peter Druker</cite></blockquote>
+### 2. Emoción
 
+El Dr. Gerald Zaltman de Harvard demostró que **el 95% de las decisiones de compra son inconscientes y emocionalmente motivadas.** Hans Georg Hausel añade que incluso el 80% de lo que creemos decidir racionalmente tiene raíz emocional.
 
+¿Cómo medimos emociones reales y no reportadas?
 
-<p>Y, posiblemente te parezca difícil creer
-que esto es posible lograrlo, pero, lo es, en gran parte gracias a la
-neurociencia que trabaja básicamente con imágenes y que ha logrado que entre
-consumidor y empresa haya una relación mucho más estrecha.</p>
+- **Face Analytics (análisis facial):** algoritmos de IA que detectan las 7 emociones básicas (alegría, tristeza, ira, miedo, sorpresa, asco, desdén) en tiempo real mediante cámara
+- **Microexpresiones:** lecturas manuales de expresiones faciales que duran milésimas de segundo — revelan emociones que el cerebro suprime antes de que la persona sea consciente de ellas
+- **GSR (respuesta galvánica de la piel):** mide la conductancia eléctrica de la piel, que varía con la activación del sistema nervioso autónomo — una señal directa de excitación emocional
 
+### 3. Memoria
 
+Un producto que no se recuerda no se compra. La memoria es el puente entre la exposición publicitaria y la decisión en el punto de venta.
 
-<p>El Dr. Allen Smith, fue quien prácticamente
-dio nombre a este conjunto de técnicas que dan nombre al neuromarketing, en el
-año 2002, en el cual, por cierto, fue merecedor del premio nobel en el campo de
-la economía.</p>
+El neuromarketing aplicado a memoria trabaja con **psicoantropología**: identificando los patrones de recordación, los detonantes sensoriales que anclan recuerdos, y los **marcadores somáticos** — asociaciones emocionales almacenadas desde la infancia que condicionan preferencias de por vida.
 
+Un dato revelador: **recordamos apenas el 5% de lo que vemos, pero hasta el 30% de lo que olemos.** Por eso el marketing olfativo —y los odotipos— tienen un impacto en memoria significativamente superior al visual.
 
+## Qué y Por Qué: Las Dos Preguntas que Responde el Neuromarketing
 
-<div class="wp-block-image"><figure class="aligncenter is-resized"><img loading="lazy" decoding="async" src="https://www.mindtecbolivia.com/wp-content/uploads/2015/10/RESALTAR-PRIMEROd-1024x682.png" alt="RESALTAR PRIMEROd- investigacion de mercados bolivia" class="wp-image-874" width="449" height="299" title="Qué es el Neuromarketing 2" srcset="https://mindtecbolivia.com/wp-content/uploads/2015/10/RESALTAR-PRIMEROd-1024x682.png 1024w, https://mindtecbolivia.com/wp-content/uploads/2015/10/RESALTAR-PRIMEROd-300x200.png 300w, https://mindtecbolivia.com/wp-content/uploads/2015/10/RESALTAR-PRIMEROd-768x512.png 768w, https://mindtecbolivia.com/wp-content/uploads/2015/10/RESALTAR-PRIMEROd-120x80.png 120w, https://mindtecbolivia.com/wp-content/uploads/2015/10/RESALTAR-PRIMEROd-500x333.png 500w, https://mindtecbolivia.com/wp-content/uploads/2015/10/RESALTAR-PRIMEROd-700x466.png 700w, https://mindtecbolivia.com/wp-content/uploads/2015/10/RESALTAR-PRIMEROd-200x133.png 200w, https://mindtecbolivia.com/wp-content/uploads/2015/10/RESALTAR-PRIMEROd-400x267.png 400w, https://mindtecbolivia.com/wp-content/uploads/2015/10/RESALTAR-PRIMEROd-600x400.png 600w, https://mindtecbolivia.com/wp-content/uploads/2015/10/RESALTAR-PRIMEROd-800x533.png 800w, https://mindtecbolivia.com/wp-content/uploads/2015/10/RESALTAR-PRIMEROd-1200x800.png 1200w, https://mindtecbolivia.com/wp-content/uploads/2015/10/RESALTAR-PRIMEROd.png 1250w" sizes="(max-width: 449px) 100vw, 449px" /></figure></div>
+El neuromarketing opera en dos planos complementarios:
 
+**La neurociencia responde el QUÉ:** qué activa el cerebro, qué mira el ojo, qué acelera el pulso, qué genera excitación galvánica.
 
+**La psicoantropología responde el POR QUÉ:** por qué esa imagen activa ese miedo específico, por qué ese color evoca confianza en este mercado cultural, por qué ese mensaje conecta con el código reptiliano de esta categoría.
 
-<p>La palabra neuromarketing es utilizada para
-dar nombre a las técnicas de investigación sobre los mecanismos cerebrales que
-se desarrollan en la mente de los consumidores y que ayudan a mejorar
-estrategias de marketing.</p>
+Sin el "qué", estás interpretando emociones sin datos. Sin el "por qué", tienes datos sin significado.
 
+**Mindtec integra ambos planos en cada estudio.** Es la diferencia entre un termómetro y un diagnóstico.
 
+## Las 3 Métricas Fundamentales para Empresas
 
-<p>En otras palabras, se ha combinado el arte
-del marketing como la ciencia para mejorar un producto o servicio que se quiere
-ofertar, dichos productos o servicios deben contar con dos características
-esenciales: Atractivo y Persuasivo.</p>
+Dentro del neuromarketing aplicado a estrategia comercial, existen tres métricas que determinan si una marca puede escalar:
 
+**Impacto atencional:** ¿tu comunicación captura atención en los primeros 3 segundos? Si no lo hace, el resto no importa.
 
+**Engagement emocional:** ¿tu publicidad genera la emoción correcta en el momento correcto del recorrido de compra? La emoción equivocada (por ejemplo, ansiedad cuando buscas generar confianza) destruye conversiones.
 
-<h2 class="wp-block-heading">Para Qué Sirve El Neuromarketing</h2>
+**Codificación en memoria:** ¿el consumidor puede recordar tu marca, tu mensaje y tu diferencial una semana después de la exposición? Si no, tu inversión publicitaria se evaporó.
 
+## Neuromarketing No Es Manipulación
 
+Una aclaración importante: el neuromarketing **no busca manipular al consumidor.** Busca entenderlo profundamente para que las marcas puedan ofrecerle exactamente lo que necesita, de la manera que su cerebro está diseñado para recibir.
 
-<p>La utilidad del neuromarketing radica en
-crear de manera eficaz las estrategias de promoción sobre productos y
-servicios, haciendo que éstos encajen perfectamente con la necesidad de los
-consumidores.</p>
+El cerebro humano no puede ser hackeado. Pero sí puede ser **respetado y comprendido.**
 
+Cuando una empresa conoce el código simbólico de su categoría, los miedos reales de su consumidor y los detonantes emocionales que activan la compra, no necesita manipular. Solo necesita **comunicar con precisión.**
 
+## El Neuromarketing en Bolivia: Un Mercado con Código Cultural Propio
 
-<p>Si logramos conocer a perfección lo que los
-consumidores desean, es posible diseñar estrategias que permitan reducir el
-espacio que existe entre empresa y consumidor.</p>
+Bolivia no es un mercado homogéneo. Sus tres grandes regiones (Occidental, Central, Oriental) tienen **códigos culturales distintos**, respuestas emocionales diferentes ante los mismos estímulos y patrones de compra que no pueden analizarse con metodologías diseñadas para mercados europeos o norteamericanos.
 
+Un consumidor paceño y un consumidor cruceño no procesan el mismo mensaje de la misma manera. Su cerebro reptiliano tiene improntas distintas. Sus miedos y aspiraciones están moldeados por historias culturales diferentes.
 
+Por eso en Mindtec no aplicamos plantillas globales. **Investigamos Bolivia desde adentro**, con metodología psicoantropológica calibrada para la diversidad cultural del país.
 
-<p>De tal manera que el neuromarketing es
-hasta el día de hoy la más importante forma de acceder al entendimiento del ser
-humano en su comportamiento como consumidor y se consigue con él, favorecer las
-conversiones de las empresas.</p>
+---
 
+El neuromarketing es la herramienta más precisa que existe para entender por qué tu consumidor compra —o no compra— tu producto. No es magia. Es ciencia aplicada con rigor metodológico.
 
+¿Quieres saber qué está pasando realmente en la mente de tus consumidores bolivianos?
 
-<h2 class="wp-block-heading">Qué
-y Por Qué de las decisiones del consumidor</h2>
+[Conoce nuestros servicios de Neuromarketing](/neuromarketing-bolivia) o [contáctanos para una consultoría inicial](/contacto).
 
+---
 
-
-<p>Para saber qué sucede en la mente del
-consumidor es necesario el uso de herramientas físicas de la neurociencia como
-EEGs, Eye trackers, GSR o Resonancia magnética. </p>
-
-
-
-<p>El estudio con estas opciones nos da el
-resultado que es lo que sucede en el consumidor al momento de tomar una
-decisión o es expuesto a una publicidad.</p>
-
-
-
-<p>El apoyo de las ciencias sociales como la psicoantropología, etnografía, semiótica, etc están encargadas en encontrar el porqué de las reacciones encontradas y decisiones del consumidor.</p>
-
-
-
-<p>Ver más en: <a href="/blog/investigacion-de-mercados-bolivia"> Investigación de mercados</a></p>
-
-
-
-<h2 class="wp-block-heading">Elementos Importantes del Neuromarketing</h2>
-
-
-
-<p>Existen tres elementos de medición de
-fundamental importancia dentro del neuromarketing que son vitales para las
-empresas, pues de ellos depende prácticamente la escalabilidad de ellas.</p>
-
-
-
-<h3 class="wp-block-heading">Medición de la Atención</h3>
-
-
-
-<p>En este punto se observa con atención al
-consumidor para ver cuales son sus reacciones ante estímulos recibidos durante
-su vida diaria, es decir, su ambiente, los colores, la gente que los rodea y
-desde luego aquellos elementos que son presentados en la publicidad que se les
-muestra.</p>
-
-
-
-<figure class="wp-block-image"><img loading="lazy" decoding="async" width="943" height="494" src="https://www.mindtecbolivia.com/wp-content/uploads/2019/07/heatmap.jpg" alt="heatmap- investigacion de mercados bolivia" class="wp-image-12199" title="Qué es el Neuromarketing 3" srcset="https://mindtecbolivia.com/wp-content/uploads/2019/07/heatmap.jpg 943w, https://mindtecbolivia.com/wp-content/uploads/2019/07/heatmap-300x157.jpg 300w, https://mindtecbolivia.com/wp-content/uploads/2019/07/heatmap-768x402.jpg 768w" sizes="(max-width: 943px) 100vw, 943px" /></figure>
-
-
-
-<p>En este sentido, el marketing de atracción
-es el que entra en acción, aquí la idea es aportar valor agregado a los
-consumidores para contar con su fidelidad. Para lograrlo, necesitamos darle
-información que sea relevante e interesante sobre el producto o servicio que le
-interesa, dándole una razón de peso para quedarse justo donde queremos.</p>
-
-
-
-<p>Porque, ¿estás de acuerdo que nuestra
-atención no la prestamos a cosas que no son interesantes, cierto? Y dado que
-estamos expuestos a miles de estímulos en el día, todos los días, se considera
-como una métrica realmente importante y valiosa, que cualquier empresa que
-desea comunicar algo debe tomar en cuenta.</p>
-
-
-
-<p>Con los Rastreadores oculares (Eye Tracker)
-es posible saber cómo es el recorrido visual y los gatillos visuales para la
-toma de decisión y la llamada de atención del consumidor al momento de estar
-expuesto en el punto de venta.</p>
-
-
-
-<p>El EEG y el GSR detectará los estados cognitivos (estrés, interés, meditación, enfoque, etc) y la respuesta galvánica de la piel que demostrará que sucede en el cerebro y sistema nervioso de nuestro consumidor.</p>
-
-
-
-<p>Ver más: <a href="/blog/marketing-emocional-y-de-la-mente">Tecnologías Neuromarketing</a></p>
-
-
-
-<div class="wp-block-image"><figure class="aligncenter is-resized"><img loading="lazy" decoding="async" src="https://www.mindtecbolivia.com/wp-content/uploads/2019/07/eeg-1024x683.jpg" alt="eeg- investigacion de mercados bolivia" class="wp-image-12200" width="390" height="259" title="Qué es el Neuromarketing 4" srcset="https://mindtecbolivia.com/wp-content/uploads/2019/07/eeg-1024x683.jpg 1024w, https://mindtecbolivia.com/wp-content/uploads/2019/07/eeg-300x200.jpg 300w, https://mindtecbolivia.com/wp-content/uploads/2019/07/eeg-768x512.jpg 768w, https://mindtecbolivia.com/wp-content/uploads/2019/07/eeg.jpg 1200w" sizes="(max-width: 390px) 100vw, 390px" /><figcaption>EEG de una pieza publicitaria</figcaption></figure></div>
-
-
-
-<h3 class="wp-block-heading">Métrica de las Emociones</h3>
-
-
-
-<p>En donde están completamente involucrados
-los sentimientos, éstos a su vez surgen de momentos donde escuchan, ven o
-palpan algo realmente agradable. También de suma importancia, porque las
-empresas necesitan saber que es lo que agrada a sus posibles consumidores, si
-conoce lo que le agrada a su público, puede publicitar utilizando emociones
-empáticas.</p>
-
-
-
-<p>El experto en neuromarketing Hans Georg
-Hausel, que las emociones influyen en las compras de los consumidores, explica
-que aproximadamente el 80% de las decisiones son tomadas de manera inconsciente,
-incluso el Dr. Zaltman dice que el 95% de nuestras decisiones de compra son
-inconscientes.</p>
-
-
-
-<p>Para medir las emociones existen algoritmos
-que mediante cámaras detectan las 7 emociones básicas: alegría, tristeza, ira,
-miedo, sorpresa, asco y desdén.</p>
-
-
-
-<p>Cuando se necesita detectar emociones más
-profundas se utiliza las microexpresiones que en milésimas de segundo mediante
-una lectura manual podemos detectar las emociones reprimidas o anticiparlas al
-momento de ser expuesto a un estímulo o pensamiento.</p>
-
-
-
-<figure class="wp-block-image"><img loading="lazy" decoding="async" width="510" height="356" src="https://www.mindtecbolivia.com/wp-content/uploads/2019/07/far.png" alt="far- investigacion de mercados bolivia" class="wp-image-12201" title="Qué es el Neuromarketing 5" srcset="https://mindtecbolivia.com/wp-content/uploads/2019/07/far.png 510w, https://mindtecbolivia.com/wp-content/uploads/2019/07/far-300x209.png 300w" sizes="(max-width: 510px) 100vw, 510px" /></figure>
-
-
-
-<h3 class="wp-block-heading">Medición de la Memoria</h3>
-
-
-
-<p>Si queremos que un producto o servicio sea
-comprado, debemos lograr que sea recordado, de ahí la necesidad de crear mensajes
-impactantes para el consumidor en los diferentes ámbitos para que sean
-recordados.</p>
-
-
-
-<p>Es por eso que la psicoantropología es tan
-importante, puede detectar el orden de recordación y los parámetros que
-recuerda y relaciones en su vida junto con su inconsciente cultural, personal y
-sus necesidades biológicas (reptiliano).</p>
-
-
-
-<p>En esta fase, se hace uso del marketing
-sensorial, es decir, generan en el consumidor experiencias positivas mediante
-los sentidos. Y es que, nuestra mente recuerda solo el 5% de los que observa,
-pero podemos recordar el 30% de lo que olfateamos.</p>
-
-
-
-<p>Por estas razones las empresas cada día se
-esfuerzan más al crear elementos de identificación única vinculados a los otros
-sentidos, un ejemplo de esto son los Odotipos (logotipos con aroma) incluso a
-tomar todos los sentidos y cambiar una marca de 2D a 5D (dimensiones de los
-cinco sentidos).</p>
-
-
-
-<p>Ahora ya sabes cómo mejorar tus estrategias
-de marketing, usando estos tres elementos fundamentales del neuromarketing en
-tu producto o servicio para alcanzar las metas trazadas.</p>
-
-
-
-<h2 class="wp-block-heading">Entonces&#8230; usa Neuromarketing y diferénciate</h2>
-
-
-
-<p>Como puedes ver, la era de la tecnología no
-elimina para nada las emociones de los seres humanos al menos en el sentido de
-consumidores, podemos decir, que las emociones son precisamente lo que mueve a
-las masas que se mantienen en constante uso de las nuevas tecnologías.</p>
-
-
-
-<p>En base a lo que he platicado en este artículo,
-podemos asegurar que son las emociones básicamente las que determinan las
-decisiones que tomamos como consumidores.</p>
-
-
-
-<p>Dentro del neuromarketing todo está
-controlado y previamente estudiado, pero esto no quiere decir que se manipula
-al consumidor, más bien, lo que se pretende es estudiar su comportamiento ante
-un cierto producto, una imagen, un sabor o un olor para predecir las decisiones
-y mejorar las ofertas para el usuario.</p>
-
-
-
-<p>No obstante, tampoco es una ciencia exacta, ya que el cerebro es uno de los órganos más complejos del ser humano, pero se puede lograr buenos resultados en base al análisis de las métricas antes mencionadas, es necesario tener un equipo capacitado y ético al momento de realizar los estudios.</p>
-
-
-
-<p>Te dejo algunos enlaces de tu interés para más información:</p>
-
-
-
-<figure class="wp-block-embed-wordpress wp-block-embed is-type-wp-embed is-provider-⋆-alex-arteaga-⋆-💻-el-vendedor-moderno-👨‍💼"><div class="wp-block-embed__wrapper">
-<div class="oceanwp-oembed-wrap clr"><blockquote class="wp-embedded-content" data-secret="6b0Qzs2bwz"><a href="https://www.alexarteaga.net/neuromarketing/" target="_blank" rel="noopener">NeuroMarketing Origenes, Aplicacion ,Mitos y Realidades</a></blockquote><iframe title="«NeuroMarketing Origenes, Aplicacion ,Mitos y Realidades» — ⋆ Alex Arteaga ⋆ 💻 El Vendedor Moderno 👨‍💼" class="wp-embedded-content" sandbox="allow-scripts" security="restricted" style="position: absolute; clip: rect(1px, 1px, 1px, 1px);" src="https://www.alexarteaga.net/neuromarketing/embed/#?secret=6b0Qzs2bwz" data-secret="6b0Qzs2bwz" width="600" height="338" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
-</div></figure>
-
-
-
-<figure class="wp-block-embed-wordpress wp-block-embed is-type-wp-embed is-provider-wilmar-velasquez"><div class="wp-block-embed__wrapper">
-<div class="oceanwp-oembed-wrap clr"><blockquote class="wp-embedded-content" data-secret="VbrXAxhI1t"><a href="https://www.wilmarvelasquez.com/mitos-del-neuromarketing/" target="_blank" rel="noopener">Mitos del Neuromarketing</a></blockquote><iframe title="«Mitos del Neuromarketing» — Wilmar Velasquez" class="wp-embedded-content" sandbox="allow-scripts" security="restricted" style="position: absolute; clip: rect(1px, 1px, 1px, 1px);" src="https://www.wilmarvelasquez.com/mitos-del-neuromarketing/embed/#?secret=VbrXAxhI1t" data-secret="VbrXAxhI1t" width="600" height="338" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
-</div></figure>
-
-
-
-<figure class="wp-block-embed-wordpress wp-block-embed is-type-wp-embed is-provider-wilmar-velasquez"><div class="wp-block-embed__wrapper">
-<div class="oceanwp-oembed-wrap clr"><blockquote class="wp-embedded-content" data-secret="4Do4U81DQL"><a href="https://www.wilmarvelasquez.com/ejemplos-y-aplicaciones-del-neuromarketing/" target="_blank" rel="noopener">Ejemplos y Aplicaciones Del Neuromarketing</a></blockquote><iframe title="«Ejemplos y Aplicaciones Del Neuromarketing» — Wilmar Velasquez" class="wp-embedded-content" sandbox="allow-scripts" security="restricted" style="position: absolute; clip: rect(1px, 1px, 1px, 1px);" src="https://www.wilmarvelasquez.com/ejemplos-y-aplicaciones-del-neuromarketing/embed/#?secret=4Do4U81DQL" data-secret="4Do4U81DQL" width="600" height="338" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
-</div></figure>
-
-
-
-<p></p>
+*Artículos relacionados:*
+- [Investigación de Mercados en Bolivia: Consumer Behavior](/blog/investigacion-de-mercado-en-bolivia-consumer-behavior)
+- [Por qué Utilizar Neuromarketing en tu Publicidad](/blog/por-que-utilizar-neuromarketing-en-mi-publicidad)
+- [La Mente del Consumidor: El Cerebro Reptiliano](/blog/mente_del_consumidor)

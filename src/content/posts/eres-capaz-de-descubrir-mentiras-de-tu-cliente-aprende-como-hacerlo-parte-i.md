@@ -1,9 +1,14 @@
 ---
 title: "¿Eres capaz de descubrir mentiras de tu cliente? Aprende cómo hacerlo (PARTE I)"
-date: "agosto 26, 2017"
+date: "febrero 19, 2025"
+dateISO: "2025-02-19"
 category: "Lenguaje Corporal"
 author: "Wilmar Velasquez"
-img: "/https://mindtecbolivia.com/wp-content/uploads/2017/08/descubre-mentiras.jpg"
+img: "/imagenes-mindtec/blog-covers-v2/eres-capaz-de-descubrir-mentiras-de-tu-cliente-aprende-como-hacerlo-parte-i-cover-v2.webp"
+imgAlt: "Lenguaje corporal y microexpresiones para detectar mentiras en negociaciones con clientes"
+excerpt: "Si puedes descubrir las mentiras de tu cliente estarás un paso adelante. Aprende a leer el contacto visual, las manos, los pies y el tiempo de respuesta."
+description: "Cómo detectar mentiras de tus clientes con lenguaje corporal: contacto visual, microexpresiones, movimientos y tiempo de respuesta. Técnicas de neuroventas Bolivia."
+keywords: "cómo detectar mentiras clientes, lenguaje corporal ventas Bolivia, microexpresiones negocios, neuroventas Bolivia, leer clientes lenguaje no verbal"
 ---
 
 <p>Si eres capaz de descubrir las mentiras de tu cliente podrás estar un paso delante para entender sus miedos y necesidades.</p>

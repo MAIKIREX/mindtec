@@ -1,285 +1,133 @@
 ---
-title: "Herramientas de recolección de datos cualitativos en investigaciones de mercado"
-date: "marzo 4, 2022"
-category: "Investigación"
+title: "Herramientas de Investigación Cualitativa: Las 5 que Descubren la Verdad del Consumidor"
+date: "octubre 7, 2025"
+dateISO: "2025-10-07"
+category: "Investigación de Mercados"
 author: "Wilmar Velasquez"
-img: "/https://mindtecbolivia.com/wp-content/uploads/2022/03/Portada-herramientas-recoleccion-datos-cualitativos.jpg"
+img: "/imagenes-mindtec/blog-covers-v2/herramientas-recoleccion-datos-cualitativos-cover-v2.webp"
+imgAlt: "Eye tracker y EEG como herramientas de investigación cualitativa en Bolivia"
+excerpt: "Las encuestas no llegan a la verdad del consumidor. Descubre las 5 herramientas de investigación cualitativa que revelan lo que tu consumidor boliviano realmente piensa."
+description: "Las 5 herramientas de investigación cualitativa para descubrir la verdad del consumidor: entrevistas en profundidad, etnografía, análisis de discurso, semiótica y neuromarketing."
+keywords: "herramientas investigación cualitativa Bolivia, recolección datos cualitativos, etnografía de mercado, entrevistas en profundidad investigación, semiótica de mercado Bolivia"
 ---
 
-<p>Elegir las <strong>herramientas de recolección de datos cualitativos</strong> correctas es un paso fundamental a la hora de desarrollar un proyecto con este enfoque de investigación, ya que de ello dependerá la calidad de la información que se obtendrá y el análisis a realizar.</p>
+Tienes un producto. Tienes un mercado. Y tienes una pregunta que nadie ha podido responderte con certeza:
 
+**¿Por qué tu consumidor compra lo que compra — y por qué a veces no te compra a ti?**
 
+Las encuestas no responden esa pregunta. Los focus groups tampoco. No porque sean herramientas inútiles, sino porque están diseñadas para capturar respuestas *conscientes* de un consumidor cuyas decisiones de compra son **85-95% inconscientes**.
 
-<p>En este artículo, te presentaremos cuáles son las más importantes y cómo puedes utilizarlas paso a paso.</p>
+Para llegar a la verdad real del consumidor boliviano, necesitas herramientas de investigación cualitativa — diseñadas para capturar no lo que dice, sino lo que siente, lo que hace y lo que no puede articular.
 
+## Qué Son las Herramientas de Recolección de Datos Cualitativos
 
+Las herramientas de investigación cualitativa son métodos que capturan información **descriptiva, contextual y subjetiva** sobre el comportamiento humano. No producen porcentajes — producen **insights**: verdades profundas sobre motivaciones, miedos y decisiones.
 
-<h2 class="wp-block-heading">¿Qué son las herramientas de recolección de datos cualitativos?</h2>
+Sus características diferenciales:
 
+- Se centran en el **contexto** del comportamiento, no solo en el comportamiento aislado
+- Buscan el **significado** detrás de las acciones, no solo las acciones
+- Trabajan con el **lenguaje natural** del consumidor, no con categorías predefinidas por el investigador
+- Permiten descubrir lo **inesperado** — el insight que nadie predijo y que transforma la estrategia
 
+Una investigación cualitativa bien ejecutada no confirma lo que el equipo ya creía. Lo sorprende. Si no sorprende, no fue suficientemente profunda.
 
-<p>Las herramientas de recolección de datos cualitativos pueden referirse a los métodos de investigación tradicionales o al conjunto de técnicas y materiales específicos que facilitan y enriquecen el proceso de recolección de datos.&nbsp;</p>
+## Las 5 Herramientas Esenciales — y Cómo Aplicarlas
 
+### 1. Entrevista en Profundidad
 
+La entrevista en profundidad es la herramienta más poderosa de la investigación cualitativa — cuando se aplica correctamente.
 
-<p>Estas herramientas se utilizan para ayudar a describir un contexto, un acontecimiento, grupo de personas o una relación concreta de forma amplia, intentando <strong>comprender las razones subyacentes del comportamiento</strong>, los pensamientos y los sentimientos.</p>
+No es una encuesta verbal. No es una conversación casual. Es una **exploración guiada del inconsciente del consumidor**, diseñada para bajar la guardia racional del entrevistado y acceder al registro emocional donde viven los verdaderos motivadores de compra.
 
+**Cómo funciona en la práctica:**
 
+El investigador no hace preguntas directas sobre el producto. Comienza por la historia personal, las aspiraciones, los miedos. Construye confianza gradualmente. Una vez que el entrevistado baja la guardia — cuando deja de "responder para la entrevista" y empieza a hablar desde su experiencia real — las revelaciones aparecen.
 
-<p>Las herramientas de recolección de datos cualitativos recogen datos que se caracterizan más por ser descriptivos que numéricos, se basan en textos y a menudo se expresan con las propias palabras de los participantes.&nbsp;</p>
+Las conversaciones pueden grabarse (con consentimiento) para análisis posterior de discurso — que no examina solo *qué* dijo el entrevistado, sino *cómo* lo dijo: las pausas, los cambios de tono, las palabras que eligió y las que evitó.
 
+**Para el mercado boliviano:** las diferencias culturales entre regiones afectan profundamente cómo se desarrollan estas entrevistas. Un entrevistador de La Paz necesita adaptar su enfoque para trabajar con un consumidor de Santa Cruz, y viceversa. La empatía cultural no es opcional — es metodológica.
 
+### 2. Observación Etnográfica Directa
 
-<p>Este tipo de herramientas ayudan a conocer el contexto y las motivaciones, por lo que son útiles para recoger las percepciones y motivaciones que hay detrás de un determinado comportamiento.</p>
+El método más subutilizado y el que entrega los datos más honestos: observar al consumidor **en su contexto natural** sin que él sepa que está siendo investigado.
 
+Esto significa ir al punto de venta. Al hogar. Al momento de uso del producto. Al proceso de compra real, no al proceso de compra reportado.
 
+La diferencia es radical: cuando una persona describe cómo elige un producto, cuenta la historia que su córtex construyó. Cuando la observas eligiendo el producto, ves lo que realmente hace — en qué se detiene, qué ignora, qué toca, cómo se mueve, cómo reacciona al precio.
 
-<p>Las herramientas de recolección de datos cualitativos suelen incluir preguntas abiertas y respuestas descriptivas y con poco o ningún valor numérico. Los datos obtenidos mediante estas herramientas pueden analizarse organizando los temas subyacentes.</p>
+**El diario de campo** es la herramienta infaltable de la observación etnográfica. El registro detallado de comportamientos observados, patrones que se repiten y anomalías que llaman la atención — todo lo que el análisis estadístico posterior necesita como materia prima.
 
+La observación también puede combinarse con **registro fotográfico y de video**, que permite revisar secuencias de comportamiento en detalle y compartirlas con el equipo analítico sin pérdida de información.
 
+### 3. Entrevistas Grupales (No Focus Groups Tradicionales)
 
-<h2 class="wp-block-heading">Características de las herramientas de investigación cualitativa</h2>
+El focus group tradicional — 8 a 10 personas que no se conocen, en una sala desconocida, con un moderador y un espejo unidireccional — tiene un defecto fatal: el **líder de opinión**.
 
+En cualquier grupo de personas que no se conocen, existe una dinámica social inmediata: alguien habla primero y con más confianza, y el resto se alinea. El miedo a quedar en ridículo, la necesidad de aceptación social, el deseo de parecer inteligente — todos estos mecanismos reptilianos hacen que los participantes supriman sus verdaderas opiniones y se sumen a la voz dominante.
 
+El resultado: pagas por 10 opiniones y recibes una, multiplicada.
 
-<p>Generalmente, las herramientas utilizadas en la recolección de datos cualitativos se caracterizan por:</p>
+**La alternativa que funciona:**
 
+- Grupos de **3 a 4 personas** que ya se conocen entre sí
+- Entorno familiar: idealmente la casa de uno de los participantes
+- El investigador en rol de **espectador** del diálogo, no de moderador directivo
+- Sin guión rígido — con temas que emergen de la conversación orgánica entre personas que se tienen confianza
 
+Cuando las personas hablan entre amigos en su entorno habitual, los mecanismos de supresión social se reducen enormemente. Las verdaderas necesidades, miedos y frustraciones emergen naturalmente en la conversación — sin que nadie las tenga que "extraer".
 
-<ul class="wp-block-list"><li>Están centradas en la exploración de datos complejos y amplios</li></ul>
+### 4. Análisis de Discurso y Semiótica
 
+Esta herramienta analiza los datos recogidos por las técnicas anteriores — pero lo hace de una manera que ningún análisis convencional puede replicar.
 
+El análisis de discurso no examina *qué* dijo el consumidor. Examina **la estructura de cómo lo dijo**: los patrones emocionales recurrentes, los símbolos que usa, las metáforas que aparecen de manera consistente, lo que evita decir aunque el tema lo pida.
 
-<ul class="wp-block-list"><li>Abordan los datos con una perspectiva holística.</li></ul>
+La semiótica — el estudio de los sistemas de signos — añade otra capa: cómo el consumidor construye significado alrededor de los productos, marcas y categorías. Un producto no es solo una funcionalidad para el cerebro humano — es un símbolo que carga significados culturales, sociales y emocionales profundos.
 
+**Ejemplo en el mercado boliviano:** en la región occidental, el concepto de "calidad" en productos alimentarios está semánticamente ligado a "tradición" y "origen". En Santa Cruz, el mismo concepto está ligado a "modernidad" e "innovación". La misma palabra, dos códigos culturales completamente distintos — que requieren estrategias de comunicación completamente distintas.
 
+Descubrir esos códigos requiere análisis de discurso, no encuestas.
 
-<ul class="wp-block-list"><li>Son útiles para recoger datos subjetivos.</li></ul>
+### 5. Neuromarketing: La Capa que Confirma Todo
 
+![Eye tracker y EEG — herramientas de neuromarketing en Bolivia](/imagenes-mindtec/eeg-eye-mindtec.jpg)
 
+Las cuatro herramientas anteriores capturan lo que el consumidor **hace y dice** (aunque dice cosas que no siempre corresponden a lo que hace). El neuromarketing añade la capa definitiva: lo que **su sistema nervioso hace sin que él pueda controlarlo ni modificarlo**.
 
-<ul class="wp-block-list"><li>Se apoyan en la dialéctica y el razonamiento inductivo.</li></ul>
+Las herramientas neurocientíficas aplicadas a la investigación de mercados en Bolivia:
 
+**Eye Tracking:** mapeo en tiempo real de a dónde mira el consumidor, en qué orden, cuánto tiempo y qué ignora. Los mapas de calor muestran la arquitectura real de la atención — qué elemento de tu publicidad o empaque captura primero, cuál se salta, qué trayectoria visual sigue el ojo antes de la decisión.
 
+**EEG (Electroencefalograma):** monitoreo de la actividad cerebral segundo a segundo durante la exposición a estímulos. Mide atención, engagement, estrés, excitación e interés. No depende de lo que el consumidor reporte — mide directamente la señal eléctrica del cerebro.
 
-<ul class="wp-block-list"><li>Tienen como base de conocimiento el significado y el descubrimiento.</li></ul>
+**GSR (Respuesta Galvánica de la Piel):** la conductancia eléctrica de la piel cambia cuando el sistema nervioso autónomo se activa emocionalmente. No se puede fingir ni controlar. Dice cuándo algo activa emocionalmente al consumidor, incluso cuando su expresión facial dice lo contrario.
 
+**Face Analytics con IA:** detección automática de las 7 emociones básicas (alegría, tristeza, miedo, ira, sorpresa, asco, desdén) mediante análisis de microexpresiones faciales con inteligencia artificial. No invasivo, aplicable en contexto de consumo real.
 
+El neuromarketing no reemplaza la investigación cualitativa — la **valida y profundiza**. Cuando el análisis de discurso dice que el consumidor tiene miedo a X, el GSR confirma que efectivamente hay activación emocional ante los estímulos relacionados con X. Cuando la observación etnográfica detecta que el consumidor ignora cierto elemento del empaque, el eye tracking mapea exactamente qué no mira y por cuánto tiempo.
 
-<ul class="wp-block-list"><li>Pueden llevar a desarrollar una teoría.</li></ul>
+## Cómo Implementar una Investigación Cualitativa en 5 Pasos
 
+**Paso 1 — Define el problema real.** No el síntoma ("las ventas bajaron") sino la pregunta de fondo ("¿qué está cambiando en la percepción de nuestra categoría en el consumidor boliviano?").
 
+**Paso 2 — Diseña los objetivos de investigación.** Cada herramienta responderá un tipo específico de pregunta. El diseño decide cuáles usar y en qué secuencia.
 
-<ul class="wp-block-list"><li>Pueden llevar a una interpretación compartida.</li></ul>
+**Paso 3 — Planifica los métodos y el campo.** ¿Qué perfiles de consumidor investigar? ¿En qué ciudades? ¿En qué momento del proceso de compra? Las decisiones metodológicas deben tomarse antes del trabajo de campo, no durante.
 
+**Paso 4 — Recolecta los datos con rigor.** La calidad de los datos depende de investigadores entrenados: en entrevista clínica, en lectura de microexpresiones, en observación etnográfica. Un investigador sin formación específica recoge datos superficiales.
 
+**Paso 5 — Analiza e integra los hallazgos.** El análisis cruza todos los datos — discurso, observación, biometría — para construir el mapa de insights accionables: los motivadores, las barreras, los códigos simbólicos y los detonantes de compra específicos para tu categoría en Bolivia.
 
-<ul class="wp-block-list"><li>Basan sus métodos en la comunicación y la observación.</li></ul>
+---
 
+La investigación cualitativa correctamente ejecutada no es un gasto. Es la inversión que hace que todos los demás gastos de marketing rindan.
 
+[Conversemos sobre tu investigación de mercados](/contacto) — diseñamos el protocolo correcto para tu categoría y tu mercado boliviano.
 
-<ul class="wp-block-list"><li>Su elemento básico de análisis son las palabras en lugar de los números.</li></ul>
+---
 
-
-
-<ul class="wp-block-list"><li>Llevan a una interpretación individual.</li></ul>
-
-
-
-<ul class="wp-block-list"><li>Permiten recoger datos singulares.</li></ul>
-
-
-
-<h2 class="wp-block-heading">5 herramientas para la recolección de datos cualitativos</h2>
-
-
-
-<p>La <a href="https://www.questionpro.com/es/investigacion-cualitativa.html" target="_blank" rel="noopener">investigación cualitativa</a> utiliza cómo métodos principales de recolección de datos la entrevista, las encuestas, los grupos de discusión y la observación participante, además de métodos innovadores como el neuromarketing.&nbsp;</p>
-
-
-
-<p>Ahora te presentaremos las herramientas que se utilizan en cada uno:</p>
-
-
-
-<figure class="wp-block-image"><img decoding="async" src="https://lh6.googleusercontent.com/HUpCWD9opjHxAyTYTzEOBlg9tQtQ2fetdrRUJd7S0bhGmYKZbTPdKGC1Fwv0M-qrCfLBhy-TRLIg3aaP5dWmSKorjMfPBGbbpJ4UlO9IJNgZmbHUqVOzH3yZIknRhQezyG0xLYgv" alt="herramientas investigacion de mercado cualitativo" title="Herramientas de recolección de datos cualitativos en investigaciones de mercado 2"></figure>
-
-
-
-<h3 class="wp-block-heading">1. Entrevista</h3>
-
-
-
-<p>Las entrevistas son una de las herramientas de recopilación de datos cualitativos más comunes, y son excelentes <strong>cuando se necesita recopilar información muy personalizada</strong>.&nbsp;</p>
-
-
-
-<p>Existen diferentes tipos de entrevistas. Las entrevistas informales y conversacionales son ideales como una primera aproximación en la investigación de campo a través de preguntas abiertas que permiten obtener un contexto rico y detallado.</p>
-
-
-
-<p>Por otro lado, la entrevista a profundidad consiste en una reunión pactada entre dos personas en la que el entrevistador utiliza una guía de entrevista para ayudar a orientar la conversación hacia los temas de interés.</p>
-
-
-
-<p>Entre sus herramientas, la mayoría de las entrevistas cualitativas utilizan una lista de temas, a veces llamada guía o agenda, así como grabadoras de audio o video.</p>
-
-
-
-<h3 class="wp-block-heading">2. Encuestas y cuestionarios abiertos&nbsp;</h3>
-
-
-
-<p>Las encuestas y los cuestionarios también son utilizados para recolectar datos cualitativos. A través del uso de preguntas abiertas, los encuestados tienen libertad y flexibilidad a la hora de dar sus respuestas, logrando que estos respondan con amplitud en lugar de elegir entre un número determinado de respuestas.&nbsp;</p>
-
-
-
-<p>En este tipo de encuestas suele darse espacio para que la gente responda de forma descriptiva, en lugar de limitarse a darles una selección específica de respuestas entre las que elegir.</p>
-
-
-
-<p>Sus herramientas incluyen las plataformas de <a href="https://www.questionpro.com/es/" target="_blank" rel="noopener">encuestas online</a>, así como las aplicaciones móviles para levantar encuestas sin internet.</p>
-
-
-
-<h3 class="wp-block-heading">3. Grupos de discusión</h3>
-
-
-
-<p>Los grupos focales son similares a las entrevistas, salvo que se realizan en formato de grupo, y generalmente son conformados por 8 o 10 personas que participan en la conversación.&nbsp;</p>
-
-
-
-<p>Puedes utilizar un grupo focal cuando las entrevistas individuales sean demasiado difíciles o requieran mucho tiempo. También son útiles cuando se necesita reunir datos sobre un grupo específico de personas.&nbsp;</p>
-
-
-
-<p>Por ejemplo, si quieres obtener comentarios sobre una nueva campaña de marketing de un número de personas demográficamente similares en tu mercado objetivo, o permitir que la gente comparta sus puntos de vista sobre un nuevo producto, los grupos focales son una buena manera de hacerlo.</p>
-
-
-
-<p>Entre las herramientas de los grupos de discusión, se suele utilizar una guía de facilitación para ayudar a gestionar el debate y generar los datos necesarios, y en la actualidad existen plataformas para llevar a cabo <a href="https://www.questionpro.com/blog/es/focus-group-online/" target="_blank" rel="noopener">focus groups online</a> mediante el uso de foros en línea y videollamadas.</p>
-
-
-
-<h3 class="wp-block-heading">4. Observación participante</h3>
-
-
-
-<p>La <a href="https://www.questionpro.com/blog/es/observacion-participante/" target="_blank" rel="noopener">observación participante</a> permite observar el entorno en el que se encuentran los sujetos o grupos de interés mientras el investigador forma parte activa de las situaciones.&nbsp;</p>
-
-
-
-<p>En muchas ocasiones considera que la observación puede tener un sesgo en la investigación, ya que la participación puede influir en las actitudes y opiniones del investigador, lo que dificulta su objetividad.&nbsp;</p>
-
-
-
-<p>Además, el hecho de que el investigador sea también un participante puede afectar a la naturalidad de las acciones y comportamientos de los sujetos que saben que están siendo observados.</p>
-
-
-
-<p>La herramienta infaltable de la observación participante es el diario de campo, junto con el levantamiento de fotografías y las grabaciones de vídeo y audio para garantizar la veracidad de la información obtenida.</p>
-
-
-
-<h3 class="wp-block-heading">5. Neuromarketing</h3>
-
-
-
-<p>El <a href="/blog/que-es-el-neuromarketing">neuromarketing</a> es la aplicación de las técnicas de neuroimagen a la investigación de mercado y busca comprender los procesos ocurren a nivel inconsciente en la toma de decisiones de los sujetos.</p>
-
-
-
-<p>El desarrollo de <a href="/blog/investigacion-de-mercados-con-neuromarketing">investigación de mercados con neuromarketing</a> surge del reconocimiento de que en muchas ocasiones, hacer preguntas a través de encuestas en línea, entrevistas o grupos de discusión no siempre conduce a la verdad.</p>
-
-
-
-<p>Por ello, el neuromarketing ofrece herramientas que van más allá de las respuestas racionalizadas y socialmente condicionadas para descubrir lo que realmente sienten las personas.</p>
-
-
-
-<p>Incluye una variedad de técnicas diferentes que incluyen ensayos de respuesta implícita, análisis de voz, eye tracking, face analytics y datos biométricos, entre otras, así como el uso conjunto de una o más de estas herramientas.</p>
-
-
-
-<h2 class="wp-block-heading">¿Cómo utilizar las herramientas de recolección de datos cualitativos?</h2>
-
-
-
-<p>Ahora que ya conoces a detalle la naturaleza de las diversas herramientas de recolección de datos que puedes utilizar en una investigación cualitativa, te presentaremos 5 pasos para poner en marcha la que necesitas en tu investigación:</p>
-
-
-
-<h3 class="wp-block-heading">1. Identifica los oportunidades y problemas</h3>
-
-
-
-<p>El primer paso consiste en identificar los problemas y/o las oportunidades para la recolección de datos, teniendo en cuenta la naturaleza subjetiva de estos datos y el trato con las personas.</p>
-
-
-
-<h3 class="wp-block-heading">2. Establece los objetivos de investigación</h3>
-
-
-
-<p>En este paso es necesario evaluar la situación que se busca investigar y las oportunidades prioritarias para la recolección de datos. A continuación, establece las metas y objetivos para cada una.</p>
-
-
-
-<h3 class="wp-block-heading">3. Planifica los métodos y herramientas a utilizar</h3>
-
-
-
-<p>En este paso los investigadores tomarán decisiones sobre quién será encuestado, cómo se recogerán los datos, las fuentes de datos que se utilizarán y la duración de la investigación de campo, entre otras cuestiones.&nbsp;</p>
-
-
-
-<p>Estas decisiones pueden tomarse en consulta con un experto y considerando aspectos básicos del entorno, por ejemplo, si estás considerando implementar una encuesta y es probable que en el sitio de estudio no haya acceso a internet, será conveniente usar una aplicación de encuestas offline.</p>
-
-
-
-<h3 class="wp-block-heading">4. Recolecta los datos</h3>
-
-
-
-<p>A la hora de planificar la mejor manera de recoger los datos, es importante tener en cuenta las consideraciones prácticas y las mejores recomendaciones para hacer frente a los retos logísticos a los que los investigadores suelen enfrentarse en esta fase del trabajo de campo, sobre todo al tratar con personas.</p>
-
-
-
-<p>Trata de ser lo más claro posible sobre los objetivos que buscas, las instituciones que te respaldan y el destino de la información que te brindarán. Incluso es recomendable solicitar una firma de aceptación por parte de los participantes.</p>
-
-
-
-<h3 class="wp-block-heading">5. Analiza e interpreta los datos</h3>
-
-
-
-<p>La etapa final consiste en analizar e interpretar los datos recogidos. El análisis puede tener diferente nivel de complejidad dependiendo de los métodos utilizados y de la cantidad de datos recogidos.</p>
-
-
-
-<h2 class="wp-block-heading">Conclusión</h2>
-
-
-
-<p>En la actualidad existe una gran cantidad de soluciones tecnológicas que constituyen otra fuente de herramientas para la investigación cualitativa.&nbsp;</p>
-
-
-
-<p>Atrás quedaron los tiempos en los que el único equipo de los investigadores consistía en un lápiz, un cuaderno y, en el mejor de los casos, una grabadora.&nbsp;</p>
-
-
-
-<p>Los programas de reconocimiento de voz ayudan a transcribir las cintas y los programas de <a href="https://www.questionpro.com/blog/es/analisis-de-texto/" target="_blank" rel="noopener">análisis de texto</a> hacen posible complejas investigaciones sobre largos documentos y transcripciones.</p>
-
-
-
-<p>Las oportunidades de investigación en Internet aumentan a medida que crece el ancho de banda. Los grupos de discusión y las entrevistas en línea mediante plataformas online ya son habituales, y hay muchas investigaciones que examinan material, tanto textual como visual, que se encuentra en Internet.&nbsp;</p>
-
-
-
-<p>Así que si estás por realizar una investigación cualitativa, no tengas miedo de probar diferentes alternativas e innovar para encontrar los insights más valiosos acerca de tu tema de interés.</p>
-
-
-
-<p><br>Autor: <a href="https://www.linkedin.com/in/humberto-l%C3%B3pez-romero-ba832021/" target="_blank" rel="noopener">Humberto López<br></a>Director de Research LATAM en QuestionPro</p>
+*Artículos relacionados:*
+- [Investigación de Mercados: Cuantitativa vs Cualitativa](/blog/investigacion-de-mercados-cuantitativa-vs-cualitativa)
+- [Investigación de Mercados con Neuromarketing](/blog/investigacion-de-mercados-con-neuromarketing)
+- [Investigación de Mercado en Bolivia](/blog/investigacion-de-mercado-en-bolivia-consumer-behavior)
