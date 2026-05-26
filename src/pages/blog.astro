@@ -1,0 +1,191 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+// Fetch all blog posts
+const posts = await getCollection('posts');
+
+// Helper to parse Spanish dates like "marzo 4, 2022" or "diciembre 11, 2019"
+const months: Record<string, number> = {
+  enero: 0, febrero: 1, marzo: 2, abril: 3, mayo: 4, junio: 5,
+  julio: 6, agosto: 7, septiembre: 8, octubre: 9, noviembre: 10, diciembre: 11
+};
+
+const parseSpanishDate = (dateStr: string) => {
+  const cleanStr = dateStr.toLowerCase().replace(/de/g, '').replace(/,/g, '').trim();
+  const parts = cleanStr.split(/\s+/);
+  if (parts.length === 3) {
+    const month = months[parts[0]];
+    const day = parseInt(parts[1]);
+    const year = parseInt(parts[2]);
+    if (!isNaN(day) && !isNaN(year) && month !== undefined) {
+      return new Date(year, month, day);
+    }
+  }
+  return new Date(0);
+};
+
+// Sort posts descending by date
+const sortedPosts = posts.sort((a, b) => parseSpanishDate(b.data.date).getTime() - parseSpanishDate(a.data.date).getTime());
+
+// Map category display name to original filter slugs for compatibility with filter script
+const categoryFilterMap: Record<string, string> = {
+  'Investigación de Mercados': 'investigacion-de-mercados',
+  'Neuromarketing': 'neuromarketing',
+  'Psicoantropología': 'psicoantropologia,neuromarketing',
+  'Neuroventas': 'neuroventas,neuromarketing',
+  'Tips y Estrategias': 'tips,neuromarketing',
+  'Lenguaje Corporal': 'lenguaje-corporal',
+  'Noticias': 'news',
+  'Investigación': 'uncategorized'
+};
+
+const getFilterSlug = (category: string) => {
+  return categoryFilterMap[category] || 'uncategorized';
+};
+---
+
+<Layout
+  title="Insights y Análisis de Mercado en Bolivia | Blog Mindtec"
+  description="Insights de investigación de mercados en Bolivia: tendencias, metodología, neuromarketing y análisis del consumidor boliviano."
+  keywords="blog investigación de mercados Bolivia, insights consumidor boliviano, neuromarketing Bolivia"
+  headerLightBg={true}
+>
+    <main class="elementor-content">
+        <!-- Hero Section -->
+        <section class="hero-section elementor-section" style="padding: 160px 0 80px; min-height: auto; background: var(--color-secondary);">
+            <!-- Mobile-first neural canvas background -->
+            <div class="hero-mobile-canvas" id="hero-mobile-canvas" aria-hidden="true"></div>
+            <div class="container hero-container elementor-container e-con">
+                <div class="hero-content">
+                    <span class="eyebrow fade-in">ACELERADOR DE DECISIONES</span>
+                    <h1 class="hero-title" style="color: var(--color-white); font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 900; line-height: 1.15; margin-bottom: var(--spacing-sm); font-family: var(--font-display);">Insights y Análisis de Mercado en Bolivia</h1>
+                    <p class="hero-subtitle" style="font-size: 1.15rem; max-width: 650px; margin-bottom: 2.5rem; color: rgba(255, 255, 255, 0.7); font-weight: 500; line-height: 1.7;">Publicaciones del equipo de inteligencia de Mindtec sobre tendencias de consumo, metodología y decisiones estratégicas.</p>
+                    
+                    <!-- Search and Filter system -->
+                    <div class="blog-controls">
+                        <div class="blog-search-wrapper">
+                            <svg class="blog-search-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                            <input type="text" id="blog-search" class="blog-search-input" placeholder="Buscar artículos por título o contenido..." />
+                        </div>
+                        <div class="blog-filter-pills">
+                            <button class="filter-pill active" data-filter="all">Todos</button>
+                            <button class="filter-pill" data-filter="neuromarketing">Neuromarketing</button>
+                            <button class="filter-pill" data-filter="investigacion-de-mercados">Investigación de Mercados</button>
+                            <button class="filter-pill" data-filter="psicoantropologia">Psicoantropología</button>
+                            <button class="filter-pill" data-filter="neuroventas">Neuroventas</button>
+                            <button class="filter-pill" data-filter="lenguaje-corporal">Lenguaje Corporal</button>
+                            <button class="filter-pill" data-filter="tips">Tips y Estrategias</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Articles Grid Section -->
+        <section class="elementor-section" style="padding: 4rem 0 8rem; background: #fcfcfc;">
+            <div class="container elementor-container">
+                <div class="blog-grid">
+                    {sortedPosts.map(post => {
+                      const filterSlug = getFilterSlug(post.data.category);
+                      return (
+                        <article class="article-card" data-categories={filterSlug} data-title={post.data.title.toLowerCase()} data-excerpt={post.data.excerpt?.toLowerCase() || ''}>
+                            {post.data.img && (
+                                <div class="article-image-wrapper">
+                                    <img src={post.data.img} alt={post.data.title} class="article-image" loading="lazy" />
+                                </div>
+                            )}
+                            <div class="article-body">
+                                <span class="article-tag">{post.data.category}</span>
+                                <h3 class="article-title">
+                                    <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+                                </h3>
+                                <p class="article-excerpt">{post.data.excerpt}</p>
+                                <div class="article-footer">
+                                    <span class="article-date">{post.data.date}</span>
+                                    <a href={`/blog/${post.slug}`} class="article-readmore">Leer artículo →</a>
+                                </div>
+                            </div>
+                        </article>
+                      );
+                    })}
+                </div>
+            </div>
+        </section>
+    
+        <section class="elementor-section bg-white" style="padding: 3rem 0; text-align: center;">
+            <div class="container">
+                <p style="color: #64748b; margin-bottom: 1rem;">La investigación profunda sustenta cada área de negocio.</p>
+                <a href="/servicios" style="color: var(--color-primary); font-weight: 600; text-decoration: none;">Conozca nuestras áreas de consultoría →</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Blog dynamic filtering and search script -->
+    <script is:inline>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('blog-search');
+        const filterPills = document.querySelectorAll('.filter-pill');
+        const cards = document.querySelectorAll('.article-card');
+
+        let currentCategory = 'all';
+        let searchQuery = '';
+
+        function filterArticles() {
+            let visibleCount = 0;
+            cards.forEach(card => {
+                const categories = card.getAttribute('data-categories').split(',');
+                const title = card.getAttribute('data-title');
+                const excerpt = card.getAttribute('data-excerpt');
+
+                const matchesCategory = currentCategory === 'all' || categories.includes(currentCategory);
+                const matchesSearch = title.includes(searchQuery) || excerpt.includes(searchQuery);
+
+                if (matchesCategory && matchesSearch) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+            
+            let noResultsMsg = document.getElementById('no-results-msg');
+            if (visibleCount === 0) {
+                if (!noResultsMsg) {
+                    noResultsMsg = document.createElement('div');
+                    noResultsMsg.id = 'no-results-msg';
+                    noResultsMsg.style.textAlign = 'center';
+                    noResultsMsg.style.padding = '4rem 0';
+                    noResultsMsg.style.width = '100%';
+                    noResultsMsg.style.gridColumn = '1 / -1';
+                    noResultsMsg.innerHTML = `
+                        <h4 style="font-size: 1.5rem; color: var(--color-secondary); margin-bottom: 1rem;">No se encontraron artículos</h4>
+                        <p style="color: var(--color-text-muted);">Pruebe con otros términos de búsqueda o cambie de categoría.</p>
+                    `;
+                    document.querySelector('.blog-grid').appendChild(noResultsMsg);
+                }
+            } else if (noResultsMsg) {
+                noResultsMsg.remove();
+            }
+        }
+
+        if (searchInput) {
+            searchInput.addEventListener('input', function(e) {
+                searchQuery = e.target.value.toLowerCase().trim();
+                filterArticles();
+            });
+        }
+
+        filterPills.forEach(pill => {
+            pill.addEventListener('click', function() {
+                filterPills.forEach(p => p.classList.remove('active'));
+                pill.classList.add('active');
+                currentCategory = pill.getAttribute('data-filter');
+                filterArticles();
+            });
+        });
+    });
+    </script>
+</Layout>

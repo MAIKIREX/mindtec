@@ -4,6 +4,11 @@
   "description": "",
   "main": "analyze_seo.js",
   "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -13,12 +18,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/Wilvelzap/PAgina-web-mindtec-anti-elementor/issues"
   },
   "homepage": "https://github.com/Wilvelzap/PAgina-web-mindtec-anti-elementor#readme",
   "dependencies": {
+    "astro": "^4.16.1",
     "sharp": "^0.34.5"
   }
 }

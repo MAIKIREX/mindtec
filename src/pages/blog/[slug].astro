@@ -1,0 +1,45 @@
+---
+import { getCollection } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+// Generate static paths for all posts in the collection
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post, allPosts: posts },
+  }));
+}
+
+interface Props {
+  post: any;
+  allPosts: any[];
+}
+
+const { post, allPosts } = Astro.props;
+
+// Render Markdown body content
+const { Content } = await post.render();
+
+// Generate 3 suggested articles based on matching categories
+const suggestions = allPosts
+  .filter(p => p.slug !== post.slug)
+  .map(p => {
+    // Score overlaps: 3 points if category matches, 0 otherwise
+    const score = p.data.category === post.data.category ? 3 : 0;
+    return { post: p, score };
+  })
+  .sort((a, b) => b.score - a.score)
+  .slice(0, 3)
+  .map(item => item.post);
+---
+
+<ArticleLayout
+  title={post.data.title}
+  date={post.data.date}
+  category={post.data.category}
+  img={post.data.img}
+  suggestions={suggestions}
+>
+  <Content />
+</ArticleLayout>
