@@ -1,13 +1,52 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
 ---
 
 <Layout
   title="Auditoría Retail y Trade Intelligence en Bolivia | Mindtec"
   description="Auditoría retail en Bolivia: share of shelf, precios, POP y ejecución en punto de venta. Red nacional de 80+ auditores. Mindtec."
-  keywords="auditoría retail Bolivia, auditoría punto de venta Bolivia, trade intelligence Bolivia, auditoría de ejecución en punto de venta en Bolivia, share of shelf, POP, quiebres de stock, góndola, mystery shopper"
   headerLightBg={false}
 >
+  <script type="application/ld+json" slot="head">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "name": "Auditoría Retail en Bolivia",
+        "provider": { "@type": "LocalBusiness", "name": "Mindtec Bolivia" },
+        "description": "Auditoría retail independiente en Bolivia: share of shelf, precios, POP y ejecución en punto de venta con red de 80+ auditores georreferenciados.",
+        "areaServed": ["La Paz", "Santa Cruz", "Cochabamba", "El Alto"]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Por qué no debería encargar la auditoría a mi mismo equipo de Trade?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Existe un conflicto de interés implícito. El vendedor que acomodó el producto o el supervisor a cargo de la zona tienen incentivos para reportar que la góndola está perfecta. Mindtec le proporciona una vista neutral, revelando oportunidades reales de mejora." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Tienen la capacidad operativa para auditar a nivel nacional en Bolivia?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sí. Contamos con una red distribuida de más de 80 auditores que cubren el eje metropolitano troncal (Santa Cruz, La Paz, El Alto, Cochabamba) y principales centros urbanos secundarios e intermediarios, auditando tanto canal moderno como mercados populares tradicionales." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo garantizan la veracidad de la información de campo?",
+            "acceptedAnswer": { "@type": "Answer", "text": "A través de tecnología digital georreferenciada. Cada auditor utiliza la plataforma de Mindtec para capturar fotos in-situ; el sistema inyecta automáticamente la ubicación GPS satelital y la marca de tiempo, previniendo alteraciones de datos." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué sucede ante detecciones críticas como quiebre de stock o distorsiones de precio?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Emitimos alertas rápidas en el dashboard estratégico. Esto permite a sus gerentes de canal o supervisores de distribución contactar a la cadena de inmediato para corregir el desabastecimiento o la desviación de precio sugerido." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
   <main>
     <!-- 🟦 1️⃣ HERO -->
     <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
@@ -44,9 +83,9 @@ import Layout from '../layouts/Layout.astro';
             <span style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.75);">Monitoree share of shelf, quiebres de stock, material POP y precios en góndola a través de evidencia física auditada de forma objetiva.</span>
           </p>
           <div class="cta-actions" style="margin-top: 2rem;">
-            <a href="/contacto" class="btn btn-primary lg">Agendar sesión de diagnóstico (20 min)</a>
+            <a href="/contacto" class="btn btn-primary lg">Agendar sesión de diagnóstico (45 min)</a>
           </div>
-          <p style="margin-top: 1rem; font-size: 0.9rem; color: #64748b; font-weight: 500;">Sesión estratégica: 20 minutos | Trazabilidad georreferenciada | Sin compromiso</p>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: #64748b; font-weight: 500;">Sesión estratégica: 45 minutos | Trazabilidad georreferenciada | Sin compromiso</p>
         </div>
         <div class="hero-visual">
           <div class="glass-card main-visual">
@@ -55,6 +94,8 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
     </section>
+
+    <ServiceVisualSuite variant="retail" />
 
     <!-- MINI NAVEGACIÓN ANCLAS -->
     <div style="background: rgba(11, 43, 64, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 1.25rem 0; position: sticky; top: 80px; z-index: 999; backdrop-filter: blur(10px);">
@@ -78,17 +119,17 @@ import Layout from '../layouts/Layout.astro';
     <section id="problema" class="problem-section bg-slate" style="padding: 5rem 0;">
       <div class="container" style="max-width: 1100px;">
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; align-items: center;">
-          <div class="premium-card-white" style="padding: 4rem; margin-bottom: 0;">
-            <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 2rem; line-height: 1.2;">El auto-reporte del canal es un punto ciego: ¿Su fuerza de ventas es juez y parte?</h2>
-            <p class="text-gray-dark leading-relaxed" style="font-size: 1.15rem; margin-bottom: 2rem;">
+          <div class="premium-card-white" style="padding: 2.5rem; margin-bottom: 0;">
+            <h2 class="text-navy" style="font-size: 2rem; margin-bottom: 1.25rem; line-height: 1.25;">El auto-reporte del canal es un punto ciego: ¿Su fuerza de ventas es juez y parte?</h2>
+            <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; margin-bottom: 1.25rem;">
               Confiar la auditoría de ejecución a sus propios distribuidores o a su equipo comercial interno genera un conflicto de intereses implícito. Los vendedores y supervisores tienen incentivos para reportar que todo está en orden, ocultando los problemas reales de distribución y desabastecimiento.
             </p>
-            <p class="text-gray-dark leading-relaxed" style="font-size: 1.1rem; margin-bottom: 2.5rem;">
+            <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; margin-bottom: 1.5rem;">
               Una auditoría retail independiente desactiva este sesgo. La red de campo de Mindtec actúa como ojos neutrales en el anaquel, recolectando evidencia física innegable y trazable para justificar las inversiones de Trade Marketing de su empresa.
             </p>
-            <hr style="margin: 2rem 0; border: 0; border-top: 1px solid rgba(11, 43, 64, 0.08);">
-            <h3 class="text-navy" style="font-size: 1.4rem; margin-bottom: 1rem;">Activos tácticos de control:</h3>
-            <ul class="cap-list" style="font-size: 1.05rem;">
+            <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid rgba(11, 43, 64, 0.08);">
+            <h3 class="text-navy" style="font-size: 1.25rem; margin-bottom: 0.75rem;">Activos tácticos de control:</h3>
+            <ul class="cap-list" style="font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.5rem;">
               <li><strong class="text-navy">Pruebas fotográficas georreferenciadas:</strong> Ubicación satelital y hora exacta de cada auditoría de punto de venta, eliminando reportes de escritorio falsos.</li>
               <li><strong class="text-navy">Cuantificación financiera de pérdidas:</strong> Traducción de la falta de stock y pérdida de facings en costo monetario directo para su marca.</li>
               <li><strong class="text-navy">Alertas inmediatas de quiebres:</strong> Notificaciones directas a su equipo de logística cuando se detecte un SKU agotado en una tienda o supermercado clave.</li>
@@ -240,7 +281,14 @@ import Layout from '../layouts/Layout.astro';
               .pulse-node {
                 transform-origin: center;
                 animation: pulse-ring 2.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-            <!-- 🟦 5️⃣ CUÁNDO SE NECESITA AUDITAR -->
+              }
+            </style>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🟦 5️⃣ CUÁNDO SE NECESITA AUDITAR -->
     <section id="necesidad" class="premium-section-padding bg-white" style="padding: 5rem 0;">
       <div class="container">
         <div class="section-title-center" style="margin-bottom: 4rem; text-align: center;">
@@ -384,8 +432,8 @@ import Layout from '../layouts/Layout.astro';
             Programe una sesión de mapeo estratégico para auditar la ejecución de sus SKUs a nivel nacional.
           </p>
           <div class="cta-actions" style="justify-content: center; flex-direction: column; align-items: center;">
-            <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar sesión de diagnóstico (20 min)</a>
-            <p style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">Sesión inicial: 20 minutos | Plan de cobertura preliminar | Confidencial</p>
+            <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar sesión de diagnóstico (45 min)</a>
+            <p style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">Sesión inicial: 45 minutos | Plan de cobertura preliminar | Confidencial</p>
           </div>
         </div>
       </div>

@@ -3,11 +3,27 @@ import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout
-  title="La Firma Consultora | Mindtec Bolivia"
-  description="Conozca a Mindtec: primera firma boliviana en integrar neurociencia e IA en investigación de mercados. Equipo, principios y experiencia."
-  keywords="consultora investigación de mercados Bolivia, empresa de neuromarketing Bolivia, primera consultora boliviana de inteligencia de mercados con neurociencia, equipo, experiencia, principios, confidencialidad"
+  title="Empresa de Investigación de Mercados en Bolivia | Quiénes Somos | Mindtec"
+  description="Conozca Mindtec: primera firma boliviana en integrar neurociencia e IA en investigación de mercados. Equipo, principios y más de 10 años de experiencia."
   headerLightBg={false}
 >
+  <script type="application/ld+json" slot="head">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Mindtec Bolivia",
+    "url": "https://www.mindtecbolivia.com",
+    "logo": "https://www.mindtecbolivia.com/logos/logo-mindtec-horizontal-para-fondo-oscuro.webp",
+    "description": "Primera firma boliviana en integrar neurociencia, inteligencia artificial y consultoría de mercados para decisiones críticas de alta dirección.",
+    "email": "info@mindtecbolivia.com",
+    "areaServed": ["La Paz", "Santa Cruz", "Cochabamba", "El Alto"],
+    "address": { "@type": "PostalAddress", "addressCountry": "BO" },
+    "foundingDate": "2014",
+    "numberOfEmployees": { "@type": "QuantitativeValue", "value": 80 },
+    "award": "Premio MAYA a la Innovación en Investigación de Mercados",
+    "sameAs": ["https://www.mindtecbolivia.com"]
+  }
+  </script>
   <main>
 <main class="elementor-content">
         <!-- SECCIÓN 1: Hero -->
@@ -224,9 +240,9 @@ import Layout from '../layouts/Layout.astro';
             <div class="container elementor-container glass-container" style="max-width: 900px; margin: 0 auto; text-align: center;">
                 <div class="cta-content-v2">
                     <h2 style="font-size: 2.8rem; line-height: 1.25; margin-bottom: 1.5rem;">Si su empresa necesita ver lo que la competencia no ve, este es el punto de partida.</h2>
-                    <p class="cta-subtitle">Agende una conversación inicial con el equipo senior de Mindtec. 20 minutos, directo al punto.</p>
+                    <p class="cta-subtitle">Agende una conversación inicial con el equipo senior de Mindtec. 45 minutos, directo al punto.</p>
                     <div class="cta-actions" style="margin-top: 2.5rem;">
-                        <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar sesión de diagnóstico (20 min) →</a>
+                        <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar sesión de diagnóstico (45 min) →</a>
                     </div>
                 </div>
             </div>

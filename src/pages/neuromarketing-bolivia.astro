@@ -1,13 +1,54 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
 ---
 
 <Layout
   title="Estudios de Neuromarketing en Bolivia | Validar Atención y Emoción | Mindtec"
   description="Neuromarketing en Bolivia: eye tracking, EEG y facial coding para validar campañas, packaging y UX antes de invertir. Mindtec."
-  keywords="neuromarketing en Bolivia, estudio de neuromarketing Bolivia, eye tracking Bolivia, estudios de neuromarketing para validar campañas y packaging en Bolivia, EEG, facial coding, atención visual, respuesta emocional, biometría"
   headerLightBg={false}
 >
+  <script type="application/ld+json" slot="head">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Estudios de Neuromarketing en Bolivia",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Mindtec Bolivia"
+    },
+    "description": "Estudios científicos de neuromarketing en Bolivia usando eye tracking, electroencefalograma (EEG) y codificación facial para validar empaques, publicidad y UX.",
+    "areaServed": ["La Paz", "Santa Cruz", "Cochabamba", "El Alto"]
+  }
+  </script>
+  <script type="application/ld+json" slot="head">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿El neuromarketing reemplaza a las encuestas tradicionales?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No, actúan en complemento. Las encuestas tradicionales cuantifican y capturan opiniones declarativas conscientes. El neuromarketing audita la atención espontánea, respuesta emocional y rechazo biológico, removiendo sesgos." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuánto tiempo toma un estudio de neuromarketing en Bolivia?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Varía según el alcance. Desde auditorías de diseño rápidas en 7 días para piezas específicas, hasta validaciones complejas de 30 días para rediseños integrales de empaques o testeo de campañas." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Pueden realizar estudios combinados con benchmark de competencia?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Es la práctica recomendada. Evaluamos sus piezas (anuncios o empaques) colocándolos en paralelo con los competidores líderes, midiendo cuál marca retiene el ojo del consumidor por más tiempo." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Se puede testear el impacto visual en entornos móviles y de desktop?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sí. El Eye Tracker de pantalla de Mindtec se calibra para flujos en e-commerce y aplicaciones móviles, registrando la facilidad de escaneo visual y la fricción que reduce la conversión." }
+      }
+    ]
+  }
+  </script>
   <main>
     <!-- 🟦 1️⃣ HERO -->
     <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
@@ -45,10 +86,10 @@ import Layout from '../layouts/Layout.astro';
             Integramos biometría en laboratorio, análisis cultural & validación estratégica para comités de dirección que requieren decisiones comerciales defendibles antes del lanzamiento comercial.
           </p>
           <div class="cta-actions" style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
-            <a href="/contacto" class="btn btn-primary lg">Agendar sesión de diagnóstico (20 min)</a>
+            <a href="/contacto" class="btn btn-primary lg">Agendar sesión de diagnóstico (45 min)</a>
             <a href="/contacto" class="btn btn-navy-outline lg" style="border-color: rgba(255,255,255,0.4); color: #fff;">Evaluar pieza creativa o packaging</a>
           </div>
-          <p style="margin-top: 1rem; font-size: 0.9rem; color: #64748b; font-weight: 500;">Sesión inicial: 20 minutos | Confidencial | Sin compromiso</p>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: #64748b; font-weight: 500;">Sesión inicial: 45 minutos | Confidencial | Sin compromiso</p>
         </div>
         <div class="hero-visual">
           <div class="glass-card main-visual">
@@ -57,6 +98,8 @@ import Layout from '../layouts/Layout.astro';
         </div>
       </div>
     </section>
+
+    <ServiceVisualSuite variant="neuromarketing" />
 
     <!-- MINI NAVEGACIÓN ANCLAS -->
     <div style="background: rgba(11, 43, 64, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 1.25rem 0; position: sticky; top: 80px; z-index: 999; backdrop-filter: blur(10px);">
@@ -424,6 +467,16 @@ import Layout from '../layouts/Layout.astro';
       </div>
     </section>
 
+    <!-- 🟦 OBJECIÓN DE PRECIO (COPYWRITING) -->
+    <section style="padding: 5rem 0; background: #ffffff; border-bottom: 1px solid #e2e8f0;">
+      <div class="container" style="max-width: 800px; text-align: center;">
+        <h3 class="text-navy" style="font-size: 2rem; margin-bottom: 1.5rem; line-height: 1.3;">¿Cuánto cuesta un error de lanzamiento en Bolivia?</h3>
+        <p class="text-gray-dark" style="font-size: 1.15rem; line-height: 1.7; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+          Validar científicamente su packaging o pauta publicitaria representa menos del <strong>3% del presupuesto</strong> de una campaña fallida o de un inventario estancado que deba liquidar con descuentos. El neuromarketing no es un gasto de investigación; es un seguro contra pérdidas de capital y reputación ante su Directorio.
+        </p>
+      </div>
+    </section>
+
     <!-- 🟦 1️⃣2️⃣ FINAL CTA -->
     <section class="cta-section-modern" style="padding: 6rem 0;">
       <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
@@ -433,8 +486,8 @@ import Layout from '../layouts/Layout.astro';
             Descubra qué elementos visuales capturan la atención de su mercado y cuáles representan fricciones no deseadas.
           </p>
           <div class="cta-actions" style="justify-content: center; flex-direction: column; align-items: center;">
-            <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar sesión de diagnóstico (20 min)</a>
-            <p style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">Sesión inicial: 20 minutos | Plan y testeo preliminar | Confidencial</p>
+            <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar sesión de diagnóstico (45 min)</a>
+            <p style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">Sesión inicial: 45 minutos | Plan y testeo preliminar | Confidencial</p>
           </div>
         </div>
       </div>

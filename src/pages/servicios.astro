@@ -1,263 +1,911 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
+
+const title = "Servicios de Investigación de Mercados en Bolivia | Catálogo Mindtec";
+const description = "Research, Intelligence, Retail y Strategy: 16 servicios de investigación de mercados con neurociencia e IA aplicada. Encuentra el que necesitas — Mindtec Bolivia.";
 ---
 
 <Layout
-  title="Servicios de Investigación de Mercados B2B en Bolivia | Mindtec"
-  description="Servicios de investigación de mercados B2B en Bolivia: estudios de mercado, pricing, percepción de marca y auditoría retail. Mindtec."
-  keywords="servicios de investigación de mercados Bolivia, servicios estudio de mercado B2B Bolivia, servicios de investigación de mercados para empresas en Bolivia, pricing, auditoría, branding, análisis"
+  title={title}
+  description={description}
   headerLightBg={false}
+  canonicalUrl="/servicios"
 >
+  <script type="application/ld+json" slot="head">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Servicios MindTEC Bolivia",
+    "description": "Catálogo de servicios de investigación de mercados, inteligencia competitiva, retail analytics y estrategia de marca en Bolivia.",
+    "url": "https://www.mindtecbolivia.com/servicios",
+    "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Focus Group en Bolivia","url":"https://www.mindtecbolivia.com/focus-group-bolivia"},
+      {"@type":"ListItem","position":2,"name":"Mapa Integral del Consumidor","url":"https://www.mindtecbolivia.com/estudio-de-mercado-bolivia"},
+      {"@type":"ListItem","position":3,"name":"Radar Competitivo","url":"https://www.mindtecbolivia.com/benchmarking-competitivo-bolivia"},
+      {"@type":"ListItem","position":4,"name":"Diagnóstico de Marca","url":"https://www.mindtecbolivia.com/percepcion-de-marca-bolivia"},
+      {"@type":"ListItem","position":5,"name":"Auditoría de Experiencia en PDV","url":"https://www.mindtecbolivia.com/cliente-misterioso-bolivia"},
+      {"@type":"ListItem","position":6,"name":"Shopper Insights","url":"https://www.mindtecbolivia.com/shopper-insights-bolivia"},
+      {"@type":"ListItem","position":7,"name":"Auditoría Retail","url":"https://www.mindtecbolivia.com/auditoria-retail-bolivia"},
+      {"@type":"ListItem","position":8,"name":"Validación Neurocientífica","url":"https://www.mindtecbolivia.com/neuromarketing-bolivia"}
+    ]
+  }
+  </script>
+
   <main>
-<main class="elementor-content">
-        <!-- Hero Section -->
-        <section class="hero-section elementor-section" style="padding-bottom: 4rem;">
 
-            <!-- Geometric floating shapes (always visible, CSS-animated) -->
-            <div class="hero-shapes" aria-hidden="true">
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-            </div>
-            <!-- Mobile-first neural canvas background -->
-            <div class="hero-mobile-canvas" id="hero-mobile-canvas" aria-hidden="true"></div>
-            <div class="container hero-container elementor-container e-con" style="text-align: center;">
-                <div class="hero-content" style="max-width: 900px; margin: 0 auto;">
-                    <span class="eyebrow fade-in">LO QUE SU EMPRESA OBTIENE</span>
-                    <h1 class="hero-title">Servicios de Investigación de Mercados en Bolivia para Empresas B2B</h1>
-                    <p class="hero-subtitle">No son reportes de datos. Son decisiones ejecutivas defendibles ante su directorio — respaldadas por neurociencia, inteligencia artificial y validación territorial.</p>
-                </div>
-            </div>
-        </section>
+    <!-- 1. HERO -->
+    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
+      <div class="hero-shapes" aria-hidden="true">
+        <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
+        <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
+        <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
+        <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
+        <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+      </div>
+      <div class="hero-mobile-canvas" id="hero-mobile-canvas" aria-hidden="true"></div>
+      <div class="container hero-container" style="text-align: center;">
+        <div class="hero-content" style="max-width: 900px; margin: 0 auto;">
+          <span class="eyebrow fade-in">CATÁLOGO DE SERVICIOS MINDTEC</span>
+          <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;">
+            Investigación que termina en decisiones, no en archivos.
+          </h1>
+          <p class="hero-subtitle" style="font-size: 1.25rem; margin-bottom: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+            Research, Intelligence, Retail y Strategy — cuatro líneas, un solo estándar: evidencia que mueve decisiones de directorio.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center; margin: 2rem 0;">
+            <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px;">Research</span>
+            <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px;">Intelligence</span>
+            <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px;">Retail</span>
+            <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.25); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px;">Strategy</span>
+            <span style="background: rgba(242,101,34,0.2); border: 1px solid rgba(242,101,34,0.4); color: #F26522; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px;">Neuromarketing</span>
+            <span style="background: rgba(242,101,34,0.2); border: 1px solid rgba(242,101,34,0.4); color: #F26522; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.5px;">IA Aplicada</span>
+          </div>
+          <a href="/contacto" class="btn btn-primary lg">Agendar diagnóstico estratégico (45 min) →</a>
+        </div>
+      </div>
+    </section>
 
-        <!-- Proceso de Trabajo (Timeline) -->
-        <section class="process-section elementor-section" style="padding: 5rem 0; background-color: var(--color-accent); border-top: 1px solid #eaeaea;">
-            <div class="container elementor-container">
-                <div class="section-header text-center" style="margin-bottom: 4rem;">
-                    <h2>Del desafío a la decisión en 4 pasos</h2>
-                </div>
-                
-                <div class="timeline-container">
-                    <!-- Conector de linea -->
-                    <div class="timeline-line"></div>
-                    
-                    <div class="timeline-grid">
-                        <!-- Paso 1 -->
-                        <div class="timeline-step">
-                            <div class="step-circle">
-                                <span class="step-number">1</span>
-                                <div class="step-icon">🎯</div>
-                            </div>
-                            <h4>Diagnóstico</h4>
-                            <p>Sesión inicial de 20 min para entender su escenario y urgencia.</p>
-                        </div>
-                        
-                        <!-- Paso 2 -->
-                        <div class="timeline-step">
-                            <div class="step-circle">
-                                <span class="step-number">2</span>
-                                <div class="step-icon">📐</div>
-                            </div>
-                            <h4>Diseño</h4>
-                            <p>Arquitectura metodológica a medida (cuanti + cuali + neuro según necesidad).</p>
-                        </div>
-                        
-                        <!-- Paso 3 -->
-                        <div class="timeline-step">
-                            <div class="step-circle">
-                                <span class="step-number">3</span>
-                                <div class="step-icon">🧪</div>
-                            </div>
-                            <h4>Investigación</h4>
-                            <p>Ejecución en campo, laboratorio y análisis con IA. Plazo: 7-60 días.</p>
-                        </div>
-                        
-                        <!-- Paso 4 -->
-                        <div class="timeline-step">
-                            <div class="step-circle">
-                                <span class="step-number">4</span>
-                                <div class="step-icon">💡</div>
-                            </div>
-                            <h4>Activación</h4>
-                            <p>Executive brief + dashboard + workshop de recomendaciones priorizadas.</p>
-                        </div>
-                    </div>
-                </div>
+    <ServiceVisualSuite variant="catalogo" />
+
+    <!-- 2. FILTRO POR ROL -->
+    <section class="problem-section bg-slate" style="padding: 3rem 0;">
+      <div class="container" style="text-align: center;">
+        <p class="text-gray-dark" style="font-size: 1rem; font-weight: 600; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 1px;">¿Desde qué área trabajas?</p>
+        <div id="filtro-roles" style="display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center;">
+          <button data-rol="todos" data-panel="research" class="rol-activo" style="padding: 0.6rem 1.25rem; border: 2px solid var(--color-primary); border-radius: 6px; background: var(--color-primary); color: #fff; font-weight: 700; font-size: 0.9rem; cursor: pointer;">Ver todo</button>
+          <button data-rol="marketing" data-panel="research" style="padding: 0.6rem 1.25rem; border: 2px solid rgba(11, 43, 64, 0.15); border-radius: 6px; background: transparent; color: var(--color-secondary); font-weight: 600; font-size: 0.9rem; cursor: pointer;">Marketing</button>
+          <button data-rol="producto" data-panel="research" style="padding: 0.6rem 1.25rem; border: 2px solid rgba(11, 43, 64, 0.15); border-radius: 6px; background: transparent; color: var(--color-secondary); font-weight: 600; font-size: 0.9rem; cursor: pointer;">Producto</button>
+          <button data-rol="ventas" data-panel="retail" style="padding: 0.6rem 1.25rem; border: 2px solid rgba(11, 43, 64, 0.15); border-radius: 6px; background: transparent; color: var(--color-secondary); font-weight: 600; font-size: 0.9rem; cursor: pointer;">Ventas / Comercial</button>
+          <button data-rol="ong" data-panel="research" style="padding: 0.6rem 1.25rem; border: 2px solid rgba(11, 43, 64, 0.15); border-radius: 6px; background: transparent; color: var(--color-secondary); font-weight: 600; font-size: 0.9rem; cursor: pointer;">ONG / Cooperación</button>
+          <button data-rol="estado" data-panel="strategy" style="padding: 0.6rem 1.25rem; border: 2px solid rgba(11, 43, 64, 0.15); border-radius: 6px; background: transparent; color: var(--color-secondary); font-weight: 600; font-size: 0.9rem; cursor: pointer;">Estado / Licitación</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. CATÁLOGO CON TABS -->
+    <section style="padding: 5rem 0; background: #fff;">
+      <div class="container">
+        <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
+          <span class="eyebrow">CATÁLOGO COMPLETO</span>
+          <h2 class="text-navy" style="font-size: 2.5rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;">Elige el servicio que resuelve la decisión que necesitas tomar.</h2>
+          <p class="text-gray-dark" style="font-size: 1.1rem; max-width: 700px; margin: 0 auto;">Cada línea tiene un punto de entrada bajo y un techo premium. Empieza donde tengas certeza y escala cuando veas el valor.</p>
+        </div>
+
+        <!-- Tabs de línea -->
+        <div id="tabs-linea" role="tablist" style="display: flex; gap: 0; border-bottom: 2px solid #e2e8f0; margin-bottom: 3rem; overflow-x: auto;">
+          <button role="tab" data-panel="research" aria-selected="true" aria-controls="panel-research" style="padding: 1rem 2rem; border: none; border-bottom: 3px solid var(--color-primary); background: none; font-weight: 800; font-size: 1rem; color: var(--color-primary); cursor: pointer; white-space: nowrap; margin-bottom: -2px;">Research</button>
+          <button role="tab" data-panel="intelligence" aria-selected="false" aria-controls="panel-intelligence" style="padding: 1rem 2rem; border: none; border-bottom: 3px solid transparent; background: none; font-weight: 700; font-size: 1rem; color: #64748b; cursor: pointer; white-space: nowrap; margin-bottom: -2px;">Intelligence</button>
+          <button role="tab" data-panel="retail" aria-selected="false" aria-controls="panel-retail" style="padding: 1rem 2rem; border: none; border-bottom: 3px solid transparent; background: none; font-weight: 700; font-size: 1rem; color: #64748b; cursor: pointer; white-space: nowrap; margin-bottom: -2px;">Retail</button>
+          <button role="tab" data-panel="strategy" aria-selected="false" aria-controls="panel-strategy" style="padding: 1rem 2rem; border: none; border-bottom: 3px solid transparent; background: none; font-weight: 700; font-size: 1rem; color: #64748b; cursor: pointer; white-space: nowrap; margin-bottom: -2px;">Strategy</button>
+        </div>
+
+        <!-- PANEL RESEARCH -->
+        <div id="panel-research" role="tabpanel" aria-hidden="false">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; align-items: start; margin-bottom: 2rem;">
+            <div>
+              <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 1rem;">Research — Investigación Profunda</h3>
+              <p class="text-gray-dark" style="font-size: 1.05rem; margin-bottom: 1.5rem; line-height: 1.6;">Más allá de lo que dicen. Hasta lo que realmente mueve la decisión.</p>
+              <a href="/contacto" class="btn btn-primary" style="font-size: 0.9rem;">Consultar sobre Research →</a>
             </div>
-        </section>
-        <style>
-            .timeline-container { position: relative; max-width: 1000px; margin: 0 auto; z-index: 1;}
-            .timeline-line { position: absolute; top: 40px; left: 10%; right: 10%; height: 3px; background: rgba(255,102,0,0.2); z-index: -1; }
-            .timeline-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2.5rem; position: relative;}
-            .timeline-step { text-align: center; }
-            .step-circle { width: 85px; height: 85px; background: #fff; border: 3px solid var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s; }
-            .step-circle:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(255,102,0,0.2); }
-            .step-number { position: absolute; top: -5px; right: -5px; width: 30px; height: 30px; background: var(--color-secondary); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.95rem; border: 2px solid #fff; }
-            .step-icon { font-size: 2rem; }
-            .timeline-step h4 { color: var(--color-secondary); margin-bottom: 0.8rem; font-size: 1.15rem; font-weight: 800;}
-            .timeline-step p { font-size: 0.95rem; color: #555; line-height: 1.5; font-weight: 500;}
-            
-            @media (max-width: 768px) {
-                .timeline-line { display: none; }
-                .timeline-grid { grid-template-columns: 1fr; gap: 3rem; }
-                .step-circle { margin-bottom: 1rem; }
-                .timeline-step { display: flex; flex-direction: column; align-items: center; padding: 0 1.5rem; }
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+
+            <!-- R1 -->
+            <article class="premium-card-white" style="padding: 2rem;">
+              <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="background: rgba(11,43,64,0.08); color: var(--color-secondary); font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Estratégico</span>
+                <button aria-expanded="false" aria-controls="detalle-r1" class="arrow-btn" style="background: none; border: 1px solid #e2e8f0; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 1rem; color: #64748b;">▾</button>
+              </header>
+              <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Estudio de mercado cualitativo en Bolivia</p>
+              <h4 style="font-size: 1.1rem; margin: 0; line-height: 1.3;"><a href="/estudio-de-mercado-bolivia" class="text-navy" style="text-decoration: none;">Mapa Integral del Consumidor</a></h4>
+              <div style="margin-top: 0.75rem;">
+                <button aria-expanded="false" aria-controls="detalle-r1" class="ver-mas-btn">
+                  Ver detalles <span style="font-size: 0.75rem;">▾</span>
+                </button>
+              </div>
+              <div id="detalle-r1" hidden style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9;">
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">MindTEC +</strong></p>
+                <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6;">Etnografía profunda + entrevistas a profundidad + análisis de IA. El modelo estándar pregunta qué compra el consumidor. Nosotros llegamos hasta por qué lo compra, cómo lo siente y qué le impediría cambiar.</p>
+                <blockquote style="border-left: 3px solid var(--color-primary); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: #475569; font-size: 0.9rem;">"Pasamos de reportes descriptivos a mapas de decisión que nuestro directorio entendió y usó en la primera reunión."</blockquote>
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">Aplica para</strong></p>
+                <ul class="cap-list" style="font-size: 0.9rem; margin-bottom: 1rem;">
+                  <li>Empresas que lanzan un producto o categoría nueva</li>
+                  <li>Equipos de marketing que no conocen el ecosistema de decisión del consumidor</li>
+                </ul>
+                <a href="/estudio-de-mercado-bolivia" class="text-primary" style="font-weight: 700; font-size: 0.9rem; text-decoration: none;">Ver este servicio →</a>
+              </div>
+            </article>
+
+            <!-- R2 -->
+            <article class="premium-card-white" style="padding: 2rem;">
+              <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="background: rgba(242,101,34,0.1); color: var(--color-primary); font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Premium</span>
+                <button aria-expanded="false" aria-controls="detalle-r2" class="arrow-btn" style="background: none; border: 1px solid #e2e8f0; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 1rem; color: #64748b;">▾</button>
+              </header>
+              <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Investigación psicoantropológica del consumidor boliviano</p>
+              <h4 style="font-size: 1.1rem; margin: 0; line-height: 1.3;"><a href="/estudio-de-mercado-bolivia" class="text-navy" style="text-decoration: none;">Código del Consumidor</a></h4>
+              <div style="margin-top: 0.75rem;">
+                <button aria-expanded="false" aria-controls="detalle-r2" class="ver-mas-btn">
+                  Ver detalles <span style="font-size: 0.75rem;">▾</span>
+                </button>
+              </div>
+              <div id="detalle-r2" hidden style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9;">
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">MindTEC +</strong></p>
+                <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6;">Metodología propietaria de decodificación cultural. Cruzamos patrones lingüísticos, simbología implícita y mapas de valores con análisis semiótico para extraer el código que mueve la decisión de compra más allá de la racionalización.</p>
+                <blockquote style="border-left: 3px solid var(--color-primary); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: #475569; font-size: 0.9rem;">"Entendimos por qué nuestros consumidores valoraban lo que valoraban aunque no podían explicarlo. Eso cambió nuestra campaña completa."</blockquote>
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">Aplica para</strong></p>
+                <ul class="cap-list" style="font-size: 0.9rem; margin-bottom: 1rem;">
+                  <li>Marcas con brechas entre posicionamiento deseado y percepción real</li>
+                  <li>Lanzamientos en segmentos culturalmente complejos</li>
+                </ul>
+                <a href="/estudio-de-mercado-bolivia" class="text-primary" style="font-weight: 700; font-size: 0.9rem; text-decoration: none;">Ver este servicio →</a>
+              </div>
+            </article>
+
+            <!-- R3 -->
+            <article class="premium-card-white" style="padding: 2rem;">
+              <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="background: rgba(100,116,139,0.1); color: #475569; font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Esencial</span>
+                <button aria-expanded="false" aria-controls="detalle-r3" class="arrow-btn" style="background: none; border: 1px solid #e2e8f0; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 1rem; color: #64748b;">▾</button>
+              </header>
+              <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Focus group cualitativo en Bolivia</p>
+              <h4 style="font-size: 1.1rem; margin: 0; line-height: 1.3;"><a href="/focus-group-bolivia" class="text-navy" style="text-decoration: none;">Focus Group MindTEC</a></h4>
+              <div style="margin-top: 0.75rem;">
+                <button aria-expanded="false" aria-controls="detalle-r3" class="ver-mas-btn">
+                  Ver detalles <span style="font-size: 0.75rem;">▾</span>
+                </button>
+              </div>
+              <div id="detalle-r3" hidden style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9;">
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">MindTEC +</strong></p>
+                <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6;">Moderadores psicoantropólogos + guía de exploración construida desde la teoría del comportamiento del consumidor + análisis de IA sobre transcripciones. No solo recogemos respuestas — decodificamos el diálogo grupal.</p>
+                <blockquote style="border-left: 3px solid var(--color-primary); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: #475569; font-size: 0.9rem;">"El insight que salió del focus group nos evitó un relanzamiento costoso. Hubiera sido imposible verlo con una encuesta."</blockquote>
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">Aplica para</strong></p>
+                <ul class="cap-list" style="font-size: 0.9rem; margin-bottom: 1rem;">
+                  <li>Equipos que necesitan explorar territorios nuevos antes de escalar a cuantitativo</li>
+                  <li>Validación de conceptos o comunicación antes de inversión</li>
+                </ul>
+                <a href="/focus-group-bolivia" class="text-primary" style="font-weight: 700; font-size: 0.9rem; text-decoration: none;">Ver este servicio →</a>
+              </div>
+            </article>
+
+            <!-- R4 -->
+            <article class="premium-card-white" style="padding: 2rem;">
+              <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="background: rgba(11,43,64,0.08); color: var(--color-secondary); font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Estratégico</span>
+                <button aria-expanded="false" aria-controls="detalle-r4" class="arrow-btn" style="background: none; border: 1px solid #e2e8f0; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 1rem; color: #64748b;">▾</button>
+              </header>
+              <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Análisis cualitativo con inteligencia artificial en Bolivia</p>
+              <h4 style="font-size: 1.1rem; margin: 0; line-height: 1.3;"><a href="/estudio-de-mercado-bolivia" class="text-navy" style="text-decoration: none;">Research Lab con IA</a></h4>
+              <div style="margin-top: 0.75rem;">
+                <button aria-expanded="false" aria-controls="detalle-r4" class="ver-mas-btn">
+                  Ver detalles <span style="font-size: 0.75rem;">▾</span>
+                </button>
+              </div>
+              <div id="detalle-r4" hidden style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9;">
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">MindTEC +</strong></p>
+                <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6;">Plataforma propietaria de análisis semántico que procesa entrevistas, grupos, redes sociales y reseñas digitales para extraer patrones no detectables manualmente. Velocidad y profundidad que ningún análisis manual puede igualar.</p>
+                <blockquote style="border-left: 3px solid var(--color-primary); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: #475569; font-size: 0.9rem;">"Analizamos 400 entrevistas en 3 días y tuvimos el reporte ejecutivo listo antes de que terminara la semana."</blockquote>
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">Aplica para</strong></p>
+                <ul class="cap-list" style="font-size: 0.9rem; margin-bottom: 1rem;">
+                  <li>Proyectos con alto volumen de data cualitativa</li>
+                  <li>Estudios longitudinales que requieren análisis de tendencias</li>
+                </ul>
+                <a href="/estudio-de-mercado-bolivia" class="text-primary" style="font-weight: 700; font-size: 0.9rem; text-decoration: none;">Ver este servicio →</a>
+              </div>
+            </article>
+
+          </div>
+          <div aria-label="Leyenda de niveles de servicio" style="display: flex; flex-wrap: wrap; gap: 1rem; padding: 1.5rem; background: #f8fafc; border-radius: 8px; font-size: 0.85rem;">
+            <span class="text-gray-dark"><strong style="color: #475569;">Esencial:</strong> Entrada · bajo riesgo · proyecto puntual</span>
+            <span class="text-gray-dark"><strong class="text-navy">Estratégico:</strong> Profundidad · mid-ticket · mayor alcance</span>
+            <span class="text-gray-dark"><strong style="color: var(--color-primary);">Premium:</strong> Diferenciación total · alto valor · compromiso continuo</span>
+          </div>
+        </div>
+
+        <!-- PANEL INTELLIGENCE -->
+        <div id="panel-intelligence" role="tabpanel" aria-hidden="true" hidden>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; align-items: start; margin-bottom: 2rem;">
+            <div>
+              <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 1rem;">Intelligence — Inteligencia de Mercado</h3>
+              <p class="text-gray-dark" style="font-size: 1.05rem; margin-bottom: 1.5rem; line-height: 1.6;">Saber qué hace el mercado no es suficiente. Lo que marca la diferencia es saber por qué.</p>
+              <a href="/contacto" class="btn btn-primary" style="font-size: 0.9rem;">Consultar sobre Intelligence →</a>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+
+            <!-- I1 -->
+            <article class="premium-card-white" style="padding: 2rem;">
+              <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="background: rgba(100,116,139,0.1); color: #475569; font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Esencial</span>
+                <button aria-expanded="false" aria-controls="detalle-i1" class="arrow-btn" style="background: none; border: 1px solid #e2e8f0; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 1rem; color: #64748b;">▾</button>
+              </header>
+              <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Diagnóstico de percepción de marca en Bolivia</p>
+              <h4 style="font-size: 1.1rem; margin: 0; line-height: 1.3;"><a href="/percepcion-de-marca-bolivia" class="text-navy" style="text-decoration: none;">Diagnóstico de Marca</a></h4>
+              <div style="margin-top: 0.75rem;">
+                <button aria-expanded="false" aria-controls="detalle-i1" class="ver-mas-btn">
+                  Ver detalles <span style="font-size: 0.75rem;">▾</span>
+                </button>
+              </div>
+              <div id="detalle-i1" hidden style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9;">
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">MindTEC +</strong></p>
+                <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6;">Audit rápido de posicionamiento real vs. declarado. En 7 días tenemos una fotografía honesta de cómo su marca vive en la mente del consumidor — y dónde hay brecha con lo que ustedes creen proyectar.</p>
+                <blockquote style="border-left: 3px solid var(--color-primary); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: #475569; font-size: 0.9rem;">"Descubrimos que el mercado nos percibía como 'caros sin razón'. Corregirlo nos subió la tasa de cierre en 18 puntos."</blockquote>
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">Aplica para</strong></p>
+                <ul class="cap-list" style="font-size: 0.9rem; margin-bottom: 1rem;">
+                  <li>Empresas que sospechan desconexión entre marca y mercado</li>
+                  <li>Pre-rebranding o revisión de estrategia de comunicación</li>
+                </ul>
+                <a href="/percepcion-de-marca-bolivia" class="text-primary" style="font-weight: 700; font-size: 0.9rem; text-decoration: none;">Ver este servicio →</a>
+              </div>
+            </article>
+
+            <!-- I2 -->
+            <article class="premium-card-white" style="padding: 2rem;">
+              <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="background: rgba(11,43,64,0.08); color: var(--color-secondary); font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Estratégico</span>
+                <button aria-expanded="false" aria-controls="detalle-i2" class="arrow-btn" style="background: none; border: 1px solid #e2e8f0; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 1rem; color: #64748b;">▾</button>
+              </header>
+              <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Monitoreo de marca y reputación en Bolivia</p>
+              <h4 style="font-size: 1.1rem; margin: 0; line-height: 1.3;"><a href="/percepcion-de-marca-bolivia" class="text-navy" style="text-decoration: none;">Monitor de Marca</a></h4>
+              <div style="margin-top: 0.75rem;">
+                <button aria-expanded="false" aria-controls="detalle-i2" class="ver-mas-btn">
+                  Ver detalles <span style="font-size: 0.75rem;">▾</span>
+                </button>
+              </div>
+              <div id="detalle-i2" hidden style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9;">
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">MindTEC +</strong></p>
+                <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6;">Seguimiento continuo de percepción en múltiples olas. Detectamos shifts antes de que se conviertan en pérdida de cuota. Incluye benchmarking vs. competidores principales en cada ola.</p>
+                <blockquote style="border-left: 3px solid var(--color-primary); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: #475569; font-size: 0.9rem;">"El Monitor nos alertó de una crisis de percepción 3 meses antes de que cayeran las ventas. Pudimos actuar."</blockquote>
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">Aplica para</strong></p>
+                <ul class="cap-list" style="font-size: 0.9rem; margin-bottom: 1rem;">
+                  <li>Marcas que operan en mercados volátiles o con alta competencia</li>
+                  <li>Empresas que necesitan justificar inversión en brand ante directorio</li>
+                </ul>
+                <a href="/percepcion-de-marca-bolivia" class="text-primary" style="font-weight: 700; font-size: 0.9rem; text-decoration: none;">Ver este servicio →</a>
+              </div>
+            </article>
+
+            <!-- I3 -->
+            <article class="premium-card-white" style="padding: 2rem;">
+              <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="background: rgba(11,43,64,0.08); color: var(--color-secondary); font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Estratégico</span>
+                <button aria-expanded="false" aria-controls="detalle-i3" class="arrow-btn" style="background: none; border: 1px solid #e2e8f0; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 1rem; color: #64748b;">▾</button>
+              </header>
+              <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Benchmarking competitivo en Bolivia</p>
+              <h4 style="font-size: 1.1rem; margin: 0; line-height: 1.3;"><a href="/benchmarking-competitivo-bolivia" class="text-navy" style="text-decoration: none;">Radar Competitivo</a></h4>
+              <div style="margin-top: 0.75rem;">
+                <button aria-expanded="false" aria-controls="detalle-i3" class="ver-mas-btn">
+                  Ver detalles <span style="font-size: 0.75rem;">▾</span>
+                </button>
+              </div>
+              <div id="detalle-i3" hidden style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9;">
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">MindTEC +</strong></p>
+                <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6;">Inteligencia competitiva sistematizada en campo, digital y percepción de mercado. Mapeamos movimientos de precio, distribución, posicionamiento y ejecución en PDV de tus 3–5 competidores más relevantes.</p>
+                <blockquote style="border-left: 3px solid var(--color-primary); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: #475569; font-size: 0.9rem;">"Identificamos el hueco que el líder del mercado estaba dejando en el canal tradicional. Lo llenamos antes de que lo hicieran otros."</blockquote>
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">Aplica para</strong></p>
+                <ul class="cap-list" style="font-size: 0.9rem; margin-bottom: 1rem;">
+                  <li>Empresas en mercados con alta dinámica competitiva</li>
+                  <li>Equipos que necesitan evidencia para decisiones de canal o precio</li>
+                </ul>
+                <a href="/benchmarking-competitivo-bolivia" class="text-primary" style="font-weight: 700; font-size: 0.9rem; text-decoration: none;">Ver este servicio →</a>
+              </div>
+            </article>
+
+            <!-- I4 -->
+            <article class="premium-card-white" style="padding: 2rem;">
+              <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="background: rgba(242,101,34,0.1); color: var(--color-primary); font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Premium</span>
+                <button aria-expanded="false" aria-controls="detalle-i4" class="arrow-btn" style="background: none; border: 1px solid #e2e8f0; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 1rem; color: #64748b;">▾</button>
+              </header>
+              <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Segmentación de audiencias con inteligencia artificial en Bolivia</p>
+              <h4 style="font-size: 1.1rem; margin: 0; line-height: 1.3;"><a href="/percepcion-de-marca-bolivia" class="text-navy" style="text-decoration: none;">Perfil de Audiencias IA</a></h4>
+              <div style="margin-top: 0.75rem;">
+                <button aria-expanded="false" aria-controls="detalle-i4" class="ver-mas-btn">
+                  Ver detalles <span style="font-size: 0.75rem;">▾</span>
+                </button>
+              </div>
+              <div id="detalle-i4" hidden style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9;">
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">MindTEC +</strong></p>
+                <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6;">Perfilado de segmentos con IA que combina datos de campo, redes sociales, entrevistas y datos secundarios. Resultados: audiencias reales con nombre, no arquetipos inventados.</p>
+                <blockquote style="border-left: 3px solid var(--color-primary); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: #475569; font-size: 0.9rem;">"Por primera vez tuvimos audiencias que nuestro equipo creía que eran reales — porque lo eran."</blockquote>
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">Aplica para</strong></p>
+                <ul class="cap-list" style="font-size: 0.9rem; margin-bottom: 1rem;">
+                  <li>Marcas que invierten en publicidad digital y necesitan segmentos precisos</li>
+                  <li>Equipos de producto diseñando para usuarios reales</li>
+                </ul>
+                <a href="/percepcion-de-marca-bolivia" class="text-primary" style="font-weight: 700; font-size: 0.9rem; text-decoration: none;">Ver este servicio →</a>
+              </div>
+            </article>
+
+          </div>
+          <div aria-label="Leyenda de niveles de servicio" style="display: flex; flex-wrap: wrap; gap: 1rem; padding: 1.5rem; background: #f8fafc; border-radius: 8px; font-size: 0.85rem;">
+            <span class="text-gray-dark"><strong style="color: #475569;">Esencial:</strong> Entrada · bajo riesgo · proyecto puntual</span>
+            <span class="text-gray-dark"><strong class="text-navy">Estratégico:</strong> Profundidad · mid-ticket · mayor alcance</span>
+            <span class="text-gray-dark"><strong style="color: var(--color-primary);">Premium:</strong> Diferenciación total · alto valor · compromiso continuo</span>
+          </div>
+        </div>
+
+        <!-- PANEL RETAIL -->
+        <div id="panel-retail" role="tabpanel" aria-hidden="true" hidden>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; align-items: start; margin-bottom: 2rem;">
+            <div>
+              <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 1rem;">Retail — Inteligencia en Punto de Venta</h3>
+              <p class="text-gray-dark" style="font-size: 1.05rem; margin-bottom: 1.5rem; line-height: 1.6;">La venta se gana o se pierde en el PDV. Nosotros vemos lo que tu equipo no puede ver.</p>
+              <a href="/contacto" class="btn btn-primary" style="font-size: 0.9rem;">Consultar sobre Retail →</a>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+
+            <!-- RT1 -->
+            <article class="premium-card-white" style="padding: 2rem;">
+              <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="background: rgba(100,116,139,0.1); color: #475569; font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Esencial</span>
+                <button aria-expanded="false" aria-controls="detalle-rt1" class="arrow-btn" style="background: none; border: 1px solid #e2e8f0; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 1rem; color: #64748b;">▾</button>
+              </header>
+              <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Cliente misterioso en Bolivia</p>
+              <h4 style="font-size: 1.1rem; margin: 0; line-height: 1.3;"><a href="/cliente-misterioso-bolivia" class="text-navy" style="text-decoration: none;">Auditoría de Experiencia en PDV</a></h4>
+              <div style="margin-top: 0.75rem;">
+                <button aria-expanded="false" aria-controls="detalle-rt1" class="ver-mas-btn">
+                  Ver detalles <span style="font-size: 0.75rem;">▾</span>
+                </button>
+              </div>
+              <div id="detalle-rt1" hidden style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9;">
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">MindTEC +</strong></p>
+                <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6;">Auditores entrenados evalúan la experiencia del consumidor en el punto de venta usando rúbricas construidas desde ciencias del comportamiento. No es un checklist — es una lectura de la experiencia real.</p>
+                <blockquote style="border-left: 3px solid var(--color-primary); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: #475569; font-size: 0.9rem;">"En una semana sabíamos exactamente dónde y por qué el equipo de sala perdía ventas. Era algo que la gerencia nunca hubiera podido ver desde adentro."</blockquote>
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">Aplica para</strong></p>
+                <ul class="cap-list" style="font-size: 0.9rem; margin-bottom: 1rem;">
+                  <li>Retail y canal HORECA que necesita visión externa de la experiencia</li>
+                  <li>Equipos comerciales que quieren benchmarkar su ejecución vs. competencia</li>
+                </ul>
+                <a href="/cliente-misterioso-bolivia" class="text-primary" style="font-weight: 700; font-size: 0.9rem; text-decoration: none;">Ver este servicio →</a>
+              </div>
+            </article>
+
+            <!-- RT2 -->
+            <article class="premium-card-white" style="padding: 2rem;">
+              <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="background: rgba(11,43,64,0.08); color: var(--color-secondary); font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Estratégico</span>
+                <button aria-expanded="false" aria-controls="detalle-rt2" class="arrow-btn" style="background: none; border: 1px solid #e2e8f0; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 1rem; color: #64748b;">▾</button>
+              </header>
+              <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Censo de puntos de venta en Bolivia</p>
+              <h4 style="font-size: 1.1rem; margin: 0; line-height: 1.3;"><a href="/auditoria-retail-bolivia" class="text-navy" style="text-decoration: none;">Censo Estratégico de PDV</a></h4>
+              <div style="margin-top: 0.75rem;">
+                <button aria-expanded="false" aria-controls="detalle-rt2" class="ver-mas-btn">
+                  Ver detalles <span style="font-size: 0.75rem;">▾</span>
+                </button>
+              </div>
+              <div id="detalle-rt2" hidden style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9;">
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">MindTEC +</strong></p>
+                <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6;">Levantamiento georreferenciado del universo de PDVs con análisis de oportunidad por segmento, zona y tipo de canal. No es un listado — es un mapa de potencial comercial con evidencia fotográfica.</p>
+                <blockquote style="border-left: 3px solid var(--color-primary); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: #475569; font-size: 0.9rem;">"Descubrimos 340 puntos de venta que nuestro equipo comercial nunca había visitado. En 6 meses eran parte de la ruta."</blockquote>
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">Aplica para</strong></p>
+                <ul class="cap-list" style="font-size: 0.9rem; margin-bottom: 1rem;">
+                  <li>Empresas que expanden distribución o ingresan a nuevas ciudades</li>
+                  <li>Equipos de ventas que necesitan priorizar rutas con evidencia</li>
+                </ul>
+                <a href="/auditoria-retail-bolivia" class="text-primary" style="font-weight: 700; font-size: 0.9rem; text-decoration: none;">Ver este servicio →</a>
+              </div>
+            </article>
+
+            <!-- RT3 -->
+            <article class="premium-card-white" style="padding: 2rem;">
+              <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="background: rgba(11,43,64,0.08); color: var(--color-secondary); font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Estratégico</span>
+                <button aria-expanded="false" aria-controls="detalle-rt3" class="arrow-btn" style="background: none; border: 1px solid #e2e8f0; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 1rem; color: #64748b;">▾</button>
+              </header>
+              <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Comportamiento del shopper en punto de venta Bolivia</p>
+              <h4 style="font-size: 1.1rem; margin: 0; line-height: 1.3;"><a href="/shopper-insights-bolivia" class="text-navy" style="text-decoration: none;">Shopper Insights</a></h4>
+              <div style="margin-top: 0.75rem;">
+                <button aria-expanded="false" aria-controls="detalle-rt3" class="ver-mas-btn">
+                  Ver detalles <span style="font-size: 0.75rem;">▾</span>
+                </button>
+              </div>
+              <div id="detalle-rt3" hidden style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9;">
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">MindTEC +</strong></p>
+                <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6;">Combinación de observación etnográfica en anaquel, entrevistas post-compra y análisis de trayectoria visual. Entendemos la decisión en el momento en que ocurre — no después.</p>
+                <blockquote style="border-left: 3px solid var(--color-primary); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: #475569; font-size: 0.9rem;">"El 70% de las decisiones de compra que creíamos influir con trade marketing se tomaban en 8 segundos frente al anaquel. Rediseñamos todo."</blockquote>
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">Aplica para</strong></p>
+                <ul class="cap-list" style="font-size: 0.9rem; margin-bottom: 1rem;">
+                  <li>Marcas que invierten en trade marketing y quieren ROI medible</li>
+                  <li>Equipos que no entienden por qué el consumidor no elige su producto en el lineal</li>
+                </ul>
+                <a href="/shopper-insights-bolivia" class="text-primary" style="font-weight: 700; font-size: 0.9rem; text-decoration: none;">Ver este servicio →</a>
+              </div>
+            </article>
+
+            <!-- RT4 -->
+            <article class="premium-card-white" style="padding: 2rem;">
+              <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="background: rgba(242,101,34,0.1); color: var(--color-primary); font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Premium</span>
+                <button aria-expanded="false" aria-controls="detalle-rt4" class="arrow-btn" style="background: none; border: 1px solid #e2e8f0; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 1rem; color: #64748b;">▾</button>
+              </header>
+              <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Neuromarketing en punto de venta Bolivia</p>
+              <h4 style="font-size: 1.1rem; margin: 0; line-height: 1.3;"><a href="/neuromarketing-bolivia" class="text-navy" style="text-decoration: none;">Validación Neurocientífica en PDV</a></h4>
+              <div style="margin-top: 0.75rem;">
+                <button aria-expanded="false" aria-controls="detalle-rt4" class="ver-mas-btn">
+                  Ver detalles <span style="font-size: 0.75rem;">▾</span>
+                </button>
+              </div>
+              <div id="detalle-rt4" hidden style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9;">
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">MindTEC +</strong></p>
+                <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6;">Eye tracking portátil en anaquel real + GSR + análisis facial coding. Medimos exactamente qué captura la atención del shopper y qué activa la emoción de compra — sin preguntar, sin sesgo de cortesía.</p>
+                <blockquote style="border-left: 3px solid var(--color-primary); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: #475569; font-size: 0.9rem;">"El eye tracking en góndola reveló que nuestro packaging premium pasaba desapercibido. Tres ajustes de color y subimos 23% en tracción visual."</blockquote>
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">Aplica para</strong></p>
+                <ul class="cap-list" style="font-size: 0.9rem; margin-bottom: 1rem;">
+                  <li>Marcas con packaging premium que invierten en visibilidad en anaquel</li>
+                  <li>Lanzamientos que necesitan validación previa de visibilidad y atención</li>
+                </ul>
+                <a href="/neuromarketing-bolivia" class="text-primary" style="font-weight: 700; font-size: 0.9rem; text-decoration: none;">Ver este servicio →</a>
+              </div>
+            </article>
+
+          </div>
+          <div aria-label="Leyenda de niveles de servicio" style="display: flex; flex-wrap: wrap; gap: 1rem; padding: 1.5rem; background: #f8fafc; border-radius: 8px; font-size: 0.85rem;">
+            <span class="text-gray-dark"><strong style="color: #475569;">Esencial:</strong> Entrada · bajo riesgo · proyecto puntual</span>
+            <span class="text-gray-dark"><strong class="text-navy">Estratégico:</strong> Profundidad · mid-ticket · mayor alcance</span>
+            <span class="text-gray-dark"><strong style="color: var(--color-primary);">Premium:</strong> Diferenciación total · alto valor · compromiso continuo</span>
+          </div>
+        </div>
+
+        <!-- PANEL STRATEGY -->
+        <div id="panel-strategy" role="tabpanel" aria-hidden="true" hidden>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; align-items: start; margin-bottom: 2rem;">
+            <div>
+              <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 1rem;">Strategy — Activación Estratégica</h3>
+              <p class="text-gray-dark" style="font-size: 1.05rem; margin-bottom: 1.5rem; line-height: 1.6;">Los datos sin activación son archivos. Aquí transformamos hallazgos en decisiones.</p>
+              <a href="/contacto" class="btn btn-primary" style="font-size: 0.9rem;">Consultar sobre Strategy →</a>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+
+            <!-- S1 -->
+            <article class="premium-card-white" style="padding: 2rem;">
+              <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="background: rgba(100,116,139,0.1); color: #475569; font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Esencial</span>
+                <button aria-expanded="false" aria-controls="detalle-s1" class="arrow-btn" style="background: none; border: 1px solid #e2e8f0; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 1rem; color: #64748b;">▾</button>
+              </header>
+              <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Taller de estrategia de mercado en Bolivia</p>
+              <h4 style="font-size: 1.1rem; margin: 0; line-height: 1.3;"><a href="/metodologia" class="text-navy" style="text-decoration: none;">Taller de Activación Estratégica</a></h4>
+              <div style="margin-top: 0.75rem;">
+                <button aria-expanded="false" aria-controls="detalle-s1" class="ver-mas-btn">
+                  Ver detalles <span style="font-size: 0.75rem;">▾</span>
+                </button>
+              </div>
+              <div id="detalle-s1" hidden style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9;">
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">MindTEC +</strong></p>
+                <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6;">Workshop de media jornada con el equipo directivo para priorizar hallazgos, mapear decisiones y definir el plan de acción. Transformamos los datos del estudio en compromisos de equipo con responsables y fechas.</p>
+                <blockquote style="border-left: 3px solid var(--color-primary); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: #475569; font-size: 0.9rem;">"El equipo salió del taller con el plan de los próximos 6 meses ya priorizado y con consenso. Sin más reuniones para procesar el estudio."</blockquote>
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">Aplica para</strong></p>
+                <ul class="cap-list" style="font-size: 0.9rem; margin-bottom: 1rem;">
+                  <li>Equipos que reciben reportes pero no logran activar las recomendaciones</li>
+                  <li>Directorios que necesitan alinear criterios tras una investigación</li>
+                </ul>
+                <a href="/metodologia" class="text-primary" style="font-weight: 700; font-size: 0.9rem; text-decoration: none;">Ver este servicio →</a>
+              </div>
+            </article>
+
+            <!-- S2 -->
+            <article class="premium-card-white" style="padding: 2rem;">
+              <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="background: rgba(11,43,64,0.08); color: var(--color-secondary); font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Estratégico</span>
+                <button aria-expanded="false" aria-controls="detalle-s2" class="arrow-btn" style="background: none; border: 1px solid #e2e8f0; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 1rem; color: #64748b;">▾</button>
+              </header>
+              <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Estrategia de marca para empresas en Bolivia</p>
+              <h4 style="font-size: 1.1rem; margin: 0; line-height: 1.3;"><a href="/percepcion-de-marca-bolivia" class="text-navy" style="text-decoration: none;">Sprint de Estrategia de Marca</a></h4>
+              <div style="margin-top: 0.75rem;">
+                <button aria-expanded="false" aria-controls="detalle-s2" class="ver-mas-btn">
+                  Ver detalles <span style="font-size: 0.75rem;">▾</span>
+                </button>
+              </div>
+              <div id="detalle-s2" hidden style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9;">
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">MindTEC +</strong></p>
+                <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6;">3 semanas de trabajo intensivo con el equipo de marketing para construir o reconstruir el posicionamiento desde la evidencia del consumidor. Incluye análisis de competencia, mapa de posicionamiento y plataforma de marca.</p>
+                <blockquote style="border-left: 3px solid var(--color-primary); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: #475569; font-size: 0.9rem;">"En 3 semanas teníamos el posicionamiento, el tono y las palancas de comunicación con evidencia detrás — no intuición."</blockquote>
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">Aplica para</strong></p>
+                <ul class="cap-list" style="font-size: 0.9rem; margin-bottom: 1rem;">
+                  <li>Marcas que necesitan reposicionarse con urgencia</li>
+                  <li>Empresas que lanzan nuevas líneas de producto o entran a nuevos segmentos</li>
+                </ul>
+                <a href="/percepcion-de-marca-bolivia" class="text-primary" style="font-weight: 700; font-size: 0.9rem; text-decoration: none;">Ver este servicio →</a>
+              </div>
+            </article>
+
+            <!-- S3 -->
+            <article class="premium-card-white" style="padding: 2rem;">
+              <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="background: rgba(11,43,64,0.08); color: var(--color-secondary); font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Estratégico</span>
+                <button aria-expanded="false" aria-controls="detalle-s3" class="arrow-btn" style="background: none; border: 1px solid #e2e8f0; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 1rem; color: #64748b;">▾</button>
+              </header>
+              <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Evaluación de impacto de programas sociales en Bolivia</p>
+              <h4 style="font-size: 1.1rem; margin: 0; line-height: 1.3;"><a href="/estudio-de-mercado-bolivia" class="text-navy" style="text-decoration: none;">Evaluaciones de Impacto</a></h4>
+              <div style="margin-top: 0.75rem;">
+                <button aria-expanded="false" aria-controls="detalle-s3" class="ver-mas-btn">
+                  Ver detalles <span style="font-size: 0.75rem;">▾</span>
+                </button>
+              </div>
+              <div id="detalle-s3" hidden style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9;">
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">MindTEC +</strong></p>
+                <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6;">Diseño metodológico riguroso con línea de base, medición intermedia y evaluación final. Incluye análisis de KPIs de cambio de comportamiento y reporte para donantes con estándares internacionales (OECD DAC, USAID, UE).</p>
+                <blockquote style="border-left: 3px solid var(--color-primary); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: #475569; font-size: 0.9rem;">"El reporte cumplió todos los estándares del donante y nos sirvió para el siguiente ciclo de financiamiento sin solicitud adicional de evidencia."</blockquote>
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">Aplica para</strong></p>
+                <ul class="cap-list" style="font-size: 0.9rem; margin-bottom: 1rem;">
+                  <li>ONGs y cooperación internacional que requieren rendición de cuentas</li>
+                  <li>Proyectos sociales con necesidad de evidencia de impacto para donantes</li>
+                </ul>
+                <a href="/estudio-de-mercado-bolivia" class="text-primary" style="font-weight: 700; font-size: 0.9rem; text-decoration: none;">Ver este servicio →</a>
+              </div>
+            </article>
+
+            <!-- S4 -->
+            <article class="premium-card-white" style="padding: 2rem;">
+              <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="background: rgba(242,101,34,0.1); color: var(--color-primary); font-size: 0.75rem; font-weight: 800; padding: 0.25rem 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px;">Premium</span>
+                <button aria-expanded="false" aria-controls="detalle-s4" class="arrow-btn" style="background: none; border: 1px solid #e2e8f0; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-size: 1rem; color: #64748b;">▾</button>
+              </header>
+              <p style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Consultoría de investigación de mercados para licitaciones SICOES Bolivia</p>
+              <h4 style="font-size: 1.1rem; margin: 0; line-height: 1.3;"><a href="/contacto" class="text-navy" style="text-decoration: none;">Consultoría por Producto SICOES</a></h4>
+              <div style="margin-top: 0.75rem;">
+                <button aria-expanded="false" aria-controls="detalle-s4" class="ver-mas-btn">
+                  Ver detalles <span style="font-size: 0.75rem;">▾</span>
+                </button>
+              </div>
+              <div id="detalle-s4" hidden style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid #f1f5f9;">
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">MindTEC +</strong></p>
+                <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1rem; line-height: 1.6;">Respondemos a TDRs con propuestas técnicas completas: metodología, muestra, cronograma, equipo y presupuesto. Experiencia en licitaciones de entidades públicas, ministerios y organismos de cooperación internacional.</p>
+                <blockquote style="border-left: 3px solid var(--color-primary); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: #475569; font-size: 0.9rem;">"Ganamos la licitación porque la propuesta técnica era la más sólida metodológicamente y el jurado lo señaló explícitamente."</blockquote>
+                <p style="margin-bottom: 0.5rem;"><strong class="text-navy">Aplica para</strong></p>
+                <ul class="cap-list" style="font-size: 0.9rem; margin-bottom: 1rem;">
+                  <li>Proveedores de servicios de investigación para el Estado boliviano</li>
+                  <li>Consultoras que necesitan apoyo técnico para TDRs de cooperación internacional</li>
+                </ul>
+                <a href="/contacto" class="text-primary" style="font-weight: 700; font-size: 0.9rem; text-decoration: none;">Consultar disponibilidad →</a>
+              </div>
+            </article>
+
+          </div>
+          <div aria-label="Leyenda de niveles de servicio" style="display: flex; flex-wrap: wrap; gap: 1rem; padding: 1.5rem; background: #f8fafc; border-radius: 8px; font-size: 0.85rem;">
+            <span class="text-gray-dark"><strong style="color: #475569;">Esencial:</strong> Entrada · bajo riesgo · proyecto puntual</span>
+            <span class="text-gray-dark"><strong class="text-navy">Estratégico:</strong> Profundidad · mid-ticket · mayor alcance</span>
+            <span class="text-gray-dark"><strong style="color: var(--color-primary);">Premium:</strong> Diferenciación total · alto valor · compromiso continuo</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. TABLA COMPARATIVA -->
+    <section class="problem-section bg-slate" style="padding: 5rem 0;">
+      <div class="container">
+        <div class="section-title-center" style="max-width: 800px; margin: 0 auto 3rem auto; text-align: center;">
+          <span class="eyebrow">POR QUÉ MINDTEC</span>
+          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;">El mismo nombre de servicio. Una diferencia que se siente en los resultados.</h2>
+          <p class="text-gray-dark" style="font-size: 1.05rem;">Llaman igual. Se ejecutan diferente. Los resultados son distintos.</p>
+        </div>
+        <div class="comparison-table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th scope="col">Estudio estándar de mercado</th>
+                <th scope="col" aria-label="versus" style="width: 60px; text-align: center;"></th>
+                <th scope="col">MindTEC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Encuestadores leyendo un cuestionario</td>
+                <td style="text-align: center; font-weight: 800; color: #94a3b8;">vs</td>
+                <td>Psicoantropólogos + IA leyendo el código detrás de la respuesta</td>
+              </tr>
+              <tr>
+                <td>Lo que la gente declara en voz alta</td>
+                <td style="text-align: center; font-weight: 800; color: #94a3b8;">vs</td>
+                <td>Lo que la gente siente aunque no lo verbalice — más neuromarketing cuando aplica</td>
+              </tr>
+              <tr>
+                <td>Tablas con porcentajes y gráficos de barra</td>
+                <td style="text-align: center; font-weight: 800; color: #94a3b8;">vs</td>
+                <td>Decisiones priorizadas con criterio estratégico</td>
+              </tr>
+              <tr>
+                <td>El equipo senior diseña; junior ejecuta</td>
+                <td style="text-align: center; font-weight: 800; color: #94a3b8;">vs</td>
+                <td>El mismo equipo senior en diseño, campo y entrega</td>
+              </tr>
+              <tr>
+                <td>Un reporte que se archiva</td>
+                <td style="text-align: center; font-weight: 800; color: #94a3b8;">vs</td>
+                <td>Un executive brief que mueve reuniones de directorio</td>
+              </tr>
+              <tr>
+                <td>Sin seguimiento post-estudio</td>
+                <td style="text-align: center; font-weight: 800; color: #94a3b8;">vs</td>
+                <td>Seguimiento estratégico post-estudio incluido siempre</td>
+              </tr>
+              <tr>
+                <td>6–12 semanas de entrega</td>
+                <td style="text-align: center; font-weight: 800; color: #94a3b8;">vs</td>
+                <td>7–21 días para proyectos estándar</td>
+              </tr>
+              <tr>
+                <td>El conocimiento del consumidor queda en el documento</td>
+                <td style="text-align: center; font-weight: 800; color: #94a3b8;">vs</td>
+                <td>Tu equipo sale entendiendo al consumidor, no solo leyendo sobre él</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="text-align: center; margin-top: 2.5rem;">
+          <a href="/contacto" class="btn btn-primary lg">Hablemos de tu próxima decisión →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. POR ROL / AUDIENCIA -->
+    <section style="padding: 5rem 0; background: #fff;">
+      <div class="container">
+        <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
+          <span class="eyebrow">PARA QUIÉN TRABAJAMOS</span>
+          <h2 class="text-navy" style="font-size: 2.5rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;">No investigamos para todos. Trabajamos con los que mueven decisiones.</h2>
+          <p class="text-gray-dark" style="font-size: 1.05rem;">MindTEC habla el lenguaje de marketing, producto y ventas — no de la academia.</p>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+
+          <article class="premium-card-white" style="padding: 2.5rem; border-top: 4px solid var(--color-primary);">
+            <p style="font-size: 0.8rem; font-weight: 800; color: var(--color-primary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem;">Marketing &amp; Brand</p>
+            <h3 class="text-navy" style="font-size: 1.3rem; margin-bottom: 1rem;">CMOs y Gerentes de Marketing</h3>
+            <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6;">Valida campañas, entiende qué percibe el mercado de tu marca y detecta dónde tu posicionamiento se desvía de la realidad del consumidor.</p>
+            <ul class="cap-list" style="font-size: 0.9rem;">
+              <li>Diagnóstico de Marca</li>
+              <li>Código del Consumidor</li>
+              <li>Validación Neurocientífica</li>
+              <li>Monitor de Marca</li>
+              <li>Radar Competitivo</li>
+            </ul>
+          </article>
+
+          <article class="premium-card-white" style="padding: 2.5rem; border-top: 4px solid var(--color-secondary);">
+            <p style="font-size: 0.8rem; font-weight: 800; color: var(--color-secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem;">Producto &amp; Innovación</p>
+            <h3 class="text-navy" style="font-size: 1.3rem; margin-bottom: 1rem;">Directores de Producto</h3>
+            <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6;">Lanza con certeza. Valida conceptos, precios y empaques con respuesta real del consumidor antes de comprometer el presupuesto de desarrollo.</p>
+            <ul class="cap-list" style="font-size: 0.9rem;">
+              <li>Mapa Integral del Consumidor</li>
+              <li>Validación Neurocientífica</li>
+              <li>Focus Group MindTEC</li>
+              <li>Perfil de Audiencias IA</li>
+              <li>Sprint de Estrategia de Marca</li>
+            </ul>
+          </article>
+
+          <article class="premium-card-white" style="padding: 2.5rem; border-top: 4px solid var(--color-primary);">
+            <p style="font-size: 0.8rem; font-weight: 800; color: var(--color-primary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem;">Ventas &amp; Comercial</p>
+            <h3 class="text-navy" style="font-size: 1.3rem; margin-bottom: 1rem;">Directores Comerciales</h3>
+            <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6;">Entiende por qué el equipo de campo pierde ventas en el punto de contacto y qué hace tu competencia en el canal que tú no estás viendo.</p>
+            <ul class="cap-list" style="font-size: 0.9rem;">
+              <li>Auditoría de Experiencia en PDV</li>
+              <li>Censo Estratégico de PDV</li>
+              <li>Shopper Insights</li>
+              <li>Radar Competitivo</li>
+              <li>Monitor de Marca</li>
+            </ul>
+          </article>
+
+          <article class="premium-card-white" style="padding: 2.5rem; border-top: 4px solid var(--color-secondary);">
+            <p style="font-size: 0.8rem; font-weight: 800; color: var(--color-secondary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem;">ONG &amp; Cooperación Internacional</p>
+            <h3 class="text-navy" style="font-size: 1.3rem; margin-bottom: 1rem;">Coordinadores de Proyectos y M&amp;E</h3>
+            <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6;">Líneas de base, evaluaciones de impacto, estudios CAP y percepción de programas — con metodología validada para reportes a donantes.</p>
+            <ul class="cap-list" style="font-size: 0.9rem;">
+              <li>Mapa Integral del Consumidor (Línea de Base)</li>
+              <li>Código del Consumidor (Estudio CAP)</li>
+              <li>Taller de Activación Estratégica</li>
+              <li>Evaluaciones de Impacto</li>
+              <li>Research Lab con IA</li>
+            </ul>
+          </article>
+
+          <article class="premium-card-white" style="padding: 2.5rem; border-top: 4px solid var(--color-primary);">
+            <p style="font-size: 0.8rem; font-weight: 800; color: var(--color-primary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.75rem;">Estado &amp; Sector Público</p>
+            <h3 class="text-navy" style="font-size: 1.3rem; margin-bottom: 1rem;">Equipos de Licitación (SICOES)</h3>
+            <p class="text-gray-dark" style="font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6;">Respondemos a TDRs y licitaciones SICOES con propuestas técnicas estructuradas, cronogramas, diseño muestral y entregables ejecutivos.</p>
+            <ul class="cap-list" style="font-size: 0.9rem;">
+              <li>Consultoría por Producto (SICOES)</li>
+              <li>Estudio de Mercado sectorial</li>
+              <li>Censo de PDV y canal</li>
+              <li>Diagnóstico de percepción de servicios públicos</li>
+              <li>Línea de Base para programas sociales</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PROCESO (4 PASOS) -->
+    <section style="padding: 5rem 0; background: #f8fafc;">
+      <div class="container">
+        <div class="section-title-center" style="text-align: center; margin-bottom: 4rem;">
+          <span class="eyebrow">CÓMO TRABAJAMOS</span>
+          <h2 class="text-navy" style="font-size: 2.5rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;">Del diagnóstico a la decisión: 4 pasos.</h2>
+          <p class="text-gray-dark" style="font-size: 1.05rem; max-width: 650px; margin: 0 auto;">Sin reuniones innecesarias. Sin reportes para archivar. Con el foco puesto en la decisión que necesitas tomar.</p>
+        </div>
+        <ol style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; counter-reset: proceso;">
+          <li class="premium-card-white" style="padding: 2.5rem; position: relative;">
+            <span style="font-size: 3rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.5rem; line-height: 1;">01</span>
+            <h3 class="text-navy" style="font-size: 1.2rem; margin-bottom: 1rem;">Diagnóstico estratégico</h3>
+            <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;">45 minutos para entender la decisión que debes tomar, el contexto de negocio y el nivel de evidencia que necesitas. Sin costo, sin compromiso.</p>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.5px;">45 min · online · sin costo</span>
+          </li>
+          <li class="premium-card-white" style="padding: 2.5rem; position: relative;">
+            <span style="font-size: 3rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.5rem; line-height: 1;">02</span>
+            <h3 class="text-navy" style="font-size: 1.2rem; margin-bottom: 1rem;">Diseño metodológico</h3>
+            <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;">Arquitectura a medida: qué metodología, cuántas muestras, qué ciudades, cuánto tiempo. Siempre justificado por la decisión que vas a tomar.</p>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.5px;">2–5 días hábiles</span>
+          </li>
+          <li class="premium-card-white" style="padding: 2.5rem; position: relative;">
+            <span style="font-size: 3rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.5rem; line-height: 1;">03</span>
+            <h3 class="text-navy" style="font-size: 1.2rem; margin-bottom: 1rem;">Investigación</h3>
+            <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;">Ejecución en campo, laboratorio de neuromarketing y análisis con IA. Te actualizamos semanalmente con avances concretos.</p>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.5px;">7–60 días según alcance</span>
+          </li>
+          <li class="premium-card-white" style="padding: 2.5rem; position: relative;">
+            <span style="font-size: 3rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.5rem; line-height: 1;">04</span>
+            <h3 class="text-navy" style="font-size: 1.2rem; margin-bottom: 1rem;">Activación de decisión</h3>
+            <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;">Executive brief + sesión de presentación + dashboard + workshop de priorización cuando se necesita. El estudio termina cuando tu equipo sabe qué hacer.</p>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary); text-transform: uppercase; letter-spacing: 0.5px;">+ seguimiento estratégico incluido</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 7. CTA FINAL -->
+    <section class="cta-section-modern" style="padding: 6rem 0;">
+      <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <div class="cta-content-v2">
+          <h2 style="font-size: 3rem; line-height: 1.25; margin-bottom: 1.5rem;">Las empresas que lideran su mercado no adivinan. Deciden con inteligencia.</h2>
+          <p class="cta-subtitle" style="font-size: 1.25rem; margin-bottom: 2.5rem; opacity: 0.9;">
+            Hablemos 45 minutos. Evaluamos tus desafíos de mercado y te presentamos una propuesta metodológica concreta — sin compromiso ni presión comercial.
+          </p>
+          <div class="cta-actions" style="justify-content: center; flex-direction: column; align-items: center;">
+            <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar diagnóstico estratégico (45 min) →</a>
+            <p style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">Confidencial · Sin costo · Sin compromiso · Por Zoom o Teams</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // --- TABS DE LÍNEA ---
+    const tabs = document.querySelectorAll('[role="tab"]');
+    const panels = document.querySelectorAll('[role="tabpanel"]');
+
+    function activarTab(panelId) {
+      tabs.forEach(tab => {
+        const activo = tab.dataset.panel === panelId;
+        tab.setAttribute('aria-selected', activo ? 'true' : 'false');
+        tab.style.color = activo ? 'var(--color-primary)' : '#64748b';
+        tab.style.fontWeight = activo ? '800' : '700';
+        tab.style.borderBottomColor = activo ? 'var(--color-primary)' : 'transparent';
+      });
+      panels.forEach(panel => {
+        const visible = panel.id === 'panel-' + panelId;
+        panel.setAttribute('aria-hidden', visible ? 'false' : 'true');
+        if (visible) {
+          panel.removeAttribute('hidden');
+        } else {
+          panel.setAttribute('hidden', '');
+        }
+      });
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => activarTab(tab.dataset.panel));
+    });
+
+    // Estado inicial
+    activarTab('research');
+
+    // --- FILTRO DE ROL ---
+    const botonesRol = document.querySelectorAll('[data-rol]');
+
+    botonesRol.forEach(btn => {
+      btn.addEventListener('click', () => {
+        botonesRol.forEach(b => {
+          b.style.background = 'transparent';
+          b.style.color = 'var(--color-secondary)';
+          b.style.borderColor = 'rgba(11, 43, 64, 0.15)';
+        });
+        btn.style.background = 'var(--color-primary)';
+        btn.style.color = '#fff';
+        btn.style.borderColor = 'var(--color-primary)';
+        activarTab(btn.dataset.panel);
+      });
+    });
+
+    // --- EXPANSIÓN DE PRODUCTO-CARDS ---
+    const botonesCard = document.querySelectorAll('article button[aria-controls]');
+
+    botonesCard.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const card = btn.closest('article');
+        const targetId = btn.getAttribute('aria-controls');
+        if (!targetId || !targetId.startsWith('detalle-')) return;
+        const detalle = document.getElementById(targetId);
+        if (!detalle) return;
+
+        const estaCerrado = detalle.hidden; // true si está cerrado
+
+        const panelActual = card.closest('[role="tabpanel"]');
+
+        // 1. Cerrar todos los demás paneles en este tab-panel
+        panelActual.querySelectorAll('[id^="detalle-"]').forEach(otroDetalle => {
+          if (otroDetalle.id !== targetId) {
+            otroDetalle.hidden = true;
+            // Restaurar todos los botones asociados de los otros paneles a estado colapsado
+            const otrosBotones = panelActual.querySelectorAll(`button[aria-controls="${otroDetalle.id}"]`);
+            otrosBotones.forEach(b => {
+              b.setAttribute('aria-expanded', 'false');
+              if (b.classList.contains('arrow-btn')) {
+                b.textContent = '▾';
+              } else {
+                b.innerHTML = 'Ver detalles <span style="font-size: 0.75rem;">▾</span>';
+              }
+            });
+          }
+        });
+
+        // 2. Toggle del panel actual y sincronización de sus botones
+        if (estaCerrado) {
+          // Abrir/Expandir
+          detalle.hidden = false;
+          const botonesAsociados = panelActual.querySelectorAll(`button[aria-controls="${targetId}"]`);
+          botonesAsociados.forEach(b => {
+            b.setAttribute('aria-expanded', 'true');
+            if (b.classList.contains('arrow-btn')) {
+              b.textContent = '▴';
+            } else {
+              b.innerHTML = 'Ocultar detalles <span style="font-size: 0.75rem;">▴</span>';
             }
-        </style>
+          });
+        } else {
+          // Cerrar/Colapsar
+          detalle.hidden = true;
+          const botonesAsociados = panelActual.querySelectorAll(`button[aria-controls="${targetId}"]`);
+          botonesAsociados.forEach(b => {
+            b.setAttribute('aria-expanded', 'false');
+            if (b.classList.contains('arrow-btn')) {
+              b.textContent = '▾';
+            } else {
+              b.innerHTML = 'Ver detalles <span style="font-size: 0.75rem;">▾</span>';
+            }
+          });
+        }
+      });
+    });
+  </script>
 
-        <!-- Services Loop -->
-        <section class="services-section elementor-section" style="padding-top: 2rem;">
-            <div class="container elementor-container">
-                <div class="services-grid-modern">
-                    <!-- Pilar 1 -->
-                    <div class="service-card-v3">
-                        <div class="badge">Pilar 1</div>
-                        <h3>Investigación de Mercado y Estudios de Precios</h3>
-                        <p style="margin-top: 1rem; color: #555;"><strong>El Problema:</strong> Confiar en intuición o
-                            proyecciones sesgadas puede llevar a lanzamientos fallidos o fijación de precios fuera de
-                            mercado, comprometiendo la rentabilidad.</p>
-                        <p style="margin-top: 1rem; color: #555;"><strong>Lo que recibe:</strong> Un blindaje financiero
-                            mediante un <a href="/estudio-de-mercado-bolivia"
-                                style="color: var(--primary-color);">estudio de mercado en Bolivia</a> y <a
-                                href="/estudio-de-precios-bolivia" style="color: var(--primary-color);">análisis de
-                                precios</a> que evalúa la viabilidad real antes de inyectar capital.</p>
-                        <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid #eaeaea;">
-                        <ul class="service-list-minimal">
-                            <li><strong>Entregables Ejecutivos:</strong></li>
-                            <li>Mapas de factibilidad probados</li>
-                            <li>Modelos de pricing documentados para el directorio</li>
-                            <li>Evaluaciones de viabilidad comercial</li>
-                        </ul>
-                        <div style="margin-top: 1.5rem;">
-                            <p style="font-weight: 600; color: var(--primary-color);">Cómo se entrega el análisis</p>
-                            <ul class="service-list-minimal">
-                                <li>Executive brief (síntesis ejecutiva)</li>
-                                <li>Presentación estructurada para directorio</li>
-                                <li>Recomendación priorizada</li>
-                                <li>Dashboard de seguimiento (cuando aplica)</li>
-                            </ul>
-                            <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(0,0,0,0.05);">
-                                <p style="font-size: 0.9rem; color: #777; font-weight: 500; margin: 0;">Horizonte típico de ejecución: 3–8 semanas | Formato: Proyecto puntual o retainer</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Pilar 2 -->
-                    <div class="service-card-v3 highlight">
-                        <div class="badge">Pilar 2</div>
-                        <h3>Branding y Posicionamiento de Marca</h3>
-                        <p style="margin-top: 1rem; color: #555;"><strong>El Problema:</strong> Una desconexión entre lo
-                            que la empresa proyecta y lo que el mercado valora incrementa drásticamente el costo de
-                            adquisición de clientes.</p>
-                        <p style="margin-top: 1rem; color: #555;"><strong>Lo que recibe:</strong> Control táctico sobre
-                            la identidad corporativa mediante un <a href="/percepcion-de-marca-bolivia"
-                                style="color: var(--primary-color);">estudio de percepción de marca</a> para alinear su
-                            promesa de valor con la realidad.</p>
-                        <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid #eaeaea;">
-                        <ul class="service-list-minimal">
-                            <li><strong>Entregables Ejecutivos:</strong></li>
-                            <li>Auditoría diagnóstica de branding</li>
-                            <li>Evaluación competitiva de percepción</li>
-                            <li>Validación estructurada de pre-rebranding</li>
-                        </ul>
-                        <div style="margin-top: 1.5rem;">
-                            <p style="font-weight: 600; color: var(--primary-color);">Cómo se entrega el análisis</p>
-                            <ul class="service-list-minimal">
-                                <li>Executive brief (síntesis ejecutiva)</li>
-                                <li>Presentación estructurada para directorio</li>
-                                <li>Recomendación priorizada</li>
-                                <li>Dashboard de seguimiento (cuando aplica)</li>
-                            </ul>
-                            <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
-                                <p style="font-size: 0.9rem; color: rgba(255,255,255,0.85); font-weight: 500; margin: 0;">Horizonte típico de ejecución: 4–6 semanas | Formato: Proyecto puntual o retainer</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Pilar 3 -->
-                    <div class="service-card-v3">
-                        <div class="badge">Pilar 3</div>
-                        <h3>Análisis Competitivo y Auditoría de Mercado</h3>
-                        <p style="margin-top: 1rem; color: #555;"><strong>El Problema:</strong> Puntos ciegos respecto a
-                            la ejecución en el punto de venta o desconocimiento sobre las verdaderas iniciativas de la
-                            competencia.</p>
-                        <p style="margin-top: 1rem; color: #555;"><strong>Lo que recibe:</strong> Control de ejecución
-                            en punto de venta. Una
-                            <a href="/auditoria-retail-bolivia" style="color: var(--primary-color);">auditoría
-                                retail en Bolivia</a> y benchmarks precisos que reducen la exposición frente a los
-                            movimientos del rival.
-                        </p>
-                        <hr style="margin: 1.5rem 0; border: 0; border-top: 1px solid #eaeaea;">
-                        <ul class="service-list-minimal">
-                            <li><strong>Entregables Ejecutivos:</strong></li>
-                            <li>Detección de brechas comerciales</li>
-                            <li>Benchmarks estratégicos defendibles</li>
-                            <li>Reportes de auditoría de ejecución POS</li>
-                        </ul>
-                        <div style="margin-top: 1.5rem;">
-                            <p style="font-weight: 600; color: var(--primary-color);">Cómo se entrega el análisis</p>
-                            <ul class="service-list-minimal">
-                                <li>Executive brief (síntesis ejecutiva)</li>
-                                <li>Presentación estructurada para directorio</li>
-                                <li>Recomendación priorizada</li>
-                                <li>Dashboard de seguimiento (cuando aplica)</li>
-                            </ul>
-                            <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(0,0,0,0.05);">
-                                <p style="font-size: 0.9rem; color: #777; font-weight: 500; margin: 0;">Horizonte típico de ejecución: 2–6 semanas | Formato: Proyecto puntual o retainer</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Final CTA -->
-        <section class="cta-section-modern elementor-section">
-            <div class="container elementor-container glass-container">
-                <div class="cta-content-v2">
-                    <h2>Convierta su próxima decisión estratégica en una ventaja competitiva medible.</h2>
-                    <p class="cta-subtitle">Hable directamente con un estratega senior de Mindtec. 20 minutos, confidencial, sin compromiso.</p>
-                    <div class="cta-actions">
-                        <a href="/contacto" class="btn btn-primary lg">Agendar sesión de diagnóstico (20 min) →</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-</main>
 </Layout>

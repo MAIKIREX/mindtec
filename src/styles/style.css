@@ -298,6 +298,20 @@ p {
     color: var(--color-white);
 }
 
+.btn-outline-light {
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    color: var(--color-white);
+}
+
+.btn-outline-light:hover {
+    background: var(--color-white);
+    color: var(--color-secondary);
+    border-color: var(--color-white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
 .btn-white {
     background: var(--color-white);
     color: var(--color-secondary);
@@ -2185,7 +2199,8 @@ p {
     max-width: 620px;
     margin-left: auto;
     margin-right: auto;
-    opacity: 0.9;
+    color: var(--color-white);
+    opacity: 0.95;
     line-height: 1.65;
 }
 
@@ -2430,6 +2445,26 @@ p {
 .premium-card-white:hover {
     box-shadow: var(--shadow-lg);
     transform: translateY(-4px);
+}
+
+.ver-mas-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    color: var(--color-primary);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: color var(--transition-fast);
+}
+
+.ver-mas-btn:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
 }
 
 .premium-card-white h3 {

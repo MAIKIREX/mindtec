@@ -5,8 +5,22 @@ import Layout from '../layouts/Layout.astro';
 <Layout
   title="Investigación de Mercados en Bolivia | Estudio de Mercado y Análisis Competitivo | Mindtec"
   description="Investigación de mercados en Bolivia con neurociencia e IA. Insights accionables para directorios y gerencias. Mindtec Neuromarketing & Consulting."
-  keywords="investigación de mercados en Bolivia, estudio de mercado Bolivia, empresa de investigación de mercados, empresa de investigación de mercados con IA en Bolivia, consultora, inteligencia de mercados, análisis competitivo, neuromarketing Bolivia"
 >
+  <script type="application/ld+json" slot="head">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Mindtec Bolivia",
+    "image": "https://www.mindtecbolivia.com/logos/logo-mindtec-horizontal-para-fondo-oscuro.webp",
+    "description": "Firma boliviana que integra neurociencia, inteligencia artificial y consultoría de mercados para decisiones críticas de alta dirección.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": "BO"
+    },
+    "areaServed": ["La Paz", "Santa Cruz", "Cochabamba", "El Alto"],
+    "url": "https://www.mindtecbolivia.com"
+  }
+  </script>
   <main>
         <!-- ════════════════════════════════════════════════ -->
         <!-- HERO SECTION — Cinematic Dark                   -->
@@ -60,11 +74,12 @@ import Layout from '../layouts/Layout.astro';
             <div class="container hero-container">
                 <div class="hero-content">
                     <span class="eyebrow">Evite inversiones a ciegas en el mercado boliviano</span>
-                    <h1>Tome decisiones de negocio con evidencia, no con intuición.</h1>
-                    <p class="hero-subtitle">Reduzca el riesgo de sus lanzamientos, branding y estrategias de precios combinando neurociencia, inteligencia artificial y validación en terreno. Obtenga datos científicos sobre lo que su cliente hace, piensa y siente, no solo sobre lo que dice.</p>
+                    <h1>Estudios de mercado y biometría en Bolivia: Reduzca el riesgo financiero de sus decisiones.</h1>
+                    <p class="hero-subtitle" style="margin-bottom: 1.5rem;">Reduzca el riesgo de sus lanzamientos, branding y estrategias de precios combinando neurociencia, IA y validación en terreno.</p>
+                    <p class="hero-subtitle" style="font-size: 1.15rem; color: rgba(255, 255, 255, 0.7); margin-bottom: 2.5rem;">Obtenga datos científicos sobre lo que su cliente realmente hace, piensa y siente — no solo sobre lo que dice.</p>
                     <div class="hero-buttons">
-                        <a href="/contacto" class="btn btn-primary">Agendar sesión de diagnóstico (20 min) <span class="btn-arrow">→</span></a>
-                        <a href="/metodologia" class="btn btn-secondary">Conozca la metodología</a>
+                        <a href="/contacto" class="btn btn-primary">Agendar sesión de diagnóstico (45 min) <span class="btn-arrow">→</span></a>
+                        <a href="/metodologia" class="btn btn-outline-light">Conozca la metodología</a>
                     </div>
                 </div>
                 <div class="hero-visual">
@@ -352,7 +367,7 @@ import Layout from '../layouts/Layout.astro';
 
                     <div class="offer-cta-modern">
                         <p class="offer-final-statement">No entregamos reportes densos de datos descriptivos. Le entregamos ahorro de tiempo directivo, reducción de riesgo y la tranquilidad de decidir correctamente.</p>
-                        <a href="/contacto" class="btn btn-primary">Agendar sesión de diagnóstico (20 min) <span class="btn-arrow">→</span></a>
+                        <a href="/contacto" class="btn btn-primary">Agendar sesión de diagnóstico (45 min) <span class="btn-arrow">→</span></a>
                     </div>
                 </div>
             </div>
@@ -498,9 +513,9 @@ import Layout from '../layouts/Layout.astro';
             <div class="container">
                 <div class="cta-content-v2 animate-on-observe">
                     <h2>Las empresas que lideran su mercado no adivinan. Deciden con inteligencia.</h2>
-                    <p class="cta-subtitle">Hablemos por Teams o Zoom durante 20 minutos. Evaluaremos sus retos de mercado y se llevará 3 ideas de aplicación inmediata para su negocio. Sin presiones comerciales.</p>
+                    <p class="cta-subtitle">Hablemos por Teams o Zoom durante 45 minutos. Evaluaremos sus retos de mercado y se llevará 3 ideas de aplicación inmediata para su negocio. Sin presiones comerciales.</p>
                     <div class="cta-actions">
-                        <a href="/contacto" class="btn btn-primary">Agendar sesión de diagnóstico (20 min) <span class="btn-arrow">→</span></a>
+                        <a href="/contacto" class="btn btn-primary">Agendar sesión de diagnóstico (45 min) <span class="btn-arrow">→</span></a>
                     </div>
                 </div>
             </div>

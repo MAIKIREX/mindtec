@@ -1,13 +1,52 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
 ---
 
 <Layout
   title="Estudio de Precios en Bolivia | Optimización de Rentabilidad | Mindtec"
   description="Estudio de precios en Bolivia con neuro-pricing y análisis competitivo. Optimice margen y proteja rentabilidad. Mindtec."
-  keywords="estudio de precios en Bolivia, análisis de precios Bolivia, pricing strategy Bolivia, estudio de precios con neuro-pricing para empresas en Bolivia, Van Westendorp, elasticidad, margen, rentabilidad, sensibilidad"
   headerLightBg={false}
 >
+  <script type="application/ld+json" slot="head">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "name": "Estudio de Precios en Bolivia",
+        "provider": { "@type": "LocalBusiness", "name": "Mindtec Bolivia" },
+        "description": "Estudio de precios en Bolivia con neuro-pricing y análisis competitivo para optimizar margen y proteger rentabilidad.",
+        "areaServed": ["La Paz", "Santa Cruz", "Cochabamba", "El Alto"]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Cuánto tarda un estudio de precios en Bolivia?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Los estudios de precios corporativos suelen tardar entre 4 a 6 semanas, dependiendo de la cantidad de ciudades a auditar en terreno y la complejidad del canal de comercialización de la empresa." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Se puede realizar la medición por canal específico?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sí. Podemos medir la sensibilidad del precio y los rangos aceptables segmentando de forma analítica el canal tradicional (mercados abiertos y tiendas de barrio) y el canal moderno (supermercados y farmacias)." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cómo ayuda el neuromarketing a definir el precio?",
+            "acceptedAnswer": { "@type": "Answer", "text": "El neuromarketing nos permite identificar el 'Dolor de Pago' no consciente midiendo la actividad electrodermal del consumidor ante distintos estímulos de precio, determinando el umbral exacto donde el coste se percibe como inaceptable." }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué valor aporta un estudio predictivo de precios?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Previene errores comerciales millonarios. Le permite simular variaciones de precio en un entorno analítico y predecir la pérdida de cuota de mercado antes de emitir listas oficiales a sus distribuidores." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
   <main>
         <!-- 🟦 1️⃣ HERO -->
         <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
@@ -44,9 +83,9 @@ import Layout from '../layouts/Layout.astro';
                         <span style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.75);">Combinamos análisis competitivo, neuro-pricing y psicoantropología para aportarle a los directorios decisiones defendibles de alto valor.</span>
                     </p>
                     <div class="cta-actions" style="margin-top: 2rem;">
-                        <a href="/contacto" class="btn btn-primary lg">Agendar sesión de diagnóstico (20 min)</a>
+                        <a href="/contacto" class="btn btn-primary lg">Agendar sesión de diagnóstico (45 min)</a>
                     </div>
-                    <p style="margin-top: 1rem; font-size: 0.9rem; color: #64748b; font-weight: 500;">Primera sesión: 20 minutos | Confidencial | Sin compromiso</p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: #64748b; font-weight: 500;">Primera sesión: 45 minutos | Confidencial | Sin compromiso</p>
                 </div>
                 <div class="hero-visual">
                     <div class="glass-card main-visual">
@@ -55,6 +94,8 @@ import Layout from '../layouts/Layout.astro';
                 </div>
             </div>
         </section>
+
+    <ServiceVisualSuite variant="precios" />
 
         <!-- MINI NAVEGACIÓN ANCLAS -->
         <div style="background: rgba(11, 43, 64, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 1.25rem 0; position: sticky; top: 80px; z-index: 999; backdrop-filter: blur(10px);">
@@ -385,8 +426,8 @@ import Layout from '../layouts/Layout.astro';
                         Si su decisión involucra rentabilidad estructural, un estudio de precios estratégico reducirá el margen de error y protegerá sus márgenes comerciales.
                     </p>
                     <div class="cta-actions" style="justify-content: center; flex-direction: column; align-items: center;">
-                        <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar sesión de diagnóstico (20 min)</a>
-                        <p style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">Primera sesión: 20 minutos | Confidencial | Sin compromiso</p>
+                        <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar sesión de diagnóstico (45 min)</a>
+                        <p style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">Primera sesión: 45 minutos | Confidencial | Sin compromiso</p>
                     </div>
                 </div>
             </div>

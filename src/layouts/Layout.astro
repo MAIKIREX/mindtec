@@ -4,7 +4,6 @@ import '../styles/style.css';
 interface Props {
   title?: string;
   description?: string;
-  keywords?: string;
   headerLightBg?: boolean;
   ogImage?: string;
   ogType?: string;
@@ -14,15 +13,16 @@ interface Props {
 const {
   title = "Mindtec Bolivia - Investigación de Mercados y Neuromarketing B2B",
   description = "Firma boliviana que integra neurociencia, inteligencia artificial y consultoría de mercados para decisiones críticas de alta dirección.",
-  keywords = "investigación de mercados Bolivia, estudio de mercado Bolivia, neuromarketing Bolivia, consultora de mercados",
   headerLightBg = false,
   ogImage,
   ogType = 'website',
   canonicalUrl,
 } = Astro.props;
 
-// Canonical URL: usa la prop si se pasa, sino la URL actual
-const canonical = canonicalUrl || Astro.url.href;
+// Canonical URL: resuelve a URL absoluta para evitar canonicals relativas
+const canonical = canonicalUrl
+  ? new URL(canonicalUrl, Astro.site).toString()
+  : Astro.url.href;
 
 // OG Image: usa la prop si existe, sino el logo por defecto
 const ogImageUrl = ogImage
@@ -48,7 +48,6 @@ const isCurrent = (path: string) => {
     
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content={keywords} />
 
     <!-- Canonical -->
     <link rel="canonical" href={canonical} />
@@ -100,6 +99,12 @@ const isCurrent = (path: string) => {
                         <a href="/percepcion-de-marca-bolivia">Estudio de percepción de marca</a>
                         <a href="/auditoria-retail-bolivia">Auditoría retail en Bolivia</a>
                         <a href="/neuromarketing-bolivia">Neuromarketing en Bolivia</a>
+                        <a href="/cliente-misterioso-bolivia">Cliente Misterioso en Bolivia</a>
+                        <a href="/focus-group-bolivia">Focus Group en Bolivia</a>
+                        <a href="/benchmarking-competitivo-bolivia">Benchmarking Competitivo</a>
+                        <a href="/shopper-insights-bolivia">Shopper Insights</a>
+                        <a href="/investigacion-cuantitativa-bolivia">Investigación Cuantitativa</a>
+                        <a href="/investigacion-cualitativa-bolivia">Investigación Cualitativa</a>
                     </div>
                 </div>
                 <a href="/metodologia" class={isCurrent('metodologia') ? 'active' : ''}>Metodología</a>
@@ -142,6 +147,12 @@ const isCurrent = (path: string) => {
                     <li><a href="/percepcion-de-marca-bolivia">Estudio de percepción de marca</a></li>
                     <li><a href="/auditoria-retail-bolivia">Auditoría retail en Bolivia</a></li>
                     <li><a href="/neuromarketing-bolivia">Neuromarketing en Bolivia</a></li>
+                    <li><a href="/cliente-misterioso-bolivia">Cliente Misterioso en Bolivia</a></li>
+                    <li><a href="/focus-group-bolivia">Focus Group en Bolivia</a></li>
+                    <li><a href="/benchmarking-competitivo-bolivia">Benchmarking Competitivo</a></li>
+                    <li><a href="/shopper-insights-bolivia">Shopper Insights</a></li>
+                    <li><a href="/investigacion-cuantitativa-bolivia">Investigación Cuantitativa</a></li>
+                    <li><a href="/investigacion-cualitativa-bolivia">Investigación Cualitativa</a></li>
                 </ul>
             </div>
 
@@ -151,7 +162,7 @@ const isCurrent = (path: string) => {
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Mindtec Bolivia. Investigación de Mercados y Análisis Competitivo en Bolivia.</p>
+            <p>&copy; 2026 Mindtec Bolivia. Investigación de Mercados y Análisis Competitivo en Bolivia.</p>
         </div>
     </footer>
 
