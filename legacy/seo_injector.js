@@ -133,7 +133,7 @@ function processHtmls() {
       "url": "https://mindtecbolivia.com",
       "logo": "https://mindtecbolivia.com/logo-mindtec-oscuro.webp",
       "image": "https://mindtecbolivia.com/logo-mindtec-oscuro.webp",
-      "telephone": "+591-72599201",
+      "telephone": "+591-78955329",
       "email": "info@mindtecbolivia.com",
       "address": {
         "@type": "PostalAddress",

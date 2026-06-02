@@ -25,7 +25,7 @@ const twoColumnWrapperEnd = `
                     <h3 style="color: var(--color-secondary); font-size: 1.1rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">Datos de contacto directo:</h3>
                     <ul style="list-style: none; padding: 0; margin-bottom: 2.5rem; color: #475569;">
                         <li style="margin-bottom: 0.8rem;">📧 <a href="mailto:info@mindtecbolivia.com" style="color: inherit; text-decoration: none; font-weight: 600;">info@mindtecbolivia.com</a></li>
-                        <li style="margin-bottom: 0.8rem;">📱 WhatsApp: <a href="https://wa.me/59172599201" target="_blank" style="color: inherit; text-decoration: none; font-weight: 600;">+591 72599201</a></li>
+                        <li style="margin-bottom: 0.8rem;">📱 WhatsApp: <a href="https://wa.me/59178955329" target="_blank" style="color: inherit; text-decoration: none; font-weight: 600;">+591 78955329</a></li>
                         <li style="margin-bottom: 0.8rem;">📍 La Paz, Bolivia</li>
                     </ul>
 
