@@ -3,6 +3,7 @@ import Layout from './Layout.astro';
 
 interface Props {
   title: string;
+  seoTitle?: string;
   date: string;
   dateISO?: string;
   category: string;
@@ -27,10 +28,28 @@ interface Props {
   }[];
 }
 
-const { title, date, dateISO, category, author = 'Wilmar Velasquez', img, imgAlt, excerpt, description, keywords, suggestions, articleVisual, articleSupportVisuals = [] } = Astro.props;
+const { title, seoTitle, date, dateISO, category, author = 'Wilmar Velasquez', img, imgAlt, excerpt, description, keywords, suggestions, articleVisual, articleSupportVisuals = [] } = Astro.props;
 
 // Meta description: usa la del frontmatter, fallback al excerpt, fallback genérico
-const metaDescription = description || excerpt || `${title} — Insights y metodología de investigación de mercados de Mindtec Bolivia.`;
+let metaDescription = description || excerpt || `${title} — Insights de investigación de mercados de Mindtec Bolivia.`;
+if (metaDescription.length > 160) {
+  metaDescription = metaDescription.substring(0, 157) + '...';
+}
+
+// Meta title: usa seoTitle si existe, sino title. Enforce max length of 60 chars.
+const baseTitle = seoTitle || title;
+let finalTitle = baseTitle;
+if (!finalTitle.includes('|')) {
+  if (finalTitle.length + 15 <= 60) {
+    finalTitle = `${finalTitle} | Blog Mindtec`;
+  } else if (finalTitle.length > 60) {
+    finalTitle = finalTitle.substring(0, 57) + '...';
+  }
+} else {
+  if (finalTitle.length > 60) {
+    finalTitle = finalTitle.substring(0, 57) + '...';
+  }
+}
 
 // Keywords: usa las del frontmatter, fallback con la categoría del artículo
 const metaKeywords = keywords || `${category}, neuromarketing Bolivia, investigación de mercados Bolivia, Mindtec Bolivia`;
@@ -64,7 +83,7 @@ const articleSchema = JSON.stringify({
 ---
 
 <Layout
-  title={`${title} | Blog Mindtec`}
+  title={finalTitle}
   description={metaDescription}
   keywords={metaKeywords}
   ogImage={img}

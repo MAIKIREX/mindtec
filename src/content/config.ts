@@ -12,6 +12,7 @@ const postsCollection = defineCollection({
     imgAlt: z.string().optional(),        // Alt text SEO descriptivo para la imagen destacada
     excerpt: z.string().optional(),       // Resumen para tarjetas del blog (150-160 chars)
     description: z.string().optional(),   // Meta description SEO (150-160 chars)
+    seoTitle: z.string().optional(),      // Título SEO alternativo corto (<60 chars)
     keywords: z.string().optional(),      // Keywords específicas del artículo
   })
 });
