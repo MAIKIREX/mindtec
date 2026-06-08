@@ -1424,6 +1424,88 @@ p {
     background: rgba(255, 255, 255, 0.06);
 }
 
+.hero-proof-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 460px;
+    isolation: isolate;
+}
+
+.hero-proof-card img {
+    width: 100%;
+    height: 460px;
+    object-fit: cover;
+    object-position: 44% center;
+    border-radius: calc(var(--radius-xl) - 6px);
+    filter: saturate(0.98) contrast(1.04);
+}
+
+.hero-proof-card::after {
+    content: "";
+    position: absolute;
+    inset: 6px;
+    border-radius: calc(var(--radius-xl) - 6px);
+    background:
+        linear-gradient(180deg, rgba(6, 28, 43, 0) 38%, rgba(6, 28, 43, 0.86) 100%),
+        radial-gradient(circle at 82% 16%, rgba(242, 101, 34, 0.24), transparent 18rem);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.hero-proof-card figcaption {
+    position: absolute;
+    left: 2rem;
+    right: 2rem;
+    bottom: 2rem;
+    z-index: 2;
+}
+
+.hero-proof-card figcaption span,
+.hero-proof-chip {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    border-radius: var(--radius-xs);
+    background: rgba(242, 101, 34, 0.92);
+    color: var(--color-white);
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+    padding: 0.55rem 0.7rem;
+}
+
+.hero-proof-card figcaption strong {
+    display: block;
+    max-width: 24rem;
+    margin-top: 0.75rem;
+    color: var(--color-white);
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2vw, 1.8rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+}
+
+.hero-proof-chip {
+    position: absolute;
+    z-index: 3;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--color-secondary);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
+}
+
+.hero-proof-chip--top {
+    top: 1.25rem;
+    right: 1.25rem;
+}
+
+.hero-proof-chip--bottom {
+    left: 1.25rem;
+    top: 1.25rem;
+}
+
 
 
 /* ── 10. KINETIC MARQUEE ──────────────────────────────── */
@@ -1522,6 +1604,176 @@ p {
     margin-top: 0.6rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+.human-evidence-section {
+    padding: var(--spacing-xl) 0;
+    background: linear-gradient(180deg, var(--color-white) 0%, var(--color-surface) 100%);
+    border-bottom: 1px solid rgba(11, 43, 64, 0.06);
+}
+
+.human-evidence-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: center;
+}
+
+.human-evidence-copy {
+    position: sticky;
+    top: 8rem;
+    align-self: start;
+}
+
+.human-evidence-copy p {
+    font-size: 1.08rem;
+}
+
+.human-evidence-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.human-evidence-card {
+    position: relative;
+    min-height: 260px;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+    background: var(--color-secondary);
+    box-shadow: var(--shadow-lg);
+    isolation: isolate;
+}
+
+.human-evidence-card--tall {
+    grid-row: span 2;
+    min-height: 540px;
+}
+
+.human-evidence-card img {
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    object-fit: cover;
+    filter: saturate(0.96) contrast(1.03);
+    transition: transform var(--transition-slow);
+}
+
+.human-evidence-card:hover img {
+    transform: scale(1.035);
+}
+
+.human-evidence-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(6, 28, 43, 0) 26%, rgba(6, 28, 43, 0.86) 100%);
+    z-index: 1;
+}
+
+.human-evidence-card div {
+    position: absolute;
+    left: 1.25rem;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 2;
+}
+
+.human-evidence-card span {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: rgba(255, 255, 255, 0.74);
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.human-evidence-card strong {
+    display: block;
+    color: var(--color-white);
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+}
+
+.generated-insight-section {
+    padding: var(--spacing-lg) 0;
+    background: var(--color-white);
+    border-bottom: 1px solid rgba(11, 43, 64, 0.06);
+}
+
+.generated-insight-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.generated-insight-card {
+    position: relative;
+    min-height: 380px;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: var(--color-secondary);
+    box-shadow: var(--shadow-lg);
+    isolation: isolate;
+}
+
+.generated-insight-card img {
+    width: 100%;
+    height: 100%;
+    min-height: inherit;
+    object-fit: cover;
+    filter: saturate(0.98) contrast(1.03);
+    transition: transform var(--transition-slow);
+}
+
+.generated-insight-card:hover img {
+    transform: scale(1.035);
+}
+
+.generated-insight-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(180deg, rgba(6, 28, 43, 0) 34%, rgba(6, 28, 43, 0.9) 100%);
+}
+
+.generated-insight-card figcaption {
+    position: absolute;
+    left: 1.5rem;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 2;
+}
+
+.generated-insight-card span {
+    display: inline-flex;
+    width: fit-content;
+    margin-bottom: 0.65rem;
+    padding: 0.45rem 0.65rem;
+    border-radius: var(--radius-xs);
+    background: rgba(242, 101, 34, 0.92);
+    color: var(--color-white);
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+.generated-insight-card strong {
+    display: block;
+    max-width: 32rem;
+    color: var(--color-white);
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
 }
 
 /* ── 12. PROBLEM SECTION ──────────────────────────────── */
@@ -1833,6 +2085,23 @@ p {
     flex-shrink: 0;
 }
 
+/* Light variant of offer-card-v2 for white backgrounds */
+.offer-card-v2.light {
+    background: var(--color-white) !important;
+    border: 1px solid rgba(11, 43, 64, 0.08) !important;
+    box-shadow: var(--shadow-sm);
+}
+
+.offer-card-v2.light:hover {
+    background: var(--color-white) !important;
+    border-color: rgba(11, 43, 64, 0.15) !important;
+    box-shadow: var(--shadow-md);
+}
+
+.offer-card-v2.light ul li {
+    color: var(--color-text-main) !important;
+}
+
 /* Testimonial */
 .testimonial-card {
     background: rgba(255, 255, 255, 0.04);
@@ -1958,9 +2227,12 @@ p {
 
 .service-card-v3 .card-visual img {
     width: 100%;
-    height: auto;
+    height: 210px;
+    object-fit: cover;
     border-radius: var(--radius-sm);
     margin-bottom: 1.5rem;
+    background: var(--color-secondary);
+    filter: saturate(0.98) contrast(1.02);
 }
 
 .badge {
@@ -2668,9 +2940,17 @@ p {
         justify-content: center;
     }
 
-    /* Hide the right-column visual box but keep shapes in background */
+    /* Keep the human proof image visible after the copy on tablet */
     .hero-visual {
-        display: none;
+        display: block;
+        width: min(100%, 680px);
+        margin: 0 auto;
+    }
+
+    .hero-proof-card,
+    .hero-proof-card img {
+        min-height: 360px;
+        height: 360px;
     }
 
     /* On tablet/mobile, show the canvas as a full background layer */
@@ -2718,6 +2998,14 @@ p {
 
     .services-grid-modern {
         grid-template-columns: 1fr;
+    }
+
+    .human-evidence-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .human-evidence-copy {
+        position: static;
     }
 
     .offer-grid-modern {
@@ -2840,6 +3128,39 @@ p {
         align-items: center;
     }
 
+    .hero-proof-card,
+    .hero-proof-card img {
+        min-height: 300px;
+        height: 300px;
+    }
+
+    .hero-proof-card figcaption {
+        left: 1.25rem;
+        right: 1.25rem;
+        bottom: 1.25rem;
+    }
+
+    .hero-proof-chip {
+        display: none;
+    }
+
+    .human-evidence-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .human-evidence-card,
+    .human-evidence-card--tall {
+        min-height: 320px;
+    }
+
+    .generated-insight-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .generated-insight-card {
+        min-height: 320px;
+    }
+
     .btn {
         min-height: 48px;
         width: 100%;
@@ -2889,6 +3210,16 @@ p {
 
     .offer-card-v2 {
         padding: 1.5rem;
+    }
+
+    .hero-proof-card,
+    .hero-proof-card img {
+        min-height: 250px;
+        height: 250px;
+    }
+
+    .generated-insight-card {
+        min-height: 260px;
     }
 
     /* Extra-small: reduce shapes further */
@@ -3572,4 +3903,3 @@ p {
     line-height: 1.6;
     margin-bottom: 0;
 }
-
