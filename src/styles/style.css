@@ -3903,3 +3903,22 @@ p {
     line-height: 1.6;
     margin-bottom: 0;
 }
+
+/* ── 31. BREADCRUMBS AT BOTTOM ───────────────────────── */
+.breadcrumb-bottom {
+    background: rgba(11, 43, 64, 0.97);
+    padding: 1.25rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+.breadcrumb-bottom ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    justify-content: center;
+}
+

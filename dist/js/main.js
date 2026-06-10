@@ -177,11 +177,12 @@
     loop();
   }
 
-  /* ── Desktop canvas (inside .neuro-visual-bg card) */
+  /* ── Desktop canvas (inside .neuro-visual-bg card or .hero-proof-card) */
   function initNeuralCanvas() {
-    var container = document.querySelector('.neuro-visual-bg');
-    if (!container) return;
-    createNeuralCanvas(container, { numNodes: 80, maxDist: 160, speed: 0.35, isBg: false });
+    var containers = document.querySelectorAll('.neuro-visual-bg, .hero-proof-card');
+    for (var i = 0; i < containers.length; i++) {
+      createNeuralCanvas(containers[i], { numNodes: 80, maxDist: 160, speed: 0.35, isBg: false });
+    }
   }
 
   /* ── Mobile/tablet canvas (full hero background) */
