@@ -2872,6 +2872,7 @@ p {
 }
 
 /* Dark background variant */
+.hero-section .text-highlight-mark,
 .offer-section .text-highlight-mark,
 .cta-section-modern .text-highlight-mark {
     color: var(--color-white);
@@ -2881,6 +2882,7 @@ p {
     background-position: 0 0;
 }
 
+.hero-section .text-highlight-mark.is-visible,
 .offer-section .text-highlight-mark.is-visible,
 .cta-section-modern .text-highlight-mark.is-visible {
     background-size: 100% 100%;

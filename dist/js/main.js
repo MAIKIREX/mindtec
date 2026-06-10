@@ -415,7 +415,7 @@
           observer.unobserve(el);
         }
       });
-    }, { threshold: 0.4 });
+    }, { threshold: 0.1 });
 
     els.forEach(function (el) { observer.observe(el); });
 
@@ -423,7 +423,10 @@
       var target = parseFloat(el.getAttribute('data-count-target'));
       var suffix = el.getAttribute('data-count-suffix') || '';
       var prefix = el.getAttribute('data-count-prefix') || '';
-      var duration = parseInt(el.getAttribute('data-count-duration')) || 2200;
+      
+      // Snappier duration for small values to prevent long periods showing 0
+      var defaultDuration = target <= 5 ? 600 : 1600;
+      var duration = parseInt(el.getAttribute('data-count-duration')) || defaultDuration;
       var start = null;
 
       // Exponential ease-out for premium feel
@@ -436,7 +439,7 @@
         var elapsed = ts - start;
         var progress = Math.min(elapsed / duration, 1);
         var current = easeOutExpo(progress) * target;
-        el.textContent = prefix + Math.floor(current) + suffix;
+        el.textContent = prefix + Math.round(current) + suffix;
         if (progress < 1) {
           requestAnimationFrame(step);
         } else {
