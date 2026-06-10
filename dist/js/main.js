@@ -337,9 +337,21 @@
      5. BLUR-IN SCROLL REVEALS (IntersectionObserver)
      ═══════════════════════════════════════════ */
   function initScrollReveals() {
-    var targets = document.querySelectorAll(
-      '.animate-on-observe'
-    );
+    // Collect all potential animatable cards and containers
+    var selector = '.animate-on-observe, .premium-card-white, .premium-grid-3 > div, .premium-grid-5 > div, .comparison-table-wrapper';
+    var rawTargets = document.querySelectorAll(selector);
+    var targets = [];
+
+    for (var i = 0; i < rawTargets.length; i++) {
+      var el = rawTargets[i];
+      // Exclude layouts or components that might be nested helper divs
+      if (el.classList.contains('premium-grid-3') || el.classList.contains('premium-grid-5')) continue;
+
+      if (!el.classList.contains('animate-on-observe')) {
+        el.classList.add('animate-on-observe');
+      }
+      targets.push(el);
+    }
 
     if (!targets.length || !('IntersectionObserver' in window)) {
       targets.forEach(function (el) {
@@ -347,6 +359,19 @@
       });
       return;
     }
+
+    /* Assign directional reveal variants for visual variety */
+    var revealClasses = ['reveal-left', 'reveal-right', 'reveal-scale', 'reveal-rotate'];
+    var revealIndex = 0;
+    targets.forEach(function (el) {
+      /* Don't override if it already has a reveal class */
+      var hasReveal = revealClasses.some(function(c) { return el.classList.contains(c); });
+      if (!hasReveal) {
+        /* Alternate directions for natural variety */
+        el.classList.add(revealClasses[revealIndex % revealClasses.length]);
+        revealIndex++;
+      }
+    });
 
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -356,7 +381,7 @@
           observer.unobserve(el);
         }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
 
     targets.forEach(function (el) {
       observer.observe(el);
@@ -416,10 +441,20 @@
           requestAnimationFrame(step);
         } else {
           el.textContent = prefix + target + suffix;
+          onCountComplete(el);
         }
       }
 
       requestAnimationFrame(step);
+    }
+
+    /* After count finishes, add glow effect */
+    function onCountComplete(el) {
+      el.classList.add('counted-glow');
+      var trustItem = el.closest('.trust-item');
+      if (trustItem) {
+        trustItem.classList.add('is-counted');
+      }
     }
   }
 
@@ -651,6 +686,138 @@
   }
 
   /* ═══════════════════════════════════════════
+     14. TEXT HIGHLIGHT SYSTEM — Key Phrase Animation
+     ═══════════════════════════════════════════ */
+  function initTextHighlights() {
+    var highlightConfig = [
+      /* Hero */
+      { selector: '.hero-subtitle', phrases: ['neurociencia, IA y validación en terreno', 'realmente hace, piensa y siente', 'cerrar la brecha entre la junta directiva y el punto de compra', 'ojos neutrales en el anaquel', 'sensibilidad y el precio óptimo', 'métodos cualitativos tradicionales', 'neurociencia y biometría aplicada', 'decisiones de alto nivel con certidumbre', 'diseño de servicios y optimización', 'reducir el riesgo de sus lanzamientos'] },
+      /* Problem section */
+      { selector: '.problem-section .section-header p, .problem-section p', phrases: ['un error de posicionamiento', 'capital irrecuperable', 'juez y parte', 'conflicto de intereses implícito', 'subsidiar la ineficiencia', 'recolectando evidencia física innegable', 'sensibilidad al precio', 'elasticidad de la demanda', 'dinámicas de consumo locales', 'sesgos racionales del consumidor'] },
+      /* Modern quote */
+      { selector: '.modern-quote p:first-child', phrases: ['evidencia correcta'] },
+      { selector: '.modern-quote p:last-child', phrases: ['calidad de la inteligencia'] },
+      /* Offer section */
+      { selector: '.offer-final-statement', phrases: ['ahorro de tiempo directivo', 'reducción de riesgo', 'tranquilidad de decidir'] },
+      /* Why Us */
+      { selector: '.feature:nth-child(1) p', phrases: ['lo que realmente determina'] },
+      { selector: '.feature:nth-child(2) p', phrases: ['señales que los métodos tradicionales nunca detectan'] },
+      { selector: '.feature:nth-child(3) p', phrases: ['proteger sus resultados financieros'] },
+      /* CTA */
+      { selector: '.cta-content-v2 h2', phrases: ['Deciden con inteligencia', 'Retome el control del canal', 'Valide científicamente su elasticidad'] },
+      { selector: '.cta-subtitle', phrases: ['3 ideas de aplicación inmediata', 'sesión de mapeo estratégico', 'sesión de diagnóstico estratégico'] },
+      /* Testimonial & general callouts */
+      { selector: '.testimonial-card p:first-of-type, .premium-card-white p', phrases: ['precio 18% mayor sin perder volumen', 'estructura de margen', 'trazabilidad georreferenciada'] },
+    ];
+
+    highlightConfig.forEach(function (config) {
+      var elements = document.querySelectorAll(config.selector);
+      elements.forEach(function (el) {
+        config.phrases.forEach(function (phrase) {
+          var regex = new RegExp('(' + phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+          if (el.innerHTML.indexOf('text-highlight-mark') === -1 && regex.test(el.textContent)) {
+            el.innerHTML = el.innerHTML.replace(regex, '<span class="text-highlight-mark">$1</span>');
+          }
+        });
+      });
+    });
+
+    /* Animate highlights on scroll entry */
+    var marks = document.querySelectorAll('.text-highlight-mark');
+    if (!marks.length || !('IntersectionObserver' in window)) return;
+
+    var highlightObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          highlightObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px -100px 0px' });
+
+    marks.forEach(function (mark) {
+      highlightObserver.observe(mark);
+    });
+  }
+
+  /* ═══════════════════════════════════════════
+     15. HERO TEXT REVEAL — Cinematic Line-by-Line
+     ═══════════════════════════════════════════ */
+  function initHeroTextReveal() {
+    var heroTitles = document.querySelectorAll('.hero-content h1, .hero-title');
+    heroTitles.forEach(function (heroH1) {
+      if (heroH1.querySelector('.hero-line')) return; // Avoid double processing
+
+      var text = heroH1.textContent.trim();
+      /* Split by colon or period for natural line breaks */
+      var parts = text.split(/(?<=[:.]\s?)/);
+      if (parts.length < 2) {
+        /* Fallback: split roughly in half */
+        var words = text.split(' ');
+        if (words.length > 3) {
+          var mid = Math.ceil(words.length / 2);
+          parts = [words.slice(0, mid).join(' ') + ' ', words.slice(mid).join(' ')];
+        } else {
+          parts = [text];
+        }
+      }
+
+      heroH1.innerHTML = '';
+      parts.forEach(function (part) {
+        var span = document.createElement('span');
+        span.className = 'hero-line';
+        span.textContent = part;
+        heroH1.appendChild(span);
+      });
+    });
+  }
+
+  /* ═══════════════════════════════════════════
+     16. WHY US BAR — Scroll-Driven Growth
+     ═══════════════════════════════════════════ */
+  function initWhyUsBar() {
+    var bar = document.querySelector('.why-visual-bar');
+    if (!bar || !('IntersectionObserver' in window)) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          bar.classList.add('is-growing');
+          observer.unobserve(bar);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    observer.observe(bar);
+  }
+
+  /* ═══════════════════════════════════════════
+     17. SECTION PARALLAX — Subtle Depth on Scroll
+     ═══════════════════════════════════════════ */
+  function initSectionParallax() {
+    /* Apply subtle parallax to hero visual and other visual elements */
+    var heroVisual = document.querySelector('.hero-visual');
+    if (!heroVisual || window.matchMedia('(pointer: coarse)').matches) return;
+
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(function () {
+          ticking = false;
+          var scrollY = window.scrollY;
+          var windowH = window.innerHeight;
+          /* Only parallax while hero is visible */
+          if (scrollY < windowH * 1.5) {
+            var translateY = scrollY * 0.08;
+            heroVisual.style.transform = 'translateY(' + translateY + 'px)';
+          }
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
+
+  /* ═══════════════════════════════════════════
      BOOT
      ═══════════════════════════════════════════ */
   function boot() {
@@ -668,6 +835,10 @@
     initBackToTop();
     initSpotlightCards();
     initParallaxOrbs();
+    initTextHighlights();
+    initHeroTextReveal();
+    initWhyUsBar();
+    initSectionParallax();
   }
 
   if (document.readyState === 'loading') {

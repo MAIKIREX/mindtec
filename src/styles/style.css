@@ -1491,19 +1491,29 @@ p {
 .hero-proof-chip {
     position: absolute;
     z-index: 3;
-    background: rgba(255, 255, 255, 0.92);
+    background: rgba(255, 255, 255, 0.94);
     color: var(--color-secondary);
     box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
+    animation: chipFloat 4s ease-in-out infinite;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .hero-proof-chip--top {
     top: 1.25rem;
     right: 1.25rem;
+    animation-delay: 0s;
 }
 
 .hero-proof-chip--bottom {
     left: 1.25rem;
     top: 1.25rem;
+    animation-delay: 2s;
+}
+
+@keyframes chipFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
 }
 
 
@@ -1532,23 +1542,40 @@ p {
 
 .marquee-item {
     font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.35);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.55);
     white-space: nowrap;
-    letter-spacing: 2px;
+    letter-spacing: 2.5px;
     text-transform: uppercase;
     display: flex;
     align-items: center;
     gap: 1rem;
+    position: relative;
+    transition: color 400ms ease;
+}
+
+.marquee-item:hover {
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .marquee-item .dot {
-    width: 5px;
-    height: 5px;
+    width: 6px;
+    height: 6px;
     background: var(--color-primary);
     border-radius: 50%;
-    opacity: 0.6;
+    opacity: 0.8;
+    box-shadow: 0 0 8px rgba(242, 101, 34, 0.4);
+    animation: dotPulse 2.5s ease-in-out infinite;
+}
+
+.marquee-item:nth-child(odd) .dot {
+    animation-delay: 0.5s;
+}
+
+@keyframes dotPulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.6); opacity: 1; box-shadow: 0 0 14px rgba(242, 101, 34, 0.6); }
 }
 
 @keyframes marquee {
@@ -1582,7 +1609,26 @@ p {
 
 .trust-item {
     text-align: center;
-    padding: 1rem;
+    padding: 1.5rem 1rem;
+    position: relative;
+    transition: all var(--transition-base);
+}
+
+.trust-item::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), rgba(242, 101, 34, 0.3));
+    border-radius: 2px;
+    transition: transform 800ms var(--ease-spring);
+}
+
+.trust-item.is-counted::after {
+    transform: translateX(-50%) scaleX(1);
 }
 
 .trust-number {
@@ -1594,6 +1640,17 @@ p {
     line-height: 1;
     font-variant-numeric: tabular-nums;
     text-shadow: 0 0 40px rgba(242, 101, 34, 0.15);
+    transition: text-shadow 600ms ease;
+}
+
+.trust-number.counted-glow {
+    animation: counterGlow 1.2s ease-out forwards;
+}
+
+@keyframes counterGlow {
+    0% { text-shadow: 0 0 40px rgba(242, 101, 34, 0.15); }
+    40% { text-shadow: 0 0 60px rgba(242, 101, 34, 0.5), 0 0 120px rgba(242, 101, 34, 0.2); }
+    100% { text-shadow: 0 0 40px rgba(242, 101, 34, 0.15); }
 }
 
 .trust-label {
@@ -1817,6 +1874,14 @@ p {
 
 .problem-item:hover {
     transform: translateY(-3px);
+    border-color: rgba(242, 101, 34, 0.15);
+    background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(242,101,34,0.04));
+}
+
+.problem-item:hover .problem-icon {
+    background: var(--color-primary);
+    color: var(--color-white);
+    box-shadow: 0 4px 16px rgba(242, 101, 34, 0.25);
 }
 
 .problem-icon {
@@ -1871,6 +1936,22 @@ p {
     color: var(--color-text-muted);
 }
 
+/* Animated quote border on scroll entry */
+.modern-quote {
+    border-left-width: 0;
+    border-left-style: solid;
+    border-left-color: var(--color-primary);
+}
+
+.modern-quote.is-visible {
+    animation: quoteReveal 800ms var(--ease-spring) forwards;
+}
+
+@keyframes quoteReveal {
+    0% { border-left-width: 0; opacity: 0.7; transform: translateX(-20px); }
+    100% { border-left-width: 4px; opacity: 1; transform: translateX(0); }
+}
+
 /* ── 13. DIFFERENTIAL / CAPABILITIES SECTION ──────────── */
 .differential-section {
     padding: var(--spacing-xl) 0;
@@ -1896,6 +1977,12 @@ p {
     height: 100%;
     position: relative;
     overflow: hidden;
+    transition: all var(--transition-base);
+}
+
+.capability-card:hover {
+    background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(242,101,34,0.03));
+    box-shadow: var(--shadow-lg), 0 0 0 1px rgba(242, 101, 34, 0.08);
 }
 
 .capability-card::before {
@@ -1935,6 +2022,8 @@ p {
 .capability-card:hover .cap-icon {
     background: var(--color-primary);
     color: var(--color-white);
+    box-shadow: 0 8px 25px rgba(242, 101, 34, 0.3);
+    transform: translateY(-2px);
 }
 
 .capability-card h3 {
@@ -2315,6 +2404,9 @@ p {
     flex-direction: column;
     align-items: center;
     gap: 0.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: all var(--transition-base);
 }
 
 .sector-icon {
@@ -2327,6 +2419,7 @@ p {
     border-radius: var(--radius-sm);
     color: var(--color-primary);
     margin-bottom: 0.5rem;
+    transition: all var(--transition-base);
 }
 
 .sector-icon svg {
@@ -2339,6 +2432,11 @@ p {
     margin-bottom: 0.25rem;
     color: var(--color-text-dark);
     line-height: 1.3;
+    transition: color var(--transition-fast);
+}
+
+.sector-card:hover h4 {
+    color: var(--color-primary);
 }
 
 .sector-card p {
@@ -2347,6 +2445,34 @@ p {
     line-height: 1.4;
     margin: 0;
     max-width: none;
+}
+
+.sector-card:hover {
+    border-color: rgba(242, 101, 34, 0.15);
+}
+
+.sector-card:hover .sector-icon {
+    background: var(--color-primary);
+    color: var(--color-white);
+    transform: rotate(-6deg) scale(1.05);
+    box-shadow: 0 6px 20px rgba(242, 101, 34, 0.25);
+}
+
+.sector-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    transform: scaleX(0);
+    transition: transform 500ms var(--ease-spring);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.sector-card:hover::before {
+    transform: scaleX(1);
 }
 
 /* ── 17. WHY US SECTION ───────────────────────────────── */
@@ -2453,6 +2579,26 @@ p {
     height: 200%;
     background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
     pointer-events: none;
+}
+
+/* Subtle radial pulse for life */
+.cta-content-v2::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 300px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: ctaPulse 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes ctaPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+    50% { transform: translate(-50%, -50%) scale(1.4); opacity: 1; }
 }
 
 .cta-content-v2 h2,
@@ -2668,19 +2814,133 @@ p {
     transition: all 800ms var(--ease-spring);
 }
 
+/* Directional reveal variants — applied via stagger classes for variety */
+.animate-on-observe.reveal-left {
+    transform: translateX(-50px);
+    filter: blur(4px);
+}
+
+.animate-on-observe.reveal-right {
+    transform: translateX(50px);
+    filter: blur(4px);
+}
+
+.animate-on-observe.reveal-scale {
+    transform: scale(0.9);
+    filter: blur(6px);
+}
+
+.animate-on-observe.reveal-rotate {
+    transform: translateY(30px) rotate(3deg);
+    filter: blur(4px);
+}
+
+/* Must be declared after directional reveals to successfully transition transform/blur to zero when visible */
 .animate-on-observe.is-visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) translateX(0) scale(1) rotate(0deg);
     filter: blur(0);
 }
 
 /* Stagger delay classes */
 .stagger-1 { transition-delay: 0ms; }
-.stagger-2 { transition-delay: 80ms; }
-.stagger-3 { transition-delay: 160ms; }
-.stagger-4 { transition-delay: 240ms; }
-.stagger-5 { transition-delay: 320ms; }
-.stagger-6 { transition-delay: 400ms; }
+.stagger-2 { transition-delay: 100ms; }
+.stagger-3 { transition-delay: 200ms; }
+.stagger-4 { transition-delay: 300ms; }
+.stagger-5 { transition-delay: 400ms; }
+.stagger-6 { transition-delay: 500ms; }
+
+/* ── TEXT HIGHLIGHT SYSTEM ────────────────────────────── */
+.text-highlight-mark {
+    position: relative;
+    color: var(--color-text-dark);
+    font-weight: 700;
+    background: linear-gradient(120deg, rgba(242, 101, 34, 0.12) 0%, rgba(242, 101, 34, 0.08) 100%);
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    padding: 0.05em 0.2em;
+    margin: 0 -0.1em;
+    border-radius: 3px;
+    transition: background-size 800ms var(--ease-out-expo);
+    text-decoration: none;
+    display: inline;
+}
+
+.text-highlight-mark.is-visible {
+    background-size: 100% 100%;
+}
+
+/* Dark background variant */
+.offer-section .text-highlight-mark,
+.cta-section-modern .text-highlight-mark {
+    color: var(--color-white);
+    background: linear-gradient(120deg, rgba(242, 101, 34, 0.3) 0%, rgba(242, 101, 34, 0.15) 100%);
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+}
+
+.offer-section .text-highlight-mark.is-visible,
+.cta-section-modern .text-highlight-mark.is-visible {
+    background-size: 100% 100%;
+}
+
+/* ── HERO TEXT REVEAL ────────────────────────────────── */
+.hero-line {
+    display: block;
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(4px);
+    animation: heroLineReveal 900ms var(--ease-spring) forwards;
+}
+
+.hero-line:nth-child(1) { animation-delay: 200ms; }
+.hero-line:nth-child(2) { animation-delay: 400ms; }
+.hero-line:nth-child(3) { animation-delay: 600ms; }
+
+@keyframes heroLineReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+        filter: blur(4px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* Hero eyebrow entrance */
+.hero-content .eyebrow {
+    animation: eyebrowReveal 600ms var(--ease-spring) 100ms both;
+}
+
+@keyframes eyebrowReveal {
+    0% { opacity: 0; transform: translateY(15px) scale(0.95); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Hero subtitle stagger */
+.hero-subtitle {
+    animation: heroLineReveal 900ms var(--ease-spring) 700ms both;
+}
+
+.hero-buttons {
+    animation: heroLineReveal 900ms var(--ease-spring) 900ms both;
+}
+
+/* Why Us bar scroll animation */
+.why-visual-bar {
+    height: 0;
+    transition: height 1200ms var(--ease-spring);
+    will-change: height;
+}
+
+.why-visual-bar.is-growing {
+    height: 100%;
+}
 
 /* ── 23. PREMIUM UTILITY CLASSES ──────────────────────── */
 .premium-section-padding {
