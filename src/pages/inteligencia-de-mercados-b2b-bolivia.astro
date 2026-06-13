@@ -1,0 +1,341 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
+
+const title = "Inteligencia de Mercados B2B en Bolivia | MindTEC";
+const description = "Inteligencia de mercados B2B en Bolivia: de los reportes teóricos a la toma de decisiones estratégicas. Para gerentes y directorios con visión de crecimiento.";
+---
+
+<Layout
+  title={title}
+  description={description}
+  headerLightBg={false}
+  canonicalUrl="/inteligencia-de-mercados-b2b-bolivia"
+>
+  <script type="application/ld+json" slot="head">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": "https://www.mindtecbolivia.com/inteligencia-de-mercados-b2b-bolivia",
+        "name": "Inteligencia de Mercados B2B en Bolivia — MindTEC",
+        "description": "Servicio de Market Intelligence B2B para comités de dirección y gerencia general. Información analítica accionable y de competencia en Bolivia.",
+        "provider": {
+          "@type": "Organization",
+          "name": "MindTEC Bolivia",
+          "url": "https://www.mindtecbolivia.com"
+        },
+        "areaServed": {"@type": "Country", "name": "Bolivia"},
+        "serviceType": "Market Intelligence B2B / Consultoría Estratégica",
+        "url": "https://www.mindtecbolivia.com/inteligencia-de-mercados-b2b-bolivia"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Cuál es la diferencia entre investigación de mercados tradicional y Market Intelligence B2B?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "La investigación tradicional es descriptiva e histórica (nos dice qué pasó en el mercado). El Market Intelligence B2B es prescriptivo e interactivo: combina datos históricos, análisis de competencia en tiempo real, tendencias y simulaciones de escenarios comerciales para indicar qué acción tomar a continuación y reducir el riesgo estratégico ante el Directorio."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Para qué perfiles directivos está diseñado este servicio?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Está diseñado específicamente para Gerentes Generales, Directores de Finanzas, Directores Comerciales y miembros de Directorios que deben justificar inversiones de capital (CAPEX) elevadas, autorizar aperturas de mercado, fusiones, compras de competencia o cambios de posicionamiento de marca."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Qué tipo de entregables incluye el servicio de Inteligencia B2B de MindTEC?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Olvídese de informes teóricos de 200 páginas. Entregamos un Dashboard Ejecutivo Dinámico con las variables clave de decisión, un Brief de Riesgo de máximo 3 páginas y una sesión de alineación estratégica con consultores para discutir las implicaciones de negocio."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.mindtecbolivia.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Servicios", "item": "https://www.mindtecbolivia.com/servicios"},
+          {"@type": "ListItem", "position": 3, "name": "Inteligencia de Mercados B2B Bolivia", "item": "https://www.mindtecbolivia.com/inteligencia-de-mercados-b2b-bolivia"}
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <main>
+    <!-- 1. HERO -->
+    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
+      <div class="hero-shapes" aria-hidden="true">
+        <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
+        <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
+        <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+      </div>
+      <div class="hero-mobile-canvas" id="hero-mobile-canvas" aria-hidden="true"></div>
+      <div class="container hero-container">
+        <div class="hero-content">
+          <span class="eyebrow fade-in">INTELIGENCIA ESTRATÉGICA DE NEGOCIOS</span>
+          <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;">
+            Inteligencia de Mercados B2B — Datos que defienden decisiones en el Directorio.
+          </h1>
+          <p class="hero-subtitle" style="font-size: 1.25rem; margin-bottom: 1.5rem; max-width: 800px;">
+            Deje atrás los reportes académicos e históricos. Construimos modelos de Inteligencia Competitiva accionables para gerentes y comités directivos en Bolivia.
+          </p>
+          <p style="font-size: 1.05rem; color: rgba(255,255,255,0.75); max-width: 800px; margin-bottom: 2.5rem;">
+            No medimos por curiosidad intelectual. Mapeamos competidores, barreras reales de entrada y elasticidad comercial para proteger sus márgenes financieros y acelerar el retorno de inversión.
+          </p>
+          <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2.5rem;">
+            <span style="background: rgba(242,101,34,0.25); border: 1px solid rgba(242,101,34,0.5); color: var(--color-primary); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700;">Enfoque en Toma de Decisiones</span>
+            <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Dashboards Ejecutivos</span>
+            <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Eje Troncal e Interiores</span>
+          </div>
+          <a href="/contacto" class="btn btn-primary lg">Agendar sesión estratégica de diagnóstico →</a>
+        </div>
+        <div class="hero-visual">
+          <div class="glass-card main-visual">
+            <div class="neuro-visual-bg" style="background-image: url('/service_intelligence_premium_1771034174670.webp');"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. EL PROBLEMA (MAIDER TOMASENA STYLE: PAIN POINT AMPLIFICATION) -->
+    <section class="problem-section bg-slate" style="padding: 5rem 0;">
+      <div class="container">
+        <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
+          <span class="eyebrow">EL DIAGNÓSTICO HONESTO</span>
+          <h2 class="text-navy" style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;">¿Cuánto cuesta un reporte de mercado de 200 páginas que nadie lee?</h2>
+          <p class="text-gray-dark leading-relaxed" style="font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.7;">
+            El mayor pecado de la investigación tradicional en Bolivia es la <strong>teorización desconectada del negocio</strong>. Es común recibir documentos llenos de datos censales desactualizados, metodologías complejas explicadas en jerga inaccesible y ninguna recomendación comercial clara. El consultor cobra, entrega el PDF y su equipo directivo sigue con la misma incertidumbre.
+          </p>
+          <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.7;">
+            Cuando la Gerencia General o el Directorio debe decidir si inyectar capital en una nueva línea o adquirir un competidor local, no necesita saber cuántos habitantes tiene una ciudad; necesita saber:
+          </p>
+          <ul class="cap-list" style="font-size: 1.05rem; margin-bottom: 2rem;">
+            <li><strong class="text-navy">¿Cuál es el margen real del canal tradicional frente a la cadena formal en el eje troncal?</strong> Evite suponer y empiece a mapear la cadena de distribución con certeza.</li>
+            <li><strong class="text-navy">¿Qué porcentaje de la participación de mercado de su competidor es vulnerable hoy?</strong> Localice los puntos ciegos en la ejecución de la competencia.</li>
+            <li><strong class="text-navy">¿Cuál es el umbral de dolor del precio antes de provocar una migración masiva de clientes?</strong> Proteja su rentabilidad con simulaciones de elasticidad.</li>
+          </ul>
+          <div style="background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: 8px; font-weight: 600; font-size: 1.1rem; text-align: center;">
+            La investigación tradicional describe el pasado. El Market Intelligence B2B prescribe el futuro inmediato de su negocio.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. COMPARATIVA (VILMA NUÑEZ STYLE: LOGICAL COMPARATIVE MATRIX) -->
+    <section style="padding: 5rem 0; background: #fff;">
+      <div class="container">
+        <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
+          <span class="eyebrow">DIFERENCIA METODOLÓGICA</span>
+          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;">Por qué la Inteligencia de Mercados no es Investigación Convencional</h2>
+        </div>
+        <div class="comparison-table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th scope="col">Investigación Académica / Tradicional</th>
+                <th scope="col">Inteligencia de Mercados B2B MindTEC</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>PDF estático de 150 páginas difícil de digerir y consultar</td>
+                <td>Dashboard ejecutivo interactivo para filtrar datos en segundos</td>
+              </tr>
+              <tr>
+                <td>Datos puramente históricos (una fotografía del año pasado)</td>
+                <td>Monitorización de competencia y tendencias comerciales dinámicas</td>
+              </tr>
+              <tr>
+                <td>Enfoque declarativo (el consumidor dice lo que quiere aparentar)</td>
+                <td>Validación cruzada con modelos de compra reales y biometría</td>
+              </tr>
+              <tr>
+                <td>Presentación formal de gráficos de barras sin dirección comercial</td>
+                <td>Brief ejecutivo de riesgos y hoja de ruta con recomendaciones prioritarias</td>
+              </tr>
+              <tr>
+                <td>Diseñado por y para metodólogos académicos</td>
+                <td>Diseñado para comités de finanzas, marketing y juntas directivas</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. A QUIÉN LE SIRVE (B2B TARGET) -->
+    <section style="padding: 5rem 0; background: var(--color-accent);">
+      <div class="container">
+        <div class="section-title-center" style="text-align: center; margin-bottom: 4rem;">
+          <span class="eyebrow">TOMA DE DECISIONES</span>
+          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2;">¿Quién utiliza el Market Intelligence de MindTEC?</h2>
+          <p class="text-gray-dark" style="font-size: 1.1rem; max-width: 700px; margin: 0 auto; margin-top: 1rem;">
+            La información no es poder por sí misma. Es poder cuando reduce el riesgo financiero de quienes tienen la responsabilidad legal y operativa de la firma.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
+          <div class="premium-card-white" style="padding: 3rem; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span style="font-weight: 800; color: var(--color-primary); font-size: 1.25rem; display: block; margin-bottom: 1rem;">Gerentes Generales y CEOs</span>
+              <p style="font-size: 1rem; color: #475569; line-height: 1.7;">
+                Para validar planes de expansión geográfica en Bolivia (La Paz, Santa Cruz, Cochabamba), justificar fusiones o autorizar adquisiciones con datos de viabilidad neta que protejan la caja corporativa.
+              </p>
+            </div>
+          </div>
+
+          <div class="premium-card-white" style="padding: 3rem; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span style="font-weight: 800; color: var(--color-primary); font-size: 1.25rem; display: block; margin-bottom: 1rem;">Juntas Directivas y Directorios</span>
+              <p style="font-size: 1rem; color: #475569; line-height: 1.7;">
+                Para contar con una contraparte científica e independiente que evalúe las proyecciones del equipo de ventas interno antes de comprometer CAPEX significativo.
+              </p>
+            </div>
+          </div>
+
+          <div class="premium-card-white" style="padding: 3rem; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <span style="font-weight: 800; color: var(--color-primary); font-size: 1.25rem; display: block; margin-bottom: 1rem;">Directores Comerciales y Financieros</span>
+              <p style="font-size: 1rem; color: #475569; line-height: 1.7;">
+                Para ajustar estructuras de precios por canal sin generar rupturas en el volumen de ventas, detectando la elasticidad real de la demanda por zona y tipo de distribuidor.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. ENTREGABLES DE VALOR (VILMA NUÑEZ STYLE: FRAMEWORK OF DELIVERABLES) -->
+    <section style="padding: 5rem 0; background: #fff;">
+      <div class="container">
+        <div class="section-title-center" style="text-align: center; margin-bottom: 4rem;">
+          <span class="eyebrow">LOS ENTREGABLES</span>
+          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2;">Lo que recibe la Dirección General en su escritorio</h2>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          <div class="premium-card-white" style="padding: 2rem; border-top: 4px solid var(--color-primary);">
+            <h4 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem; font-weight: 700;">Dashboard de Control de Mercado</h4>
+            <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.6;">Interfaz interactiva donde puede realizar simulaciones de cambios de precios, filtros geográficos inmediatos y segmentación en tiempo real.</p>
+          </div>
+
+          <div class="premium-card-white" style="padding: 2rem; border-top: 4px solid var(--color-primary);">
+            <h4 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem; font-weight: 700;">Brief de Riesgo y Oportunidad B2B</h4>
+            <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.6;">Un informe ejecutivo concentrado de 3 páginas diseñado para leer en 15 minutos. Sin paja científica, directo a las decisiones críticas.</p>
+          </div>
+
+          <div class="premium-card-white" style="padding: 2rem; border-top: 4px solid var(--color-primary);">
+            <h4 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem; font-weight: 700;">Matriz de Posicionamiento Competitivo</h4>
+            <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.6;">Mapa de debilidades de los 3 competidores más importantes del país con el plan de ataque comercial recomendado para su marca.</p>
+          </div>
+
+          <div class="premium-card-white" style="padding: 2rem; border-top: 4px solid var(--color-primary);">
+            <h4 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem; font-weight: 700;">Sesión Presencial o Remota de Alineación</h4>
+            <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.6;">Presentación interactiva ante su Directorio para resolver objeciones, profundizar en hallazgos complejos y definir los siguientes pasos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. FAQ -->
+    <section style="padding: 5rem 0; background: #f8fafc;">
+      <div class="container" style="max-width: 800px;">
+        <div style="text-align: center; margin-bottom: 3rem;">
+          <span class="eyebrow">RESOLVIENDO DUDAS</span>
+          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Preguntas de negocio recurrentes</h2>
+        </div>
+        <dl style="display: flex; flex-direction: column; gap: 1rem;">
+          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
+            <dt>
+              <button aria-expanded="false" aria-controls="faq-b2b-1" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                ¿Cuál es la diferencia entre investigación de mercados tradicional y Market Intelligence B2B?
+                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
+              </button>
+            </dt>
+            <dd id="faq-b2b-1" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
+              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">La investigación tradicional es descriptiva e histórica (nos dice qué pasó en el mercado). El Market Intelligence B2B es prescriptivo e interactivo: combina datos históricos, análisis de competencia en tiempo real, tendencias y simulaciones de escenarios comerciales para indicar qué acción tomar a continuación y reducir el riesgo estratégico ante el Directorio.</p>
+            </dd>
+          </div>
+
+          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
+            <dt>
+              <button aria-expanded="false" aria-controls="faq-b2b-2" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                ¿Para qué perfiles directivos está diseñado este servicio?
+                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
+              </button>
+            </dt>
+            <dd id="faq-b2b-2" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
+              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Está diseñado específicamente para Gerentes Generales, Directores de Finanzas, Directores Comerciales y miembros de Directorios que deben justificar inversiones de capital (CAPEX) elevadas, autorizar aperturas de mercado, fusiones, compras de competencia o cambios de posicionamiento de marca.</p>
+            </dd>
+          </div>
+
+          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
+            <dt>
+              <button aria-expanded="false" aria-controls="faq-b2b-3" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                ¿Qué tipo de entregables incluye el servicio de Inteligencia B2B de MindTEC?
+                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
+              </button>
+            </dt>
+            <dd id="faq-b2b-3" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
+              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Olvídese de informes teóricos de 200 páginas. Entregamos un Dashboard Ejecutivo Dinámico con las variables clave de decisión, un Brief de Riesgo de máximo 3 páginas y una sesión de alineación estratégica con consultores para discutir las implicaciones de negocio.</p>
+            </dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <!-- 7. FINAL B2B CTA -->
+    <section class="cta-section-modern" style="padding: 6rem 0;">
+      <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <div class="cta-content-v2">
+          <h2 style="font-size: 2.8rem; line-height: 1.25; margin-bottom: 1.5rem;">Respalde su plan comercial con datos defendibles ante su Directorio.</h2>
+          <p class="cta-subtitle" style="font-size: 1.2rem; margin-bottom: 2.5rem; opacity: 0.9;">
+            Analizamos la viabilidad neta de su plan de mercado en 45 minutos. Descubra si contamos con un diseño metodológico óptimo para su reto de negocio.
+          </p>
+          <div class="cta-actions" style="justify-content: center; flex-direction: column; align-items: center;">
+            <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar diagnóstico estratégico (45 min) →</a>
+            <p style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">Sesión estratégica sin cargo para directivos corporativos en Bolivia.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BREADCRUMB -->
+    <nav aria-label="Breadcrumb" class="breadcrumb-bottom">
+      <div class="container">
+        <ol>
+          <li><a href="/" style="color: rgba(255,255,255,0.6); text-decoration: none;">Inicio</a></li>
+          <li style="color: rgba(255,255,255,0.3);">›</li>
+          <li><a href="/servicios" style="color: rgba(255,255,255,0.6); text-decoration: none;">Servicios</a></li>
+          <li style="color: rgba(255,255,255,0.3);">›</li>
+          <li aria-current="page" style="color: #fff; font-weight: 600;">Inteligencia de Mercados B2B</li>
+        </ol>
+      </div>
+    </nav>
+  </main>
+
+  <script>
+    document.querySelectorAll('dt button[aria-expanded]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const ddId = btn.getAttribute('aria-controls');
+        const dd = document.getElementById(ddId);
+        const expandido = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', expandido ? 'false' : 'true');
+        const icon = btn.querySelector('span[aria-hidden]');
+        if (icon) icon.textContent = expandido ? '+' : '−';
+        if (dd) dd.hidden = expandido;
+      });
+    });
+  </script>
+</Layout>

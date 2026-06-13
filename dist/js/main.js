@@ -227,41 +227,77 @@
     overlay.appendChild(inner);
     document.body.appendChild(overlay);
 
-    // Clone links
-    var links = nav.querySelectorAll('a:not(.btn), .dropdown-toggle');
-    links.forEach(function (link) {
-      var clone = document.createElement('a');
-      clone.className = 'nav-overlay-link';
-      clone.textContent = link.textContent.replace('▾', '').trim();
-      clone.href = link.href || '#';
-      clone.addEventListener('click', close);
-      inner.appendChild(clone);
-    });
+    // Clone navigation elements in order
+    var navChildren = nav.children;
+    Array.prototype.forEach.call(navChildren, function (item) {
+      if (item.classList.contains('dropdown')) {
+        // Create collapsible mobile container
+        var dropdownContainer = document.createElement('div');
+        dropdownContainer.className = 'mobile-dropdown-container';
 
-    // Clone dropdown items
-    var dropdownItems = nav.querySelectorAll('.dropdown-content a');
-    dropdownItems.forEach(function (link) {
-      var clone = document.createElement('a');
-      clone.className = 'nav-overlay-link';
-      clone.textContent = link.textContent.trim();
-      clone.href = link.href || '#';
-      clone.style.fontSize = 'clamp(1rem, 2.5vw, 1.5rem)';
-      clone.style.opacity = '0.7';
-      clone.addEventListener('click', close);
-      inner.appendChild(clone);
-    });
+        // Toggle button
+        var toggle = document.createElement('button');
+        toggle.className = 'nav-overlay-link mobile-dropdown-toggle';
+        toggle.innerHTML = 'Soluciones <span class="arrow">▾</span>';
+        dropdownContainer.appendChild(toggle);
 
-    // Contact button
-    var contactLink = nav.querySelector('.btn');
-    if (contactLink) {
-      var btnClone = document.createElement('a');
-      btnClone.className = 'nav-overlay-link';
-      btnClone.textContent = contactLink.textContent.trim();
-      btnClone.href = contactLink.href || '#';
-      btnClone.style.color = 'var(--color-primary)';
-      btnClone.addEventListener('click', close);
-      inner.appendChild(btnClone);
-    }
+        // Content wrapper (accordion body)
+        var content = document.createElement('div');
+        content.className = 'mobile-dropdown-content';
+
+        // Clone desktop mega menu columns into the mobile content wrapper
+        var cols = item.querySelectorAll('.mega-menu-col');
+        cols.forEach(function (col) {
+          var mobileCol = document.createElement('div');
+          mobileCol.className = 'mobile-mega-col';
+
+          var title = col.querySelector('.mega-menu-title');
+          if (title) {
+            var colTitle = document.createElement('div');
+            colTitle.className = 'mobile-mega-title';
+            colTitle.textContent = title.textContent;
+            mobileCol.appendChild(colTitle);
+          }
+
+          var links = col.querySelectorAll('a');
+          links.forEach(function (link) {
+            var mobileLink = document.createElement('a');
+            mobileLink.className = 'mobile-mega-link';
+            mobileLink.textContent = link.textContent.trim();
+            mobileLink.href = link.href || '#';
+            mobileLink.addEventListener('click', close);
+            mobileCol.appendChild(mobileLink);
+          });
+
+          content.appendChild(mobileCol);
+        });
+
+        dropdownContainer.appendChild(content);
+        inner.appendChild(dropdownContainer);
+
+        // Toggle action
+        toggle.addEventListener('click', function () {
+          var isOpen = dropdownContainer.classList.contains('active');
+          if (isOpen) {
+            dropdownContainer.classList.remove('active');
+            content.style.maxHeight = null;
+          } else {
+            dropdownContainer.classList.add('active');
+            content.style.maxHeight = content.scrollHeight + 'px';
+          }
+        });
+      } else if (item.tagName === 'A') {
+        var clone = document.createElement('a');
+        clone.className = item.classList.contains('btn') ? 'nav-overlay-link btn-mobile' : 'nav-overlay-link';
+        clone.textContent = item.textContent.trim();
+        clone.href = item.href || '#';
+        if (item.classList.contains('btn')) {
+          clone.style.color = 'var(--color-primary)';
+        }
+        clone.addEventListener('click', close);
+        inner.appendChild(clone);
+      }
+    });
 
     function open() {
       hamburger.classList.add('active');
@@ -273,6 +309,13 @@
       hamburger.classList.remove('active');
       overlay.classList.remove('active');
       document.body.style.overflow = '';
+      
+      var dropdownContainer = inner.querySelector('.mobile-dropdown-container');
+      var content = inner.querySelector('.mobile-dropdown-content');
+      if (dropdownContainer && content) {
+        dropdownContainer.classList.remove('active');
+        content.style.maxHeight = null;
+      }
     }
 
     hamburger.addEventListener('click', function () {

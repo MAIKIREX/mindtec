@@ -19,19 +19,20 @@ const {
   canonicalUrl,
 } = Astro.props;
 
-// Canonical URL: resuelve a URL absoluta para evitar canonicals relativas
+// Determine active state for navigation links
+const pathname = new URL(Astro.request.url).pathname;
+const isWitmind = pathname.includes('witmind-consulting');
+
+// Canonical URL: resuelve a URL absoluta para evitar canonicals relativas y locales
 const canonical = canonicalUrl
   ? new URL(canonicalUrl, Astro.site).toString()
-  : Astro.url.href;
+  : new URL(pathname, Astro.site).toString();
 
 // OG Image: usa la prop si existe, sino el logo por defecto
 const ogImageUrl = ogImage
   ? new URL(ogImage, Astro.site).toString()
   : new URL('/logo-mindtec.webp', Astro.site).toString();
 
-// Determine active state for navigation links
-const pathname = new URL(Astro.request.url).pathname;
-const isWitmind = pathname.includes('witmind-consulting');
 const isCurrent = (path: string) => {
   const normPath = path.replace(/^\/|\/$/g, '');
   const normCurrent = pathname.replace(/^\/|\/$/g, '');
@@ -86,6 +87,68 @@ const isCurrent = (path: string) => {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
+    <!-- Schema LocalBusiness (ProfessionalService) for Local SEO in Bolivia -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Mindtec Bolivia",
+        "legalName": "Mindtec Neuromarketing & Consulting",
+        "image": "https://www.mindtecbolivia.com/logos/logo-mindtec-horizontal-para-fondo-oscuro.webp",
+        "logo": "https://www.mindtecbolivia.com/logo-mindtec.webp",
+        "url": "https://www.mindtecbolivia.com",
+        "telephone": "+59178955329",
+        "email": "info@mindtecbolivia.com",
+        "priceRange": "$$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Calle 8 de Calacoto esquina Costanera #8330",
+          "addressLocality": "La Paz",
+          "addressRegion": "La Paz",
+          "addressCountry": "BO"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": -16.5417,
+          "longitude": -68.0847
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+          ],
+          "opens": "08:30",
+          "closes": "18:00"
+        },
+        "areaServed": [
+          {
+            "@type": "AdministrativeArea",
+            "name": "Bolivia"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "La Paz"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Santa Cruz"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "Cochabamba"
+          },
+          {
+            "@type": "AdministrativeArea",
+            "name": "El Alto"
+          }
+        ]
+      }
+    </script>
+
     <!-- Slot for page-specific head content (JSON-LD, etc.) -->
     <slot name="head" />
 </head>
@@ -119,18 +182,35 @@ const isCurrent = (path: string) => {
                         <a href="/servicios" class={isCurrent('servicios') ? 'active' : ''}>Servicios</a>
                         <div class="dropdown">
                             <a href="javascript:void(0)" class="dropdown-toggle">Soluciones ▾</a>
-                            <div class="dropdown-content">
-                                <a href="/estudio-de-mercado-bolivia">Estudio de mercado en Bolivia</a>
-                                <a href="/estudio-de-precios-bolivia">Estudio de precios</a>
-                                <a href="/percepcion-de-marca-bolivia">Estudio de percepción de marca</a>
-                                <a href="/auditoria-retail-bolivia">Auditoría retail en Bolivia</a>
-                                <a href="/neuromarketing-bolivia">Neuromarketing en Bolivia</a>
-                                <a href="/cliente-misterioso-bolivia">Cliente Misterioso en Bolivia</a>
-                                <a href="/focus-group-bolivia">Focus Group en Bolivia</a>
-                                <a href="/benchmarking-competitivo-bolivia">Benchmarking Competitivo</a>
-                                <a href="/shopper-insights-bolivia">Shopper Insights</a>
-                                <a href="/investigacion-cuantitativa-bolivia">Investigación Cuantitativa</a>
-                                <a href="/investigacion-cualitativa-bolivia">Investigación Cualitativa</a>
+                            <div class="dropdown-content mega-menu">
+                                <div class="mega-menu-col">
+                                    <span class="mega-menu-title">Metodología y Ciencia</span>
+                                    <div class="mega-menu-links">
+                                        <a href="/investigacion-cualitativa-bolivia">Investigación Cualitativa</a>
+                                        <a href="/investigacion-cuantitativa-bolivia">Investigación Cuantitativa</a>
+                                        <a href="/focus-group-bolivia">Focus Group en Bolivia</a>
+                                        <a href="/neuromarketing-para-empresas-bolivia">Neuromarketing para Empresas</a>
+                                    </div>
+                                </div>
+                                <div class="mega-menu-col">
+                                    <span class="mega-menu-title">Inteligencia y Estrategia</span>
+                                    <div class="mega-menu-links">
+                                        <a href="/inteligencia-de-mercados-b2b-bolivia">Inteligencia de Mercados B2B</a>
+                                        <a href="/estudio-de-mercado-bolivia">Estudio de mercado en Bolivia</a>
+                                        <a href="/estudio-de-precios-bolivia">Estudio de precios</a>
+                                        <a href="/percepcion-de-marca-bolivia">Estudio de percepción de marca</a>
+                                        <a href="/benchmarking-competitivo-bolivia">Benchmarking Competitivo</a>
+                                    </div>
+                                </div>
+                                <div class="mega-menu-col">
+                                    <span class="mega-menu-title">Retail y Punto de Venta</span>
+                                    <div class="mega-menu-links">
+                                        <a href="/auditoria-retail-bolivia">Auditoría retail en Bolivia</a>
+                                        <a href="/cliente-misterioso-bolivia">Cliente Misterioso en Bolivia</a>
+                                        <a href="/shopper-insights-bolivia">Shopper Insights</a>
+                                        <a href="/neuromarketing-bolivia">Neuromarketing en Bolivia</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <a href="/metodologia" class={isCurrent('metodologia') ? 'active' : ''}>Metodología</a>
@@ -165,16 +245,19 @@ const isCurrent = (path: string) => {
                     <li><a href="/metodologia">Metodología</a></li>
                     <li><a href="/firma">La Firma</a></li>
                     <li><a href="/blog">Insights y Blog</a></li>
+                    <li><a href="/comportamiento-consumidor-boliviano">Comportamiento del Consumidor</a></li>
                 </ul>
             </div>
             <div class="footer-col links">
                 <h4>Soluciones Mindtec</h4>
                 <ul>
                     <li><a href="/estudio-de-mercado-bolivia">Estudio de mercado en Bolivia</a></li>
+                    <li><a href="/inteligencia-de-mercados-b2b-bolivia">Inteligencia de Mercados B2B</a></li>
                     <li><a href="/estudio-de-precios-bolivia">Estudio de precios</a></li>
                     <li><a href="/percepcion-de-marca-bolivia">Estudio de percepción de marca</a></li>
                     <li><a href="/auditoria-retail-bolivia">Auditoría retail en Bolivia</a></li>
                     <li><a href="/neuromarketing-bolivia">Neuromarketing en Bolivia</a></li>
+                    <li><a href="/neuromarketing-para-empresas-bolivia">Neuromarketing para Empresas</a></li>
                     <li><a href="/cliente-misterioso-bolivia">Cliente Misterioso en Bolivia</a></li>
                     <li><a href="/focus-group-bolivia">Focus Group en Bolivia</a></li>
                     <li><a href="/benchmarking-competitivo-bolivia">Benchmarking Competitivo</a></li>

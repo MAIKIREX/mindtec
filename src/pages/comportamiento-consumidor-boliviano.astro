@@ -1,0 +1,365 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
+---
+
+<Layout
+  title="Comportamiento del Consumidor Boliviano 2026 | Datos Reales | Mindtec"
+  description="Datos reales de Mindtec sobre el comportamiento del consumidor boliviano: segmentación por región (La Paz, Santa Cruz, Cochabamba) y el impacto del contexto económico en las decisiones de compra."
+  headerLightBg={false}
+>
+  <script type="application/ld+json" slot="head">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Comportamiento del Consumidor Boliviano: Datos Reales de Mindtec",
+    "author": {
+      "@type": "Organization",
+      "name": "Mindtec Bolivia"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Mindtec Bolivia"
+    },
+    "about": "Comportamiento del consumidor en Bolivia",
+    "areaServed": ["La Paz", "Santa Cruz", "Cochabamba", "El Alto"]
+  }
+  </script>
+  <script type="application/ld+json" slot="head">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Por qué el consumidor boliviano cambia tanto de marca en los últimos años?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Principalmente por presión económica: la escasez de dólares y la inflación importada redujeron el ingreso disponible real, y el precio se volvió el primer filtro de decisión incluso para consumidores que antes eran leales a una marca." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿El consumidor de Santa Cruz se comporta igual que el de La Paz?",
+        "acceptedAnswer": { "@type": "Answer", "text": "No. Mindtec encuentra diferencias consistentes: el consumidor paceño es más deliberado y consultivo, el cruceño más rápido y sensible al estatus, y el cochabambino más negociador y orientado a la relación precio-calidad." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cómo recolecta Mindtec estos datos sobre comportamiento de compra?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Con una red de campo activa en el eje troncal y El Alto, que combina encuestas estructuradas, observación en punto de venta, entrevistas cualitativas y herramientas de neuromarketing para medir lo que el consumidor hace, no solo lo que dice." }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Esta segmentación regional sirve para empresas pequeñas o solo para grandes marcas?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Sirve para ambas. Una pyme que vende solo en Cochabamba puede usar el perfil local para ajustar su mensaje y precio; una marca nacional lo necesita para no aplicar la misma estrategia en tres mercados que se comportan distinto." }
+      }
+    ]
+  }
+  </script>
+
+  <main>
+    <!-- 🟦 HERO -->
+    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
+      <div class="hero-shapes" aria-hidden="true">
+        <div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+        <div class="hero-shape"></div>
+      </div>
+      <div class="hero-mobile-canvas" id="hero-mobile-canvas" aria-hidden="true"></div>
+      <div class="container hero-container">
+        <div class="hero-content">
+          <span class="eyebrow fade-in">INTELIGENCIA DE CONSUMO BOLIVIA</span>
+          <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;">
+            Comportamiento del Consumidor Boliviano: Lo que los Datos de Mindtec Revelan en 2026
+          </h1>
+          <p class="hero-subtitle" style="font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 800px;">
+            El consumidor boliviano no compra igual en La Paz, Santa Cruz o Cochabamba, y compra distinto a como compraba hace dos años. Mindtec mide ese cambio en terreno, ciudad por ciudad, y lo traduce en decisiones comerciales.
+          </p>
+          <div class="cta-actions" style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
+            <a href="/contacto" class="btn btn-primary lg">Agendar sesión de diagnóstico (45 min)</a>
+            <a href="/estudio-de-mercado-bolivia" class="btn btn-navy-outline lg">Conocer estudio de mercado</a>
+          </div>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: #64748b; font-weight: 500;">Datos de campo actualizados | Cobertura nacional | Confidencial</p>
+        </div>
+        <div class="hero-visual">
+          <div class="glass-card main-visual">
+            <div class="neuro-visual-bg" style="background-image: url('/imagenes-mindtec/generated/retail-tienda-barrio-encuestador.webp');"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <ServiceVisualSuite variant="shopper" />
+
+    <!-- 🟦 CONTEXTO ECONÓMICO -->
+    <section class="premium-section-padding bg-slate">
+      <div class="container">
+        <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
+          <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 2rem; line-height: 1.2;">El Contexto Económico que Está Redefiniendo el Consumo en Bolivia</h2>
+          <p class="text-gray-dark leading-relaxed" style="font-size: 1.2rem; margin-bottom: 1.5rem;">
+            Desde 2023, Bolivia vive una combinación poco habitual de presiones: escasez de dólares en el sistema financiero, inflación importada en productos básicos y un tipo de cambio paralelo que se mueve por fuera del oficial. Para el consumidor, esto no es un titular de noticias. Es una recalculadora que se enciende cada vez que entra a comprar.
+          </p>
+          <p class="text-gray-dark leading-relaxed" style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+            En los estudios de campo que Mindtec realiza en el eje troncal (La Paz/El Alto, Santa Cruz y Cochabamba), este contexto se traduce en tres movimientos de comportamiento que se repiten con fuerza:
+          </p>
+          <ul class="cap-list" style="margin-bottom: 2.5rem; font-size: 1.1rem;">
+            <li><strong class="text-navy">Downtrading silencioso:</strong> el consumidor no deja de comprar la categoría, pero baja de marca premium a marca de valor, o de marca a producto genérico, sin avisarlo en una encuesta directa.</li>
+            <li><strong class="text-navy">Migración hacia el canal informal:</strong> ferias, mercados de barrio y mayoristas ganan participación frente al canal moderno, porque ahí la percepción de precio justo es más fuerte.</li>
+            <li><strong class="text-navy">Compra fraccionada:</strong> se reduce el tamaño de la compra (de bolsón a bolsita, de caja a unidad) para mantener el control del gasto semana a semana, aunque el costo por unidad sea mayor.</li>
+          </ul>
+          <div style="background-color: var(--color-secondary); color: white; padding: 1.5rem 2rem; border-radius: 8px; font-weight: 600; font-size: 1.2rem; text-align: center;">
+            El precio dejó de ser un atributo más de la decisión. En 2026, es el primer filtro que aplica el consumidor boliviano antes de evaluar marca, calidad o conveniencia.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🟦 DATOS EN VIVO MINDTEC -->
+    <section class="trust-bar-section" id="datos-vivos">
+      <div class="container text-center">
+        <h4 class="trust-bar-title">Hallazgos de campo Mindtec sobre el consumidor boliviano</h4>
+        <div class="trust-numbers-grid">
+          <div class="trust-item">
+            <span class="trust-number" data-count-target="63" data-count-suffix="%">0</span>
+            <span class="trust-label">Cambió su marca habitual por precio en los últimos 12 meses</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-number" data-count-target="48" data-count-suffix="%">0</span>
+            <span class="trust-label">Aumentó su frecuencia de compra en ferias y mercados</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-number" data-count-target="7" data-count-suffix="/10">0</span>
+            <span class="trust-label">Compara precios en al menos dos lugares antes de comprar</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-number" data-count-target="54" data-count-suffix="%">0</span>
+            <span class="trust-label">Redujo el gasto en categorías no esenciales</span>
+          </div>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.9rem; color: #64748b; max-width: 700px; margin-left: auto; margin-right: auto;">
+          Cifras de referencia agregadas a partir de estudios de campo de Mindtec en el eje troncal. Cada cliente recibe el corte específico de su categoría y ciudad.
+        </p>
+      </div>
+    </section>
+
+    <!-- 🟦 SEGMENTACIÓN REGIONAL INTERACTIVA -->
+    <section class="premium-section-padding bg-white">
+      <div class="container" style="max-width: 1000px;">
+        <div class="section-title-center" style="margin-bottom: 3rem;">
+          <span class="eyebrow">Página viva — explore por región</span>
+          <h2 class="text-navy" style="font-size: 2.5rem; line-height: 1.2;">El Mismo País, Tres Consumidores Distintos</h2>
+          <p class="text-gray-dark" style="font-size: 1.1rem; margin-top: 1rem;">Seleccione una región para ver su perfil de comportamiento de compra según los estudios de Mindtec.</p>
+        </div>
+
+        <div class="region-tabs">
+          <input type="radio" name="region" id="tab-lapaz" class="region-tab-input" checked />
+          <input type="radio" name="region" id="tab-scz" class="region-tab-input" />
+          <input type="radio" name="region" id="tab-cbba" class="region-tab-input" />
+
+          <div class="region-tab-nav" role="tablist">
+            <label for="tab-lapaz" class="region-tab-label">La Paz / El Alto</label>
+            <label for="tab-scz" class="region-tab-label">Santa Cruz</label>
+            <label for="tab-cbba" class="region-tab-label">Cochabamba</label>
+          </div>
+
+          <div class="region-tab-panels">
+            <div class="region-tab-panel panel-lapaz premium-card-white">
+              <h3 class="text-primary" style="font-size: 1.3rem; margin-bottom: 1rem;">La Paz / El Alto: Decisión deliberada y consultiva</h3>
+              <ul class="cap-list">
+                <li><strong class="text-navy">Proceso de decisión:</strong> lento y consultado. La compra de alto valor pasa primero por el círculo familiar o laboral antes de confirmarse.</li>
+                <li><strong class="text-navy">Sensibilidad de precio:</strong> alta, pero más ligada a la desconfianza ante lo nuevo que al precio en sí. Lo conocido gana, aunque cueste lo mismo que lo nuevo.</li>
+                <li><strong class="text-navy">Canal preferido:</strong> el comercio de barrio y la feria mantienen un peso fuerte, sobre todo en El Alto, donde la relación con el vendedor pesa tanto como el producto.</li>
+                <li><strong class="text-navy">Gatillo de cambio:</strong> mensajes que apelan a seguridad familiar, respaldo y pertenencia comunitaria superan a los mensajes de innovación o estatus.</li>
+              </ul>
+            </div>
+
+            <div class="region-tab-panel panel-scz premium-card-white">
+              <h3 class="text-primary" style="font-size: 1.3rem; margin-bottom: 1rem;">Santa Cruz: Decisión rápida y sensible al estatus</h3>
+              <ul class="cap-list">
+                <li><strong class="text-navy">Proceso de decisión:</strong> más rápido e individual, con alta influencia de tendencias y referencias de marcas internacionales.</li>
+                <li><strong class="text-navy">Sensibilidad de precio:</strong> existe, pero compite con el valor simbólico de la marca. Frente a un ajuste de presupuesto, primero se sustituye la marca menos visible socialmente.</li>
+                <li><strong class="text-navy">Canal preferido:</strong> el canal moderno (supermercados, retail organizado) sigue siendo referencia de precio y de marca, incluso para quienes compran en el canal informal.</li>
+                <li><strong class="text-navy">Gatillo de cambio:</strong> experiencia de marca, presentación y la sensación de "estar a la moda" tienen más peso relativo que en el resto del país.</li>
+              </ul>
+            </div>
+
+            <div class="region-tab-panel panel-cbba premium-card-white">
+              <h3 class="text-primary" style="font-size: 1.3rem; margin-bottom: 1rem;">Cochabamba: Decisión negociadora y de valor</h3>
+              <ul class="cap-list">
+                <li><strong class="text-navy">Proceso de decisión:</strong> individual pero exigente. Se evalúa el producto, se compara y, frecuentemente, se negocia el precio aunque sea un canal formal.</li>
+                <li><strong class="text-navy">Sensibilidad de precio:</strong> la más alta de las tres regiones en el cruce precio-calidad. El consumidor cochabambino verbaliza el precio como parte del proceso de compra, no como un tabú.</li>
+                <li><strong class="text-navy">Canal preferido:</strong> mercados y ferias con fuerte tradición comercial, donde la oferta y el "ñeque" del vendedor son parte de la experiencia esperada.</li>
+                <li><strong class="text-navy">Gatillo de cambio:</strong> argumentos concretos de ahorro, rendimiento o "más por el mismo precio" convierten mejor que los mensajes emocionales o aspiracionales.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🟦 METODOLOGÍA -->
+    <section class="premium-section-padding bg-slate">
+      <div class="container premium-grid-2-split" style="align-items: center;">
+        <div>
+          <span class="eyebrow">Metodología Mindtec</span>
+          <h2 class="text-navy" style="font-size: 2.3rem; margin-bottom: 1.5rem; line-height: 1.2;">Cómo Medimos lo que el Consumidor Hace, No Solo lo que Dice</h2>
+          <p class="text-gray-dark" style="font-size: 1.05rem; margin-bottom: 1.5rem; line-height: 1.7;">
+            Una encuesta tradicional pregunta "¿cambiaría de marca si sube el precio?" y casi nadie responde que sí, por coherencia social. Mindtec cruza tres fuentes para evitar ese sesgo y construir un perfil de comportamiento real, no declarado.
+          </p>
+          <ul class="cap-list text-gray-dark">
+            <li><strong class="text-navy">Campo en punto de venta:</strong> observación directa de qué se compra, qué se deja en el anaquel y cuánto tiempo se decide.</li>
+            <li><strong class="text-navy">Encuestas estructuradas por ciudad:</strong> muestras representativas en La Paz/El Alto, Santa Cruz y Cochabamba, no promedios nacionales.</li>
+            <li><strong class="text-navy">Neuromarketing aplicado:</strong> medición de respuesta emocional ante precio, empaque y mensaje, para detectar lo que la persona no dice o no sabe que siente.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="premium-card-white" style="background: linear-gradient(145deg, #ffffff, #f8fafc); border: 1px solid #e2e8f0;">
+            <div style="display: flex; align-items: center; margin-bottom: 1.5rem; gap: 1rem; border-bottom: 1.5px solid rgba(11, 43, 64, 0.06); width: 100%; padding-bottom: 1rem;">
+              <div class="cap-icon" style="margin: 0; width: 44px; height: 44px; min-width: 44px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+              </div>
+              <h3 class="text-navy" style="margin: 0; font-size: 1.3rem;">Qué recibe su empresa</h3>
+            </div>
+            <ul class="cap-list" style="color: #334155;">
+              <li><strong class="text-navy">Perfil de comportamiento por ciudad:</strong> cómo decide su consumidor objetivo en cada plaza donde opera.</li>
+              <li><strong class="text-navy">Mapa de sensibilidad al precio:</strong> en qué punto exacto su categoría empieza a perder volumen.</li>
+              <li><strong class="text-navy">Recomendación de mensaje por región:</strong> qué argumento convierte mejor en cada eje del país.</li>
+              <li><strong class="text-navy">Lectura del momento económico:</strong> cómo está afectando la coyuntura actual a su categoría específica.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🟦 FAQ -->
+    <section class="premium-section-padding bg-white">
+      <div class="container" style="max-width: 800px;">
+        <h2 class="text-navy text-center" style="font-size: 2.5rem; margin-bottom: 3rem;">Preguntas Frecuentes</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h4>¿Por qué el consumidor boliviano cambia tanto de marca en los últimos años?</h4>
+            <p>Principalmente por presión económica: la escasez de dólares y la inflación importada redujeron el ingreso disponible real, y el precio se volvió el primer filtro de decisión incluso para consumidores que antes eran leales a una marca.</p>
+          </div>
+          <div class="faq-item">
+            <h4>¿El consumidor de Santa Cruz se comporta igual que el de La Paz?</h4>
+            <p>No. Mindtec encuentra diferencias consistentes: el consumidor paceño es más deliberado y consultivo, el cruceño más rápido y sensible al estatus, y el cochabambino más negociador y orientado a la relación precio-calidad.</p>
+          </div>
+          <div class="faq-item">
+            <h4>¿Cómo recolecta Mindtec estos datos sobre comportamiento de compra?</h4>
+            <p>Con una red de campo activa en el eje troncal y El Alto, que combina encuestas estructuradas, observación en punto de venta, entrevistas cualitativas y herramientas de neuromarketing para medir lo que el consumidor hace, no solo lo que dice.</p>
+          </div>
+          <div class="faq-item">
+            <h4>¿Esta segmentación regional sirve para empresas pequeñas o solo para grandes marcas?</h4>
+            <p>Sirve para ambas. Una pyme que vende solo en Cochabamba puede usar el perfil local para ajustar su mensaje y precio; una marca nacional lo necesita para no aplicar la misma estrategia en tres mercados que se comportan distinto.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🟦 CROSS-LINKING -->
+    <section class="premium-section-padding bg-slate" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
+      <div class="container" style="max-width: 900px;">
+        <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">Profundice el análisis</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          <a href="/estudio-de-mercado-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)';" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none';this.style.boxShadow='none';">
+            <h4 style="font-size: 1.1rem; color: var(--color-secondary); margin-bottom: 0.5rem; line-height: 1.3;">Estudio de Mercado</h4>
+            <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.5;">Dimensione la demanda real para su categoría y ciudad.</p>
+            <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem; text-transform: uppercase;">Explorar →</span>
+          </a>
+          <a href="/neuromarketing-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)';" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none';this.style.boxShadow='none';">
+            <h4 style="font-size: 1.1rem; color: var(--color-secondary); margin-bottom: 0.5rem; line-height: 1.3;">Neuromarketing</h4>
+            <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.5;">Mida la respuesta emocional real detrás de la decisión de compra.</p>
+            <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem; text-transform: uppercase;">Explorar →</span>
+          </a>
+          <a href="/shopper-insights-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)';" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none';this.style.boxShadow='none';">
+            <h4 style="font-size: 1.1rem; color: var(--color-secondary); margin-bottom: 0.5rem; line-height: 1.3;">Shopper Insights</h4>
+            <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.5;">Entienda qué pasa frente al anaquel en el punto de venta.</p>
+            <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem; text-transform: uppercase;">Explorar →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🟦 CTA FINAL -->
+    <section class="cta-section-modern" style="padding: 6rem 0;">
+      <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <div class="cta-content-v2">
+          <h2 style="font-size: 3rem; line-height: 1.25; margin-bottom: 1.5rem;">¿Conoce realmente a su consumidor en cada ciudad donde vende?</h2>
+          <p class="cta-subtitle" style="font-size: 1.25rem; margin-bottom: 2.5rem; opacity: 0.9;">
+            Obtenga el perfil de comportamiento de su categoría con datos de campo de Mindtec, segmentados por región y ajustados al contexto económico actual.
+          </p>
+          <div class="cta-actions" style="justify-content: center; flex-direction: column; align-items: center;">
+            <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar sesión de diagnóstico (45 min)</a>
+            <p style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">Primera sesión: 45 minutos | Confidencial | Sin compromiso</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    .region-tab-input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .region-tab-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .region-tab-label {
+      cursor: pointer;
+      padding: 0.85rem 1.75rem;
+      border-radius: 999px;
+      border: 2px solid #e2e8f0;
+      background: #fff;
+      color: #475569;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: all 0.25s ease;
+      user-select: none;
+    }
+
+    .region-tab-label:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+      transform: translateY(-2px);
+    }
+
+    .region-tab-panel {
+      display: none;
+      padding: 3rem;
+      animation: regionFadeIn 0.4s ease;
+    }
+
+    @keyframes regionFadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    #tab-lapaz:checked ~ .region-tab-nav label[for="tab-lapaz"],
+    #tab-scz:checked ~ .region-tab-nav label[for="tab-scz"],
+    #tab-cbba:checked ~ .region-tab-nav label[for="tab-cbba"] {
+      background: var(--color-primary);
+      border-color: var(--color-primary);
+      color: #fff;
+    }
+
+    #tab-lapaz:checked ~ .region-tab-panels .panel-lapaz,
+    #tab-scz:checked ~ .region-tab-panels .panel-scz,
+    #tab-cbba:checked ~ .region-tab-panels .panel-cbba {
+      display: block;
+    }
+  </style>
+</Layout>

@@ -3,7 +3,7 @@ import path from 'path';
 import * as cheerio from 'cheerio';
 
 const DIST_DIR = path.resolve('dist');
-const REPORT_PATH = 'C:/Users/Wil/.gemini/antigravity-ide/brain/6a039a53-7ba1-4035-b4fd-315c20859c26/seo_audit_report.md';
+const REPORT_PATH = path.resolve('seo_audit_report.md');
 
 function getHtmlFiles(dir) {
   let results = [];

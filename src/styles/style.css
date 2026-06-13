@@ -80,6 +80,7 @@ html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
 }
 
 body {
@@ -389,7 +390,7 @@ p {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1100;
+    z-index: 1200;
     padding: 1.25rem 0;
     transition: all var(--transition-slow);
     background: transparent;
@@ -530,6 +531,15 @@ p {
     border: none;
 }
 
+.hamburger::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+}
+
 .hamburger span {
     display: block;
     position: absolute;
@@ -575,8 +585,11 @@ p {
     backdrop-filter: blur(40px);
     -webkit-backdrop-filter: blur(40px);
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    padding: 6rem 2rem 3rem 2rem;
+    overflow-y: auto;
     opacity: 0;
     visibility: hidden;
     transition: all 500ms var(--ease-spring);
@@ -669,6 +682,83 @@ p {
 
 .dropdown:hover .dropdown-content {
     display: block;
+}
+
+/* Mega Menu Custom Styling for Desktop */
+@media (min-width: 992px) {
+    .dropdown-content.mega-menu {
+        display: grid !important;
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%) translateY(15px);
+        width: 840px;
+        background: var(--color-white);
+        box-shadow: var(--shadow-lg);
+        border: 1px solid rgba(0, 0, 0, 0.06);
+        border-radius: var(--radius-md);
+        padding: 2rem 2.25rem;
+        z-index: 100;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                    visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        pointer-events: none;
+    }
+
+    .dropdown:hover .dropdown-content.mega-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+        pointer-events: auto;
+    }
+
+    .mega-menu-col {
+        display: flex;
+        flex-direction: column;
+        gap: 0.85rem;
+    }
+
+    .mega-menu-title {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        color: var(--color-secondary);
+        letter-spacing: 0.8px;
+        border-bottom: 2px solid var(--color-primary-soft);
+        padding-bottom: 0.5rem;
+        margin-bottom: 0.25rem;
+        pointer-events: none;
+    }
+
+    .mega-menu-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    /* Custom overrides for mega menu links */
+    .dropdown-content.mega-menu .mega-menu-links a {
+        color: var(--color-text-dark) !important;
+        padding: 6px 0 !important;
+        font-size: 0.85rem !important;
+        font-weight: 500 !important;
+        border-bottom: none !important;
+        background: transparent !important;
+        transition: all var(--transition-fast) !important;
+        display: inline-block !important;
+        width: 100% !important;
+    }
+
+    .dropdown-content.mega-menu .mega-menu-links a:hover {
+        color: var(--color-primary) !important;
+        background: transparent !important;
+        padding-left: 6px !important;
+    }
 }
 
 /* ── 8. SCROLL PROGRESS BAR ───────────────────────────── */
@@ -4182,5 +4272,108 @@ p {
     font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.6);
     justify-content: center;
+}
+
+/* ── 32. MOBILE DROPDOWN ACCORDION & HEADER OVERRIDES ───── */
+body:has(.nav-overlay.active) .site-header {
+    background: rgba(11, 43, 64, 0.95) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15) !important;
+    backdrop-filter: blur(40px) !important;
+    -webkit-backdrop-filter: blur(40px) !important;
+}
+
+body:has(.nav-overlay.active) .site-header .logo-light {
+    display: block !important;
+}
+
+body:has(.nav-overlay.active) .site-header .logo-dark {
+    display: none !important;
+}
+
+.mobile-dropdown-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mobile-dropdown-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--color-white);
+    letter-spacing: -0.01em;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mobile-dropdown-toggle .arrow {
+    font-size: 0.8em;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.mobile-dropdown-container.active .mobile-dropdown-toggle .arrow {
+    transform: rotate(180deg);
+}
+
+.mobile-dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    width: 100%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0;
+    margin-top: 0;
+}
+
+.mobile-dropdown-container.active .mobile-dropdown-content {
+    margin-top: 1.5rem;
+}
+
+.mobile-mega-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.mobile-mega-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    letter-spacing: 1px;
+    margin-bottom: 0.25rem;
+    opacity: 0.9;
+}
+
+.mobile-mega-link {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    padding: 6px 0;
+    transition: color 0.3s ease;
+    text-align: center;
+    display: block;
+}
+
+.mobile-mega-link:hover {
+    color: var(--color-primary);
+}
+
+.nav-overlay-inner .btn-mobile {
+    color: var(--color-primary) !important;
 }
 
