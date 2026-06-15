@@ -1,11 +1,11 @@
 # SEO Audit Report - www.mindtecbolivia.com
 
-**Date:** 13/6/2026 3:57:06 p. m.
+**Date:** 14/6/2026 10:24:22 p. m.
 **Overall SEO Score:** `100/100`
 
 ## Executive Summary
 
-- **Total Pages Audited:** 37
+- **Total Pages Audited:** 41
 - **Critical Errors Found:** 0 🚨
 - **Warnings / Recommendations:** 0 ⚠️
 
@@ -18,6 +18,25 @@
 ---
 
 ## Detailed Results by Page
+
+### 📄 `/404.html`
+
+**Page Score:** `100/100`
+
+<details>
+<summary><b>View Passed Audits (6)</b></summary>
+
+- ✅ Title is good (44 chars): "Página no encontrada (404) | Mindtec Bolivia"
+- ✅ Meta description is good (130 chars)
+- ✅ Canonical URL is correct: "https://www.mindtecbolivia.com/404/"
+- ✅ Exactly one <h1> found: "Página No Encontrada"
+- ✅ All 3 images have "alt" attributes.
+- ✅ Open Graph tags are fully configured.
+
+</details>
+
+
+---
 
 ### 📄 `/auditoria-retail-bolivia/index.html`
 
@@ -331,10 +350,10 @@
 <summary><b>View Passed Audits (6)</b></summary>
 
 - ✅ Title is good (60 chars): "Investigación de Mercados Cuantitativa vs Cualitativa: Cu..."
-- ✅ Meta description is good (160 chars)
+- ✅ Meta description is good (158 chars)
 - ✅ Canonical URL is correct: "https://www.mindtecbolivia.com/blog/investigacion-de-mercados-cuantitativa-vs-cualitativa/"
 - ✅ Exactly one <h1> found: "Investigación de Mercados Cuantitativa vs Cualitativa: Cuál Necesita tu Empresa"
-- ✅ All 8 images have "alt" attributes.
+- ✅ All 7 images have "alt" attributes.
 - ✅ Open Graph tags are fully configured.
 
 </details>
@@ -456,6 +475,25 @@
 
 ---
 
+### 📄 `/comportamiento-consumidor-boliviano/index.html`
+
+**Page Score:** `100/100`
+
+<details>
+<summary><b>View Passed Audits (6)</b></summary>
+
+- ✅ Title is good (54 chars): "Comportamiento del Consumidor Boliviano 2026 | Mindtec"
+- ✅ Meta description is good (147 chars)
+- ✅ Canonical URL is correct: "https://www.mindtecbolivia.com/comportamiento-consumidor-boliviano/"
+- ✅ Exactly one <h1> found: "Comportamiento del Consumidor Boliviano: Lo que los Datos de Mindtec Revelan en 2026"
+- ✅ All 4 images have "alt" attributes.
+- ✅ Open Graph tags are fully configured.
+
+</details>
+
+
+---
+
 ### 📄 `/contacto/index.html`
 
 **Page Score:** `100/100`
@@ -539,10 +577,10 @@
 <details>
 <summary><b>View Passed Audits (6)</b></summary>
 
-- ✅ Title is good (49 chars): "Focus Group y Grupos Focales en Bolivia | Mindtec"
-- ✅ Meta description is good (159 chars)
+- ✅ Title is good (52 chars): "Focus Group en Bolivia | Psicoantropología | MindTEC"
+- ✅ Meta description is good (146 chars)
 - ✅ Canonical URL is correct: "https://www.mindtecbolivia.com/focus-group-bolivia"
-- ✅ Exactly one <h1> found: "Focus Group en Bolivia — Más allá de lo que el consumidor declara."
+- ✅ Exactly one <h1> found: "Focus Group en Bolivia — Más allá de lo que el cliente declara."
 - ✅ All 4 images have "alt" attributes.
 - ✅ Open Graph tags are fully configured.
 
@@ -563,6 +601,25 @@
 - ✅ Canonical URL is correct: "https://www.mindtecbolivia.com/"
 - ✅ Exactly one <h1> found: "Investigación de mercados en Bolivia: Reduzca el riesgo financiero de sus decisiones."
 - ✅ All 11 images have "alt" attributes.
+- ✅ Open Graph tags are fully configured.
+
+</details>
+
+
+---
+
+### 📄 `/inteligencia-de-mercados-b2b-bolivia/index.html`
+
+**Page Score:** `100/100`
+
+<details>
+<summary><b>View Passed Audits (6)</b></summary>
+
+- ✅ Title is good (49 chars): "Inteligencia de Mercados B2B en Bolivia | MindTEC"
+- ✅ Meta description is good (158 chars)
+- ✅ Canonical URL is correct: "https://www.mindtecbolivia.com/inteligencia-de-mercados-b2b-bolivia"
+- ✅ Exactly one <h1> found: "Inteligencia de Mercados B2B — Datos que defienden decisiones en el Directorio."
+- ✅ All 3 images have "alt" attributes.
 - ✅ Open Graph tags are fully configured.
 
 </details>
@@ -638,6 +695,25 @@
 - ✅ Meta description is good (126 chars)
 - ✅ Canonical URL is correct: "https://www.mindtecbolivia.com/neuromarketing-bolivia/"
 - ✅ Exactly one <h1> found: "Estudios de Neuromarketing en Bolivia"
+- ✅ All 7 images have "alt" attributes.
+- ✅ Open Graph tags are fully configured.
+
+</details>
+
+
+---
+
+### 📄 `/neuromarketing-para-empresas-bolivia/index.html`
+
+**Page Score:** `100/100`
+
+<details>
+<summary><b>View Passed Audits (6)</b></summary>
+
+- ✅ Title is good (49 chars): "Neuromarketing para Empresas en Bolivia | MindTEC"
+- ✅ Meta description is good (144 chars)
+- ✅ Canonical URL is correct: "https://www.mindtecbolivia.com/neuromarketing-para-empresas-bolivia"
+- ✅ Exactly one <h1> found: "Neuromarketing para Empresas — Erradique las suposiciones de su presupuesto."
 - ✅ All 7 images have "alt" attributes.
 - ✅ Open Graph tags are fully configured.
 
