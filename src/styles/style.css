@@ -2796,6 +2796,34 @@ p {
     margin-bottom: 1.25rem;
 }
 
+.footer-col.contact p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 0.85rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.footer-col.contact .company-name {
+    font-weight: 700;
+    color: var(--color-white);
+    margin-bottom: 0.25rem;
+}
+
+.footer-col.contact .nit-info {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.35);
+    margin-bottom: 1rem;
+}
+
+.footer-col.contact .email-link {
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+.footer-col.contact .email-link:hover {
+    color: var(--color-white);
+}
+
 .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.06);
     padding-top: 2rem;
