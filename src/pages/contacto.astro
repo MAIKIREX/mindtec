@@ -28,7 +28,8 @@ import Layout from '../layouts/Layout.astro';
             <h2 class="form-title">Agendar sesión de diagnóstico (45 min)</h2>
             <p class="form-desc">Complete el siguiente formulario y un analista senior se pondrá en contacto en menos de 24 horas hábiles.</p>
             
-            <form action="#" method="POST">
+            <form id="contact-form" action="https://splitforms.com/api/submit" method="POST">
+              <input type="hidden" name="access_key" value="b0dfa90c35ec4b5fbf9a2df8ba82389d" />
               <div class="form-group">
                 <label for="nombre">Nombre Completo y Cargo</label>
                 <input type="text" id="nombre" name="nombre" class="form-control" required placeholder="Ej. Juan Pérez - Gerente General">
@@ -494,4 +495,73 @@ import Layout from '../layouts/Layout.astro';
       }
     }
   </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('contact-form');
+      if (!form) return;
+
+      // Create success / error message container
+      const statusContainer = document.createElement('div');
+      statusContainer.className = 'form-status-msg';
+      statusContainer.style.marginTop = '1.5rem';
+      statusContainer.style.padding = '1rem';
+      statusContainer.style.borderRadius = 'var(--radius-sm)';
+      statusContainer.style.fontSize = '0.95rem';
+      statusContainer.style.fontWeight = '600';
+      statusContainer.style.display = 'none';
+      statusContainer.style.textAlign = 'center';
+      form.appendChild(statusContainer);
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const btn = form.querySelector('.btn-submit');
+        const originalText = btn.innerHTML;
+        
+        // Loading state
+        btn.disabled = true;
+        btn.innerHTML = 'Enviando...';
+        statusContainer.style.display = 'none';
+
+        const formData = new FormData(form);
+        
+        try {
+          const response = await fetch(form.action, {
+            method: form.method,
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            // Success state
+            statusContainer.style.display = 'block';
+            statusContainer.style.backgroundColor = 'rgba(37, 211, 102, 0.15)';
+            statusContainer.style.color = '#25d366';
+            statusContainer.style.border = '1px solid rgba(37, 211, 102, 0.3)';
+            statusContainer.innerHTML = '¡Enviado con éxito! Nos pondremos en contacto en menos de 24 horas hábiles.';
+            form.reset();
+          } else {
+            // Server error
+            throw new Error('Response not OK');
+          }
+        } catch (error) {
+          // Fallback: if AJAX fails, submit standard HTML form
+          statusContainer.style.display = 'block';
+          statusContainer.style.backgroundColor = 'rgba(239, 68, 68, 0.15)';
+          statusContainer.style.color = '#ef4444';
+          statusContainer.style.border = '1px solid rgba(239, 68, 68, 0.3)';
+          statusContainer.innerHTML = 'Hubo un inconveniente al enviar. Redirigiendo para completar el envío...';
+          
+          setTimeout(() => {
+            form.submit();
+          }, 1500);
+        } finally {
+          btn.disabled = false;
+          btn.innerHTML = originalText;
+        }
+      });
+    });
+  </script>
 </Layout>
