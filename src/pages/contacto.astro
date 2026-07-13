@@ -7,6 +7,17 @@ import Layout from '../layouts/Layout.astro';
   description="Agende un diagnóstico inicial gratuito de investigación de mercados en Bolivia. 45 minutos, confidencial, sin compromiso. Mindtec."
   headerLightBg={false}
 >
+  <script type="application/ld+json" slot="head">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.mindtecbolivia.com/"},
+      {"@type": "ListItem", "position": 2, "name": "Contacto", "item": "https://www.mindtecbolivia.com/contacto"}
+    ]
+  }
+  </script>
+
   <main class="contact-page">
     <!-- Contact Hero Header -->
     <section class="contact-hero">
@@ -160,6 +171,17 @@ import Layout from '../layouts/Layout.astro';
         </a>
       </div>
     </section>
+
+    <!-- BREADCRUMB -->
+    <nav aria-label="Breadcrumb" class="breadcrumb-bottom">
+      <div class="container">
+        <ol>
+          <li><a href="/" style="color: rgba(255,255,255,0.6); text-decoration: none;">Inicio</a></li>
+          <li style="color: rgba(255,255,255,0.3);">›</li>
+          <li aria-current="page" style="color: #fff; font-weight: 600;">Contacto</li>
+        </ol>
+      </div>
+    </nav>
   </main>
 
   <style>

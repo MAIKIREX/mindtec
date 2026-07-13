@@ -20,6 +20,14 @@ import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
         "areaServed": ["La Paz", "Santa Cruz", "Cochabamba", "El Alto"]
       },
       {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.mindtecbolivia.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Servicios", "item": "https://www.mindtecbolivia.com/servicios"},
+          {"@type": "ListItem", "position": 3, "name": "Estudio de precios", "item": "https://www.mindtecbolivia.com/estudio-de-precios-bolivia"}
+        ]
+      },
+      {
         "@type": "FAQPage",
         "mainEntity": [
           {
@@ -74,9 +82,14 @@ import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
             <div class="container hero-container">
                 <div class="hero-content">
                     <span class="eyebrow fade-in">OPTIMIZACIÓN DE MARGEN Y RENTABILIDAD</span>
+                    <span class="freshness-tag">Actualizado: julio 2026</span>
                     <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;">
                         Estudio de Precios en Bolivia para Maximizar Rentabilidad
                     </h1>
+                    <div class="direct-answer-box">
+                        <strong>En resumen</strong>
+                        <p>Mindtec realiza estudios de precios en Bolivia con neuro-pricing y análisis competitivo para optimizar el margen y proteger la rentabilidad.</p>
+                    </div>
                     <p class="hero-subtitle" style="font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 800px;">
                         El precio no se intuye, se valida. Un estudio de precios en Bolivia permite identificar sensibilidad, valor percibido y rangos óptimos para proteger margen y evitar guerras de precios innecesarias.
                         <br><br>
@@ -433,5 +446,18 @@ import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
                 </div>
             </div>
         </section>
+
+        <!-- BREADCRUMB -->
+        <nav aria-label="Breadcrumb" class="breadcrumb-bottom">
+          <div class="container">
+            <ol>
+              <li><a href="/" style="color: rgba(255,255,255,0.6); text-decoration: none;">Inicio</a></li>
+              <li style="color: rgba(255,255,255,0.3);">›</li>
+              <li><a href="/servicios" style="color: rgba(255,255,255,0.6); text-decoration: none;">Servicios</a></li>
+              <li style="color: rgba(255,255,255,0.3);">›</li>
+              <li aria-current="page" style="color: #fff; font-weight: 600;">Estudio de precios</li>
+            </ol>
+          </div>
+        </nav>
   </main>
 </Layout>

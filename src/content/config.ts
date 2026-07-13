@@ -6,6 +6,7 @@ const postsCollection = defineCollection({
     title: z.string(),
     date: z.string(),
     dateISO: z.string().optional(),       // Fecha en formato ISO 8601 para Schema/JSON-LD
+    dateModifiedISO: z.string().optional(), // Fecha de última modificación ISO 8601 (default: dateISO)
     category: z.string(),
     author: z.string().default('Wilmar Velasquez'),
     img: z.string().optional(),

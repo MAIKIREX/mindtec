@@ -11,18 +11,29 @@ import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
   <script type="application/ld+json" slot="head">
   {
     "@context": "https://schema.org",
-    "@type": "Article",
-    "headline": "Comportamiento del Consumidor Boliviano: Datos Reales de Mindtec",
-    "author": {
-      "@type": "Organization",
-      "name": "Mindtec Bolivia"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Mindtec Bolivia"
-    },
-    "about": "Comportamiento del consumidor en Bolivia",
-    "areaServed": ["La Paz", "Santa Cruz", "Cochabamba", "El Alto"]
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Comportamiento del Consumidor Boliviano: Datos Reales de Mindtec",
+        "author": {
+          "@type": "Organization",
+          "name": "Mindtec Bolivia"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Mindtec Bolivia"
+        },
+        "about": "Comportamiento del consumidor en Bolivia",
+        "areaServed": ["La Paz", "Santa Cruz", "Cochabamba", "El Alto"]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.mindtecbolivia.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Comportamiento del Consumidor Boliviano", "item": "https://www.mindtecbolivia.com/comportamiento-consumidor-boliviano"}
+        ]
+      }
+    ]
   }
   </script>
   <script type="application/ld+json" slot="head">
@@ -75,11 +86,16 @@ import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
       <div class="container hero-container">
         <div class="hero-content">
           <span class="eyebrow fade-in">INTELIGENCIA DE CONSUMO BOLIVIA</span>
+          <span class="freshness-tag">Actualizado: julio 2026</span>
           <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;">
             Comportamiento del Consumidor Boliviano: Lo que los Datos de Mindtec Revelan en 2026
           </h1>
+          <div class="direct-answer-box">
+            <strong>En resumen</strong>
+            <p>El consumidor boliviano no compra igual en La Paz, Santa Cruz o Cochabamba, y compra distinto a como compraba hace dos años. Mindtec mide ese cambio en terreno, ciudad por ciudad, y lo traduce en decisiones comerciales.</p>
+          </div>
           <p class="hero-subtitle" style="font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 800px;">
-            El consumidor boliviano no compra igual en La Paz, Santa Cruz o Cochabamba, y compra distinto a como compraba hace dos años. Mindtec mide ese cambio en terreno, ciudad por ciudad, y lo traduce en decisiones comerciales.
+            Datos de campo, no supuestos: así se segmenta y explica el cambio de hábitos de compra en cada ciudad del eje troncal.
           </p>
           <div class="cta-actions" style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
             <a href="/contacto" class="btn btn-primary lg">Agendar sesión de diagnóstico (45 min)</a>
@@ -301,6 +317,17 @@ import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
         </div>
       </div>
     </section>
+
+    <!-- BREADCRUMB -->
+    <nav aria-label="Breadcrumb" class="breadcrumb-bottom">
+      <div class="container">
+        <ol>
+          <li><a href="/" style="color: rgba(255,255,255,0.6); text-decoration: none;">Inicio</a></li>
+          <li style="color: rgba(255,255,255,0.3);">›</li>
+          <li aria-current="page" style="color: #fff; font-weight: 600;">Comportamiento del Consumidor Boliviano</li>
+        </ol>
+      </div>
+    </nav>
   </main>
 
   <style>

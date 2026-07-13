@@ -11,14 +11,26 @@ import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
   <script type="application/ld+json" slot="head">
   {
     "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Estudios de Neuromarketing en Bolivia",
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "Mindtec Bolivia"
-    },
-    "description": "Estudios científicos de neuromarketing en Bolivia usando eye tracking, electroencefalograma (EEG) y codificación facial para validar empaques, publicidad y UX.",
-    "areaServed": ["La Paz", "Santa Cruz", "Cochabamba", "El Alto"]
+    "@graph": [
+      {
+        "@type": "Service",
+        "name": "Estudios de Neuromarketing en Bolivia",
+        "provider": {
+          "@type": "LocalBusiness",
+          "name": "Mindtec Bolivia"
+        },
+        "description": "Estudios científicos de neuromarketing en Bolivia usando eye tracking, electroencefalograma (EEG) y codificación facial para validar empaques, publicidad y UX.",
+        "areaServed": ["La Paz", "Santa Cruz", "Cochabamba", "El Alto"]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.mindtecbolivia.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Servicios", "item": "https://www.mindtecbolivia.com/servicios"},
+          {"@type": "ListItem", "position": 3, "name": "Neuromarketing en Bolivia", "item": "https://www.mindtecbolivia.com/neuromarketing-bolivia"}
+        ]
+      }
+    ]
   }
   </script>
   <script type="application/ld+json" slot="head">
@@ -76,9 +88,14 @@ import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
       <div class="container hero-container">
         <div class="hero-content">
           <span class="eyebrow fade-in">MEDICIÓN DEL INCONSCIENTE Y VALIDACIÓN PREVIA</span>
+          <span class="freshness-tag">Actualizado: julio 2026</span>
           <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;">
             Estudios de Neuromarketing en Bolivia
           </h1>
+          <div class="direct-answer-box">
+            <strong>En resumen</strong>
+            <p>Mindtec ofrece estudios científicos de neuromarketing en Bolivia usando eye tracking, EEG y codificación facial para validar empaques, publicidad y experiencia de usuario antes de invertir en producción o pauta masiva.</p>
+          </div>
           <p class="hero-subtitle" style="font-size: 1.25rem; margin-bottom: 1.5rem; max-width: 800px;">
             Antes de invertir en campañas, packaging o piezas creativas, mida lo que el consumidor no verbaliza. El neuromarketing reduce el riesgo al evaluar atención visual, respuesta emocional y aceptación no consciente.
           </p>
@@ -497,5 +514,18 @@ import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
         </div>
       </div>
     </section>
+
+    <!-- BREADCRUMB -->
+    <nav aria-label="Breadcrumb" class="breadcrumb-bottom">
+      <div class="container">
+        <ol>
+          <li><a href="/" style="color: rgba(255,255,255,0.6); text-decoration: none;">Inicio</a></li>
+          <li style="color: rgba(255,255,255,0.3);">›</li>
+          <li><a href="/servicios" style="color: rgba(255,255,255,0.6); text-decoration: none;">Servicios</a></li>
+          <li style="color: rgba(255,255,255,0.3);">›</li>
+          <li aria-current="page" style="color: #fff; font-weight: 600;">Neuromarketing en Bolivia</li>
+        </ol>
+      </div>
+    </nav>
   </main>
 </Layout>

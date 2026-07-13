@@ -10,22 +10,36 @@ import Layout from '../layouts/Layout.astro';
   <script type="application/ld+json" slot="head">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Mindtec Bolivia",
-    "url": "https://www.mindtecbolivia.com",
-    "logo": "https://www.mindtecbolivia.com/logos/logo-mindtec-horizontal-para-fondo-oscuro.webp",
-    "description": "Inteligencia de mercados con neurociencia e inteligencia artificial para la toma de decisiones estratégicas de alta dirección en Bolivia.",
-    "email": "info@mindtecbolivia.com",
-    "areaServed": ["La Paz", "Santa Cruz", "Cochabamba", "El Alto"],
-    "address": { "@type": "PostalAddress", "addressCountry": "BO" },
-    "foundingDate": "2014",
-    "numberOfEmployees": { "@type": "QuantitativeValue", "value": 80 },
-    "award": "Premio MAYA a la Innovación en Investigación de Mercados",
-    "sameAs": ["https://www.mindtecbolivia.com"]
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Mindtec Bolivia",
+        "url": "https://www.mindtecbolivia.com",
+        "logo": "https://www.mindtecbolivia.com/logos/logo-mindtec-horizontal-para-fondo-oscuro.webp",
+        "description": "Inteligencia de mercados con neurociencia e inteligencia artificial para la toma de decisiones estratégicas de alta dirección en Bolivia.",
+        "email": "info@mindtecbolivia.com",
+        "areaServed": ["La Paz", "Santa Cruz", "Cochabamba", "El Alto"],
+        "address": { "@type": "PostalAddress", "addressCountry": "BO" },
+        "foundingDate": "2014",
+        "numberOfEmployees": { "@type": "QuantitativeValue", "value": 80 },
+        "award": "Premio MAYA a la Innovación en Investigación de Mercados",
+        "sameAs": [
+          "https://www.facebook.com/mindtecbolivia",
+          "https://www.instagram.com/mindtec_neuromarketing_bolivia/",
+          "https://www.linkedin.com/company/mindtec-bolivia"
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.mindtecbolivia.com/"},
+          {"@type": "ListItem", "position": 2, "name": "La Firma", "item": "https://www.mindtecbolivia.com/firma"}
+        ]
+      }
+    ]
   }
   </script>
-  <main>
-<main class="elementor-content">
+  <main class="elementor-content">
         <!-- SECCIÓN 1: Hero -->
         <section class="hero-section elementor-section" style="padding-bottom: 3rem; padding-top: 120px; min-height: auto;">
 
@@ -257,6 +271,16 @@ import Layout from '../layouts/Layout.astro';
                 </div>
             </div>
         </section>
+
+        <!-- BREADCRUMB -->
+        <nav aria-label="Breadcrumb" class="breadcrumb-bottom">
+          <div class="container">
+            <ol>
+              <li><a href="/" style="color: rgba(255,255,255,0.6); text-decoration: none;">Inicio</a></li>
+              <li style="color: rgba(255,255,255,0.3);">›</li>
+              <li aria-current="page" style="color: #fff; font-weight: 600;">La Firma</li>
+            </ol>
+          </div>
+        </nav>
     </main>
-</main>
 </Layout>

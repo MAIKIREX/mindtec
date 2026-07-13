@@ -11,6 +11,29 @@ const description = "Witmind Consulting LLC offers B2B market research, business
   headerLightBg={false}
   canonicalUrl="/witmind-consulting/"
 >
+  <script type="application/ld+json" slot="head">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Witmind Consulting LLC",
+        "url": "https://www.mindtecbolivia.com/witmind-consulting",
+        "logo": "https://www.mindtecbolivia.com/logos/logo-witmind-horizontal.png",
+        "description": "Witmind Consulting LLC offers B2B market research, business consulting, software development, and import services in Florida, Latin America, and globally.",
+        "address": { "@type": "PostalAddress", "addressRegion": "Florida", "addressCountry": "US" }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.mindtecbolivia.com/"},
+          {"@type": "ListItem", "position": 2, "name": "Witmind Consulting", "item": "https://www.mindtecbolivia.com/witmind-consulting"}
+        ]
+      }
+    ]
+  }
+  </script>
+
   <main class="witmind-page">
 
     <!-- Section 1: Hero -->
