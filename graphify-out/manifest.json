@@ -1,0 +1,237 @@
+{
+  "components/ServiceVisualSuite.astro": {
+    "mtime": 1783962931.838167,
+    "ast_hash": "7e49a2c86c15b2404bbd7339b4dfd1fc",
+    "semantic_hash": "7e49a2c86c15b2404bbd7339b4dfd1fc"
+  },
+  "content/config.ts": {
+    "mtime": 1783962931.838167,
+    "ast_hash": "6eb9494a89e0049c611c3df4dce5d21a",
+    "semantic_hash": "6eb9494a89e0049c611c3df4dce5d21a"
+  },
+  "env.d.ts": {
+    "mtime": 1783962931.8639557,
+    "ast_hash": "a34c63603f2fc704c29af63d4a960109",
+    "semantic_hash": "a34c63603f2fc704c29af63d4a960109"
+  },
+  "layouts/ArticleLayout.astro": {
+    "mtime": 1783962931.8649547,
+    "ast_hash": "97370d94c935c5977b8b7594f08afeb7",
+    "semantic_hash": "97370d94c935c5977b8b7594f08afeb7"
+  },
+  "layouts/Layout.astro": {
+    "mtime": 1783962931.8649547,
+    "ast_hash": "724d3ed18b019f92d8180a2a328eadc6",
+    "semantic_hash": "724d3ed18b019f92d8180a2a328eadc6"
+  },
+  "pages/404.astro": {
+    "mtime": 1783962931.9193556,
+    "ast_hash": "ead6fb5d8272131c3bf97af06d2abb06",
+    "semantic_hash": "ead6fb5d8272131c3bf97af06d2abb06"
+  },
+  "pages/auditoria-retail-bolivia.astro": {
+    "mtime": 1783962931.9203544,
+    "ast_hash": "a809492521710b0ed0c02cd45361a9b4",
+    "semantic_hash": "a809492521710b0ed0c02cd45361a9b4"
+  },
+  "pages/benchmarking-competitivo-bolivia.astro": {
+    "mtime": 1783962931.9243548,
+    "ast_hash": "af01c27bb9f9d22e463f35d8a2373671",
+    "semantic_hash": "af01c27bb9f9d22e463f35d8a2373671"
+  },
+  "pages/blog.astro": {
+    "mtime": 1783962931.9243548,
+    "ast_hash": "685f8278973ae8425b8d74ba0bafdefe",
+    "semantic_hash": "685f8278973ae8425b8d74ba0bafdefe"
+  },
+  "pages/blog/[slug].astro": {
+    "mtime": 1783962931.9263537,
+    "ast_hash": "5e9e399ff8c005801d2e111898f9d174",
+    "semantic_hash": "5e9e399ff8c005801d2e111898f9d174"
+  },
+  "pages/cliente-misterioso-bolivia.astro": {
+    "mtime": 1783962931.9273565,
+    "ast_hash": "b869032daef849da8af58ea312474749",
+    "semantic_hash": "b869032daef849da8af58ea312474749"
+  },
+  "pages/comportamiento-consumidor-boliviano.astro": {
+    "mtime": 1783962931.9273565,
+    "ast_hash": "d8914b05ff12804cc8f86f1f5bce01cb",
+    "semantic_hash": "d8914b05ff12804cc8f86f1f5bce01cb"
+  },
+  "pages/contacto.astro": {
+    "mtime": 1783962931.9283552,
+    "ast_hash": "55f60535bf009cc1016320cbf6d6bea4",
+    "semantic_hash": "55f60535bf009cc1016320cbf6d6bea4"
+  },
+  "pages/estudio-de-mercado-bolivia.astro": {
+    "mtime": 1783962931.9293559,
+    "ast_hash": "2a930ceac94f3d0caa3b164c1d485237",
+    "semantic_hash": "2a930ceac94f3d0caa3b164c1d485237"
+  },
+  "pages/estudio-de-precios-bolivia.astro": {
+    "mtime": 1783962931.9293559,
+    "ast_hash": "c231c49b157ead89e2d14019bec752f5",
+    "semantic_hash": "c231c49b157ead89e2d14019bec752f5"
+  },
+  "pages/firma.astro": {
+    "mtime": 1783962931.9308603,
+    "ast_hash": "3bd332f7a6e68faf1b97a7c0c9205fe8",
+    "semantic_hash": "3bd332f7a6e68faf1b97a7c0c9205fe8"
+  },
+  "pages/focus-group-bolivia.astro": {
+    "mtime": 1783962931.9318676,
+    "ast_hash": "2705cc5356a58417afb6a6bf1c8afbe7",
+    "semantic_hash": "2705cc5356a58417afb6a6bf1c8afbe7"
+  },
+  "pages/index.astro": {
+    "mtime": 1783962931.9328692,
+    "ast_hash": "2a05bb18439daafa82d8ab5169d6f4ed",
+    "semantic_hash": "2a05bb18439daafa82d8ab5169d6f4ed"
+  },
+  "pages/inteligencia-de-mercados-b2b-bolivia.astro": {
+    "mtime": 1783962931.9328692,
+    "ast_hash": "5b751a5034318022b947deac2414fb32",
+    "semantic_hash": "5b751a5034318022b947deac2414fb32"
+  },
+  "pages/investigacion-cualitativa-bolivia.astro": {
+    "mtime": 1783962931.9338672,
+    "ast_hash": "80142b1a1a6e3d7990f045b3a6e0391e",
+    "semantic_hash": "80142b1a1a6e3d7990f045b3a6e0391e"
+  },
+  "pages/investigacion-cuantitativa-bolivia.astro": {
+    "mtime": 1783962931.9348722,
+    "ast_hash": "008ee001af5020c41d2565b78c21e8a7",
+    "semantic_hash": "008ee001af5020c41d2565b78c21e8a7"
+  },
+  "pages/metodologia.astro": {
+    "mtime": 1783962931.937867,
+    "ast_hash": "8551934eb7d001861c59244c682e5e97",
+    "semantic_hash": "8551934eb7d001861c59244c682e5e97"
+  },
+  "pages/neuromarketing-bolivia.astro": {
+    "mtime": 1783962931.9388676,
+    "ast_hash": "cc2327d6c046539d1a54746055fc86bd",
+    "semantic_hash": "cc2327d6c046539d1a54746055fc86bd"
+  },
+  "pages/neuromarketing-para-empresas-bolivia.astro": {
+    "mtime": 1783962931.9388676,
+    "ast_hash": "e738b52df1ebd01f0030dfa7c90b723d",
+    "semantic_hash": "e738b52df1ebd01f0030dfa7c90b723d"
+  },
+  "pages/percepcion-de-marca-bolivia.astro": {
+    "mtime": 1783962931.939868,
+    "ast_hash": "f2259045853e1732f91383d6ea501113",
+    "semantic_hash": "f2259045853e1732f91383d6ea501113"
+  },
+  "pages/servicios.astro": {
+    "mtime": 1783962931.9408672,
+    "ast_hash": "601eb9a302ccbdb9355dad9c4719e67b",
+    "semantic_hash": "601eb9a302ccbdb9355dad9c4719e67b"
+  },
+  "pages/shopper-insights-bolivia.astro": {
+    "mtime": 1783962931.9408672,
+    "ast_hash": "550bdd2b8e641b84a16411c9b73321a7",
+    "semantic_hash": "550bdd2b8e641b84a16411c9b73321a7"
+  },
+  "pages/witmind-consulting.astro": {
+    "mtime": 1783962931.941871,
+    "ast_hash": "1e7d95e3993cb91680191cf2affa67e5",
+    "semantic_hash": "1e7d95e3993cb91680191cf2affa67e5"
+  },
+  "content/posts/3-ejemplos-de-neuromarketing-en-la-vida-diaria-que-quiza-no-sabias.md": {
+    "mtime": 1783962931.8391652,
+    "ast_hash": "0809b7b86552b0643bf61a57ac9dc3d3",
+    "semantic_hash": "0809b7b86552b0643bf61a57ac9dc3d3"
+  },
+  "content/posts/5-tips-diferenciar-tu-marca.md": {
+    "mtime": 1783962931.840167,
+    "ast_hash": "f2b57d36944df96d7acfb5e3684d9a89",
+    "semantic_hash": "f2b57d36944df96d7acfb5e3684d9a89"
+  },
+  "content/posts/codigo-cultural.md": {
+    "mtime": 1783962931.8466816,
+    "ast_hash": "3d5407dd066a9e91fffe446e99ae2f1d",
+    "semantic_hash": "3d5407dd066a9e91fffe446e99ae2f1d"
+  },
+  "content/posts/como-emocionar-a-mis-clientes.md": {
+    "mtime": 1783962931.8476806,
+    "ast_hash": "2b6f232e1b2117a79ba239f093c8def2",
+    "semantic_hash": "2b6f232e1b2117a79ba239f093c8def2"
+  },
+  "content/posts/conoce-las-5c-del-neuromarketing-y-potenciate.md": {
+    "mtime": 1783962931.848688,
+    "ast_hash": "1c00607c4ee1993d6ce5bb3943f88144",
+    "semantic_hash": "1c00607c4ee1993d6ce5bb3943f88144"
+  },
+  "content/posts/diferencias-hombres-y-mujeres-al-comprar-i.md": {
+    "mtime": 1783962931.848688,
+    "ast_hash": "47a8685d2efb186cab4cb5710355b260",
+    "semantic_hash": "47a8685d2efb186cab4cb5710355b260"
+  },
+  "content/posts/eres-capaz-de-descubrir-mentiras-de-tu-cliente-aprende-como-hacerlo-parte-i.md": {
+    "mtime": 1783962931.8501933,
+    "ast_hash": "7079c0e7e73029ac5b85f11458e8cc3b",
+    "semantic_hash": "7079c0e7e73029ac5b85f11458e8cc3b"
+  },
+  "content/posts/fidelizar_cliente.md": {
+    "mtime": 1783962931.8501933,
+    "ast_hash": "8af4aa293a812167d244d774313a2964",
+    "semantic_hash": "8af4aa293a812167d244d774313a2964"
+  },
+  "content/posts/herramientas-recoleccion-datos-cualitativos.md": {
+    "mtime": 1783962931.851202,
+    "ast_hash": "ea0e0f4914ef74fd54a30a611922c2a8",
+    "semantic_hash": "ea0e0f4914ef74fd54a30a611922c2a8"
+  },
+  "content/posts/investigacion-de-mercado-en-bolivia-consumer-behavior.md": {
+    "mtime": 1783962931.851202,
+    "ast_hash": "06e8e2fb0aea6ff879f6aac4c3d2fdfb",
+    "semantic_hash": "06e8e2fb0aea6ff879f6aac4c3d2fdfb"
+  },
+  "content/posts/investigacion-de-mercado-en-pymes-paso-a-paso.md": {
+    "mtime": 1783962931.8527982,
+    "ast_hash": "033bc0c6730a4a9b586d31f5e6e85530",
+    "semantic_hash": "033bc0c6730a4a9b586d31f5e6e85530"
+  },
+  "content/posts/investigacion-de-mercados-con-neuromarketing.md": {
+    "mtime": 1783962931.8527982,
+    "ast_hash": "fa598180485ba2651dc8810b9decd219",
+    "semantic_hash": "fa598180485ba2651dc8810b9decd219"
+  },
+  "content/posts/investigacion-de-mercados-consumidor.md": {
+    "mtime": 1783962931.853809,
+    "ast_hash": "3c0d9ff82f65aee3ff87f6755200d348",
+    "semantic_hash": "3c0d9ff82f65aee3ff87f6755200d348"
+  },
+  "content/posts/investigacion-de-mercados-cuantitativa-vs-cualitativa.md": {
+    "mtime": 1783962931.8548083,
+    "ast_hash": "bc74ca292fbb17098210ccb4b7190fcc",
+    "semantic_hash": "bc74ca292fbb17098210ccb4b7190fcc"
+  },
+  "content/posts/mente_del_consumidor.md": {
+    "mtime": 1783962931.8609493,
+    "ast_hash": "9e3ce66f727c8454ac826a9989b5b1d1",
+    "semantic_hash": "9e3ce66f727c8454ac826a9989b5b1d1"
+  },
+  "content/posts/por-que-utilizar-neuromarketing-en-mi-publicidad.md": {
+    "mtime": 1783962931.8609493,
+    "ast_hash": "d26b30da5ff5d42906f7c847079b263c",
+    "semantic_hash": "d26b30da5ff5d42906f7c847079b263c"
+  },
+  "content/posts/publicidad-efectiva-en-tu-campana-como-saber-si-lo-sera.md": {
+    "mtime": 1783962931.861948,
+    "ast_hash": "04510fd8e0c3c5624077fb8a61736b97",
+    "semantic_hash": "04510fd8e0c3c5624077fb8a61736b97"
+  },
+  "content/posts/que-es-el-neuromarketing.md": {
+    "mtime": 1783962931.862954,
+    "ast_hash": "28274c65da0799b99d1db33c87d712ff",
+    "semantic_hash": "28274c65da0799b99d1db33c87d712ff"
+  },
+  "content/posts/sabes-la-diferencia-entre-marketing-de-emociones-y-neuromarketing.md": {
+    "mtime": 1783962931.862954,
+    "ast_hash": "3754bd524ccb9caaa78f410eaf312dd7",
+    "semantic_hash": "3754bd524ccb9caaa78f410eaf312dd7"
+  }
+}
