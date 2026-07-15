@@ -4467,3 +4467,136 @@ body:has(.nav-overlay.active) .site-header .logo-dark {
     color: var(--color-primary) !important;
 }
 
+/* ════════════════════════════════════════════════ */
+/* ZOOM REVEAL — Scroll-pinned cinematic text zoom   */
+/* ════════════════════════════════════════════════ */
+.zoom-reveal-section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    background: #020617;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.zoom-reveal-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.zoom-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    transform: scale(1.5);
+    filter: blur(20px) brightness(0.5);
+    will-change: transform, filter;
+}
+
+.zoom-reveal-tint {
+    position: absolute;
+    inset: 0;
+    background: rgba(2, 6, 23, 0.4);
+}
+
+.zoom-text-wrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+.zoom-giant-text {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(3.5rem, 15vw, 13rem);
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin: 0;
+    text-align: center;
+    mix-blend-mode: overlay;
+    will-change: transform, opacity;
+}
+
+.zoom-giant-text .accent {
+    color: var(--color-primary);
+}
+
+.reveal-content {
+    position: relative;
+    z-index: 20;
+    text-align: center;
+    padding: 0 1.5rem;
+    max-width: 720px;
+    opacity: 0;
+    transform: translateY(50px);
+}
+
+.reveal-content h2 {
+    font-size: clamp(2rem, 4.5vw, 3.25rem);
+    color: #fff;
+    margin: 0.75rem 0 1rem;
+}
+
+.reveal-content p {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .zoom-image {
+        transform: none;
+        filter: none;
+    }
+
+    .reveal-content {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* ── CUSTOM CURSOR — Orange Dot (follows native cursor) ──── */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    box-shadow: 0 0 12px rgba(242, 101, 34, 0.5);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+    opacity: 0;
+    will-change: transform;
+}
+
+.custom-cursor.is-active {
+    opacity: 1;
+}
+
+.custom-cursor.is-hover {
+    width: 40px;
+    height: 40px;
+    background: rgba(242, 101, 34, 0.18);
+    border: 2px solid var(--color-primary);
+}
+
+.custom-cursor.is-click {
+    width: 12px;
+    height: 12px;
+}
+

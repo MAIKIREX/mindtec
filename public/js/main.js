@@ -864,6 +864,48 @@
   }
 
   /* ═══════════════════════════════════════════
+     18. CUSTOM CURSOR — Orange Dot
+     ═══════════════════════════════════════════ */
+  function initCustomCursor() {
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+
+    var dot = document.createElement('div');
+    dot.className = 'custom-cursor';
+    document.body.appendChild(dot);
+
+    var x = 0, y = 0, curX = 0, curY = 0;
+
+    function lerp(a, b, f) { return a + (b - a) * f; }
+
+    function render() {
+      curX = lerp(curX, x, 0.2);
+      curY = lerp(curY, y, 0.2);
+      dot.style.transform = 'translate(' + curX + 'px, ' + curY + 'px) translate(-50%, -50%)';
+      requestAnimationFrame(render);
+    }
+
+    document.addEventListener('mousemove', function (e) {
+      x = e.clientX;
+      y = e.clientY;
+      dot.classList.add('is-active');
+    });
+
+    document.addEventListener('mouseleave', function () {
+      dot.classList.remove('is-active');
+    });
+
+    document.addEventListener('mousedown', function () { dot.classList.add('is-click'); });
+    document.addEventListener('mouseup', function () { dot.classList.remove('is-click'); });
+
+    document.addEventListener('mouseover', function (e) {
+      var hoverTarget = e.target.closest('a, button, [role="button"], input, textarea, select, .btn');
+      dot.classList.toggle('is-hover', !!hoverTarget);
+    });
+
+    requestAnimationFrame(render);
+  }
+
+  /* ═══════════════════════════════════════════
      BOOT
      ═══════════════════════════════════════════ */
   function boot() {
@@ -885,6 +927,7 @@
     initHeroTextReveal();
     initWhyUsBar();
     initSectionParallax();
+    initCustomCursor();
   }
 
   if (document.readyState === 'loading') {
