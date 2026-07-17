@@ -1,0 +1,918 @@
+---
+export type ScrollMedia = {
+  type?: "image" | "video";
+  src: string;
+  alt?: string;
+  poster?: string;
+  objectPosition?: string;
+  autoplay?: boolean;
+  muted?: boolean;
+  loop?: boolean;
+  controls?: boolean;
+  preload?: "none" | "metadata" | "auto";
+};
+
+export type ScrollAction = {
+  label: string;
+  href: string;
+  variant?: "primary" | "secondary" | "text";
+  target?: "_self" | "_blank";
+  ariaLabel?: string;
+};
+
+export type ScrollCard = {
+  layout?: "standard" | "panel";
+  position?: "left" | "right" | "center";
+  shape?: "rectangle" | "notched";
+  align?: "top-left" | "center" | "bottom-right";
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  media?: ScrollMedia;
+  actions?: ScrollAction[];
+  /** HTML de confianza. No lo uses con contenido ingresado por usuarios. */
+  contentHtml?: string;
+  width?: string;
+  minHeight?: string;
+  panelHeight?: number;
+  padding?: string;
+  background?: string;
+  color?: string;
+  className?: string;
+};
+
+export type LayeredScene = {
+  id: string;
+  background: ScrollMedia;
+  overlay?: string;
+  card?: ScrollCard;
+};
+
+export interface Props {
+  scenes: LayeredScene[];
+  id?: string;
+  class?: string;
+  ariaLabel?: string;
+  panelHeight?: number;
+  cardPeek?: number;
+  scrollPerScene?: number;
+  scrub?: number;
+  backgroundDuration?: number;
+  cardEnterDuration?: number;
+  cardHoldDuration?: number;
+  cardExitDuration?: number;
+  snap?: boolean;
+  snapDelay?: number;
+  showProgress?: boolean;
+  debug?: boolean;
+}
+
+const {
+  scenes,
+  id,
+  class: className = "",
+  ariaLabel = "Recorrido interactivo",
+  panelHeight = 65,
+  cardPeek = 34,
+  scrollPerScene = 115,
+  scrub = 0.85,
+  backgroundDuration = 0.58,
+  cardEnterDuration = 0.95,
+  cardHoldDuration = 0.68,
+  cardExitDuration = 0.62,
+  snap = true,
+  snapDelay = 0.14,
+  showProgress = true,
+  debug = false,
+} = Astro.props;
+
+if (!Array.isArray(scenes) || scenes.length < 2) {
+  throw new Error("LayeredScrollScenes necesita al menos dos escenas.");
+}
+
+const cardStyle = (card: ScrollCard) => {
+  const defaultWidth = card.layout === "panel" ? "100%" : "min(32rem, 38vw)";
+  const defaultMinHeight = card.layout === "panel" ? "0px" : "24rem";
+
+  return [
+    `--lss-card-width:${card.width ?? defaultWidth}`,
+    `--lss-card-min-height:${card.minHeight ?? defaultMinHeight}`,
+    `--lss-panel-height:${card.panelHeight ?? panelHeight}%`,
+    `--lss-card-padding:${card.padding ?? "clamp(1.5rem, 3vw, 3.5rem)"}`,
+    `--lss-card-bg:${card.background ?? (card.layout === "panel" ? "var(--color-surface, #fafbfc)" : "var(--color-secondary-deep, #061c2b)")}`,
+    `--lss-card-color:${card.color ?? (card.layout === "panel" ? "var(--color-text-dark, #0b2b40)" : "var(--color-text-light, #ffffff)")}`,
+  ].join(";");
+};
+---
+
+<section
+  id={id}
+  class:list={["lss", className]}
+  aria-label={ariaLabel}
+  data-layered-scroll-scenes
+  data-header-theme="dark"
+  data-card-peek={cardPeek}
+  data-scroll-per-scene={scrollPerScene}
+  data-scrub={scrub}
+  data-bg-duration={backgroundDuration}
+  data-card-enter={cardEnterDuration}
+  data-card-hold={cardHoldDuration}
+  data-card-exit={cardExitDuration}
+  data-snap={String(snap)}
+  data-snap-delay={snapDelay}
+  data-debug={String(debug)}
+>
+  <div class="lss__stage" data-lss-stage>
+    {scenes.map((scene, index) => {
+      const card = scene.card;
+      const background = scene.background;
+      const backgroundType = background.type ?? "image";
+      const cardType = card?.media?.type ?? "image";
+
+      return (
+        <section
+          class="lss__scene"
+          data-lss-scene
+          data-scene-index={index}
+          data-scene-id={scene.id}
+          style={`--lss-scene-index:${index};`}
+          aria-label={card?.title ?? `Escena ${index + 1}`}
+        >
+          <div class="lss__background" data-lss-background>
+            {backgroundType === "video" ? (
+              <video
+                src={background.src}
+                poster={background.poster}
+                autoplay={background.autoplay ?? true}
+                muted={background.muted ?? true}
+                loop={background.loop ?? true}
+                playsinline
+                preload={background.preload ?? "metadata"}
+                style={`object-position:${background.objectPosition ?? "center"};`}
+                aria-hidden="true"
+              />
+            ) : (
+              <img
+                src={background.src}
+                alt={background.alt ?? ""}
+                loading={index <= 1 ? "eager" : "lazy"}
+                decoding="async"
+                fetchpriority={index === 0 ? "high" : "auto"}
+                style={`object-position:${background.objectPosition ?? "center"};`}
+              />
+            )}
+
+            <div
+              class="lss__overlay"
+              style={`background:${scene.overlay ?? "linear-gradient(180deg, rgba(2, 5, 18, 0.08), rgba(2, 5, 18, 0.28))"};`}
+              aria-hidden="true"
+            />
+          </div>
+
+          {card && (
+            <article
+              class:list={[
+                "lss__card",
+                `lss__card--${card.layout ?? "standard"}`,
+                `lss__card--${card.position ?? "right"}`,
+                `lss__card--${card.shape ?? "rectangle"}`,
+                `lss__card--align-${card.align ?? (card.layout === "panel" ? "bottom-right" : "top-left")}`,
+                card.className,
+              ]}
+              data-lss-card
+              data-card-index={index}
+              data-card-layout={card.layout ?? "standard"}
+              style={cardStyle(card)}
+            >
+              {card.media && (
+                <div class="lss__card-media">
+                  {cardType === "video" ? (
+                    <video
+                      src={card.media.src}
+                      poster={card.media.poster}
+                      autoplay={card.media.autoplay ?? false}
+                      muted={card.media.muted ?? true}
+                      loop={card.media.loop ?? false}
+                      controls={card.media.controls ?? true}
+                      playsinline
+                      preload={card.media.preload ?? "metadata"}
+                      style={`object-position:${card.media.objectPosition ?? "center"};`}
+                    />
+                  ) : (
+                    <img
+                      src={card.media.src}
+                      alt={card.media.alt ?? ""}
+                      loading="lazy"
+                      decoding="async"
+                      style={`object-position:${card.media.objectPosition ?? "center"};`}
+                    />
+                  )}
+                </div>
+              )}
+
+              <div class="lss__card-body">
+                {card.contentHtml ? (
+                  <Fragment set:html={card.contentHtml} />
+                ) : (
+                  <>
+                    {card.eyebrow && <p class="lss__eyebrow">{card.eyebrow}</p>}
+                    {card.title && <h2>{card.title}</h2>}
+                    {card.description && <p class="lss__description">{card.description}</p>}
+
+                    {card.actions && card.actions.length > 0 && (
+                      <div class="lss__actions">
+                        {card.actions.map((action) => (
+                          <a
+                            href={action.href}
+                            target={action.target ?? "_self"}
+                            rel={action.target === "_blank" ? "noreferrer" : undefined}
+                            aria-label={action.ariaLabel}
+                            class:list={["lss__action", `lss__action--${action.variant ?? "primary"}`]}
+                          >
+                            {action.label}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                  </>
+                )}
+              </div>
+            </article>
+          )}
+        </section>
+      );
+    })}
+
+    {showProgress && (
+      <nav class="lss__progress" aria-label="Navegación entre escenas">
+        {scenes.map((scene, index) => (
+          <button
+            type="button"
+            class="lss__dot"
+            data-lss-dot
+            data-target-index={index}
+            aria-label={`Ir a ${scene.card?.title ?? `escena ${index + 1}`}`}
+            aria-current={index === 0 ? "step" : undefined}
+          >
+            <span>{String(index + 1).padStart(2, "0")}</span>
+          </button>
+        ))}
+      </nav>
+    )}
+  </div>
+</section>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  type RootWithCleanup = HTMLElement & {
+    __lssCleanup?: () => void;
+  };
+
+  const numberFromDataset = (
+    element: HTMLElement,
+    key: string,
+    fallback: number,
+  ) => {
+    const value = Number(element.dataset[key]);
+    return Number.isFinite(value) ? value : fallback;
+  };
+
+  function initializeLayeredScene(root: RootWithCleanup) {
+    if (root.dataset.lssInitialized === "true") return;
+
+    const stage = root.querySelector<HTMLElement>("[data-lss-stage]");
+    const scenes = Array.from(root.querySelectorAll<HTMLElement>("[data-lss-scene]"));
+    const backgrounds = Array.from(root.querySelectorAll<HTMLElement>("[data-lss-background]"));
+    const cards = Array.from(root.querySelectorAll<HTMLElement>("[data-lss-card]"));
+    const dots = Array.from(root.querySelectorAll<HTMLButtonElement>("[data-lss-dot]"));
+
+    if (!stage || scenes.length < 2 || backgrounds.length !== scenes.length) return;
+
+    root.dataset.lssInitialized = "true";
+
+    const peek = numberFromDataset(root, "cardPeek", 34);
+    const scrollPerScene = numberFromDataset(root, "scrollPerScene", 115);
+    const scrub = numberFromDataset(root, "scrub", 0.85);
+    const bgDuration = numberFromDataset(root, "bgDuration", 0.58);
+    const cardEnter = numberFromDataset(root, "cardEnter", 0.95);
+    const cardHold = numberFromDataset(root, "cardHold", 0.68);
+    const cardExit = numberFromDataset(root, "cardExit", 0.62);
+    const snapDelay = numberFromDataset(root, "snapDelay", 0.14);
+    const snapEnabled = root.dataset.snap !== "false";
+    const debug = root.dataset.debug === "true";
+
+    const mediaQuery = "(min-width: 768px) and (prefers-reduced-motion: no-preference)";
+    const mm = gsap.matchMedia();
+
+    const context = gsap.context(() => {
+      mm.add(mediaQuery, () => {
+        const cardByScene = new Map<number, HTMLElement>();
+        cards.forEach((card) => {
+          const index = Number(card.dataset.cardIndex);
+          if (Number.isFinite(index)) cardByScene.set(index, card);
+        });
+
+        const belowPosition = (card: HTMLElement) => {
+          const isPanel = card.dataset.cardLayout === "panel";
+          return isPanel
+            ? card.offsetHeight - peek
+            : window.innerHeight / 2 + card.offsetHeight / 2 - peek;
+        };
+
+        const abovePosition = (card: HTMLElement) => {
+          const isPanel = card.dataset.cardLayout === "panel";
+          return isPanel
+            ? -(card.offsetHeight - peek)
+            : -(window.innerHeight / 2 + card.offsetHeight / 2 - peek);
+        };
+
+        gsap.set(backgrounds, { autoAlpha: 1 });
+        backgrounds.forEach((background, index) => {
+          gsap.set(background, { yPercent: index === 0 ? 0 : 100 });
+        });
+
+        /*
+         * Parallax interno: cada imagen de fondo sigue desplazándose
+         * sutilmente con el scroll incluso mientras está "quieta" en
+         * pantalla, en vez de quedar estática durante el hold. El
+         * wrapper ya tiene `inset:-4%` en CSS, así que hay margen de
+         * sobra para este desplazamiento sin revelar bordes vacíos.
+         */
+        backgrounds.forEach((background) => {
+          const media = background.querySelector<HTMLElement>("img, video");
+
+          if (!media) return;
+
+          gsap.fromTo(
+            media,
+            { yPercent: -3 },
+            {
+              yPercent: 3,
+              ease: "none",
+
+              scrollTrigger: {
+                trigger: root,
+                start: "top top",
+                end: () =>
+                  `+=${Math.round(window.innerHeight * Math.max(1, scenes.length - 1) * (scrollPerScene / 100))}`,
+                scrub: true,
+                invalidateOnRefresh: true,
+              },
+            },
+          );
+        });
+
+        cards.forEach((card) => {
+          gsap.set(card, {
+            y: () => belowPosition(card),
+            autoAlpha: 0,
+          });
+          card.setAttribute("aria-hidden", "true");
+          card.setAttribute("inert", "");
+        });
+
+        const timeline = gsap.timeline({ defaults: { ease: "none" }, paused: true });
+        const sceneLabels: Array<{ index: number; name: string; time: number }> = [];
+
+        timeline.addLabel("scene-0", 0);
+        sceneLabels.push({ index: 0, name: "scene-0", time: 0 });
+        timeline.to(root, { opacity: 1, duration: 0.9, ease: "none" });
+
+        for (let index = 1; index < scenes.length; index += 1) {
+          const start = timeline.duration();
+          const previousBackground = backgrounds[index - 1];
+          const currentBackground = backgrounds[index];
+          const currentCard = cardByScene.get(index);
+          const oldPreviousCard = cardByScene.get(index - 2);
+          const nextCard = cardByScene.get(index + 1);
+
+          timeline.to(
+            previousBackground,
+            {
+              yPercent: -24,
+              duration: bgDuration,
+              ease: "power1.inOut",
+            },
+            start,
+          );
+
+          timeline.fromTo(
+            currentBackground,
+            { yPercent: 100 },
+            {
+              yPercent: 0,
+              duration: bgDuration,
+              ease: "power1.inOut",
+            },
+            start,
+          );
+
+          if (index > 1) {
+            timeline.set(backgrounds[index - 2], { autoAlpha: 0 }, start + bgDuration);
+          }
+
+          if (oldPreviousCard) {
+            timeline.set(oldPreviousCard, { autoAlpha: 0 }, start);
+          }
+
+          const cardStart = start + 0.08;
+          const centerTime = currentCard ? cardStart + cardEnter : start + bgDuration;
+          const labelTime = centerTime + cardHold * 0.5;
+          const labelName = `scene-${index}`;
+
+          if (currentCard) {
+            timeline.to(
+              currentCard,
+              {
+                y: 0,
+                autoAlpha: 1,
+                duration: cardEnter,
+                ease: "back.out(1.08)",
+              },
+              cardStart,
+            );
+          }
+
+          if (nextCard) {
+            timeline.set(
+              nextCard,
+              {
+                y: () => belowPosition(nextCard),
+                autoAlpha: 1,
+              },
+              centerTime,
+            );
+          }
+
+          timeline.addLabel(labelName, labelTime);
+          sceneLabels.push({ index, name: labelName, time: labelTime });
+
+          // Zona de descanso: durante este tramo la tarjeta permanece centrada.
+          timeline.to(root, { opacity: 1, duration: cardHold, ease: "none" }, centerTime);
+
+          if (currentCard && index < scenes.length - 1) {
+            timeline.to(
+              currentCard,
+              {
+                y: () => abovePosition(currentCard),
+                duration: cardExit,
+                ease: "power2.in",
+              },
+              centerTime + cardHold,
+            );
+          }
+
+          const segmentEnd =
+            centerTime + cardHold + (index < scenes.length - 1 && currentCard ? cardExit : 0) + 0.12;
+
+          if (timeline.duration() < segmentEnd) {
+            timeline.to(root, { opacity: 1, duration: segmentEnd - timeline.duration(), ease: "none" });
+          }
+        }
+
+        timeline.to(root, { opacity: 1, duration: 0.7, ease: "none" });
+        // Punto de salida para que el snap no retenga al usuario en la última escena.
+        timeline.addLabel("lss-end", timeline.duration());
+
+        let activeIndex = -1;
+
+        const setActiveScene = (index: number) => {
+          if (index === activeIndex) return;
+          activeIndex = index;
+          root.dataset.activeScene = String(index);
+
+          scenes.forEach((scene, sceneIndex) => {
+            scene.classList.toggle("is-active", sceneIndex === index);
+          });
+
+          cards.forEach((card) => {
+            const isActive = Number(card.dataset.cardIndex) === index;
+            card.setAttribute("aria-hidden", String(!isActive));
+            if (isActive) card.removeAttribute("inert");
+            else card.setAttribute("inert", "");
+          });
+
+          dots.forEach((dot) => {
+            const isActive = Number(dot.dataset.targetIndex) === index;
+            if (isActive) dot.setAttribute("aria-current", "step");
+            else dot.removeAttribute("aria-current");
+          });
+
+          scenes.forEach((scene, sceneIndex) => {
+            const video = scene.querySelector<HTMLVideoElement>(".lss__background video");
+            if (!video) return;
+
+            if (sceneIndex === index) {
+              void video.play().catch(() => undefined);
+            } else {
+              video.pause();
+            }
+          });
+        };
+
+        const nearestSceneIndex = (timelineProgress: number) => {
+          const currentTime = timelineProgress * timeline.duration();
+          let nearest = sceneLabels[0];
+
+          for (const label of sceneLabels) {
+            if (Math.abs(label.time - currentTime) < Math.abs(nearest.time - currentTime)) {
+              nearest = label;
+            }
+          }
+
+          return nearest.index;
+        };
+
+        const scrollTrigger = ScrollTrigger.create({
+          id: root.id ? `${root.id}-scroll-trigger` : undefined,
+          trigger: root,
+          animation: timeline,
+          pin: stage,
+          start: "top top",
+          end: () =>
+            `+=${Math.round(window.innerHeight * Math.max(1, scenes.length - 1) * (scrollPerScene / 100))}`,
+          scrub,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          markers: debug,
+          snap: snapEnabled
+            ? {
+                snapTo: "labels",
+                inertia: true,
+                delay: snapDelay,
+                duration: { min: 0.24, max: 0.72 },
+                ease: "power2.inOut",
+              }
+            : false,
+          onUpdate: (self) => setActiveScene(nearestSceneIndex(self.progress)),
+        });
+
+        const dotCleanups = dots.map((dot) => {
+          const onClick = () => {
+            const index = Number(dot.dataset.targetIndex);
+            const label = `scene-${index}`;
+            const targetScroll = scrollTrigger.labelToScroll(label);
+
+            window.scrollTo({
+              top: targetScroll,
+              behavior: "smooth",
+            });
+          };
+
+          dot.addEventListener("click", onClick);
+          return () => dot.removeEventListener("click", onClick);
+        });
+
+        setActiveScene(0);
+        ScrollTrigger.refresh();
+
+        return () => {
+          dotCleanups.forEach((cleanup) => cleanup());
+          scrollTrigger.kill();
+          timeline.kill();
+        };
+      });
+    }, root);
+
+    root.__lssCleanup = () => {
+      mm.revert();
+      context.revert();
+      delete root.dataset.lssInitialized;
+      delete root.__lssCleanup;
+    };
+  }
+
+  function initializeAllLayeredScenes() {
+    document
+      .querySelectorAll<RootWithCleanup>("[data-layered-scroll-scenes]")
+      .forEach(initializeLayeredScene);
+  }
+
+  initializeAllLayeredScenes();
+
+  const globalWindow = window as typeof window & { __lssEventsBound?: boolean };
+
+  if (!globalWindow.__lssEventsBound) {
+    globalWindow.__lssEventsBound = true;
+
+    document.addEventListener("astro:page-load", initializeAllLayeredScenes);
+    document.addEventListener("astro:before-swap", () => {
+      document
+        .querySelectorAll<RootWithCleanup>("[data-layered-scroll-scenes]")
+        .forEach((root) => root.__lssCleanup?.());
+    });
+  }
+</script>
+
+<style>
+  .lss {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    background: var(--color-secondary-deep, #061c2b);
+    font-family: var(--font-body, inherit);
+  }
+
+  .lss__card h2 {
+    font-family: var(--font-display, inherit);
+  }
+
+  .lss__stage {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .lss__scene {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .lss__background {
+    position: absolute;
+    inset: -4%;
+    z-index: calc(var(--lss-scene-index) + 1);
+    overflow: hidden;
+    will-change: transform, opacity;
+    background: var(--color-secondary-deep, #061c2b);
+  }
+
+  .lss__background img,
+  .lss__background video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .lss__overlay {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .lss__card {
+    position: absolute;
+    z-index: calc(100 + var(--lss-scene-index));
+    width: min(var(--lss-card-width), calc(100vw - 3rem));
+    min-height: var(--lss-card-min-height);
+    padding: var(--lss-card-padding);
+    color: var(--lss-card-color);
+    background: var(--lss-card-bg);
+    pointer-events: auto;
+    overflow: hidden;
+    will-change: transform, opacity;
+  }
+
+  .lss__card--standard {
+    top: 50%;
+    display: grid;
+    align-content: start;
+    gap: 1.5rem;
+  }
+
+  .lss__card--panel {
+    inset: auto 0 0;
+    width: 100%;
+    height: var(--lss-panel-height);
+    min-height: 0;
+    display: grid;
+  }
+
+  .lss__card--left {
+    left: clamp(1rem, 3vw, 3.5rem);
+    right: auto;
+    translate: 0 -50%;
+  }
+
+  .lss__card--right {
+    right: clamp(1rem, 3vw, 3.5rem);
+    left: auto;
+    translate: 0 -50%;
+  }
+
+  .lss__card--center {
+    left: 50%;
+    right: auto;
+    translate: -50% -50%;
+  }
+
+  .lss__card--panel.lss__card--left,
+  .lss__card--panel.lss__card--right,
+  .lss__card--panel.lss__card--center {
+    translate: 0 0;
+  }
+
+  .lss__card--notched.lss__card--right {
+    clip-path: polygon(28% 0, 100% 0, 100% 100%, 0 100%, 0 14%, 28% 14%);
+  }
+
+  .lss__card--notched.lss__card--left {
+    clip-path: polygon(0 0, 72% 0, 72% 14%, 100% 14%, 100% 100%, 0 100%);
+  }
+
+  .lss__card--align-top-left .lss__card-body {
+    align-self: start;
+    justify-self: start;
+  }
+
+  .lss__card--align-center .lss__card-body {
+    align-self: center;
+    justify-self: center;
+    text-align: center;
+  }
+
+  .lss__card--align-bottom-right .lss__card-body {
+    align-self: end;
+    justify-self: end;
+    width: min(44rem, 54%);
+  }
+
+  .lss__card-media {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+  }
+
+  .lss__card-media img,
+  .lss__card-media video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .lss__eyebrow {
+    margin: 0 0 1rem;
+    font-size: 0.78rem;
+    line-height: 1;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.72;
+  }
+
+  .lss__card h2 {
+    margin: 0;
+    max-width: 18ch;
+    font: 500 clamp(2rem, 4vw, 5.5rem) / 0.96 system-ui, sans-serif;
+    letter-spacing: -0.055em;
+  }
+
+  .lss__card--standard h2 {
+    font-size: clamp(2rem, 3.2vw, 4rem);
+  }
+
+  .lss__description {
+    max-width: 42rem;
+    margin: 1.35rem 0 0;
+    font: 400 clamp(1rem, 1.3vw, 1.25rem) / 1.45 system-ui, sans-serif;
+    opacity: 0.86;
+  }
+
+  .lss__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.8rem;
+  }
+
+  .lss__action {
+    display: inline-flex;
+    min-height: 2.8rem;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.1rem;
+    border: 1px solid currentColor;
+    color: inherit;
+    text-decoration: none;
+    font: 600 0.82rem / 1 system-ui, sans-serif;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
+  }
+
+  .lss__action:hover {
+    transform: translateY(-2px);
+  }
+
+  .lss__action--primary {
+    color: var(--lss-card-bg);
+    background: var(--lss-card-color);
+    border-color: var(--lss-card-color);
+  }
+
+  .lss__action--secondary {
+    background: transparent;
+  }
+
+  .lss__action--text {
+    min-height: auto;
+    padding-inline: 0;
+    border: 0;
+    border-bottom: 1px solid currentColor;
+  }
+
+  .lss__progress {
+    position: absolute;
+    z-index: 500;
+    right: clamp(0.75rem, 1.5vw, 1.5rem);
+    top: 50%;
+    display: grid;
+    gap: 0.4rem;
+    translate: 0 -50%;
+  }
+
+  .lss__dot {
+    display: grid;
+    width: 2.15rem;
+    height: 2.15rem;
+    place-items: center;
+    padding: 0;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 999px;
+    color: #fff;
+    background: rgba(2, 5, 18, 0.28);
+    backdrop-filter: blur(8px);
+    cursor: pointer;
+    transition: transform 180ms ease, background-color 180ms ease;
+  }
+
+  .lss__dot span {
+    font: 600 0.62rem / 1 system-ui, sans-serif;
+  }
+
+  .lss__dot[aria-current="step"] {
+    color: var(--color-secondary-deep, #061c2b);
+    background: #fff;
+    transform: scale(1.08);
+  }
+
+  @media (max-width: 767px), (prefers-reduced-motion: reduce) {
+    .lss {
+      height: auto;
+    }
+
+    .lss__stage {
+      height: auto;
+      overflow: visible;
+    }
+
+    .lss__scene {
+      position: relative;
+      min-height: 100svh;
+      overflow: hidden;
+      pointer-events: auto;
+    }
+
+    .lss__background {
+      inset: 0;
+      z-index: 0;
+    }
+
+    .lss__card {
+      z-index: 2;
+      width: auto;
+      max-width: none;
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+      clip-path: none !important;
+    }
+
+    .lss__card--standard,
+    .lss__card--standard.lss__card--left,
+    .lss__card--standard.lss__card--right,
+    .lss__card--standard.lss__card--center {
+      top: 50%;
+      right: 1rem;
+      left: 1rem;
+      min-height: 0;
+      translate: 0 -50%;
+    }
+
+    .lss__card--panel {
+      height: min(var(--lss-panel-height), 72svh);
+    }
+
+    .lss__card--align-bottom-right .lss__card-body {
+      width: 100%;
+    }
+
+    .lss__card h2,
+    .lss__card--standard h2 {
+      font-size: clamp(2rem, 11vw, 3.6rem);
+    }
+
+    .lss__progress {
+      display: none;
+    }
+  }
+</style>

@@ -447,6 +447,35 @@ p {
     display: none;
 }
 
+/* Header sobre secciones oscuras (ScrollStory, LayeredScrollScenes,
+   ScrollStack) más abajo en la página: aunque ya se pasó el umbral de
+   "scrolled", vuelve al look transparente/claro-sobre-oscuro en vez del
+   glass blanco, para mantener contraste. Ver data-header-theme y
+   initHeaderScroll() en public/js/main.js. */
+.site-header.scrolled.header-force-dark {
+    background: rgba(8, 10, 22, 0.55);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+}
+.site-header.header-force-dark .main-nav a:not(.btn) {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+.site-header.header-force-dark .main-nav a:not(.btn):hover {
+    color: var(--color-primary) !important;
+}
+.site-header.header-force-dark .dropdown-content a {
+    color: #333 !important;
+}
+.site-header.header-force-dark .logo-dark {
+    display: none !important;
+}
+.site-header.header-force-dark .logo-light {
+    display: block !important;
+}
+.site-header.header-force-dark .hamburger span {
+    background-color: #fff !important;
+}
+
 /* Subpages with always-light header */
 .site-header.header-light-bg:not(.scrolled) {
     background: rgba(255, 255, 255, 0.7);
@@ -1676,7 +1705,7 @@ p {
 /* ── 11. TRUST BAR ────────────────────────────────────── */
 .trust-bar-section {
     background: var(--color-white);
-    padding: 4rem 0;
+    padding: 4rem 0 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
@@ -1688,49 +1717,36 @@ p {
     letter-spacing: 2.5px;
     margin-bottom: 2.5rem;
     font-weight: 700;
+    text-align: center;
 }
 
 .trust-numbers-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    align-items: start;
+    margin-top: 1rem;
+    border-top: 1px solid rgba(11, 43, 64, 0.1);
 }
 
 .trust-item {
-    text-align: center;
-    padding: 1.5rem 1rem;
-    position: relative;
-    transition: all var(--transition-base);
+    text-align: left;
+    padding: 2rem 2rem 3rem;
+    border-left: 1px solid rgba(11, 43, 64, 0.1);
 }
 
-.trust-item::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%) scaleX(0);
-    width: 40px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--color-primary), rgba(242, 101, 34, 0.3));
-    border-radius: 2px;
-    transition: transform 800ms var(--ease-spring);
-}
-
-.trust-item.is-counted::after {
-    transform: translateX(-50%) scaleX(1);
+.trust-item:first-child {
+    border-left: none;
 }
 
 .trust-number {
     display: block;
+    margin-top: 3.5rem;
     font-family: var(--font-display);
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
-    font-weight: 900;
-    color: var(--color-primary);
+    font-weight: 300;
+    font-size: clamp(2.6rem, 5vw, 5rem);
     line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--color-primary);
     font-variant-numeric: tabular-nums;
-    text-shadow: 0 0 40px rgba(242, 101, 34, 0.15);
-    transition: text-shadow 600ms ease;
 }
 
 .trust-number.counted-glow {
@@ -1745,12 +1761,14 @@ p {
 
 .trust-label {
     display: block;
-    font-size: 0.88rem;
-    color: var(--color-text-muted);
-    font-weight: 600;
-    margin-top: 0.6rem;
+    max-width: 18ch;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    color: var(--color-secondary);
+    line-height: 1.4;
 }
 
 .human-evidence-section {
@@ -3539,7 +3557,15 @@ p {
 
     .trust-numbers-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1.25rem;
+    }
+
+    .trust-item:nth-child(3) {
+        border-left: none;
+    }
+
+    .trust-item:nth-child(1),
+    .trust-item:nth-child(2) {
+        border-bottom: 1px solid rgba(11, 43, 64, 0.1);
     }
 
     .cta-actions {
@@ -4490,13 +4516,27 @@ body:has(.nav-overlay.active) .site-header .logo-dark {
 }
 
 .zoom-image {
+    position: relative;
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: center 30%;
+    overflow: hidden;
     transform: scale(1.5);
     filter: blur(20px) brightness(0.5);
     will-change: transform, filter;
+    pointer-events: none;
+}
+
+.zoom-video-iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 56.25vw; /* 16:9 */
+    min-height: 100vh;
+    min-width: 177.78vh; /* 16:9 */
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    border: 0;
 }
 
 .zoom-reveal-tint {

@@ -339,9 +339,28 @@
     if (!header) return;
     var ticking = false;
 
+    // Detecta qué sección con data-header-theme queda justo debajo
+    // del header (usa elementsFromPoint en vez de IntersectionObserver
+    // para no tener que recalcular rootMargin cada vez que cambia la
+    // altura del header entre estado normal y "scrolled").
+    function themeUnderHeader() {
+      var rect = header.getBoundingClientRect();
+      var probeY = rect.bottom - 1;
+      var probeX = window.innerWidth / 2;
+      if (probeY < 0) return null;
+
+      var stack = document.elementsFromPoint(probeX, probeY);
+      for (var i = 0; i < stack.length; i++) {
+        var themed = stack[i].closest && stack[i].closest('[data-header-theme]');
+        if (themed) return themed.getAttribute('data-header-theme');
+      }
+      return null;
+    }
+
     function update() {
       ticking = false;
       header.classList.toggle('scrolled', window.scrollY > 60);
+      header.classList.toggle('header-force-dark', themeUnderHeader() === 'dark');
     }
 
     window.addEventListener('scroll', function () {

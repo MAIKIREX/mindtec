@@ -1,0 +1,339 @@
+---
+export type StoryCardPosition = "left" | "center" | "right";
+
+export type StoryCardShape =
+  "auto" | "bottom-right-step" | "rectangle" | "top-left-step";
+
+interface Props {
+  background: string;
+  alt?: string;
+
+  index: number;
+  total: number;
+
+  cardPosition?: StoryCardPosition;
+  cardShape?: StoryCardShape;
+
+  /** Medidas CSS; por ejemplo 32vw, 72vh, 13vh. */
+  cardWidth?: string;
+  cardHeight?: string;
+  cardTop?: string;
+
+  cardBackground?: string;
+  cardTextColor?: string;
+  cardMutedColor?: string;
+
+  /** Retraso individual respecto al fondo. */
+  cardDelay?: number;
+
+  /** Mostrar indicador inferior automático. */
+  showProgress?: boolean;
+}
+
+const {
+  background,
+  alt = "",
+  index,
+  total,
+  cardPosition = "left",
+  cardShape = "auto",
+  cardWidth = "32vw",
+  cardHeight = "72vh",
+  cardTop,
+  cardBackground = "#05091f",
+  cardTextColor = "#ffffff",
+  cardMutedColor = "rgba(255,255,255,0.64)",
+  cardDelay,
+  showProgress = true
+} = Astro.props;
+
+const resolvedShape =
+  cardShape !== "auto"
+    ? cardShape
+    : cardPosition === "left"
+      ? "bottom-right-step"
+      : cardPosition === "right"
+        ? "top-left-step"
+        : "rectangle";
+
+const resolvedTop =
+  cardTop ??
+  (cardPosition === "left"
+    ? "13vh"
+    : cardPosition === "right"
+      ? "10vh"
+      : "14vh");
+---
+
+<section
+  class:list={[
+    "scroll-story-cards-item",
+    `scroll-story-cards-item--${cardPosition}`
+  ]}
+  data-story-cards-item
+  data-card-delay={cardDelay}
+  style={`--item-card-width:${cardWidth};--item-card-height:${cardHeight};--item-card-top:${resolvedTop};--item-card-bg:${cardBackground};--item-card-color:${cardTextColor};--item-card-muted:${cardMutedColor};`}
+>
+  <img
+    class="scroll-story-cards-item__image"
+    data-story-cards-item-image
+    src={background}
+    alt={alt}
+    loading="lazy"
+  />
+
+  <div class="scroll-story-cards-item__overlay"></div>
+
+  <article
+    class:list={[
+      "scroll-story-cards-item__card",
+      `scroll-story-cards-item__card--${resolvedShape}`
+    ]}
+    data-story-cards-item-card
+  >
+    <div
+      class="scroll-story-cards-item__card-inner"
+      data-story-cards-item-content
+    >
+      <!-- Contenido completamente libre. -->
+      <div class="scroll-story-cards-item__custom-content">
+        <slot />
+      </div>
+
+      {
+        showProgress && (
+          <footer class="scroll-story-cards-item__footer">
+            <div
+              class="scroll-story-cards-item__progress"
+              style={`--items-count:${total};`}
+            >
+              {
+                Array.from({ length: total }).map((_, progressIndex) => (
+                  <span
+                    class:list={{
+                      "is-active": progressIndex === index
+                    }}
+                  />
+                ))
+              }
+            </div>
+
+            <div class="scroll-story-cards-item__pagination">
+              <span>{index + 1}</span>
+              <span>/ {total}</span>
+            </div>
+          </footer>
+        )
+      }
+    </div>
+  </article>
+</section>
+
+<style>
+  .scroll-story-cards-item {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    will-change: transform;
+  }
+
+  .scroll-story-cards-item__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    will-change: transform;
+  }
+
+  .scroll-story-cards-item__overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(4, 7, 19, 0.16),
+        rgba(4, 7, 19, 0.02) 52%,
+        rgba(4, 7, 19, 0.2)
+      );
+  }
+
+  .scroll-story-cards-item__card {
+    position: absolute;
+    z-index: 2;
+    top: var(--item-card-top);
+    width: var(--item-card-width);
+    height: var(--item-card-height);
+    overflow: hidden;
+    color: var(--item-card-color);
+    background: var(--item-card-bg);
+    filter: drop-shadow(0 22px 50px rgba(0, 0, 0, 0.26));
+    will-change: transform;
+  }
+
+  .scroll-story-cards-item--left
+    .scroll-story-cards-item__card {
+    left: 1.5vw;
+  }
+
+  .scroll-story-cards-item--center
+    .scroll-story-cards-item__card {
+    left: calc(50% - var(--item-card-width) / 2);
+  }
+
+  .scroll-story-cards-item--right
+    .scroll-story-cards-item__card {
+    right: 1.5vw;
+  }
+
+  .scroll-story-cards-item__card--bottom-right-step {
+    clip-path:
+      polygon(
+        0 0,
+        100% 0,
+        100% 84%,
+        74% 84%,
+        74% 100%,
+        0 100%
+      );
+  }
+
+  .scroll-story-cards-item__card--rectangle {
+    clip-path: none;
+  }
+
+  .scroll-story-cards-item__card--top-left-step {
+    clip-path:
+      polygon(
+        28% 0,
+        100% 0,
+        100% 100%,
+        0 100%,
+        0 14%,
+        28% 14%
+      );
+  }
+
+  .scroll-story-cards-item__card-inner {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    width: 100%;
+    height: 100%;
+    padding: clamp(28px, 3vw, 54px);
+    will-change: transform;
+  }
+
+  .scroll-story-cards-item__custom-content {
+    min-height: 0;
+  }
+
+  .scroll-story-cards-item__footer {
+    margin-top: 26px;
+  }
+
+  .scroll-story-cards-item__progress {
+    display: grid;
+    grid-template-columns:
+      repeat(var(--items-count, 3), minmax(0, 1fr));
+    gap: clamp(7px, 1vw, 16px);
+  }
+
+  .scroll-story-cards-item__progress span {
+    position: relative;
+    display: block;
+    height: 1px;
+    overflow: hidden;
+    background:
+      color-mix(
+        in srgb,
+        var(--item-card-color) 20%,
+        transparent
+      );
+  }
+
+  .scroll-story-cards-item__progress span::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--item-card-color);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .scroll-story-cards-item__progress span.is-active::after {
+    transform: scaleX(1);
+  }
+
+  .scroll-story-cards-item__pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 26px;
+    font-size: 0.72rem;
+  }
+
+  .scroll-story-cards-item__pagination span:last-child {
+    color: var(--item-card-muted);
+  }
+
+  @media (max-width: 900px) {
+    .scroll-story-cards-item__card {
+      width: 52vw;
+      height: 68vh;
+    }
+
+    .scroll-story-cards-item--center
+      .scroll-story-cards-item__card {
+      left: calc(50% - 26vw);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .scroll-story-cards-item__card {
+      top: auto;
+      right: auto;
+      bottom: 2vh;
+      left: 4vw;
+      width: 92vw;
+      height: 58vh;
+    }
+
+    .scroll-story-cards-item--center
+      .scroll-story-cards-item__card,
+    .scroll-story-cards-item--right
+      .scroll-story-cards-item__card {
+      right: auto;
+      left: 4vw;
+    }
+
+    .scroll-story-cards-item__card--bottom-right-step {
+      clip-path:
+        polygon(
+          0 0,
+          100% 0,
+          100% 90%,
+          76% 90%,
+          76% 100%,
+          0 100%
+        );
+    }
+
+    .scroll-story-cards-item__card--top-left-step {
+      clip-path:
+        polygon(
+          24% 0,
+          100% 0,
+          100% 100%,
+          0 100%,
+          0 10%,
+          24% 10%
+        );
+    }
+
+    .scroll-story-cards-item__card-inner {
+      padding: 24px 20px 20px;
+    }
+  }
+</style>
