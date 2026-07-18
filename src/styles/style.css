@@ -3486,6 +3486,20 @@ p {
     }
 }
 
+/* El nav completo (5 links + botón) empieza a envolverse en dos líneas
+   entre 900-950px; el hamburger se activa antes de ese punto para
+   que nunca se vea partido. */
+@media (max-width: 991px) {
+    /* Show hamburger, hide nav */
+    .hamburger {
+        display: block;
+    }
+
+    .main-nav {
+        display: none;
+    }
+}
+
 @media (max-width: 768px) {
     :root {
         --spacing-xl: 5rem;
@@ -3497,15 +3511,6 @@ p {
 
     .site-header {
         padding: 0.75rem 0;
-    }
-
-    /* Show hamburger, hide nav */
-    .hamburger {
-        display: block;
-    }
-
-    .main-nav {
-        display: none;
     }
 
     .hero-container {

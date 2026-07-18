@@ -25,6 +25,9 @@ interface ScrollStoryLeftItem {
   title: string;
   description: string;
   icon?: ScrollStoryLeftIcon;
+
+  /** Lista de puntos opcional, se renderiza debajo de la descripción. */
+  list?: string[];
 }
 
 interface Props {
@@ -250,6 +253,16 @@ const totalItems = items.length;
 
               <div class="scroll-story-left__item-description">
                 <p>{item.description}</p>
+
+                {
+                  item.list && item.list.length > 0 && (
+                    <ul class="scroll-story-left__item-list">
+                      {item.list.map((point) => (
+                        <li>{point}</li>
+                      ))}
+                    </ul>
+                  )
+                }
               </div>
 
               <footer class="scroll-story-left__item-footer">
@@ -679,9 +692,10 @@ const totalItems = items.length;
     opacity: 0.68;
   }
 
-  .scroll-story-left__cover-content h1 {
+  .scroll-story-left__cover-content h2 {
     max-width: 900px;
     margin: 0 0 0 auto;
+    color: inherit;
     font-size: clamp(3.5rem, 8vw, 8.5rem);
     line-height: 0.9;
     letter-spacing: -0.065em;
@@ -788,6 +802,7 @@ const totalItems = items.length;
   .scroll-story-left__intro-heading h2 {
     max-width: 1500px;
     margin: 0;
+    color: inherit;
     font-size: clamp(2.8rem, 5vw, 6.8rem);
     font-weight: 300;
     line-height: 0.96;
@@ -835,6 +850,7 @@ const totalItems = items.length;
   .scroll-story-left__item-header h2 {
     max-width: 420px;
     margin: 0;
+    color: inherit;
     font-size: clamp(1.7rem, 3vw, 3.2rem);
     font-weight: 400;
     line-height: 0.96;
@@ -896,6 +912,16 @@ const totalItems = items.length;
 
   .scroll-story-left__item-description {
     max-width: 560px;
+    max-height: 100%;
+
+    /*
+     * Nunca overflow-y:auto aquí: la tarjeta vive dentro de una
+     * sección con scroll-jacking (GSAP ScrollTrigger + scrub). Un
+     * scroll interno le roba el wheel al scroll de la página y
+     * traba el timeline pineado. overflow:hidden solo recorta en
+     * el peor caso.
+     */
+    overflow: hidden;
   }
 
   .scroll-story-left__item-description p {
@@ -905,6 +931,37 @@ const totalItems = items.length;
     font-weight: 500;
     line-height: 1.25;
     text-transform: uppercase;
+  }
+
+  .scroll-story-left__item-list {
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .scroll-story-left__item-list li {
+    position: relative;
+    padding-left: 18px;
+    color: var(--story-left-card-muted);
+    font-size: clamp(0.78rem, 1vw, 0.95rem);
+    font-weight: 500;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  .scroll-story-left__item-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.65;
   }
 
   .scroll-story-left__item-footer {
@@ -984,13 +1041,13 @@ const totalItems = items.length;
       text-align: left;
     }
 
-    .scroll-story-left__cover-content h1,
+    .scroll-story-left__cover-content h2,
     .scroll-story-left__cover-content p {
       margin-left: 0;
       margin-right: 0;
     }
 
-    .scroll-story-left__cover-content h1 {
+    .scroll-story-left__cover-content h2 {
       font-size: clamp(3rem, 15vw, 5rem);
     }
 
@@ -1049,6 +1106,15 @@ const totalItems = items.length;
 
     .scroll-story-left__item-description p {
       font-size: 0.78rem;
+    }
+
+    .scroll-story-left__item-list {
+      margin-top: 8px;
+      gap: 4px;
+    }
+
+    .scroll-story-left__item-list li {
+      font-size: 0.68rem;
     }
 
     .scroll-story-left__item-footer {

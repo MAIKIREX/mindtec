@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ScrollStory from '../components/scroll/ScrollStory.astro';
+import ScrollStack from '../components/scroll/ScrollStack.astro';
+import ScrollStackItem from '../components/scroll/ScrollStackItem.astro';
 ---
 
 <Layout
@@ -98,88 +101,103 @@ import Layout from '../layouts/Layout.astro';
         </section>
 
         <!-- SECCIÓN 2: Quiénes somos -->
-        <section class="elementor-section premium-section-padding bg-slate" style="padding: 5rem 0;">
-            <div class="container elementor-container" style="max-width: 1100px;">
-                <h2 class="text-navy text-center" style="font-size: 2.5rem; margin-bottom: 3rem;">El respaldo analítico detrás de su próxima decisión</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; align-items: center;">
-                    <div class="premium-card-white" style="text-align: left; padding: 3rem; font-size: 1.1rem; color: #4a5b6f; line-height: 1.8; margin-bottom: 0; box-shadow: var(--shadow-md); border-radius: var(--radius-md); background: #ffffff;">
-                        <p style="margin-bottom: 1.5rem;">La sofisticación analítica que exigen las decisiones gerenciales críticas ya no requiere buscar fuera de Bolivia. Las corporaciones del país acceden a una metodología científica de nivel internacional, adaptada con precisión a la realidad de los canales de distribución locales.</p>
-                        <p style="margin-bottom: 1.5rem;">Mediante la integración de psicólogos de consumo, analistas de datos y tecnología biométrica, es posible descifrar las verdaderas motivaciones y barreras de compra en el mercado boliviano, eliminando los sesgos comunes de la investigación tradicional.</p>
-                        <p style="margin-bottom: 0;">Esta infraestructura de inteligencia de mercados está diseñada para respaldar a directorios de entidades financieras, multinacionales de consumo masivo, instituciones educativas de primer nivel y corporaciones en expansión regional.</p>
-                    </div>
-                    <div style="position: relative; width: 100%; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-lg);">
-                        <img src="/equipo-mindtec.webp" alt="Equipo de Consultores de Mindtec Bolivia" style="width: 100%; height: auto; object-fit: cover; display: block;" loading="lazy">
+        <ScrollStack scrub={0.75}>
+            <ScrollStackItem>
+                <div class="elementor-section premium-section-padding bg-slate" style="height: 100%; display: flex; align-items: center; overflow-y: auto; padding: 5rem 0;">
+                    <div class="container elementor-container" style="max-width: 1100px; margin: auto;">
+                        <h2 class="text-navy text-center" style="font-size: 2.5rem; margin-bottom: 3rem;">El respaldo analítico detrás de su próxima decisión</h2>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; align-items: center;">
+                            <div class="premium-card-white" style="text-align: left; padding: 3rem; font-size: 1.1rem; color: #4a5b6f; line-height: 1.8; margin-bottom: 0; box-shadow: var(--shadow-md); border-radius: var(--radius-md); background: #ffffff;">
+                                <p style="margin-bottom: 1.5rem;">La sofisticación analítica que exigen las decisiones gerenciales críticas ya no requiere buscar fuera de Bolivia. Las corporaciones del país acceden a una metodología científica de nivel internacional, adaptada con precisión a la realidad de los canales de distribución locales.</p>
+                                <p style="margin-bottom: 1.5rem;">Mediante la integración de psicólogos de consumo, analistas de datos y tecnología biométrica, es posible descifrar las verdaderas motivaciones y barreras de compra en el mercado boliviano, eliminando los sesgos comunes de la investigación tradicional.</p>
+                                <p style="margin-bottom: 0;">Esta infraestructura de inteligencia de mercados está diseñada para respaldar a directorios de entidades financieras, multinacionales de consumo masivo, instituciones educativas de primer nivel y corporaciones en expansión regional.</p>
+                            </div>
+                            <div style="position: relative; width: 100%; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-lg);">
+                                <img src="/equipo-mindtec.webp" alt="Equipo de Consultores de Mindtec Bolivia" style="width: 100%; height: auto; object-fit: cover; display: block;" loading="lazy">
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </ScrollStackItem>
+        </ScrollStack>
+
+        <!-- SECCIÓN 3: Estándares Operativos — ScrollStory (storytelling de las 4 tarjetas) -->
+        <ScrollStory
+            cover={{
+                background: "/imagenes-mindtec/Conferencia-mindtec20.jpg",
+                alt: "Equipo directivo de Mindtec en sesión estratégica corporativa",
+                eyebrow: "ADN CORPORATIVO",
+                title: "Lo que puede esperar de Mindtec",
+                description: "La validez de un estudio reside en la solidez de su estructura. En lugar de ofrecer cuestionarios tácticos aislados, los proyectos se ejecutan bajo una metodología científica y estandarizada, diseñada para mitigar el riesgo en inversiones de gran escala.",
+            }}
+            intro={{
+                background: "/imagenes-mindtec/mindtec-imagen-larga-1.jpg",
+                alt: "Reunión confidencial de directorio con el equipo de Mindtec",
+                number: "01",
+                badge: "Confidencialidad",
+                title: "Confidencialidad Absoluta",
+                description: "Protocolos estrictos de resguardo sobre los próximos movimientos competitivos y debilidades de mercado detectadas.",
+            }}
+            items={[
+                {
+                    background: "/imagenes-mindtec/generated/investigacion-profunda-hero.png",
+                    alt: "Analistas de Mindtec validando evidencia con trazabilidad matemática",
+                    badge: "Evidencia",
+                    title: "Rigor en la Evidencia",
+                    description: "Las decisiones críticas exigen bases sólidas. Cada conclusión estratégica cuenta con trazabilidad absoluta y respaldo matemático.",
+                },
+                {
+                    background: "/imagenes-mindtec/generated/retail-tienda-barrio-encuestador.webp",
+                    alt: "Encuestador de Mindtec auditando en campo un punto de venta en Bolivia",
+                    badge: "Campo",
+                    title: "Validación en Campo Real",
+                    description: "El análisis trasciende el escritorio. La auditoría directa en el punto de venta contrasta los modelos teóricos con la realidad comercial boliviana.",
+                },
+                {
+                    background: "/imagenes-mindtec/social-lab-abril-dashboard-copia.jpg",
+                    alt: "Tablero ejecutivo con conclusiones estratégicas listas para la acción",
+                    badge: "Acción",
+                    title: "Entregables para la Acción",
+                    description: "Hojas de ruta claras y tableros ejecutivos. Grandes volúmenes de información se sintetizan en conclusiones listas para la toma de decisiones.",
+                },
+            ]}
+        />
+
+        <!-- SECCIONES 4-7: Alcance, Reconocimientos, Equipo, Diferenciación, CTA — ScrollStack -->
+        <ScrollStack scrub={0.8}>
+        <ScrollStackItem>
+        <div class="elementor-section premium-section-padding bg-navy" style="height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-y: auto; width: 100%; padding: 6rem 0; background-color: var(--color-secondary);">
+            <h2 class="text-white text-center" style="font-size: 2.5rem; margin-bottom: 4rem; color: white;">Alcance y Capacidad Operativa</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); border-top: 1px solid rgba(255,255,255,0.15); width: 100%;">
+
+                <div style="padding: 2.5rem clamp(1.5rem, 4vw, 4rem); min-height: 220px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <p style="margin: 0; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 600; line-height: 1.5; color: rgba(255,255,255,0.6);">Encuestadores activos<br>en Bolivia</p>
+                    <div style="align-self: flex-end; font-size: clamp(3rem, 6vw, 5rem); font-weight: 300; line-height: 1; color: var(--color-primary);">80+</div>
+                </div>
+
+                <div style="border-left: 1px solid rgba(255,255,255,0.15); padding: 2.5rem clamp(1.5rem, 4vw, 4rem); min-height: 220px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <p style="margin: 0; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 600; line-height: 1.5; color: rgba(255,255,255,0.6);">Ciudades con cobertura<br>permanente</p>
+                    <div style="align-self: flex-end; font-size: clamp(3rem, 6vw, 5rem); font-weight: 300; line-height: 1; color: var(--color-primary);">4+</div>
+                </div>
+
+                <div style="border-left: 1px solid rgba(255,255,255,0.15); padding: 2.5rem clamp(1.5rem, 4vw, 4rem); min-height: 220px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <p style="margin: 0; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 600; line-height: 1.5; color: rgba(255,255,255,0.6);">Laboratorio de neuromarketing<br>en el país</p>
+                    <div style="align-self: flex-end; font-size: clamp(3rem, 6vw, 5rem); font-weight: 300; line-height: 1; color: var(--color-primary); text-transform: uppercase;">1er</div>
+                </div>
+
+                <div style="border-left: 1px solid rgba(255,255,255,0.15); padding: 2.5rem clamp(1.5rem, 4vw, 4rem); min-height: 220px; display: flex; flex-direction: column; justify-content: space-between;">
+                    <p style="margin: 0; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 600; line-height: 1.5; color: rgba(255,255,255,0.6);">Años de<br>experiencia</p>
+                    <div style="align-self: flex-end; font-size: clamp(3rem, 6vw, 5rem); font-weight: 300; line-height: 1; color: var(--color-primary);">9</div>
+                </div>
+
             </div>
-        </section>
-
-        <!-- SECCIÓN 3: Estándares Operativos -->
-        <section class="problem-section elementor-section bg-white" style="padding: 5rem 0; background-image: none;">
-            <div class="container elementor-container">
-                <div class="section-header text-center" style="margin-bottom: 4rem;">
-                    <span class="eyebrow">ADN CORPORATIVO</span>
-                    <h2 class="text-navy" style="font-size: 2.5rem;">Lo que puede esperar de Mindtec</h2>
-                </div>
-
-                <div class="problem-statement modern-quote" style="background: rgba(11, 43, 64, 0.03); border-left: 4px solid var(--color-secondary); text-align: left; margin-bottom: 4rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-                    <p style="color: #0b2b40;">La validez de un estudio reside en la solidez de su estructura. En lugar de ofrecer cuestionarios tácticos aislados, los proyectos se ejecutan bajo una <strong>metodología científica y estandarizada</strong>, diseñada específicamente para mitigar el riesgo en inversiones de gran escala.</p>
-                </div>
-
-                <div class="services-grid-modern">
-                    <div class="service-card-v3">
-                        <h4 style="color: var(--color-primary);">1. Confidencialidad Absoluta</h4>
-                        <p style="margin-top: 0.5rem; font-size: 0.95rem; color: #4a5b6f;">Protocolos estrictos de resguardo sobre los próximos movimientos competitivos y debilidades de mercado detectadas.</p>
-                    </div>
-                    <div class="service-card-v3">
-                        <h4 style="color: var(--color-primary);">2. Rigor en la Evidencia</h4>
-                        <p style="margin-top: 0.5rem; font-size: 0.95rem; color: #4a5b6f;">Las decisiones críticas exigen bases sólidas. Cada conclusión estratégica cuenta con trazabilidad absoluta y respaldo matemático.</p>
-                    </div>
-                    <div class="service-card-v3">
-                        <h4 style="color: var(--color-primary);">3. Validación en Campo Real</h4>
-                        <p style="margin-top: 0.5rem; font-size: 0.95rem; color: #4a5b6f;">El análisis trasciende el escritorio. La auditoría directa en el punto de venta contrasta los modelos teóricos con la realidad comercial boliviana.</p>
-                    </div>
-                    <div class="service-card-v3">
-                        <h4 style="color: var(--color-primary);">4. Entregables para la Acción</h4>
-                        <p style="margin-top: 0.5rem; font-size: 0.95rem; color: #4a5b6f;">Hojas de ruta claras y tableros ejecutivos. Grandes volúmenes de información se sintetizan en conclusiones listas para la toma de decisiones.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 4: En cifras -->
-        <section class="elementor-section premium-section-padding bg-navy" style="padding: 6rem 0; background-color: var(--color-secondary);">
-            <div class="container elementor-container text-center">
-                <h2 class="text-white" style="font-size: 2.5rem; margin-bottom: 4rem; color: white;">Alcance y Capacidad Operativa</h2>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
-                    
-                    <div style="border-right: 1px solid rgba(255,255,255,0.1); padding: 1rem;">
-                        <div style="font-size: 3.5rem; font-weight: 900; color: var(--color-primary); line-height: 1; margin-bottom: 0.5rem;">80+</div>
-                        <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem; font-weight: 500;">Encuestadores activos en Bolivia</p>
-                    </div>
-                    
-                    <div style="border-right: 1px solid rgba(255,255,255,0.1); padding: 1rem;">
-                        <div style="font-size: 3.5rem; font-weight: 900; color: var(--color-primary); line-height: 1; margin-bottom: 0.5rem;">4+</div>
-                        <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem; font-weight: 500;">Ciudades con cobertura permanente</p>
-                    </div>
-                    
-                    <div style="border-right: 1px solid rgba(255,255,255,0.1); padding: 1rem;">
-                        <div style="font-size: 3.5rem; font-weight: 900; color: var(--color-primary); line-height: 1; margin-bottom: 0.5rem; text-transform: uppercase; font-size: 2.5rem; padding-top: 0.5rem; padding-bottom: 0.5rem;">1er</div>
-                        <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem; font-weight: 500;">Laboratorio de neuromarketing en el país</p>
-                    </div>
-                    
-                    <div style="padding: 1rem;">
-                        <div style="font-size: 3.5rem; font-weight: 900; color: var(--color-primary); line-height: 1; margin-bottom: 0.5rem;">9</div>
-                        <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem; font-weight: 500;">Años de experiencia</p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
+        </div>
+        </ScrollStackItem>
 
         <!-- SECCIÓN: Reconocimientos y Premios -->
-        <section class="elementor-section premium-section-padding bg-white" style="padding: 6rem 0;">
-            <div class="container elementor-container">
+        <ScrollStackItem>
+        <div class="elementor-section premium-section-padding bg-white" style="height: 100%; display: flex; align-items: center; overflow-y: auto; padding: 6rem 0;">
+            <div class="container elementor-container" style="margin: auto;">
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 4rem; align-items: center;">
                     <div style="position: relative; width: 100%; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-xl); order: 2;">
                         <img src="/premios-maya-mindtec.webp" alt="Mindtec recibiendo el Premio MAYA a la innovación en investigación de mercados" style="width: 100%; height: auto; object-fit: cover; display: block;" loading="lazy">
@@ -201,11 +219,13 @@ import Layout from '../layouts/Layout.astro';
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+        </ScrollStackItem>
 
         <!-- SECCIÓN 5: Equipo Directivo -->
-        <section class="elementor-section premium-section-padding bg-slate" style="padding: 6rem 0;">
-            <div class="container elementor-container text-center">
+        <ScrollStackItem>
+        <div class="elementor-section premium-section-padding bg-slate" style="height: 100%; display: flex; align-items: center; overflow-y: auto; padding: 6rem 0;">
+            <div class="container elementor-container text-center" style="margin: auto;">
                 <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 4rem;">El Equipo Directivo</h2>
                 
                 <!-- Wilmar: insertar aquí datos reales del equipo directivo -->
@@ -229,12 +249,14 @@ import Layout from '../layouts/Layout.astro';
 
                 </div>
             </div>
-        </section>
+        </div>
+        </ScrollStackItem>
 
         <!-- SECCIÓN 6: Para quién NO es esta consultoría -->
-        <section class="offer-section elementor-section" style="background-color: #fcfcfc; padding: 6rem 0;">
-            <div class="container elementor-container">
-                <div class="offer-box-modern" style="padding: 4rem; text-align: center;">
+        <ScrollStackItem>
+        <div class="offer-section elementor-section" style="height: 100%; display: flex; align-items: center; overflow-y: auto; width: 100%; background: var(--color-secondary); padding: 6rem 0;">
+            <div class="container elementor-container" style="margin: auto;">
+                <div class="offer-box-modern" style="padding: 4rem 0; text-align: center; background: transparent; box-shadow: none; border-radius: 0;">
                     <div class="offer-header">
                         <span class="eyebrow-light" style="color: rgba(255,255,255,0.6);">TRANSPARENCIA COMERCIAL</span>
                         <h2 style="color: #fff;">Esta consultoría no es para todos</h2>
@@ -247,12 +269,14 @@ import Layout from '../layouts/Layout.astro';
                     </ul>
                 </div>
             </div>
-        </section>
+        </div>
+        </ScrollStackItem>
 
         <!-- SECCIÓN 7: Final CTA -->
-        <section class="cta-section-modern elementor-section" style="padding: 6rem 0;">
-            <div class="container elementor-container glass-container" style="max-width: 900px; margin: 0 auto; text-align: center;">
-                <div class="cta-content-v2">
+        <ScrollStackItem>
+        <div class="cta-section-modern elementor-section" style="height: 100%; display: flex; align-items: center; overflow-y: auto; width: 100%; background: linear-gradient(135deg, var(--color-primary), #D94E10); padding: 6rem 0;">
+            <div class="container elementor-container glass-container" style="max-width: 900px; margin: auto; text-align: center;">
+                <div class="cta-content-v2" style="background: transparent; box-shadow: none; border-radius: 0; max-width: none; margin: 0;">
                     <h2 style="font-size: 2.8rem; line-height: 1.25; margin-bottom: 1.5rem;">Si su empresa necesita ver lo que la competencia no ve, este es el punto de partida.</h2>
                     <p class="cta-subtitle">Agende una conversación inicial con el equipo senior de Mindtec. 45 minutos, directo al punto.</p>
                     <div class="cta-actions" style="margin-top: 2.5rem;">
@@ -260,8 +284,10 @@ import Layout from '../layouts/Layout.astro';
                     </div>
                 </div>
             </div>
-        </section>
-    
+        </div>
+        </ScrollStackItem>
+        </ScrollStack>
+
         <section class="elementor-section bg-slate" style="padding: 4rem 0; text-align: center; border-top: 1px solid #eee;">
             <div class="container">
                 <h3 class="text-navy" style="margin-bottom: 1.5rem;">Los pilares de la firma</h3>

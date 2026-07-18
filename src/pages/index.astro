@@ -750,7 +750,7 @@ import StatCounter from "../components/scroll/StatCounter.astro";
                                 <span class="area-panel__arrow" aria-hidden="true">→</span>
                             </a>
                         </div>
-                        <p style="margin-top: 1.5rem;">
+                        <p style="margin: 1.5rem auto 0; max-width: none;">
                             <a
                                 href="/servicios"
                                 class="btn btn-primary"
@@ -902,15 +902,15 @@ import StatCounter from "../components/scroll/StatCounter.astro";
                                 style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0;"
                             >
                                 <span
-                                    style="background: rgba(11,43,64,0.05); color: var(--color-secondary); padding: 0.3rem 0.75rem; border-radius: 14px; font-size: 0.78rem; font-weight: 700;"
+                                    style="background: rgba(255,255,255,0.12); color: var(--color-text-light, #fff); padding: 0.3rem 0.75rem; border-radius: 14px; font-size: 0.78rem; font-weight: 700;"
                                     >Códigos culturales</span
                                 >
                                 <span
-                                    style="background: rgba(11,43,64,0.05); color: var(--color-secondary); padding: 0.3rem 0.75rem; border-radius: 14px; font-size: 0.78rem; font-weight: 700;"
+                                    style="background: rgba(255,255,255,0.12); color: var(--color-text-light, #fff); padding: 0.3rem 0.75rem; border-radius: 14px; font-size: 0.78rem; font-weight: 700;"
                                     >Significados simbólicos</span
                                 >
                                 <span
-                                    style="background: rgba(11,43,64,0.05); color: var(--color-secondary); padding: 0.3rem 0.75rem; border-radius: 14px; font-size: 0.78rem; font-weight: 700;"
+                                    style="background: rgba(255,255,255,0.12); color: var(--color-text-light, #fff); padding: 0.3rem 0.75rem; border-radius: 14px; font-size: 0.78rem; font-weight: 700;"
                                     >Entendimiento profundo del consumidor</span
                                 >
                             </div>
@@ -921,43 +921,49 @@ import StatCounter from "../components/scroll/StatCounter.astro";
                             </div>
                         </ScrollReveal>
                     </div>
-                    <div class="capability-card-v2">
+                    <div class="capability-card-v2 capability-card-v2--feature">
                         <ScrollReveal delay={0.2}>
-                            <div class="cap-icon">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="26"
-                                    height="26"
-                                    viewBox="0 0 256 256"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="16"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    ><path
-                                        d="M128,16a88,88,0,0,0-80,88c0,27.52,11.23,54.89,31.62,77.06a8,8,0,0,1,2,6.59l-11.45,49A8,8,0,0,0,78,245.92l44.4-22.2,44.4,22.2a8,8,0,0,0,7.81-.76,8,8,0,0,0,3.77-7.23L167,189.28a8,8,0,0,1,2.05-6.59c20.39-22.17,31.62-49.54,31.62-77.06A88.1,88.1,0,0,0,128,16Zm40,88a40,40,0,1,1-40-40A40,40,0,0,1,168,104Z"
-                                    ></path></svg
-                                >
-                            </div>
-                            <h3>
-                                ③ Premio MAYA a la Innovación en Investigación
-                                de Mercados
-                            </h3>
-                            <img
-                                src="/premios-maya-mindtec.webp"
-                                alt="Premio MAYA a la Innovación en Investigación de Mercados - Mindtec"
-                                style="width: 100%; height: 220px; object-fit: cover; object-position: center 30%; border-radius: var(--radius-sm); margin: 1rem 0;"
-                                loading="lazy"
-                            />
-                            <p>
-                                Reconocimiento nacional al rigor metodológico y
-                                a la introducción de neurociencia al entorno
-                                corporativo boliviano. Para su Directorio:
-                                evidencia de que el estándar metodológico está
-                                validado externamente.
-                            </p>
-                            <div class="cap-footer">
-                                <a href="/firma">Conocer la firma →</a>
+                            <div class="capability-feature">
+                                <img
+                                    class="capability-feature__image"
+                                    src="/premios-maya-mindtec.webp"
+                                    alt="Premio MAYA a la Innovación en Investigación de Mercados - Mindtec"
+                                    loading="lazy"
+                                />
+                                <div class="capability-feature__body">
+                                    <div class="cap-icon">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="26"
+                                            height="26"
+                                            viewBox="0 0 256 256"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="16"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            ><path
+                                                d="M128,16a88,88,0,0,0-80,88c0,27.52,11.23,54.89,31.62,77.06a8,8,0,0,1,2,6.59l-11.45,49A8,8,0,0,0,78,245.92l44.4-22.2,44.4,22.2a8,8,0,0,0,7.81-.76,8,8,0,0,0,3.77-7.23L167,189.28a8,8,0,0,1,2.05-6.59c20.39-22.17,31.62-49.54,31.62-77.06A88.1,88.1,0,0,0,128,16Zm40,88a40,40,0,1,1-40-40A40,40,0,0,1,168,104Z"
+                                            ></path></svg
+                                        >
+                                    </div>
+                                    <h3>
+                                        ③ Premio MAYA a la Innovación en
+                                        Investigación de Mercados
+                                    </h3>
+                                    <p>
+                                        Reconocimiento nacional al rigor
+                                        metodológico y a la introducción de
+                                        neurociencia al entorno corporativo
+                                        boliviano. Para su Directorio:
+                                        evidencia de que el estándar
+                                        metodológico está validado
+                                        externamente.
+                                    </p>
+                                    <div class="cap-footer">
+                                        <a href="/firma">Conocer la firma →</a>
+                                    </div>
+                                </div>
                             </div>
                         </ScrollReveal>
                     </div>
@@ -966,7 +972,7 @@ import StatCounter from "../components/scroll/StatCounter.astro";
             <div class="container">
                 <p
                     class="text-gray-dark"
-                    style="text-align: center; margin-top: 2.5rem; font-size: 0.95rem;"
+                    style="text-align: center; margin: 2.5rem auto 0; max-width: none; font-size: 0.95rem;"
                 >
                     Conozca también: <a
                         href="/metodologia"
@@ -1429,7 +1435,7 @@ import StatCounter from "../components/scroll/StatCounter.astro";
                             >
                         </div>
                         <p
-                            style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;"
+                            style="margin: 1.5rem auto 0; max-width: none; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;"
                         >
                             Por Zoom o Teams · Llegue con una decisión pendiente
                             · Salga con claridad sobre cómo tomarla ·
@@ -1586,8 +1592,9 @@ import StatCounter from "../components/scroll/StatCounter.astro";
     }
 
     .areas-grid {
-        display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
         gap: 0.55rem;
         max-width: 1320px;
         margin: 0 auto;
@@ -1599,6 +1606,8 @@ import StatCounter from "../components/scroll/StatCounter.astro";
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        flex: 1 1 calc((100% - 4 * 0.55rem) / 5);
+        max-width: calc((100% - 4 * 0.55rem) / 5);
         min-height: 290px;
         padding: 1.5rem 1.25rem;
         overflow: hidden;
@@ -1705,18 +1714,16 @@ import StatCounter from "../components/scroll/StatCounter.astro";
     }
 
     @media (max-width: 1100px) {
-        .areas-grid {
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-        }
-
-        .area-panel:last-child {
-            grid-column: 2;
+        .area-panel {
+            flex-basis: calc((100% - 2 * 0.55rem) / 3);
+            max-width: calc((100% - 2 * 0.55rem) / 3);
         }
     }
 
     @media (max-width: 700px) {
-        .areas-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr));
+        .area-panel {
+            flex-basis: calc((100% - 0.55rem) / 2);
+            max-width: calc((100% - 0.55rem) / 2);
         }
 
         .area-panel,
@@ -1725,18 +1732,12 @@ import StatCounter from "../components/scroll/StatCounter.astro";
             min-height: 235px;
             clip-path: none;
         }
-
-        .area-panel:last-child {
-            grid-column: auto;
-        }
     }
 
     @media (max-width: 460px) {
-        .areas-grid {
-            grid-template-columns: 1fr;
-        }
-
         .area-panel {
+            flex-basis: 100%;
+            max-width: 100%;
             min-height: 205px;
         }
 
@@ -1993,10 +1994,80 @@ import StatCounter from "../components/scroll/StatCounter.astro";
         clip-path: polygon(28% 0, 100% 0, 100% 100%, 0 100%, 0 14%, 28% 14%);
     }
 
-    .capability-card-v2:last-child {
+    .capability-card-v2--feature {
         grid-column: 1 / -1;
-        min-height: 240px;
+        min-height: 0;
+        padding: 0;
         clip-path: none;
+    }
+
+    .capability-card-v2--feature :global(.scroll-reveal__content) {
+        display: block;
+        height: 100%;
+        min-height: 0;
+        padding-top: 0;
+        text-align: left;
+    }
+
+    .capability-feature {
+        display: grid;
+        grid-template-columns: minmax(260px, 0.85fr) 1.15fr;
+        align-items: stretch;
+        height: 100%;
+        min-height: 360px;
+    }
+
+    .capability-card-v2--feature .capability-feature__image {
+        order: 0;
+        width: 100%;
+        height: 100%;
+        min-height: 280px;
+        max-width: none;
+        margin: 0;
+        object-fit: cover;
+        object-position: center 30%;
+    }
+
+    .capability-feature__body {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 1rem;
+        padding: clamp(2rem, 3vw, 3rem);
+    }
+
+    .capability-card-v2--feature .capability-feature__body .cap-icon {
+        order: 0;
+        margin: 0;
+    }
+
+    .capability-card-v2--feature .capability-feature__body h3 {
+        order: 0;
+        max-width: none;
+        text-align: left;
+    }
+
+    .capability-card-v2--feature .capability-feature__body p {
+        order: 0;
+        text-align: left;
+        max-width: 46ch;
+    }
+
+    .capability-card-v2--feature .capability-feature__body .cap-footer {
+        order: 0;
+        width: 100%;
+    }
+
+    @media (max-width: 700px) {
+        .capability-feature {
+            grid-template-columns: 1fr;
+            min-height: 0;
+        }
+
+        .capability-card-v2--feature .capability-feature__image {
+            min-height: 220px;
+        }
     }
 
     .capability-card-v2 :global(.scroll-reveal__content) {
@@ -2052,7 +2123,7 @@ import StatCounter from "../components/scroll/StatCounter.astro";
         border-radius: var(--radius-sm, 10px);
     }
 
-    .capability-card-v2 :global(.scroll-reveal__content) > div {
+    .capability-card-v2 :global(.scroll-reveal__content) > div:not(.capability-feature) {
         order: 4;
         display: flex;
         justify-content: center;
@@ -2077,7 +2148,7 @@ import StatCounter from "../components/scroll/StatCounter.astro";
             clip-path: none;
         }
 
-        .capability-card-v2:last-child {
+        .capability-card-v2--feature {
             grid-column: auto;
         }
     }
