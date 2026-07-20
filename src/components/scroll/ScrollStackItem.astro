@@ -3,12 +3,29 @@ interface Props {
     class?: string;
     contentClass?: string;
     id?: string;
+    /**
+     * Altura mínima reservada para la sección/transición.
+     * Por defecto ocupa la ventana completa (100svh), pero puede
+     * recibir cualquier valor CSS válido ("auto", "40rem", etc.)
+     * para secciones cuyo contenido no tiene el alto de una ventana.
+     */
+    minHeight?: string;
 }
 
-const { class: className = "", contentClass = "", id } = Astro.props;
+const {
+    class: className = "",
+    contentClass = "",
+    id,
+    minHeight = "100svh",
+} = Astro.props;
 ---
 
-<section id={id} class:list={["stack-section", className]} data-stack-section>
+<section
+    id={id}
+    class:list={["stack-section", className]}
+    data-stack-section
+    style={`--stack-min-height: ${minHeight};`}
+>
     <div class="stack-section__pin" data-stack-pin>
         <div
             class:list={["stack-section__content", contentClass]}
@@ -30,16 +47,22 @@ const { class: className = "", contentClass = "", id } = Astro.props;
     .stack-section {
         position: relative;
         width: 100%;
-        min-height: 100svh;
+        min-height: var(--stack-min-height, 100svh);
     }
 
     .stack-section__pin {
         position: relative;
 
         width: 100%;
-        height: 100svh;
-
-        overflow: hidden;
+        height: auto;
+        min-height: var(--stack-min-height, 100svh);
+        /*
+         * GSAP fija esta caja con position:fixed mientras dura el pin.
+         * Ahora permite alturas dinámicas según el contenido.
+         * ScrollTrigger calculará el espacio necesario automáticamente.
+         */
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
 
         transform: translateZ(0);
         backface-visibility: hidden;
@@ -50,7 +73,6 @@ const { class: className = "", contentClass = "", id } = Astro.props;
         z-index: 1;
 
         width: 100%;
-        height: 100%;
 
         transform-origin: center center;
 

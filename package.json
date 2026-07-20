@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/Wilvelzap/PAgina-web-mindtec-anti-elementor#readme",
   "dependencies": {
+    "@astrojs/cloudflare": "^11.1.0",
     "@astrojs/sitemap": "^3.6.0",
     "@tsparticles/engine": "^4.3.2",
     "@tsparticles/plugin-polygon-mask": "^4.3.2",

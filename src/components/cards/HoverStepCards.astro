@@ -1,0 +1,215 @@
+---
+export interface HoverStepCardItem {
+  eyebrow?: string;
+  title: string;
+  description: string;
+  href?: string;
+}
+
+interface Props {
+  items: HoverStepCardItem[];
+  class?: string;
+
+  /** Ancho mínimo de columna antes de que el grid haga wrap. */
+  minColumnWidth?: string;
+
+  /** Alto del notch escalonado como % del alto de la tarjeta. */
+  notchHeight?: string;
+
+  /** Punto desde donde el notch empieza a la izquierda (ancho restante a la derecha). */
+  notchInset?: string;
+}
+
+const {
+  items,
+  class: className = "",
+  minColumnWidth = "320px",
+  notchHeight = "24%",
+  notchInset = "70%"
+} = Astro.props;
+---
+
+<div
+  class:list={["hover-step-cards", className]}
+  style={`--hsc-min-col:${minColumnWidth};--hsc-notch-h:${notchHeight};--hsc-notch-x:${notchInset};`}
+>
+  {items.map((item) => {
+    const Tag = item.href ? "a" : "div";
+    return (
+      <Tag class="hover-step-card" href={item.href}>
+        <div class="hover-step-card__inner">
+          {item.eyebrow && (
+            <span class="hover-step-card__eyebrow">{item.eyebrow}</span>
+          )}
+          <h3 class="hover-step-card__title">{item.title}</h3>
+          <p class="hover-step-card__desc">{item.description}</p>
+        </div>
+
+        <span class="hover-step-card__icon" aria-hidden="true">
+          <svg class="hover-step-card__icon-svg" viewBox="0 0 24 24">
+            <g class="hover-step-card__icon-plus">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </g>
+            <g class="hover-step-card__icon-arrow">
+              <line x1="12" y1="19" x2="12" y2="5"></line>
+              <line x1="6" y1="11" x2="12" y2="5"></line>
+              <line x1="18" y1="11" x2="12" y2="5"></line>
+            </g>
+          </svg>
+        </span>
+      </Tag>
+    );
+  })}
+</div>
+
+<style>
+  .hover-step-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--hsc-min-col, 320px), 1fr));
+    gap: 2rem;
+  }
+
+  .hover-step-card {
+    position: relative;
+    display: block;
+    aspect-ratio: 1 / 1;
+    background: var(--color-secondary);
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    isolation: isolate;
+    color: inherit;
+    text-decoration: none;
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% var(--hsc-notch-h, 24%),
+      100% var(--hsc-notch-h, 24%),
+      100% 100%,
+      0 100%
+    );
+    transition: clip-path 0.75s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
+    box-shadow: var(--shadow-md, 0 8px 32px rgba(11, 43, 64, 0.12));
+  }
+
+  .hover-step-card:hover,
+  .hover-step-card:focus-within {
+    clip-path: polygon(
+      0 0,
+      var(--hsc-notch-x, 70%) 0,
+      var(--hsc-notch-x, 70%) var(--hsc-notch-h, 24%),
+      100% var(--hsc-notch-h, 24%),
+      100% 100%,
+      0 100%
+    );
+    box-shadow: var(--shadow-xl, 0 32px 64px -16px rgba(11, 43, 64, 0.25));
+  }
+
+  .hover-step-card__inner {
+    position: absolute;
+    inset: 0;
+    padding: 2.25rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hover-step-card__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+
+  .hover-step-card__title {
+    margin-top: auto;
+    font-size: 1.4rem;
+    line-height: 1.25;
+    font-weight: 800;
+    color: #fff;
+    max-width: 85%;
+    transition: transform 0.5s ease, margin-bottom 0.5s ease;
+  }
+
+  .hover-step-card__desc {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.75);
+    margin-top: 1rem;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease 0.05s, opacity 0.4s ease 0.1s;
+  }
+
+  .hover-step-card:hover .hover-step-card__desc,
+  .hover-step-card:focus-within .hover-step-card__desc {
+    max-height: 260px;
+    opacity: 1;
+  }
+
+  .hover-step-card__icon {
+    position: absolute;
+    bottom: 1.75rem;
+    right: 1.75rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: background 0.4s ease, color 0.4s ease, border-color 0.4s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .hover-step-card:hover .hover-step-card__icon,
+  .hover-step-card:focus-within .hover-step-card__icon {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+    transform: scale(1.06);
+  }
+
+  .hover-step-card__icon-svg {
+    width: 1.15rem;
+    height: 1.15rem;
+    overflow: visible;
+  }
+
+  .hover-step-card__icon-svg line {
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+  }
+
+  .hover-step-card__icon-plus,
+  .hover-step-card__icon-arrow {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
+  }
+
+  .hover-step-card__icon-plus {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  .hover-step-card__icon-arrow {
+    opacity: 0;
+    transform: rotate(-40deg) scale(0.5);
+  }
+
+  .hover-step-card:hover .hover-step-card__icon-plus,
+  .hover-step-card:focus-within .hover-step-card__icon-plus {
+    opacity: 0;
+    transform: rotate(40deg) scale(0.5);
+  }
+
+  .hover-step-card:hover .hover-step-card__icon-arrow,
+  .hover-step-card:focus-within .hover-step-card__icon-arrow {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+</style>

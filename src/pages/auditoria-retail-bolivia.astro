@@ -1,6 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro';
+import FaqSplit from '../components/faq/FaqSplit.astro';
+
+const faqItems = [
+  {
+    question:
+      "¿Por qué no debería encargar la auditoría a mi mismo equipo de Trade?",
+    answer:
+      "Existe un conflicto de interés implícito. El vendedor que acomodó el producto o el supervisor a cargo de la zona tienen incentivos para reportar que la góndola está perfecta. Mindtec le proporciona una vista neutral, revelando oportunidades reales de mejora.",
+  },
+  {
+    question:
+      "¿Tienen la capacidad operativa para auditar a nivel nacional en Bolivia?",
+    answer:
+      "Sí. Contamos con una red distribuida de más de 80 auditores que cubren el eje metropolitano troncal (Santa Cruz, La Paz, El Alto, Cochabamba) y principales centros urbanos secundarios e intermediarios, auditando tanto canal moderno como mercados populares tradicionales.",
+  },
+  {
+    question: "¿Cómo garantizan la veracidad de la información de campo?",
+    answer:
+      "A través de tecnología digital georreferenciada. Cada auditor utiliza la plataforma de Mindtec para capturar fotos in-situ; el sistema inyecta automáticamente la ubicación GPS satelital y la marca de tiempo, previniendo alteraciones de datos.",
+  },
+  {
+    question:
+      "¿Qué sucede ante detecciones críticas como quiebre de stock o distorsiones de precio?",
+    answer:
+      "Emitimos alertas rápidas en el dashboard estratégico. Esto permite a sus gerentes de canal o supervisores de distribución contactar a la cadena de inmediato para corregir el desabastecimiento o la desviación de precio sugerido.",
+  },
+];
 ---
 
 <Layout
@@ -392,30 +419,7 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
     </section>
     
     <!-- 🟦 7️⃣ PREGUNTAS FRECUENTES (FAQ) -->
-    <section id="faqs" class="premium-section-padding bg-slate">
-      <div class="container" style="max-width: 800px;">
-        <h2 class="text-navy text-center" style="font-size: 2.5rem; margin-bottom: 3rem;">Preguntas Frecuentes</h2>
-        
-        <div class="faq-list">
-          <div class="faq-item">
-            <h4>¿Por qué no debería encargar la auditoría a mi mismo equipo de Trade?</h4>
-            <p>Existe un conflicto de interés implícito. El vendedor que acomodó el producto o el supervisor a cargo de la zona tienen incentivos para reportar que la góndola está perfecta. Mindtec le proporciona una vista neutral, revelando oportunidades reales de mejora.</p>
-          </div>
-          <div class="faq-item">
-            <h4>¿Tienen la capacidad operativa para auditar a nivel nacional en Bolivia?</h4>
-            <p>Sí. Contamos con una red distribuida de más de 80 auditores que cubren el eje metropolitano troncal (Santa Cruz, La Paz, El Alto, Cochabamba) y principales centros urbanos secundarios e intermediarios, auditando tanto canal moderno como mercados populares tradicionales.</p>
-          </div>
-          <div class="faq-item">
-            <h4>¿Cómo garantizan la veracidad de la información de campo?</h4>
-            <p>A través de tecnología digital georreferenciada. Cada auditor utiliza la plataforma de Mindtec para capturar fotos in-situ; el sistema inyecta automáticamente la ubicación GPS satelital y la marca de tiempo, previniendo alteraciones de datos.</p>
-          </div>
-          <div class="faq-item">
-            <h4>¿Qué sucede ante detecciones críticas como quiebre de stock o distorsiones de precio?</h4>
-            <p>Emitimos alertas rápidas en el dashboard estratégico. Esto permite a sus gerentes de canal o supervisores de distribución contactar a la cadena de inmediato para corregir el desabastecimiento o la desviación de precio sugerido.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <FaqSplit id="faqs" title="Preguntas Frecuentes" items={faqItems} />
 
     <!-- 🟦 8️⃣ CROSS-LINKING ESTRATÉGICO -->
     <section class="premium-section-padding bg-slate" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">

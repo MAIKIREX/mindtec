@@ -1,6 +1,32 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro';
+import FaqSplit from '../components/faq/FaqSplit.astro';
+
+const faqItems = [
+  {
+    question:
+      "¿Por qué el consumidor boliviano cambia tanto de marca en los últimos años?",
+    answer:
+      "Principalmente por presión económica: la escasez de dólares y la inflación importada redujeron el ingreso disponible real, y el precio se volvió el primer filtro de decisión incluso para consumidores que antes eran leales a una marca.",
+  },
+  {
+    question: "¿El consumidor de Santa Cruz se comporta igual que el de La Paz?",
+    answer:
+      "No. Mindtec encuentra diferencias consistentes: el consumidor paceño es más deliberado y consultivo, el cruceño más rápido y sensible al estatus, y el cochabambino más negociador y orientado a la relación precio-calidad.",
+  },
+  {
+    question: "¿Cómo recolecta Mindtec estos datos sobre comportamiento de compra?",
+    answer:
+      "Con una red de campo activa en el eje troncal y El Alto, que combina encuestas estructuradas, observación en punto de venta, entrevistas cualitativas y herramientas de neuromarketing para medir lo que el consumidor hace, no solo lo que dice.",
+  },
+  {
+    question:
+      "¿Esta segmentación regional sirve para empresas pequeñas o solo para grandes marcas?",
+    answer:
+      "Sirve para ambas. Una pyme que vende solo en Cochabamba puede usar el perfil local para ajustar su mensaje y precio; una marca nacional lo necesita para no aplicar la misma estrategia en tres mercados que se comportan distinto.",
+  },
+];
 ---
 
 <Layout
@@ -254,29 +280,7 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
     </section>
 
     <!-- 🟦 FAQ -->
-    <section class="premium-section-padding bg-white">
-      <div class="container" style="max-width: 800px;">
-        <h2 class="text-navy text-center" style="font-size: 2.5rem; margin-bottom: 3rem;">Preguntas Frecuentes</h2>
-        <div class="faq-list">
-          <div class="faq-item">
-            <h4>¿Por qué el consumidor boliviano cambia tanto de marca en los últimos años?</h4>
-            <p>Principalmente por presión económica: la escasez de dólares y la inflación importada redujeron el ingreso disponible real, y el precio se volvió el primer filtro de decisión incluso para consumidores que antes eran leales a una marca.</p>
-          </div>
-          <div class="faq-item">
-            <h4>¿El consumidor de Santa Cruz se comporta igual que el de La Paz?</h4>
-            <p>No. Mindtec encuentra diferencias consistentes: el consumidor paceño es más deliberado y consultivo, el cruceño más rápido y sensible al estatus, y el cochabambino más negociador y orientado a la relación precio-calidad.</p>
-          </div>
-          <div class="faq-item">
-            <h4>¿Cómo recolecta Mindtec estos datos sobre comportamiento de compra?</h4>
-            <p>Con una red de campo activa en el eje troncal y El Alto, que combina encuestas estructuradas, observación en punto de venta, entrevistas cualitativas y herramientas de neuromarketing para medir lo que el consumidor hace, no solo lo que dice.</p>
-          </div>
-          <div class="faq-item">
-            <h4>¿Esta segmentación regional sirve para empresas pequeñas o solo para grandes marcas?</h4>
-            <p>Sirve para ambas. Una pyme que vende solo en Cochabamba puede usar el perfil local para ajustar su mensaje y precio; una marca nacional lo necesita para no aplicar la misma estrategia en tres mercados que se comportan distinto.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <FaqSplit title="Preguntas Frecuentes" items={faqItems} />
 
     <!-- 🟦 CROSS-LINKING -->
     <section class="premium-section-padding bg-slate" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">

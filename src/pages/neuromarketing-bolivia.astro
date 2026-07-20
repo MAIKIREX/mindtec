@@ -1,6 +1,31 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro';
+import FaqSplit from '../components/faq/FaqSplit.astro';
+
+const faqItems = [
+  {
+    question: "¿El neuromarketing reemplaza a las encuestas tradicionales?",
+    answer:
+      "No, actúan en complemento. Las encuestas tradicionales cuantifican y capturan opiniones declarativas conscientes. El neuromarketing audita la atención espontánea, respuesta emocional y rechazo biológico, removiendo sesgos.",
+  },
+  {
+    question: "¿Cuánto tiempo toma un estudio de neuromarketing en Bolivia?",
+    answer:
+      "Varía según el alcance. Desde auditorías de diseño rápidas en 7 días para piezas específicas, hasta validaciones complejas de 30 días para rediseños integrales de empaques o testeo de campañas.",
+  },
+  {
+    question: "¿Pueden realizar estudios combinados con benchmark de competencia?",
+    answer:
+      "Es la práctica recomendada. Evaluamos sus piezas (anuncios o empaques) colocándolos en paralelo con los competidores líderes, midiendo cuál marca retiene el ojo del consumidor por más tiempo.",
+  },
+  {
+    question:
+      "¿Se puede testear el impacto visual en entornos móviles y de desktop?",
+    answer:
+      "Sí. El Eye Tracker de pantalla de Mindtec se calibra para flujos en e-commerce y aplicaciones móviles, registrando la facilidad de escaneo visual y la fricción que reduce la conversión.",
+  },
+];
 ---
 
 <Layout
@@ -440,30 +465,7 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
     </section>
 
     <!-- 🟦 1️⃣0️⃣ PREGUNTAS FRECUENTES (FAQ) -->
-    <section class="premium-section-padding bg-white" style="padding: 5rem 0;">
-      <div class="container" style="max-width: 800px;">
-        <h2 class="text-navy text-center" style="font-size: 2.5rem; margin-bottom: 3rem;">Preguntas Frecuentes</h2>
-
-        <div class="faq-list">
-          <div class="faq-item">
-            <h4>¿El neuromarketing reemplaza a las encuestas tradicionales?</h4>
-            <p>No, actúan en complemento. Las encuestas tradicionales cuantifican y capturan opiniones declarativas conscientes. El neuromarketing audita la atención espontánea, respuesta emocional y rechazo biológico, removiendo sesgos.</p>
-          </div>
-          <div class="faq-item">
-            <h4>¿Cuánto tiempo toma un estudio de neuromarketing en Bolivia?</h4>
-            <p>Varía según el alcance. Desde auditorías de diseño rápidas en 7 días para piezas específicas, hasta validaciones complejas de 30 días para rediseños integrales de empaques o testeo de campañas.</p>
-          </div>
-          <div class="faq-item">
-            <h4>¿Pueden realizar estudios combinados con benchmark de competencia?</h4>
-            <p>Es la práctica recomendada. Evaluamos sus piezas (anuncios o empaques) colocándolos en paralelo con los competidores líderes, midiendo cuál marca retiene el ojo del consumidor por más tiempo.</p>
-          </div>
-          <div class="faq-item">
-            <h4>¿Se puede testear el impacto visual en entornos móviles y de desktop?</h4>
-            <p>Sí. El Eye Tracker de pantalla de Mindtec se calibra para flujos en e-commerce y aplicaciones móviles, registrando la facilidad de escaneo visual y la fricción que reduce la conversión.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <FaqSplit id="faqs" title="Preguntas Frecuentes" items={faqItems} />
 
     <!-- 🟦 1️⃣1️⃣ CROSS-LINKING ESTRATÉGICO -->
     <section class="premium-section-padding bg-slate" style="padding: 5rem 0; background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">

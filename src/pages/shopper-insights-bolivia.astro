@@ -1,6 +1,35 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro';
+import FaqSplit from '../components/faq/FaqSplit.astro';
+
+const faqItems = [
+  {
+    question: "¿Qué es un estudio de shopper insights?",
+    answer:
+      "Un estudio de shopper insights analiza el comportamiento del comprador en el punto de venta: cómo navega el espacio, cuánto tiempo dedica a cada zona, qué lo detiene frente al anaquel, qué desencadena la decisión de compra y por qué elige una marca sobre otra. Se realiza en el PDV real, no en laboratorio.",
+  },
+  {
+    question: "¿Cómo se hace un estudio de shopper en Bolivia?",
+    answer:
+      "Combinamos tres metodologías: observación etnográfica en el PDV (observadores entrenados siguen a compradores reales), análisis de trayectoria y tiempo de permanencia frente al anaquel, y entrevistas post-compra inmediatas para capturar la racionalización de la decisión. Cuando aplica, incorporamos eye tracking portátil para medir exactamente qué captura la atención.",
+  },
+  {
+    question: "¿En qué tipo de puntos de venta hacen los estudios?",
+    answer:
+      "Trabajamos en supermercados de cadena, hipermercados, minimarkets, farmacias, ferreterías, tiendas de conveniencia y mercados populares. El tipo de PDV se define según el canal más relevante para tu categoría.",
+  },
+  {
+    question: "¿Cuántos shoppers se observan en un estudio típico?",
+    answer:
+      "Para estudios exploratorios: 30–50 observaciones. Para estudios con validez estadística: 100–200 observaciones. El número final depende de la variabilidad del comportamiento en tu categoría y del nivel de confianza requerido.",
+  },
+  {
+    question: "¿Los compradores saben que están siendo observados?",
+    answer:
+      "Dependiendo del diseño: en la fase etnográfica de observación pasiva, el comprador no sabe que está siendo observado. En las entrevistas post-compra, sí. Este diseño nos permite capturar el comportamiento real (sin el sesgo de saber que te observan) y luego explorar el por qué con el comprador dispuesto a hablar.",
+  },
+];
 
 const title = "Shopper Insights en Bolivia | Canal y PDV | Mindtec";
 const description = "Shopper insights Bolivia: etnografía, eye tracking y entrevistas en PDV para entender la decisión de compra real en el momento en que ocurre. Mindtec.";
@@ -328,77 +357,11 @@ const description = "Shopper insights Bolivia: etnografía, eye tracking y entre
     </section>
 
     <!-- 7. FAQ -->
-    <section style="padding: 5rem 0; background: #fff;">
-      <div class="container" style="max-width: 800px;">
-        <div style="text-align: center; margin-bottom: 3rem;">
-          <span class="eyebrow">PREGUNTAS FRECUENTES</span>
-          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Lo que suelen preguntar antes de contratar.</h2>
-        </div>
-        <dl style="display: flex; flex-direction: column; gap: 1rem;">
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-1-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Qué es un estudio de shopper insights?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-1-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Un estudio de shopper insights analiza el comportamiento del comprador en el punto de venta: cómo navega el espacio, cuánto tiempo dedica a cada zona, qué lo detiene frente al anaquel, qué desencadena la decisión de compra y por qué elige una marca sobre otra. Se realiza en el PDV real, no en laboratorio.</p>
-            </dd>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-2-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Cómo se hace un estudio de shopper en Bolivia?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-2-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Combinamos tres metodologías: observación etnográfica en el PDV (observadores entrenados siguen a compradores reales), análisis de trayectoria y tiempo de permanencia frente al anaquel, y entrevistas post-compra inmediatas para capturar la racionalización de la decisión. Cuando aplica, incorporamos eye tracking portátil para medir exactamente qué captura la atención.</p>
-            </dd>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-3-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿En qué tipo de puntos de venta hacen los estudios?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-3-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Trabajamos en supermercados de cadena, hipermercados, minimarkets, farmacias, ferreterías, tiendas de conveniencia y mercados populares. El tipo de PDV se define según el canal más relevante para tu categoría.</p>
-            </dd>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-4-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Cuántos shoppers se observan en un estudio típico?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-4-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Para estudios exploratorios: 30–50 observaciones. Para estudios con validez estadística: 100–200 observaciones. El número final depende de la variabilidad del comportamiento en tu categoría y del nivel de confianza requerido.</p>
-            </dd>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-5-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Los compradores saben que están siendo observados?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-5-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Dependiendo del diseño: en la fase etnográfica de observación pasiva, el comprador no sabe que está siendo observado. En las entrevistas post-compra, sí. Este diseño nos permite capturar el comportamiento real (sin el sesgo de saber que te observan) y luego explorar el por qué con el comprador dispuesto a hablar.</p>
-            </dd>
-          </div>
-
-        </dl>
-      </div>
-    </section>
+    <FaqSplit
+      eyebrow="PREGUNTAS FRECUENTES"
+      title="Lo que suelen preguntar antes de contratar."
+      items={faqItems}
+    />
 
     <!-- 8. PRUEBA SOCIAL -->
     <section style="padding: 4rem 0; background: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
@@ -487,19 +450,5 @@ const description = "Shopper insights Bolivia: etnografía, eye tracking y entre
     </nav>
 
   </main>
-
-  <script>
-    document.querySelectorAll('dt button[aria-expanded]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const ddId = btn.getAttribute('aria-controls');
-        const dd = document.getElementById(ddId);
-        const expandido = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', expandido ? 'false' : 'true');
-        const icon = btn.querySelector('span[aria-hidden]');
-        if (icon) icon.textContent = expandido ? '+' : '−';
-        if (dd) dd.hidden = expandido;
-      });
-    });
-  </script>
 
 </Layout>

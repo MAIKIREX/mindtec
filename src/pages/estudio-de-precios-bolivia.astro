@@ -1,6 +1,47 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro';
+import HoverStepCards from '../components/cards/HoverStepCards.astro';
+import FaqSplit from '../components/faq/FaqSplit.astro';
+import ScrollStory from '../components/scroll/ScrollStory.astro';
+
+const otrasAreasCards = [
+  {
+    title: "Estudio de Mercado",
+    description:
+      "Investigue la viabilidad integral de su sector y competidores.",
+    href: "/estudio-de-mercado-bolivia",
+  },
+  {
+    title: "Auditoría Retail",
+    description:
+      "Monitoree el precio en anaquel frente a competencia táctica.",
+    href: "/auditoria-retail-bolivia",
+  },
+];
+
+const faqItems = [
+  {
+    question: "¿Cuánto tarda un estudio de precios en Bolivia?",
+    answer:
+      "Los estudios de precios corporativos suelen tardar entre 4 a 6 semanas, dependiendo de la cantidad de ciudades a auditar en terreno y la complejidad del canal de comercialización de la empresa.",
+  },
+  {
+    question: "¿Se puede realizar la medición por canal específico?",
+    answer:
+      "Sí. Podemos medir la sensibilidad del precio y los rangos aceptables segmentando de forma analítica el canal tradicional (mercados abiertos y tiendas de barrio) y el canal moderno (supermercados y farmacias).",
+  },
+  {
+    question: "¿Cómo ayuda el neuromarketing a definir el precio?",
+    answer:
+      "El neuromarketing nos permite identificar el \"Dolor de Pago\" no consciente midiendo la actividad electrodermal del consumidor ante distintos estímulos de precio, determinando el umbral exacto donde el coste se percibe como inaceptable.",
+  },
+  {
+    question: "¿Qué valor aporta un estudio predictivo?",
+    answer:
+      "Previene errores comerciales millonarios. Le permite simular variaciones de precio en un entorno analítico y predecir la pérdida de cuota de mercado antes de emitir listas oficiales a sus distribuidores.",
+  },
+];
 ---
 
 <Layout
@@ -111,22 +152,58 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
     <ServiceVisualSuite variant="precios" />
 
         <!-- MINI NAVEGACIÓN ANCLAS -->
-        <div style="background: rgba(11, 43, 64, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 1.25rem 0; position: sticky; top: 80px; z-index: 999; backdrop-filter: blur(10px);">
-            <div class="container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; align-items: center; font-size: 0.92rem; font-weight: 600; color: rgba(255, 255, 255, 0.7);">
-                <span style="color: var(--color-primary); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 1.5px; font-weight: 800;">En esta página:</span>
-                <a href="#problema" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">Análisis del Riesgo</a>
-                <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-                <a href="#framework" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">Framework 4D</a>
-                <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-                <a href="#neuro-pricing" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">Curva de Dolor de Pago</a>
-                <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-                <a href="#comparativa" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">Sondeo Vs. Estudio</a>
-                <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-                <a href="#entregables" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">Entregables</a>
-                <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-                <a href="#faqs" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">FAQs</a>
+        <div class="mini-nav-sticky" style="background: linear-gradient(180deg, #1a2942 0%, #0f1c2e 100%); border-bottom: 3px solid #f26522; padding: 1.8rem 0; position: sticky; top: 80px; z-index: 1000; backdrop-filter: blur(20px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(242, 101, 34, 0.2);">
+            <div class="container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.2rem; align-items: center;">
+                <span style="background: linear-gradient(135deg, #f26522 0%, #d4501c 100%); color: white; padding: 0.6rem 1.2rem; border-radius: 20px; font-size: 0.8rem; letter-spacing: 1.8px; font-weight: 800; text-transform: uppercase; box-shadow: 0 4px 15px rgba(242, 101, 34, 0.4);">En esta página:</span>
+                <a href="#problema" class="mini-nav-link" style="color: #ffffff; text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 2px solid rgba(255, 255, 255, 0.1);">Análisis del Riesgo</a>
+                <a href="#framework" class="mini-nav-link" style="color: #ffffff; text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 2px solid rgba(255, 255, 255, 0.1);">Framework 4D</a>
+                <a href="#neuro-pricing" class="mini-nav-link" style="color: #ffffff; text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 2px solid rgba(255, 255, 255, 0.1);">Curva de Dolor de Pago</a>
+                <a href="#comparativa" class="mini-nav-link" style="color: #ffffff; text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 2px solid rgba(255, 255, 255, 0.1);">Sondeo Vs. Estudio</a>
+                <a href="#entregables" class="mini-nav-link" style="color: #ffffff; text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 2px solid rgba(255, 255, 255, 0.1);">Entregables</a>
+                <a href="#faqs" class="mini-nav-link" style="color: #ffffff; text-decoration: none; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); border: 2px solid rgba(255, 255, 255, 0.1);">FAQs</a>
             </div>
         </div>
+
+        <style is:global>
+            .mini-nav-link {
+                background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                position: relative;
+                overflow: hidden;
+            }
+
+            .mini-nav-link::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(242, 101, 34, 0.3), transparent);
+                transition: left 0.5s ease;
+            }
+
+            .mini-nav-link:hover {
+                color: #ffffff !important;
+                background: linear-gradient(135deg, #f26522 0%, #d4501c 100%) !important;
+                border-color: #f26522 !important;
+                transform: translateY(-3px) scale(1.05);
+                box-shadow: 0 8px 25px rgba(242, 101, 34, 0.5);
+            }
+
+            .mini-nav-link:hover::before {
+                left: 100%;
+            }
+
+            .mini-nav-link:active {
+                transform: translateY(-1px) scale(1.02);
+            }
+
+            .mini-nav-sticky {
+                position: sticky !important;
+                top: 80px !important;
+            }
+        </style>
 
         <!-- 🟦 1️⃣ EL ERROR MÁS COSTOSO -->
         <section id="problema" class="problem-section bg-slate" style="padding: 5rem 0;">
@@ -150,60 +227,60 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
         </section>
 
         <!-- 🟦 2️⃣ MODELO 4D DE VALIDACIÓN DE PRECIO MINDTEC® -->
-        <section id="framework" class="premium-section-padding bg-light-gray">
-            <div class="container">
-                <div class="section-title-center" style="margin-bottom: 4rem;">
-                    <h2 class="text-navy" style="font-size: 2.5rem; line-height: 1.2;">Framework estratégico 4D: Blindando su Margen Bruto</h2>
-                    <p class="text-gray-dark" style="font-size: 1.1rem; margin-top: 1rem;">No nos limitamos a promediar listas de precios. Cruzamos sensibilidad analítica con la neurociencia del comportamiento de compra real.</p>
-                </div>
-                <div class="premium-grid-4">
-                    <div class="premium-card-white">
-                        <h3 class="text-primary" style="font-size: 1.25rem; margin-bottom: 1.5rem; border-bottom: 2px solid rgba(11, 43, 64, 0.06); padding-bottom: 1rem; line-height: 1.3;">
-                            Elasticidad y Sensibilidad (Van Westendorp)
-                        </h3>
-                        <ul class="cap-list">
-                            <li>Localiza el punto donde un precio demasiado bajo despierta sospechas de calidad.</li>
-                            <li>Establece el rango óptimo de maximización de volumen y rentabilidad.</li>
-                            <li>Calcula la tolerancia del cliente antes del abandono hacia alternativas sustitutas.</li>
-                            <li>Proporciona curvas de elasticidad segmentadas por la plaza geográfica del eje.</li>
-                        </ul>
-                    </div>
-                    <div class="premium-card-white">
-                        <h3 class="text-primary" style="font-size: 1.25rem; margin-bottom: 1.5rem; border-bottom: 2px solid rgba(11, 43, 64, 0.06); padding-bottom: 1rem; line-height: 1.3;">
-                            Auditoría de Campo y Canales
-                        </h3>
-                        <ul class="cap-list">
-                            <li>Relevamiento físico de precios reales en canal tradicional e informal, no solo sugeridos.</li>
-                            <li>Monitoreo de descuentos y márgenes reales retenidos por los distribuidores.</li>
-                            <li>Análisis detallado de la arquitectura de precios de los competidores incumbentes.</li>
-                            <li>Mapeo de promociones y tácticas de Trade Marketing que distorsionan el precio de lista.</li>
-                        </ul>
-                    </div>
-                    <div class="premium-card-white">
-                        <h3 class="text-primary" style="font-size: 1.25rem; margin-bottom: 1.5rem; border-bottom: 2px solid rgba(11, 43, 64, 0.06); padding-bottom: 1rem; line-height: 1.3;">
-                            Desactivación del Dolor de Pago
-                        </h3>
-                        <ul class="cap-list">
-                            <li>Mide la activación biológica de insatisfacción inconsciente ante el estímulo de precio.</li>
-                            <li>Evalúa si la presentación visual de la oferta intensifica la resistencia al pago.</li>
-                            <li>Optimiza el anclaje y estructuración de precios en catálogos y propuestas B2B.</li>
-                            <li>Desarrolla estrategias de "unbundling" para mitigar el dolor percibido.</li>
-                        </ul>
-                    </div>
-                    <div class="premium-card-white">
-                        <h3 class="text-primary" style="font-size: 1.25rem; margin-bottom: 1.5rem; border-bottom: 2px solid rgba(11, 43, 64, 0.06); padding-bottom: 1rem; line-height: 1.3;">
-                            Estructura Psicoantropológica
-                        </h3>
-                        <ul class="cap-list">
-                            <li>Decodifica qué significa "precio justo" para el comprador boliviano en cada región.</li>
-                            <li>Analiza la cultura de negociación y regateo local y su impacto en su canal minorista.</li>
-                            <li>Alinea el precio con los arquetipos de estatus y prestigio del segmento objetivo.</li>
-                            <li>Evalúa la percepción de origen (importado vs. nacional) y su tolerancia de margen.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <div id="framework">
+            <ScrollStory
+                scrub={0.85}
+                sceneDistance={1.1}
+                cover={{
+                    background: "/imagenes-mindtec/generated/estudio-de-precios-4d/cover.webp",
+                    eyebrow: "Modelo 4D Mindtec®",
+                    title: "Framework estratégico 4D: Blindando su Margen Bruto",
+                    description: "No nos limitamos a promediar listas de precios. Cruzamos sensibilidad analítica con la neurociencia del comportamiento de compra real."
+                }}
+                intro={{
+                    background: "/imagenes-mindtec/generated/estudio-de-precios-4d/intro.webp",
+                    number: "00",
+                    badge: "Neuro-pricing",
+                    eyebrow: "Antes de empezar",
+                    title: "Una sesión de neuro-pricing para decodificar el dolor de pago real.",
+                    description: "Recorra las cuatro dimensiones del modelo, desde la elasticidad analítica hasta la psicoantropología del precio."
+                }}
+                items={[
+                    {
+                        background: "/imagenes-mindtec/generated/estudio-de-precios-4d/item-01-elasticidad-sensibilidad.webp",
+                        badge: "Van Westendorp",
+                        eyebrow: "Dimensión 01",
+                        title: "Elasticidad y Sensibilidad",
+                        description: "Localizamos el rango óptimo entre el precio que despierta sospecha de baja calidad y el que activa rechazo, con curvas de elasticidad segmentadas por plaza.",
+                        icon: "services"
+                    },
+                    {
+                        background: "/imagenes-mindtec/generated/estudio-de-precios-4d/item-02-auditoria-campo-canales.webp",
+                        badge: "Trabajo de campo",
+                        eyebrow: "Dimensión 02",
+                        title: "Auditoría de Campo y Canales",
+                        description: "Relevamos precios reales en canal tradicional e informal, márgenes retenidos por distribuidores y tácticas de Trade Marketing de la competencia.",
+                        icon: "road"
+                    },
+                    {
+                        background: "/imagenes-mindtec/generated/estudio-de-precios-4d/item-03-dolor-de-pago.webp",
+                        badge: "Neurociencia",
+                        eyebrow: "Dimensión 03",
+                        title: "Desactivación del Dolor de Pago",
+                        description: "Medimos la activación biológica de insatisfacción inconsciente ante el estímulo de precio para optimizar anclaje, catálogos y propuestas B2B.",
+                        icon: "building"
+                    },
+                    {
+                        background: "/imagenes-mindtec/generated/estudio-de-precios-4d/item-04-estructura-psicoantropologica.webp",
+                        badge: "Cultura local",
+                        eyebrow: "Dimensión 04",
+                        title: "Estructura Psicoantropológica",
+                        description: "Decodificamos qué significa \"precio justo\" para el comprador boliviano, su cultura de negociación local y la tolerancia de margen según el origen del producto.",
+                        icon: "airport"
+                    }
+                ]}
+            />
+        </div>
 
         <!-- 🟦 3️⃣ GRÁFICA CONCEPTUAL – DOLOR DE PAGO -->
         <section id="neuro-pricing" class="premium-section-padding bg-white">
@@ -300,7 +377,7 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
 
         <!-- 🟦 5️⃣ DASHBOARD EJECUTIVO DINÁMICO -->
         <section id="entregables" class="premium-section-padding bg-white">
-            <div class="container premium-grid-2-split" style="align-items: center;">
+            <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
                 <div>
                     <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 1.5rem; line-height: 1.2;">Un seguro táctico antes de lanzar sus listas de precios oficiales</h2>
                     <p class="text-gray-dark" style="font-size: 1.1rem; margin-bottom: 2rem;">No le entregamos gráficos estáticos de valor histórico. Le equipamos con un simulador de elasticidad de precios que funciona como un blindaje financiero predictivo:</p>
@@ -314,13 +391,14 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
                         Transforme su estrategia de precios de un debate de opiniones a una simulación de rentabilidad defendible.
                     </div>
                 </div>
-                <div>
-                    <div class="premium-card-white" style="background: linear-gradient(145deg, #ffffff, #f8fafc); border: 1px solid #e2e8f0; text-align: center; padding: 4rem; display: flex; flex-direction: column; align-items: center;">
-                        <div class="cap-icon" style="margin-bottom: 1.5rem;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                <div style="display: flex; flex-direction: column; gap: 2rem;">
+                    <img src="/imagenes-mindtec/services/IMG 23.jpg" alt="Simulador Predictivo de Elasticidad" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); object-fit: cover;">
+                    <div class="premium-card-white" style="background: linear-gradient(145deg, #ffffff, #f8fafc); border: 1px solid #e2e8f0; text-align: center; padding: 2rem; display: flex; flex-direction: column; align-items: center;">
+                        <div class="cap-icon" style="margin-bottom: 1rem;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
                         </div>
-                        <h3 class="text-navy" style="font-size: 1.6rem; margin-bottom: 1rem;">Simulador Predictivo de Elasticidad</h3>
-                        <p style="color: #64748b; margin-bottom: 0;">Valide el impacto de sus decisiones en la rentabilidad de su empresa antes de emitir listas oficiales.</p>
+                        <h3 class="text-navy" style="font-size: 1.4rem; margin-bottom: 0.75rem;">Simulador Predictivo de Elasticidad</h3>
+                        <p style="color: #64748b; margin-bottom: 0; font-size: 0.95rem;">Valide el impacto de sus decisiones en la rentabilidad de su empresa antes de emitir listas oficiales.</p>
                     </div>
                 </div>
             </div>
@@ -333,7 +411,8 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
                     <h2 class="text-navy" style="font-size: 2.5rem;">Metodología adaptada a su modelo de negocio</h2>
                 </div>
 
-                <div class="premium-grid-2">
+                <!-- Empresas B2B e Industriales - Tarjeta izquierda, Imagen derecha -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 4rem; align-items: center;">
                     <div class="premium-card-white" style="border-top: 4px solid var(--color-primary);">
                         <div style="display: flex; align-items: center; margin-bottom: 1.5rem; gap: 1rem;">
                             <div class="cap-icon" style="width: 44px; height: 44px; min-width: 44px; margin: 0;">
@@ -348,7 +427,16 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
                             <li>Análisis de viabilidad del precio de venta por volumen.</li>
                         </ul>
                     </div>
+                    <div>
+                        <img src="/imagenes-mindtec/services/IMA 1.jpg" alt="Empresas B2B e Industriales" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    </div>
+                </div>
 
+                <!-- Retail y Consumo Masivo - Imagen izquierda, Tarjeta derecha -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;">
+                    <div>
+                        <img src="/imagenes-mindtec/realtime-461x315.jpg" alt="Retail y Consumo Masivo" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+                    </div>
                     <div class="premium-card-white" style="border-top: 4px solid var(--color-secondary);">
                         <div style="display: flex; align-items: center; margin-bottom: 1.5rem; gap: 1rem;">
                             <div class="cap-icon" style="width: 44px; height: 44px; min-width: 44px; margin: 0;">
@@ -387,49 +475,46 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
         </section>
 
         <!-- 🟦 8️⃣ FAQ (SEO) -->
-        <section id="faqs" class="premium-section-padding bg-slate">
-            <div class="container" style="max-width: 800px;">
-                <h2 class="text-navy text-center" style="font-size: 2.5rem; margin-bottom: 3rem;">Preguntas Frecuentes</h2>
-
-                <div class="faq-list">
-                    <div class="faq-item">
-                        <h4>¿Cuánto tarda un estudio de precios en Bolivia?</h4>
-                        <p>Los estudios de precios corporativos suelen tardar entre 4 a 6 semanas, dependiendo de la cantidad de ciudades a auditar en terreno y la complejidad del canal de comercialización de la empresa.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>¿Se puede realizar la medición por canal específico?</h4>
-                        <p>Sí. Podemos medir la sensibilidad del precio y los rangos aceptables segmentando de forma analítica el canal tradicional (mercados abiertos y tiendas de barrio) y el canal moderno (supermercados y farmacias).</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>¿Cómo ayuda el neuromarketing a definir el precio?</h4>
-                        <p>El neuromarketing nos permite identificar el "Dolor de Pago" no consciente midiendo la actividad electrodermal del consumidor ante distintos estímulos de precio, determinando el umbral exacto donde el coste se percibe como inaceptable.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>¿Qué valor aporta un estudio predictivo?</h4>
-                        <p>Previene errores comerciales millonarios. Le permite simular variaciones de precio en un entorno analítico y predecir la pérdida de cuota de mercado antes de emitir listas oficiales a sus distribuidores.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <FaqSplit id="faqs" title="Preguntas Frecuentes" items={faqItems} />
 
         <!-- 🟦 CROSS-LINKING ESTRATÉGICO -->
         <section class="premium-section-padding bg-slate" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
             <div class="container" style="max-width: 900px;">
                 <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">Otras áreas de inteligencia relacionadas</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-                    <a href="/estudio-de-mercado-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)';" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none';this.style.boxShadow='none';">
-                        <h4 style="font-size: 1.1rem; color: var(--color-secondary); margin-bottom: 0.5rem; line-height: 1.3;">Estudio de Mercado</h4>
-                        <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.5;">Investigue la viabilidad integral de su sector y competidores.</p>
-                        <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem; text-transform: uppercase;">Explorar →</span>
-                    </a>
-                    <a href="/auditoria-retail-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)';" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none';this.style.boxShadow='none';">
-                        <h4 style="font-size: 1.1rem; color: var(--color-secondary); margin-bottom: 0.5rem; line-height: 1.3;">Auditoría Retail</h4>
-                        <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.5;">Monitoree el precio en anaquel frente a competencia táctica.</p>
-                        <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem; text-transform: uppercase;">Explorar →</span>
-                    </a>
-                </div>
+                <HoverStepCards items={otrasAreasCards} class="otras-areas-cards" minColumnWidth="280px" />
             </div>
         </section>
+
+        <style is:global>
+            .otras-areas-cards.hover-step-cards {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .otras-areas-cards .hover-step-card {
+                aspect-ratio: auto;
+                min-height: 340px;
+            }
+
+            .otras-areas-cards .hover-step-card__inner {
+                padding: 2.75rem;
+            }
+
+            .otras-areas-cards .hover-step-card__title {
+                font-size: 1.6rem;
+                max-width: 100%;
+            }
+
+            .otras-areas-cards .hover-step-card__desc {
+                font-size: 1.05rem;
+            }
+
+            @media (max-width: 900px) {
+                .otras-areas-cards.hover-step-cards {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
 
         <!-- 🟦 CTA FINAL -->
         <section class="cta-section-modern" style="padding: 6rem 0;">

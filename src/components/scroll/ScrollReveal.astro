@@ -146,7 +146,7 @@ const {
                             duration: 0.9,
                             delay,
                             stagger: staggerEnabled ? staggerAmount : 0,
-                            ease: "power3.out",
+                            ease: [0.21, 0.47, 0.32, 0.98], // Premium ease-out curve (exacto a Framer Motion)
 
                             scrollTrigger: {
                                 trigger: root,
@@ -195,7 +195,8 @@ const {
                                 end: "bottom top",
 
                                 // Vincula la animación al progreso del scroll.
-                                scrub: true,
+                                // scrub: 1 hace el efecto más suave, similar a Framer Motion
+                                scrub: 1,
 
                                 invalidateOnRefresh: true,
                                 markers,

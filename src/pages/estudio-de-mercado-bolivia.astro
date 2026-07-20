@@ -1,6 +1,71 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro';
+import ScrollStoryLeft from '../components/scroll/ScrollStoryLeft.astro';
+import HoverStepCards from '../components/cards/HoverStepCards.astro';
+import FaqSplit from '../components/faq/FaqSplit.astro';
+
+const faqItems = [
+  {
+    question: "¿Cuánto tiempo toma un estudio de mercado en Bolivia?",
+    answer:
+      "El cronograma depende de la complejidad y alcance geográfico. Usualmente una evaluación de viabilidad rápida puede tardar de 3 a 5 semanas, mientras un estudio profundo a nivel nacional puede extenderse a 8 semanas.",
+  },
+  {
+    question: "¿Cuál es la diferencia frente a una encuesta?",
+    answer:
+      "Una encuesta solo recopila datos basados en lo que la gente dice (intención declarada). El estudio de mercado de Mindtec cruza métodos cualitativos, cuantitativos, de neurociencia y análisis competitivo para revelar el comportamiento real y entregar una recomendación de negocio accionable (Stop/Go).",
+  },
+  {
+    question: "¿Se puede realizar por ciudad específica?",
+    answer:
+      "Sí. Evaluamos factibilidad comercial a nivel local (ej. Santa Cruz, La Paz o Cochabamba), regional o nacional, ajustando el dimensionamiento a las variables y códigos culturales únicos de cada territorio.",
+  },
+  {
+    question: "¿Qué pasa si el resultado indica inviabilidad?",
+    answer:
+      "Un resultado que indica inviabilidad comercial es un éxito estratégico rotundo, ya que evita la pérdida de capital estructural de su empresa. En estos casos, detallamos qué variables del producto o precio deberían pivotar para volverse viables.",
+  },
+];
+
+const cuandoEsCriticoCards = [
+  {
+    title: "Lanzamiento de nuevo producto",
+    description:
+      "Evite la pérdida de capital estructural validando la tracción real del mercado antes de fabricar.",
+  },
+  {
+    title: "Expansión a nuevas regiones",
+    description:
+      "Entienda las diferencias competitivas y demográficas del eje metropolitano boliviano.",
+  },
+  {
+    title: "Sustento de Inversión B2B",
+    description:
+      "Presente datos robustos y defendibles ante su directorio o junta de inversores.",
+  },
+];
+
+const otrasAreasCards = [
+  {
+    title: "Estudio de Precios",
+    description:
+      "Defina la política de pricing óptima basándose en el valor y demanda.",
+    href: "/estudio-de-precios-bolivia",
+  },
+  {
+    title: "Percepción de Marca",
+    description:
+      "Incorpore el análisis de reputación y posicionamiento actual.",
+    href: "/percepcion-de-marca-bolivia",
+  },
+  {
+    title: "Comportamiento del Consumidor Boliviano",
+    description:
+      "Datos reales de Mindtec sobre hábitos de compra por región y contexto económico.",
+    href: "/comportamiento-consumidor-boliviano",
+  },
+];
 ---
 
 <Layout
@@ -140,63 +205,80 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
         </section>
 
         <!-- 🟦 3️⃣ MODELO DE EVALUACIÓN DE VIABILIDAD MINDTEC -->
-        <section class="premium-section-padding bg-light-gray">
-            <div class="container">
-                <div class="section-title-center" style="margin-bottom: 4rem;">
-                    <h2 class="text-navy" style="font-size: 2.5rem; line-height: 1.2;">Modelo científico de viabilidad: Inteligencia comercial para decisiones de alto impacto</h2>
-                </div>
-                <div class="premium-grid-4">
-                    <!-- Bloque 1 -->
-                    <div class="premium-card-white">
-                        <h3 class="text-primary" style="font-size: 1.25rem; margin-bottom: 1.5rem; border-bottom: 2px solid rgba(11, 43, 64, 0.06); padding-bottom: 1rem; line-height: 1.3;">
-                            Arquitectura Financiera (TAM / SAM / SOM)
-                        </h3>
-                        <ul class="cap-list">
-                            <li>Evita la sobreestimación del tamaño de mercado facturable.</li>
-                            <li>Define la cuota neta real que su canal puede capturar de forma realista.</li>
-                            <li>Establece metas de venta alineadas con la capacidad de compra local.</li>
-                            <li>Reduce el riesgo de sobredimensionar la inversión inicial en infraestructura.</li>
-                        </ul>
-                    </div>
-                    <!-- Bloque 2 -->
-                    <div class="premium-card-white">
-                        <h3 class="text-primary" style="font-size: 1.25rem; margin-bottom: 1.5rem; border-bottom: 2px solid rgba(11, 43, 64, 0.06); padding-bottom: 1rem; line-height: 1.3;">
-                            Validación de Demanda Involuntaria
-                        </h3>
-                        <ul class="cap-list">
-                            <li>Desactiva el sesgo de respuestas socialmente aceptables o amables.</li>
-                            <li>Mide la disposición real a pagar del decisor corporativo o consumidor final.</li>
-                            <li>Revela las fricciones silenciosas que bloquean el proceso de decisión de compra.</li>
-                            <li>Separa el deseo de uso del comportamiento de pago efectivo y recurrente.</li>
-                        </ul>
-                    </div>
-                    <!-- Bloque 3 -->
-                    <div class="premium-card-white">
-                        <h3 class="text-primary" style="font-size: 1.25rem; margin-bottom: 1.5rem; border-bottom: 2px solid rgba(11, 43, 64, 0.06); padding-bottom: 1rem; line-height: 1.3;">
-                            Inteligencia de Ataque Competitivo
-                        </h3>
-                        <ul class="cap-list">
-                            <li>Identifica la cuota neta retenida por los competidores clave del sector.</li>
-                            <li>Analiza la estructura de costos y debilidades operativas del líder de categoría.</li>
-                            <li>Detecta vacíos de posicionamiento para un ingreso comercial de menor costo.</li>
-                            <li>Evalúa el riesgo de represalias de precios por parte de las marcas incumbentes.</li>
-                        </ul>
-                    </div>
-                    <!-- Bloque 4 -->
-                    <div class="premium-card-white">
-                        <h3 class="text-primary" style="font-size: 1.25rem; margin-bottom: 1.5rem; border-bottom: 2px solid rgba(11, 43, 64, 0.06); padding-bottom: 1rem; line-height: 1.3;">
-                            Viabilidad Crítica Stop/Go
-                        </h3>
-                        <ul class="cap-list">
-                            <li>Diagnóstico en terreno de canales y cadenas de distribución tradicionales.</li>
-                            <li>Identificación de regulaciones, trabas burocráticas y factores informales del país.</li>
-                            <li>Mapeo de la viabilidad logística real en el eje troncal y regiones intermedias.</li>
-                            <li>Recomendación de inversión explícita y defendible basada en el retorno financiero.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <ScrollStoryLeft
+            scrub={0.9}
+            sceneDistance={1.1}
+            cardBackground="#f7f7f5"
+            cardTextColor="#0B2B40"
+            cardMutedColor="rgba(11, 43, 64, 0.62)"
+            cover={{
+              background: "/imagenes-mindtec/generated/estudio-mercado-viabilidad/cover.webp",
+              eyebrow: "Modelo de viabilidad",
+              title: "Inteligencia comercial para decisiones de alto impacto.",
+              description: "Un modelo científico de cuatro dimensiones que convierte datos de campo en una recomendación de negocio defendible."
+            }}
+            intro={{
+              background: "/imagenes-mindtec/generated/estudio-mercado-viabilidad/intro.webp",
+              number: "00",
+              eyebrow: "Cómo se construye",
+              title: "Cuatro dimensiones cruzadas para una sola recomendación: invertir o no invertir.",
+              description: "Recorra el modelo científico que sostiene cada evaluación de viabilidad de Mindtec."
+            }}
+            items={[
+              {
+                background: "/imagenes-mindtec/generated/estudio-mercado-viabilidad/item-01-arquitectura-financiera.webp",
+                eyebrow: "Dimensionamiento",
+                title: "Arquitectura Financiera (TAM / SAM / SOM)",
+                description: "Dimensionamos el mercado real y la cuota que su empresa puede capturar, antes de comprometer capital.",
+                icon: "building",
+                list: [
+                  "Evita la sobreestimación del tamaño de mercado facturable.",
+                  "Define la cuota neta real que su canal puede capturar de forma realista.",
+                  "Establece metas de venta alineadas con la capacidad de compra local.",
+                  "Reduce el riesgo de sobredimensionar la inversión inicial en infraestructura."
+                ]
+              },
+              {
+                background: "/imagenes-mindtec/generated/estudio-mercado-viabilidad/item-02-validacion-demanda.webp",
+                eyebrow: "Comportamiento",
+                title: "Validación de Demanda Involuntaria",
+                description: "Medimos la disposición real a pagar, más allá de las respuestas de cortesía.",
+                icon: "services",
+                list: [
+                  "Desactiva el sesgo de respuestas socialmente aceptables o amables.",
+                  "Mide la disposición real a pagar del decisor corporativo o consumidor final.",
+                  "Revela las fricciones silenciosas que bloquean el proceso de decisión de compra.",
+                  "Separa el deseo de uso del comportamiento de pago efectivo y recurrente."
+                ]
+              },
+              {
+                background: "/imagenes-mindtec/generated/estudio-mercado-viabilidad/item-03-inteligencia-competitiva.webp",
+                eyebrow: "Competencia",
+                title: "Inteligencia de Ataque Competitivo",
+                description: "Mapeamos a los competidores clave para identificar vacíos de entrada y riesgos de represalia.",
+                icon: "airport",
+                list: [
+                  "Identifica la cuota neta retenida por los competidores clave del sector.",
+                  "Analiza la estructura de costos y debilidades operativas del líder de categoría.",
+                  "Detecta vacíos de posicionamiento para un ingreso comercial de menor costo.",
+                  "Evalúa el riesgo de represalias de precios por parte de las marcas incumbentes."
+                ]
+              },
+              {
+                background: "/imagenes-mindtec/generated/estudio-mercado-viabilidad/item-04-stop-go.webp",
+                eyebrow: "Decisión",
+                title: "Viabilidad Crítica Stop/Go",
+                description: "Diagnóstico en terreno que culmina en una recomendación de inversión explícita y defendible.",
+                icon: "road",
+                list: [
+                  "Diagnóstico en terreno de canales y cadenas de distribución tradicionales.",
+                  "Identificación de regulaciones, trabas burocráticas y factores informales del país.",
+                  "Mapeo de la viabilidad logística real en el eje troncal y regiones intermedias.",
+                  "Recomendación de inversión explícita y defendible basada en el retorno financiero."
+                ]
+              }
+            ]}
+        />
 
         <!-- 🟦 4️⃣ TABLA COMPARATIVA -->
         <section class="premium-section-padding bg-white">
@@ -284,8 +366,11 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
                 <div class="section-title-center" style="margin-bottom: 4rem;">
                     <h2 class="text-navy" style="font-size: 2.5rem; line-height: 1.2;">Metodología adaptada a los códigos comerciales de su industria</h2>
                 </div>
-                <div class="premium-grid-2">
-                    <div class="premium-card-white" style="border-top: 4px solid var(--color-primary);">
+            </div>
+
+            <div class="metodologia-split-row">
+                <div class="metodologia-split-content">
+                    <div class="premium-card-white" style="border-top: 4px solid var(--color-primary); box-shadow: none; border-left: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
                         <div style="display: flex; align-items: center; margin-bottom: 1.5rem; gap: 1rem;">
                             <div class="cap-icon" style="width: 44px; height: 44px; min-width: 44px; margin: 0;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
@@ -302,8 +387,18 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
                             <strong>Sectores clave:</strong> Industria, banca, finanzas, tecnología B2B, infraestructura, energía y logística.
                         </div>
                     </div>
- 
-                    <div class="premium-card-white" style="border-top: 4px solid var(--color-secondary);">
+                </div>
+                <div class="metodologia-split-image">
+                    <img src="/imagenes-mindtec/generated/metodologia-b2b-retail/b2b-industrial.webp" alt="Reunión ejecutiva de empresa B2B e industrial revisando datos de estudio de mercado" loading="lazy">
+                </div>
+            </div>
+
+            <div class="metodologia-split-row metodologia-split-row--reverse">
+                <div class="metodologia-split-image">
+                    <img src="/imagenes-mindtec/generated/metodologia-b2b-retail/retail-consumo-masivo.webp" alt="Investigador de campo observando el comportamiento del shopper en un punto de venta retail" loading="lazy">
+                </div>
+                <div class="metodologia-split-content">
+                    <div class="premium-card-white" style="border-top: 4px solid var(--color-secondary); box-shadow: none; border-left: 1px solid #e2e8f0; border-right: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
                         <div style="display: flex; align-items: center; margin-bottom: 1.5rem; gap: 1rem;">
                             <div class="cap-icon" style="width: 44px; height: 44px; min-width: 44px; margin: 0;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
@@ -322,6 +417,58 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
                     </div>
                 </div>
             </div>
+
+            <style>
+                .metodologia-split-row {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    align-items: stretch;
+                }
+
+                .metodologia-split-row + .metodologia-split-row {
+                    margin-top: 3rem;
+                }
+
+                .metodologia-split-content {
+                    display: flex;
+                    align-items: center;
+                    padding: 2rem clamp(1.5rem, 6vw, 5rem);
+                }
+
+                .metodologia-split-image {
+                    position: relative;
+                    min-height: 50vh;
+                    overflow: hidden;
+                }
+
+                .metodologia-split-image img {
+                    position: absolute;
+                    inset: 0;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                }
+
+                @media (max-width: 900px) {
+                    .metodologia-split-row,
+                    .metodologia-split-row--reverse {
+                        grid-template-columns: 1fr;
+                    }
+
+                    .metodologia-split-row--reverse .metodologia-split-image {
+                        order: -1;
+                    }
+
+                    .metodologia-split-content {
+                        padding: 2rem 1.5rem;
+                    }
+
+                    .metodologia-split-image {
+                        min-height: 320px;
+                    }
+                }
+            </style>
         </section>
 
         <!-- 🟦 7️⃣ CUÁNDO ES CRÍTICO REALIZAR UN ESTUDIO -->
@@ -330,22 +477,21 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
                 <div class="section-title-center" style="margin-bottom: 3rem;">
                     <h2 class="text-white" style="font-size: 2.5rem;">Cuándo es crítico realizar un estudio de mercado</h2>
                 </div>
-                <div class="premium-grid-3">
-                    <div class="dark-glass-card" style="padding: 2.5rem; text-align: left; display: flex; flex-direction: column; gap: 1rem;">
-                        <h4 style="color: var(--color-primary); font-size: 1.2rem; font-weight: 700;">Lanzamiento de nuevo producto</h4>
-                        <p style="color: rgba(255,255,255,0.8); font-size: 0.95rem; margin: 0;">Evite la pérdida de capital estructural validando la tracción real del mercado antes de fabricar.</p>
-                    </div>
-                    <div class="dark-glass-card" style="padding: 2.5rem; text-align: left; display: flex; flex-direction: column; gap: 1rem;">
-                        <h4 style="color: var(--color-primary); font-size: 1.2rem; font-weight: 700;">Expansión a nuevas regiones</h4>
-                        <p style="color: rgba(255,255,255,0.8); font-size: 0.95rem; margin: 0;">Entienda las diferencias competitivas y demográficas del eje metropolitano boliviano.</p>
-                    </div>
-                    <div class="dark-glass-card" style="padding: 2.5rem; text-align: left; display: flex; flex-direction: column; gap: 1rem;">
-                        <h4 style="color: var(--color-primary); font-size: 1.2rem; font-weight: 700;">Sustento de Inversión B2B</h4>
-                        <p style="color: rgba(255,255,255,0.8); font-size: 0.95rem; margin: 0;">Presente datos robustos y defendibles ante su directorio o junta de inversores.</p>
-                    </div>
-                </div>
+                <HoverStepCards items={cuandoEsCriticoCards} class="cuando-critico-cards" />
             </div>
         </section>
+
+        <style is:global>
+            .cuando-critico-cards .hover-step-card {
+                background: rgba(255, 255, 255, 0.06);
+                border: 1px solid rgba(255, 255, 255, 0.14);
+            }
+
+            .cuando-critico-cards .hover-step-card:hover,
+            .cuando-critico-cards .hover-step-card:focus-within {
+                background: rgba(255, 255, 255, 0.1);
+            }
+        </style>
 
         <!-- 🟦 8️⃣ IMPACTO FINANCIERO -->
         <section class="premium-section-padding bg-white">
@@ -369,9 +515,9 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
         <!-- 🟦 COBERTURA E INTELIGENCIA TERRITORIAL -->
         <section class="premium-section-padding bg-slate" style="background-color: #f8fafc;">
             <div class="container" style="max-width: 1100px;">
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 4rem; align-items: center;">
-                    <div style="position: relative; width: 100%; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg);">
-                        <img src="/imagenes-mindtec/generated/bolivia-inteligencia-territorial.webp" alt="Mapa moderno de Bolivia con inteligencia territorial y rutas de investigacion de mercado" style="width: 100%; height: auto; object-fit: cover; display: block;" loading="lazy">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 4rem; align-items: stretch;">
+                    <div style="position: relative; width: 100%; height: 100%; min-height: 420px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg);">
+                        <img src="/imagenes-mindtec/generated/bolivia-inteligencia-territorial.webp" alt="Mapa moderno de Bolivia con inteligencia territorial y rutas de investigacion de mercado" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy">
                     </div>
                     <div style="text-align: left;">
                         <span class="eyebrow">Cobertura Nacional</span>
@@ -393,66 +539,235 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
         <section class="premium-section-padding bg-white">
             <div class="container text-center">
                 <h2 class="text-navy" style="font-size: 2.2rem; margin-bottom: 3rem;">Sectores con Inteligencia de Mercado Aplicada</h2>
-                <div class="sectors-wrap" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 2rem;">
-                    <div class="method-tag">Banca y Finanzas</div>
-                    <div class="method-tag highlight">Consumo Masivo</div>
-                    <div class="method-tag">Retail y Moda</div>
-                    <div class="method-tag">Industria y Automatización</div>
-                    <div class="method-tag highlight">Instituciones y Cooperación</div>
-                    <div class="method-tag">Educación Superior</div>
+                <div class="areas-grid areas-grid--light">
+                    <a class="area-panel area-panel--light" href="/percepcion-de-marca-bolivia">
+                        <span class="area-panel__icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M48 160V96l112-48v160z"></path><path d="M160 96h24a24 24 0 0 1 0 48h-24"></path><path d="M48 160h32l16 48H64z"></path><path d="M48 96v64"></path></svg></span>
+                        <span class="area-panel__title">Marketing y Marca</span>
+                        <span class="area-panel__arrow" aria-hidden="true">→</span>
+                    </a>
+                    <a class="area-panel area-panel--light" href="/focus-group-bolivia">
+                        <span class="area-panel__icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M96 216h64"></path><path d="M110 216l8-32h20l8 32"></path><path d="M128 24a72 72 0 0 0-41 131c7 5 11 13 11 21v8h60v-8c0-8 4-16 11-21A72 72 0 0 0 128 24z"></path><path d="M100 208h56"></path></svg></span>
+                        <span class="area-panel__title">Producto e Innovación</span>
+                        <span class="area-panel__arrow" aria-hidden="true">→</span>
+                    </a>
+                    <a class="area-panel area-panel--light" href="/auditoria-retail-bolivia">
+                        <span class="area-panel__icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M40 208h176"></path><path d="M64 192v-48h32v48"></path><path d="M112 192V96h32v96"></path><path d="M160 192V56h32v136"></path><path d="M56 112l48-48 32 24 64-64"></path><path d="M160 24h40v40"></path></svg></span>
+                        <span class="area-panel__title">Ventas y Comercial</span>
+                        <span class="area-panel__arrow" aria-hidden="true">→</span>
+                    </a>
+                    <a class="area-panel area-panel--light" href="/estudio-de-mercado-bolivia">
+                        <span class="area-panel__icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="88" r="48"></circle><path d="M80 88h96M128 40c14 14 22 30 22 48s-8 34-22 48c-14-14-22-30-22-48s8-34 22-48"></path><path d="M32 216c8-48 32-72 56-72 16 0 29 10 40 32 11-22 24-32 40-32 24 0 48 24 56 72"></path></svg></span>
+                        <span class="area-panel__title">ONG y Cooperación</span>
+                        <span class="area-panel__arrow" aria-hidden="true">→</span>
+                    </a>
+                    <a class="area-panel area-panel--light" href="/contacto">
+                        <span class="area-panel__icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M40 216h176"></path><path d="M56 200V96h144v104"></path><path d="M32 96h192L128 32z"></path><path d="M88 120v56M128 120v56M168 120v56"></path><path d="M48 216h160"></path></svg></span>
+                        <span class="area-panel__title">Estado y Licitaciones <small>(SICOES)</small></span>
+                        <span class="area-panel__arrow" aria-hidden="true">→</span>
+                    </a>
                 </div>
             </div>
         </section>
+
+        <style>
+            .areas-grid--light {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.55rem;
+                max-width: 1320px;
+                margin: 0 auto;
+                text-align: left;
+            }
+
+            .area-panel--light {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                flex: 1 1 calc((100% - 3 * 0.55rem) / 4);
+                max-width: calc((100% - 3 * 0.55rem) / 4);
+                min-height: 250px;
+                padding: 1.5rem 1.25rem;
+                overflow: hidden;
+                background: #f8fafc;
+                border: 1px solid rgba(11, 43, 64, 0.14);
+                color: var(--color-secondary, #0B2B40);
+                text-decoration: none;
+                isolation: isolate;
+                transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1), background-color 280ms cubic-bezier(0.16, 1, 0.3, 1), border-color 280ms cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .area-panel--light::after {
+                position: absolute;
+                z-index: -1;
+                inset: 0;
+                background: linear-gradient(145deg, rgba(242, 101, 34, 0.08), transparent 55%);
+                content: "";
+                opacity: 0;
+                transition: opacity 280ms ease;
+            }
+
+            .area-panel--light:nth-child(odd) {
+                clip-path: polygon(0 0, 100% 0, 100% 31%, 88% 31%, 88% 69%, 100% 69%, 100% 100%, 0 100%);
+            }
+
+            .area-panel--light:nth-child(even) {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 69%, 12% 69%, 12% 31%, 0 31%);
+            }
+
+            .area-panel--light:hover {
+                transform: translateY(-6px);
+                background: #ffffff;
+                border-color: var(--color-primary, #F26522);
+                box-shadow: 0 12px 30px rgba(11, 43, 64, 0.1);
+            }
+
+            .area-panel--light:hover::after {
+                opacity: 1;
+            }
+
+            .area-panel--light:focus-visible {
+                outline: 3px solid var(--color-primary, #F26522);
+                outline-offset: 4px;
+            }
+
+            .area-panel--light .area-panel__icon {
+                display: grid;
+                width: 76px;
+                height: 76px;
+                place-items: center;
+                align-self: center;
+                margin: auto 0;
+                border: 1px solid rgba(11, 43, 64, 0.2);
+                border-radius: 50%;
+                color: var(--color-secondary, #0B2B40);
+                transition: color 280ms ease, border-color 280ms ease, transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .area-panel--light:hover .area-panel__icon {
+                border-color: var(--color-primary, #F26522);
+                color: var(--color-primary, #F26522);
+                transform: scale(1.06);
+            }
+
+            .area-panel--light .area-panel__icon svg {
+                width: 42px;
+                height: 42px;
+            }
+
+            .area-panel--light .area-panel__title {
+                display: block;
+                max-width: 16ch;
+                font-family: var(--font-display);
+                font-size: clamp(1rem, 1.3vw, 1.2rem);
+                font-weight: 700;
+                line-height: 1.17;
+                letter-spacing: -0.02em;
+                color: var(--color-secondary, #0B2B40);
+            }
+
+            .area-panel--light .area-panel__title small {
+                display: block;
+                margin-top: 0.15rem;
+                color: rgba(11, 43, 64, 0.6);
+                font-size: 0.78em;
+                font-weight: 600;
+                letter-spacing: 0;
+            }
+
+            .area-panel--light .area-panel__arrow {
+                position: absolute;
+                right: 1.2rem;
+                bottom: 1.15rem;
+                color: var(--color-primary, #F26522);
+                font-size: 1.3rem;
+                line-height: 1;
+                opacity: 0;
+                transform: translateX(-8px);
+                transition: opacity 220ms ease, transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .area-panel--light:hover .area-panel__arrow,
+            .area-panel--light:focus-visible .area-panel__arrow {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            @media (max-width: 900px) {
+                .area-panel--light {
+                    flex-basis: calc((100% - 0.55rem) / 2);
+                    max-width: calc((100% - 0.55rem) / 2);
+                }
+
+                .area-panel--light,
+                .area-panel--light:nth-child(odd),
+                .area-panel--light:nth-child(even) {
+                    min-height: 235px;
+                    clip-path: none;
+                }
+            }
+
+            @media (max-width: 460px) {
+                .area-panel--light {
+                    flex-basis: 100%;
+                    max-width: 100%;
+                    min-height: 205px;
+                }
+
+                .area-panel--light .area-panel__icon {
+                    width: 64px;
+                    height: 64px;
+                }
+
+                .area-panel--light .area-panel__icon svg {
+                    width: 35px;
+                    height: 35px;
+                }
+            }
+        </style>
 
         <!-- 🟦 9️⃣ FAQ -->
-        <section class="premium-section-padding bg-slate">
-            <div class="container" style="max-width: 800px;">
-                <h2 class="text-navy text-center" style="font-size: 2.5rem; margin-bottom: 3rem;">Preguntas Frecuentes</h2>
-
-                <div class="faq-list">
-                    <div class="faq-item">
-                        <h4>¿Cuánto tiempo toma un estudio de mercado en Bolivia?</h4>
-                        <p>El cronograma depende de la complejidad y alcance geográfico. Usualmente una evaluación de viabilidad rápida puede tardar de 3 a 5 semanas, mientras un estudio profundo a nivel nacional puede extenderse a 8 semanas.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>¿Cuál es la diferencia frente a una encuesta?</h4>
-                        <p>Una encuesta solo recopila datos basados en lo que la gente dice (intención declarada). El estudio de mercado de Mindtec cruza métodos cualitativos, cuantitativos, de neurociencia y análisis competitivo para revelar el comportamiento real y entregar una recomendación de negocio accionable (Stop/Go).</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>¿Se puede realizar por ciudad específica?</h4>
-                        <p>Sí. Evaluamos factibilidad comercial a nivel local (ej. Santa Cruz, La Paz o Cochabamba), regional o nacional, ajustando el dimensionamiento a las variables y códigos culturales únicos de cada territorio.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h4>¿Qué pasa si el resultado indica inviabilidad?</h4>
-                        <p>Un resultado que indica inviabilidad comercial es un éxito estratégico rotundo, ya que evita la pérdida de capital estructural de su empresa. En estos casos, detallamos qué variables del producto o precio deberían pivotar para volverse viables.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <FaqSplit title="Preguntas Frecuentes" items={faqItems} />
 
         <!-- 🟦 CROSS-LINKING ESTRATÉGICO -->
         <section class="premium-section-padding bg-slate" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
-            <div class="container" style="max-width: 900px;">
+            <div class="container" style="max-width: 1320px;">
                 <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">Otras áreas de inteligencia relacionadas</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-                    <a href="/estudio-de-precios-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)';" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none';this.style.boxShadow='none';">
-                        <h4 style="font-size: 1.1rem; color: var(--color-secondary); margin-bottom: 0.5rem; line-height: 1.3;">Estudio de Precios</h4>
-                        <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.5;">Defina la política de pricing óptima basándose en el valor y demanda.</p>
-                        <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem; text-transform: uppercase;">Explorar →</span>
-                    </a>
-                    <a href="/percepcion-de-marca-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)';" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none';this.style.boxShadow='none';">
-                        <h4 style="font-size: 1.1rem; color: var(--color-secondary); margin-bottom: 0.5rem; line-height: 1.3;">Percepción de Marca</h4>
-                        <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.5;">Incorpore el análisis de reputación y posicionamiento actual.</p>
-                        <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem; text-transform: uppercase;">Explorar →</span>
-                    </a>
-                    <a href="/comportamiento-consumidor-boliviano" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)';" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none';this.style.boxShadow='none';">
-                        <h4 style="font-size: 1.1rem; color: var(--color-secondary); margin-bottom: 0.5rem; line-height: 1.3;">Comportamiento del Consumidor Boliviano</h4>
-                        <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.5;">Datos reales de Mindtec sobre hábitos de compra por región y contexto económico.</p>
-                        <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem; text-transform: uppercase;">Explorar →</span>
-                    </a>
-                </div>
+                <HoverStepCards items={otrasAreasCards} class="otras-areas-cards" minColumnWidth="220px" />
             </div>
         </section>
+
+        <style is:global>
+            .otras-areas-cards.hover-step-cards {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+
+            .otras-areas-cards .hover-step-card {
+                aspect-ratio: auto;
+                min-height: 340px;
+            }
+
+            .otras-areas-cards .hover-step-card__inner {
+                padding: 2.75rem;
+            }
+
+            .otras-areas-cards .hover-step-card__title {
+                font-size: 1.6rem;
+                max-width: 100%;
+            }
+
+            .otras-areas-cards .hover-step-card__desc {
+                font-size: 1.05rem;
+            }
+
+            @media (max-width: 900px) {
+                .otras-areas-cards.hover-step-cards {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
 
         <!-- 🟦 CTA FINAL -->
         <section class="cta-section-modern" style="padding: 6rem 0;">

@@ -4,6 +4,31 @@ import ScrollStack from '../components/scroll/ScrollStack.astro';
 import ScrollStackItem from '../components/scroll/ScrollStackItem.astro';
 import MorphScrollStory from '../components/scroll/MorphScrollStory.astro';
 import ScrollStoryLeft from '../components/scroll/ScrollStoryLeft.astro';
+import FaqSplit from '../components/faq/FaqSplit.astro';
+
+const faqItems = [
+  {
+    question:
+      "¿Cuál es la diferencia entre investigación cuantitativa y cualitativa?",
+    answer:
+      "La cuantitativa mide volumen, frecuencia y tendencia a través de muestras estadísticamente representativas. La cualitativa explora motivaciones profundas, barreras emocionales y códigos culturales que las encuestas no capturan. En Mindtec integramos ambas en un modelo híbrido que también incorpora neuromarketing, asegurando que la decisión no dependa de una sola perspectiva.",
+  },
+  {
+    question: "¿Qué aporta el neuromarketing?",
+    answer:
+      "Permite medir respuestas de atención y emoción que el consumidor no puede verbalizar. Con herramientas como eye tracking, EEG y facial coding, detectamos qué elementos de una pieza publicitaria, packaging o punto de venta realmente capturan atención y generan aceptación — antes de invertir en producción o pauta masiva.",
+  },
+  {
+    question: "¿Cómo integran IA en la investigación de mercados?",
+    answer:
+      "Utilizamos inteligencia artificial para análisis de grandes volúmenes de texto abierto, detección de patrones en datos de percepción, modelos predictivos de comportamiento y generación automatizada de dashboards. Esto reduce tiempos de análisis de semanas a días, sin sacrificar profundidad interpretativa.",
+  },
+  {
+    question: "¿Pueden ejecutar estudios a nivel nacional?",
+    answer:
+      "Sí. Mindtec cuenta con una red de más de 80 encuestadores activos con cobertura en La Paz, El Alto, Santa Cruz, Cochabamba y ciudades intermedias. La infraestructura permite ejecutar levantamientos simultáneos en múltiples ciudades con supervisión centralizada y control de calidad en tiempo real.",
+  },
+];
 ---
 
 <Layout
@@ -490,32 +515,8 @@ import ScrollStoryLeft from '../components/scroll/ScrollStoryLeft.astro';
                 </section>
             </ScrollStackItem>
 
-            <ScrollStackItem>
-                <section class="elementor-section premium-section-padding bg-white" style="height: 100%; display: flex; align-items: center; overflow-y: auto; width: 100%;">
-                    <div class="container elementor-container" style="max-width: 800px;">
-                        <h2 class="text-navy text-center" style="font-size: 2.5rem; margin-bottom: 3rem;">Preguntas Frecuentes
-                        </h2>
-
-                        <div class="faq-list">
-                            <div class="faq-item">
-                                <h4>¿Cuál es la diferencia entre investigación cuantitativa y cualitativa?</h4>
-                                <p>La cuantitativa mide volumen, frecuencia y tendencia a través de muestras estadísticamente representativas. La cualitativa explora motivaciones profundas, barreras emocionales y códigos culturales que las encuestas no capturan. En Mindtec integramos ambas en un modelo híbrido que también incorpora neuromarketing, asegurando que la decisión no dependa de una sola perspectiva.</p>
-                            </div>
-                            <div class="faq-item">
-                                <h4>¿Qué aporta el neuromarketing?</h4>
-                                <p>Permite medir respuestas de atención y emoción que el consumidor no puede verbalizar. Con herramientas como eye tracking, EEG y facial coding, detectamos qué elementos de una pieza publicitaria, packaging o punto de venta realmente capturan atención y generan aceptación — antes de invertir en producción o pauta masiva.</p>
-                            </div>
-                            <div class="faq-item">
-                                <h4>¿Cómo integran IA en la investigación de mercados?</h4>
-                                <p>Utilizamos inteligencia artificial para análisis de grandes volúmenes de texto abierto, detección de patrones en datos de percepción, modelos predictivos de comportamiento y generación automatizada de dashboards. Esto reduce tiempos de análisis de semanas a días, sin sacrificar profundidad interpretativa.</p>
-                            </div>
-                            <div class="faq-item">
-                                <h4>¿Pueden ejecutar estudios a nivel nacional?</h4>
-                                <p>Sí. Mindtec cuenta con una red de más de 80 encuestadores activos con cobertura en La Paz, El Alto, Santa Cruz, Cochabamba y ciudades intermedias. La infraestructura permite ejecutar levantamientos simultáneos en múltiples ciudades con supervisión centralizada y control de calidad en tiempo real.</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+            <ScrollStackItem minHeight="auto">
+                <FaqSplit title="Preguntas Frecuentes" items={faqItems} />
             </ScrollStackItem>
         </ScrollStack>
 

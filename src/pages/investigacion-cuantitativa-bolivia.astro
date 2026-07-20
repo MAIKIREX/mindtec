@@ -1,8 +1,61 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import HoverStepCards from '../components/cards/HoverStepCards.astro';
+import FaqSplit from '../components/faq/FaqSplit.astro';
+
+const faqItems = [
+  {
+    question:
+      "¿Qué tamaño de muestra necesita una encuesta representativa en Bolivia?",
+    answer:
+      "Depende del universo y el nivel de confianza requerido. Para mercados urbanos con universos de más de 100.000 personas, una muestra de 384 casos garantiza representatividad estadística con 95% de confianza y 5% de margen de error. Para análisis por segmentos o ciudades específicas, la muestra se amplía. Definimos el diseño muestral según la decisión que necesita tomar.",
+  },
+  {
+    question:
+      "¿Cuál es la diferencia entre una encuesta y un estudio de mercado cuantitativo?",
+    answer:
+      "Una encuesta es el instrumento de recolección. Un estudio de mercado cuantitativo es el proceso completo: diseño metodológico, selección de muestra, recolección en campo, procesamiento estadístico e interpretación estratégica. Mindtec no entrega tablas de datos — entrega conclusiones accionables con sustento estadístico.",
+  },
+  {
+    question: "¿Pueden cubrir varias ciudades de Bolivia en simultáneo?",
+    answer:
+      "Sí. Contamos con una red de más de 80 encuestadores activos en Santa Cruz, La Paz, Cochabamba, El Alto y ciudades intermedias. Esto permite recolectar datos en múltiples ciudades de forma simultánea, asegurando comparabilidad temporal entre regiones y reduciendo el tiempo total de campo.",
+  },
+  {
+    question: "¿Cuánto tarda una investigación cuantitativa en Bolivia?",
+    answer:
+      "Un estudio cuantitativo estándar en una ciudad tarda entre 3 y 5 semanas desde el diseño hasta la presentación final. Estudios nacionales con muestras en 4 o más ciudades pueden tomar de 5 a 8 semanas. Contamos con modalidad express para decisiones urgentes.",
+  },
+  {
+    question: "¿En qué se diferencia Mindtec de una encuestadora tradicional?",
+    answer:
+      "Las encuestadoras tradicionales entregan tablas de frecuencias. Mindtec integra la metodología cuantitativa con análisis de comportamiento del consumidor, cruce con datos cualitativos y biometría cuando el proyecto lo requiere, entregando recomendaciones estratégicas que el equipo directivo puede defender ante el directorio.",
+  },
+];
 
 const title = "Investigación Cuantitativa en Bolivia | Mindtec";
 const description = "Investigación cuantitativa en Bolivia: encuestas presenciales y digitales con respaldo estadístico de nuestra red nacional de encuestadores. Mindtec.";
+
+const relatedProductsCards = [
+  {
+    href: "/investigacion-cualitativa-bolivia",
+    eyebrow: "Investigación Cualitativa",
+    title: "Investigación Cualitativa",
+    description: "Entienda el por qué detrás de los números: grupos focales, etnografía y entrevistas en profundidad.",
+  },
+  {
+    href: "/estudio-de-mercado-bolivia",
+    eyebrow: "Análisis Integral",
+    title: "Estudio de Mercado",
+    description: "Evaluación integral de viabilidad que combina métodos cuantitativos y cualitativos con análisis competitivo.",
+  },
+  {
+    href: "/estudio-de-precios-bolivia",
+    eyebrow: "Precios & Neuro-pricing",
+    title: "Estudio de Precios",
+    description: "Mida la sensibilidad al precio y el rango aceptable del consumidor con evidencia estadística y neuro-pricing.",
+  },
+];
 ---
 
 <Layout
@@ -299,77 +352,11 @@ const description = "Investigación cuantitativa en Bolivia: encuestas presencia
     </section>
 
     <!-- 7. FAQ -->
-    <section style="padding: 5rem 0; background: #fff;">
-      <div class="container" style="max-width: 800px;">
-        <div style="text-align: center; margin-bottom: 3rem;">
-          <span class="eyebrow">PREGUNTAS FRECUENTES</span>
-          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Lo que suelen preguntar antes de contratar.</h2>
-        </div>
-        <dl style="display: flex; flex-direction: column; gap: 1rem;">
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-1-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Qué tamaño de muestra necesita una encuesta representativa en Bolivia?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-1-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Depende del universo y el nivel de confianza requerido. Para mercados urbanos con universos de más de 100.000 personas, una muestra de 384 casos garantiza representatividad estadística con 95% de confianza y 5% de margen de error. Para análisis por segmentos o ciudades específicas, la muestra se amplía. Definimos el diseño muestral según la decisión que necesita tomar.</p>
-            </dd>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-2-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Cuál es la diferencia entre una encuesta y un estudio de mercado cuantitativo?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-2-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Una encuesta es el instrumento de recolección. Un estudio de mercado cuantitativo es el proceso completo: diseño metodológico, selección de muestra, recolección en campo, procesamiento estadístico e interpretación estratégica. Mindtec no entrega tablas de datos — entrega conclusiones accionables con sustento estadístico.</p>
-            </dd>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-3-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Pueden cubrir varias ciudades de Bolivia en simultáneo?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-3-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Sí. Contamos con una red de más de 80 encuestadores activos en Santa Cruz, La Paz, Cochabamba, El Alto y ciudades intermedias. Esto permite recolectar datos en múltiples ciudades de forma simultánea, asegurando comparabilidad temporal entre regiones y reduciendo el tiempo total de campo.</p>
-            </dd>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-4-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Cuánto tarda una investigación cuantitativa en Bolivia?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-4-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Un estudio cuantitativo estándar en una ciudad tarda entre 3 y 5 semanas desde el diseño hasta la presentación final. Estudios nacionales con muestras en 4 o más ciudades pueden tomar de 5 a 8 semanas. Contamos con modalidad express para decisiones urgentes.</p>
-            </dd>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-5-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿En qué se diferencia Mindtec de una encuestadora tradicional?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-5-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Las encuestadoras tradicionales entregan tablas de frecuencias. Mindtec integra la metodología cuantitativa con análisis de comportamiento del consumidor, cruce con datos cualitativos y biometría cuando el proyecto lo requiere, entregando recomendaciones estratégicas que el equipo directivo puede defender ante el directorio.</p>
-            </dd>
-          </div>
-
-        </dl>
-      </div>
-    </section>
+    <FaqSplit
+      eyebrow="PREGUNTAS FRECUENTES"
+      title="Lo que suelen preguntar antes de contratar."
+      items={faqItems}
+    />
 
     <!-- 8. PRUEBA SOCIAL -->
     <section style="padding: 4rem 0; background: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
@@ -389,33 +376,24 @@ const description = "Investigación cuantitativa en Bolivia: encuestas presencia
 
     <!-- 9. PRODUCTOS RELACIONADOS -->
     <section style="padding: 5rem 0; background: #fff;">
-      <div class="container" style="max-width: 900px;">
-        <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">También puede interesarle</h3>
-        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; list-style: none; padding: 0;">
-          <li>
-            <a href="/investigacion-cualitativa-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none'">
-              <h4 style="font-size: 1.05rem; color: var(--color-secondary); margin-bottom: 0.5rem;">Investigación Cualitativa en Bolivia</h4>
-              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; line-height: 1.5;">Entienda el por qué detrás de los números: grupos focales, etnografía y entrevistas en profundidad.</p>
-              <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem;">Explorar →</span>
-            </a>
-          </li>
-          <li>
-            <a href="/estudio-de-mercado-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none'">
-              <h4 style="font-size: 1.05rem; color: var(--color-secondary); margin-bottom: 0.5rem;">Estudio de Mercado en Bolivia</h4>
-              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; line-height: 1.5;">Evaluación integral de viabilidad que combina métodos cuantitativos y cualitativos con análisis competitivo.</p>
-              <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem;">Explorar →</span>
-            </a>
-          </li>
-          <li>
-            <a href="/estudio-de-precios-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none'">
-              <h4 style="font-size: 1.05rem; color: var(--color-secondary); margin-bottom: 0.5rem;">Estudio de Precios en Bolivia</h4>
-              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; line-height: 1.5;">Mida la sensibilidad al precio y el rango aceptable del consumidor con evidencia estadística y neuro-pricing.</p>
-              <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem;">Explorar →</span>
-            </a>
-          </li>
-        </ul>
-        <div style="text-align: center; margin-top: 2rem;">
-          <a href="/servicios" style="color: var(--color-primary); font-weight: 700; text-decoration: none; font-size: 0.95rem;">Ver todos los servicios →</a>
+      <div class="container">
+        <h3
+          class="text-navy"
+          style="font-size: 1.8rem; margin-bottom: 2.5rem; text-align: center;"
+        >
+          También puede interesarle
+        </h3>
+      </div>
+      <div class="related-products-bleed">
+        <HoverStepCards items={relatedProductsCards} minColumnWidth="300px" />
+      </div>
+      <div class="container">
+        <div style="text-align: center; margin-top: 2.5rem;">
+          <a
+            href="/servicios"
+            style="color: var(--color-primary); font-weight: 700; text-decoration: none; font-size: 0.95rem;"
+            >Ver todos los servicios →</a
+          >
         </div>
       </div>
     </section>
@@ -451,18 +429,23 @@ const description = "Investigación cuantitativa en Bolivia: encuestas presencia
 
   </main>
 
-  <script>
-    document.querySelectorAll('dt button[aria-expanded]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const ddId = btn.getAttribute('aria-controls');
-        const dd = document.getElementById(ddId);
-        const expandido = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', expandido ? 'false' : 'true');
-        const icon = btn.querySelector('span[aria-hidden]');
-        if (icon) icon.textContent = expandido ? '+' : '−';
-        if (dd) dd.hidden = expandido;
-      });
-    });
-  </script>
+  <style>
+    /* 9. PRODUCTOS RELACIONADOS */
+    .related-products-bleed {
+      padding: 0 2rem;
+    }
+
+    @media (min-width: 900px) {
+      .related-products-bleed {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        padding: 0 clamp(1.5rem, 4vw, 4rem);
+      }
+    }
+  </style>
 
 </Layout>

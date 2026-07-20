@@ -1,6 +1,36 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro';
+import FaqSplit from '../components/faq/FaqSplit.astro';
+
+const faqItems = [
+  {
+    question: "¿Qué es el cliente misterioso o mystery shopper?",
+    answer:
+      "El cliente misterioso es un auditor entrenado que visita un punto de venta haciéndose pasar por consumidor real. Evalúa objetivamente la experiencia: atención, protocolo, ambiente, argumentación de ventas y cumplimiento de estándares — sin que el equipo sepa que está siendo evaluado.",
+  },
+  {
+    question: "¿En cuántos puntos de venta y ciudades operan?",
+    answer:
+      "Operamos en todo el eje troncal boliviano: La Paz, El Alto, Cochabamba, Santa Cruz, Oruro y Sucre. También en ciudades intermedias según requerimiento. Podemos auditar desde un solo punto de venta hasta cientos de locales de forma simultánea.",
+  },
+  {
+    question: "¿Cuánto tiempo toma una auditoría de cliente misterioso?",
+    answer:
+      "El diseño de rúbricas y brief toma 3–5 días. Las visitas de campo se ejecutan en 1–2 semanas según el número de puntos. El reporte ejecutivo se entrega 5 días después de completar el campo.",
+  },
+  {
+    question: "¿Pueden auditar también a la competencia?",
+    answer:
+      "Sí. El benchmarking competitivo es uno de los usos más valiosos del cliente misterioso. Auditamos la experiencia en tus locales y en los de tus competidores con la misma rúbrica, entregando una comparación objetiva del nivel de servicio en el mercado.",
+  },
+  {
+    question:
+      "¿Qué diferencia a MindTEC de un proveedor de mystery shopping estándar?",
+    answer:
+      "Los auditores no siguen un checklist genérico. Las rúbricas se diseñan desde ciencias del comportamiento del consumidor: medimos no solo el protocolo sino los momentos de decisión, las barreras a la compra y las señales de fricción o confianza que determinan si el cliente compra o se va.",
+  },
+];
 
 const title = "Cliente Misterioso en Bolivia (Mystery Shopper) | Mindtec";
 const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la calidad de servicio y la experiencia de compra real en el punto de venta. Mindtec.";
@@ -305,77 +335,11 @@ const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la cal
     </section>
 
     <!-- 7. FAQ ACORDEÓN -->
-    <section style="padding: 5rem 0; background: #fff;">
-      <div class="container" style="max-width: 800px;">
-        <div style="text-align: center; margin-bottom: 3rem;">
-          <span class="eyebrow">PREGUNTAS FRECUENTES</span>
-          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Lo que suelen preguntar antes de contratar.</h2>
-        </div>
-        <dl style="display: flex; flex-direction: column; gap: 1rem;">
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-1-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Qué es el cliente misterioso o mystery shopper?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary); transition: transform 0.2s;">+</span>
-              </button>
-            </dt>
-            <dd id="faq-1-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">El cliente misterioso es un auditor entrenado que visita un punto de venta haciéndose pasar por consumidor real. Evalúa objetivamente la experiencia: atención, protocolo, ambiente, argumentación de ventas y cumplimiento de estándares — sin que el equipo sepa que está siendo evaluado.</p>
-            </dd>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-2-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿En cuántos puntos de venta y ciudades operan?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary); transition: transform 0.2s;">+</span>
-              </button>
-            </dt>
-            <dd id="faq-2-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Operamos en todo el eje troncal boliviano: La Paz, El Alto, Cochabamba, Santa Cruz, Oruro y Sucre. También en ciudades intermedias según requerimiento. Podemos auditar desde un solo punto de venta hasta cientos de locales de forma simultánea.</p>
-            </dd>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-3-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Cuánto tiempo toma una auditoría de cliente misterioso?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary); transition: transform 0.2s;">+</span>
-              </button>
-            </dt>
-            <dd id="faq-3-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">El diseño de rúbricas y brief toma 3–5 días. Las visitas de campo se ejecutan en 1–2 semanas según el número de puntos. El reporte ejecutivo se entrega 5 días después de completar el campo.</p>
-            </dd>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-4-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Pueden auditar también a la competencia?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary); transition: transform 0.2s;">+</span>
-              </button>
-            </dt>
-            <dd id="faq-4-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Sí. El benchmarking competitivo es uno de los usos más valiosos del cliente misterioso. Auditamos la experiencia en tus locales y en los de tus competidores con la misma rúbrica, entregando una comparación objetiva del nivel de servicio en el mercado.</p>
-            </dd>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-5-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Qué diferencia a MindTEC de un proveedor de mystery shopping estándar?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary); transition: transform 0.2s;">+</span>
-              </button>
-            </dt>
-            <dd id="faq-5-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Los auditores no siguen un checklist genérico. Las rúbricas se diseñan desde ciencias del comportamiento del consumidor: medimos no solo el protocolo sino los momentos de decisión, las barreras a la compra y las señales de fricción o confianza que determinan si el cliente compra o se va.</p>
-            </dd>
-          </div>
-
-        </dl>
-      </div>
-    </section>
+    <FaqSplit
+      eyebrow="PREGUNTAS FRECUENTES"
+      title="Lo que suelen preguntar antes de contratar."
+      items={faqItems}
+    />
 
     <!-- 8. PRUEBA SOCIAL -->
     <section style="padding: 4rem 0; background: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
@@ -457,19 +421,5 @@ const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la cal
     </nav>
 
   </main>
-
-  <script>
-    document.querySelectorAll('dt button[aria-expanded]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const ddId = btn.getAttribute('aria-controls');
-        const dd = document.getElementById(ddId);
-        const expandido = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', expandido ? 'false' : 'true');
-        const icon = btn.querySelector('span[aria-hidden]');
-        if (icon) icon.textContent = expandido ? '+' : '−';
-        if (dd) dd.hidden = expandido;
-      });
-    });
-  </script>
 
 </Layout>
