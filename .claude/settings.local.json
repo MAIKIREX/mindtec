@@ -2,9 +2,7 @@
   "permissions": {
     "allow": [
       "Bash(git add *)",
-      "Bash(git commit *)",
-      "PowerShell(git checkout -b home-restructure)",
-      "PowerShell(npm run build)"
+      "Bash(git commit *)"
     ]
   }
 }
