@@ -1,10 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ScrollStack from '../components/scroll/ScrollStack.astro';
-import ScrollStackItem from '../components/scroll/ScrollStackItem.astro';
 import MorphScrollStory from '../components/scroll/MorphScrollStory.astro';
 import ScrollStoryLeft from '../components/scroll/ScrollStoryLeft.astro';
 import FaqSplit from '../components/faq/FaqSplit.astro';
+import AreaPanelCards from '../components/cards/AreaPanelCards.astro';
 
 const faqItems = [
   {
@@ -27,6 +26,29 @@ const faqItems = [
     question: "¿Pueden ejecutar estudios a nivel nacional?",
     answer:
       "Sí. Mindtec cuenta con una red de más de 80 encuestadores activos con cobertura en La Paz, El Alto, Santa Cruz, Cochabamba y ciudades intermedias. La infraestructura permite ejecutar levantamientos simultáneos en múltiples ciudades con supervisión centralizada y control de calidad en tiempo real.",
+  },
+];
+
+const strategicBenefits = [
+  {
+    title: 'Reducción de riesgo financiero',
+    icon: '<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M128 24 40 64v56c0 52 36 92 88 112 52-20 88-60 88-112V64z"/><path d="m88 128 24 24 56-56"/></svg>',
+  },
+  {
+    title: 'Ahorro de tiempo directivo',
+    icon: '<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="88"/><path d="M128 72v60l40 24"/><path d="M128 24v16M232 128h-16M128 232v-16M24 128h16"/></svg>',
+  },
+  {
+    title: 'Claridad estructural',
+    icon: '<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><rect x="40" y="40" width="64" height="48" rx="4"/><rect x="152" y="40" width="64" height="48" rx="4"/><rect x="96" y="168" width="64" height="48" rx="4"/><path d="M72 88v32h112V88M128 120v48"/></svg>',
+  },
+  {
+    title: 'Disminución de improvisación',
+    icon: '<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M48 208h160"/><path d="m64 176 40-40 32 24 56-64"/><path d="M152 72h40v40"/><path d="M72 48h64M72 80h40"/></svg>',
+  },
+  {
+    title: 'Decisiones defendibles ante inversionistas',
+    icon: '<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M48 208h160"/><path d="M64 192v-48h32v48M112 192V96h32v96M160 192V56h32v136"/><path d="m56 112 48-48 32 24 64-64"/><path d="M160 24h40v40"/></svg>',
   },
 ];
 ---
@@ -157,10 +179,8 @@ const faqItems = [
             </div>
         </section>
 
-        <!-- 🟦 BLOQUE A — Problema del modelo tradicional (ScrollStack) -->
-        <ScrollStack scrub={0.75}>
-            <ScrollStackItem>
-                <section class="problem-section bg-slate" style="height: 100%; display: flex; align-items: center; overflow-y: auto; width: 100%; padding: 5rem 0;">
+        <!-- 🟦 BLOQUE A — Problema del modelo tradicional -->
+        <section class="problem-section bg-slate" style="padding: 5rem 0;">
                     <div class="container">
                         <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
                             <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 2rem;">La investigación tradicional tiene brechas críticas</h2>
@@ -198,9 +218,7 @@ const faqItems = [
                             </div>
                         </div>
                     </div>
-                </section>
-            </ScrollStackItem>
-        </ScrollStack>
+        </section>
 
         <!-- 🟦 MODELO HÍBRIDO MINDTEC® — 4 capas (MorphScrollStory) -->
         <MorphScrollStory
@@ -210,8 +228,10 @@ const faqItems = [
             cover={{
                 background: "/imagenes-mindtec/generated/investigacion-profunda-hero.png",
                 eyebrow: "Modelo Mindtec",
-                title: "Sistema de Investigación Multicapa para Decisiones Defendibles",
-                description: "El modelo integra 4 niveles de análisis simultáneos para blindar sus inversiones."
+                title: "Decisiones defendibles, capa por capa",
+                description: "Cuatro lecturas conectadas convierten señales dispersas en una decisión que se puede sostener.",
+                titleSize: "clamp(2.7rem, 5.6vw, 5.9rem)",
+                titleMaxWidth: "14ch"
             }}
             intro={{
                 background: "/imagenes-mindtec/generated/bolivia-inteligencia-territorial.webp",
@@ -222,7 +242,8 @@ const faqItems = [
             }}
             items={[
                 {
-                    background: "/imagenes-mindtec/generated/investigacion-profunda-hero.png",
+                    background: "/imagenes-mindtec/generated/metodologia-multicapa/capa-cultural-psicoantropologia.png",
+                    alt: "Consumidora boliviana eligiendo productos en un mercado local",
                     eyebrow: "Capa 01",
                     title: "Capa Cultural — Psicoantropología",
                     description: "El mercado boliviano no es homogéneo. Analizamos:",
@@ -236,7 +257,8 @@ const faqItems = [
                     note: "Permite entender por qué una estrategia exitosa en Santa Cruz puede fracasar en La Paz."
                 },
                 {
-                    background: "/imagenes-mindtec/generated/neuro-pricing-retail.webp",
+                    background: "/imagenes-mindtec/generated/metodologia-multicapa/capa-cognitiva-neurociencia.png",
+                    alt: "Participante en una sesión de investigación con eye tracking",
                     eyebrow: "Capa 02",
                     title: "Capa Cognitiva — Neurociencia",
                     description: "Mide lo que el consumidor no puede verbalizar:",
@@ -250,7 +272,8 @@ const faqItems = [
                     note: "Mide la reacción biológica subconsciente, libre del filtro racional de la encuesta."
                 },
                 {
-                    background: "/imagenes-mindtec/social-lab-abril-dashboard-copia.jpg",
+                    background: "/imagenes-mindtec/generated/metodologia-multicapa/capa-tecnologica-data.png",
+                    alt: "Analista revisando señales de mercado en visualizaciones de datos",
                     eyebrow: "Capa 03",
                     title: "Capa Tecnológica — IA y Data",
                     description: "Escalabilidad analítica mediante software:",
@@ -264,7 +287,8 @@ const faqItems = [
                     note: "Simplifica volúmenes masivos de datos para reducir el tiempo directivo de análisis."
                 },
                 {
-                    background: "/imagenes-mindtec/generated/retail-tienda-barrio-encuestador.webp",
+                    background: "/imagenes-mindtec/generated/metodologia-multicapa/capa-territorial-validacion.png",
+                    alt: "Auditora documentando productos y precios en una tienda boliviana",
                     eyebrow: "Capa 04",
                     title: "Capa Territorial — Validación",
                     description: "Validación física en el punto de venta real:",
@@ -280,10 +304,8 @@ const faqItems = [
             ]}
         />
 
-        <!-- 🟦 BLOQUE B — Integración tecnológica, validación en campo, tabla comparativa (ScrollStack) -->
-        <ScrollStack scrub={0.75}>
-            <ScrollStackItem>
-                <section class="premium-section-padding bg-white" style="height: 100%; display: flex; align-items: center; overflow-y: auto; width: 100%;">
+        <!-- 🟦 BLOQUE B — Integración tecnológica, validación en campo, tabla comparativa -->
+        <section class="premium-section-padding bg-white">
                     <div class="container premium-grid-2-split" style="align-items: center;">
                         <div>
                             <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Inteligencia Artificial y análisis de datos para decisiones rápidas</h2>
@@ -311,11 +333,9 @@ const faqItems = [
                             </div>
                         </div>
                     </div>
-                </section>
-            </ScrollStackItem>
+        </section>
 
-            <ScrollStackItem>
-                <section class="premium-section-padding bg-slate" style="height: 100%; display: flex; align-items: center; overflow-y: auto; width: 100%;">
+        <section class="premium-section-padding bg-slate">
                     <div class="container">
                         <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem; text-align: center; display: flex; flex-direction: column; align-items: center;">
                             <div class="cap-icon" style="margin-bottom: 1.5rem;">
@@ -338,11 +358,9 @@ const faqItems = [
                             </div>
                         </div>
                     </div>
-                </section>
-            </ScrollStackItem>
+        </section>
 
-            <ScrollStackItem>
-                <section class="premium-section-padding bg-white" style="height: 100%; display: flex; align-items: center; overflow-y: auto; width: 100%;">
+        <section class="premium-section-padding bg-white">
                     <div class="container">
                         <div class="section-title-center" style="max-width: 800px; margin: 0 auto 3rem auto;">
                             <h2 class="text-navy" style="font-size: 2.2rem;">Por qué el modelo Mindtec reduce el riesgo en la toma de decisiones</h2>
@@ -382,22 +400,20 @@ const faqItems = [
                             </table>
                         </div>
                     </div>
-                </section>
-            </ScrollStackItem>
-        </ScrollStack>
+        </section>
 
         <!-- 🟦 HORIZONTES DE EJECUCIÓN (ScrollStoryLeft) -->
         <ScrollStoryLeft
             scrub={0.9}
             sceneDistance={1.1}
             cover={{
-                background: "/imagenes-mindtec/Conferencia-mindtec20.jpg",
+                background: "/imagenes-mindtec/generated/metodologia-horizontes/cover-horizontes.webp",
                 eyebrow: "Horizontes de ejecución",
                 title: "Metodología adaptada al tiempo estratégico de su decisión",
                 description: "Cada decisión tiene un ritmo distinto. Adaptamos el alcance metodológico al tiempo real que su equipo directivo tiene disponible."
             }}
             intro={{
-                background: "/imagenes-mindtec/generated/shopper-productos-vistos-analisis.webp",
+                background: "/imagenes-mindtec/generated/metodologia-horizontes/intro-horizontes.webp",
                 number: "00",
                 eyebrow: "¿Cuál es su horizonte?",
                 title: "El equipo de Mindtec le ayuda a definirlo en la sesión inicial",
@@ -449,10 +465,8 @@ const faqItems = [
             </div>
         </section>
 
-        <!-- 🟦 BLOQUE C — Arquitectura de decisión, impacto, FAQ (ScrollStack) -->
-        <ScrollStack scrub={0.75}>
-            <ScrollStackItem>
-                <section class="elementor-section premium-section-padding bg-white" style="height: 100%; display: flex; align-items: center; overflow-y: auto; width: 100%;">
+        <!-- 🟦 BLOQUE C — Arquitectura de decisión, impacto, FAQ -->
+        <section class="elementor-section premium-section-padding bg-white">
                     <div class="container elementor-container text-center" style="max-width: 800px;">
                         <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 2rem;">De dato a decisión ejecutiva</h2>
                         <p class="text-gray-dark" style="font-size: 1.2rem; margin-bottom: 2rem;">La metodología no termina en
@@ -474,51 +488,19 @@ const faqItems = [
                             La información se transforma en dirección.
                         </div>
                     </div>
-                </section>
-            </ScrollStackItem>
+        </section>
 
-            <ScrollStackItem>
-                <section class="elementor-section premium-section-padding bg-slate" style="height: 100%; display: flex; align-items: center; overflow-y: auto; width: 100%;">
+        <section class="elementor-section premium-section-padding bg-slate">
                     <div class="container elementor-container">
                         <div class="section-title-center" style="margin-bottom: 4rem;">
                             <h2 class="text-navy" style="font-size: 2.5rem;">Beneficios estratégicos del modelo híbrido</h2>
                         </div>
 
-                        <div class="premium-grid-5">
-                            <div class="premium-card-white"
-                                style="text-align: center; padding: 2rem 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                                <h4 style="margin: 0; font-weight: 600; font-size: 1.1rem; color: #0f172a;">Reducción de riesgo
-                                    financiero</h4>
-                            </div>
-                            <div class="premium-card-white"
-                                style="text-align: center; padding: 2rem 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                                <h4 style="margin: 0; font-weight: 600; font-size: 1.1rem; color: #0f172a;">Ahorro de tiempo
-                                    directivo</h4>
-                            </div>
-                            <div class="premium-card-white"
-                                style="text-align: center; padding: 2rem 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                                <h4 style="margin: 0; font-weight: 600; font-size: 1.1rem; color: #0f172a;">Claridad estructural
-                                </h4>
-                            </div>
-                            <div class="premium-card-white"
-                                style="text-align: center; padding: 2rem 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                                <h4 style="margin: 0; font-weight: 600; font-size: 1.1rem; color: #0f172a;">Disminución de
-                                    improvisación</h4>
-                            </div>
-                            <div class="premium-card-white"
-                                style="text-align: center; padding: 2rem 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                                <h4 style="margin: 0; font-weight: 600; font-size: 1.1rem; color: #0f172a;">Decisiones
-                                    defendibles ante inversionistas</h4>
-                            </div>
-                        </div>
+                        <AreaPanelCards items={strategicBenefits} />
                     </div>
-                </section>
-            </ScrollStackItem>
+        </section>
 
-            <ScrollStackItem minHeight="auto">
-                <FaqSplit title="Preguntas Frecuentes" items={faqItems} />
-            </ScrollStackItem>
-        </ScrollStack>
+        <FaqSplit title="Preguntas Frecuentes" items={faqItems} />
 
         <!-- 🟦 CTA FINAL -->
         <section class="cta-section-modern cta-section-fullwidth elementor-section" style="padding: 6rem 0;">
@@ -556,15 +538,14 @@ const faqItems = [
       import { ScrollTrigger } from "gsap/ScrollTrigger";
 
       /*
-       * Esta página combina MorphScrollStory, ScrollStack y
-       * ScrollStoryLeft, uno detrás de otro. Cada componente crea
+       * Esta página combina MorphScrollStory y ScrollStoryLeft,
+       * uno detrás de otro. Cada componente crea
        * sus propios ScrollTrigger y hace su propio refresh() en
        * cuanto termina de inicializarse, sin esperar a que los
        * demás componentes de la página también hayan reservado su
-       * espacio de pin. Eso hace que, por ejemplo, la sección
-       * ScrollStack de abajo calcule su punto de inicio antes de
-       * que MorphScrollStory haya terminado de reservar el alto de
-       * su propia animación, y las dos animaciones "chocan" y se
+       * espacio de pin. Eso hace que una animación calcule su punto
+       * de inicio antes de que la anterior haya terminado de reservar
+       * el alto de su propia animación, y ambas animaciones "chocan" y se
        * muestran a la vez.
        *
        * Un refresh() final, después de que todos los scripts de la

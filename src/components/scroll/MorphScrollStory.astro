@@ -23,6 +23,12 @@ export interface MorphStoryCover {
   eyebrow?: string;
   title: string;
   description?: string;
+
+  /** Escala CSS del titular. Permite que cada cover conserve 1-3 l\u00edneas. */
+  titleSize?: string;
+
+  /** Ancho m\u00e1ximo CSS del titular, por ejemplo `14ch` o `760px`. */
+  titleMaxWidth?: string;
 }
 
 export interface MorphStoryIntro {
@@ -91,31 +97,23 @@ const totalItems = items.length;
 
 const clientConfig = {
   intro: {
-    shape: intro.shape ?? "intro-step",
-    mobileShape: intro.mobileShape ?? "intro-step",
+    shape: intro.shape ?? "panel",
+    mobileShape: intro.mobileShape ?? "panel",
     card: {
-      width: intro.card?.width ?? 98,
-      height: intro.card?.height ?? 60,
-      left: intro.card?.left ?? 1,
-      bottom: intro.card?.bottom ?? 2.5
+      width: intro.card?.width ?? 42,
+      height: intro.card?.height ?? 72,
+      left: intro.card?.left ?? 4.5,
+      bottom: intro.card?.bottom ?? 6
     }
   },
-  items: items.map((item, index) => ({
-    shape:
-      item.shape ??
-      [
-        "step-right",
-        "double-step",
-        "upper-center",
-        "side-notch",
-        "inverse-step"
-      ][index % 5],
-    mobileShape: item.mobileShape ?? "intro-step",
+  items: items.map((item) => ({
+    shape: item.shape ?? "panel",
+    mobileShape: item.mobileShape ?? "panel",
     card: {
-      width: item.card?.width ?? 84,
-      height: item.card?.height ?? 80,
-      left: item.card?.left ?? 1.5,
-      bottom: item.card?.bottom ?? 2
+      width: item.card?.width ?? 42,
+      height: item.card?.height ?? 74,
+      left: item.card?.left ?? 4.5,
+      bottom: item.card?.bottom ?? 6
     }
   }))
 };
@@ -128,7 +126,7 @@ const clientConfig = {
   data-scrub={scrub}
   data-scene-distance={sceneDistance}
   data-story-config={JSON.stringify(clientConfig)}
-  style={`--morph-card-color: ${cardColor};`}
+  style={`--morph-card-color: ${cardColor}; --morph-cover-title-size: ${cover.titleSize ?? "clamp(2.8rem, 6.2vw, 6.5rem)"}; --morph-cover-title-width: ${cover.titleMaxWidth ?? "15ch"};`}
 >
   <div class="morph-story__stage" data-morph-stage>
     <div class="morph-story__backgrounds">
@@ -304,6 +302,19 @@ const clientConfig = {
   const SHAPE_POINT_COUNT = 10;
 
   const PRESET_SHAPES: Record<string, ShapePoint[]> = {
+    panel: [
+      [0, 0],
+      [100, 0],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [0, 100]
+    ],
+
     "intro-step": [
       [0, 12],
       [52, 12],
@@ -384,6 +395,19 @@ const clientConfig = {
   };
 
   const MOBILE_SHAPES: Record<string, ShapePoint[]> = {
+    panel: [
+      [0, 0],
+      [100, 0],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [0, 100]
+    ],
+
     "intro-step": [
       [0, 9],
       [38, 9],
@@ -523,7 +547,7 @@ const clientConfig = {
     }
   }
 
-  function getLayout(layout, viewportWidth, viewportHeight, compact) {
+  function getLayout(layout, viewportWidth, viewportHeight) {
     if (viewportWidth <= 560) {
       return {
         left: viewportWidth * 0.04,
@@ -539,15 +563,6 @@ const clientConfig = {
         bottom: viewportHeight * 0.025,
         width: viewportWidth * 0.88,
         height: viewportHeight * 0.72
-      };
-    }
-
-    if (compact) {
-      return {
-        left: viewportWidth * 0.01,
-        bottom: viewportHeight * 0.025,
-        width: viewportWidth * 0.98,
-        height: viewportHeight * 0.6
       };
     }
 
@@ -660,8 +675,7 @@ const clientConfig = {
           const introLayout = getLayout(
             config.intro.card,
             window.innerWidth,
-            window.innerHeight,
-            true
+            window.innerHeight
           );
 
           gsap.set(card, {
@@ -681,8 +695,7 @@ const clientConfig = {
             const finalLayout = getLayout(
               finalItem.card,
               window.innerWidth,
-              window.innerHeight,
-              false
+              window.innerHeight
             );
 
             backgrounds.forEach((background, index) => {
@@ -824,22 +837,19 @@ const clientConfig = {
                   getLayout(
                     currentConfig.card,
                     window.innerWidth,
-                    window.innerHeight,
-                    false
+                    window.innerHeight
                   ).left,
                 bottom: () =>
                   getLayout(
                     currentConfig.card,
                     window.innerWidth,
-                    window.innerHeight,
-                    false
+                    window.innerHeight
                   ).bottom,
                 width: () =>
                   getLayout(
                     currentConfig.card,
                     window.innerWidth,
-                    window.innerHeight,
-                    false
+                    window.innerHeight
                   ).width,
                 height: () =>
                   getLayout(
@@ -969,8 +979,8 @@ const clientConfig = {
     background:
       linear-gradient(
         90deg,
-        rgba(5, 8, 20, 0.32),
-        rgba(5, 8, 20, 0.03) 58%,
+        rgba(5, 8, 20, 0.58),
+        rgba(5, 8, 20, 0.08) 58%,
         rgba(5, 8, 20, 0.12)
       );
   }
@@ -996,19 +1006,24 @@ const clientConfig = {
   }
 
   .morph-story__cover-content h1 {
-    max-width: 950px;
+    max-width: var(--morph-cover-title-width);
     margin: 0;
-    font-size: clamp(3.4rem, 8vw, 8.5rem);
-    line-height: 0.9;
+    color: #fff;
+    font-size: var(--morph-cover-title-size);
+    line-height: 0.94;
     letter-spacing: -0.065em;
+    text-wrap: balance;
+    text-shadow: 0 3px 28px rgba(3, 8, 20, 0.34);
   }
 
   .morph-story__cover-content p {
     max-width: 620px;
     margin: 30px 0 0;
+    color: rgba(255, 255, 255, 0.9);
     font-size: clamp(1rem, 1.4vw, 1.2rem);
     line-height: 1.65;
     opacity: 0.75;
+    text-shadow: 0 2px 16px rgba(3, 8, 20, 0.46);
   }
 
   .morph-story__scroll-message {
@@ -1041,7 +1056,9 @@ const clientConfig = {
     height: 100%;
     overflow: hidden;
     color: white;
-    background: var(--morph-card-color, #05091f);
+    background: linear-gradient(135deg, var(--morph-card-color, #05091f) 0%, color-mix(in srgb, var(--morph-card-color, #05091f) 92%, transparent) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    backdrop-filter: blur(8px);
     will-change: clip-path;
   }
 
@@ -1053,12 +1070,10 @@ const clientConfig = {
   }
 
   .morph-story__panel--intro {
-    display: grid;
-    grid-template-columns: minmax(70px, 0.5fr) minmax(300px, 1.5fr);
-    grid-template-rows: auto 1fr auto;
-    column-gap: clamp(30px, 6vw, 110px);
-    padding: clamp(34px, 4vw, 72px);
-    padding-top: clamp(65px, 8vw, 115px);
+    display: flex;
+    flex-direction: column;
+    padding: clamp(28px, 3vw, 50px);
+    padding-top: clamp(58px, 6vw, 94px);
   }
 
   .morph-story__intro-number {
@@ -1075,21 +1090,23 @@ const clientConfig = {
   }
 
   .morph-story__intro-heading {
-    text-align: right;
+    margin-top: clamp(24px, 3vw, 42px);
+    text-align: left;
   }
 
   .morph-story__intro-heading h2 {
     margin: 0;
-    font-size: clamp(3rem, 7vw, 7rem);
+    font-size: clamp(1.9rem, 3.2vw, 3.45rem);
     font-weight: 300;
-    line-height: 0.88;
-    letter-spacing: -0.055em;
+    line-height: 0.95;
+    letter-spacing: -0.045em;
     text-transform: uppercase;
+    text-wrap: balance;
   }
 
   .morph-story__intro-copy {
-    grid-column: 1;
-    align-self: end;
+    align-self: auto;
+    margin-top: clamp(22px, 3vw, 38px);
     max-width: 650px;
   }
 
@@ -1103,12 +1120,12 @@ const clientConfig = {
   }
 
   .morph-story__intro-footer {
-    grid-column: 1 / -1;
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
     gap: 22px;
-    margin-top: 28px;
+    margin-top: auto;
+    padding-top: 28px;
     font-size: 0.7rem;
     text-transform: uppercase;
   }
@@ -1122,12 +1139,12 @@ const clientConfig = {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: clamp(34px, 4vw, 70px);
-    padding-top: clamp(70px, 8vw, 125px);
+    padding: clamp(28px, 3vw, 50px);
+    padding-top: clamp(58px, 6vw, 94px);
   }
 
   .morph-story__item-copy {
-    max-width: min(640px, 72%);
+    max-width: 100%;
     max-height: 100%;
 
     /*

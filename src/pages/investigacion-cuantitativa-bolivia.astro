@@ -1,7 +1,36 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import HoverStepCards from '../components/cards/HoverStepCards.astro';
+import AreaPanelCards from '../components/cards/AreaPanelCards.astro';
+import ScrollStory from '../components/scroll/ScrollStory.astro';
 import FaqSplit from '../components/faq/FaqSplit.astro';
+
+const processSteps = [
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
+    title: "Diagnóstico y diseño metodológico",
+    small: "45 min · sin costo",
+    description: "45 min para definir el objetivo de investigación, el universo, la muestra óptima, el método de recolección y las variables clave. Le entregamos el plan metodológico antes de iniciar.",
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`,
+    title: "Diseño del instrumento",
+    small: "3–5 días hábiles",
+    description: "Construcción del cuestionario con técnicas de psicología del cuestionario para minimizar sesgos de respuesta. Piloto de campo para validar tiempos y comprensión antes del despliegue masivo.",
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1" ry="1"/></svg>`,
+    title: "Recolección y control de calidad",
+    small: "2–5 semanas en campo",
+    description: "Despliegue de la red de encuestadores con supervisión en tiempo real, georreferenciación y revisión lógica de cuestionarios. Tasa de rechazo y sustitución controlada para garantizar representatividad.",
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>`,
+    title: "Análisis y presentación",
+    small: "5–7 días post-campo",
+    description: "Procesamiento estadístico, análisis multivariado donde aplica y síntesis ejecutiva con recomendaciones priorizadas. Presentación ante el equipo directivo con sesión de preguntas.",
+  },
+];
 
 const faqItems = [
   {
@@ -257,43 +286,67 @@ const relatedProductsCards = [
     </section>
 
     <!-- 4. ENTREGABLES -->
-    <section class="problem-section bg-slate" style="padding: 5rem 0;">
-      <div class="container">
-        <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
-          <span class="eyebrow">QUÉ RECIBE</span>
-          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Entregables que sustentan decisiones de inversión, lanzamiento y posicionamiento.</h2>
-        </div>
-        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; list-style: none; padding: 0;">
-          <li class="premium-card-white" style="padding: 2rem;">
-            <h4 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Reporte Ejecutivo con Conclusiones Accionables</h4>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Síntesis de hallazgos clave con lenguaje directivo. Sin jerga estadística. Directo a las implicaciones para su negocio, con recomendaciones priorizadas por impacto.</p>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem;">
-            <h4 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Segmentación Estadística del Mercado</h4>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Identificación y dimensionamiento de segmentos de consumidores con perfil sociodemográfico, psicográfico y conductual. La base para cualquier estrategia de targeting real.</p>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem;">
-            <h4 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Medición de Awareness, Preferencia y Compra</h4>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Top of mind, reconocimiento espontáneo y asistido, preferencia de marca y penetración de consumo. El embudo de marca medido estadísticamente en su mercado objetivo.</p>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem;">
-            <h4 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Análisis de Demanda y Dimensionamiento</h4>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Estimación del tamaño del mercado objetivo, frecuencia de compra, intención de adopción y potencial de penetración. Los números que justifican la inversión ante el directorio.</p>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem;">
-            <h4 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Dashboard de Datos y Base Completa</h4>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Entrega de la base de datos procesada, tablas de frecuencias y cruce de variables para que su equipo de analítica pueda profundizar en los hallazgos más relevantes.</p>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem;">
-            <h4 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Presentación ante Directorio</h4>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Sesión de presentación de hallazgos con el equipo de Mindtec, diseñada para el formato de Directorio o Gerencia: máximo impacto en mínimo tiempo.</p>
-          </li>
-        </ul>
-        <p class="text-gray-dark" style="text-align: center; margin-top: 2rem; font-size: 0.95rem; font-weight: 600;">
-          Plazo de entrega: 3–8 semanas según alcance · Cobertura: eje troncal boliviano y ciudades intermedias
-        </p>
-      </div>
-    </section>
+    <ScrollStory
+      scrub={0.85}
+      sceneDistance={1.1}
+      cover={{
+        background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregables-cover.webp",
+        eyebrow: "Qué recibe",
+        title: "Entregables que sustentan decisiones de inversión, lanzamiento y posicionamiento.",
+        description: "Documentos y análisis diseñados para traducir la evidencia estadística en decisiones de negocio."
+      }}
+      intro={{
+        background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregables-intro.webp",
+        number: "00",
+        eyebrow: "Plazo de entrega",
+        title: "3–8 semanas según alcance. Cobertura: eje troncal boliviano y ciudades intermedias.",
+        description: "Recorra los seis entregables que puede esperar de un estudio cuantitativo Mindtec."
+      }}
+      items={[
+        {
+          background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregable-01-reporte-ejecutivo.webp",
+          eyebrow: "Síntesis",
+          title: "Reporte Ejecutivo con Conclusiones Accionables",
+          description: "Síntesis de hallazgos clave con lenguaje directivo. Sin jerga estadística. Directo a las implicaciones para su negocio, con recomendaciones priorizadas por impacto.",
+          icon: "road"
+        },
+        {
+          background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregable-02-segmentacion.webp",
+          eyebrow: "Segmentos",
+          title: "Segmentación Estadística del Mercado",
+          description: "Identificación y dimensionamiento de segmentos de consumidores con perfil sociodemográfico, psicográfico y conductual. La base para cualquier estrategia de targeting real.",
+          icon: "building"
+        },
+        {
+          background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregable-03-awareness-preferencia.webp",
+          eyebrow: "Embudo de marca",
+          title: "Medición de Awareness, Preferencia y Compra",
+          description: "Top of mind, reconocimiento espontáneo y asistido, preferencia de marca y penetración de consumo. El embudo de marca medido estadísticamente en su mercado objetivo.",
+          icon: "services"
+        },
+        {
+          background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregable-04-demanda-dimensionamiento.webp",
+          eyebrow: "Demanda",
+          title: "Análisis de Demanda y Dimensionamiento",
+          description: "Estimación del tamaño del mercado objetivo, frecuencia de compra, intención de adopción y potencial de penetración. Los números que justifican la inversión ante el directorio.",
+          icon: "airport"
+        },
+        {
+          background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregable-05-dashboard-datos.webp",
+          eyebrow: "Datos",
+          title: "Dashboard de Datos y Base Completa",
+          description: "Entrega de la base de datos procesada, tablas de frecuencias y cruce de variables para que su equipo de analítica pueda profundizar en los hallazgos más relevantes.",
+          icon: "road"
+        },
+        {
+          background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregable-06-presentacion-directorio.webp",
+          eyebrow: "Presentación",
+          title: "Presentación ante Directorio",
+          description: "Sesión de presentación de hallazgos con el equipo de Mindtec, diseñada para el formato de Directorio o Gerencia: máximo impacto en mínimo tiempo.",
+          icon: "building"
+        }
+      ]}
+    />
 
     <!-- 5. PROCESO -->
     <section style="padding: 5rem 0; background: #f8fafc;">
@@ -302,32 +355,7 @@ const relatedProductsCards = [
           <span class="eyebrow">CÓMO FUNCIONA</span>
           <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Del diagnóstico a la evidencia estadística en 4 pasos.</h2>
         </div>
-        <ol style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
-          <li class="premium-card-white" style="padding: 2rem; position: relative;">
-            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">01</span>
-            <h4 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Diagnóstico y diseño metodológico</h4>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">45 min para definir el objetivo de investigación, el universo, la muestra óptima, el método de recolección y las variables clave. Le entregamos el plan metodológico antes de iniciar.</p>
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">45 min · sin costo</span>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem; position: relative;">
-            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">02</span>
-            <h4 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Diseño del instrumento</h4>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Construcción del cuestionario con técnicas de psicología del cuestionario para minimizar sesgos de respuesta. Piloto de campo para validar tiempos y comprensión antes del despliegue masivo.</p>
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">3–5 días hábiles</span>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem; position: relative;">
-            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">03</span>
-            <h4 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Recolección y control de calidad</h4>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Despliegue de la red de encuestadores con supervisión en tiempo real, georreferenciación y revisión lógica de cuestionarios. Tasa de rechazo y sustitución controlada para garantizar representatividad.</p>
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">2–5 semanas en campo</span>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem; position: relative;">
-            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">04</span>
-            <h4 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Análisis y presentación</h4>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Procesamiento estadístico, análisis multivariado donde aplica y síntesis ejecutiva con recomendaciones priorizadas. Presentación ante el equipo directivo con sesión de preguntas.</p>
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">5–7 días post-campo</span>
-          </li>
-        </ol>
+        <AreaPanelCards items={processSteps} columns={4} />
       </div>
     </section>
 

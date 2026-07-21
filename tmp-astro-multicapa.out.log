@@ -1,0 +1,21 @@
+
+> pagina-web-mindtec-anti-elementor@1.0.0 dev
+> astro dev --host 127.0.0.1 --port 4321
+
+16:00:19 [WARN] The currently selected adapter `@astrojs/cloudflare` is not compatible with the image service "Sharp".
+16:00:19 [types] Generated 2ms
+16:00:20 [vite] Re-optimizing dependencies because vite config has changed
+
+ astro  v4.16.19 ready in 1728 ms
+
+┃ Local    http://127.0.0.1:4321/
+
+16:00:21 watching for file changes...
+16:00:35 [200] /metodologia 443ms
+16:01:31 [200] /metodologia 6ms
+16:02:47 [watch] /src/components/scroll/MorphScrollStory.astro?astro&type=style&index=0&lang.css
+16:02:58 [200] /metodologia 23ms
+16:04:21 [watch] src/components/scroll/MorphScrollStory.astro
+16:04:21 [200] /metodologia 7ms
+16:04:31 [200] /metodologia 3ms
+16:04:51 [watch] /src/components/scroll/MorphScrollStory.astro?astro&type=style&index=0&lang.css

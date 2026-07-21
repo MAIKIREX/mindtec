@@ -18,13 +18,17 @@ interface ScrollStoryLeftIntro {
 
 type ScrollStoryLeftIcon = "airport" | "road" | "building" | "services";
 
+const BUILT_IN_ICONS: readonly string[] = ["airport", "road", "building", "services"];
+
 interface ScrollStoryLeftItem {
   background: string;
   alt?: string;
   eyebrow?: string;
   title: string;
   description: string;
-  icon?: ScrollStoryLeftIcon;
+
+  /** Uno de los íconos predefinidos, o markup SVG crudo (viewBox 0 0 24 24, sin stroke/fill inline). */
+  icon?: ScrollStoryLeftIcon | string;
 
   /** Lista de puntos opcional, se renderiza debajo de la descripción. */
   list?: string[];
@@ -35,6 +39,7 @@ interface Props {
   intro: ScrollStoryLeftIntro;
   items: ScrollStoryLeftItem[];
   class?: string;
+  id?: string;
 
   /** Suavidad con la que la animación sigue al scroll. */
   scrub?: number;
@@ -61,6 +66,7 @@ const {
   intro,
   items,
   class: className = "",
+  id,
   scrub = 0.9,
   sceneDistance = 1,
   introCardWidth = 0.98,
@@ -76,6 +82,7 @@ const totalItems = items.length;
 ---
 
 <section
+  id={id}
   class:list={["scroll-story-left", className]}
   data-scroll-story-left
   data-header-theme="dark"
@@ -240,6 +247,14 @@ const totalItems = items.length;
                     <path d="M77 144 L64 157" />
                     <path d="M143 144 L156 157" />
                   </svg>
+                )}
+
+                {item.icon && !BUILT_IN_ICONS.includes(item.icon) && (
+                  <div
+                    class="scroll-story-left__custom-icon"
+                    aria-hidden="true"
+                    set:html={item.icon}
+                  />
                 )}
 
                 {!item.icon && (
@@ -876,6 +891,21 @@ const totalItems = items.length;
     stroke-linejoin: round;
   }
 
+  .scroll-story-left__custom-icon {
+    display: flex;
+  }
+
+  .scroll-story-left__custom-icon :global(svg) {
+    width: min(140px, 30%);
+    height: auto;
+    overflow: visible;
+    fill: none;
+    stroke: color-mix(in srgb, var(--story-left-card-color) 56%, transparent);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
   .scroll-story-left__generic-visual {
     position: relative;
     width: 180px;
@@ -1030,6 +1060,10 @@ const totalItems = items.length;
     .scroll-story-left__item-visual svg {
       width: min(210px, 46%);
     }
+
+    .scroll-story-left__custom-icon :global(svg) {
+      width: min(115px, 32%);
+    }
   }
 
   @media (max-width: 560px) {
@@ -1102,6 +1136,10 @@ const totalItems = items.length;
 
     .scroll-story-left__item-visual svg {
       width: 130px;
+    }
+
+    .scroll-story-left__custom-icon :global(svg) {
+      width: 78px;
     }
 
     .scroll-story-left__item-description p {
