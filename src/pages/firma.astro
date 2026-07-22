@@ -1,8 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ScrollStory from '../components/scroll/ScrollStory.astro';
-import ScrollStack from '../components/scroll/ScrollStack.astro';
-import ScrollStackItem from '../components/scroll/ScrollStackItem.astro';
+import StackedSections from '../components/scroll/StackedSections.astro';
 ---
 
 <Layout
@@ -100,38 +99,157 @@ import ScrollStackItem from '../components/scroll/ScrollStackItem.astro';
             </div>
         </section>
 
-        <!-- SECCIÓN 2: Quiénes somos -->
-        <ScrollStack scrub={0.75}>
-            <ScrollStackItem>
-                <div class="elementor-section premium-section-padding bg-slate" style="height: 100%; display: flex; align-items: center; overflow-y: auto; padding: 5rem 0;">
-                    <div class="container elementor-container" style="max-width: 1100px; margin: auto;">
-                        <h2 class="text-navy text-center" style="font-size: 2.5rem; margin-bottom: 3rem;">El respaldo analítico detrás de su próxima decisión</h2>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; align-items: center;">
-                            <div class="premium-card-white" style="text-align: left; padding: 3rem; font-size: 1.1rem; color: #4a5b6f; line-height: 1.8; margin-bottom: 0; box-shadow: var(--shadow-md); border-radius: var(--radius-md); background: #ffffff;">
-                                <p style="margin-bottom: 1.5rem;">La sofisticación analítica que exigen las decisiones gerenciales críticas ya no requiere buscar fuera de Bolivia. Las corporaciones del país acceden a una metodología científica de nivel internacional, adaptada con precisión a la realidad de los canales de distribución locales.</p>
-                                <p style="margin-bottom: 1.5rem;">Mediante la integración de psicólogos de consumo, analistas de datos y tecnología biométrica, es posible descifrar las verdaderas motivaciones y barreras de compra en el mercado boliviano, eliminando los sesgos comunes de la investigación tradicional.</p>
-                                <p style="margin-bottom: 0;">Esta infraestructura de inteligencia de mercados está diseñada para respaldar a directorios de entidades financieras, multinacionales de consumo masivo, instituciones educativas de primer nivel y corporaciones en expansión regional.</p>
-                            </div>
-                            <div style="position: relative; width: 100%; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-lg);">
-                                <img src="/equipo-mindtec.webp" alt="Equipo de Consultores de Mindtec Bolivia" style="width: 100%; height: auto; object-fit: cover; display: block;" loading="lazy">
-                            </div>
-                        </div>
+        <!-- SECCIÓN 2: Quiénes somos — imagen de fondo con tarjetas escalonadas -->
+        <section class="respaldo-hero">
+            <div class="respaldo-hero__bg">
+                <img src="/equipo-mindtec.webp" alt="Equipo de Consultores de Mindtec Bolivia" loading="lazy">
+                <div class="respaldo-hero__overlay"></div>
+            </div>
+
+            <div class="container elementor-container respaldo-hero__content">
+                <h2 class="respaldo-hero__title">El respaldo analítico detrás de su próxima decisión</h2>
+
+                <div class="respaldo-hero__cards">
+                    <div class="respaldo-card respaldo-card--1">
+                        <span class="respaldo-card__index">01</span>
+                        <p>Metodología científica de nivel internacional, adaptada con precisión a los canales de distribución bolivianos.</p>
+                    </div>
+                    <div class="respaldo-card respaldo-card--2">
+                        <span class="respaldo-card__index">02</span>
+                        <p>Psicólogos de consumo, analistas de datos y tecnología biométrica descifran las motivaciones reales de compra, sin los sesgos de la investigación tradicional.</p>
+                    </div>
+                    <div class="respaldo-card respaldo-card--3">
+                        <span class="respaldo-card__index">03</span>
+                        <p>Infraestructura de inteligencia de mercados que respalda a entidades financieras, multinacionales, instituciones educativas y corporaciones en expansión regional.</p>
                     </div>
                 </div>
-            </ScrollStackItem>
-        </ScrollStack>
+            </div>
+        </section>
+
+        <style>
+            .respaldo-hero {
+                position: relative;
+                isolation: isolate;
+                min-height: 92vh;
+                display: flex;
+                align-items: flex-end;
+                overflow: hidden;
+                padding: 5rem 0 clamp(3rem, 8vh, 6rem);
+            }
+
+            .respaldo-hero__bg {
+                position: absolute;
+                inset: 0;
+                z-index: -1;
+            }
+
+            .respaldo-hero__bg img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center 20%;
+                display: block;
+            }
+
+            .respaldo-hero__overlay {
+                position: absolute;
+                inset: 0;
+                background:
+                    linear-gradient(to top, rgba(6, 28, 43, 0.96) 0%, rgba(6, 28, 43, 0.55) 42%, rgba(6, 28, 43, 0.15) 68%, rgba(6, 28, 43, 0.35) 100%);
+            }
+
+            .respaldo-hero__content {
+                position: relative;
+                width: 100%;
+                margin: 0 auto;
+            }
+
+            .respaldo-hero__title {
+                max-width: 720px;
+                margin: 0 0 clamp(2rem, 5vw, 3.5rem);
+                color: #fff;
+                font-size: clamp(2rem, 4vw, 2.75rem);
+                line-height: 1.2;
+            }
+
+            .respaldo-hero__cards {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: clamp(1.25rem, 2.5vw, 2rem);
+                align-items: end;
+            }
+
+            .respaldo-card {
+                position: relative;
+                padding: 2rem 1.75rem 1.75rem;
+                background: rgba(255, 255, 255, 0.92);
+                backdrop-filter: blur(6px);
+                -webkit-backdrop-filter: blur(6px);
+                border-radius: var(--radius-md, 12px);
+                box-shadow: var(--shadow-xl, 0 32px 64px -16px rgba(0, 0, 0, 0.35));
+                color: #2d3b4a;
+            }
+
+            .respaldo-card__index {
+                display: block;
+                margin-bottom: 0.75rem;
+                font-size: 0.75rem;
+                font-weight: 800;
+                letter-spacing: 0.14em;
+                color: var(--color-primary);
+            }
+
+            .respaldo-card p {
+                margin: 0;
+                font-size: 0.98rem;
+                line-height: 1.6;
+                color: #4a5b6f;
+            }
+
+            /* Efecto escalonado: cada tarjeta a distinta altura, tipo escalera */
+            .respaldo-card--1 {
+                transform: translateY(2.25rem);
+            }
+
+            .respaldo-card--2 {
+                transform: translateY(0.75rem);
+                z-index: 2;
+            }
+
+            .respaldo-card--3 {
+                transform: translateY(-0.75rem);
+            }
+
+            @media (max-width: 900px) {
+                .respaldo-hero {
+                    min-height: auto;
+                    padding: 4rem 0 3rem;
+                }
+
+                .respaldo-hero__cards {
+                    grid-template-columns: 1fr;
+                    gap: 1.25rem;
+                }
+
+                .respaldo-card--1,
+                .respaldo-card--2,
+                .respaldo-card--3 {
+                    transform: none;
+                }
+            }
+        </style>
 
         <!-- SECCIÓN 3: Estándares Operativos — ScrollStory (storytelling de las 4 tarjetas) -->
         <ScrollStory
             cover={{
-                background: "/imagenes-mindtec/Conferencia-mindtec20.jpg",
+                background: "/imagenes-mindtec/generated/firma-estandares/cover-adn-corporativo.webp",
                 alt: "Equipo directivo de Mindtec en sesión estratégica corporativa",
                 eyebrow: "ADN CORPORATIVO",
                 title: "Lo que puede esperar de Mindtec",
                 description: "La validez de un estudio reside en la solidez de su estructura. En lugar de ofrecer cuestionarios tácticos aislados, los proyectos se ejecutan bajo una metodología científica y estandarizada, diseñada para mitigar el riesgo en inversiones de gran escala.",
             }}
             intro={{
-                background: "/imagenes-mindtec/mindtec-imagen-larga-1.jpg",
+                background: "/imagenes-mindtec/generated/firma-estandares/intro-confidencialidad.webp",
                 alt: "Reunión confidencial de directorio con el equipo de Mindtec",
                 number: "01",
                 badge: "Confidencialidad",
@@ -140,21 +258,21 @@ import ScrollStackItem from '../components/scroll/ScrollStackItem.astro';
             }}
             items={[
                 {
-                    background: "/imagenes-mindtec/generated/investigacion-profunda-hero.png",
+                    background: "/imagenes-mindtec/generated/firma-estandares/item-01-rigor-evidencia.webp",
                     alt: "Analistas de Mindtec validando evidencia con trazabilidad matemática",
                     badge: "Evidencia",
                     title: "Rigor en la Evidencia",
                     description: "Las decisiones críticas exigen bases sólidas. Cada conclusión estratégica cuenta con trazabilidad absoluta y respaldo matemático.",
                 },
                 {
-                    background: "/imagenes-mindtec/generated/retail-tienda-barrio-encuestador.webp",
+                    background: "/imagenes-mindtec/generated/firma-estandares/item-02-validacion-campo.webp",
                     alt: "Encuestador de Mindtec auditando en campo un punto de venta en Bolivia",
                     badge: "Campo",
                     title: "Validación en Campo Real",
                     description: "El análisis trasciende el escritorio. La auditoría directa en el punto de venta contrasta los modelos teóricos con la realidad comercial boliviana.",
                 },
                 {
-                    background: "/imagenes-mindtec/social-lab-abril-dashboard-copia.jpg",
+                    background: "/imagenes-mindtec/generated/firma-estandares/item-03-entregables-accion.webp",
                     alt: "Tablero ejecutivo con conclusiones estratégicas listas para la acción",
                     badge: "Acción",
                     title: "Entregables para la Acción",
@@ -163,10 +281,9 @@ import ScrollStackItem from '../components/scroll/ScrollStackItem.astro';
             ]}
         />
 
-        <!-- SECCIONES 4-7: Alcance, Reconocimientos, Equipo, Diferenciación, CTA — ScrollStack -->
-        <ScrollStack scrub={0.8}>
-        <ScrollStackItem>
-        <div class="elementor-section premium-section-padding bg-navy" style="height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-y: auto; width: 100%; padding: 6rem 0; background-color: var(--color-secondary);">
+        <!-- SECCIONES 4-7: Alcance, Reconocimientos, Equipo, Diferenciación, CTA -->
+        <StackedSections>
+        <section class="elementor-section premium-section-padding bg-navy" style="padding: 6rem 0; background-color: var(--color-secondary);" data-stack-section>
             <h2 class="text-white text-center" style="font-size: 2.5rem; margin-bottom: 4rem; color: white;">Alcance y Capacidad Operativa</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); border-top: 1px solid rgba(255,255,255,0.15); width: 100%;">
 
@@ -191,12 +308,10 @@ import ScrollStackItem from '../components/scroll/ScrollStackItem.astro';
                 </div>
 
             </div>
-        </div>
-        </ScrollStackItem>
+        </section>
 
         <!-- SECCIÓN: Reconocimientos y Premios -->
-        <ScrollStackItem>
-        <div class="elementor-section premium-section-padding bg-white" style="height: 100%; display: flex; align-items: center; overflow-y: auto; padding: 6rem 0;">
+        <section class="elementor-section premium-section-padding bg-white" style="padding: 6rem 0;" data-stack-section>
             <div class="container elementor-container" style="margin: auto;">
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 4rem; align-items: center;">
                     <div style="position: relative; width: 100%; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-xl); order: 2;">
@@ -219,12 +334,10 @@ import ScrollStackItem from '../components/scroll/ScrollStackItem.astro';
                     </div>
                 </div>
             </div>
-        </div>
-        </ScrollStackItem>
+        </section>
 
         <!-- SECCIÓN 5: Equipo Directivo -->
-        <ScrollStackItem>
-        <div class="elementor-section premium-section-padding bg-slate" style="height: 100%; display: flex; align-items: center; overflow-y: auto; padding: 6rem 0;">
+        <section class="elementor-section premium-section-padding bg-slate" style="padding: 6rem 0;" data-stack-section>
             <div class="container elementor-container text-center" style="margin: auto;">
                 <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 4rem;">El Equipo Directivo</h2>
                 
@@ -249,12 +362,10 @@ import ScrollStackItem from '../components/scroll/ScrollStackItem.astro';
 
                 </div>
             </div>
-        </div>
-        </ScrollStackItem>
+        </section>
 
         <!-- SECCIÓN 6: Para quién NO es esta consultoría -->
-        <ScrollStackItem>
-        <div class="offer-section elementor-section" style="height: 100%; display: flex; align-items: center; overflow-y: auto; width: 100%; background: var(--color-secondary); padding: 6rem 0;">
+        <section class="offer-section elementor-section" style="background: var(--color-secondary); padding: 6rem 0;" data-stack-section>
             <div class="container elementor-container" style="margin: auto;">
                 <div class="offer-box-modern" style="padding: 4rem 0; text-align: center; background: transparent; box-shadow: none; border-radius: 0;">
                     <div class="offer-header">
@@ -269,12 +380,10 @@ import ScrollStackItem from '../components/scroll/ScrollStackItem.astro';
                     </ul>
                 </div>
             </div>
-        </div>
-        </ScrollStackItem>
+        </section>
 
         <!-- SECCIÓN 7: Final CTA -->
-        <ScrollStackItem>
-        <div class="cta-section-modern elementor-section" style="height: 100%; display: flex; align-items: center; overflow-y: auto; width: 100%; background: linear-gradient(135deg, var(--color-primary), #D94E10); padding: 6rem 0;">
+        <section class="cta-section-modern elementor-section" style="background: linear-gradient(135deg, var(--color-primary), #D94E10); padding: 6rem 0;" data-stack-section>
             <div class="container elementor-container glass-container" style="max-width: 900px; margin: auto; text-align: center;">
                 <div class="cta-content-v2" style="background: transparent; box-shadow: none; border-radius: 0; max-width: none; margin: 0;">
                     <h2 style="font-size: 2.8rem; line-height: 1.25; margin-bottom: 1.5rem;">Si su empresa necesita ver lo que la competencia no ve, este es el punto de partida.</h2>
@@ -284,9 +393,8 @@ import ScrollStackItem from '../components/scroll/ScrollStackItem.astro';
                     </div>
                 </div>
             </div>
-        </div>
-        </ScrollStackItem>
-        </ScrollStack>
+        </section>
+        </StackedSections>
 
         <section class="elementor-section bg-slate" style="padding: 4rem 0; text-align: center; border-top: 1px solid #eee;">
             <div class="container">

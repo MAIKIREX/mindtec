@@ -289,7 +289,13 @@ const relatedProductsCards = [
       </div>
     </section>
 
-    <section class="generated-insight-section">
+    <section class="generated-insight-section generated-insight-section--dark">
+      <div
+        class="generated-insight-logo-slot"
+        data-logo-slot="mid"
+        aria-hidden="true"
+      >
+      </div>
       <div class="container">
         <div
           class="section-title-center"
@@ -297,14 +303,12 @@ const relatedProductsCards = [
         >
           <span class="eyebrow">Focus groups profundos</span>
           <h2
-            class="text-navy"
-            style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;"
+            style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; color: #fff;"
           >
             De la conversación al insight que explica la decisión.
           </h2>
           <p
-            class="text-gray-dark"
-            style="font-size: 1.05rem; max-width: 760px; margin: 1rem auto 0; line-height: 1.7;"
+            style="font-size: 1.05rem; max-width: 760px; margin: 1rem auto 0; line-height: 1.7; color: rgba(255,255,255,0.72);"
           >
             Las sesiones cualitativas se registran, codifican y sintetizan para
             revelar tensiones culturales, motivadores no declarados y
@@ -346,7 +350,19 @@ const relatedProductsCards = [
 
     <!-- 2. EL PROBLEMA / MINDTEC+ -->
     <ScrollReveal>
-    <section class="problem-section bg-slate" style="padding: 5rem 0;">
+    <section class="problem-section bg-slate problem-section--logo-target" style="padding: 5rem 0;">
+      <div
+        class="logo-slot-right"
+        data-logo-slot="right"
+        aria-hidden="true"
+      >
+      </div>
+      <div
+        class="logo-slot-center"
+        data-logo-slot="center"
+        aria-hidden="true"
+      >
+      </div>
       <div class="container">
         <div
           class="premium-card-white"
@@ -1108,6 +1124,69 @@ const relatedProductsCards = [
       position: relative;
     }
 
+    /* hero-details -> generated-insight: el logo continúa su recorrido y
+       se asienta como fondo centrado, detrás del contenido de la sección.
+       El z-index de la sección debe superar el z-index de reposo del logo
+       (ver script) para que el título y las tarjetas lo tapen, mientras el
+       fondo transparente deja verlo en los espacios vacíos. */
+    .generated-insight-section {
+      position: relative;
+      z-index: 2;
+      background: transparent;
+    }
+
+    /* Fondo propio (no el mismo navy plano del hero) para que las
+       partículas naranjas del logo -que se asientan detrás como marca de
+       agua- resalten con contraste; sobre blanco eran casi invisibles a
+       baja opacidad. Navy secundario (más claro que el hero) con un
+       degradado sutil y un resplandor naranja de marca en la esquina. */
+    .generated-insight-section--dark {
+      background:
+        radial-gradient(circle at 18% 12%, rgba(242, 101, 34, 0.16), transparent 52%),
+        linear-gradient(155deg, #123853 0%, var(--color-secondary, #0b2b40) 55%, #081d2c 100%);
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .generated-insight-logo-slot {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* generated-insight -> problem-section: el logo sigue viajando, pasa
+       primero al lado derecho de la sección y luego, mientras se hace
+       scroll dentro de ella, crece y se desplaza hasta el centro, quedando
+       detrás de la tarjeta (mismo truco de z-index que la sección anterior). */
+    .problem-section--logo-target {
+      z-index: 2;
+    }
+
+    .logo-slot-right {
+      position: absolute;
+      top: 8%;
+      right: 4%;
+      bottom: 8%;
+      width: min(30%, 320px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .logo-slot-center {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @media (max-width: 900px) {
+      .generated-insight-logo-slot,
+      .logo-slot-right,
+      .logo-slot-center {
+        display: none;
+      }
+    }
+
     .hero-details-grid {
       display: grid;
       grid-template-columns: minmax(280px, 500px) 1fr;
@@ -1166,11 +1245,29 @@ const relatedProductsCards = [
       destroyHeroLogoTransition();
 
       const heroSection = document.querySelector<HTMLElement>(".hero-section");
+      const heroDetailsSection = document.querySelector<HTMLElement>(
+        ".hero-details-section",
+      );
+      const generatedInsightSection = document.querySelector<HTMLElement>(
+        ".generated-insight-section",
+      );
+      const problemSection = document.querySelector<HTMLElement>(
+        ".problem-section--logo-target",
+      );
       const startSlot = document.querySelector<HTMLElement>(
         '[data-logo-slot="start"]',
       );
       const endSlot = document.querySelector<HTMLElement>(
         '[data-logo-slot="end"]',
+      );
+      const midSlot = document.querySelector<HTMLElement>(
+        '[data-logo-slot="mid"]',
+      );
+      const rightSlot = document.querySelector<HTMLElement>(
+        '[data-logo-slot="right"]',
+      );
+      const centerSlot = document.querySelector<HTMLElement>(
+        '[data-logo-slot="center"]',
       );
       const logo = startSlot?.querySelector<HTMLElement>(
         "[data-neuro-orbit-logo]",
@@ -1202,6 +1299,7 @@ const relatedProductsCards = [
           left:
             startDocInit.left + startRect.width / 2 - logo.offsetWidth / 2,
           zIndex: 5,
+          opacity: 1,
         });
 
         // quickTo evita crear tweens nuevos en cada tick de scroll: solo
@@ -1220,12 +1318,27 @@ const relatedProductsCards = [
           duration: 0.4,
           ease: "power2.out",
         });
+        const setOpacity = gsap.quickTo(logo, "opacity", {
+          duration: 0.4,
+          ease: "power2.out",
+        });
 
         // Tamaño natural (sin transform) del logo: offsetWidth/Height no
         // se ven afectados por el scale aplicado, a diferencia de
         // getBoundingClientRect, así el centrado no se retroalimenta con
         // el propio crecimiento del logo.
         const PEAK_SCALE_BUMP = 0.35;
+
+        // Valores de reposo compartidos entre tramos: el tramo 2 asienta
+        // el logo en estos valores, el tramo 3 lo vuelve a un tamaño
+        // "normal" (RIGHT_SCALE) al llegar al lado derecho de la sección
+        // del problema, y el tramo 4 crece desde ahí hasta PROBLEM_REST_SCALE
+        // al centrarse — así el crecimiento final se siente, en vez de ser
+        // un incremento pequeño sobre un logo que ya llegaba gigante.
+        const REST_SCALE = 2.6;
+        const REST_OPACITY = 0.32;
+        const RIGHT_SCALE = 1.1;
+        const RIGHT_OPACITY = 0.85;
 
         ScrollTrigger.create({
           trigger: heroSection,
@@ -1265,6 +1378,157 @@ const relatedProductsCards = [
             setScale(1 + bump);
           },
         });
+
+        // Segundo tramo: de "end" (columna izquierda de hero-details) hacia
+        // "mid" (centro de la sección "De la conversación al insight..."),
+        // donde el logo se asienta como fondo detrás del título y las
+        // tarjetas. Se agranda y se desvanece a lo largo del recorrido, y
+        // recién al final baja de z-index para quedar tapado por el
+        // contenido de esa sección (ver z-index en el CSS de la sección).
+        if (heroDetailsSection && midSlot) {
+          const REST_Z_THRESHOLD = 0.92;
+
+          ScrollTrigger.create({
+            trigger: heroDetailsSection,
+            start: "top top",
+            end: "bottom top",
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              const endDoc = docRect(endSlot);
+              const endRect = endSlot.getBoundingClientRect();
+              const endTop =
+                endDoc.top + endRect.height / 2 - logo.offsetHeight / 2;
+              const endLeft =
+                endDoc.left + endRect.width / 2 - logo.offsetWidth / 2;
+
+              const midDoc = docRect(midSlot);
+              const midRect = midSlot.getBoundingClientRect();
+              const midTop =
+                midDoc.top + midRect.height / 2 - logo.offsetHeight / 2;
+              const midLeft =
+                midDoc.left + midRect.width / 2 - logo.offsetWidth / 2;
+
+              setTop(gsap.utils.interpolate(endTop, midTop, self.progress));
+              setLeft(
+                gsap.utils.interpolate(endLeft, midLeft, self.progress),
+              );
+              setScale(
+                gsap.utils.interpolate(1, REST_SCALE, self.progress),
+              );
+              setOpacity(
+                gsap.utils.interpolate(1, REST_OPACITY, self.progress),
+              );
+
+              logo.style.zIndex =
+                self.progress > REST_Z_THRESHOLD ? "1" : "5";
+            },
+          });
+        }
+
+        // Tercer tramo: de "mid" (centro de generated-insight, donde el
+        // logo estaba tapado por el título) hacia "right" (lado derecho de
+        // la sección "Saber cuántos no es suficiente..."). Vuelve a subir
+        // de z-index de inmediato para reaparecer por encima del contenido
+        // mientras viaja, y se achica a un tamaño "normal" para que el
+        // crecimiento del cuarto tramo se sienta con fuerza (si llegara ya
+        // gigante, crecer un poco más no se nota).
+        if (generatedInsightSection && rightSlot) {
+          ScrollTrigger.create({
+            trigger: generatedInsightSection,
+            start: "top top",
+            end: "bottom top",
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              const midDoc = docRect(midSlot);
+              const midRect = midSlot.getBoundingClientRect();
+              const midTop =
+                midDoc.top + midRect.height / 2 - logo.offsetHeight / 2;
+              const midLeft =
+                midDoc.left + midRect.width / 2 - logo.offsetWidth / 2;
+
+              const rightDoc = docRect(rightSlot);
+              const rightRect = rightSlot.getBoundingClientRect();
+              const rightTop =
+                rightDoc.top + rightRect.height / 2 - logo.offsetHeight / 2;
+              const rightLeft =
+                rightDoc.left + rightRect.width / 2 - logo.offsetWidth / 2;
+
+              setTop(gsap.utils.interpolate(midTop, rightTop, self.progress));
+              setLeft(
+                gsap.utils.interpolate(midLeft, rightLeft, self.progress),
+              );
+              setScale(
+                gsap.utils.interpolate(REST_SCALE, RIGHT_SCALE, self.progress),
+              );
+              setOpacity(
+                gsap.utils.interpolate(
+                  REST_OPACITY,
+                  RIGHT_OPACITY,
+                  self.progress,
+                ),
+              );
+
+              logo.style.zIndex = "5";
+            },
+          });
+        }
+
+        // Cuarto tramo: de "right" hacia "center" (centro de esa misma
+        // sección), creciendo de forma marcada a medida que se hace scroll
+        // hacia abajo, hasta asentarse -de nuevo como fondo, tapado por la
+        // tarjeta- en el centro, mucho más grande que en cualquier tramo
+        // anterior.
+        if (problemSection && rightSlot && centerSlot) {
+          const PROBLEM_REST_SCALE = 6;
+          const PROBLEM_REST_OPACITY = 0.4;
+          const PROBLEM_REST_Z_THRESHOLD = 0.92;
+
+          ScrollTrigger.create({
+            trigger: problemSection,
+            start: "top top",
+            end: "bottom top",
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              const rightDoc = docRect(rightSlot);
+              const rightRect = rightSlot.getBoundingClientRect();
+              const rightTop =
+                rightDoc.top + rightRect.height / 2 - logo.offsetHeight / 2;
+              const rightLeft =
+                rightDoc.left + rightRect.width / 2 - logo.offsetWidth / 2;
+
+              const centerDoc = docRect(centerSlot);
+              const centerRect = centerSlot.getBoundingClientRect();
+              const centerTop =
+                centerDoc.top + centerRect.height / 2 - logo.offsetHeight / 2;
+              const centerLeft =
+                centerDoc.left + centerRect.width / 2 - logo.offsetWidth / 2;
+
+              setTop(
+                gsap.utils.interpolate(rightTop, centerTop, self.progress),
+              );
+              setLeft(
+                gsap.utils.interpolate(rightLeft, centerLeft, self.progress),
+              );
+              setScale(
+                gsap.utils.interpolate(
+                  RIGHT_SCALE,
+                  PROBLEM_REST_SCALE,
+                  self.progress,
+                ),
+              );
+              setOpacity(
+                gsap.utils.interpolate(
+                  RIGHT_OPACITY,
+                  PROBLEM_REST_OPACITY,
+                  self.progress,
+                ),
+              );
+
+              logo.style.zIndex =
+                self.progress > PROBLEM_REST_Z_THRESHOLD ? "1" : "5";
+            },
+          });
+        }
       });
     }
 

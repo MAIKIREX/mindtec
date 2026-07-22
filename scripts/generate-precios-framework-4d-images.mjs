@@ -1,14 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import sharp from 'sharp';
-
-const KIE_BASE_URL = 'https://api.kie.ai';
-const apiKey = process.env.KIE_API_KEY;
-
-if (!apiKey) {
-  console.error('Falta KIE_API_KEY en el entorno. Ejecuta con: node --env-file=.env scripts/generate-precios-framework-4d-images.mjs');
-  process.exit(1);
-}
+import { createTask, pollTask, downloadAndSave } from './lib/muapi-client.mjs';
 
 const root = process.cwd();
 const outputDir = path.join(root, 'public', 'imagenes-mindtec', 'generated', 'estudio-de-precios-4d');
@@ -91,98 +84,11 @@ const IMAGES = [
   },
 ];
 
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-async function uploadSeedReference() {
+async function seedReferenceAsDataUri() {
   const buffer = await fs.readFile(referenceImagePath);
   const { format } = await sharp(buffer).metadata();
   const mimeType = format === 'png' ? 'image/png' : 'image/jpeg';
-  const base64Data = `data:${mimeType};base64,${buffer.toString('base64')}`;
-
-  const res = await fetch('https://kieai.redpandaai.co/api/file-base64-upload', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      base64Data,
-      uploadPath: 'images/estudio-de-precios-4d',
-      fileName: 'estudio-de-precios-protagonista.jpg',
-    }),
-  });
-
-  const data = await res.json();
-  const url = data?.data?.downloadUrl ?? data?.data?.fileUrl;
-
-  if (!res.ok || !url) {
-    throw new Error(`No se pudo subir la imagen de referencia: ${JSON.stringify(data)}`);
-  }
-
-  return url;
-}
-
-async function createTask(prompt, referenceUrl) {
-  const body = { prompt, size: '3:2' };
-  if (referenceUrl) {
-    body.filesUrl = [referenceUrl];
-  }
-
-  const res = await fetch(`${KIE_BASE_URL}/api/v1/gpt4o-image/generate`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(body),
-  });
-
-  const data = await res.json();
-  const taskId = data?.data?.taskId;
-
-  if (!res.ok || !taskId) {
-    throw new Error(`No se pudo crear la tarea: ${JSON.stringify(data)}`);
-  }
-
-  return taskId;
-}
-
-async function pollTask(taskId) {
-  for (let attempt = 0; attempt < 120; attempt += 1) {
-    await sleep(5000);
-
-    const res = await fetch(`${KIE_BASE_URL}/api/v1/gpt4o-image/record-info?taskId=${taskId}`, {
-      headers: { Authorization: `Bearer ${apiKey}` },
-    });
-    const data = await res.json();
-    const status = data?.data?.status;
-
-    if (status === 'SUCCESS') {
-      const url = data?.data?.response?.resultUrls?.[0];
-      if (!url) throw new Error(`Tarea exitosa pero sin resultUrls: ${JSON.stringify(data)}`);
-      return url;
-    }
-
-    if (status === 'CREATE_TASK_FAILED' || status === 'GENERATE_FAILED') {
-      throw new Error(`Generación fallida: ${data?.data?.failMsg ?? JSON.stringify(data)}`);
-    }
-  }
-
-  throw new Error('Tiempo de espera agotado esperando la tarea');
-}
-
-async function downloadAndSave(url, outFile) {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`No se pudo descargar la imagen: HTTP ${res.status}`);
-  const buffer = Buffer.from(await res.arrayBuffer());
-
-  await fs.mkdir(outputDir, { recursive: true });
-  const outPath = path.join(outputDir, `${outFile}.webp`);
-  await sharp(buffer).webp({ quality: 82 }).toFile(outPath);
-
-  return outPath;
+  return `data:${mimeType};base64,${buffer.toString('base64')}`;
 }
 
 async function main() {
@@ -193,9 +99,9 @@ async function main() {
     process.exit(1);
   }
 
-  console.log('Subiendo imagen de referencia de la protagonista...');
-  const seedUrl = await uploadSeedReference();
-  console.log(`Referencia subida -> ${seedUrl}\n`);
+  console.log('Codificando imagen de referencia de la protagonista...');
+  const seedUrl = await seedReferenceAsDataUri();
+  console.log('Referencia lista.\n');
 
   console.log(`Generando ${items.length} imagen(es)...\n`);
 
@@ -216,7 +122,7 @@ async function main() {
       const resultUrl = await pollTask(taskId);
 
       console.log(`${label} descargando y guardando...`);
-      const outPath = await downloadAndSave(resultUrl, img.outFile);
+      const outPath = await downloadAndSave(resultUrl, outputDir, img.outFile);
 
       lastReferenceUrl = resultUrl;
       results.push({ id: img.id, status: 'OK', outPath });

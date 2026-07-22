@@ -3,6 +3,8 @@ export interface HoverStepCardItem {
   eyebrow?: string;
   title: string;
   description: string;
+  /** Optional services or capabilities revealed with the description. */
+  services?: string[];
   href?: string;
 }
 
@@ -43,6 +45,11 @@ const {
           )}
           <h3 class="hover-step-card__title">{item.title}</h3>
           <p class="hover-step-card__desc">{item.description}</p>
+          {item.services && item.services.length > 0 && (
+            <ul class="hover-step-card__services">
+              {item.services.map((service) => <li>{service}</li>)}
+            </ul>
+          )}
         </div>
 
         <span class="hover-step-card__icon" aria-hidden="true">
@@ -146,6 +153,37 @@ const {
   .hover-step-card:hover .hover-step-card__desc,
   .hover-step-card:focus-within .hover-step-card__desc {
     max-height: 260px;
+    opacity: 1;
+  }
+
+  .hover-step-card__services {
+    display: grid;
+    gap: 0.25rem;
+    padding: 0;
+    margin: 1rem 0 0;
+    overflow: hidden;
+    list-style: none;
+    max-height: 0;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: 0.82rem;
+    line-height: 1.35;
+    opacity: 0;
+    transition: max-height 0.5s ease 0.1s, opacity 0.4s ease 0.15s;
+  }
+
+  .hover-step-card__services li {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .hover-step-card__services li::before {
+    color: var(--color-primary);
+    content: "\2192";
+  }
+
+  .hover-step-card:hover .hover-step-card__services,
+  .hover-step-card:focus-within .hover-step-card__services {
+    max-height: 180px;
     opacity: 1;
   }
 

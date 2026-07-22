@@ -9,6 +9,7 @@ interface Props {
   ogImage?: string;
   ogType?: string;
   canonicalUrl?: string;
+  showIntroLoader?: boolean;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   ogImage,
   ogType = 'website',
   canonicalUrl,
+  showIntroLoader = false,
 } = Astro.props;
 
 // Determine active state for navigation links
@@ -204,7 +206,7 @@ const isCurrent = (path: string) => {
     <slot name="head" />
 </head>
 
-<body>
+<body class={showIntroLoader ? 'loader-active' : ''}>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4SXR5MW"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

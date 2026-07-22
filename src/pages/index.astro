@@ -1,7 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ScrollStoryCards from "../components/scroll/ScrollStoryCards.astro";
-import ScrollStoryCardsItem from "../components/scroll/ScrollStoryCardsItem.astro";
+import ScrollStoryCardsPaged from "../components/scroll/ScrollStoryCardsPaged.astro";
 import ScrollStory from "../components/scroll/ScrollStory.astro";
 import ScrollStoryLeft from "../components/scroll/ScrollStoryLeft.astro";
 import ScrollReveal from "../components/scroll/ScrollReveal.astro";
@@ -12,6 +11,7 @@ import StatCounter from "../components/scroll/StatCounter.astro";
     title="Investigación de Mercados en Bolivia | Estudios con Neurociencia e IA | Mindtec"
     description="Investigación de mercados en Bolivia para banca, seguros e industria. Neurociencia, IA y validación en terreno para decisiones que su Directorio puede defender. Mindtec."
     headerLightBg={false}
+    showIntroLoader={true}
 >
     <script type="application/ld+json" slot="head">
         {
@@ -33,108 +33,122 @@ import StatCounter from "../components/scroll/StatCounter.astro";
             ]
         }
     </script>
-    <section id="zoom-reveal" class="zoom-reveal-section">
-        <div class="zoom-reveal-bg" aria-hidden="true">
-            <div class="zoom-image">
-                <iframe
-                    class="zoom-video-iframe"
-                    src="https://www.youtube.com/embed/6LihrtzPoAc?autoplay=1&mute=1&loop=1&playlist=6LihrtzPoAc&controls=0&showinfo=0&modestbranding=1&rel=0&iv_load_policy=3&disablekb=1&playsinline=1&fs=0&cc_load_policy=0"
-                    title=""
-                    frameborder="0"
-                    allow="autoplay; encrypted-media"
-                    tabindex="-1"></iframe>
-            </div>
-            <div class="zoom-reveal-tint"></div>
-        </div>
+    <div id="page-loader" class="page-loader">
         <div class="zoom-text-wrapper" aria-hidden="true">
             <h1 class="zoom-giant-text">
                 <span>MIND</span><span class="accent">TEC</span>
             </h1>
+            <div class="loader-progress" aria-hidden="true">
+                <span class="loader-progress-track">
+                    <span class="loader-progress-bar"></span>
+                </span>
+                <span class="loader-progress-count">0%</span>
+            </div>
         </div>
-        <div class="reveal-content"></div>
-    </section>
+        <span class="sr-only" role="status">Cargando…</span>
+    </div>
 
     <script>
         import { gsap } from "gsap";
-        import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-        gsap.registerPlugin(ScrollTrigger);
+        const loader = document.getElementById("page-loader");
+        const SEEN_KEY = "mtIntroSeen";
 
-        const section = document.getElementById("zoom-reveal");
-
-        if (section) {
-            const textWrapper = section.querySelector(".zoom-text-wrapper");
-            const image = section.querySelector(".zoom-image");
-            const content = section.querySelector(".reveal-content");
+        if (loader) {
+            const alreadySeen = sessionStorage.getItem(SEEN_KEY);
             const prefersReducedMotion = window.matchMedia(
                 "(prefers-reduced-motion: reduce)",
             ).matches;
+            const textWrapper = loader.querySelector(".zoom-text-wrapper");
+            const progressWrapper = loader.querySelector(".loader-progress");
+            const countEl = loader.querySelector(".loader-progress-count");
+            const barEl = loader.querySelector(".loader-progress-bar") as HTMLElement | null;
+            const progress = { value: 0 };
 
-            // Evita instancias duplicadas del mismo trigger si el script llegara
-            // a ejecutarse más de una vez (p. ej. recargas en caliente en dev).
-            ScrollTrigger.getAll().forEach((st) => {
-                if (st.vars.trigger === section) st.kill();
-            });
+            let cleaned = false;
+            function cleanup() {
+                if (cleaned) return;
+                cleaned = true;
+                loader?.remove();
+                document.body.classList.remove("loader-active");
+            }
 
-            if (prefersReducedMotion) {
-                gsap.set(textWrapper, { autoAlpha: 0 });
-                gsap.set(image, {
-                    scale: 1,
-                    filter: "blur(0px) brightness(0.8)",
-                });
-                gsap.set(content, { opacity: 1, y: 0 });
+            // Red de seguridad: si por lo que sea las animaciones no llegan a
+            // completar (pestaña en segundo plano, dispositivo muy lento), no
+            // dejamos al usuario atrapado detrás del loader.
+            setTimeout(cleanup, 8000);
+
+            function renderProgress() {
+                const v = Math.round(progress.value);
+                if (countEl) countEl.textContent = `${v}%`;
+                if (barEl) barEl.style.width = `${v}%`;
+            }
+
+            if (alreadySeen) {
+                // Ya se vio el intro en esta sesión: no repetir la animación.
+                cleanup();
             } else {
-                const tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: section,
-                        start: "top top",
-                        end: "+=2500",
-                        scrub: 1,
-                        pin: true,
-                        anticipatePin: 1,
-                        invalidateOnRefresh: true,
-                    },
-                });
+                sessionStorage.setItem(SEEN_KEY, "1");
 
-                // 1. Escalar el texto inmensamente hasta que desaparezca
-                tl.to(
-                    textWrapper,
-                    {
-                        scale: 80,
-                        opacity: 0,
-                        duration: 1,
-                        ease: "power2.in",
-                    },
-                    0,
-                );
-
-                // 2. Escalar hacia abajo la imagen y enfocarla simultáneamente
-                tl.fromTo(
-                    image,
-                    { scale: 1.5, filter: "blur(20px) brightness(0.5)" },
-                    {
-                        scale: 1,
-                        filter: "blur(0px) brightness(0.8)",
-                        duration: 1,
-                        ease: "power2.inOut",
-                    },
-                    0,
-                );
-
-                // 3. Mostrar el contenido de texto que estaba oculto
-                tl.fromTo(
-                    content,
-                    { opacity: 0, y: 50 },
-                    { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" },
-                    0.8,
-                );
-
-                // Recalcula posiciones si fuentes web o imágenes desplazan el layout
-                // después del cálculo inicial — evita que el pin quede desincronizado.
-                window.addEventListener("load", () => ScrollTrigger.refresh());
-                if (document.fonts && document.fonts.ready) {
-                    document.fonts.ready.then(() => ScrollTrigger.refresh());
+                function whenPageReady() {
+                    return new Promise<void>((resolve) => {
+                        if (document.readyState === "complete") resolve();
+                        else window.addEventListener("load", () => resolve(), { once: true });
+                    });
                 }
+
+                const minDisplay = new Promise((r) => setTimeout(r, 1200));
+                const maxWait = new Promise((r) => setTimeout(r, 6000));
+
+                if (prefersReducedMotion) {
+                    progress.value = 100;
+                    renderProgress();
+                } else {
+                    // Avance simulado hasta 90% mientras se espera la carga real;
+                    // window.load es una señal binaria, no da progreso granular.
+                    gsap.to(progress, {
+                        value: 90,
+                        duration: 3.5,
+                        ease: "power1.out",
+                        onUpdate: renderProgress,
+                    });
+                }
+
+                Promise.race([
+                    Promise.all([
+                        whenPageReady(),
+                        document.fonts ? document.fonts.ready : Promise.resolve(),
+                        minDisplay,
+                    ]),
+                    maxWait,
+                ]).then(() => {
+                    gsap.killTweensOf(progress);
+                    gsap.to(progress, {
+                        value: 100,
+                        duration: 0.4,
+                        ease: "power1.out",
+                        onUpdate: renderProgress,
+                        onComplete: () => {
+                            if (prefersReducedMotion) {
+                                gsap.to(loader, {
+                                    autoAlpha: 0,
+                                    duration: 0.3,
+                                    onComplete: cleanup,
+                                });
+                                return;
+                            }
+                            gsap
+                                .timeline({ onComplete: cleanup })
+                                .to(
+                                    textWrapper,
+                                    { scale: 40, opacity: 0, duration: 1.1, ease: "power2.inOut" },
+                                    0,
+                                )
+                                .to(progressWrapper, { opacity: 0, duration: 0.3 }, 0)
+                                .to(loader, { autoAlpha: 0, duration: 0.45 }, "-=0.35");
+                        },
+                    });
+                });
             }
         }
     </script>
@@ -345,7 +359,7 @@ import StatCounter from "../components/scroll/StatCounter.astro";
         <!-- ════════════════════════════════════════════════ -->
         <!-- 3. PROBLEM SECTION — ScrollStoryCards (ancla 1) -->
         <!-- ════════════════════════════════════════════════ -->
-        <ScrollStoryCards
+        <ScrollStoryCardsPaged
             cover={{
                 background:
                     "/imagenes-mindtec/generated/index-problem/cover.webp",
@@ -355,19 +369,25 @@ import StatCounter from "../components/scroll/StatCounter.astro";
                 description:
                     "Un lanzamiento que no conectó. Un precio mal calibrado. Una expansión que no funcionó.",
             }}
-            intro={{
+            items={{
                 background:
                     "/imagenes-mindtec/generated/index-problem/intro.webp",
                 alt: "Directora observando una sesión de investigación de mercado en curso",
-                number: "01",
                 eyebrow: "La evidencia que falta",
                 title: "Estos errores no se recuperan fácilmente",
                 description:
                     "Para bancos, aseguradoras e industrias en Bolivia, cuestan meses de ventaja competitiva y capital que no vuelve.",
             }}
-            introCardBackground="var(--color-secondary-deep, #061c2b)"
-            introCardTextColor="var(--color-text-light, #fff)"
+            cards={[
+                { eyebrow: "Lanzamiento", title: "¿Está seguro de que el mercado está listo para lo que van a lanzar?", description: "Validar antes de lanzar evita invertir en propuestas que no conectan con la demanda real.", image: "/imagenes-mindtec/generated/index-problem/item-01-lanzamiento.webp", imageAlt: "Directora revisando un lanzamiento de producto en anaquel de retail", accentColor: "var(--color-primary, #f26522)" },
+                { eyebrow: "Pricing", title: "¿Saben exactamente cuánto puede pagar su cliente — o están estimando?", description: "Una decisión de precio sin evidencia puede comprometer margen, adopción y crecimiento.", image: "/imagenes-mindtec/generated/index-problem/item-02-pricing.webp", imageAlt: "Directora analizando una curva de pricing en mostrador de tienda", accentColor: "var(--color-primary, #f26522)" },
+                { eyebrow: "Marca", title: "¿Conocen cómo los percibe realmente el mercado antes de cambiar la marca?", description: "La percepción real del cliente debe guiar cada ajuste de posicionamiento y comunicación.", image: "/imagenes-mindtec/generated/index-problem/item-03-percepcion-marca.webp", imageAlt: "Directora revisando un panel de percepción de marca en pared de research", accentColor: "var(--color-primary, #f26522)" },
+                { eyebrow: "Expansión", title: "¿Tienen evidencia real de la demanda en el nuevo territorio?", description: "Expandirse exige entender dónde existe oportunidad antes de movilizar capital y operación.", image: "/imagenes-mindtec/generated/index-problem/item-04-expansion-territorial.webp", imageAlt: "Directora revisando un mapa de expansión territorial sobre una mesa", accentColor: "var(--color-primary, #f26522)" },
+                { eyebrow: "Competencia", title: "¿Saben por qué están perdiendo terreno — o solo ven el resultado?", description: "Leer el resultado no basta: hay que identificar los factores que desplazan la preferencia.", image: "/imagenes-mindtec/generated/index-problem/item-05-market-share.webp", imageAlt: "Directora revisando un dashboard competitivo con tendencia a la baja", accentColor: "var(--color-primary, #f26522)" },
+                { eyebrow: "Posicionamiento", title: "¿Su posición en la mente del cliente boliviano es la que creen que es?", description: "La posición de marca se mide en el mercado, no solo dentro de la empresa.", image: "/imagenes-mindtec/generated/index-problem/item-06-shopper-positioning.webp", imageAlt: "Directora observando a un comprador real frente al anaquel en punto de venta", accentColor: "var(--color-primary, #f26522)" }
+            ]}
         >
+            <!-- Legacy scenes replaced by ScrollStoryCardsPaged.
             <ScrollStoryCardsItem
                 background="/imagenes-mindtec/generated/index-problem/item-01-lanzamiento.webp"
                 alt="Directora revisando un lanzamiento de producto en anaquel de retail"
@@ -592,7 +612,8 @@ import StatCounter from "../components/scroll/StatCounter.astro";
                     </h3>
                 </div>
             </ScrollStoryCardsItem>
-        </ScrollStoryCards>
+            -->
+        </ScrollStoryCardsPaged>
 
         <section class="problem-quote-section" id="problem">
             <div class="container">
@@ -1070,8 +1091,8 @@ import StatCounter from "../components/scroll/StatCounter.astro";
         <ScrollStoryLeft
             cover={{
                 background:
-                    "/imagenes-mindtec/generated/human-field-research-tienda.webp",
-                alt: "Equipo de campo de Mindtec en investigación de mercado en Bolivia",
+                    "/imagenes-mindtec/generated/como-trabajamos/cover-diagnostico-decision.png",
+                alt: "Equipo de investigación de mercados analizando el recorrido de compra en una tienda boliviana",
                 eyebrow: "Cómo trabajamos",
                 title: "Del diagnóstico a la decisión — sin reportes para archivar.",
                 description:
@@ -1079,8 +1100,8 @@ import StatCounter from "../components/scroll/StatCounter.astro";
             }}
             intro={{
                 background:
-                    "/imagenes-mindtec/participante-estudio-laboratorio-neuromarketing-1-1.jpg",
-                alt: "Participante en laboratorio de neuromarketing Mindtec durante una prueba biométrica",
+                    "/imagenes-mindtec/generated/como-trabajamos/paso-01-sesion-diagnostico.png",
+                alt: "Consultora de investigación escuchando a un equipo durante una sesión de diagnóstico",
                 number: "01",
                 eyebrow: "Sesión de diagnóstico · 45 min · sin costo",
                 title: "Entendemos la decisión que necesitan tomar",
@@ -1090,8 +1111,8 @@ import StatCounter from "../components/scroll/StatCounter.astro";
             items={[
                 {
                     background:
-                        "/imagenes-mindtec/generated/focus-group-profundo.webp",
-                    alt: "Diseño metodológico de investigación cualitativa",
+                        "/imagenes-mindtec/generated/como-trabajamos/paso-02-diseno-metodologico.png",
+                    alt: "Equipo de investigación diseñando una metodología a medida sobre un mapa de Bolivia",
                     eyebrow: "Paso 02",
                     title: "Diseño metodológico a medida",
                     description:
@@ -1099,16 +1120,17 @@ import StatCounter from "../components/scroll/StatCounter.astro";
                 },
                 {
                     background:
-                        "/imagenes-mindtec/generated/shopper-encuestas-retail.webp",
-                    alt: "Encuestadora en campo realizando investigación de mercado",
+                        "/imagenes-mindtec/generated/como-trabajamos/paso-03-investigacion-campo.png",
+                    alt: "Investigadora de campo entrevistando a una compradora en un supermercado boliviano",
                     eyebrow: "Paso 03",
                     title: "Investigación",
                     description:
                         "Ejecución en campo, laboratorio de neuromarketing y análisis con IA. Actualizamos semanalmente con avances concretos. Sin cajas negras — saben en qué etapa está su estudio en todo momento.",
                 },
                 {
-                    background: "/imagenes-mindtec/Conferencia-mindtec20.jpg",
-                    alt: "Sesión de activación estratégica de Mindtec con equipos directivos",
+                    background:
+                        "/imagenes-mindtec/generated/como-trabajamos/paso-04-activacion-decision.png",
+                    alt: "Equipo directivo y consultora tomando decisiones durante una sesión estratégica",
                     eyebrow: "Paso 04",
                     title: "Activación de la decisión",
                     description:
