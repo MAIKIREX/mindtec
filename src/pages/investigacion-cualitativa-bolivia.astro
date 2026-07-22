@@ -4,6 +4,7 @@ import NeuroOrbitLogo from "../components/visual/NeuroOrbitLogo.astro";
 import ScrollStoryLeft from "../components/scroll/ScrollStoryLeft.astro";
 import ScrollStory from "../components/scroll/ScrollStory.astro";
 import ScrollReveal from "../components/scroll/ScrollReveal.astro";
+import StackedSections from "../components/scroll/StackedSections.astro";
 import HoverStepCards from "../components/cards/HoverStepCards.astro";
 import FaqSplit from "../components/faq/FaqSplit.astro";
 
@@ -612,7 +613,12 @@ const relatedProductsCards = [
     />
 
     <!-- 6. SECTORES -->
-    <section class="problem-section bg-slate" style="padding: 5rem 0;">
+    <StackedSections>
+    <section
+      class="problem-section bg-slate"
+      style="padding: 5rem 0;"
+      data-stack-section
+    >
       <div class="container">
         <div
           class="section-title-center"
@@ -672,15 +678,18 @@ const relatedProductsCards = [
     </section>
 
     <!-- 7. FAQ -->
-    <FaqSplit
-      eyebrow="PREGUNTAS FRECUENTES"
-      title="Lo que suelen preguntar antes de contratar."
-      items={faqItems}
-    />
+    <div data-stack-section>
+      <FaqSplit
+        eyebrow="PREGUNTAS FRECUENTES"
+        title="Lo que suelen preguntar antes de contratar."
+        items={faqItems}
+      />
+    </div>
 
     <!-- 8. PRUEBA SOCIAL -->
     <section
       style="padding: 4rem 0; background: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;"
+      data-stack-section
     >
       <div class="container" style="text-align: center; max-width: 1100px;">
         <p
@@ -718,7 +727,7 @@ const relatedProductsCards = [
     </section>
 
     <!-- 9. PRODUCTOS RELACIONADOS -->
-    <section style="padding: 5rem 0; background: #fff;">
+    <section style="padding: 5rem 0; background: #fff;" data-stack-section>
       <div class="container">
         <h3
           class="text-navy"
@@ -740,6 +749,7 @@ const relatedProductsCards = [
         </div>
       </div>
     </section>
+    </StackedSections>
 
     <!-- 10. CTA FINAL -->
     <section

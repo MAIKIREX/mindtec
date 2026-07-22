@@ -1,0 +1,141 @@
+---
+interface Props {
+  class?: string;
+  markers?: boolean;
+}
+
+const { class: className = "", markers = false } = Astro.props;
+---
+
+<div
+  class:list={["stacked-sections", className]}
+  data-stacked-sections
+  data-markers={markers ? "true" : undefined}
+>
+  <slot />
+</div>
+
+<script>
+  import gsap from "gsap";
+  import ScrollTrigger from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  type WrapperElement = HTMLElement & {
+    stackedSectionsCleanup?: () => void;
+  };
+
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  );
+
+  function setupWrapper(root: WrapperElement) {
+    root.stackedSectionsCleanup?.();
+
+    const sections = Array.from(
+      root.querySelectorAll<HTMLElement>(":scope > [data-stack-section]"),
+    );
+
+    sections.forEach((section, index) => {
+      section.style.zIndex = String(index + 1);
+    });
+
+    if (sections.length < 2 || reducedMotion.matches) {
+      root.stackedSectionsCleanup = () => {
+        sections.forEach((section) => section.style.removeProperty("z-index"));
+      };
+      return;
+    }
+
+    const triggers: ScrollTrigger[] = [];
+    let refreshFrame = 0;
+
+    // La última sección no se fija: es el final natural de la página.
+    sections.slice(0, -1).forEach((section) => {
+      const isTallerThanViewport = () =>
+        section.offsetHeight > window.innerHeight;
+
+      triggers.push(
+        ScrollTrigger.create({
+          trigger: section,
+
+          // Las secciones altas se recorren por completo. Las pequeñas se
+          // fijan al tocar la parte superior de la ventana.
+          start: () =>
+            isTallerThanViewport() ? "bottom bottom" : "top top",
+
+          // Una sección alta espera mientras la siguiente cruza toda la
+          // ventana. Una pequeña espera solo su propia altura, de modo que la
+          // siguiente llegue exactamente a la parte superior.
+          end: () =>
+            `+=${
+              isTallerThanViewport()
+                ? window.innerHeight
+                : section.offsetHeight
+            }`,
+
+          pin: true,
+          pinSpacing: false,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          markers: root.dataset.markers === "true",
+        }),
+      );
+    });
+
+    const observer = new ResizeObserver(() => {
+      cancelAnimationFrame(refreshFrame);
+      refreshFrame = requestAnimationFrame(() => ScrollTrigger.refresh());
+    });
+
+    sections.forEach((section) => observer.observe(section));
+
+    root.stackedSectionsCleanup = () => {
+      observer.disconnect();
+      cancelAnimationFrame(refreshFrame);
+      triggers.forEach((trigger) => trigger.kill());
+      sections.forEach((section) => section.style.removeProperty("z-index"));
+      delete root.stackedSectionsCleanup;
+    };
+  }
+
+  function initializeWrappers() {
+    document
+      .querySelectorAll<WrapperElement>("[data-stacked-sections]")
+      .forEach(setupWrapper);
+
+    ScrollTrigger.refresh();
+  }
+
+  function cleanupWrappers() {
+    document
+      .querySelectorAll<WrapperElement>("[data-stacked-sections]")
+      .forEach((root) => root.stackedSectionsCleanup?.());
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeWrappers, {
+      once: true,
+    });
+  } else {
+    initializeWrappers();
+  }
+
+  // Compatibilidad con View Transitions de Astro.
+  document.addEventListener("astro:page-load", initializeWrappers);
+  document.addEventListener("astro:before-swap", cleanupWrappers);
+  reducedMotion.addEventListener("change", initializeWrappers);
+</script>
+
+<style>
+  .stacked-sections {
+    position: relative;
+    isolation: isolate;
+  }
+
+  :global(.stacked-sections > [data-stack-section]) {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+</style>
