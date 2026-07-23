@@ -141,135 +141,23 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"posts": {
-"3-ejemplos-de-neuromarketing-en-la-vida-diaria-que-quiza-no-sabias.md": {
-	id: "3-ejemplos-de-neuromarketing-en-la-vida-diaria-que-quiza-no-sabias.md";
-  slug: "3-ejemplos-de-neuromarketing-en-la-vida-diaria-que-quiza-no-sabias";
+"como-funciona-el-neuromarketing-en-bolivia.md": {
+	id: "como-funciona-el-neuromarketing-en-bolivia.md";
+  slug: "como-funciona-el-neuromarketing-en-bolivia";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
-"5-tips-diferenciar-tu-marca.md": {
-	id: "5-tips-diferenciar-tu-marca.md";
-  slug: "5-tips-diferenciar-tu-marca";
+"neuro-pricing-y-sensibilidad-de-precio.md": {
+	id: "neuro-pricing-y-sensibilidad-de-precio.md";
+  slug: "neuro-pricing-y-sensibilidad-de-precio";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".md"] };
-"codigo-cultural.md": {
-	id: "codigo-cultural.md";
-  slug: "codigo-cultural";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"como-emocionar-a-mis-clientes.md": {
-	id: "como-emocionar-a-mis-clientes.md";
-  slug: "como-emocionar-a-mis-clientes";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"conoce-las-5c-del-neuromarketing-y-potenciate.md": {
-	id: "conoce-las-5c-del-neuromarketing-y-potenciate.md";
-  slug: "conoce-las-5c-del-neuromarketing-y-potenciate";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"diferencias-hombres-y-mujeres-al-comprar-i.md": {
-	id: "diferencias-hombres-y-mujeres-al-comprar-i.md";
-  slug: "diferencias-hombres-y-mujeres-al-comprar-i";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"eres-capaz-de-descubrir-mentiras-de-tu-cliente-aprende-como-hacerlo-parte-i.md": {
-	id: "eres-capaz-de-descubrir-mentiras-de-tu-cliente-aprende-como-hacerlo-parte-i.md";
-  slug: "eres-capaz-de-descubrir-mentiras-de-tu-cliente-aprende-como-hacerlo-parte-i";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"fidelizar_cliente.md": {
-	id: "fidelizar_cliente.md";
-  slug: "fidelizar_cliente";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"herramientas-recoleccion-datos-cualitativos.md": {
-	id: "herramientas-recoleccion-datos-cualitativos.md";
-  slug: "herramientas-recoleccion-datos-cualitativos";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"investigacion-de-mercado-en-bolivia-consumer-behavior.md": {
-	id: "investigacion-de-mercado-en-bolivia-consumer-behavior.md";
-  slug: "investigacion-de-mercado-en-bolivia-consumer-behavior";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"investigacion-de-mercado-en-pymes-paso-a-paso.md": {
-	id: "investigacion-de-mercado-en-pymes-paso-a-paso.md";
-  slug: "investigacion-de-mercado-en-pymes-paso-a-paso";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"investigacion-de-mercados-con-neuromarketing.md": {
-	id: "investigacion-de-mercados-con-neuromarketing.md";
-  slug: "investigacion-de-mercados-con-neuromarketing";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"investigacion-de-mercados-consumidor.md": {
-	id: "investigacion-de-mercados-consumidor.md";
-  slug: "investigacion-de-mercados-consumidor";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"investigacion-de-mercados-cuantitativa-vs-cualitativa.md": {
-	id: "investigacion-de-mercados-cuantitativa-vs-cualitativa.md";
-  slug: "investigacion-de-mercados-cuantitativa-vs-cualitativa";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"mente_del_consumidor.md": {
-	id: "mente_del_consumidor.md";
-  slug: "mente_del_consumidor";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"por-que-utilizar-neuromarketing-en-mi-publicidad.md": {
-	id: "por-que-utilizar-neuromarketing-en-mi-publicidad.md";
-  slug: "por-que-utilizar-neuromarketing-en-mi-publicidad";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"publicidad-efectiva-en-tu-campana-como-saber-si-lo-sera.md": {
-	id: "publicidad-efectiva-en-tu-campana-como-saber-si-lo-sera.md";
-  slug: "publicidad-efectiva-en-tu-campana-como-saber-si-lo-sera";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"que-es-el-neuromarketing.md": {
-	id: "que-es-el-neuromarketing.md";
-  slug: "que-es-el-neuromarketing";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".md"] };
-"sabes-la-diferencia-entre-marketing-de-emociones-y-neuromarketing.md": {
-	id: "sabes-la-diferencia-entre-marketing-de-emociones-y-neuromarketing.md";
-  slug: "sabes-la-diferencia-entre-marketing-de-emociones-y-neuromarketing";
+"tendencias-investigacion-de-mercados-bolivia-2026.md": {
+	id: "tendencias-investigacion-de-mercados-bolivia-2026.md";
+  slug: "tendencias-investigacion-de-mercados-bolivia-2026";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">
