@@ -4,6 +4,7 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
 import ScrollStoryLeft from '../components/scroll/ScrollStoryLeft.astro';
 import HoverStepCards from '../components/cards/HoverStepCards.astro';
 import FaqSplit from '../components/faq/FaqSplit.astro';
+import StackedSections from '../components/scroll/StackedSections.astro';
 
 const faqItems = [
   {
@@ -127,8 +128,9 @@ const otrasAreasCards = [
   }
   </script>
   <main>
+    <StackedSections>
         <!-- 🟦 1️⃣ HERO -->
-        <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
+        <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;" data-stack-section>
             <!-- Geometric floating shapes (always visible, CSS-animated) -->
             <div class="hero-shapes" aria-hidden="true">
                 <div class="hero-shape"></div>
@@ -178,10 +180,12 @@ const otrasAreasCards = [
             </div>
         </section>
 
-    <ServiceVisualSuite variant="mercado" />
+    <div data-stack-section>
+      <ServiceVisualSuite variant="mercado" />
+    </div>
 
         <!-- 🟦 2️⃣ EL COSTO DE NO VALIDAR -->
-        <section class="problem-section bg-slate" style="padding: 5rem 0;">
+        <section class="problem-section bg-slate" style="padding: 5rem 0;" data-stack-section>
             <div class="container">
                 <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
                     <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 2rem; line-height: 1.2;">El costo real de lanzar a ciegas en Bolivia: ¿Opiniones amables o dinero real sobre la mesa?</h2>
@@ -203,6 +207,7 @@ const otrasAreasCards = [
                 </div>
             </div>
         </section>
+    </StackedSections>
 
         <!-- 🟦 3️⃣ MODELO DE EVALUACIÓN DE VIABILIDAD MINDTEC -->
         <ScrollStoryLeft
@@ -280,8 +285,9 @@ const otrasAreasCards = [
             ]}
         />
 
+    <StackedSections>
         <!-- 🟦 4️⃣ TABLA COMPARATIVA -->
-        <section class="premium-section-padding bg-white">
+        <section class="premium-section-padding bg-white" data-stack-section>
             <div class="container">
                 <div class="section-title-center" style="max-width: 800px; margin: 0 auto 3rem auto;">
                     <h2 class="text-navy" style="font-size: 2.2rem;">¿Por qué Mindtec no es una agencia de encuestas tradicional?</h2>
@@ -328,7 +334,7 @@ const otrasAreasCards = [
         </section>
 
         <!-- 🟦 5️⃣ ENTREGABLES PARA GERENCIA Y DIRECTORIO -->
-        <section class="premium-section-padding bg-slate">
+        <section class="premium-section-padding bg-slate" data-stack-section>
             <div class="container premium-grid-2-split" style="align-items: center;">
                 <div>
                     <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 1.5rem; line-height: 1.2;">Activos de decisión listos para su Junta Directiva</h2>
@@ -361,7 +367,7 @@ const otrasAreasCards = [
         </section>
 
         <!-- 🟦 6️⃣ CASOS DE USO (B2B VS RETAIL) -->
-        <section class="premium-section-padding bg-white">
+        <section class="premium-section-padding bg-white" data-stack-section>
             <div class="container">
                 <div class="section-title-center" style="margin-bottom: 4rem;">
                     <h2 class="text-navy" style="font-size: 2.5rem; line-height: 1.2;">Metodología adaptada a los códigos comerciales de su industria</h2>
@@ -472,7 +478,7 @@ const otrasAreasCards = [
         </section>
 
         <!-- 🟦 7️⃣ CUÁNDO ES CRÍTICO REALIZAR UN ESTUDIO -->
-        <section class="premium-section-padding bg-navy text-white">
+        <section class="premium-section-padding bg-navy text-white" data-stack-section>
             <div class="container">
                 <div class="section-title-center" style="margin-bottom: 3rem;">
                     <h2 class="text-white" style="font-size: 2.5rem;">Cuándo es crítico realizar un estudio de mercado</h2>
@@ -494,7 +500,7 @@ const otrasAreasCards = [
         </style>
 
         <!-- 🟦 8️⃣ IMPACTO FINANCIERO -->
-        <section class="premium-section-padding bg-white">
+        <section class="premium-section-padding bg-white" data-stack-section>
             <div class="container text-center" style="max-width: 800px;">
                 <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 2rem; line-height: 1.2;">Un estudio de mercado no es un gasto operativo.<br>Es un seguro táctico para proteger su rentabilidad.</h2>
 
@@ -513,7 +519,7 @@ const otrasAreasCards = [
         </section>
 
         <!-- 🟦 COBERTURA E INTELIGENCIA TERRITORIAL -->
-        <section class="premium-section-padding bg-slate" style="background-color: #f8fafc;">
+        <section class="premium-section-padding bg-slate" style="background-color: #f8fafc;" data-stack-section>
             <div class="container" style="max-width: 1100px;">
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 4rem; align-items: stretch;">
                     <div style="position: relative; width: 100%; height: 100%; min-height: 420px; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg);">
@@ -536,7 +542,7 @@ const otrasAreasCards = [
         </section>
 
         <!-- 🟦 SECTORES DONDE HEMOS APLICADO -->
-        <section class="premium-section-padding bg-white">
+        <section class="premium-section-padding bg-white" data-stack-section>
             <div class="container text-center">
                 <h2 class="text-navy" style="font-size: 2.2rem; margin-bottom: 3rem;">Sectores con Inteligencia de Mercado Aplicada</h2>
                 <div class="areas-grid areas-grid--light">
@@ -728,10 +734,12 @@ const otrasAreasCards = [
         </style>
 
         <!-- 🟦 9️⃣ FAQ -->
-        <FaqSplit title="Preguntas Frecuentes" items={faqItems} />
+        <div data-stack-section>
+          <FaqSplit title="Preguntas Frecuentes" items={faqItems} />
+        </div>
 
         <!-- 🟦 CROSS-LINKING ESTRATÉGICO -->
-        <section class="premium-section-padding bg-slate" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
+        <section class="premium-section-padding bg-slate" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;" data-stack-section>
             <div class="container" style="max-width: 1320px;">
                 <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">Otras áreas de inteligencia relacionadas</h3>
                 <HoverStepCards items={otrasAreasCards} class="otras-areas-cards" minColumnWidth="220px" />
@@ -770,7 +778,7 @@ const otrasAreasCards = [
         </style>
 
         <!-- 🟦 CTA FINAL -->
-        <section class="cta-section-modern" style="padding: 6rem 0;">
+        <section class="cta-section-modern" style="padding: 6rem 0;" data-stack-section>
             <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
                 <div class="cta-content-v2">
                     <h2 style="font-size: 3rem; line-height: 1.25; margin-bottom: 1.5rem;">Antes de comprometer capital estructural, valide el terreno.</h2>
@@ -784,6 +792,7 @@ const otrasAreasCards = [
                 </div>
             </div>
         </section>
+    </StackedSections>
 
         <!-- BREADCRUMB -->
         <nav aria-label="Breadcrumb" class="breadcrumb-bottom">

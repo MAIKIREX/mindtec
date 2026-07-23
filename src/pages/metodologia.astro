@@ -118,10 +118,12 @@ const strategicBenefits = [
     </script>
 
     <main>
+        <StackedSections>
         <!-- 🟦 HERO -->
         <section
             class="hero-section"
             style="padding-bottom: 4rem; padding-top: 4rem;"
+            data-stack-section
         >
             <!-- Geometric floating shapes (always visible, CSS-animated) -->
             <div class="hero-shapes" aria-hidden="true">
@@ -213,7 +215,7 @@ const strategicBenefits = [
         </section>
 
         <!-- 🟦 BLOQUE A — Problema del modelo tradicional -->
-        <section class="problem-section bg-slate" style="padding: 5rem 0;">
+        <section class="problem-section bg-slate" style="padding: 5rem 0;" data-stack-section>
             <div class="container">
                 <div
                     class="premium-card-white"
@@ -364,6 +366,7 @@ const strategicBenefits = [
                 </div>
             </div>
         </section>
+        </StackedSections>
 
         <!-- 🟦 MODELO HÍBRIDO MINDTEC® — 4 capas (MorphScrollStory) -->
         <MorphScrollStory
@@ -818,9 +821,12 @@ const strategicBenefits = [
             ]}
         />
 
+        <!-- 🟦 BLOQUE C — Arquitectura de decisión, impacto, FAQ -->
+        <StackedSections>
         <section
             class="premium-section-padding bg-slate"
             style="padding: 3rem 0;"
+            data-stack-section
         >
             <div class="container" style="text-align: center;">
                 <p
@@ -838,8 +844,6 @@ const strategicBenefits = [
             </div>
         </section>
 
-        <!-- 🟦 BLOQUE C — Arquitectura de decisión, impacto, FAQ -->
-        <StackedSections>
             <section
                 class="elementor-section premium-section-padding bg-white"
                 data-stack-section

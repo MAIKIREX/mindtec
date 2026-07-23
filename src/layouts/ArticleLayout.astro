@@ -1,5 +1,6 @@
 ---
 import Layout from './Layout.astro';
+import StackedSections from '../components/scroll/StackedSections.astro';
 
 interface Props {
   title: string;
@@ -110,8 +111,9 @@ const articleSchema = JSON.stringify({
   </Fragment>
     <main class="elementor-content">
         <div class="scroll-progress" id="reading-progress"></div>
+        <StackedSections>
         <!-- Article Header Hero -->
-        <section class="hero-section elementor-section article-hero" style="padding: 160px 0 100px; min-height: auto; position: relative; overflow: hidden; background: var(--color-secondary-deep);">
+        <section class="hero-section elementor-section article-hero" style="padding: 160px 0 100px; min-height: auto; position: relative; overflow: hidden; background: var(--color-secondary-deep);" data-stack-section>
             {img && (
                 <div class="article-hero-bg" style={`position: absolute; inset: 0; background-image: url(${img}); background-size: cover; background-position: center; filter: blur(20px) brightness(0.3); opacity: 0.35; transform: scale(1.15); z-index: 0; pointer-events: none;`}></div>
             )}
@@ -137,7 +139,7 @@ const articleSchema = JSON.stringify({
         </section>
 
         <!-- Article Content Body Section -->
-        <section class="elementor-section" style="padding: 5rem 0 8rem; background: #ffffff;">
+        <section class="elementor-section" style="padding: 5rem 0 8rem; background: #ffffff;" data-stack-section>
             <div class="container" style="max-width: 1200px;">
                 <div class="article-layout-grid">
                     
@@ -268,6 +270,7 @@ const articleSchema = JSON.stringify({
 
             </div>
         </section>
+        </StackedSections>
     </main>
     <script is:inline>
     document.addEventListener('DOMContentLoaded', function() {

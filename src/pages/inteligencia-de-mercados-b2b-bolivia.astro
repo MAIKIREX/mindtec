@@ -4,6 +4,7 @@ import ServiceVisualSuite from "../components/sections/ServiceVisualSuite.astro"
 import HoverStepCards from "../components/cards/HoverStepCards.astro";
 import ScrollStoryLeft from "../components/scroll/ScrollStoryLeftNoCover.astro";
 import FaqSplit from "../components/faq/FaqSplit.astro";
+import StackedSections from "../components/scroll/StackedSections.astro";
 
 const faqItems = [
   {
@@ -132,10 +133,12 @@ const quienUtilizaCards = [
   </script>
 
   <main>
+    <StackedSections>
     <!-- 1. HERO -->
     <section
       class="hero-section"
       style="padding-bottom: 4rem; padding-top: 4rem;"
+      data-stack-section
     >
       <div class="hero-shapes" aria-hidden="true">
         <div class="hero-shape"></div><div class="hero-shape"></div><div
@@ -214,6 +217,7 @@ const quienUtilizaCards = [
     <section
       class="hero-details-section"
       style="background: var(--color-secondary-deep, #061c2b); padding: 4rem 0;"
+      data-stack-section
     >
       <div class="container" style="max-width: 900px;">
         <div class="direct-answer-box">
@@ -262,7 +266,7 @@ const quienUtilizaCards = [
     </section>
 
     <!-- 2. EL PROBLEMA (MAIDER TOMASENA STYLE: PAIN POINT AMPLIFICATION) -->
-    <section class="problem-section bg-slate" style="padding: 5rem 0;">
+    <section class="problem-section bg-slate" style="padding: 5rem 0;" data-stack-section>
       <div class="container">
         <div
           class="premium-card-white"
@@ -326,7 +330,7 @@ const quienUtilizaCards = [
     </section>
 
     <!-- 3. COMPARATIVA (VILMA NUÑEZ STYLE: LOGICAL COMPARATIVE MATRIX) -->
-    <section style="padding: 5rem 0; background: #fff;">
+    <section style="padding: 5rem 0; background: #fff;" data-stack-section>
       <div class="container">
         <div
           class="section-title-center"
@@ -400,7 +404,7 @@ const quienUtilizaCards = [
     </section>
 
     <!-- 4. A QUIÉN LE SIRVE (B2B TARGET) -->
-    <section style="padding: 5rem 0; background: var(--color-accent);">
+    <section style="padding: 5rem 0; background: var(--color-accent);" data-stack-section>
       <div class="container">
         <div
           class="section-title-center"
@@ -423,6 +427,7 @@ const quienUtilizaCards = [
         <HoverStepCards items={quienUtilizaCards} />
       </div>
     </section>
+    </StackedSections>
 
     <!-- 5. ENTREGABLES DE VALOR (VILMA NUÑEZ STYLE: FRAMEWORK OF DELIVERABLES) -->
     <ScrollStoryLeft
@@ -432,7 +437,8 @@ const quienUtilizaCards = [
       cardTextColor="#0B2B40"
       cardMutedColor="rgba(11, 43, 64, 0.62)"
       intro={{
-        background: "/service_intelligence_premium_1771034174670.webp",
+        background:
+          "/imagenes-mindtec/generated/inteligencia-b2b/entregables/intro.webp",
         number: "00",
         eyebrow: "LOS ENTREGABLES",
         title: "Lo que recibe la Dirección General en su escritorio",
@@ -441,49 +447,56 @@ const quienUtilizaCards = [
       }}
       items={[
         {
-          background: "/service_intelligence_premium_1771034174670.webp",
+          background:
+            "/imagenes-mindtec/generated/inteligencia-b2b/entregables/item-01-dashboard-control-mercado.webp",
           eyebrow: "Dashboard",
           title: "Dashboard de Control de Mercado",
           description:
             "Interfaz interactiva donde puede realizar simulaciones de cambios de precios, filtros geográficos inmediatos y segmentación en tiempo real.",
-          icon: "services",
+          icon: "dashboard",
         },
         {
-          background: "/service_intelligence_premium_1771034174670.webp",
+          background:
+            "/imagenes-mindtec/generated/inteligencia-b2b/entregables/item-02-brief-riesgo-oportunidad.webp",
           eyebrow: "Brief",
           title: "Brief de Riesgo y Oportunidad B2B",
           description:
             "Un informe ejecutivo concentrado de 3 páginas diseñado para leer en 15 minutos. Sin paja científica, directo a las decisiones críticas.",
-          icon: "building",
+          icon: "document",
         },
         {
-          background: "/service_intelligence_premium_1771034174670.webp",
+          background:
+            "/imagenes-mindtec/generated/inteligencia-b2b/entregables/item-03-matriz-posicionamiento-competitivo.webp",
           eyebrow: "Matriz",
           title: "Matriz de Posicionamiento Competitivo",
           description:
             "Mapa de debilidades de los 3 competidores más importantes del país con el plan de ataque comercial recomendado para su marca.",
-          icon: "road",
+          icon: "matrix",
         },
         {
-          background: "/service_intelligence_premium_1771034174670.webp",
+          background:
+            "/imagenes-mindtec/generated/inteligencia-b2b/entregables/item-04-sesion-alineacion-directorio.webp",
           eyebrow: "Sesión",
           title: "Sesión Presencial o Remota de Alineación",
           description:
             "Presentación interactiva ante su Directorio para resolver objeciones, profundizar en hallazgos complejos y definir los siguientes pasos.",
-          icon: "airport",
+          icon: "meeting",
         },
       ]}
     />
 
+    <StackedSections>
     <!-- 6. FAQ -->
-    <FaqSplit
-      eyebrow="RESOLVIENDO DUDAS"
-      title="Preguntas de negocio recurrentes"
-      items={faqItems}
-    />
+    <div data-stack-section>
+      <FaqSplit
+        eyebrow="RESOLVIENDO DUDAS"
+        title="Preguntas de negocio recurrentes"
+        items={faqItems}
+      />
+    </div>
 
     <!-- 7. FINAL B2B CTA -->
-    <section class="cta-section-modern" style="padding: 6rem 0;">
+    <section class="cta-section-modern" style="padding: 6rem 0;" data-stack-section>
       <div
         class="container"
         style="max-width: 900px; margin: 0 auto; text-align: center;"
@@ -522,6 +535,7 @@ const quienUtilizaCards = [
         </div>
       </div>
     </section>
+    </StackedSections>
 
     <!-- BREADCRUMB -->
     <nav aria-label="Breadcrumb" class="breadcrumb-bottom">

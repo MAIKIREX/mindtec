@@ -5,6 +5,7 @@ import FaqSplit from '../components/faq/FaqSplit.astro';
 import HoverStepCards from '../components/cards/HoverStepCards.astro';
 import AreaPanelCards from '../components/cards/AreaPanelCards.astro';
 import ScrollStory from '../components/scroll/ScrollStory.astro';
+import StackedSections from '../components/scroll/StackedSections.astro';
 
 const processSteps = [
   {
@@ -172,10 +173,10 @@ const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la cal
   </script>
 
   <main>
-
+    <StackedSections>
 
     <!-- 1. HERO -->
-    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
+    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;" data-stack-section>
       <div class="hero-shapes" aria-hidden="true">
         <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
         <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
@@ -218,10 +219,12 @@ const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la cal
       </div>
     </section>
 
-    <ServiceVisualSuite variant="misterioso" />
+    <div data-stack-section>
+      <ServiceVisualSuite variant="misterioso" />
+    </div>
 
     <!-- 2. EL PROBLEMA -->
-    <section class="problem-section bg-slate" style="padding: 5rem 0;">
+    <section class="problem-section bg-slate" style="padding: 5rem 0;" data-stack-section>
       <div class="container">
         <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
           <span class="eyebrow">EL PROBLEMA REAL</span>
@@ -246,7 +249,7 @@ const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la cal
     </section>
 
     <!-- 3. MINDTEC+ (Tabla comparativa) -->
-    <section style="padding: 5rem 0; background: #fff;">
+    <section style="padding: 5rem 0; background: #fff;" data-stack-section>
       <div class="container">
         <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
           <span class="eyebrow">MINDTEC+</span>
@@ -289,6 +292,7 @@ const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la cal
         </p>
       </div>
     </section>
+    </StackedSections>
 
     <!-- 4. ENTREGABLES -->
     <ScrollStory
@@ -353,8 +357,9 @@ const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la cal
       ]}
     />
 
+    <StackedSections>
     <!-- 5. PROCESO -->
-    <section style="padding: 5rem 0; background: #f8fafc;">
+    <section style="padding: 5rem 0; background: #f8fafc;" data-stack-section>
       <div class="container">
         <div class="section-title-center" style="text-align: center; margin-bottom: 4rem;">
           <span class="eyebrow">CÓMO FUNCIONA</span>
@@ -365,7 +370,7 @@ const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la cal
     </section>
 
     <!-- 6. SECTORES -->
-    <section class="problem-section bg-slate sectors-section" style="padding: 5rem 0;">
+    <section class="problem-section bg-slate sectors-section" style="padding: 5rem 0;" data-stack-section>
       <div class="container">
         <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
           <span class="eyebrow">SECTORES</span>
@@ -417,14 +422,16 @@ const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la cal
     </section>
 
     <!-- 7. FAQ ACORDEÓN -->
-    <FaqSplit
-      eyebrow="PREGUNTAS FRECUENTES"
-      title="Lo que suelen preguntar antes de contratar."
-      items={faqItems}
-    />
+    <div data-stack-section>
+      <FaqSplit
+        eyebrow="PREGUNTAS FRECUENTES"
+        title="Lo que suelen preguntar antes de contratar."
+        items={faqItems}
+      />
+    </div>
 
     <!-- 8. PRUEBA SOCIAL -->
-    <section style="padding: 4rem 0; background: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
+    <section style="padding: 4rem 0; background: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;" data-stack-section>
       <div class="container" style="text-align: center; max-width: 800px;">
         <p class="text-navy" style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.5;">
           Empresas de retail, banca, HORECA y telecomunicaciones en Bolivia han usado la Auditoría de Experiencia en PDV para identificar brechas en su servicio y reducir la pérdida de ventas por fricción en el punto de contacto.
@@ -441,7 +448,7 @@ const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la cal
     </section>
 
     <!-- 9. PRODUCTOS RELACIONADOS -->
-    <section style="padding: 5rem 0; background: #fff;">
+    <section style="padding: 5rem 0; background: #fff;" data-stack-section>
       <div class="container">
         <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">También puede interesarle</h3>
       </div>
@@ -456,7 +463,7 @@ const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la cal
     </section>
 
     <!-- 10. CTA FINAL -->
-    <section class="cta-section-modern" style="padding: 6rem 0;">
+    <section class="cta-section-modern" style="padding: 6rem 0;" data-stack-section>
       <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
         <div class="cta-content-v2">
           <h2 style="font-size: 2.8rem; line-height: 1.25; margin-bottom: 1.5rem;">¿Sabes realmente lo que experimenta tu cliente cuando entra a tu local?</h2>
@@ -470,6 +477,7 @@ const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la cal
         </div>
       </div>
     </section>
+    </StackedSections>
 
     <!-- BREADCRUMB -->
     <nav aria-label="Breadcrumb" class="breadcrumb-bottom">

@@ -5,6 +5,12 @@ interface ScrollStoryCover {
   eyebrow?: string;
   title: string;
   description?: string;
+  scrollLabel?: string;
+  textColor?: string;
+  titleColor?: string;
+  descriptionColor?: string;
+  eyebrowColor?: string;
+  scrollLabelColor?: string;
 }
 
 interface ScrollStoryIntro {
@@ -16,6 +22,9 @@ interface ScrollStoryIntro {
   description: string;
   /** Chip de texto corto (p.ej. "Research"). Alternativa a los icon presets cuando no encajan con el dominio. */
   badge?: string;
+  eyebrowColor?: string;
+  titleColor?: string;
+  descriptionColor?: string;
 }
 
 type StoryIcon = "airport" | "road" | "building" | "services";
@@ -29,6 +38,9 @@ interface ScrollStoryItem {
   icon?: StoryIcon;
   /** Chip de texto corto (p.ej. "Intelligence"). Alternativa a icon cuando no encaja con el dominio. */
   badge?: string;
+  eyebrowColor?: string;
+  titleColor?: string;
+  descriptionColor?: string;
 }
 
 interface Props {
@@ -42,6 +54,11 @@ interface Props {
   introCardHeight?: number;
   sideCardWidth?: number;
   sideCardHeight?: number;
+
+  /** Colores generales de la tarjeta (intro + items). */
+  cardBackground?: string;
+  cardTextColor?: string;
+  cardMutedColor?: string;
 }
 
 const {
@@ -55,6 +72,9 @@ const {
   introCardHeight = 0.6,
   sideCardWidth = 0.48,
   sideCardHeight = 0.82,
+  cardBackground = "var(--color-secondary-deep, #061c2b)",
+  cardTextColor = "var(--color-text-light, #fff)",
+  cardMutedColor = "rgba(255, 255, 255, 0.7)",
 } = Astro.props;
 
 const totalItems = items.length;
@@ -70,6 +90,7 @@ const totalItems = items.length;
   data-intro-card-height={introCardHeight}
   data-side-card-width={sideCardWidth}
   data-side-card-height={sideCardHeight}
+  style={`--story-card-bg:${cardBackground};--story-card-color:${cardTextColor};--story-card-muted:${cardMutedColor};--story-cover-color:${cover.textColor ?? "#fff"};--story-cover-title-color:${cover.titleColor ?? cover.textColor ?? "#fff"};--story-cover-description-color:${cover.descriptionColor ?? cover.textColor ?? "#fff"};--story-cover-eyebrow-color:${cover.eyebrowColor ?? cover.textColor ?? "#fff"};--story-cover-scroll-label-color:${cover.scrollLabelColor ?? cover.textColor ?? "#fff"};--story-intro-eyebrow-color:${intro.eyebrowColor ?? cardTextColor};--story-intro-title-color:${intro.titleColor ?? cardTextColor};--story-intro-description-color:${intro.descriptionColor ?? cardMutedColor};`}
 >
   <div class="scroll-story__stage" data-story-stage>
     <div class="scroll-story__backgrounds">
@@ -81,7 +102,12 @@ const totalItems = items.length;
         <div class="scroll-story__cover-content">
           {
             cover.eyebrow && (
-              <span class="scroll-story__eyebrow">{cover.eyebrow}</span>
+              <span
+                class="scroll-story__eyebrow"
+                style={`color:${cover.eyebrowColor ?? cover.textColor ?? "inherit"};`}
+              >
+                {cover.eyebrow}
+              </span>
             )
           }
 
@@ -89,8 +115,11 @@ const totalItems = items.length;
 
           {cover.description && <p>{cover.description}</p>}
 
-          <div class="scroll-story__scroll-message">
-            <span>Desliza para explorar</span>
+          <div
+            class="scroll-story__scroll-message"
+            style={`color:${cover.scrollLabelColor ?? cover.textColor ?? "inherit"};`}
+          >
+            <span>{cover.scrollLabel ?? "Desliza para explorar"}</span>
             <span class="scroll-story__scroll-line"></span>
           </div>
         </div>
@@ -135,15 +164,20 @@ const totalItems = items.length;
 
             {
               intro.eyebrow && (
-                <span class="scroll-story__card-eyebrow">{intro.eyebrow}</span>
+                <span
+                  class="scroll-story__card-eyebrow"
+                  style={`color:${intro.eyebrowColor ?? cardTextColor};`}
+                >
+                  {intro.eyebrow}
+                </span>
               )
             }
 
-            <h2>{intro.title}</h2>
+            <h2 style={`color:${intro.titleColor ?? cardTextColor};`}>{intro.title}</h2>
           </div>
 
           <div class="scroll-story__intro-description">
-            <p>{intro.description}</p>
+            <p style={`color:${intro.descriptionColor ?? cardMutedColor};`}>{intro.description}</p>
           </div>
 
           <div class="scroll-story__intro-footer">
@@ -173,12 +207,15 @@ const totalItems = items.length;
                   )}
 
                   {item.eyebrow && (
-                    <span class="scroll-story__card-eyebrow">
+                    <span
+                      class="scroll-story__card-eyebrow"
+                      style={`color:${item.eyebrowColor ?? cardTextColor};`}
+                    >
                       {item.eyebrow}
                     </span>
                   )}
 
-                  <h2>{item.title}</h2>
+                  <h2 style={`color:${item.titleColor ?? cardTextColor};`}>{item.title}</h2>
                 </div>
               </header>
 
@@ -233,7 +270,7 @@ const totalItems = items.length;
               </div>
 
               <div class="scroll-story__item-description">
-                <p>{item.description}</p>
+                <p style={`color:${item.descriptionColor ?? cardMutedColor};`}>{item.description}</p>
               </div>
 
               <footer class="scroll-story__item-footer">
@@ -686,7 +723,7 @@ const totalItems = items.length;
     left: clamp(28px, 7vw, 120px);
     bottom: clamp(42px, 10vh, 120px);
     width: min(850px, 80vw);
-    color: #fff;
+    color: var(--story-cover-color);
   }
 
   .scroll-story__eyebrow,
@@ -719,7 +756,7 @@ const totalItems = items.length;
   .scroll-story__cover-content h2 {
     max-width: 900px;
     margin: 0;
-    color: inherit;
+    color: var(--story-cover-title-color);
     font-size: clamp(1.9rem, 4.2vw, 4.5rem);
     line-height: 1.05;
     letter-spacing: -0.03em;
@@ -728,6 +765,7 @@ const totalItems = items.length;
   .scroll-story__cover-content p {
     max-width: 620px;
     margin: 30px 0 0;
+    color: var(--story-cover-description-color);
     font-size: clamp(1rem, 1.4vw, 1.2rem);
     line-height: 1.65;
     opacity: 0.75;
@@ -763,8 +801,8 @@ const totalItems = items.length;
     width: 100%;
     height: 100%;
     overflow: hidden;
-    color: var(--color-text-light, #fff);
-    background: var(--color-secondary-deep, #061c2b);
+    color: var(--story-card-color);
+    background: var(--story-card-bg);
     clip-path: polygon(0 14%, 34% 14%, 34% 0, 100% 0, 100% 100%, 0 100%);
   }
 
@@ -824,7 +862,7 @@ const totalItems = items.length;
   .scroll-story__intro-description p,
   .scroll-story__item-description p {
     margin: 0;
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--story-card-muted);
     font-weight: 500;
     line-height: 1.25;
     text-transform: uppercase;

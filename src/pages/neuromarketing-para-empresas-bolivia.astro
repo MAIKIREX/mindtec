@@ -2,6 +2,51 @@
 import Layout from '../layouts/Layout.astro';
 import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro';
 import FaqSplit from '../components/faq/FaqSplit.astro';
+import HoverStepCards from '../components/cards/HoverStepCards.astro';
+import ExpandingImageCarousel from '../components/cards/ExpandingImageCarousel.astro';
+import StackedSections from '../components/scroll/StackedSections.astro';
+
+const labCards = [
+  {
+    title: "Electroencefalografía (EEG)",
+    subtitle: "Ondas cerebrales",
+    description: "Medición de las ondas cerebrales en tiempo real para capturar la carga cognitiva (fricción o claridad), el nivel de agrado y la retención emocional del estímulo.",
+    image: "/imagenes-mindtec/eeg-mindtec.jpg",
+    alt: "Electroencefalografía (EEG) en laboratorio MindTEC",
+  },
+  {
+    title: "Eye Tracking de Precisión",
+    subtitle: "Mapeo visual",
+    description: "Mapeo visual del recorrido exacto que hace el ojo del consumidor en un empaque, anaquel o pantalla. Mide velocidad de fijación y zonas calientes.",
+    image: "/imagenes-mindtec/eyetracker-mindtec.jpg",
+    alt: "Eye Tracking en laboratorio MindTEC",
+  },
+  {
+    title: "Mapas de Atención y Calor",
+    subtitle: "Heatmaps biométricos",
+    description: "Visualización directa y cuantitativa de las áreas que concentran el interés del cliente y las zonas que pasan desapercibidas (puntos ciegos).",
+    image: "/imagenes-mindtec/heatmap.jpg",
+    alt: "Mapas de calor biométricos MindTEC",
+  },
+];
+
+const sectorCards = [
+  {
+    title: "Consumo Masivo y Alimentos",
+    description: "Evaluamos si los colores de su empaque o la tipografía compiten con éxito en góndolas saturadas.",
+    services: ["Resultado: Reducción de merma por diseño ineficaz."],
+  },
+  {
+    title: "Banca y Aplicaciones Móviles",
+    description: "Mapeamos los cuellos de botella y picos de estrés cognitivo en flujos de transferencia o pasarelas.",
+    services: ["Resultado: Incremento inmediato de la tasa de conversión."],
+  },
+  {
+    title: "Agencias de Publicidad",
+    description: "Auditamos la curva de atención del spot de TV, identificando el segundo exacto donde se pierde el gancho.",
+    services: ["Resultado: Optimización de presupuestos de pauta digital y TV."],
+  },
+];
 
 const faqItems = [
   {
@@ -79,8 +124,9 @@ const description = "Neuromarketing científico para empresas en Bolivia. Valide
   </script>
 
   <main>
+    <StackedSections>
     <!-- 1. HERO -->
-    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
+    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;" data-stack-section>
       <div class="hero-shapes" aria-hidden="true">
         <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
         <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
@@ -116,10 +162,12 @@ const description = "Neuromarketing científico para empresas en Bolivia. Valide
       </div>
     </section>
 
-    <ServiceVisualSuite variant="neuromarketing" />
+    <div data-stack-section>
+      <ServiceVisualSuite variant="neuromarketing" />
+    </div>
 
     <!-- 2. QUÉ ES Y CÓMO MINDTEC LO USA (MAIDER TOMASENA STYLE: SHATTERING THE STATUS QUO) -->
-    <section class="problem-section bg-slate" style="padding: 5rem 0;">
+    <section class="problem-section bg-slate" style="padding: 5rem 0;" data-stack-section>
       <div class="container">
         <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
           <span class="eyebrow">NEUROCIENCIA ESTRATÉGICA</span>
@@ -141,7 +189,7 @@ const description = "Neuromarketing científico para empresas en Bolivia. Valide
     </section>
 
     <!-- 3. FOTOS REALES DEL LABORATORIO EEG (VISUAL PROOF AND SYSTEM EXPLANATION) -->
-    <section style="padding: 5rem 0; background: #fff;">
+    <section style="padding: 5rem 0; background: #fff;" data-stack-section>
       <div class="container">
         <div class="section-title-center" style="text-align: center; margin-bottom: 4rem;">
           <span class="eyebrow">EVIDENCIA REAL</span>
@@ -151,79 +199,33 @@ const description = "Neuromarketing científico para empresas en Bolivia. Valide
           </p>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
-          <div class="premium-card-white" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-            <img src="/imagenes-mindtec/eeg-mindtec.jpg" alt="Electroencefalografía (EEG) en laboratorio MindTEC" style="height: 220px; width: 100%; object-fit: cover;" />
-            <div style="padding: 2rem;">
-              <h4 class="text-navy" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;">Electroencefalografía (EEG)</h4>
-              <p style="font-size: 0.9rem; line-height: 1.6; color: #475569;">Medición de las ondas cerebrales en tiempo real para capturar la carga cognitiva (fricción o claridad), el nivel de agrado y la retención emocional del estímulo.</p>
-            </div>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-            <img src="/imagenes-mindtec/eyetracker-mindtec.jpg" alt="Eye Tracking en laboratorio MindTEC" style="height: 220px; width: 100%; object-fit: cover;" />
-            <div style="padding: 2rem;">
-              <h4 class="text-navy" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;">Eye Tracking de Precisión</h4>
-              <p style="font-size: 0.9rem; line-height: 1.6; color: #475569;">Mapeo visual del recorrido exacto que hace el ojo del consumidor en un empaque, anaquel o pantalla. Mide velocidad de fijación y zonas calientes.</p>
-            </div>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-            <img src="/imagenes-mindtec/heatmap.webp" alt="Mapas de calor biométricos MindTEC" style="height: 220px; width: 100%; object-fit: cover;" />
-            <div style="padding: 2rem;">
-              <h4 class="text-navy" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;">Mapas de Atención y Calor</h4>
-              <p style="font-size: 0.9rem; line-height: 1.6; color: #475569;">Visualización directa y cuantitativa de las áreas que concentran el interés del cliente y las zonas que pasan desapercibidas (puntos ciegos).</p>
-            </div>
-          </div>
-        </div>
+        <ExpandingImageCarousel items={labCards} />
       </div>
     </section>
 
     <!-- 4. CASOS POR SECTOR (VILMA NUÑEZ STYLE: MULTI-SECTOR MATRIX FRAMEWORK) -->
-    <section style="padding: 5rem 0; background: var(--color-accent);">
+    <section style="padding: 5rem 0; background: var(--color-accent);" data-stack-section>
       <div class="container">
         <div class="section-title-center" style="text-align: center; margin-bottom: 4rem;">
           <span class="eyebrow">APLICACIÓN SECTORIAL</span>
           <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2;">¿Cómo aplicamos el neuromarketing en su sector de negocio?</h2>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.5rem;">
-          <div class="premium-card-white" style="padding: 2rem; border-top: 4px solid var(--color-secondary);">
-            <h4 class="text-navy" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem;">Consumo Masivo y Alimentos</h4>
-            <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;">
-              Evaluamos si los colores de su empaque o la tipografía compiten con éxito en góndolas saturadas.
-            </p>
-            <span style="font-size: 0.85rem; font-weight: 700; color: var(--color-primary);">Resultado: Reducción de merma por diseño ineficaz.</span>
-          </div>
-
-          <div class="premium-card-white" style="padding: 2rem; border-top: 4px solid var(--color-secondary);">
-            <h4 class="text-navy" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem;">Banca y Aplicaciones Móviles</h4>
-            <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;">
-              Mapeamos los cuellos de botella y picos de estrés cognitivo en flujos de transferencia o pasarelas.
-            </p>
-            <span style="font-size: 0.85rem; font-weight: 700; color: var(--color-primary);">Resultado: Incremento inmediato de la tasa de conversión.</span>
-          </div>
-
-          <div class="premium-card-white" style="padding: 2rem; border-top: 4px solid var(--color-secondary);">
-            <h4 class="text-navy" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem;">Agencias de Publicidad</h4>
-            <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;">
-              Auditamos la curva de atención del spot de TV, identificando el segundo exacto donde se pierde el gancho.
-            </p>
-            <span style="font-size: 0.85rem; font-weight: 700; color: var(--color-primary);">Resultado: Optimización de presupuestos de pauta digital y TV.</span>
-          </div>
-        </div>
+        <HoverStepCards items={sectorCards} minColumnWidth="290px" />
       </div>
     </section>
 
     <!-- 5. FAQ -->
-    <FaqSplit
-      eyebrow="RESOLVIENDO DUDAS"
-      title="Preguntas de negocio recurrentes"
-      items={faqItems}
-    />
+    <div data-stack-section>
+      <FaqSplit
+        eyebrow="RESOLVIENDO DUDAS"
+        title="Preguntas de negocio recurrentes"
+        items={faqItems}
+      />
+    </div>
 
     <!-- 6. FINAL CTA -->
-    <section class="cta-section-modern" style="padding: 6rem 0;">
+    <section class="cta-section-modern" style="padding: 6rem 0;" data-stack-section>
       <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
         <div class="cta-content-v2">
           <h2 style="font-size: 2.8rem; line-height: 1.25; margin-bottom: 1.5rem;">Sustente sus activos de marca en evidencia biológica medible.</h2>
@@ -237,6 +239,7 @@ const description = "Neuromarketing científico para empresas en Bolivia. Valide
         </div>
       </div>
     </section>
+    </StackedSections>
 
     <!-- BREADCRUMB -->
     <nav aria-label="Breadcrumb" class="breadcrumb-bottom">

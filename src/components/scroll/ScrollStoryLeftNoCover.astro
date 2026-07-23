@@ -6,9 +6,20 @@ interface ScrollStoryLeftIntro {
   eyebrow?: string;
   title: string;
   description: string;
+  eyebrowColor?: string;
+  titleColor?: string;
+  descriptionColor?: string;
 }
 
-type ScrollStoryLeftIcon = "airport" | "road" | "building" | "services";
+type ScrollStoryLeftIcon =
+  | "airport"
+  | "road"
+  | "building"
+  | "services"
+  | "dashboard"
+  | "document"
+  | "matrix"
+  | "meeting";
 
 interface ScrollStoryLeftItem {
   background: string;
@@ -20,6 +31,10 @@ interface ScrollStoryLeftItem {
 
   /** Lista de puntos opcional, se renderiza debajo de la descripción. */
   list?: string[];
+
+  eyebrowColor?: string;
+  titleColor?: string;
+  descriptionColor?: string;
 }
 
 interface Props {
@@ -113,10 +128,16 @@ const totalItems = items.length;
           data-story-left-panel
         >
           <div class="scroll-story-left__intro-topline">
-            <div class="scroll-story-left__intro-copy-small">
+            <div
+              class="scroll-story-left__intro-copy-small"
+              style={`color:${intro.descriptionColor ?? cardMutedColor};`}
+            >
               {
                 intro.eyebrow && (
-                  <span class="scroll-story-left__card-eyebrow">
+                  <span
+                    class="scroll-story-left__card-eyebrow"
+                    style={`color:${intro.eyebrowColor ?? cardTextColor};`}
+                  >
                     {intro.eyebrow}
                   </span>
                 )
@@ -131,7 +152,7 @@ const totalItems = items.length;
           </div>
 
           <div class="scroll-story-left__intro-heading">
-            <h2>{intro.title}</h2>
+            <h2 style={`color:${intro.titleColor ?? cardTextColor};`}>{intro.title}</h2>
           </div>
 
           <footer class="scroll-story-left__intro-footer">
@@ -154,12 +175,15 @@ const totalItems = items.length;
               <header class="scroll-story-left__item-header">
                 <div>
                   {item.eyebrow && (
-                    <span class="scroll-story-left__card-eyebrow">
+                    <span
+                      class="scroll-story-left__card-eyebrow"
+                      style={`color:${item.eyebrowColor ?? cardTextColor};`}
+                    >
                       {item.eyebrow}
                     </span>
                   )}
 
-                  <h2>{item.title}</h2>
+                  <h2 style={`color:${item.titleColor ?? cardTextColor};`}>{item.title}</h2>
                 </div>
 
                 <span class="scroll-story-left__item-number">
@@ -208,6 +232,53 @@ const totalItems = items.length;
                   </svg>
                 )}
 
+                {item.icon === "dashboard" && (
+                  <svg viewBox="0 0 220 220" aria-hidden="true">
+                    <path d="M40 152 A80 80 0 0 1 180 152" />
+                    <path d="M62 152 H74" />
+                    <path d="M146 152 H158" />
+                    <path d="M80 108 L88 118" />
+                    <path d="M140 108 L132 118" />
+                    <path d="M110 96 V110" />
+                    <path d="M110 152 L142 100" />
+                    <circle cx="110" cy="152" r="7" />
+                  </svg>
+                )}
+
+                {item.icon === "document" && (
+                  <svg viewBox="0 0 220 220" aria-hidden="true">
+                    <path d="M62 28 H132 L160 56 V192 H62 Z" />
+                    <path d="M132 28 V56 H160" />
+                    <path d="M80 92 H142" />
+                    <path d="M80 114 H142" />
+                    <path d="M80 136 H120" />
+                    <circle cx="152" cy="168" r="16" />
+                    <path d="M152 160 V170" />
+                    <path d="M152 176 V177" />
+                  </svg>
+                )}
+
+                {item.icon === "matrix" && (
+                  <svg viewBox="0 0 220 220" aria-hidden="true">
+                    <path d="M52 34 V182" />
+                    <path d="M52 182 H188" />
+                    <path d="M94 130 L162 62" />
+                    <circle cx="94" cy="130" r="7" />
+                    <circle cx="128" cy="96" r="7" />
+                    <circle cx="162" cy="62" r="7" />
+                    <circle cx="76" cy="156" r="7" />
+                  </svg>
+                )}
+
+                {item.icon === "meeting" && (
+                  <svg viewBox="0 0 220 220" aria-hidden="true">
+                    <circle cx="78" cy="76" r="24" />
+                    <path d="M42 178 C42 140 58 122 78 122 C98 122 114 140 114 178" />
+                    <circle cx="152" cy="88" r="20" />
+                    <path d="M124 178 C124 148 136 130 152 130 C168 130 180 148 180 178" />
+                  </svg>
+                )}
+
                 {!item.icon && (
                   <div class="scroll-story-left__generic-visual">
                     <span />
@@ -218,7 +289,7 @@ const totalItems = items.length;
               </div>
 
               <div class="scroll-story-left__item-description">
-                <p>{item.description}</p>
+                <p style={`color:${item.descriptionColor ?? cardMutedColor};`}>{item.description}</p>
 
                 {
                   item.list && item.list.length > 0 && (

@@ -5,6 +5,12 @@ interface ScrollStoryLeftCover {
   eyebrow?: string;
   title: string;
   description?: string;
+  scrollLabel?: string;
+  textColor?: string;
+  titleColor?: string;
+  descriptionColor?: string;
+  eyebrowColor?: string;
+  scrollLabelColor?: string;
 }
 
 interface ScrollStoryLeftIntro {
@@ -14,6 +20,9 @@ interface ScrollStoryLeftIntro {
   eyebrow?: string;
   title: string;
   description: string;
+  eyebrowColor?: string;
+  titleColor?: string;
+  descriptionColor?: string;
 }
 
 type ScrollStoryLeftIcon = "airport" | "road" | "building" | "services";
@@ -32,6 +41,10 @@ interface ScrollStoryLeftItem {
 
   /** Lista de puntos opcional, se renderiza debajo de la descripción. */
   list?: string[];
+
+  eyebrowColor?: string;
+  titleColor?: string;
+  descriptionColor?: string;
 }
 
 interface Props {
@@ -92,7 +105,7 @@ const totalItems = items.length;
   data-intro-card-height={introCardHeight}
   data-side-card-width={sideCardWidth}
   data-side-card-height={sideCardHeight}
-  style={`--story-left-card-bg:${cardBackground};--story-left-card-color:${cardTextColor};--story-left-card-muted:${cardMutedColor};`}
+  style={`--story-left-card-bg:${cardBackground};--story-left-card-color:${cardTextColor};--story-left-card-muted:${cardMutedColor};--story-left-cover-color:${cover.textColor ?? "#fff"};--story-left-cover-title-color:${cover.titleColor ?? cover.textColor ?? "#fff"};--story-left-cover-description-color:${cover.descriptionColor ?? cover.textColor ?? "#fff"};--story-left-cover-eyebrow-color:${cover.eyebrowColor ?? cover.textColor ?? "#fff"};--story-left-cover-scroll-label-color:${cover.scrollLabelColor ?? cover.textColor ?? "#fff"};--story-left-intro-eyebrow-color:${intro.eyebrowColor ?? cardTextColor};--story-left-intro-title-color:${intro.titleColor ?? cardTextColor};--story-left-intro-description-color:${intro.descriptionColor ?? cardMutedColor};`}
 >
   <div class="scroll-story-left__stage" data-story-left-stage>
     <div class="scroll-story-left__backgrounds">
@@ -105,16 +118,24 @@ const totalItems = items.length;
         <div class="scroll-story-left__cover-content">
           {
             cover.eyebrow && (
-              <span class="scroll-story-left__eyebrow">{cover.eyebrow}</span>
+              <span
+                class="scroll-story-left__eyebrow"
+                style={`color:${cover.eyebrowColor ?? cover.textColor ?? "inherit"};`}
+              >
+                {cover.eyebrow}
+              </span>
             )
           }
 
           <h2>{cover.title}</h2>
 
-          {cover.description && <p class="text-white">{cover.description}</p>}
+          {cover.description && <p>{cover.description}</p>}
 
-          <div class="scroll-story-left__scroll-message">
-            <span>Desliza para explorar</span>
+          <div
+            class="scroll-story-left__scroll-message"
+            style={`color:${cover.scrollLabelColor ?? cover.textColor ?? "inherit"};`}
+          >
+            <span>{cover.scrollLabel ?? "Desliza para explorar"}</span>
             <span class="scroll-story-left__scroll-line"></span>
           </div>
         </div>
@@ -154,10 +175,16 @@ const totalItems = items.length;
           data-story-left-panel
         >
           <div class="scroll-story-left__intro-topline">
-            <div class="scroll-story-left__intro-copy-small">
+            <div
+              class="scroll-story-left__intro-copy-small"
+              style={`color:${intro.descriptionColor ?? cardMutedColor};`}
+            >
               {
                 intro.eyebrow && (
-                  <span class="scroll-story-left__card-eyebrow">
+                  <span
+                    class="scroll-story-left__card-eyebrow"
+                    style={`color:${intro.eyebrowColor ?? cardTextColor};`}
+                  >
                     {intro.eyebrow}
                   </span>
                 )
@@ -172,7 +199,7 @@ const totalItems = items.length;
           </div>
 
           <div class="scroll-story-left__intro-heading">
-            <h2>{intro.title}</h2>
+            <h2 style={`color:${intro.titleColor ?? cardTextColor};`}>{intro.title}</h2>
           </div>
 
           <footer class="scroll-story-left__intro-footer">
@@ -195,12 +222,15 @@ const totalItems = items.length;
               <header class="scroll-story-left__item-header">
                 <div>
                   {item.eyebrow && (
-                    <span class="scroll-story-left__card-eyebrow">
+                    <span
+                      class="scroll-story-left__card-eyebrow"
+                      style={`color:${item.eyebrowColor ?? cardTextColor};`}
+                    >
                       {item.eyebrow}
                     </span>
                   )}
 
-                  <h2>{item.title}</h2>
+                  <h2 style={`color:${item.titleColor ?? cardTextColor};`}>{item.title}</h2>
                 </div>
 
                 <span class="scroll-story-left__item-number">
@@ -267,7 +297,7 @@ const totalItems = items.length;
               </div>
 
               <div class="scroll-story-left__item-description">
-                <p>{item.description}</p>
+                <p style={`color:${item.descriptionColor ?? cardMutedColor};`}>{item.description}</p>
 
                 {
                   item.list && item.list.length > 0 && (
@@ -692,7 +722,7 @@ const totalItems = items.length;
     right: clamp(28px, 7vw, 120px);
     bottom: clamp(42px, 10vh, 120px);
     width: min(850px, 80vw);
-    color: #fff;
+    color: var(--story-left-cover-color);
     text-align: right;
   }
 
@@ -710,7 +740,7 @@ const totalItems = items.length;
   .scroll-story-left__cover-content h2 {
     max-width: 900px;
     margin: 0 0 0 auto;
-    color: inherit;
+    color: var(--story-left-cover-title-color);
     font-size: clamp(3.5rem, 8vw, 8.5rem);
     line-height: 0.9;
     letter-spacing: -0.065em;
@@ -719,6 +749,7 @@ const totalItems = items.length;
   .scroll-story-left__cover-content p {
     max-width: 620px;
     margin: 30px 0 0 auto;
+    color: var(--story-left-cover-description-color);
     font-size: clamp(1rem, 1.4vw, 1.2rem);
     line-height: 1.65;
     opacity: 0.75;

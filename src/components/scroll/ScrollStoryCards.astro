@@ -5,6 +5,12 @@ export interface ScrollStoryCardsCover {
   eyebrow?: string;
   title: string;
   description?: string;
+  scrollLabel?: string;
+  textColor?: string;
+  titleColor?: string;
+  descriptionColor?: string;
+  eyebrowColor?: string;
+  scrollLabelColor?: string;
 }
 
 export interface ScrollStoryCardsIntro {
@@ -14,6 +20,8 @@ export interface ScrollStoryCardsIntro {
   eyebrow?: string;
   title: string;
   description: string;
+  eyebrowColor?: string;
+  titleColor?: string;
 }
 
 interface Props {
@@ -74,7 +82,7 @@ const {
   data-internal-parallax={internalParallax}
   data-intro-card-width={introCardWidth}
   data-intro-card-height={introCardHeight}
-  style={`--story-intro-bg:${introCardBackground};--story-intro-color:${introCardTextColor};--story-intro-muted:${introCardMutedColor};`}
+  style={`--story-intro-bg:${introCardBackground};--story-intro-color:${introCardTextColor};--story-intro-muted:${introCardMutedColor};--story-cover-color:${cover.textColor ?? "#fff"};--story-cover-title-color:${cover.titleColor ?? cover.textColor ?? "#fff"};--story-cover-description-color:${cover.descriptionColor ?? cover.textColor ?? "#fff"};--story-cover-eyebrow-color:${cover.eyebrowColor ?? cover.textColor ?? "#fff"};--story-cover-scroll-label-color:${cover.scrollLabelColor ?? cover.textColor ?? "#fff"};--story-intro-eyebrow-color:${intro.eyebrowColor ?? introCardTextColor};--story-intro-title-color:${intro.titleColor ?? introCardTextColor};`}
 >
   <div class="scroll-story-cards__stage" data-story-cards-stage>
     <!-- Escena 1: portada -->
@@ -94,7 +102,10 @@ const {
       <div class="scroll-story-cards__cover-content">
         {
           cover.eyebrow && (
-            <span class="scroll-story-cards__eyebrow">
+            <span
+              class="scroll-story-cards__eyebrow"
+              style={`color:${cover.eyebrowColor ?? cover.textColor ?? "inherit"};`}
+            >
               {cover.eyebrow}
             </span>
           )
@@ -108,8 +119,11 @@ const {
           )
         }
 
-        <div class="scroll-story-cards__scroll-message">
-          <span>Desliza para explorar</span>
+        <div
+          class="scroll-story-cards__scroll-message"
+          style={`color:${cover.scrollLabelColor ?? cover.textColor ?? "inherit"};`}
+        >
+          <span>{cover.scrollLabel ?? "Desliza para explorar"}</span>
           <span class="scroll-story-cards__scroll-line"></span>
         </div>
       </div>
@@ -141,7 +155,10 @@ const {
             <div>
               {
                 intro.eyebrow && (
-                  <span class="scroll-story-cards__card-eyebrow">
+                  <span
+                    class="scroll-story-cards__card-eyebrow"
+                    style={`color:${intro.eyebrowColor ?? introCardTextColor};`}
+                  >
                     {intro.eyebrow}
                   </span>
                 )
@@ -157,7 +174,7 @@ const {
             </span>
           </header>
 
-          <h2>{intro.title}</h2>
+          <h2 style={`color:${intro.titleColor ?? introCardTextColor};`}>{intro.title}</h2>
 
           <footer class="scroll-story-cards__intro-footer">
             <span>01</span>
@@ -629,7 +646,7 @@ const {
     left: clamp(28px, 7vw, 120px);
     bottom: clamp(42px, 10vh, 120px);
     width: min(880px, 82vw);
-    color: white;
+    color: var(--story-cover-color);
   }
 
   .scroll-story-cards__eyebrow,
@@ -646,7 +663,7 @@ const {
   .scroll-story-cards__cover-content h1 {
     max-width: 900px;
     margin: 0;
-    color: inherit;
+    color: var(--story-cover-title-color);
     font-size: clamp(1.9rem, 4.2vw, 4.5rem);
     line-height: 1.05;
     letter-spacing: -0.03em;
@@ -655,6 +672,7 @@ const {
   .scroll-story-cards__cover-content p {
     max-width: 640px;
     margin: 30px 0 0;
+    color: var(--story-cover-description-color);
     font-size: clamp(1rem, 1.4vw, 1.2rem);
     line-height: 1.65;
     opacity: 0.75;

@@ -38,6 +38,9 @@ export type ScrollCard = {
   padding?: string;
   background?: string;
   color?: string;
+  eyebrowColor?: string;
+  titleColor?: string;
+  descriptionColor?: string;
   className?: string;
 };
 
@@ -101,6 +104,9 @@ const cardStyle = (card: ScrollCard) => {
     `--lss-card-padding:${card.padding ?? "clamp(1.5rem, 3vw, 3.5rem)"}`,
     `--lss-card-bg:${card.background ?? (card.layout === "panel" ? "var(--color-surface, #fafbfc)" : "var(--color-secondary-deep, #061c2b)")}`,
     `--lss-card-color:${card.color ?? (card.layout === "panel" ? "var(--color-text-dark, #0b2b40)" : "var(--color-text-light, #ffffff)")}`,
+    `--lss-card-eyebrow-color:${card.eyebrowColor ?? "inherit"}`,
+    `--lss-card-title-color:${card.titleColor ?? "inherit"}`,
+    `--lss-card-description-color:${card.descriptionColor ?? "inherit"}`,
   ].join(";");
 };
 ---
@@ -752,6 +758,7 @@ const cardStyle = (card: ScrollCard) => {
 
   .lss__eyebrow {
     margin: 0 0 1rem;
+    color: var(--lss-card-eyebrow-color);
     font-size: 0.78rem;
     line-height: 1;
     letter-spacing: 0.14em;
@@ -762,7 +769,7 @@ const cardStyle = (card: ScrollCard) => {
   .lss__card h2 {
     margin: 0;
     max-width: 18ch;
-    color: inherit;
+    color: var(--lss-card-title-color);
     font: 500 clamp(2rem, 4vw, 5.5rem) / 0.96 system-ui, sans-serif;
     letter-spacing: -0.055em;
   }
@@ -774,6 +781,7 @@ const cardStyle = (card: ScrollCard) => {
   .lss__description {
     max-width: 42rem;
     margin: 1.35rem 0 0;
+    color: var(--lss-card-description-color);
     font: 400 clamp(1rem, 1.3vw, 1.25rem) / 1.45 system-ui, sans-serif;
     opacity: 0.86;
   }

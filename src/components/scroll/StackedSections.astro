@@ -16,18 +16,19 @@ const { class: className = "", markers = false } = Astro.props;
 </div>
 
 <script>
-  import gsap from "gsap";
-  import ScrollTrigger from "gsap/ScrollTrigger";
-
-  gsap.registerPlugin(ScrollTrigger);
-
   type WrapperElement = HTMLElement & {
     stackedSectionsCleanup?: () => void;
   };
 
-  const reducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)",
-  );
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  function getViewportHeight() {
+    /*
+     * visualViewport ayuda especialmente en móviles cuando la barra
+     * del navegador cambia el alto visible de la pantalla.
+     */
+    return Math.round(window.visualViewport?.height ?? window.innerHeight);
+  }
 
   function setupWrapper(root: WrapperElement) {
     root.stackedSectionsCleanup?.();
@@ -36,65 +37,115 @@ const { class: className = "", markers = false } = Astro.props;
       root.querySelectorAll<HTMLElement>(":scope > [data-stack-section]"),
     );
 
-    sections.forEach((section, index) => {
-      section.style.zIndex = String(index + 1);
-    });
-
-    if (sections.length < 2 || reducedMotion.matches) {
-      root.stackedSectionsCleanup = () => {
-        sections.forEach((section) => section.style.removeProperty("z-index"));
-      };
+    if (sections.length === 0) {
       return;
     }
 
-    const triggers: ScrollTrigger[] = [];
-    let refreshFrame = 0;
+    let resizeFrame = 0;
+    let destroyed = false;
 
-    // La última sección no se fija: es el final natural de la página.
-    sections.slice(0, -1).forEach((section) => {
-      const isTallerThanViewport = () =>
-        section.offsetHeight > window.innerHeight;
+    function updateSections() {
+      resizeFrame = 0;
 
-      triggers.push(
-        ScrollTrigger.create({
-          trigger: section,
+      if (destroyed) {
+        return;
+      }
 
-          // Las secciones altas se recorren por completo. Las pequeñas se
-          // fijan al tocar la parte superior de la ventana.
-          start: () =>
-            isTallerThanViewport() ? "bottom bottom" : "top top",
+      const viewportHeight = getViewportHeight();
 
-          // Una sección alta espera mientras la siguiente cruza toda la
-          // ventana. Una pequeña espera solo su propia altura, de modo que la
-          // siguiente llegue exactamente a la parte superior.
-          end: () =>
-            `+=${
-              isTallerThanViewport()
-                ? window.innerHeight
-                : section.offsetHeight
-            }`,
+      sections.forEach((section, index) => {
+        const isLastSection = index === sections.length - 1;
 
-          pin: true,
-          pinSpacing: false,
-          anticipatePin: 1,
-          invalidateOnRefresh: true,
-          markers: root.dataset.markers === "true",
-        }),
-      );
-    });
+        const sectionHeight = Math.round(
+          section.getBoundingClientRect().height,
+        );
 
+        /*
+         * Sección pequeña:
+         * viewportHeight - sectionHeight es positivo,
+         * por lo que usamos top: 0.
+         *
+         * Sección alta:
+         * viewportHeight - sectionHeight es negativo.
+         * Ese valor hace que la sección se fije solamente
+         * cuando su parte inferior llegue al final de la pantalla.
+         */
+        const stickyTop = Math.min(0, viewportHeight - sectionHeight);
+
+        section.style.zIndex = String(index + 1);
+
+        if (isLastSection || reducedMotion.matches) {
+          section.classList.remove("stacked-section--sticky");
+
+          section.style.removeProperty("--stack-sticky-top");
+
+          return;
+        }
+
+        section.classList.add("stacked-section--sticky");
+
+        section.style.setProperty("--stack-sticky-top", `${stickyTop}px`);
+      });
+    }
+
+    function scheduleUpdate() {
+      cancelAnimationFrame(resizeFrame);
+
+      resizeFrame = requestAnimationFrame(updateSections);
+    }
+
+    /*
+     * Detecta cambios reales de altura:
+     * imágenes cargadas, textos, acordeones, tarjetas, fuentes, etc.
+     *
+     * A diferencia de ScrollTrigger.refresh(), actualizar una variable
+     * CSS no desmonta ni vuelve a montar la sección.
+     */
     const observer = new ResizeObserver(() => {
-      cancelAnimationFrame(refreshFrame);
-      refreshFrame = requestAnimationFrame(() => ScrollTrigger.refresh());
+      scheduleUpdate();
     });
 
-    sections.forEach((section) => observer.observe(section));
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    window.addEventListener("resize", scheduleUpdate, {
+      passive: true,
+    });
+
+    window.visualViewport?.addEventListener("resize", scheduleUpdate, {
+      passive: true,
+    });
+
+    /*
+     * Recalcula cuando terminan de cargar las fuentes.
+     */
+    document.fonts?.ready.then(() => {
+      if (!destroyed) {
+        scheduleUpdate();
+      }
+    });
+
+    updateSections();
 
     root.stackedSectionsCleanup = () => {
+      destroyed = true;
+
       observer.disconnect();
-      cancelAnimationFrame(refreshFrame);
-      triggers.forEach((trigger) => trigger.kill());
-      sections.forEach((section) => section.style.removeProperty("z-index"));
+      cancelAnimationFrame(resizeFrame);
+
+      window.removeEventListener("resize", scheduleUpdate);
+
+      window.visualViewport?.removeEventListener("resize", scheduleUpdate);
+
+      sections.forEach((section) => {
+        section.classList.remove("stacked-section--sticky");
+
+        section.style.removeProperty("--stack-sticky-top");
+
+        section.style.removeProperty("z-index");
+      });
+
       delete root.stackedSectionsCleanup;
     };
   }
@@ -102,17 +153,36 @@ const { class: className = "", markers = false } = Astro.props;
   function initializeWrappers() {
     document
       .querySelectorAll<WrapperElement>("[data-stacked-sections]")
-      .forEach(setupWrapper);
-
-    ScrollTrigger.refresh();
+      .forEach((root) => {
+        /*
+         * Evita reconstruir el wrapper si DOMContentLoaded
+         * y astro:page-load se ejecutan consecutivamente.
+         */
+        if (!root.stackedSectionsCleanup) {
+          setupWrapper(root);
+        }
+      });
   }
 
   function cleanupWrappers() {
     document
       .querySelectorAll<WrapperElement>("[data-stacked-sections]")
-      .forEach((root) => root.stackedSectionsCleanup?.());
+      .forEach((root) => {
+        root.stackedSectionsCleanup?.();
+      });
   }
 
+  function handleReducedMotionChange() {
+    cleanupWrappers();
+    initializeWrappers();
+  }
+
+  /*
+   * La inicialización se ejecuta de forma síncrona (sin requestAnimationFrame):
+   * rAF no se dispara mientras el documento no esté visible/componiendo
+   * frames (pestañas en segundo plano, iframes de preview ocultos, etc.),
+   * lo que dejaba el efecto sin aplicarse nunca en esos contextos.
+   */
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initializeWrappers, {
       once: true,
@@ -121,21 +191,36 @@ const { class: className = "", markers = false } = Astro.props;
     initializeWrappers();
   }
 
-  // Compatibilidad con View Transitions de Astro.
+  /*
+   * Compatibilidad con Astro View Transitions.
+   */
   document.addEventListener("astro:page-load", initializeWrappers);
+
   document.addEventListener("astro:before-swap", cleanupWrappers);
-  reducedMotion.addEventListener("change", initializeWrappers);
+
+  reducedMotion.addEventListener("change", handleReducedMotionChange);
 </script>
 
 <style>
   .stacked-sections {
     position: relative;
     isolation: isolate;
+
+    /*
+         * Es necesario para que position: sticky no quede limitado
+         * dentro de este wrapper.
+         */
+    overflow: visible;
   }
 
   :global(.stacked-sections > [data-stack-section]) {
     position: relative;
     width: 100%;
     height: auto;
+  }
+
+  :global(.stacked-sections > [data-stack-section].stacked-section--sticky) {
+    position: sticky;
+    top: var(--stack-sticky-top, 0px);
   }
 </style>

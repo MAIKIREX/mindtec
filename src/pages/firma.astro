@@ -42,8 +42,9 @@ import StackedSections from '../components/scroll/StackedSections.astro';
   }
   </script>
   <main class="elementor-content">
+    <StackedSections>
         <!-- SECCIÓN 1: Hero -->
-        <section class="hero-section elementor-section" style="padding-bottom: 3rem; padding-top: 120px; min-height: auto;">
+        <section class="hero-section elementor-section" style="padding-bottom: 3rem; padding-top: 120px; min-height: auto;" data-stack-section>
 
             <!-- Geometric floating shapes (always visible, CSS-animated) -->
             <div class="hero-shapes" aria-hidden="true">
@@ -100,7 +101,7 @@ import StackedSections from '../components/scroll/StackedSections.astro';
         </section>
 
         <!-- SECCIÓN 2: Quiénes somos — imagen de fondo con tarjetas escalonadas -->
-        <section class="respaldo-hero">
+        <section class="respaldo-hero" data-stack-section>
             <div class="respaldo-hero__bg">
                 <img src="/equipo-mindtec.webp" alt="Equipo de Consultores de Mindtec Bolivia" loading="lazy">
                 <div class="respaldo-hero__overlay"></div>
@@ -238,6 +239,8 @@ import StackedSections from '../components/scroll/StackedSections.astro';
                 }
             }
         </style>
+
+    </StackedSections>
 
         <!-- SECCIÓN 3: Estándares Operativos — ScrollStory (storytelling de las 4 tarjetas) -->
         <ScrollStory
@@ -394,9 +397,8 @@ import StackedSections from '../components/scroll/StackedSections.astro';
                 </div>
             </div>
         </section>
-        </StackedSections>
 
-        <section class="elementor-section bg-slate" style="padding: 4rem 0; text-align: center; border-top: 1px solid #eee;">
+        <section class="elementor-section bg-slate" style="padding: 4rem 0; text-align: center; border-top: 1px solid #eee;" data-stack-section>
             <div class="container">
                 <h3 class="text-navy" style="margin-bottom: 1.5rem;">Los pilares de la firma</h3>
                 <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
@@ -405,6 +407,7 @@ import StackedSections from '../components/scroll/StackedSections.astro';
                 </div>
             </div>
         </section>
+        </StackedSections>
 
         <!-- BREADCRUMB -->
         <nav aria-label="Breadcrumb" class="breadcrumb-bottom">

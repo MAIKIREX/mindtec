@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro';
 import FaqSplit from '../components/faq/FaqSplit.astro';
 import HoverStepCards from '../components/cards/HoverStepCards.astro';
+import StackedSections from '../components/scroll/StackedSections.astro';
 
 const criticalScenarios = [
   {
@@ -125,8 +126,9 @@ const relatedSolutions = [
   }
   </script>
   <main>
+    <StackedSections>
     <!-- 🟦 1️⃣ HERO -->
-    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
+    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;" data-stack-section>
       <!-- Geometric floating shapes (always visible, CSS-animated) -->
       <div class="hero-shapes" aria-hidden="true">
         <div class="hero-shape"></div>
@@ -177,7 +179,10 @@ const relatedSolutions = [
       </div>
     </section>
 
-    <ServiceVisualSuite variant="marca" />
+    <div data-stack-section>
+      <ServiceVisualSuite variant="marca" />
+    </div>
+    </StackedSections>
 
     <!-- MINI NAVEGACIÓN ANCLAS -->
     <div style="background: rgba(11, 43, 64, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 1.25rem 0; position: sticky; top: 80px; z-index: 999; backdrop-filter: blur(10px);">
@@ -195,8 +200,9 @@ const relatedSolutions = [
       </div>
     </div>
 
+    <StackedSections>
     <!-- 🟦 2️⃣ EL RIESGO DE LA IDENTIDAD FANTASMA -->
-    <section id="problema" class="problem-section bg-slate" style="padding: 5rem 0;">
+    <section id="problema" class="problem-section bg-slate" style="padding: 5rem 0;" data-stack-section>
       <div class="container">
         <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
           <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 2rem; line-height: 1.2;">El riesgo de la "Identidad Fantasma": Cuando sus vendedores deben disculparse por su precio</h2>
@@ -218,7 +224,7 @@ const relatedSolutions = [
     </section>
 
     <!-- 🟦 3️⃣ CUÁNDO ES CRÍTICO MEDIR -->
-    <section id="critico" class="premium-section-padding bg-navy text-white" style="padding: 5rem 0;">
+    <section id="critico" class="premium-section-padding bg-navy text-white" style="padding: 5rem 0;" data-stack-section>
       <div class="container">
         <div class="section-title-center" style="margin-bottom: 4rem; text-align: center;">
           <h2 class="text-white" style="font-size: 2.5rem; line-height: 1.2;">¿Cuándo es crítico auditar la percepción y reputación?</h2>
@@ -243,7 +249,7 @@ const relatedSolutions = [
     </section>
 
     <!-- 🟦 4️⃣ QUÉ EVALÚA EL ESTUDIO -->
-    <section id="evaluacion" class="premium-section-padding bg-slate">
+    <section id="evaluacion" class="premium-section-padding bg-slate" data-stack-section>
       <div class="container">
         <div class="section-title-center" style="margin-bottom: 4rem; text-align: center;">
           <h2 class="text-navy" style="font-size: 2.5rem; line-height: 1.2;">Dimensiones tácticas de auditoría marcaria</h2>
@@ -285,7 +291,7 @@ const relatedSolutions = [
     </section>
 
     <!-- 🟦 5️⃣ TABLA COMPARATIVA -->
-    <section id="comparativa" class="premium-section-padding bg-white">
+    <section id="comparativa" class="premium-section-padding bg-white" data-stack-section>
       <div class="container">
         <div class="section-title-center" style="max-width: 800px; margin: 0 auto 3rem auto; text-align: center;">
           <h2 class="text-navy" style="font-size: 2.2rem;">Por qué superar la encuesta tradicional de imagen</h2>
@@ -324,10 +330,12 @@ const relatedSolutions = [
     </section>
 
     <!-- 🟦 6️⃣ PREGUNTAS FRECUENTES -->
-    <FaqSplit id="faqs" title="Preguntas Frecuentes" items={faqItems} />
+    <div data-stack-section>
+      <FaqSplit id="faqs" title="Preguntas Frecuentes" items={faqItems} />
+    </div>
 
     <!-- 🟦 7️⃣ CROSS-LINKING ESTRATÉGICO -->
-    <section class="premium-section-padding bg-slate" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
+    <section class="premium-section-padding bg-slate" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;" data-stack-section>
       <div class="container" style="max-width: 900px;">
         <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">Otras soluciones de inteligencia relacionadas</h3>
         <HoverStepCards items={relatedSolutions} />
@@ -335,7 +343,7 @@ const relatedSolutions = [
     </section>
 
     <!-- 🟦 8️⃣ FINAL CTA -->
-    <section class="cta-section-modern" style="padding: 6rem 0;">
+    <section class="cta-section-modern" style="padding: 6rem 0;" data-stack-section>
       <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
         <div class="cta-content-v2">
           <h2 style="font-size: 3rem; line-height: 1.25; margin-bottom: 1.5rem;">La reputación corporativa puede medirse para ser protegida.</h2>
@@ -349,6 +357,7 @@ const relatedSolutions = [
         </div>
       </div>
     </section>
+    </StackedSections>
 
     <!-- BREADCRUMB -->
     <nav aria-label="Breadcrumb" class="breadcrumb-bottom">

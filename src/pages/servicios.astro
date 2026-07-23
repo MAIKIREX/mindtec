@@ -177,10 +177,12 @@ const description =
   </script>
 
   <main>
+    <StackedSections>
     <!-- 1. HERO -->
     <section
       class="hero-section"
       style="padding-bottom: 4rem; padding-top: 4rem;"
+      data-stack-section
     >
       <div class="hero-shapes" aria-hidden="true">
         <div class="hero-shape"></div><div class="hero-shape"></div><div
@@ -271,10 +273,11 @@ const description =
       </div>
     </section>
 
-    <ServiceVisualSuite variant="catalogo" />
+    <div data-stack-section>
+      <ServiceVisualSuite variant="catalogo" />
+    </div>
 
     <!-- 2. FILTRO POR ROL -->
-    <StackedSections>
       <section
         data-stack-section
         class="problem-section bg-slate"

@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import StackedSections from '../components/scroll/StackedSections.astro';
 
 const title = "Witmind Consulting LLC | Florida Registered B2B Consulting";
 const description = "Witmind Consulting LLC offers B2B market research, business consulting, software development, and import services in Florida, Latin America, and globally.";
@@ -35,9 +36,10 @@ const description = "Witmind Consulting LLC offers B2B market research, business
   </script>
 
   <main class="witmind-page">
+    <StackedSections>
 
     <!-- Section 1: Hero -->
-    <section class="hero-section">
+    <section class="hero-section" data-stack-section>
       <div class="hero-shapes" aria-hidden="true">
         <div class="hero-shape"></div>
         <div class="hero-shape"></div>
@@ -65,7 +67,7 @@ const description = "Witmind Consulting LLC offers B2B market research, business
     </section>
 
     <!-- Section 2: About -->
-    <section id="about" class="about-section premium-section-padding">
+    <section id="about" class="about-section premium-section-padding" data-stack-section>
       <div class="container">
         <div class="grid-about">
           <div class="about-content animate-on-observe stagger-1">
@@ -94,7 +96,7 @@ const description = "Witmind Consulting LLC offers B2B market research, business
     </section>
 
     <!-- Section 3: Our Services -->
-    <section id="services" class="services-section premium-section-padding">
+    <section id="services" class="services-section premium-section-padding" data-stack-section>
       <div class="container">
         <div class="section-header text-center animate-on-observe stagger-1">
           <span class="eyebrow">Solutions</span>
@@ -200,7 +202,7 @@ const description = "Witmind Consulting LLC offers B2B market research, business
     </section>
 
     <!-- Section 4: Why Witmind -->
-    <section id="why-witmind" class="why-section premium-section-padding">
+    <section id="why-witmind" class="why-section premium-section-padding" data-stack-section>
       <div class="container">
         <div class="section-header text-center animate-on-observe stagger-1">
           <span class="eyebrow">Differentiators</span>
@@ -242,7 +244,7 @@ const description = "Witmind Consulting LLC offers B2B market research, business
     </section>
 
     <!-- Section 5: Get in Touch -->
-    <section id="contact" class="contact-section-witmind premium-section-padding">
+    <section id="contact" class="contact-section-witmind premium-section-padding" data-stack-section>
       <div class="container text-center">
         <div class="contact-card glass-card animate-on-observe stagger-1">
           <span class="eyebrow">Connect</span>
@@ -267,7 +269,7 @@ const description = "Witmind Consulting LLC offers B2B market research, business
     </section>
 
     <!-- Section 6: Legal Information (Tabular Footer Reference) -->
-    <section class="legal-section">
+    <section class="legal-section" data-stack-section>
       <div class="container">
         <div class="legal-box animate-on-observe stagger-1">
           <h3>Legal Information</h3>
@@ -301,6 +303,7 @@ const description = "Witmind Consulting LLC offers B2B market research, business
       </div>
     </section>
 
+    </StackedSections>
   </main>
 </Layout>
 

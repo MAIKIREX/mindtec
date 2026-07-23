@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro';
 import FaqSplit from '../components/faq/FaqSplit.astro';
+import StackedSections from '../components/scroll/StackedSections.astro';
 
 const faqItems = [
   {
@@ -92,8 +93,9 @@ const faqItems = [
   </script>
 
   <main>
+    <StackedSections>
     <!-- 🟦 HERO -->
-    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
+    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;" data-stack-section>
       <div class="hero-shapes" aria-hidden="true">
         <div class="hero-shape"></div>
         <div class="hero-shape"></div>
@@ -137,10 +139,12 @@ const faqItems = [
       </div>
     </section>
 
-    <ServiceVisualSuite variant="shopper" />
+    <div data-stack-section>
+      <ServiceVisualSuite variant="shopper" />
+    </div>
 
     <!-- 🟦 CONTEXTO ECONÓMICO -->
-    <section class="premium-section-padding bg-slate">
+    <section class="premium-section-padding bg-slate" data-stack-section>
       <div class="container">
         <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
           <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 2rem; line-height: 1.2;">El Contexto Económico que Está Redefiniendo el Consumo en Bolivia</h2>
@@ -163,7 +167,7 @@ const faqItems = [
     </section>
 
     <!-- 🟦 DATOS EN VIVO MINDTEC -->
-    <section class="trust-bar-section" id="datos-vivos">
+    <section class="trust-bar-section" id="datos-vivos" data-stack-section>
       <div class="container text-center">
         <h4 class="trust-bar-title">Hallazgos de campo Mindtec sobre el consumidor boliviano</h4>
         <div class="trust-numbers-grid">
@@ -191,7 +195,7 @@ const faqItems = [
     </section>
 
     <!-- 🟦 SEGMENTACIÓN REGIONAL INTERACTIVA -->
-    <section class="premium-section-padding bg-white">
+    <section class="premium-section-padding bg-white" data-stack-section>
       <div class="container" style="max-width: 1000px;">
         <div class="section-title-center" style="margin-bottom: 3rem;">
           <span class="eyebrow">Página viva — explore por región</span>
@@ -246,7 +250,7 @@ const faqItems = [
     </section>
 
     <!-- 🟦 METODOLOGÍA -->
-    <section class="premium-section-padding bg-slate">
+    <section class="premium-section-padding bg-slate" data-stack-section>
       <div class="container premium-grid-2-split" style="align-items: center;">
         <div>
           <span class="eyebrow">Metodología Mindtec</span>
@@ -280,10 +284,12 @@ const faqItems = [
     </section>
 
     <!-- 🟦 FAQ -->
-    <FaqSplit title="Preguntas Frecuentes" items={faqItems} />
+    <div data-stack-section>
+      <FaqSplit title="Preguntas Frecuentes" items={faqItems} />
+    </div>
 
     <!-- 🟦 CROSS-LINKING -->
-    <section class="premium-section-padding bg-slate" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
+    <section class="premium-section-padding bg-slate" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;" data-stack-section>
       <div class="container" style="max-width: 900px;">
         <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">Profundice el análisis</h3>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
@@ -307,7 +313,7 @@ const faqItems = [
     </section>
 
     <!-- 🟦 CTA FINAL -->
-    <section class="cta-section-modern" style="padding: 6rem 0;">
+    <section class="cta-section-modern" style="padding: 6rem 0;" data-stack-section>
       <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
         <div class="cta-content-v2">
           <h2 style="font-size: 3rem; line-height: 1.25; margin-bottom: 1.5rem;">¿Conoce realmente a su consumidor en cada ciudad donde vende?</h2>
@@ -321,6 +327,7 @@ const faqItems = [
         </div>
       </div>
     </section>
+    </StackedSections>
 
     <!-- BREADCRUMB -->
     <nav aria-label="Breadcrumb" class="breadcrumb-bottom">

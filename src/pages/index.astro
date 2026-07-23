@@ -5,6 +5,7 @@ import ScrollStory from "../components/scroll/ScrollStory.astro";
 import ScrollStoryLeft from "../components/scroll/ScrollStoryLeft.astro";
 import ScrollReveal from "../components/scroll/ScrollReveal.astro";
 import StatCounter from "../components/scroll/StatCounter.astro";
+import StackedSections from "../components/scroll/StackedSections.astro";
 ---
 
 <Layout
@@ -154,10 +155,11 @@ import StatCounter from "../components/scroll/StatCounter.astro";
     </script>
 
     <main>
+        <StackedSections>
         <!-- ════════════════════════════════════════════════ -->
         <!-- 1. HERO — Cinematic Dark                        -->
         <!-- ════════════════════════════════════════════════ -->
-        <section class="hero-section" id="hero">
+        <section class="hero-section" id="hero" data-stack-section>
             <!-- Geometric floating shapes (always visible, CSS-animated) -->
             <div class="hero-shapes" aria-hidden="true">
                 <div class="hero-shape"></div>
@@ -272,7 +274,7 @@ import StatCounter from "../components/scroll/StatCounter.astro";
         <!-- ════════════════════════════════════════════════ -->
         <!-- KINETIC MARQUEE                                 -->
         <!-- ════════════════════════════════════════════════ -->
-        <section class="marquee-section" aria-hidden="true">
+        <section class="marquee-section" aria-hidden="true" data-stack-section>
             <div class="marquee-track">
                 <span class="marquee-item"
                     ><span class="dot"></span> Neuromarketing</span
@@ -329,7 +331,7 @@ import StatCounter from "../components/scroll/StatCounter.astro";
         <!-- ════════════════════════════════════════════════ -->
         <!-- 2. TRUST BAR                                    -->
         <!-- ════════════════════════════════════════════════ -->
-        <section class="trust-bar-section" id="trust-bar">
+        <section class="trust-bar-section" id="trust-bar" data-stack-section>
             <div class="container text-center">
                 <h4 class="trust-bar-title">
                     Empresas e instituciones que confían en la inteligencia de
@@ -355,6 +357,7 @@ import StatCounter from "../components/scroll/StatCounter.astro";
                 </div>
             </div>
         </section>
+        </StackedSections>
 
         <!-- ════════════════════════════════════════════════ -->
         <!-- 3. PROBLEM SECTION — ScrollStoryCards (ancla 1) -->
@@ -617,74 +620,19 @@ import StatCounter from "../components/scroll/StatCounter.astro";
 
         <section class="problem-quote-section" id="problem">
             <div class="container">
-                <div class="problem-statement" data-problem-statement>
+                <div class="problem-statement">
                     <p class="problem-statement__paragraph">
-                        <span class="problem-statement__line">Cada uno de estos escenarios tiene solución —</span>
-                        <span class="problem-statement__line">si se aborda con la <strong>evidencia correcta</strong> y a tiempo.</span>
+                        Cada uno de estos escenarios tiene solución —
+                        si se aborda con la <strong>evidencia correcta</strong> y a tiempo.
                     </p>
                     <p class="problem-statement__paragraph problem-statement__paragraph--conclusion">
-                        <span class="problem-statement__line">La diferencia entre las empresas que crecen y las que</span>
-                        <span class="problem-statement__line">se estancan no es el tamaño del presupuesto, sino la</span>
-                        <span class="problem-statement__line">calidad de la inteligencia detrás de cada decisión.</span>
+                        La diferencia entre las empresas que crecen y las que
+                        se estancan no es el tamaño del presupuesto, sino la
+                        calidad de la inteligencia detrás de cada decisión.
                     </p>
                 </div>
             </div>
         </section>
-
-        <script>
-            import { gsap } from "gsap";
-            import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-            gsap.registerPlugin(ScrollTrigger);
-
-            document
-                .querySelectorAll<HTMLElement>("[data-problem-statement]")
-                .forEach((statement) => {
-                    const lines = statement.querySelectorAll<HTMLElement>(
-                        ".problem-statement__line",
-                    );
-
-                    if (!lines.length) return;
-
-                    const motionQuery = window.matchMedia(
-                        "(prefers-reduced-motion: reduce)",
-                    );
-
-                    if (motionQuery.matches) {
-                        gsap.set(lines, { clearProps: "transform,opacity,visibility" });
-                        return;
-                    }
-
-                    gsap.context(() => {
-                        const timeline = gsap.timeline({
-                            scrollTrigger: {
-                                trigger: statement,
-                                start: "top 80%",
-                                end: "bottom 40%",
-                                scrub: 0.35,
-                                invalidateOnRefresh: true,
-                            },
-                        });
-
-                        timeline.fromTo(
-                            lines,
-                            {
-                                autoAlpha: 0,
-                                yPercent: 110,
-                                filter: "blur(5px)",
-                            },
-                            {
-                                autoAlpha: 1,
-                                yPercent: 0,
-                                filter: "blur(0px)",
-                                ease: "none",
-                                duration: 1,
-                                stagger: 0.65,
-                            },
-                        );
-                    }, statement);
-                });
-        </script>
 
         <!-- ════════════════════════════════════════════════ -->
         <!-- 4. SERVICES — ScrollStory (ancla 2)             -->
@@ -1142,9 +1090,11 @@ import StatCounter from "../components/scroll/StatCounter.astro";
             cardMutedColor="var(--color-text-muted, #64748b)"
         />
 
+        <StackedSections>
         <section
             style="padding: 3rem 0 0; background: #f8fafc;"
             id="como-trabajamos"
+            data-stack-section
         >
             <div class="container">
                 <ScrollReveal>
@@ -1222,7 +1172,7 @@ import StatCounter from "../components/scroll/StatCounter.astro";
         <!-- ════════════════════════════════════════════════ -->
         <!-- 8. EXPERIENCIA MULTISECTORIAL                   -->
         <!-- ════════════════════════════════════════════════ -->
-        <section class="authority-section" id="sectors">
+        <section class="authority-section" id="sectors" data-stack-section>
             <div class="container text-center">
                 <span class="eyebrow"
                     >Experiencia multisectorial en Bolivia</span
@@ -1429,6 +1379,7 @@ import StatCounter from "../components/scroll/StatCounter.astro";
                 </div>
             </div>
         </section>
+        </StackedSections>
 
         <!-- ════════════════════════════════════════════════ -->
         <!-- 9. FINAL CTA — DOBLE VÍA                        -->
@@ -1512,16 +1463,16 @@ import StatCounter from "../components/scroll/StatCounter.astro";
 
     .problem-statement {
         width: 100%;
-        max-width: none;
+        max-width: 56rem;
         margin: 0 auto;
         color: var(--color-secondary-deep, #061c2b);
         font-family: var(--font-display);
-        font-size: clamp(1.4rem, 3.25vw, 3.75rem);
+        font-size: clamp(1.15rem, 2vw, 1.85rem);
         font-style: normal;
         font-weight: 700;
-        line-height: 0.98;
-        letter-spacing: -0.065em;
-        text-align: left;
+        line-height: 1.35;
+        letter-spacing: -0.03em;
+        text-align: center;
     }
 
     .problem-statement__paragraph {
@@ -1533,14 +1484,8 @@ import StatCounter from "../components/scroll/StatCounter.astro";
     }
 
     .problem-statement__paragraph--conclusion {
-        margin-top: clamp(1.75rem, 4vw, 4rem);
+        margin-top: clamp(1.5rem, 3vw, 2.5rem);
         color: var(--color-primary, #e65a2b);
-    }
-
-    .problem-statement__line {
-        display: block;
-        text-align: left;
-        will-change: transform, opacity;
     }
 
     @media (max-width: 720px) {
@@ -1549,13 +1494,13 @@ import StatCounter from "../components/scroll/StatCounter.astro";
         }
 
         .problem-statement {
-            font-size: clamp(1.35rem, 7vw, 2.65rem);
-            line-height: 1.02;
-            letter-spacing: -0.055em;
+            font-size: clamp(1.05rem, 4.5vw, 1.5rem);
+            line-height: 1.4;
+            letter-spacing: -0.02em;
         }
 
         .problem-statement__paragraph--conclusion {
-            margin-top: 2.75rem;
+            margin-top: 1.75rem;
         }
 
     }

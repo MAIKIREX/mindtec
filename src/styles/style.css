@@ -80,7 +80,12 @@ html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    overflow-x: hidden;
+    /*
+     * overflow-x: hidden convierte a html/body en contenedores de scroll
+     * (fuerza overflow-y: auto) y eso rompe position: sticky dentro de
+     * ellos. clip recorta igual sin ese efecto secundario.
+     */
+    overflow-x: clip;
 }
 
 body {
@@ -88,7 +93,7 @@ body {
     background-color: var(--color-offwhite);
     color: var(--color-text-main);
     line-height: 1.7;
-    overflow-x: hidden;
+    overflow-x: clip;
     position: relative;
 }
 
@@ -2663,19 +2668,20 @@ p {
 /* ── 18. CTA SECTION — Maximum Impact ─────────────────── */
 .cta-section-modern {
     padding: var(--spacing-lg) 0 var(--spacing-xl);
+    background: linear-gradient(135deg, var(--color-primary), #D94E10);
 }
 
 .cta-content-v2 {
-    background: linear-gradient(135deg, var(--color-primary), #D94E10);
+    background: transparent;
     padding: clamp(3rem, 6vw, 6rem);
-    border-radius: var(--radius-xl);
+    border-radius: 0;
     text-align: center;
     color: var(--color-white);
-    max-width: 1000px;
+    max-width: 100%;
     margin: 0 auto;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 32px 64px -16px rgba(242, 101, 34, 0.3);
+    box-shadow: none;
 }
 
 .cta-content-v2::before {

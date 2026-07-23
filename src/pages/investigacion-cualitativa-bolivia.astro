@@ -163,10 +163,12 @@ const relatedProductsCards = [
   </script>
 
   <main>
+    <StackedSections>
     <!-- 1. HERO -->
     <section
       class="hero-section"
       style="padding-bottom: 4rem; padding-top: 4rem;"
+      data-stack-section
     >
       <div class="hero-shapes" aria-hidden="true">
         <div class="hero-shape"></div><div class="hero-shape"></div><div
@@ -231,7 +233,7 @@ const relatedProductsCards = [
     </section>
 
     <!-- Nueva sección debajo del hero -->
-    <section class="hero-details-section" style="background: var(--color-secondary-deep, #061c2b); padding: 4rem 0;">
+    <section class="hero-details-section" style="background: var(--color-secondary-deep, #061c2b); padding: 4rem 0;" data-stack-section>
       <div class="container hero-details-grid">
         <div class="hero-details-logo-slot" data-logo-slot="end"></div>
         <div class="hero-details-text">
@@ -289,7 +291,7 @@ const relatedProductsCards = [
       </div>
     </section>
 
-    <section class="generated-insight-section generated-insight-section--dark">
+    <section class="generated-insight-section generated-insight-section--dark" data-stack-section>
       <div
         class="generated-insight-logo-slot"
         data-logo-slot="mid"
@@ -347,6 +349,8 @@ const relatedProductsCards = [
         </div>
       </div>
     </section>
+
+    </StackedSections>
 
     <!-- 2. EL PROBLEMA / MINDTEC+ -->
     <ScrollReveal>
@@ -765,12 +769,12 @@ const relatedProductsCards = [
         </div>
       </div>
     </section>
-    </StackedSections>
 
     <!-- 10. CTA FINAL -->
     <section
       class="cta-section-modern"
       style="padding: 6rem 0; background: linear-gradient(135deg, var(--color-primary), #D94E10); color: #fff;"
+      data-stack-section
     >
       <div
         class="container"
@@ -812,6 +816,7 @@ const relatedProductsCards = [
         </div>
       </div>
     </section>
+    </StackedSections>
 
     <!-- BREADCRUMB -->
     <nav aria-label="Breadcrumb" class="breadcrumb-bottom">

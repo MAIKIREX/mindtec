@@ -4,6 +4,7 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
 import HoverStepCards from '../components/cards/HoverStepCards.astro';
 import FaqSplit from '../components/faq/FaqSplit.astro';
 import ScrollStory from '../components/scroll/ScrollStory.astro';
+import StackedSections from '../components/scroll/StackedSections.astro';
 
 const otrasAreasCards = [
   {
@@ -97,8 +98,9 @@ const faqItems = [
   }
   </script>
   <main>
+    <StackedSections>
         <!-- 🟦 1️⃣ HERO -->
-        <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
+        <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;" data-stack-section>
             <!-- Geometric floating shapes (always visible, CSS-animated) -->
             <div class="hero-shapes" aria-hidden="true">
                 <div class="hero-shape"></div>
@@ -149,7 +151,10 @@ const faqItems = [
             </div>
         </section>
 
-    <ServiceVisualSuite variant="precios" />
+    <div data-stack-section>
+      <ServiceVisualSuite variant="precios" />
+    </div>
+    </StackedSections>
 
         <!-- MINI NAVEGACIÓN ANCLAS -->
         <div class="mini-nav-sticky" style="background: linear-gradient(180deg, #1a2942 0%, #0f1c2e 100%); border-bottom: 3px solid #f26522; padding: 1.8rem 0; position: sticky; top: 80px; z-index: 1000; backdrop-filter: blur(20px); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 2px 8px rgba(242, 101, 34, 0.2);">
@@ -282,8 +287,9 @@ const faqItems = [
             />
         </div>
 
+    <StackedSections>
         <!-- 🟦 3️⃣ GRÁFICA CONCEPTUAL – DOLOR DE PAGO -->
-        <section id="neuro-pricing" class="premium-section-padding bg-white">
+        <section id="neuro-pricing" class="premium-section-padding bg-white" data-stack-section>
             <div class="container text-center" style="max-width: 900px;">
                 <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Curva de Neuro-Pricing: Dolor de Pago</h2>
                 <p class="text-gray-dark" style="font-size: 1.1rem; margin-bottom: 3rem;">Cuando el precio es excesivo o incoherente con el valor de marca, se activa la insatisfacción cognitiva subconsciente.</p>
@@ -335,7 +341,7 @@ const faqItems = [
         </section>
 
         <!-- 🟦 4️⃣ TABLA COMPARATIVA -->
-        <section id="comparativa" class="premium-section-padding bg-slate">
+        <section id="comparativa" class="premium-section-padding bg-slate" data-stack-section>
             <div class="container">
                 <div class="section-title-center" style="max-width: 800px; margin: 0 auto 3rem auto;">
                     <h2 class="text-navy" style="font-size: 2.2rem;">Por qué un sondeo de precios simple no protege su margen</h2>
@@ -376,7 +382,7 @@ const faqItems = [
         </section>
 
         <!-- 🟦 5️⃣ DASHBOARD EJECUTIVO DINÁMICO -->
-        <section id="entregables" class="premium-section-padding bg-white">
+        <section id="entregables" class="premium-section-padding bg-white" data-stack-section>
             <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;">
                 <div>
                     <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 1.5rem; line-height: 1.2;">Un seguro táctico antes de lanzar sus listas de precios oficiales</h2>
@@ -405,7 +411,7 @@ const faqItems = [
         </section>
 
         <!-- 🟦 6️⃣ ADAPTACIÓN B2B VS RETAIL -->
-        <section class="premium-section-padding bg-slate">
+        <section class="premium-section-padding bg-slate" data-stack-section>
             <div class="container">
                 <div class="section-title-center" style="margin-bottom: 4rem;">
                     <h2 class="text-navy" style="font-size: 2.5rem;">Metodología adaptada a su modelo de negocio</h2>
@@ -456,7 +462,7 @@ const faqItems = [
         </section>
 
         <!-- 🟦 7️⃣ IMPACTO FINANCIERO -->
-        <section class="premium-section-padding bg-white">
+        <section class="premium-section-padding bg-white" data-stack-section>
             <div class="container text-center" style="max-width: 800px;">
                 <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 2rem;">El precio define su rentabilidad, posicionamiento y supervivencia corporativa</h2>
 
@@ -475,10 +481,12 @@ const faqItems = [
         </section>
 
         <!-- 🟦 8️⃣ FAQ (SEO) -->
-        <FaqSplit id="faqs" title="Preguntas Frecuentes" items={faqItems} />
+        <div data-stack-section>
+          <FaqSplit id="faqs" title="Preguntas Frecuentes" items={faqItems} />
+        </div>
 
         <!-- 🟦 CROSS-LINKING ESTRATÉGICO -->
-        <section class="premium-section-padding bg-slate" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
+        <section class="premium-section-padding bg-slate" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;" data-stack-section>
             <div class="container" style="max-width: 900px;">
                 <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">Otras áreas de inteligencia relacionadas</h3>
                 <HoverStepCards items={otrasAreasCards} class="otras-areas-cards" minColumnWidth="280px" />
@@ -517,7 +525,7 @@ const faqItems = [
         </style>
 
         <!-- 🟦 CTA FINAL -->
-        <section class="cta-section-modern" style="padding: 6rem 0;">
+        <section class="cta-section-modern" style="padding: 6rem 0;" data-stack-section>
             <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
                 <div class="cta-content-v2">
                     <h2 style="font-size: 3rem; line-height: 1.25; margin-bottom: 1.5rem;">Antes de ajustar precios o lanzar, valide sensibilidad y margen.</h2>
@@ -531,6 +539,7 @@ const faqItems = [
                 </div>
             </div>
         </section>
+    </StackedSections>
 
         <!-- BREADCRUMB -->
         <nav aria-label="Breadcrumb" class="breadcrumb-bottom">
