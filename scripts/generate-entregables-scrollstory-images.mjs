@@ -254,7 +254,7 @@ const SECTIONS = [
         prompt:
           STYLE_PREFIX +
           RIGHT_CARD_COMPOSITION +
-          'A shopper researcher discreetly observing a customer navigating a supermarket aisle in Bolivia with generic unbranded products on the shelves (no visible brand names, logos or recognizable packaging), notebook in hand, standing a respectful distance away, natural in-store lighting.',
+          'A Bolivian shopper researcher (mestiza woman in her early 30s, straight dark hair, warm brown skin tone, Andean Latin American features, business-casual blazer) discreetly observing a real Bolivian shopper navigating a supermarket aisle with generic unbranded products on the shelves (no visible brand names, logos or recognizable packaging), notebook in hand, standing a respectful distance away, natural in-store lighting, both people with Bolivian mestizo features.',
       },
       {
         id: 'intro',
@@ -262,7 +262,7 @@ const SECTIONS = [
         prompt:
           STYLE_PREFIX +
           RIGHT_CARD_COMPOSITION +
-          'Same researcher as the reference image, now reviewing an eye-tracking heatmap of the same aisle on a tablet, standing near the shelf of generic unbranded products (no visible brand names or logos), comparing the data to the real shelf in front.',
+          'Same Bolivian researcher as the reference image, now reviewing an eye-tracking heatmap of the same aisle on a tablet, standing near the shelf of generic unbranded products (no visible brand names or logos), comparing the data to the real shelf in front.',
       },
       {
         id: 'item-01-journey-shopper',
@@ -270,7 +270,7 @@ const SECTIONS = [
         prompt:
           STYLE_PREFIX +
           RIGHT_CARD_COMPOSITION +
-          'Same person as the reference image, now in an office pinning a printed shopper journey map with arrows and photos of store zones onto a wall board, arranging the sequence.',
+          'Same Bolivian researcher as the reference image, now in an office pinning a printed shopper journey map with arrows and photos of store zones onto a wall board, arranging the sequence.',
       },
       {
         id: 'item-02-trayectoria-permanencia',
@@ -278,7 +278,7 @@ const SECTIONS = [
         prompt:
           STYLE_PREFIX +
           RIGHT_CARD_COMPOSITION +
-          'Same person as the reference image, now reviewing a store floor-plan heatmap on a tablet showing dwell-time zones in warm and cool colors, seated at a desk.',
+          'Same Bolivian researcher as the reference image, now reviewing a store floor-plan heatmap on a tablet showing dwell-time zones in warm and cool colors, seated at a desk, a small analog clock visible on the desk beside the tablet.',
       },
       {
         id: 'item-03-atencion-visual',
@@ -286,7 +286,7 @@ const SECTIONS = [
         prompt:
           STYLE_PREFIX +
           RIGHT_CARD_COMPOSITION +
-          'A shopper wearing lightweight eye-tracking glasses looking at a supermarket shelf stocked with generic unbranded products (no visible brand names or logos), with the same researcher standing nearby holding a tablet displaying live gaze-tracking data.',
+          'A Bolivian shopper (mestizo features) wearing ordinary-looking clear-lens glasses with a thin discreet sensor bridge and a small camera module on the temple (realistic portable eye-tracking glasses resembling normal eyewear, not a headset, not a visor, not VR goggles) looking at a supermarket shelf stocked with generic unbranded products (no visible brand names or logos), with the same Bolivian researcher standing nearby holding a tablet displaying a simple gaze-tracking dot overlay.',
       },
       {
         id: 'item-04-decisores-compra',
@@ -294,7 +294,7 @@ const SECTIONS = [
         prompt:
           STYLE_PREFIX +
           RIGHT_CARD_COMPOSITION +
-          'Same researcher as the reference image, now at a table arranging printed cards ranking purchase-decision factors (price, packaging, position) in order of importance, mid-arrangement.',
+          'Same Bolivian researcher as the reference image, now at a table arranging printed cards ranking purchase-decision factors (price, packaging, position) in order of importance on a small balance-scale-shaped tray, mid-arrangement.',
       },
       {
         id: 'item-05-brief-trade-marketing',
@@ -302,7 +302,7 @@ const SECTIONS = [
         prompt:
           STYLE_PREFIX +
           RIGHT_CARD_COMPOSITION +
-          'Same researcher as the reference image, now redesigning a small shelf mockup model made of plain unbranded grey boxes on a table, sticky notes marking new layout positions, hands adjusting a miniature shelf.',
+          'Same Bolivian researcher as the reference image, now redesigning a small shelf mockup model made of plain unbranded grey boxes on a table, sticky notes marking new layout positions, hands adjusting a miniature shelf.',
       },
       {
         id: 'item-06-executive-brief-comercial',
@@ -310,7 +310,7 @@ const SECTIONS = [
         prompt:
           STYLE_PREFIX +
           RIGHT_CARD_COMPOSITION +
-          'Same researcher as the reference image, now presenting a trade marketing brief with conversion-rate charts to a small commercial team meeting, gesturing at the screen, engaged listeners blurred.',
+          'Same Bolivian researcher as the reference image, now presenting a trade marketing brief with conversion-rate charts to a small commercial team of Bolivian professionals (mestizo and Andean features) in a meeting, gesturing at the screen, engaged listeners blurred.',
       },
     ],
   },

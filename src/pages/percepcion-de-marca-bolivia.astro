@@ -3,6 +3,8 @@ import Layout from "../layouts/Layout.astro";
 import ServiceVisualSuite from "../components/sections/ServiceVisualSuite.astro";
 import FaqSplit from "../components/faq/FaqSplit.astro";
 import HoverStepCards from "../components/cards/HoverStepCards.astro";
+import AreaPanelCards from "../components/cards/AreaPanelCards.astro";
+import ComparisonRows from "../components/cards/ComparisonRows.astro";
 import StackedSections from "../components/scroll/StackedSections.astro";
 
 const criticalScenarios = [
@@ -35,6 +37,27 @@ const criticalScenarios = [
     title: "Expansión de Categoría",
     description:
       "Al lanzar nuevas líneas de negocio que requieran apalancarse en la credibilidad de su marca matriz para ingresar a nuevos mercados con menor fricción.",
+  },
+];
+
+const identityRiskPanels = [
+  {
+    icon: '<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="84"/><path d="M128 80v96M80 128h96"/><circle cx="128" cy="128" r="28"/></svg>',
+    title: "Mapeo de Atributos de Decisión B2B",
+    description:
+      "Aislamiento de las variables no declaradas (como solidez institucional, soporte técnico y continuidad operativa) que definen el cierre de contratos corporativos.",
+  },
+  {
+    icon: '<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"><path d="M44 172V84l84-44 84 44v88l-84 44z"/><path d="M44 84l84 44 84-44M128 128v88"/></svg>',
+    title: "Diagnóstico de Salud de Marca",
+    description:
+      "Medición de la lealtad y el riesgo de migración de sus clientes clave antes de que la competencia los capte con ofertas agresivas.",
+  },
+  {
+    icon: '<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"><path d="M48 192V64h160v128z"/><path d="M48 112h160M96 64v128M160 64v128"/><path d="m75 153 27-26 28 20 42-40"/></svg>',
+    title: "Auditoría de consistencia corporativa",
+    description:
+      "Revelación de descalces entre la promesa que su directorio define y la experiencia de servicio que el cliente recibe en terreno.",
   },
 ];
 
@@ -313,20 +336,18 @@ const relatedSolutions = [
         data-stack-section
       >
         <div class="container">
-          <div
-            class="premium-card-white"
-            style="max-width: 900px; margin: 0 auto; padding: 4rem;"
-          >
+          <div style="max-width: 900px; margin: 0 auto;">
+            <span class="eyebrow">EL RIESGO REAL</span>
             <h2
               class="text-navy"
-              style="font-size: 2.5rem; margin-bottom: 2rem; line-height: 1.2;"
+              style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;"
             >
               El riesgo de la "Identidad Fantasma": Cuando sus vendedores deben
               disculparse por su precio
             </h2>
             <p
               class="text-gray-dark leading-relaxed"
-              style="font-size: 1.2rem; margin-bottom: 2rem;"
+              style="font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.7;"
             >
               Si su mercado objetivo no percibe una diferencia clara de valor
               B2B o corporativo en su marca, su equipo de ventas se ve
@@ -335,45 +356,29 @@ const relatedSolutions = [
               directamente sus márgenes y reduciendo la rentabilidad de su
               negocio.
             </p>
-            <p
-              class="text-gray-dark leading-relaxed"
-              style="font-size: 1.1rem; margin-bottom: 2.5rem;"
-            >
-              La auditoría de percepción de marca trasciende la simple
-              recopilación de adjetivos amables. Este análisis aísla los
-              disparadores reales de confianza e insatisfacción que determinan
-              si los tomadores de decisiones en Bolivia seleccionan la propuesta
-              de su negocio o la de sus competidores.
-            </p>
-            <hr
-              style="margin: 2.5rem 0; border: 0; border-top: 1px solid rgba(11, 43, 64, 0.08);"
-            />
             <h3
-              class="text-navy"
-              style="font-size: 1.5rem; margin-bottom: 1.5rem;"
+              class="text-gray-dark"
+              style="font-size: 1.05rem; line-height: 1.7;"
             >
               Activos de posicionamiento estratégico:
             </h3>
-            <ul class="cap-list" style="font-size: 1.1rem;">
-              <li>
-                <strong class="text-navy"
-                  >Mapeo de Atributos de Decisión B2B:</strong
-                > Aislamiento de las variables no declaradas (como solidez institucional,
-                soporte técnico y continuidad operativa) que definen el cierre de
-                contratos corporativos.
-              </li>
-              <li>
-                <strong class="text-navy">Diagnóstico de Salud de Marca:</strong
-                > Medición de la lealtad y el riesgo de migración de sus clientes
-                clave antes de que la competencia los capte con ofertas agresivas.
-              </li>
-              <li>
-                <strong class="text-navy"
-                  >Auditoría de consistencia corporativa:</strong
-                > Revelación de descalces entre la promesa que su directorio define
-                y la experiencia de servicio que el cliente recibe en terreno.
-              </li>
-            </ul>
+          </div>
+
+          <AreaPanelCards
+            items={identityRiskPanels}
+            columns={3}
+            theme="navy"
+            class="identity-risk-panels"
+          />
+
+          <div
+            style="max-width: 900px; margin: 2.5rem auto 0; background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: var(--radius-md, 8px); font-weight: 600; font-size: 1.1rem; text-align: center; line-height: 1.7;"
+          >
+            La auditoría de percepción de marca trasciende la simple
+            recopilación de adjetivos amables. Este análisis aísla los
+            disparadores reales de confianza e insatisfacción que determinan si
+            los tomadores de decisiones en Bolivia seleccionan la propuesta de
+            su negocio o la de sus competidores.
           </div>
         </div>
       </section>
@@ -381,7 +386,7 @@ const relatedSolutions = [
       <!-- 🟦 3️⃣ CUÁNDO ES CRÍTICO MEDIR -->
       <section
         id="critico"
-        class="premium-section-padding bg-navy text-white"
+        class="premium-section-padding critical-section text-white"
         style="padding: 5rem 0;"
         data-stack-section
       >
@@ -406,16 +411,43 @@ const relatedSolutions = [
           />
 
           <style>
-            /* Override card background for navy section */
+            .critical-section {
+              position: relative;
+              isolation: isolate;
+              overflow: hidden;
+              background:
+                radial-gradient(circle at 12% 8%, rgba(41, 115, 145, 0.2), transparent 30%),
+                radial-gradient(circle at 88% 92%, rgba(231, 165, 72, 0.1), transparent 28%),
+                #031722;
+            }
+
+            .critical-section::before {
+              position: absolute;
+              z-index: 0;
+              inset: 0;
+              background-image: linear-gradient(rgba(184, 220, 236, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(184, 220, 236, 0.035) 1px, transparent 1px);
+              background-size: 42px 42px;
+              content: "";
+              mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+            }
+
+            .critical-section > .container {
+              position: relative;
+              z-index: 1;
+            }
+
+            /* Superficie independiente para que las tarjetas no se fundan con el fondo. */
             .critical-scenarios-cards .hover-step-card {
-              background: rgba(255, 255, 255, 0.06);
-              border: 1px solid rgba(255, 255, 255, 0.12);
+              background: rgba(13, 50, 70, 0.9);
+              border: 1px solid rgba(155, 207, 231, 0.26);
+              box-shadow: 0 18px 44px rgba(0, 8, 14, 0.22);
             }
 
             .critical-scenarios-cards .hover-step-card:hover,
             .critical-scenarios-cards .hover-step-card:focus-within {
-              background: rgba(255, 255, 255, 0.1);
-              border-color: rgba(242, 101, 34, 0.3);
+              background: rgba(18, 65, 88, 0.98);
+              border-color: rgba(231, 165, 72, 0.7);
+              box-shadow: 0 24px 52px rgba(0, 8, 14, 0.34);
             }
           </style>
         </div>
@@ -443,7 +475,7 @@ const relatedSolutions = [
               cuota visual y la recomendación B2B.
             </p>
           </div>
-          <div class="areas-grid">
+          <div class="areas-grid evaluation-grid">
             <a class="area-panel" href="#awareness">
               <span class="area-panel__icon" aria-hidden="true"
                 ><svg
@@ -601,49 +633,15 @@ const relatedSolutions = [
             </p>
           </div>
 
-          <div class="comparison-table-wrapper">
-            <table class="comparison-table">
-              <thead>
-                <tr>
-                  <th>Auditoría de Marca Tradicional</th>
-                  <th>Estudio Científico Mindtec</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Cuestionarios de imagen autodeclarativos superficiales</td
-                  >
-                  <td>Mapa perceptual multicapa integrado con neuromarketing</td
-                  >
-                </tr>
-                <tr>
-                  <td
-                    >Datos declarados racionales (sujetos a sesgo de
-                    complacencia)</td
-                  >
-                  <td
-                    >Evaluación no consciente (atención y respuesta emocional
-                    real)</td
-                  >
-                </tr>
-                <tr>
-                  <td
-                    >Reportes estadísticos planos sin traducción estratégica</td
-                  >
-                  <td
-                    >Executive brief con lineamientos específicos de
-                    posicionamiento</td
-                  >
-                </tr>
-                <tr>
-                  <td>Recomendaciones genéricas de pauta o branding</td>
-                  <td
-                    >Acompañamiento directivo integral y consultoría estratégica</td
-                  >
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <ComparisonRows
+            columnLabels={{ left: 'Auditoría de Marca Tradicional', right: 'Estudio Científico Mindtec' }}
+            rows={[
+              { before: 'Cuestionarios de imagen autodeclarativos superficiales', after: 'Mapa perceptual multicapa integrado con neuromarketing' },
+              { before: 'Datos declarados racionales (sujetos a sesgo de complacencia)', after: 'Evaluación no consciente (atención y respuesta emocional real)' },
+              { before: 'Reportes estadísticos planos sin traducción estratégica', after: 'Executive brief con lineamientos específicos de posicionamiento' },
+              { before: 'Recomendaciones genéricas de pauta o branding', after: 'Acompañamiento directivo integral y consultoría estratégica' },
+            ]}
+          />
         </div>
       </section>
 
@@ -742,6 +740,10 @@ const relatedSolutions = [
 </Layout>
 
 <style>
+  :global(.areas-grid.identity-risk-panels) {
+    margin-top: 3.5rem;
+  }
+
   .areas-grid {
     display: flex;
     flex-wrap: wrap;
@@ -893,6 +895,12 @@ const relatedSolutions = [
     transform: translateX(0);
   }
 
+  /* Seis dimensiones: dos filas balanceadas de tres en escritorio. */
+  .evaluation-grid .area-panel {
+    flex-basis: calc((100% - 2 * 0.55rem) / 3);
+    max-width: calc((100% - 2 * 0.55rem) / 3);
+  }
+
   @media (max-width: 1100px) {
     .area-panel {
       flex-basis: calc((100% - 2 * 0.55rem) / 3);
@@ -912,6 +920,11 @@ const relatedSolutions = [
       min-height: 235px;
       clip-path: none;
     }
+
+    .evaluation-grid .area-panel {
+      flex-basis: calc((100% - 0.55rem) / 2);
+      max-width: calc((100% - 0.55rem) / 2);
+    }
   }
 
   @media (max-width: 460px) {
@@ -919,6 +932,11 @@ const relatedSolutions = [
       flex-basis: 100%;
       max-width: 100%;
       min-height: 205px;
+    }
+
+    .evaluation-grid .area-panel {
+      flex-basis: 100%;
+      max-width: 100%;
     }
 
     .area-panel__icon {

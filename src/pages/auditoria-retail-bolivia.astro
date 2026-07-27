@@ -1,49 +1,99 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro';
-import FaqSplit from '../components/faq/FaqSplit.astro';
-import HoverStepCards from '../components/cards/HoverStepCards.astro';
-import AreaPanelCards from '../components/cards/AreaPanelCards.astro';
-import ScrollStoryLeft from '../components/scroll/ScrollStoryLeft.astro';
-import StackedSections from '../components/scroll/StackedSections.astro';
+import Layout from "../layouts/Layout.astro";
+import BoliviaNetworkMap from "../components/visual/BoliviaNetworkMap.astro";
+import ServiceVisualSuite from "../components/sections/ServiceVisualSuite.astro";
+import FaqSplit from "../components/faq/FaqSplit.astro";
+import HoverStepCards from "../components/cards/HoverStepCards.astro";
+import AreaPanelCards from "../components/cards/AreaPanelCards.astro";
+import ComparisonRows from "../components/cards/ComparisonRows.astro";
+import ScrollStoryLeft from "../components/scroll/ScrollStoryLeft.astro";
+import StackedSections from "../components/scroll/StackedSections.astro";
+
+const problemScenarios = [
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><rect x="40" y="64" width="176" height="128" rx="8"></rect><circle cx="88" cy="112" r="16"></circle><path d="m56 176 48-48 32 32 24-24 40 40"></path></svg>`,
+    title: "Pruebas fotográficas georreferenciadas",
+    description:
+      "Ubicación satelital y hora exacta de cada auditoría de punto de venta, eliminando reportes de escritorio falsos.",
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M48 208V96l80-48 80 48v112z"></path><path d="M80 160h96M96 128h64"></path><path d="M176 48v160"></path></svg>`,
+    title: "Cuantificación financiera de pérdidas",
+    description:
+      "Traducción de la falta de stock y pérdida de facings en costo monetario directo para su marca.",
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M128 32a72 72 0 1 0 72 72"></path><path d="M128 64v72l48 24"></path><path d="M184 40v48h-48"></path></svg>`,
+    title: "Alertas inmediatas de quiebres",
+    description:
+      "Notificaciones directas a su equipo de logística cuando se detecte un SKU agotado en una tienda o supermercado clave.",
+  },
+];
 
 const whenToAuditImg = (file: string) =>
   `/imagenes-mindtec/generated/auditoria-retail-cuando-auditar/${file}.webp`;
+
+const comparisonRows = [
+  {
+    before: "Reportada por la misma fuerza de ventas (juez y parte)",
+    after: "Evaluación objetiva realizada por auditores agnósticos",
+  },
+  {
+    before:
+      "Planillas manuales declarativas sujetas a errores y aproximaciones",
+    after: "Evidencia fotográfica georreferenciada con coordenadas satelitales",
+  },
+  {
+    before: "Información tardía consolidada de forma manual",
+    after:
+      "Dashboard interactivo de Trade Intelligence con visualización inmediata",
+  },
+  {
+    before: "Medición únicamente de la marca propia (punto ciego competitivo)",
+    after:
+      "Análisis cruzado en góndola frente a sus rivales sectoriales directos",
+  },
+];
 
 const whenToAuditItems = [
   {
     background: whenToAuditImg("item-01-descalce-estancamiento"),
     eyebrow: "Señal 01",
     title: "Descalce y Estancamiento de Ventas",
-    description: "Cuando los reportes comerciales internos de campo informan un cumplimiento del 100% en puntos de venta, pero la facturación mensual del distribuidor se mantiene estancada.",
+    description:
+      "Cuando los reportes comerciales internos de campo informan un cumplimiento del 100% en puntos de venta, pero la facturación mensual del distribuidor se mantiene estancada.",
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>`,
   },
   {
     background: whenToAuditImg("item-02-fiscalizacion-acuerdos"),
     eyebrow: "Señal 02",
     title: "Fiscalización de Acuerdos de Canal",
-    description: "Cuando su marca paga tarifas elevadas por punteras de góndola, exhibiciones especiales o islas exclusivas en cadenas de supermercados y requiere verificar de forma independiente su montaje real.",
+    description:
+      "Cuando su marca paga tarifas elevadas por punteras de góndola, exhibiciones especiales o islas exclusivas en cadenas de supermercados y requiere verificar de forma independiente su montaje real.",
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>`,
   },
   {
     background: whenToAuditImg("item-03-perdida-espacio-rival"),
     eyebrow: "Señal 03",
     title: "Pérdida de Espacio y Presión Rival",
-    description: "Cuando detecta una pérdida acelerada de cuota visual frente a competidores directos o marcas importadas de bajo precio que invaden agresivamente sus espacios lineales de góndola.",
+    description:
+      "Cuando detecta una pérdida acelerada de cuota visual frente a competidores directos o marcas importadas de bajo precio que invaden agresivamente sus espacios lineales de góndola.",
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>`,
   },
   {
     background: whenToAuditImg("item-04-roi-material-pop"),
     eyebrow: "Señal 04",
     title: "Control de ROI en Material POP",
-    description: "Al destinar presupuestos de inversión considerables a material promocional premium y requerir confirmación física de que están siendo desplegados en terreno y no desechados por el canal.",
+    description:
+      "Al destinar presupuestos de inversión considerables a material promocional premium y requerir confirmación física de que están siendo desplegados en terreno y no desechados por el canal.",
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 11 11 13 15 9"/></svg>`,
   },
   {
     background: whenToAuditImg("item-05-expansion-geografica"),
     eyebrow: "Señal 05",
     title: "Expansión Geográfica y Lanzamientos",
-    description: "Al introducir nuevos productos o códigos SKU en regiones secundarias o lejanas a su oficina central, donde no cuenta con personal propio permanente para auditar la colocación en anaquel.",
+    description:
+      "Al introducir nuevos productos o códigos SKU en regiones secundarias o lejanas a su oficina central, donde no cuenta con personal propio permanente para auditar la colocación en anaquel.",
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>`,
   },
 ];
@@ -51,32 +101,38 @@ const whenToAuditItems = [
 const auditedVariables = [
   {
     title: "Pérdida de Share of Shelf (Espacio lineal)",
-    description: "Medimos si el espacio físico negociado con los supermercados o mayoristas está siendo ocupado por competidores directos, reduciendo su probabilidad de venta.",
+    description:
+      "Medimos si el espacio físico negociado con los supermercados o mayoristas está siendo ocupado por competidores directos, reduciendo su probabilidad de venta.",
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="9" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="15"/></svg>`,
   },
   {
     title: "Deterioro de Activos (POP / Punteras)",
-    description: "Verificamos la correcta instalación y estado de sus exhibidores especiales para asegurar que la inversión en material gráfico premium no esté acumulando polvo en almacén.",
+    description:
+      "Verificamos la correcta instalación y estado de sus exhibidores especiales para asegurar que la inversión en material gráfico premium no esté acumulando polvo en almacén.",
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 11 11 13 15 9"/></svg>`,
   },
   {
     title: "Desviación de Precio Sugerido",
-    description: "Fiscalizamos que las etiquetas expuestas correspondan a la política de precios oficial para evitar pérdidas por márgenes inflados indebidamente por los distribuidores.",
+    description:
+      "Fiscalizamos que las etiquetas expuestas correspondan a la política de precios oficial para evitar pérdidas por márgenes inflados indebidamente por los distribuidores.",
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>`,
   },
   {
     title: "Quiebre de Stock (Out-Of-Stock)",
-    description: "Detectamos de inmediato el agotamiento del SKU en anaquel. Cada día de desabastecimiento es una transferencia directa de ingresos hacia la marca de la competencia.",
+    description:
+      "Detectamos de inmediato el agotamiento del SKU en anaquel. Cada día de desabastecimiento es una transferencia directa de ingresos hacia la marca de la competencia.",
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
   },
   {
     title: "Falta de Facings y Planograma",
-    description: "Verificamos el orden visual de los productos, su nivel de visibilidad (a la altura de los ojos) y que la exhibición cumpla con el planograma estratégico definido.",
+    description:
+      "Verificamos el orden visual de los productos, su nivel de visibilidad (a la altura de los ojos) y que la exhibición cumpla con el planograma estratégico definido.",
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>`,
   },
   {
     title: "Evidencia Georreferenciada",
-    description: "Todas las variables se reportan con metadatos de coordenadas GPS satelitales e imágenes in-situ no editables, garantizando la trazabilidad absoluta de la información.",
+    description:
+      "Todas las variables se reportan con metadatos de coordenadas GPS satelitales e imágenes in-situ no editables, garantizando la trazabilidad absoluta de la información.",
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>`,
   },
 ];
@@ -85,13 +141,15 @@ const crossLinkItems = [
   {
     eyebrow: "Precios",
     title: "Estudio de Precios",
-    description: "Valide científicamente la sensibilidad y el precio óptimo del consumidor final.",
+    description:
+      "Valide científicamente la sensibilidad y el precio óptimo del consumidor final.",
     href: "/estudio-de-precios-bolivia",
   },
   {
     eyebrow: "Mercado",
     title: "Estudio de Mercado",
-    description: "Amplíe su visión del canal combinándola con analítica sectorial y demográfica.",
+    description:
+      "Amplíe su visión del canal combinándola con analítica sectorial y demográfica.",
     href: "/estudio-de-mercado-bolivia",
   },
 ];
@@ -129,243 +187,365 @@ const faqItems = [
   headerLightBg={false}
 >
   <script type="application/ld+json" slot="head">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Service",
-        "name": "Auditoría Retail en Bolivia",
-        "provider": { "@type": "LocalBusiness", "name": "Mindtec Bolivia" },
-        "description": "Auditoría retail independiente en Bolivia: share of shelf, precios, POP y ejecución en punto de venta con red de 80+ auditores georreferenciados.",
-        "areaServed": ["La Paz", "Santa Cruz", "Cochabamba", "El Alto"]
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.mindtecbolivia.com/"},
-          {"@type": "ListItem", "position": 2, "name": "Servicios", "item": "https://www.mindtecbolivia.com/servicios"},
-          {"@type": "ListItem", "position": 3, "name": "Auditoría retail en Bolivia", "item": "https://www.mindtecbolivia.com/auditoria-retail-bolivia"}
-        ]
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "¿Por qué no debería encargar la auditoría a mi mismo equipo de Trade?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Existe un conflicto de interés implícito. El vendedor que acomodó el producto o el supervisor a cargo de la zona tienen incentivos para reportar que la góndola está perfecta. Mindtec le proporciona una vista neutral, revelando oportunidades reales de mejora." }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Tienen la capacidad operativa para auditar a nivel nacional en Bolivia?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Sí. Contamos con una red distribuida de más de 80 auditores que cubren el eje metropolitano troncal (Santa Cruz, La Paz, El Alto, Cochabamba) y principales centros urbanos secundarios e intermediarios, auditando tanto canal moderno como mercados populares tradicionales." }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Cómo garantizan la veracidad de la información de campo?",
-            "acceptedAnswer": { "@type": "Answer", "text": "A través de tecnología digital georreferenciada. Cada auditor utiliza la plataforma de Mindtec para capturar fotos in-situ; el sistema inyecta automáticamente la ubicación GPS satelital y la marca de tiempo, previniendo alteraciones de datos." }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Qué sucede ante detecciones críticas como quiebre de stock o distorsiones de precio?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Emitimos alertas rápidas en el dashboard estratégico. Esto permite a sus gerentes de canal o supervisores de distribución contactar a la cadena de inmediato para corregir el desabastecimiento o la desviación de precio sugerido." }
-          }
-        ]
-      }
-    ]
-  }
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Service",
+          "name": "Auditoría Retail en Bolivia",
+          "provider": { "@type": "LocalBusiness", "name": "Mindtec Bolivia" },
+          "description": "Auditoría retail independiente en Bolivia: share of shelf, precios, POP y ejecución en punto de venta con red de 80+ auditores georreferenciados.",
+          "areaServed": ["La Paz", "Santa Cruz", "Cochabamba", "El Alto"]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Inicio",
+              "item": "https://www.mindtecbolivia.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Servicios",
+              "item": "https://www.mindtecbolivia.com/servicios"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Auditoría retail en Bolivia",
+              "item": "https://www.mindtecbolivia.com/auditoria-retail-bolivia"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Por qué no debería encargar la auditoría a mi mismo equipo de Trade?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Existe un conflicto de interés implícito. El vendedor que acomodó el producto o el supervisor a cargo de la zona tienen incentivos para reportar que la góndola está perfecta. Mindtec le proporciona una vista neutral, revelando oportunidades reales de mejora."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Tienen la capacidad operativa para auditar a nivel nacional en Bolivia?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí. Contamos con una red distribuida de más de 80 auditores que cubren el eje metropolitano troncal (Santa Cruz, La Paz, El Alto, Cochabamba) y principales centros urbanos secundarios e intermediarios, auditando tanto canal moderno como mercados populares tradicionales."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cómo garantizan la veracidad de la información de campo?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A través de tecnología digital georreferenciada. Cada auditor utiliza la plataforma de Mindtec para capturar fotos in-situ; el sistema inyecta automáticamente la ubicación GPS satelital y la marca de tiempo, previniendo alteraciones de datos."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Qué sucede ante detecciones críticas como quiebre de stock o distorsiones de precio?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Emitimos alertas rápidas en el dashboard estratégico. Esto permite a sus gerentes de canal o supervisores de distribución contactar a la cadena de inmediato para corregir el desabastecimiento o la desviación de precio sugerido."
+              }
+            }
+          ]
+        }
+      ]
+    }
   </script>
   <main>
     <StackedSections>
-    <!-- 🟦 1️⃣ HERO -->
-    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;" data-stack-section>
-      <!-- Geometric floating shapes (always visible, CSS-animated) -->
-      <div class="hero-shapes" aria-hidden="true">
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-      </div>
-      <!-- Mobile-first neural canvas background -->
-      <div class="hero-mobile-canvas" id="hero-mobile-canvas" aria-hidden="true"></div>
-      <div class="container hero-container">
-        <div class="hero-content">
-          <span class="eyebrow fade-in">INTELIGENCIA EN PUNTO DE VENTA (TRADE INTELLIGENCE)</span>
-          <span class="freshness-tag">Actualizado: julio 2026</span>
-          <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;">
-            Auditoría Retail en Bolivia
-          </h1>
-          <div class="direct-answer-box">
-            <strong>En resumen</strong>
-            <p>Mindtec ofrece auditoría retail independiente en Bolivia: share of shelf, precios, POP y ejecución en punto de venta con una red de 80+ auditores georreferenciados.</p>
-          </div>
-          <p class="hero-subtitle" style="font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 800px;">
-            La planificación estratégica no sobrevive a una ejecución deficiente. Auditamos la realidad de sus pasillos comerciales para cerrar la brecha entre la junta directiva y el punto de compra.
-            <br><br>
-            <span style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.75);">Monitoree share of shelf, quiebres de stock, material POP y precios en góndola a través de evidencia física auditada de forma objetiva.</span>
-          </p>
-          <div class="cta-actions" style="margin-top: 2rem;">
-            <a href="/contacto" class="btn btn-primary lg">Agendar sesión de diagnóstico (45 min)</a>
-          </div>
-          <p style="margin-top: 1rem; font-size: 0.9rem; color: #64748b; font-weight: 500;">Sesión estratégica: 45 minutos | Trazabilidad georreferenciada | Sin compromiso</p>
+      <!-- 🟦 1️⃣ HERO -->
+      <section
+        class="hero-section"
+        style="padding-bottom: 4rem; padding-top: 4rem;"
+        data-stack-section
+      >
+        <!-- Geometric floating shapes (always visible, CSS-animated) -->
+        <div class="hero-shapes" aria-hidden="true">
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
         </div>
-        <div class="hero-visual">
-          <div class="glass-card main-visual">
-            <div class="neuro-visual-bg" style="background-image: url('/heroes/hero-auditoria-retail-bolivia.jpg');"></div>
+        <!-- Mobile-first neural canvas background -->
+        <div
+          class="hero-mobile-canvas"
+          id="hero-mobile-canvas"
+          aria-hidden="true"
+        >
+        </div>
+        <div class="container hero-container">
+          <div class="hero-content">
+            <span class="eyebrow fade-in"
+              >INTELIGENCIA EN PUNTO DE VENTA (TRADE INTELLIGENCE)</span
+            >
+            <span class="freshness-tag">Actualizado: julio 2026</span>
+            <h1
+              class="hero-title"
+              style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;"
+            >
+              Auditoría Retail en Bolivia
+            </h1>
+            <div class="direct-answer-box">
+              <strong>En resumen</strong>
+              <p>
+                Mindtec ofrece auditoría retail independiente en Bolivia: share
+                of shelf, precios, POP y ejecución en punto de venta con una red
+                de 80+ auditores georreferenciados.
+              </p>
+            </div>
+            <p
+              class="hero-subtitle"
+              style="font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 800px;"
+            >
+              La planificación estratégica no sobrevive a una ejecución
+              deficiente. Auditamos la realidad de sus pasillos comerciales para
+              cerrar la brecha entre la junta directiva y el punto de compra.
+              <br /><br />
+              <span style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.75);"
+                >Monitoree share of shelf, quiebres de stock, material POP y
+                precios en góndola a través de evidencia física auditada de
+                forma objetiva.</span
+              >
+            </p>
+            <div class="cta-actions" style="margin-top: 2rem;">
+              <a href="/contacto" class="btn btn-primary lg"
+                >Agendar sesión de diagnóstico (45 min)</a
+              >
+            </div>
+            <p
+              style="margin-top: 1rem; font-size: 0.9rem; color: #64748b; font-weight: 500;"
+            >
+              Sesión estratégica: 45 minutos | Trazabilidad georreferenciada |
+              Sin compromiso
+            </p>
+          </div>
+          <div class="hero-visual">
+            <div class="glass-card main-visual">
+              <div
+                class="neuro-visual-bg"
+                style="background-image: url('/heroes/hero-auditoria-retail-bolivia.jpg');"
+              >
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <div data-stack-section>
-      <ServiceVisualSuite variant="retail" />
-    </div>
+      <div data-stack-section>
+        <ServiceVisualSuite variant="retail" />
+      </div>
     </StackedSections>
 
     <!-- MINI NAVEGACIÓN ANCLAS -->
-    <div style="background: rgba(11, 43, 64, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 1.25rem 0; position: sticky; top: 80px; z-index: 999; backdrop-filter: blur(10px);">
-      <div class="container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; align-items: center; font-size: 0.92rem; font-weight: 600; color: rgba(255, 255, 255, 0.7);">
-        <span style="color: var(--color-primary); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 1.5px; font-weight: 800;">En esta página:</span>
-        <a href="#problema" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">Reducción de Pérdidas</a>
+    <div
+      style="background: rgba(11, 43, 64, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 1.25rem 0; position: sticky; top: 80px; z-index: 999; backdrop-filter: blur(10px);"
+    >
+      <div
+        class="container"
+        style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; align-items: center; font-size: 0.92rem; font-weight: 600; color: rgba(255, 255, 255, 0.7);"
+      >
+        <span
+          style="color: var(--color-primary); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 1.5px; font-weight: 800;"
+          >En esta página:</span
+        >
+        <a
+          href="#problema"
+          style="color: #fff; text-decoration: none; transition: color 0.3s;"
+          onmouseover="this.style.color='var(--color-primary)'"
+          onmouseout="this.style.color='#fff'">Reducción de Pérdidas</a
+        >
         <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-        <a href="#variables" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">Variables Auditadas</a>
+        <a
+          href="#variables"
+          style="color: #fff; text-decoration: none; transition: color 0.3s;"
+          onmouseover="this.style.color='var(--color-primary)'"
+          onmouseout="this.style.color='#fff'">Variables Auditadas</a
+        >
         <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-        <a href="#cobertura" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">Mapa de Cobertura</a>
+        <a
+          href="#cobertura"
+          style="color: #fff; text-decoration: none; transition: color 0.3s;"
+          onmouseover="this.style.color='var(--color-primary)'"
+          onmouseout="this.style.color='#fff'">Mapa de Cobertura</a
+        >
         <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-        <a href="#necesidad" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">Cuándo Auditar</a>
+        <a
+          href="#necesidad"
+          style="color: #fff; text-decoration: none; transition: color 0.3s;"
+          onmouseover="this.style.color='var(--color-primary)'"
+          onmouseout="this.style.color='#fff'">Cuándo Auditar</a
+        >
         <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-        <a href="#comparativa" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">Interno vs. Mindtec</a>
+        <a
+          href="#comparativa"
+          style="color: #fff; text-decoration: none; transition: color 0.3s;"
+          onmouseover="this.style.color='var(--color-primary)'"
+          onmouseout="this.style.color='#fff'">Interno vs. Mindtec</a
+        >
         <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-        <a href="#faqs" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">FAQs</a>
+        <a
+          href="#faqs"
+          style="color: #fff; text-decoration: none; transition: color 0.3s;"
+          onmouseover="this.style.color='var(--color-primary)'"
+          onmouseout="this.style.color='#fff'">FAQs</a
+        >
       </div>
     </div>
 
     <StackedSections>
-    <!-- 🟦 2️⃣ REDUCCIÓN DE PÉRDIDAS DE EJECUCIÓN -->
-    <section id="problema" class="problem-section bg-slate" style="padding: 5rem 0;" data-stack-section>
-      <div class="container" style="max-width: 1100px;">
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); grid-template-rows: auto 1fr; gap: 1.5rem; align-items: stretch;">
-          <div class="premium-card-white" style="padding: 2.5rem; margin-bottom: 0; grid-row: 1 / 3;">
-            <h2 class="text-navy" style="font-size: 2rem; margin-bottom: 1.25rem; line-height: 1.25;">El auto-reporte del canal es un punto ciego: ¿Su fuerza de ventas es juez y parte?</h2>
-            <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; margin-bottom: 1.25rem;">
-              Confiar la auditoría de ejecución a sus propios distribuidores o a su equipo comercial interno genera un conflicto de intereses implícito. Los vendedores y supervisores tienen incentivos para reportar que todo está en orden, ocultando los problemas reales de distribución y desabastecimiento.
+      <!-- 🟦 2️⃣ EL PROBLEMA REAL -->
+      <section
+        id="problema"
+        class="bg-slate"
+        style="padding: 5rem 0;"
+        data-stack-section
+      >
+        <div class="container">
+          <div style="max-width: 900px; margin: 0 auto;">
+            <span class="eyebrow">EL PROBLEMA REAL</span>
+            <h2
+              class="text-navy"
+              style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;"
+            >
+              El auto-reporte del canal es un punto ciego: ¿Su fuerza de ventas
+              es juez y parte?
+            </h2>
+            <p
+              class="text-gray-dark leading-relaxed"
+              style="font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.7;"
+            >
+              Confiar la auditoría de ejecución a sus propios distribuidores o a
+              su equipo comercial interno genera un conflicto de intereses
+              implícito. Los vendedores y supervisores tienen incentivos para
+              reportar que todo está en orden, ocultando los problemas reales de
+              distribución y desabastecimiento.
             </p>
-            <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; margin-bottom: 1.5rem;">
-              Una auditoría retail independiente desactiva este sesgo. La red de campo de Mindtec actúa como ojos neutrales en el anaquel, recolectando evidencia física innegable y trazable para justificar las inversiones de Trade Marketing de su empresa.
+            <p
+              class="text-gray-dark leading-relaxed"
+              style="font-size: 1.05rem; line-height: 1.7;"
+            >
+              ¿Reconoce alguno de estos escenarios?
             </p>
           </div>
-          <div style="position: relative; width: 100%; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid rgba(11, 43, 64, 0.1);">
-            <img src="/heroes/hero-auditoria-retail-bolivia.jpg" alt="Auditoría comercial en punto de venta (Retail Audit) - Mindtec" style="width: 100%; height: 100%; object-fit: cover; display: block;" loading="lazy">
-          </div>
-          <div class="premium-card-white" style="padding: 2rem;">
-            <h3 class="text-navy" style="font-size: 1.25rem; margin-bottom: 0.75rem;">Activos tácticos de control:</h3>
-            <ul class="cap-list" style="font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.5rem;">
-              <li><strong class="text-navy">Pruebas fotográficas georreferenciadas:</strong> Ubicación satelital y hora exacta de cada auditoría de punto de venta, eliminando reportes de escritorio falsos.</li>
-              <li><strong class="text-navy">Cuantificación financiera de pérdidas:</strong> Traducción de la falta de stock y pérdida de facings en costo monetario directo para su marca.</li>
-              <li><strong class="text-navy">Alertas inmediatas de quiebres:</strong> Notificaciones directas a su equipo de logística cuando se detecte un SKU agotado en una tienda o supermercado clave.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- 🟦 3️⃣ VARIABLES AUDITADAS -->
-    <section id="variables" class="premium-section-padding bg-slate" style="padding: 5rem 0; background: #f8fafc;" data-stack-section>
-      <div class="container">
-        <div class="section-title-center" style="margin-bottom: 4rem; text-align: center;">
-          <h2 class="text-navy" style="font-size: 2.5rem; line-height: 1.2;">Mapeando variables críticas en punto de venta: De la góndola al balance general</h2>
-          <p class="text-gray-dark" style="font-size: 1.1rem; margin-top: 1rem;">Cada centímetro de visibilidad y cada día de agotados afecta directamente su margen de utilidad.</p>
-        </div>
-        <AreaPanelCards items={auditedVariables} columns={3} />
-      </div>
-    </section>
+          <AreaPanelCards
+            items={problemScenarios}
+            columns={3}
+            theme="navy"
+            class="problem-panels"
+          />
 
-    <!-- 🟦 4️⃣ COBERTURA RED DE CAMPO -->
-    <section id="cobertura" class="premium-section-padding bg-navy text-white" style="padding: 6rem 0;" data-stack-section>
-      <div class="container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 4rem; align-items: center;">
-        <div>
-          <h2 class="text-white" style="font-size: 2.2rem; margin-bottom: 1.5rem;">Cobertura de la red de campo de Mindtec</h2>
-          <p style="font-size: 1.1rem; color: rgba(255,255,255,0.85); line-height: 1.7; margin-bottom: 2rem;">
-            Operamos con una red activa de más de <strong>80 auditores distribuidos</strong> estratégicamente en La Paz, El Alto, Santa Cruz, Cochabamba y las principales ciudades intermedias de Bolivia.
-          </p>
-          <p style="font-size: 1.1rem; color: rgba(255,255,255,0.85); line-height: 1.7; margin-bottom: 2.5rem;">
-            Eliminamos el sesgo del auto-reporte del distribuidor o de su propio equipo de ventas comerciales. Obtenga reportes independientes y fiables para sus comités ejecutivos.
-          </p>
-          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-            <span style="background: rgba(255,255,255,0.06); color: #fff; border: 1px solid rgba(255,255,255,0.12); padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.9rem; font-weight: 600;">Canal Moderno (Cadenas y Supermercados)</span>
-            <span style="background: rgba(255,255,255,0.06); color: #fff; border: 1px solid rgba(255,255,255,0.12); padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.9rem; font-weight: 600;">Canal Tradicional (Mercados y Tiendas)</span>
+          <div
+            style="max-width: 900px; margin: 2.5rem auto 0; background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: var(--radius-md, 8px); font-weight: 600; font-size: 1.1rem; text-align: center;"
+          >
+            Una auditoría retail independiente desactiva este sesgo. La red de
+            campo de Mindtec actúa como ojos neutrales en el anaquel,
+            recolectando evidencia física innegable y trazable para justificar
+            sus inversiones de Trade Marketing.
           </div>
         </div>
-        <div style="text-align: center; position: relative; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 3rem; box-shadow: var(--shadow-lg);">
-          <!-- SVG Network Map Polished -->
-          <svg viewBox="0 0 400 300" width="100%" height="auto" style="max-width: 350px; display: block; margin: 0 auto;" aria-label="Mapa de cobertura de auditores Mindtec en Bolivia">
-            <defs>
-              <radialGradient id="glowGrad" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#FF6600" stop-opacity="0.4" />
-                <stop offset="100%" stop-color="#FF6600" stop-opacity="0" />
-              </radialGradient>
-            </defs>
-            
-            <circle cx="200" cy="150" r="120" fill="none" stroke="rgba(242, 101, 34, 0.15)" stroke-width="2" stroke-dasharray="10 5" />
-            <circle cx="200" cy="150" r="80" fill="none" stroke="rgba(242, 101, 34, 0.25)" stroke-width="1" />
-            
-            <!-- SCZ -->
-            <line x1="200" y1="150" x2="270" y2="120" stroke="rgba(255, 255, 255, 0.15)" stroke-width="2" stroke-linecap="round" />
-            <circle cx="270" cy="120" r="20" fill="url(#glowGrad)" />
-            <circle cx="270" cy="120" r="6" fill="#F26522" />
-            <circle cx="270" cy="120" r="12" fill="none" stroke="#F26522" stroke-width="1.5" class="pulse-node" />
-            <text x="270" y="95" text-anchor="middle" fill="#fff" font-family="'Outfit', sans-serif" font-size="12" font-weight="700">Santa Cruz</text>
+      </section>
 
-            <!-- LPZ -->
-            <line x1="200" y1="150" x2="110" y2="90" stroke="rgba(255, 255, 255, 0.15)" stroke-width="2" stroke-linecap="round" />
-            <circle cx="110" cy="90" r="16" fill="url(#glowGrad)" />
-            <circle cx="110" cy="90" r="6" fill="#F26522" />
-            <circle cx="110" cy="90" r="12" fill="none" stroke="#F26522" stroke-width="1.5" class="pulse-node" />
-            <text x="110" y="65" text-anchor="middle" fill="#fff" font-family="'Outfit', sans-serif" font-size="12" font-weight="700">La Paz / El Alto</text>
-
-            <!-- CBB -->
-            <line x1="200" y1="150" x2="140" y2="210" stroke="rgba(255, 255, 255, 0.15)" stroke-width="2" stroke-linecap="round" />
-            <circle cx="140" cy="210" r="16" fill="url(#glowGrad)" />
-            <circle cx="140" cy="210" r="6" fill="#F26522" />
-            <circle cx="140" cy="210" r="12" fill="none" stroke="#F26522" stroke-width="1.5" class="pulse-node" />
-            <text x="140" y="235" text-anchor="middle" fill="#fff" font-family="'Outfit', sans-serif" font-size="12" font-weight="700">Cochabamba</text>
-
-            <!-- Centered Hub -->
-            <circle cx="200" cy="150" r="5" fill="#fff" />
-            <circle cx="200" cy="150" r="10" fill="none" stroke="rgba(255, 255, 255, 0.4)" stroke-width="1" />
-
-            <!-- Otros nodos auxiliares -->
-            <line x1="200" y1="150" x2="290" y2="220" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" />
-            <circle cx="290" cy="220" r="4" fill="rgba(255, 255, 255, 0.4)" />
-            <line x1="200" y1="150" x2="90" y2="170" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" />
-            <circle cx="90" cy="170" r="4" fill="rgba(255, 255, 255, 0.4)" />
-            
-            <style>
-              @keyframes pulse-ring {
-                0% { transform: scale(0.6); opacity: 1; }
-                100% { transform: scale(1.6); opacity: 0; }
-              }
-              .pulse-node {
-                transform-origin: center;
-                animation: pulse-ring 2.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
-              }
-            </style>
-          </svg>
+      <!-- 🟦 3️⃣ VARIABLES AUDITADAS -->
+      <section
+        id="variables"
+        class="premium-section-padding bg-slate"
+        style="padding: 5rem 0; background: #f8fafc;"
+        data-stack-section
+      >
+        <div class="container">
+          <div
+            class="section-title-center"
+            style="margin-bottom: 4rem; text-align: center;"
+          >
+            <h2 class="text-navy" style="font-size: 2.5rem; line-height: 1.2;">
+              Mapeando variables críticas en punto de venta: De la góndola al
+              balance general
+            </h2>
+            <p
+              class="text-gray-dark"
+              style="font-size: 1.1rem; margin-top: 1rem;"
+            >
+              Cada centímetro de visibilidad y cada día de agotados afecta
+              directamente su margen de utilidad.
+            </p>
+          </div>
+          <AreaPanelCards items={auditedVariables} columns={3} />
         </div>
-      </div>
-    </section>
+      </section>
+
+      <!-- 🟦 4️⃣ COBERTURA RED DE CAMPO -->
+      <section
+        id="cobertura"
+        class="premium-section-padding bg-navy text-white"
+        style="padding: 6rem 0;"
+        data-stack-section
+      >
+        <div
+          class="container"
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 4rem; align-items: center;"
+        >
+          <div>
+            <h2
+              class="text-white"
+              style="font-size: 2.2rem; margin-bottom: 1.5rem;"
+            >
+              Cobertura de la red de campo de Mindtec
+            </h2>
+            <p
+              style="font-size: 1.1rem; color: rgba(255,255,255,0.85); line-height: 1.7; margin-bottom: 2rem;"
+            >
+              Operamos con una red activa de más de <strong
+                >80 auditores distribuidos</strong
+              > estratégicamente en La Paz, El Alto, Santa Cruz, Cochabamba y las
+              principales ciudades intermedias de Bolivia.
+            </p>
+            <p
+              style="font-size: 1.1rem; color: rgba(255,255,255,0.85); line-height: 1.7; margin-bottom: 2.5rem;"
+            >
+              Eliminamos el sesgo del auto-reporte del distribuidor o de su
+              propio equipo de ventas comerciales. Obtenga reportes
+              independientes y fiables para sus comités ejecutivos.
+            </p>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+              <span
+                style="background: rgba(255,255,255,0.06); color: #fff; border: 1px solid rgba(255,255,255,0.12); padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.9rem; font-weight: 600;"
+                >Canal Moderno (Cadenas y Supermercados)</span
+              >
+              <span
+                style="background: rgba(255,255,255,0.06); color: #fff; border: 1px solid rgba(255,255,255,0.12); padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.9rem; font-weight: 600;"
+                >Canal Tradicional (Mercados y Tiendas)</span
+              >
+            </div>
+          </div>
+          <div
+            style="display: flex; align-items: center; justify-content: center; position: relative;  padding: 3rem; box-shadow: var(--shadow-lg);"
+          >
+            <BoliviaNetworkMap size="clamp(260px, 26vw, 350px)" />
+          </div>
+        </div>
+      </section>
     </StackedSections>
 
     <!-- 🟦 5️⃣ CUÁNDO SE NECESITA AUDITAR -->
@@ -380,97 +560,148 @@ const faqItems = [
         background: whenToAuditImg("cover"),
         eyebrow: "Señales de alerta",
         title: "Cuándo es crítico intervenir con una auditoría externa.",
-        description: "Esté alerta ante las señales de desconexión entre la directiva comercial y la góndola real.",
+        description:
+          "Esté alerta ante las señales de desconexión entre la directiva comercial y la góndola real.",
       }}
       intro={{
         background: whenToAuditImg("intro"),
         number: "00",
         eyebrow: "Diagnóstico rápido",
         title: "Cinco señales que anticipan la necesidad de auditar su canal.",
-        description: "Recorra las señales de alerta más comunes que detectamos antes de que se conviertan en pérdidas de ingresos.",
+        description:
+          "Recorra las señales de alerta más comunes que detectamos antes de que se conviertan en pérdidas de ingresos.",
       }}
       items={whenToAuditItems}
     />
 
     <StackedSections>
-    <!-- 🟦 6️⃣ TABLA COMPARATIVA -->
-    <section id="comparativa" class="premium-section-padding bg-slate" style="padding: 5rem 0; background: #fff;" data-stack-section>
-      <div class="container">
-        <div class="section-title-center" style="max-width: 800px; margin: 0 auto 3rem auto; text-align: center;">
-          <h2 class="text-navy" style="font-size: 2.2rem; color: var(--color-secondary);">Por qué separar la auditoría del equipo de ventas</h2>
-          <p class="text-gray-dark" style="font-size: 1.1rem; margin-top: 1rem;">El vendedor o distribuidor no puede ser juez y parte del cumplimiento del canal.</p>
-        </div>
-        
-        <div class="comparison-table-wrapper">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th>Auditoría Interna / Autoreportada</th>
-                <th>Auditoría Retail Independiente Mindtec</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Reportada por la misma fuerza de ventas (juez y parte)</td>
-                <td>Evaluación objetiva realizada por auditores agnósticos</td>
-              </tr>
-              <tr>
-                <td>Planillas manuales declarativas sujetas a errores y aproximaciones</td>
-                <td>Evidencia fotográfica georreferenciada con coordenadas satelitales</td>
-              </tr>
-              <tr>
-                <td>Información tardía consolidada de forma manual</td>
-                <td>Dashboard interactivo de Trade Intelligence con visualización inmediata</td>
-              </tr>
-              <tr>
-                <td>Medición únicamente de la marca propia (punto ciego competitivo)</td>
-                <td>Análisis cruzado en góndola frente a sus rivales sectoriales directos</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-    
-    <!-- 🟦 7️⃣ PREGUNTAS FRECUENTES (FAQ) -->
-    <div data-stack-section>
-      <FaqSplit id="faqs" title="Preguntas Frecuentes" items={faqItems} />
-    </div>
+      <!-- 🟦 6️⃣ TABLA COMPARATIVA -->
+      <section
+        id="comparativa"
+        class="premium-section-padding bg-slate"
+        style="padding: 5rem 0; background: #fff;"
+        data-stack-section
+      >
+        <div class="container">
+          <div
+            class="section-title-center"
+            style="text-align: center; margin-bottom: 3rem;"
+          >
+            <span class="eyebrow">AUDITORÍA INDEPENDIENTE</span>
+            <h2
+              class="text-navy"
+              style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;"
+            >
+              Por qué separar la auditoría del equipo de ventas
+            </h2>
+          </div>
 
-    <!-- 🟦 8️⃣ CROSS-LINKING ESTRATÉGICO -->
-    <section class="premium-section-padding bg-slate" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;" data-stack-section>
-      <div class="container" style="max-width: 900px;">
-        <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">Otras soluciones de inteligencia relacionadas</h3>
-        <HoverStepCards items={crossLinkItems} minColumnWidth="280px" />
-      </div>
-    </section>
+          <ComparisonRows
+            columnLabels={{
+              left: "Auditoría Interna / Autoreportada",
+              right: "Auditoría Retail Independiente Mindtec",
+            }}
+            rows={comparisonRows}
+          />
 
-    <!-- 🟦 9️⃣ CTA FINAL -->
-    <section class="cta-section-modern" style="padding: 6rem 0;" data-stack-section>
-      <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
-        <div class="cta-content-v2">
-          <h2 style="font-size: 3rem; line-height: 1.25; margin-bottom: 1.5rem;">Retome el control del canal y evite subsidiar la ineficiencia.</h2>
-          <p class="cta-subtitle" style="font-size: 1.25rem; margin-bottom: 2.5rem; opacity: 0.9;">
-            Programe una sesión de mapeo estratégico para auditar la ejecución de sus SKUs a nivel nacional.
+          <p
+            class="text-gray-dark"
+            style="font-size: 1.05rem; margin-top: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.7;"
+          >
+            El vendedor o distribuidor no puede ser juez y parte del
+            cumplimiento del canal.
           </p>
-          <div class="cta-actions" style="justify-content: center; flex-direction: column; align-items: center;">
-            <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar sesión de diagnóstico (45 min)</a>
-            <p style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">Sesión inicial: 45 minutos | Plan de cobertura preliminar | Confidencial</p>
+        </div>
+      </section>
+
+      <!-- 🟦 7️⃣ PREGUNTAS FRECUENTES (FAQ) -->
+      <div data-stack-section>
+        <FaqSplit id="faqs" title="Preguntas Frecuentes" items={faqItems} />
+      </div>
+
+      <!-- 🟦 8️⃣ CROSS-LINKING ESTRATÉGICO -->
+      <section
+        class="premium-section-padding bg-slate"
+        style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;"
+        data-stack-section
+      >
+        <div class="container" style="max-width: 900px;">
+          <h3
+            class="text-navy"
+            style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;"
+          >
+            Otras soluciones de inteligencia relacionadas
+          </h3>
+          <HoverStepCards items={crossLinkItems} minColumnWidth="280px" />
+        </div>
+      </section>
+
+      <!-- 🟦 9️⃣ CTA FINAL -->
+      <section
+        class="cta-section-modern"
+        style="padding: 6rem 0;"
+        data-stack-section
+      >
+        <div
+          class="container"
+          style="max-width: 900px; margin: 0 auto; text-align: center;"
+        >
+          <div class="cta-content-v2">
+            <h2
+              style="font-size: 3rem; line-height: 1.25; margin-bottom: 1.5rem;"
+            >
+              Retome el control del canal y evite subsidiar la ineficiencia.
+            </h2>
+            <p
+              class="cta-subtitle"
+              style="font-size: 1.25rem; margin-bottom: 2.5rem; opacity: 0.9;"
+            >
+              Programe una sesión de mapeo estratégico para auditar la ejecución
+              de sus SKUs a nivel nacional.
+            </p>
+            <div
+              class="cta-actions"
+              style="justify-content: center; flex-direction: column; align-items: center;"
+            >
+              <a
+                href="/contacto"
+                class="btn btn-primary lg"
+                style="font-size: 1.1rem; padding: 1rem 2.5rem;"
+                >Agendar sesión de diagnóstico (45 min)</a
+              >
+              <p
+                style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;"
+              >
+                Sesión inicial: 45 minutos | Plan de cobertura preliminar |
+                Confidencial
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
     </StackedSections>
 
     <!-- BREADCRUMB -->
     <nav aria-label="Breadcrumb" class="breadcrumb-bottom">
       <div class="container">
         <ol>
-          <li><a href="/" style="color: rgba(255,255,255,0.6); text-decoration: none;">Inicio</a></li>
+          <li>
+            <a
+              href="/"
+              style="color: rgba(255,255,255,0.6); text-decoration: none;"
+              >Inicio</a>
+          </li>
           <li style="color: rgba(255,255,255,0.3);">›</li>
-          <li><a href="/servicios" style="color: rgba(255,255,255,0.6); text-decoration: none;">Servicios</a></li>
+          <li>
+            <a
+              href="/servicios"
+              style="color: rgba(255,255,255,0.6); text-decoration: none;"
+              >Servicios</a>
+          </li>
           <li style="color: rgba(255,255,255,0.3);">›</li>
-          <li aria-current="page" style="color: #fff; font-weight: 600;">Auditoría retail en Bolivia</li>
+          <li aria-current="page" style="color: #fff; font-weight: 600;">
+            Auditoría retail en Bolivia
+          </li>
         </ol>
       </div>
     </nav>

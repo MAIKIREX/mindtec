@@ -27,7 +27,20 @@ interface ScrollStoryIntro {
   descriptionColor?: string;
 }
 
-type StoryIcon = "airport" | "road" | "building" | "services";
+type StoryIcon = "airport" | "road" | "building" | "services" | "report" | "segments" | "funnel" | "chart" | "database" | "presentation";
+
+const BUILT_IN_ICONS: readonly string[] = [
+  "airport",
+  "road",
+  "building",
+  "services",
+  "report",
+  "segments",
+  "funnel",
+  "chart",
+  "database",
+  "presentation",
+];
 
 interface ScrollStoryItem {
   background: string;
@@ -35,7 +48,8 @@ interface ScrollStoryItem {
   eyebrow?: string;
   title: string;
   description: string;
-  icon?: StoryIcon;
+  /** Uno de los íconos predefinidos, o markup SVG crudo (viewBox 0 0 24 24, sin stroke/fill inline). */
+  icon?: StoryIcon | string;
   /** Chip de texto corto (p.ej. "Intelligence"). Alternativa a icon cuando no encaja con el dominio. */
   badge?: string;
   eyebrowColor?: string;
@@ -78,6 +92,24 @@ const {
 } = Astro.props;
 
 const totalItems = items.length;
+
+/*
+ * .scroll-story__intro-heading h2 usa una tipografía de display muy
+ * grande (hasta 7.5rem) pensada para frases cortas de impacto. Cuando
+ * intro.title es una oración larga, ese tamaño desborda verticalmente
+ * la tarjeta (recortada por overflow:hidden) y solo se alcanza a ver
+ * un fragmento. Reducimos el tamaño según el largo del texto para que
+ * siempre entre completo, sin tocar el tratamiento grande de los
+ * títulos cortos ya usados en otras páginas.
+ */
+const introTitleLength = intro.title?.length ?? 0;
+const introTitleFontSize =
+  introTitleLength > 70
+    ? "clamp(1.3rem, 2.4vw, 2.3rem)"
+    : introTitleLength > 45
+      ? "clamp(1.7rem, 3.2vw, 3.2rem)"
+      : undefined;
+const introTitleLineHeight = introTitleFontSize ? "1.15" : undefined;
 ---
 
 <section
@@ -173,7 +205,11 @@ const totalItems = items.length;
               )
             }
 
-            <h2 style={`color:${intro.titleColor ?? cardTextColor};`}>{intro.title}</h2>
+            <h2
+              style={`color:${intro.titleColor ?? cardTextColor};${introTitleFontSize ? `font-size:${introTitleFontSize};` : ""}${introTitleLineHeight ? `line-height:${introTitleLineHeight};` : ""}`}
+            >
+              {intro.title}
+            </h2>
           </div>
 
           <div class="scroll-story__intro-description">
@@ -258,6 +294,79 @@ const totalItems = items.length;
                     <path d="M77 144 L64 157" />
                     <path d="M143 144 L156 157" />
                   </svg>
+                )}
+
+                {item.icon === "report" && (
+                  <svg viewBox="0 0 220 220" aria-hidden="true">
+                    <rect x="55" y="40" width="110" height="140" rx="4" />
+                    <path d="M75 70 H145" />
+                    <path d="M75 95 H145" />
+                    <path d="M75 120 H145" />
+                    <path d="M75 145 H115" />
+                    <circle cx="160" cy="150" r="18" />
+                    <path d="M152 150 L158 156 L168 144" />
+                  </svg>
+                )}
+
+                {item.icon === "segments" && (
+                  <svg viewBox="0 0 220 220" aria-hidden="true">
+                    <circle cx="110" cy="110" r="55" />
+                    <path d="M110 55 V165" />
+                    <path d="M55 110 H165" />
+                    <circle cx="85" cy="85" r="8" />
+                    <circle cx="135" cy="85" r="8" />
+                    <circle cx="85" cy="135" r="8" />
+                    <circle cx="135" cy="135" r="8" />
+                  </svg>
+                )}
+
+                {item.icon === "funnel" && (
+                  <svg viewBox="0 0 220 220" aria-hidden="true">
+                    <path d="M40 50 L180 50 L125 110 L125 170 L95 170 L95 110 Z" />
+                    <path d="M55 65 L165 65" />
+                    <path d="M70 80 L150 80" />
+                  </svg>
+                )}
+
+                {item.icon === "chart" && (
+                  <svg viewBox="0 0 220 220" aria-hidden="true">
+                    <rect x="45" y="100" width="25" height="75" />
+                    <rect x="82" y="70" width="25" height="105" />
+                    <rect x="119" y="50" width="25" height="125" />
+                    <rect x="156" y="85" width="25" height="90" />
+                    <line x1="40" y1="185" x2="185" y2="185" />
+                  </svg>
+                )}
+
+                {item.icon === "database" && (
+                  <svg viewBox="0 0 220 220" aria-hidden="true">
+                    <ellipse cx="110" cy="55" rx="50" ry="18" />
+                    <path d="M60 55 V95 C60 105 160 105 160 95 V55" />
+                    <path d="M60 95 V135 C60 145 160 145 160 135 V95" />
+                    <path d="M60 135 V165 C60 175 160 175 160 165 V135" />
+                    <path d="M75 80 H145" />
+                    <path d="M75 120 H145" />
+                    <path d="M75 150 H145" />
+                  </svg>
+                )}
+
+                {item.icon === "presentation" && (
+                  <svg viewBox="0 0 220 220" aria-hidden="true">
+                    <rect x="50" y="45" width="120" height="85" rx="4" />
+                    <rect x="65" y="60" width="90" height="55" />
+                    <path d="M110 130 V160" />
+                    <path d="M80 160 H140" />
+                    <path d="M80 175 L95 160" />
+                    <path d="M140 175 L125 160" />
+                  </svg>
+                )}
+
+                {item.icon && !BUILT_IN_ICONS.includes(item.icon) && (
+                  <div
+                    class="scroll-story__custom-icon"
+                    aria-hidden="true"
+                    set:html={item.icon}
+                  />
                 )}
 
                 {!item.icon && (
@@ -942,6 +1051,21 @@ const totalItems = items.length;
     stroke-linejoin: round;
   }
 
+  .scroll-story__custom-icon {
+    display: flex;
+  }
+
+  .scroll-story__custom-icon :global(svg) {
+    width: min(140px, 30%);
+    height: auto;
+    overflow: visible;
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.62);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
   .scroll-story__generic-visual {
     position: relative;
     width: 180px;
@@ -1050,6 +1174,10 @@ const totalItems = items.length;
     .scroll-story__item-visual svg {
       width: min(210px, 46%);
     }
+
+    .scroll-story__custom-icon :global(svg) {
+      width: min(115px, 32%);
+    }
   }
 
   @media (max-width: 560px) {
@@ -1131,6 +1259,10 @@ const totalItems = items.length;
 
     .scroll-story__item-visual svg {
       width: 130px;
+    }
+
+    .scroll-story__custom-icon :global(svg) {
+      width: 78px;
     }
 
     .scroll-story__item-description p {

@@ -4,8 +4,32 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
 import FaqSplit from '../components/faq/FaqSplit.astro';
 import HoverStepCards from '../components/cards/HoverStepCards.astro';
 import AreaPanelCards from '../components/cards/AreaPanelCards.astro';
+import ComparisonRows from '../components/cards/ComparisonRows.astro';
 import ScrollStory from '../components/scroll/ScrollStory.astro';
 import StackedSections from '../components/scroll/StackedSections.astro';
+
+const problemScenarios = [
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M32 208V64l64 32 64-32 64 32v112z"></path><path d="M96 96v112M160 96v112"></path><path d="M56 48h144"></path></svg>`,
+    title: 'Presencia en canal sin ventas proporcionales',
+    description: 'Tienes buena distribución pero las ventas no reflejan tu presencia en el canal. El comprador pasa frente a tu producto y no lo ve — o lo ve pero no lo elige.',
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M48 56h160v144H48z"></path><path d="M80 88h96M80 120h64M80 152h48"></path><circle cx="184" cy="176" r="24"></circle><path d="m202 194 18 18"></path></svg>`,
+    title: 'POP sin atención comprobada',
+    description: 'Invertiste en material POP premium y no sabes si alguien lo nota. Sin datos de atención, no sabes si tu inversión en visibilidad está funcionando.',
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M32 208V64l64 32 64-32 64 32v112z"></path><path d="M96 96v112M160 96v112"></path><circle cx="128" cy="152" r="20"></circle></svg>`,
+    title: 'Producto fuerte que pierde en anaquel',
+    description: 'Tu producto tiene la mejor calidad del mercado pero pierde en el anaquel. El problema puede estar en el packaging, la posición, el precio percibido o el momento de decisión — sin shopper insights, no sabrás cuál.',
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M40 208V48h176v160z"></path><path d="M72 168v-40M112 168V88M152 168v-64M192 168v-96"></path><path d="M48 88h152"></path></svg>`,
+    title: 'Ejecución sin mejora de conversión',
+    description: 'El equipo de ventas reporta excelente ejecución, pero la conversión no mejora. La ejecución y el comportamiento del shopper son dos cosas distintas.',
+  },
+];
 
 const processSteps = [
   {
@@ -252,26 +276,23 @@ const description = "Shopper insights Bolivia: etnografía, eye tracking y entre
     </section>
 
     <!-- 2. EL PROBLEMA -->
-    <section class="problem-section bg-slate" style="padding: 5rem 0;" data-stack-section>
+    <section class="bg-slate" style="padding: 5rem 0;" data-stack-section>
       <div class="container">
-        <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
+        <div style="max-width: 900px; margin: 0 auto;">
           <span class="eyebrow">EL PROBLEMA REAL</span>
           <h2 class="text-navy" style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;">Inviertes en trade marketing sin saber qué parte de esa inversión realmente influye al comprador.</h2>
           <p class="text-gray-dark leading-relaxed" style="font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.7;">
             La mayoría de las decisiones de inversión en trade marketing se toman sin evidencia sobre cómo se comporta el comprador en el anaquel. Se asume que más material POP, mejor posición o más facings automáticamente generan más ventas. Muchas veces no es así.
           </p>
-          <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.7;">
+          <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; line-height: 1.7;">
             ¿Reconoces alguno de estos escenarios?
           </p>
-          <ul class="cap-list" style="font-size: 1.05rem; margin-bottom: 2rem;">
-            <li><strong class="text-navy">Tienes buena distribución pero las ventas no reflejan tu presencia en el canal.</strong> El comprador pasa frente a tu producto y no lo ve — o lo ve pero no lo elige.</li>
-            <li><strong class="text-navy">Invertiste en material POP premium y no sabes si alguien lo nota.</strong> Sin datos de atención, no sabes si tu inversión en visibilidad está funcionando.</li>
-            <li><strong class="text-navy">Tu producto tiene la mejor calidad del mercado pero pierde en el anaquel.</strong> El problema puede estar en el packaging, la posición, el precio percibido o el momento de decisión — sin shopper insights, no sabrás cuál.</li>
-            <li><strong class="text-navy">El equipo de ventas reporta excelente ejecución, pero la conversión no mejora.</strong> La ejecución y el comportamiento del shopper son dos cosas distintas.</li>
-          </ul>
-          <div style="background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: 8px; font-weight: 600; font-size: 1.1rem; text-align: center;">
-            El 70% de las decisiones de compra se toman frente al anaquel. Sin shopper insights, estás adivinando qué las mueve.
-          </div>
+        </div>
+
+        <AreaPanelCards items={problemScenarios} columns={4} theme="navy" class="problem-panels" />
+
+        <div style="max-width: 900px; margin: 2.5rem auto 0; background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: var(--radius-md, 8px); font-weight: 600; font-size: 1.1rem; text-align: center;">
+          El 70% de las decisiones de compra se toman frente al anaquel. Sin shopper insights, estás adivinando qué las mueve.
         </div>
       </div>
     </section>
@@ -283,39 +304,17 @@ const description = "Shopper insights Bolivia: etnografía, eye tracking y entre
           <span class="eyebrow">MINDTEC+</span>
           <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;">La decisión de compra se estudia donde ocurre — no en una sala de reuniones.</h2>
         </div>
-        <div class="comparison-table-wrapper">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th scope="col">Investigación de shopper estándar</th>
-                <th scope="col">MindTEC — Shopper Insights</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Encuestas sobre comportamiento de compra declarado (lo que el comprador dice que hace)</td>
-                <td>Observación directa del comportamiento real en el PDV (lo que el comprador realmente hace)</td>
-              </tr>
-              <tr>
-                <td>Focus groups sobre preferencias de producto en sala</td>
-                <td>Entrevistas post-compra inmediatas capturando la racionalización en caliente, justo después de la decisión</td>
-              </tr>
-              <tr>
-                <td>Sin medición de atención visual</td>
-                <td>Eye tracking portátil en anaquel real para saber exactamente qué captura la mirada del comprador</td>
-              </tr>
-              <tr>
-                <td>Datos del comportamiento de un shopper genérico</td>
-                <td>Segmentación del comportamiento por tipo de comprador: planificado vs. impulsivo, usuario vs. comprador</td>
-              </tr>
-              <tr>
-                <td>Hallazgos descriptivos sin implicaciones para trade marketing</td>
-                <td>Brief de activación para trade marketing: qué cambiar en packaging, posición, POP y categoría para mejorar conversión</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="text-gray-dark" style="font-size: 1.05rem; margin-top: 2rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.7;">
+        <ComparisonRows
+          columnLabels={{ left: 'Investigación de shopper estándar', right: 'MindTEC — Shopper Insights' }}
+          rows={[
+            { before: 'Encuestas sobre comportamiento de compra declarado (lo que el comprador dice que hace)', after: 'Observación directa del comportamiento real en el PDV (lo que el comprador realmente hace)' },
+            { before: 'Focus groups sobre preferencias de producto en sala', after: 'Entrevistas post-compra inmediatas capturando la racionalización en caliente, justo después de la decisión' },
+            { before: 'Sin medición de atención visual', after: 'Eye tracking portátil en anaquel real para saber exactamente qué captura la mirada del comprador' },
+            { before: 'Datos del comportamiento de un shopper genérico', after: 'Segmentación del comportamiento por tipo de comprador: planificado vs. impulsivo, usuario vs. comprador' },
+            { before: 'Hallazgos descriptivos sin implicaciones para trade marketing', after: 'Brief de activación para trade marketing: qué cambiar en packaging, posición, POP y categoría para mejorar conversión' },
+          ]}
+        />
+        <p class="text-gray-dark" style="font-size: 1.05rem; margin-top: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.7;">
           Combinamos psicoantropología, ciencias del comportamiento y neuromarketing aplicado al punto de venta para entender la decisión de compra en su contexto real.
         </p>
       </div>
@@ -345,42 +344,42 @@ const description = "Shopper insights Bolivia: etnografía, eye tracking y entre
           eyebrow: "Journey",
           title: "Mapa del Journey del Shopper",
           description: "Diagrama visual del recorrido completo del comprador en el PDV: puntos de entrada, zonas de permanencia, momentos de decisión y triggers de compra o abandono.",
-          icon: "road"
+          icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="4.5" cy="19" r="1.5"/><circle cx="19.5" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><path d="M6 18c3-1 4-3 5-5"/><path d="M13 11c1-2 2-4 5-5"/><path d="m21 3-1.2 2.6L17 6"/></svg>`
         },
         {
           background: "/imagenes-mindtec/generated/shopper-insights/entregables/entregable-02-trayectoria-permanencia.webp",
           eyebrow: "Trayectoria",
           title: "Análisis de Trayectoria y Tiempo de Permanencia",
           description: "Cuánto tiempo pasa el comprador en cada zona, qué lo detiene, qué lo hace avanzar. Identificación de zonas frías y zonas calientes de atención en el espacio comercial.",
-          icon: "building"
+          icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>`
         },
         {
           background: "/imagenes-mindtec/generated/shopper-insights/entregables/entregable-03-atencion-visual.webp",
           eyebrow: "Eye tracking",
           title: "Mapa de Atención Visual en Anaquel",
           description: "Con eye tracking portátil: qué elementos del anaquel capturan la mirada, cuánto tiempo permanece la atención y qué zona del packaging concentra la fijación visual en los primeros 3 segundos.",
-          icon: "services"
+          icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3.2"/></svg>`
         },
         {
           background: "/imagenes-mindtec/generated/shopper-insights/entregables/entregable-04-decisores-compra.webp",
           eyebrow: "Decisión",
           title: "Análisis de Decisores de Compra",
           description: "Qué variables determinan la elección en el momento de verdad: precio, packaging, posición, recomendación, hábito o impulso. Ponderación de cada factor según tipo de comprador y canal.",
-          icon: "airport"
+          icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7 2.5 12.5a2.5 2.5 0 0 0 5 0L5 7Z"/><path d="M19 7l-2.5 5.5a2.5 2.5 0 0 0 5 0L19 7Z"/><path d="M8 21h8"/></svg>`
         },
         {
           background: "/imagenes-mindtec/generated/shopper-insights/entregables/entregable-05-brief-trade-marketing.webp",
           eyebrow: "Optimización",
           title: "Brief de Optimización de Trade Marketing",
           description: "Recomendaciones concretas para equipo de trade: qué cambiar en posición de anaquel, diseño de POP, layout de categoría, packaging y argumentación de venta para mejorar la tasa de conversión.",
-          icon: "road"
+          icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="12" height="18" rx="1.5"/><path d="M8 8h4M8 12h4M8 16h2"/><path d="M16 9c3 .3 5 2.4 5 5.5S18.5 20 15 19.6"/><path d="m18.5 12 2.5 2.5-2.5 2.5"/></svg>`
         },
         {
           background: "/imagenes-mindtec/generated/shopper-insights/entregables/entregable-06-executive-brief-comercial.webp",
           eyebrow: "Síntesis",
           title: "Executive Brief para Directorio Comercial",
           description: "Síntesis ejecutiva con el impacto estimado en conversión de cada cambio recomendado, priorizados por facilidad de implementación y potencial de mejora en ventas.",
-          icon: "building"
+          icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M9 20h6M12 16v4"/><path d="m7 12 3-3 2.5 2 4-4.5"/></svg>`
         }
       ]}
     />

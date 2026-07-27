@@ -5,6 +5,63 @@ import ScrollStoryLeft from "../components/scroll/ScrollStoryLeft.astro";
 import HoverStepCards from "../components/cards/HoverStepCards.astro";
 import FaqSplit from "../components/faq/FaqSplit.astro";
 import StackedSections from "../components/scroll/StackedSections.astro";
+import AreaPanelCards from "../components/cards/AreaPanelCards.astro";
+import ComparisonRows from "../components/cards/ComparisonRows.astro";
+import BoliviaNetworkMapFilled from "../components/visual/BoliviaNetworkMapFilled.astro";
+
+const problemScenarios = [
+    {
+        icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="96"></circle><path d="M92 140c8 16 28 24 36 24s28-8 36-24"></path><path d="M92 100h.1M164 100h.1"></path></svg>`,
+        title: "Respuestas de cortesía, no de billetera",
+        description:
+            "¿Hay billeteras abiertas o solo respuestas de cortesía?: Validamos si su segmento objetivo tiene el presupuesto asignado y la urgencia real de compra, no solo una opinión positiva.",
+    },
+    {
+        icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="40"></circle><circle cx="128" cy="128" r="72"></circle><circle cx="128" cy="128" r="104"></circle></svg>`,
+        title: "Dimensionamiento real del mercado",
+        description:
+            "Dimensionamiento de mercado real (TAM / SAM / SOM): Proyectamos el tamaño total facturable de su sector y la cuota neta que su empresa puede capturar de forma realista en el primer año.",
+    },
+    {
+        icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M40 216c0-48 40-88 88-88s88 40 88 88"></path><path d="M128 128V40"></path><path d="M96 64l32-24 32 24"></path></svg>`,
+        title: "Barreras culturales e informales",
+        description:
+            "Barreras culturales e informales de adopción: Mapeamos los frenos de comercialización en el eje troncal y El Alto, donde la dinámica informal y las redes de distribución locales rigen el comportamiento de compra.",
+    },
+    {
+        icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M48 208V96l80-56 80 56v112"></path><path d="M96 208v-64h64v64"></path><path d="M128 96h.1"></path></svg>`,
+        title: "Tolerancia al margen de precios",
+        description:
+            "Sensibilidad y tolerancia al margen de precios: Determinamos si el mercado local absorberá el margen proyectado o si su estructura financiera se verá arrastrada a una guerra de precios destructiva.",
+    },
+];
+
+const comparisonRows = [
+    {
+        before: "Encuesta puramente descriptiva",
+        after: "Evaluación estratégica de decisión Stop/Go",
+    },
+    {
+        before: "Datos planos sin cruce de variables",
+        after: "Modelo híbrido (Macro + Campo + Neurociencia)",
+    },
+    {
+        before: "Reportes pesados y redundantes",
+        after: "Brief ejecutivo claro diseñado para directorio",
+    },
+    {
+        before: "Falta de control territorial",
+        after: "Red nacional activa y validaciones en terreno",
+    },
+    {
+        before: "Opiniones racionales declaradas",
+        after: "Medición profunda de comportamiento e inconsciente",
+    },
+    {
+        before: "Finalización tras la entrega del PDF",
+        after: "Acompañamiento post-estudio y asesoría táctica",
+    },
+];
 
 const faqItems = [
     {
@@ -241,14 +298,13 @@ const otrasAreasCards = [
                             compromiso
                         </p>
                     </div>
-                    <div class="hero-visual">
-                        <div class="glass-card main-visual">
-                            <div
-                                class="neuro-visual-bg"
-                                style="background-image: url('/heroes/hero-estudio-mercado-bolivia.jpg');"
-                            >
-                            </div>
-                        </div>
+                    <div
+                        class="hero-visual"
+                        style="display: flex; align-items: center; justify-content: center; max-width: 100%; overflow: visible;"
+                    >
+                        <BoliviaNetworkMapFilled
+                            size="clamp(300px, 32vw, 460px)"
+                        />
                     </div>
                 </div>
             </section>
@@ -259,15 +315,12 @@ const otrasAreasCards = [
 
             <!-- 🟦 2️⃣ EL COSTO DE NO VALIDAR -->
             <section
-                class="problem-section bg-slate"
+                class="bg-slate"
                 style="padding: 5rem 0;"
                 data-stack-section
             >
                 <div class="container">
-                    <div
-                        class="premium-card-white"
-                        style="max-width: 900px; margin: 0 auto; padding: 4rem;"
-                    >
+                    <div style="max-width: 900px; margin: 0 auto;">
                         <h2
                             class="text-navy"
                             style="font-size: 2.5rem; margin-bottom: 2rem; line-height: 1.2;"
@@ -297,51 +350,21 @@ const otrasAreasCards = [
                             sesgo del optimismo interno y responde con datos de
                             comportamiento real:
                         </p>
-                        <ul
-                            class="cap-list"
-                            style="margin-bottom: 2.5rem; font-size: 1.1rem;"
-                        >
-                            <li>
-                                <strong class="text-navy"
-                                    >¿Hay billeteras abiertas o solo respuestas
-                                    de cortesía?:</strong
-                                > Validamos si su segmento objetivo tiene el presupuesto
-                                asignado y la urgencia real de compra, no solo una
-                                opinión positiva.
-                            </li>
-                            <li>
-                                <strong class="text-navy"
-                                    >Dimensionamiento de mercado real (TAM / SAM
-                                    / SOM):</strong
-                                > Proyectamos el tamaño total facturable de su sector
-                                y la cuota neta que su empresa puede capturar de forma
-                                realista en el primer año.
-                            </li>
-                            <li>
-                                <strong class="text-navy"
-                                    >Barreras culturales e informales de
-                                    adopción:</strong
-                                > Mapeamos los frenos de comercialización en el eje
-                                troncal y El Alto, donde la dinámica informal y las
-                                redes de distribución locales rigen el comportamiento
-                                de compra.
-                            </li>
-                            <li>
-                                <strong class="text-navy"
-                                    >Sensibilidad y tolerancia al margen de
-                                    precios:</strong
-                                > Determinamos si el mercado local absorberá el margen
-                                proyectado o si su estructura financiera se verá arrastrada
-                                a una guerra de precios destructiva.
-                            </li>
-                        </ul>
-                        <div
-                            style="background-color: var(--color-secondary); color: white; padding: 1.5rem 2rem; border-radius: 8px; font-weight: 600; font-size: 1.2rem; text-align: center;"
-                        >
-                            La viabilidad comercial de su proyecto no se estima
-                            desde un escritorio. Se valida en el terreno donde
-                            ocurre la transacción.
-                        </div>
+                    </div>
+
+                    <AreaPanelCards
+                        items={problemScenarios}
+                        columns={4}
+                        theme="navy"
+                        class="problem-panels"
+                    />
+
+                    <div
+                        style="max-width: 900px; margin: 2.5rem auto 0; background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: var(--radius-md, 8px); font-weight: 600; font-size: 1.1rem; text-align: center;"
+                    >
+                        La viabilidad comercial de su proyecto no se estima
+                        desde un escritorio. Se valida en el terreno donde
+                        ocurre la transacción.
                     </div>
                 </div>
             </section>
@@ -459,61 +482,13 @@ const otrasAreasCards = [
                         </p>
                     </div>
 
-                    <div class="comparison-table-wrapper">
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th>Enfoque Tradicional</th>
-                                    <th>Método Mindtec</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Encuesta puramente descriptiva</td>
-                                    <td
-                                        >Evaluación estratégica de decisión
-                                        Stop/Go</td
-                                    >
-                                </tr>
-                                <tr>
-                                    <td>Datos planos sin cruce de variables</td>
-                                    <td
-                                        >Modelo híbrido (Macro + Campo +
-                                        Neurociencia)</td
-                                    >
-                                </tr>
-                                <tr>
-                                    <td>Reportes pesados y redundantes</td>
-                                    <td
-                                        >Brief ejecutivo claro diseñado para
-                                        directorio</td
-                                    >
-                                </tr>
-                                <tr>
-                                    <td>Falta de control territorial</td>
-                                    <td
-                                        >Red nacional activa y validaciones en
-                                        terreno</td
-                                    >
-                                </tr>
-                                <tr>
-                                    <td>Opiniones racionales declaradas</td>
-                                    <td
-                                        >Medición profunda de comportamiento e
-                                        inconsciente</td
-                                    >
-                                </tr>
-                                <tr>
-                                    <td>Finalización tras la entrega del PDF</td
-                                    >
-                                    <td
-                                        >Acompañamiento post-estudio y asesoría
-                                        táctica</td
-                                    >
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <ComparisonRows
+                        columnLabels={{
+                            left: "Enfoque Tradicional",
+                            right: "Método Mindtec",
+                        }}
+                        rows={comparisonRows}
+                    />
                 </div>
             </section>
 

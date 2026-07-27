@@ -1,423 +1,776 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ScrollStory from '../components/scroll/ScrollStory.astro';
-import StackedSections from '../components/scroll/StackedSections.astro';
+import Layout from "../layouts/Layout.astro";
+import ScrollStory from "../components/scroll/ScrollStory.astro";
+import StackedSections from "../components/scroll/StackedSections.astro";
 ---
 
 <Layout
-  title="Empresa de Investigación de Mercados en Bolivia | Mindtec"
-  description="Rigor científico e inteligencia de datos para decisiones de negocio críticas. Estándares analíticos avanzados de mercado en Bolivia."
-  headerLightBg={false}
+    title="Empresa de Investigación de Mercados en Bolivia | Mindtec"
+    description="Rigor científico e inteligencia de datos para decisiones de negocio críticas. Estándares analíticos avanzados de mercado en Bolivia."
+    headerLightBg={false}
 >
-  <script type="application/ld+json" slot="head">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "name": "Mindtec Bolivia",
-        "url": "https://www.mindtecbolivia.com",
-        "logo": "https://www.mindtecbolivia.com/logos/logo-mindtec-horizontal-para-fondo-oscuro.webp",
-        "description": "Inteligencia de mercados con neurociencia e inteligencia artificial para la toma de decisiones estratégicas de alta dirección en Bolivia.",
-        "email": "info@mindtecbolivia.com",
-        "areaServed": ["La Paz", "Santa Cruz", "Cochabamba", "El Alto"],
-        "address": { "@type": "PostalAddress", "addressCountry": "BO" },
-        "foundingDate": "2014",
-        "numberOfEmployees": { "@type": "QuantitativeValue", "value": 80 },
-        "award": "Premio MAYA a la Innovación en Investigación de Mercados",
-        "sameAs": [
-          "https://www.facebook.com/mindtecbolivia",
-          "https://www.instagram.com/mindtec_neuromarketing_bolivia/",
-          "https://www.linkedin.com/company/mindtec-bolivia"
-        ]
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.mindtecbolivia.com/"},
-          {"@type": "ListItem", "position": 2, "name": "La Firma", "item": "https://www.mindtecbolivia.com/firma"}
-        ]
-      }
-    ]
-  }
-  </script>
-  <main class="elementor-content">
-    <StackedSections>
-        <!-- SECCIÓN 1: Hero -->
-        <section class="hero-section elementor-section" style="padding-bottom: 3rem; padding-top: 120px; min-height: auto;" data-stack-section>
-
-            <!-- Geometric floating shapes (always visible, CSS-animated) -->
-            <div class="hero-shapes" aria-hidden="true">
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-                <div class="hero-shape"></div>
-            </div>
-            <!-- Mobile-first neural canvas background -->
-            <div class="hero-mobile-canvas" id="hero-mobile-canvas" aria-hidden="true"></div>
-            <div class="container hero-container elementor-container e-con" style="display: block; text-align: center;">
-                <div class="hero-content" style="max-width: 900px; margin: 0 auto;">
-                    <span class="eyebrow fade-in">LA FIRMA QUE RESPALDA SU DECISIÓN</span>
-                    <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;">Consultora de Investigación de Mercados en Bolivia</h1>
-                    <p class="hero-subtitle" style="font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6;">Reduzca el riesgo en sus inversiones integrando neurociencia de consumo, inteligencia de datos y validación estratégica en el mercado boliviano.</p>
+    <script type="application/ld+json" slot="head">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "Organization",
+                    "name": "Mindtec Bolivia",
+                    "url": "https://www.mindtecbolivia.com",
+                    "logo": "https://www.mindtecbolivia.com/logos/logo-mindtec-horizontal-para-fondo-oscuro.webp",
+                    "description": "Inteligencia de mercados con neurociencia e inteligencia artificial para la toma de decisiones estratégicas de alta dirección en Bolivia.",
+                    "email": "info@mindtecbolivia.com",
+                    "areaServed": [
+                        "La Paz",
+                        "Santa Cruz",
+                        "Cochabamba",
+                        "El Alto"
+                    ],
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressCountry": "BO"
+                    },
+                    "foundingDate": "2014",
+                    "numberOfEmployees": {
+                        "@type": "QuantitativeValue",
+                        "value": 80
+                    },
+                    "award": "Premio MAYA a la Innovación en Investigación de Mercados",
+                    "sameAs": [
+                        "https://www.facebook.com/mindtecbolivia",
+                        "https://www.instagram.com/mindtec_neuromarketing_bolivia/",
+                        "https://www.linkedin.com/company/mindtec-bolivia"
+                    ]
+                },
+                {
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                        {
+                            "@type": "ListItem",
+                            "position": 1,
+                            "name": "Inicio",
+                            "item": "https://www.mindtecbolivia.com/"
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 2,
+                            "name": "La Firma",
+                            "item": "https://www.mindtecbolivia.com/firma"
+                        }
+                    ]
+                }
+            ]
+        }
+    </script>
+    <main class="elementor-content">
+        <StackedSections>
+            <!-- SECCIÓN 1: Hero -->
+            <section
+                class="hero-section elementor-section"
+                style="padding-bottom: 3rem; padding-top: 120px; min-height: auto;"
+                data-stack-section
+            >
+                <!-- Geometric floating shapes (always visible, CSS-animated) -->
+                <div class="hero-shapes" aria-hidden="true">
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
+                    <div class="hero-shape"></div>
                 </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 2: Quiénes somos — imagen de fondo con tarjetas escalonadas -->
-        <section class="respaldo-hero" data-stack-section>
-            <div class="respaldo-hero__bg">
-                <img src="/equipo-mindtec.webp" alt="Equipo de Consultores de Mindtec Bolivia" loading="lazy">
-                <div class="respaldo-hero__overlay"></div>
-            </div>
-
-            <div class="container elementor-container respaldo-hero__content">
-                <h2 class="respaldo-hero__title">El respaldo analítico detrás de su próxima decisión</h2>
-
-                <div class="respaldo-hero__cards">
-                    <div class="respaldo-card respaldo-card--1">
-                        <span class="respaldo-card__index">01</span>
-                        <p>Metodología científica de nivel internacional, adaptada con precisión a los canales de distribución bolivianos.</p>
-                    </div>
-                    <div class="respaldo-card respaldo-card--2">
-                        <span class="respaldo-card__index">02</span>
-                        <p>Psicólogos de consumo, analistas de datos y tecnología biométrica descifran las motivaciones reales de compra, sin los sesgos de la investigación tradicional.</p>
-                    </div>
-                    <div class="respaldo-card respaldo-card--3">
-                        <span class="respaldo-card__index">03</span>
-                        <p>Infraestructura de inteligencia de mercados que respalda a entidades financieras, multinacionales, instituciones educativas y corporaciones en expansión regional.</p>
+                <!-- Mobile-first neural canvas background -->
+                <div
+                    class="hero-mobile-canvas"
+                    id="hero-mobile-canvas"
+                    aria-hidden="true"
+                >
+                </div>
+                <div
+                    class="container hero-container elementor-container e-con"
+                    style="display: block; text-align: center;"
+                >
+                    <div
+                        class="hero-content"
+                        style="max-width: 900px; margin: 0 auto;"
+                    >
+                        <span class="eyebrow fade-in"
+                            >LA FIRMA QUE RESPALDA SU DECISIÓN</span
+                        >
+                        <h1
+                            class="hero-title"
+                            style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;"
+                        >
+                            Consultora de Investigación de Mercados en Bolivia
+                        </h1>
+                        <p
+                            class="hero-subtitle"
+                            style="font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 800px; margin-left: auto; margin-right: auto; line-height: 1.6;"
+                        >
+                            Reduzca el riesgo en sus inversiones integrando
+                            neurociencia de consumo, inteligencia de datos y
+                            validación estratégica en el mercado boliviano.
+                        </p>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <style>
-            .respaldo-hero {
-                position: relative;
-                isolation: isolate;
-                min-height: 92vh;
-                display: flex;
-                align-items: flex-end;
-                overflow: hidden;
-                padding: 5rem 0 clamp(3rem, 8vh, 6rem);
-            }
+            <!-- SECCIÓN 2: Quiénes somos — imagen de fondo con tarjetas escalonadas -->
+            <section class="respaldo-hero" data-stack-section>
+                <div class="respaldo-hero__bg">
+                    <img
+                        src="/equipo-mindtec.webp"
+                        alt="Equipo de Consultores de Mindtec Bolivia"
+                        loading="lazy"
+                    />
+                    <div class="respaldo-hero__overlay"></div>
+                </div>
 
-            .respaldo-hero__bg {
-                position: absolute;
-                inset: 0;
-                z-index: -1;
-            }
+                <div
+                    class="container elementor-container respaldo-hero__content"
+                >
+                    <h2 class="respaldo-hero__title">
+                        El respaldo analítico detrás de su próxima decisión
+                    </h2>
 
-            .respaldo-hero__bg img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                object-position: center 20%;
-                display: block;
-            }
+                    <div class="respaldo-hero__cards">
+                        <div class="respaldo-card respaldo-card--1">
+                            <span class="respaldo-card__index">01</span>
+                            <p>
+                                Metodología científica de nivel internacional,
+                                adaptada con precisión a los canales de
+                                distribución bolivianos.
+                            </p>
+                        </div>
+                        <div class="respaldo-card respaldo-card--2">
+                            <span class="respaldo-card__index">02</span>
+                            <p>
+                                Psicólogos de consumo, analistas de datos y
+                                tecnología biométrica descifran las motivaciones
+                                reales de compra, sin los sesgos de la
+                                investigación tradicional.
+                            </p>
+                        </div>
+                        <div class="respaldo-card respaldo-card--3">
+                            <span class="respaldo-card__index">03</span>
+                            <p>
+                                Infraestructura de inteligencia de mercados que
+                                respalda a entidades financieras,
+                                multinacionales, instituciones educativas y
+                                corporaciones en expansión regional.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-            .respaldo-hero__overlay {
-                position: absolute;
-                inset: 0;
-                background:
-                    linear-gradient(to top, rgba(6, 28, 43, 0.96) 0%, rgba(6, 28, 43, 0.55) 42%, rgba(6, 28, 43, 0.15) 68%, rgba(6, 28, 43, 0.35) 100%);
-            }
-
-            .respaldo-hero__content {
-                position: relative;
-                width: 100%;
-                margin: 0 auto;
-            }
-
-            .respaldo-hero__title {
-                max-width: 720px;
-                margin: 0 0 clamp(2rem, 5vw, 3.5rem);
-                color: #fff;
-                font-size: clamp(2rem, 4vw, 2.75rem);
-                line-height: 1.2;
-            }
-
-            .respaldo-hero__cards {
-                display: grid;
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-                gap: clamp(1.25rem, 2.5vw, 2rem);
-                align-items: end;
-            }
-
-            .respaldo-card {
-                position: relative;
-                padding: 2rem 1.75rem 1.75rem;
-                background: rgba(255, 255, 255, 0.92);
-                backdrop-filter: blur(6px);
-                -webkit-backdrop-filter: blur(6px);
-                border-radius: var(--radius-md, 12px);
-                box-shadow: var(--shadow-xl, 0 32px 64px -16px rgba(0, 0, 0, 0.35));
-                color: #2d3b4a;
-            }
-
-            .respaldo-card__index {
-                display: block;
-                margin-bottom: 0.75rem;
-                font-size: 0.75rem;
-                font-weight: 800;
-                letter-spacing: 0.14em;
-                color: var(--color-primary);
-            }
-
-            .respaldo-card p {
-                margin: 0;
-                font-size: 0.98rem;
-                line-height: 1.6;
-                color: #4a5b6f;
-            }
-
-            /* Efecto escalonado: cada tarjeta a distinta altura, tipo escalera */
-            .respaldo-card--1 {
-                transform: translateY(2.25rem);
-            }
-
-            .respaldo-card--2 {
-                transform: translateY(0.75rem);
-                z-index: 2;
-            }
-
-            .respaldo-card--3 {
-                transform: translateY(-0.75rem);
-            }
-
-            @media (max-width: 900px) {
+            <style>
                 .respaldo-hero {
-                    min-height: auto;
-                    padding: 4rem 0 3rem;
+                    position: relative;
+                    isolation: isolate;
+                    min-height: 92vh;
+                    display: flex;
+                    align-items: flex-end;
+                    overflow: hidden;
+                    padding: 5rem 0 clamp(3rem, 8vh, 6rem);
+                }
+
+                .respaldo-hero__bg {
+                    position: absolute;
+                    inset: 0;
+                    z-index: -1;
+                }
+
+                .respaldo-hero__bg img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center 20%;
+                    display: block;
+                }
+
+                .respaldo-hero__overlay {
+                    position: absolute;
+                    inset: 0;
+                    background: linear-gradient(
+                        to top,
+                        rgba(6, 28, 43, 0.96) 0%,
+                        rgba(6, 28, 43, 0.55) 42%,
+                        rgba(6, 28, 43, 0.15) 68%,
+                        rgba(6, 28, 43, 0.35) 100%
+                    );
+                }
+
+                .respaldo-hero__content {
+                    position: relative;
+                    width: 100%;
+                    margin: 0 auto;
+                }
+
+                .respaldo-hero__title {
+                    max-width: 720px;
+                    margin: 0 0 clamp(2rem, 5vw, 3.5rem);
+                    color: #fff;
+                    font-size: clamp(2rem, 4vw, 2.75rem);
+                    line-height: 1.2;
                 }
 
                 .respaldo-hero__cards {
-                    grid-template-columns: 1fr;
-                    gap: 1.25rem;
+                    display: grid;
+                    grid-template-columns: repeat(3, minmax(0, 1fr));
+                    gap: clamp(1.25rem, 2.5vw, 2rem);
+                    align-items: end;
                 }
 
-                .respaldo-card--1,
-                .respaldo-card--2,
+                .respaldo-card {
+                    position: relative;
+                    padding: 2rem 1.75rem 1.75rem;
+                    background: rgba(255, 255, 255, 0.92);
+                    backdrop-filter: blur(6px);
+                    -webkit-backdrop-filter: blur(6px);
+                    border-radius: var(--radius-md, 12px);
+                    box-shadow: var(
+                        --shadow-xl,
+                        0 32px 64px -16px rgba(0, 0, 0, 0.35)
+                    );
+                    color: #2d3b4a;
+                }
+
+                .respaldo-card__index {
+                    display: block;
+                    margin-bottom: 0.75rem;
+                    font-size: 0.75rem;
+                    font-weight: 800;
+                    letter-spacing: 0.14em;
+                    color: var(--color-primary);
+                }
+
+                .respaldo-card p {
+                    margin: 0;
+                    font-size: 0.98rem;
+                    line-height: 1.6;
+                    color: #4a5b6f;
+                }
+
+                /* Efecto escalonado: cada tarjeta a distinta altura, tipo escalera */
+                .respaldo-card--1 {
+                    transform: translateY(2.25rem);
+                }
+
+                .respaldo-card--2 {
+                    transform: translateY(0.75rem);
+                    z-index: 2;
+                }
+
                 .respaldo-card--3 {
-                    transform: none;
+                    transform: translateY(-0.75rem);
                 }
-            }
-        </style>
 
-    </StackedSections>
+                @media (max-width: 900px) {
+                    .respaldo-hero {
+                        min-height: auto;
+                        padding: 4rem 0 3rem;
+                    }
+
+                    .respaldo-hero__cards {
+                        grid-template-columns: 1fr;
+                        gap: 1.25rem;
+                    }
+
+                    .respaldo-card--1,
+                    .respaldo-card--2,
+                    .respaldo-card--3 {
+                        transform: none;
+                    }
+                }
+            </style>
+        </StackedSections>
 
         <!-- SECCIÓN 3: Estándares Operativos — ScrollStory (storytelling de las 4 tarjetas) -->
         <ScrollStory
             cover={{
-                background: "/imagenes-mindtec/generated/firma-estandares/cover-adn-corporativo.webp",
+                background: "/laboratorio/re-4.jpg",
                 alt: "Equipo directivo de Mindtec en sesión estratégica corporativa",
                 eyebrow: "ADN CORPORATIVO",
                 title: "Lo que puede esperar de Mindtec",
-                description: "La validez de un estudio reside en la solidez de su estructura. En lugar de ofrecer cuestionarios tácticos aislados, los proyectos se ejecutan bajo una metodología científica y estandarizada, diseñada para mitigar el riesgo en inversiones de gran escala.",
+                description:
+                    "La validez de un estudio reside en la solidez de su estructura. En lugar de ofrecer cuestionarios tácticos aislados, los proyectos se ejecutan bajo una metodología científica y estandarizada, diseñada para mitigar el riesgo en inversiones de gran escala.",
             }}
             intro={{
-                background: "/imagenes-mindtec/generated/firma-estandares/intro-confidencialidad.webp",
+                background:
+                    "/imagenes-mindtec/generated/firma-estandares/intro-confidencialidad.webp",
                 alt: "Reunión confidencial de directorio con el equipo de Mindtec",
                 number: "01",
                 badge: "Confidencialidad",
                 title: "Confidencialidad Absoluta",
-                description: "Protocolos estrictos de resguardo sobre los próximos movimientos competitivos y debilidades de mercado detectadas.",
+                description:
+                    "Protocolos estrictos de resguardo sobre los próximos movimientos competitivos y debilidades de mercado detectadas.",
             }}
             items={[
                 {
-                    background: "/imagenes-mindtec/generated/firma-estandares/item-01-rigor-evidencia.webp",
+                    background:
+                        "/imagenes-mindtec/generated/firma-estandares/item-01-rigor-evidencia.webp",
                     alt: "Analistas de Mindtec validando evidencia con trazabilidad matemática",
                     badge: "Evidencia",
                     title: "Rigor en la Evidencia",
-                    description: "Las decisiones críticas exigen bases sólidas. Cada conclusión estratégica cuenta con trazabilidad absoluta y respaldo matemático.",
+                    description:
+                        "Las decisiones críticas exigen bases sólidas. Cada conclusión estratégica cuenta con trazabilidad absoluta y respaldo matemático.",
                 },
                 {
-                    background: "/imagenes-mindtec/generated/firma-estandares/item-02-validacion-campo.webp",
+                    background:
+                        "/imagenes-mindtec/generated/firma-estandares/item-02-validacion-campo.webp",
                     alt: "Encuestador de Mindtec auditando en campo un punto de venta en Bolivia",
                     badge: "Campo",
                     title: "Validación en Campo Real",
-                    description: "El análisis trasciende el escritorio. La auditoría directa en el punto de venta contrasta los modelos teóricos con la realidad comercial boliviana.",
+                    description:
+                        "El análisis trasciende el escritorio. La auditoría directa en el punto de venta contrasta los modelos teóricos con la realidad comercial boliviana.",
                 },
                 {
-                    background: "/imagenes-mindtec/generated/firma-estandares/item-03-entregables-accion.webp",
+                    background:
+                        "/imagenes-mindtec/generated/firma-estandares/item-03-entregables-accion.webp",
                     alt: "Tablero ejecutivo con conclusiones estratégicas listas para la acción",
                     badge: "Acción",
                     title: "Entregables para la Acción",
-                    description: "Hojas de ruta claras y tableros ejecutivos. Grandes volúmenes de información se sintetizan en conclusiones listas para la toma de decisiones.",
+                    description:
+                        "Hojas de ruta claras y tableros ejecutivos. Grandes volúmenes de información se sintetizan en conclusiones listas para la toma de decisiones.",
                 },
             ]}
         />
 
         <!-- SECCIONES 4-7: Alcance, Reconocimientos, Equipo, Diferenciación, CTA -->
         <StackedSections>
-        <section class="elementor-section premium-section-padding bg-navy" style="padding: 6rem 0; background-color: var(--color-secondary);" data-stack-section>
-            <h2 class="text-white text-center" style="font-size: 2.5rem; margin-bottom: 4rem; color: white;">Alcance y Capacidad Operativa</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); border-top: 1px solid rgba(255,255,255,0.15); width: 100%;">
-
-                <div style="padding: 2.5rem clamp(1.5rem, 4vw, 4rem); min-height: 220px; display: flex; flex-direction: column; justify-content: space-between;">
-                    <p style="margin: 0; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 600; line-height: 1.5; color: rgba(255,255,255,0.6);">Encuestadores activos<br>en Bolivia</p>
-                    <div style="align-self: flex-end; font-size: clamp(3rem, 6vw, 5rem); font-weight: 300; line-height: 1; color: var(--color-primary);">80+</div>
-                </div>
-
-                <div style="border-left: 1px solid rgba(255,255,255,0.15); padding: 2.5rem clamp(1.5rem, 4vw, 4rem); min-height: 220px; display: flex; flex-direction: column; justify-content: space-between;">
-                    <p style="margin: 0; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 600; line-height: 1.5; color: rgba(255,255,255,0.6);">Ciudades con cobertura<br>permanente</p>
-                    <div style="align-self: flex-end; font-size: clamp(3rem, 6vw, 5rem); font-weight: 300; line-height: 1; color: var(--color-primary);">4+</div>
-                </div>
-
-                <div style="border-left: 1px solid rgba(255,255,255,0.15); padding: 2.5rem clamp(1.5rem, 4vw, 4rem); min-height: 220px; display: flex; flex-direction: column; justify-content: space-between;">
-                    <p style="margin: 0; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 600; line-height: 1.5; color: rgba(255,255,255,0.6);">Laboratorio de neuromarketing<br>en el país</p>
-                    <div style="align-self: flex-end; font-size: clamp(3rem, 6vw, 5rem); font-weight: 300; line-height: 1; color: var(--color-primary); text-transform: uppercase;">1er</div>
-                </div>
-
-                <div style="border-left: 1px solid rgba(255,255,255,0.15); padding: 2.5rem clamp(1.5rem, 4vw, 4rem); min-height: 220px; display: flex; flex-direction: column; justify-content: space-between;">
-                    <p style="margin: 0; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 600; line-height: 1.5; color: rgba(255,255,255,0.6);">Años de<br>experiencia</p>
-                    <div style="align-self: flex-end; font-size: clamp(3rem, 6vw, 5rem); font-weight: 300; line-height: 1; color: var(--color-primary);">9</div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- SECCIÓN: Reconocimientos y Premios -->
-        <section class="elementor-section premium-section-padding bg-white" style="padding: 6rem 0;" data-stack-section>
-            <div class="container elementor-container" style="margin: auto;">
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 4rem; align-items: center;">
-                    <div style="position: relative; width: 100%; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-xl); order: 2;">
-                        <img src="/premios-maya-mindtec.webp" alt="Mindtec recibiendo el Premio MAYA a la innovación en investigación de mercados" style="width: 100%; height: auto; object-fit: cover; display: block;" loading="lazy">
-                        <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(11, 43, 64, 0.9), transparent); padding: 2rem 1.5rem 1rem 1.5rem; color: white;">
-                            <span style="font-weight: 800; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; color: var(--color-primary);">Premio MAYA</span>
-                            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin: 4px 0 0 0; line-height: 1.4;">Galardón a la Innovación en Investigación de Mercados en Bolivia</p>
+            <section
+                class="elementor-section premium-section-padding bg-navy"
+                style="padding: 6rem 0; background-color: var(--color-secondary);"
+                data-stack-section
+            >
+                <h2
+                    class="text-white text-center"
+                    style="font-size: 2.5rem; margin-bottom: 4rem; color: white;"
+                >
+                    Alcance y Capacidad Operativa
+                </h2>
+                <div
+                    style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); border-top: 1px solid rgba(255,255,255,0.15); width: 100%;"
+                >
+                    <div
+                        style="padding: 2.5rem clamp(1.5rem, 4vw, 4rem); min-height: 220px; display: flex; flex-direction: column; justify-content: space-between;"
+                    >
+                        <p
+                            style="margin: 0; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 600; line-height: 1.5; color: rgba(255,255,255,0.6);"
+                        >
+                            Encuestadores activos<br />en Bolivia
+                        </p>
+                        <div
+                            style="align-self: flex-end; font-size: clamp(3rem, 6vw, 5rem); font-weight: 300; line-height: 1; color: var(--color-primary);"
+                        >
+                            80+
                         </div>
                     </div>
-                    <div style="order: 1; text-align: left;">
-                        <span class="eyebrow"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 256 256" fill="currentColor" style="margin-right: 4px; vertical-align: middle;"><path d="M128,16a88,88,0,0,0-80,88c0,27.52,11.23,54.89,31.62,77.06a8,8,0,0,1,2,6.59l-11.45,49A8,8,0,0,0,78,245.92l44.4-22.2,44.4,22.2a8,8,0,0,0,7.81-.76,8,8,0,0,0,3.77-7.23L167,189.28a8,8,0,0,1,2.05-6.59c20.39-22.17,31.62-49.54,31.62-77.06A88.1,88.1,0,0,0,128,16Zm40,88a40,40,0,1,1-40-40A40,40,0,0,1,168,104Z"/></svg> Logro Institucional</span>
-                        <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 1.75rem; line-height: 1.25;">Líderes de Innovación</h2>
-                        <p style="font-size: 1.15rem; color: var(--color-primary); font-weight: 700; margin-bottom: 1.25rem;">La excelencia metodológica en el país cuenta con el aval oficial del Premio MAYA.</p>
-                        <p style="color: #4a5b6f; font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem;">
-                            Este galardón a la innovación reconoce la introducción sistemática de la neurociencia de consumo y la inteligencia de datos en el entorno corporativo boliviano, estableciendo nuevos estándares de confiabilidad para el sector.
+
+                    <div
+                        style="border-left: 1px solid rgba(255,255,255,0.15); padding: 2.5rem clamp(1.5rem, 4vw, 4rem); min-height: 220px; display: flex; flex-direction: column; justify-content: space-between;"
+                    >
+                        <p
+                            style="margin: 0; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 600; line-height: 1.5; color: rgba(255,255,255,0.6);"
+                        >
+                            Ciudades con cobertura<br />permanente
                         </p>
-                        <p style="color: #4a5b6f; font-size: 1.05rem; line-height: 1.8; margin-bottom: 0;">
-                            El uso coordinado de herramientas biométricas avanzadas (EEG, eye-tracking) y análisis predictivos por IA permite a los directorios y comités ejecutivos comprender el comportamiento real de sus consumidores sin depender de aproximaciones teóricas. Este estándar metodológico asegura el máximo rigor científico en cada estudio estratégico.
+                        <div
+                            style="align-self: flex-end; font-size: clamp(3rem, 6vw, 5rem); font-weight: 300; line-height: 1; color: var(--color-primary);"
+                        >
+                            4+
+                        </div>
+                    </div>
+
+                    <div
+                        style="border-left: 1px solid rgba(255,255,255,0.15); padding: 2.5rem clamp(1.5rem, 4vw, 4rem); min-height: 220px; display: flex; flex-direction: column; justify-content: space-between;"
+                    >
+                        <p
+                            style="margin: 0; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 600; line-height: 1.5; color: rgba(255,255,255,0.6);"
+                        >
+                            Laboratorio de neuromarketing<br />en el país
                         </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 5: Equipo Directivo -->
-        <section class="elementor-section premium-section-padding bg-slate" style="padding: 6rem 0;" data-stack-section>
-            <div class="container elementor-container text-center" style="margin: auto;">
-                <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 4rem;">El Equipo Directivo</h2>
-                
-                <!-- Wilmar: insertar aquí datos reales del equipo directivo -->
-                <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;">
-                    
-                    <!-- Director 1 -->
-                    <div class="premium-card-white" style="flex: 1; min-width: 250px; max-width: 350px; padding: 3rem 2rem;">
-                        <div style="width: 100px; height: 100px; background-color: var(--color-primary); border-radius: 50%; margin: 0 auto 1.5rem auto; display: flex; align-items: center; justify-content: center; color: white; font-size: 2.5rem; font-weight: 700;">WV</div>
-                        <h3 style="color: var(--color-secondary); font-size: 1.3rem; margin-bottom: 0.2rem;">Ing. Wilmar Velásquez Z.</h3>
-                        <p style="color: var(--color-primary); font-weight: 600; font-size: 0.95rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">CEO</p>
-                        <p style="color: #64748b; font-size: 0.95rem; line-height: 1.6;">Especialista en análisis de datos, inteligencia artificial aplicada y comunicación no verbal. Dirige el laboratorio de neuromarketing de MindTEC.</p>
+                        <div
+                            style="align-self: flex-end; font-size: clamp(3rem, 6vw, 5rem); font-weight: 300; line-height: 1; color: var(--color-primary); text-transform: uppercase;"
+                        >
+                            1er
+                        </div>
                     </div>
 
-                    <!-- Director 2 -->
-                    <div class="premium-card-white" style="flex: 1; min-width: 250px; max-width: 350px; padding: 3rem 2rem;">
-                        <div style="width: 100px; height: 100px; background-color: var(--color-secondary); border-radius: 50%; margin: 0 auto 1.5rem auto; display: flex; align-items: center; justify-content: center; color: white; font-size: 2.5rem; font-weight: 700;">PP</div>
-                        <h3 style="color: var(--color-secondary); font-size: 1.3rem; margin-bottom: 0.2rem;">MSc. Paola Paniagua U.</h3>
-                        <p style="color: var(--color-primary); font-weight: 600; font-size: 0.95rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;">Directora de Investigación</p>
-                        <p style="color: #64748b; font-size: 0.95rem; line-height: 1.6;">Psicóloga. Máster en Ciencias Forenses y Jurídicas. Especialista en comportamiento del consumidor e investigación profunda.</p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 6: Para quién NO es esta consultoría -->
-        <section class="offer-section elementor-section" style="background: var(--color-secondary); padding: 6rem 0;" data-stack-section>
-            <div class="container elementor-container" style="margin: auto;">
-                <div class="offer-box-modern" style="padding: 4rem 0; text-align: center; background: transparent; box-shadow: none; border-radius: 0;">
-                    <div class="offer-header">
-                        <span class="eyebrow-light" style="color: rgba(255,255,255,0.6);">TRANSPARENCIA COMERCIAL</span>
-                        <h2 style="color: #fff;">Esta consultoría no es para todos</h2>
-                    </div>
-
-                    <ul style="max-width: 800px; margin: 3rem auto 0; text-align: left; line-height: 1.8; font-size: 1.1rem; color: #f1f5f9; list-style: none;">
-                        <li style="margin-bottom: 1.5rem; padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: #fc8181; font-weight: bold;">✕</span> <strong>Mindtec no es</strong> para empresas que buscan reportes académicos, teóricos y descriptivos de docenas de páginas sin ninguna conclusión ejecutable.</li>
-                        <li style="margin-bottom: 1.5rem; padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: #fc8181; font-weight: bold;">✕</span> <strong>Mindtec no es</strong> para directivos que prefieren ignorar los datos que contradicen su intuición inicial y evitan enfrentar la realidad del mercado.</li>
-                        <li style="margin-bottom: 1.5rem; padding-left: 1.5rem; position: relative;"><span style="position: absolute; left: 0; color: #fc8181; font-weight: bold;">✕</span> <strong>Mindtec no es</strong> una agencia de marketing digital operativa. Es una firma de validación estratégica previa a la asignación de capital comercial.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 7: Final CTA -->
-        <section class="cta-section-modern elementor-section" style="background: linear-gradient(135deg, var(--color-primary), #D94E10); padding: 6rem 0;" data-stack-section>
-            <div class="container elementor-container glass-container" style="max-width: 900px; margin: auto; text-align: center;">
-                <div class="cta-content-v2" style="background: transparent; box-shadow: none; border-radius: 0; max-width: none; margin: 0;">
-                    <h2 style="font-size: 2.8rem; line-height: 1.25; margin-bottom: 1.5rem;">Si su empresa necesita ver lo que la competencia no ve, este es el punto de partida.</h2>
-                    <p class="cta-subtitle">Agende una conversación inicial con el equipo senior de Mindtec. 45 minutos, directo al punto.</p>
-                    <div class="cta-actions" style="margin-top: 2.5rem;">
-                        <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar sesión de diagnóstico (45 min) →</a>
+                    <div
+                        style="border-left: 1px solid rgba(255,255,255,0.15); padding: 2.5rem clamp(1.5rem, 4vw, 4rem); min-height: 220px; display: flex; flex-direction: column; justify-content: space-between;"
+                    >
+                        <p
+                            style="margin: 0; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; font-weight: 600; line-height: 1.5; color: rgba(255,255,255,0.6);"
+                        >
+                            Años de<br />experiencia
+                        </p>
+                        <div
+                            style="align-self: flex-end; font-size: clamp(3rem, 6vw, 5rem); font-weight: 300; line-height: 1; color: var(--color-primary);"
+                        >
+                            9
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="elementor-section bg-slate" style="padding: 4rem 0; text-align: center; border-top: 1px solid #eee;" data-stack-section>
-            <div class="container">
-                <h3 class="text-navy" style="margin-bottom: 1.5rem;">Los pilares de la firma</h3>
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="/metodologia" class="btn btn-navy-outline" style="padding: 10px 20px;">Ver rigor metodológico</a>
-                    <a href="/servicios" class="btn btn-outline" style="padding: 10px 20px;">Explorar soluciones por directorio</a>
+            <!-- SECCIÓN: Reconocimientos y Premios -->
+            <section
+                class="elementor-section premium-section-padding bg-white"
+                style="padding: 6rem 0;"
+                data-stack-section
+            >
+                <div
+                    class="container elementor-container"
+                    style="margin: auto;"
+                >
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 4rem; align-items: center;"
+                    >
+                        <div
+                            style="position: relative; width: 100%; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-xl); order: 2;"
+                        >
+                            <img
+                                src="/premios-maya-mindtec.webp"
+                                alt="Mindtec recibiendo el Premio MAYA a la innovación en investigación de mercados"
+                                style="width: 100%; height: auto; object-fit: cover; display: block;"
+                                loading="lazy"
+                            />
+                            <div
+                                style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(11, 43, 64, 0.9), transparent); padding: 2rem 1.5rem 1rem 1.5rem; color: white;"
+                            >
+                                <span
+                                    style="font-weight: 800; font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; color: var(--color-primary);"
+                                    >Premio MAYA</span
+                                >
+                                <p
+                                    style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin: 4px 0 0 0; line-height: 1.4;"
+                                >
+                                    Galardón a la Innovación en Investigación de
+                                    Mercados en Bolivia
+                                </p>
+                            </div>
+                        </div>
+                        <div style="order: 1; text-align: left;">
+                            <span class="eyebrow"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="14"
+                                    height="14"
+                                    viewBox="0 0 256 256"
+                                    fill="currentColor"
+                                    style="margin-right: 4px; vertical-align: middle;"
+                                    ><path
+                                        d="M128,16a88,88,0,0,0-80,88c0,27.52,11.23,54.89,31.62,77.06a8,8,0,0,1,2,6.59l-11.45,49A8,8,0,0,0,78,245.92l44.4-22.2,44.4,22.2a8,8,0,0,0,7.81-.76,8,8,0,0,0,3.77-7.23L167,189.28a8,8,0,0,1,2.05-6.59c20.39-22.17,31.62-49.54,31.62-77.06A88.1,88.1,0,0,0,128,16Zm40,88a40,40,0,1,1-40-40A40,40,0,0,1,168,104Z"
+                                    ></path></svg
+                                > Logro Institucional</span
+                            >
+                            <h2
+                                class="text-navy"
+                                style="font-size: 2.5rem; margin-bottom: 1.75rem; line-height: 1.25;"
+                            >
+                                Líderes de Innovación
+                            </h2>
+                            <p
+                                style="font-size: 1.15rem; color: var(--color-primary); font-weight: 700; margin-bottom: 1.25rem;"
+                            >
+                                La excelencia metodológica en el país cuenta con
+                                el aval oficial del Premio MAYA.
+                            </p>
+                            <p
+                                style="color: #4a5b6f; font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem;"
+                            >
+                                Este galardón a la innovación reconoce la
+                                introducción sistemática de la neurociencia de
+                                consumo y la inteligencia de datos en el entorno
+                                corporativo boliviano, estableciendo nuevos
+                                estándares de confiabilidad para el sector.
+                            </p>
+                            <p
+                                style="color: #4a5b6f; font-size: 1.05rem; line-height: 1.8; margin-bottom: 0;"
+                            >
+                                El uso coordinado de herramientas biométricas
+                                avanzadas (EEG, eye-tracking) y análisis
+                                predictivos por IA permite a los directorios y
+                                comités ejecutivos comprender el comportamiento
+                                real de sus consumidores sin depender de
+                                aproximaciones teóricas. Este estándar
+                                metodológico asegura el máximo rigor científico
+                                en cada estudio estratégico.
+                            </p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <!-- SECCIÓN 5: Equipo Directivo -->
+            <section
+                class="elementor-section premium-section-padding bg-slate"
+                style="padding: 6rem 0;"
+                data-stack-section
+            >
+                <div
+                    class="container elementor-container text-center"
+                    style="margin: auto;"
+                >
+                    <h2
+                        class="text-navy"
+                        style="font-size: 2.5rem; margin-bottom: 4rem;"
+                    >
+                        El Equipo Directivo
+                    </h2>
+
+                    <!-- Wilmar: insertar aquí datos reales del equipo directivo -->
+                    <div
+                        style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;"
+                    >
+                        <!-- Director 1 -->
+                        <div
+                            class="premium-card-white"
+                            style="flex: 1; min-width: 250px; max-width: 350px; padding: 3rem 2rem;"
+                        >
+                            <div
+                                style="width: 100px; height: 100px; background-color: var(--color-primary); border-radius: 50%; margin: 0 auto 1.5rem auto; display: flex; align-items: center; justify-content: center; color: white; font-size: 2.5rem; font-weight: 700;"
+                            >
+                                WV
+                            </div>
+                            <h3
+                                style="color: var(--color-secondary); font-size: 1.3rem; margin-bottom: 0.2rem;"
+                            >
+                                Ing. Wilmar Velásquez Z.
+                            </h3>
+                            <p
+                                style="color: var(--color-primary); font-weight: 600; font-size: 0.95rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;"
+                            >
+                                CEO
+                            </p>
+                            <p
+                                style="color: #64748b; font-size: 0.95rem; line-height: 1.6;"
+                            >
+                                Especialista en análisis de datos, inteligencia
+                                artificial aplicada y comunicación no verbal.
+                                Dirige el laboratorio de neuromarketing de
+                                MindTEC.
+                            </p>
+                        </div>
+
+                        <!-- Director 2 -->
+                        <div
+                            class="premium-card-white"
+                            style="flex: 1; min-width: 250px; max-width: 350px; padding: 3rem 2rem;"
+                        >
+                            <div
+                                style="width: 100px; height: 100px; background-color: var(--color-secondary); border-radius: 50%; margin: 0 auto 1.5rem auto; display: flex; align-items: center; justify-content: center; color: white; font-size: 2.5rem; font-weight: 700;"
+                            >
+                                PP
+                            </div>
+                            <h3
+                                style="color: var(--color-secondary); font-size: 1.3rem; margin-bottom: 0.2rem;"
+                            >
+                                MSc. Paola Paniagua U.
+                            </h3>
+                            <p
+                                style="color: var(--color-primary); font-weight: 600; font-size: 0.95rem; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 1px;"
+                            >
+                                Directora de Investigación
+                            </p>
+                            <p
+                                style="color: #64748b; font-size: 0.95rem; line-height: 1.6;"
+                            >
+                                Psicóloga. Máster en Ciencias Forenses y
+                                Jurídicas. Especialista en comportamiento del
+                                consumidor e investigación profunda.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 6: Para quién NO es esta consultoría -->
+            <section
+                class="offer-section elementor-section"
+                style="background: var(--color-secondary); padding: 6rem 0;"
+                data-stack-section
+            >
+                <div
+                    class="container elementor-container"
+                    style="margin: auto;"
+                >
+                    <div
+                        class="offer-box-modern"
+                        style="padding: 4rem 0; text-align: center; background: transparent; box-shadow: none; border-radius: 0;"
+                    >
+                        <div class="offer-header">
+                            <span
+                                class="eyebrow-light"
+                                style="color: rgba(255,255,255,0.6);"
+                                >TRANSPARENCIA COMERCIAL</span
+                            >
+                            <h2 style="color: #fff;">
+                                Esta consultoría no es para todos
+                            </h2>
+                        </div>
+
+                        <ul
+                            style="max-width: 800px; margin: 3rem auto 0; text-align: left; line-height: 1.8; font-size: 1.1rem; color: #f1f5f9; list-style: none;"
+                        >
+                            <li
+                                style="margin-bottom: 1.5rem; padding-left: 1.5rem; position: relative;"
+                            >
+                                <span
+                                    style="position: absolute; left: 0; color: #fc8181; font-weight: bold;"
+                                    >✕</span
+                                >
+                                <strong>Mindtec no es</strong> para empresas que buscan
+                                reportes académicos, teóricos y descriptivos de docenas
+                                de páginas sin ninguna conclusión ejecutable.
+                            </li>
+                            <li
+                                style="margin-bottom: 1.5rem; padding-left: 1.5rem; position: relative;"
+                            >
+                                <span
+                                    style="position: absolute; left: 0; color: #fc8181; font-weight: bold;"
+                                    >✕</span
+                                >
+                                <strong>Mindtec no es</strong> para directivos que
+                                prefieren ignorar los datos que contradicen su intuición
+                                inicial y evitan enfrentar la realidad del mercado.
+                            </li>
+                            <li
+                                style="margin-bottom: 1.5rem; padding-left: 1.5rem; position: relative;"
+                            >
+                                <span
+                                    style="position: absolute; left: 0; color: #fc8181; font-weight: bold;"
+                                    >✕</span
+                                >
+                                <strong>Mindtec no es</strong> una agencia de marketing
+                                digital operativa. Es una firma de validación estratégica
+                                previa a la asignación de capital comercial.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 7: Final CTA -->
+            <section
+                class="cta-section-modern elementor-section"
+                style="background: linear-gradient(135deg, var(--color-primary), #D94E10); padding: 6rem 0;"
+                data-stack-section
+            >
+                <div
+                    class="container elementor-container glass-container"
+                    style="max-width: 900px; margin: auto; text-align: center;"
+                >
+                    <div
+                        class="cta-content-v2"
+                        style="background: transparent; box-shadow: none; border-radius: 0; max-width: none; margin: 0;"
+                    >
+                        <h2
+                            style="font-size: 2.8rem; line-height: 1.25; margin-bottom: 1.5rem;"
+                        >
+                            Si su empresa necesita ver lo que la competencia no
+                            ve, este es el punto de partida.
+                        </h2>
+                        <p class="cta-subtitle">
+                            Agende una conversación inicial con el equipo senior
+                            de Mindtec. 45 minutos, directo al punto.
+                        </p>
+                        <div class="cta-actions" style="margin-top: 2.5rem;">
+                            <a
+                                href="/contacto"
+                                class="btn btn-primary lg"
+                                style="font-size: 1.1rem; padding: 1rem 2.5rem;"
+                                >Agendar sesión de diagnóstico (45 min) →</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section
+                class="elementor-section bg-slate"
+                style="padding: 4rem 0; text-align: center; border-top: 1px solid #eee;"
+                data-stack-section
+            >
+                <div class="container">
+                    <h3 class="text-navy" style="margin-bottom: 1.5rem;">
+                        Los pilares de la firma
+                    </h3>
+                    <div
+                        style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;"
+                    >
+                        <a
+                            href="/metodologia"
+                            class="btn btn-navy-outline"
+                            style="padding: 10px 20px;"
+                            >Ver rigor metodológico</a
+                        >
+                        <a
+                            href="/servicios"
+                            class="btn btn-outline"
+                            style="padding: 10px 20px;"
+                            >Explorar soluciones por directorio</a
+                        >
+                    </div>
+                </div>
+            </section>
         </StackedSections>
 
         <!-- BREADCRUMB -->
         <nav aria-label="Breadcrumb" class="breadcrumb-bottom">
-          <div class="container">
-            <ol>
-              <li><a href="/" style="color: rgba(255,255,255,0.6); text-decoration: none;">Inicio</a></li>
-              <li style="color: rgba(255,255,255,0.3);">›</li>
-              <li aria-current="page" style="color: #fff; font-weight: 600;">La Firma</li>
-            </ol>
-          </div>
+            <div class="container">
+                <ol>
+                    <li>
+                        <a
+                            href="/"
+                            style="color: rgba(255,255,255,0.6); text-decoration: none;"
+                            >Inicio</a>
+                    </li>
+                    <li style="color: rgba(255,255,255,0.3);">›</li>
+                    <li
+                        aria-current="page"
+                        style="color: #fff; font-weight: 600;"
+                    >
+                        La Firma
+                    </li>
+                </ol>
+            </div>
         </nav>
     </main>
 </Layout>

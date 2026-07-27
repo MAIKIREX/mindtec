@@ -5,6 +5,8 @@ export interface ExpandingCarouselItem {
   description: string;
   image: string;
   alt: string;
+  /** Video opcional (webm) que reemplaza la imagen estática, en loop y sin sonido. */
+  video?: string;
 }
 
 interface Props {
@@ -18,7 +20,19 @@ const { items } = Astro.props;
   {items.map((item, index) => (
     <div class={`lab-carousel__item ${index === 0 ? 'lab-carousel__item--active' : ''}`} data-lab-item={index}>
       <div class="lab-carousel__image-container">
-        <img src={item.image} alt={item.alt} class="lab-carousel__image" loading="lazy" />
+        {item.video ? (
+          <video
+            class="lab-carousel__image"
+            src={item.video}
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+          />
+        ) : (
+          <img src={item.image} alt={item.alt} class="lab-carousel__image" loading="lazy" />
+        )}
         <div class="lab-carousel__overlay"></div>
         <div class="lab-carousel__number">{String(index + 1).padStart(2, '0')}</div>
       </div>

@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import NeuroOrbitLogo from '../components/visual/NeuroOrbitLogo.astro';
 import HoverStepCards from '../components/cards/HoverStepCards.astro';
 import AreaPanelCards from '../components/cards/AreaPanelCards.astro';
 import ComparisonRows from '../components/cards/ComparisonRows.astro';
@@ -280,14 +281,31 @@ const relatedProductsCards = [
           <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;">
             Investigación Cuantitativa en Bolivia — Evidencia estadística que su Directorio puede defender.
           </h1>
+        </div>
+        <div class="hero-visual" style="display: flex; align-items: center; justify-content: center; max-width: 100%; overflow: visible;">
+          <div class="hero-visual-slot" data-logo-slot="start" style="width: min(52vw, 560px); aspect-ratio: 1;">
+            <NeuroOrbitLogo
+              size="min(68vw, 720px)"
+              stageSize="clamp(260px, 30vw, 380px)"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nueva sección debajo del hero -->
+    <section class="hero-details-section" style="background: var(--color-secondary-deep, #061c2b); padding: 4rem 0;" data-stack-section>
+      <div class="container hero-details-grid">
+        <div class="hero-details-logo-slot" data-logo-slot="end"></div>
+        <div class="hero-details-text">
           <div class="direct-answer-box">
             <strong>En resumen</strong>
             <p>Mindtec realiza investigación cuantitativa en Bolivia: encuestas presenciales, telefónicas y online con muestras estadísticamente representativas para dimensionar mercados, medir actitudes y sustentar decisiones corporativas.</p>
           </div>
-          <p class="hero-subtitle" style="font-size: 1.25rem; margin-bottom: 1.5rem; max-width: 800px;">
+          <p class="hero-subtitle" style="font-size: 1.25rem; margin-bottom: 1.5rem; max-width: 600px; color: #fff; line-height: 1.6;">
             Encuestas presenciales, telefónicas y online con muestras estadísticamente representativas del mercado boliviano. Red de 80+ encuestadores activos en 4 ciudades. Análisis que va más allá de las tablas de frecuencias.
           </p>
-          <p style="font-size: 1.05rem; color: rgba(255,255,255,0.75); max-width: 800px; margin-bottom: 2.5rem;">
+          <p style="font-size: 1.05rem; color: rgba(255,255,255,0.75); max-width: 600px; margin-bottom: 2.5rem; line-height: 1.7;">
             No entregamos reportes de datos. Entregamos conclusiones accionables con sustento estadístico que permiten tomar decisiones de lanzamiento, precio, distribución y posicionamiento con certeza científica.
           </p>
           <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2.5rem;">
@@ -296,11 +314,8 @@ const relatedProductsCards = [
             <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Muestras representativas</span>
             <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Cobertura nacional</span>
           </div>
-          <a href="/contacto" class="btn btn-primary lg">Agendar diagnóstico estratégico (45 min) →</a>
-        </div>
-        <div class="hero-visual">
-          <div class="glass-card main-visual">
-            <div class="neuro-visual-bg"></div>
+          <div style="text-align: center;">
+            <a href="/contacto" class="btn btn-primary lg">Agendar diagnóstico estratégico (45 min) →</a>
           </div>
         </div>
       </div>
@@ -371,42 +386,42 @@ const relatedProductsCards = [
           eyebrow: "Síntesis",
           title: "Reporte Ejecutivo con Conclusiones Accionables",
           description: "Síntesis de hallazgos clave con lenguaje directivo. Sin jerga estadística. Directo a las implicaciones para su negocio, con recomendaciones priorizadas por impacto.",
-          icon: "road"
+          icon: "report"
         },
         {
           background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregable-02-segmentacion.webp",
           eyebrow: "Segmentos",
           title: "Segmentación Estadística del Mercado",
           description: "Identificación y dimensionamiento de segmentos de consumidores con perfil sociodemográfico, psicográfico y conductual. La base para cualquier estrategia de targeting real.",
-          icon: "building"
+          icon: "segments"
         },
         {
           background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregable-03-awareness-preferencia.webp",
           eyebrow: "Embudo de marca",
           title: "Medición de Awareness, Preferencia y Compra",
           description: "Top of mind, reconocimiento espontáneo y asistido, preferencia de marca y penetración de consumo. El embudo de marca medido estadísticamente en su mercado objetivo.",
-          icon: "services"
+          icon: "funnel"
         },
         {
           background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregable-04-demanda-dimensionamiento.webp",
           eyebrow: "Demanda",
           title: "Análisis de Demanda y Dimensionamiento",
           description: "Estimación del tamaño del mercado objetivo, frecuencia de compra, intención de adopción y potencial de penetración. Los números que justifican la inversión ante el directorio.",
-          icon: "airport"
+          icon: "chart"
         },
         {
           background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregable-05-dashboard-datos.webp",
           eyebrow: "Datos",
           title: "Dashboard de Datos y Base Completa",
           description: "Entrega de la base de datos procesada, tablas de frecuencias y cruce de variables para que su equipo de analítica pueda profundizar en los hallazgos más relevantes.",
-          icon: "road"
+          icon: "database"
         },
         {
           background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregable-06-presentacion-directorio.webp",
           eyebrow: "Presentación",
           title: "Presentación ante Directorio",
           description: "Sesión de presentación de hallazgos con el equipo de Mindtec, diseñada para el formato de Directorio o Gerencia: máximo impacto en mínimo tiempo.",
-          icon: "building"
+          icon: "presentation"
         }
       ]}
     />
@@ -559,6 +574,172 @@ const relatedProductsCards = [
         padding: 0 clamp(1.5rem, 4vw, 4rem);
       }
     }
+
+    /* Hero -> hero-details logo scroll transition */
+    .hero-visual-slot {
+      position: relative;
+    }
+
+    .hero-details-grid {
+      display: grid;
+      grid-template-columns: minmax(280px, 500px) 1fr;
+      gap: 3rem;
+      align-items: center;
+      max-width: 1200px;
+    }
+
+    .hero-details-logo-slot {
+      width: 100%;
+      max-width: 500px;
+      aspect-ratio: 1;
+    }
+
+    @media (max-width: 900px) {
+      .hero-details-grid {
+        grid-template-columns: 1fr;
+        max-width: 900px;
+      }
+
+      .hero-details-logo-slot {
+        display: none;
+      }
+    }
   </style>
+
+  <script>
+    import gsap from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    type HeroLogoWindow = typeof window & {
+      __heroLogoTransitionEventsRegistered?: boolean;
+    };
+
+    let heroLogoContext: gsap.Context | undefined;
+
+    function destroyHeroLogoTransition(): void {
+      heroLogoContext?.revert();
+      heroLogoContext = undefined;
+    }
+
+    // Coordenadas en espacio de documento (no de viewport), para que el
+    // logo -posicionado en position:absolute sobre <body>- se desplace de
+    // forma natural junto con el scroll de la página.
+    function docRect(el: HTMLElement) {
+      const rect = el.getBoundingClientRect();
+      return {
+        top: rect.top + window.scrollY,
+        left: rect.left + window.scrollX,
+      };
+    }
+
+    function initHeroLogoTransition(): void {
+      destroyHeroLogoTransition();
+
+      const heroSection = document.querySelector<HTMLElement>(".hero-section");
+      const startSlot = document.querySelector<HTMLElement>(
+        '[data-logo-slot="start"]',
+      );
+      const endSlot = document.querySelector<HTMLElement>(
+        '[data-logo-slot="end"]',
+      );
+      const logo = startSlot?.querySelector<HTMLElement>(
+        "[data-neuro-orbit-logo]",
+      );
+
+      if (!heroSection || !startSlot || !endSlot || !logo) return;
+
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      const isDesktop = window.matchMedia("(min-width: 900px)").matches;
+
+      // En mobile o con reduced-motion el logo se queda tal cual quedó
+      // maquetado dentro del hero: sin flotar, sin animación de scroll.
+      if (prefersReducedMotion || !isDesktop) return;
+
+      heroLogoContext = gsap.context(() => {
+        document.body.appendChild(logo);
+
+        // Centrado sobre el slot (no top-left directo): el núcleo del
+        // logo puede ser más grande que la caja del slot que reserva su
+        // espacio en el layout, así que se alinea por el centro de ambos.
+        const startRect = startSlot.getBoundingClientRect();
+        const startDocInit = docRect(startSlot);
+        gsap.set(logo, {
+          position: "absolute",
+          top: startDocInit.top + startRect.height / 2 - logo.offsetHeight / 2,
+          left: startDocInit.left + startRect.width / 2 - logo.offsetWidth / 2,
+          zIndex: 5,
+          opacity: 1,
+        });
+
+        // quickTo evita crear tweens nuevos en cada tick de scroll: solo
+        // reapunta el mismo tween hacia el valor fresco, con una leve
+        // inercia (duration) que es justamente lo que da la sensación
+        // fluida al desplazamiento en X/Y.
+        const setTop = gsap.quickTo(logo, "top", {
+          duration: 0.5,
+          ease: "power3.out",
+        });
+        const setLeft = gsap.quickTo(logo, "left", {
+          duration: 0.5,
+          ease: "power3.out",
+        });
+        const setScale = gsap.quickTo(logo, "scale", {
+          duration: 0.4,
+          ease: "power2.out",
+        });
+
+        // Curva en campana: 1 en los extremos (inicio y destino), pico en
+        // el centro del recorrido -> crece al pasar por la mitad de la
+        // pantalla y vuelve a su tamaño normal al llegar al slot final.
+        const PEAK_SCALE_BUMP = 0.35;
+
+        ScrollTrigger.create({
+          trigger: heroSection,
+          start: "top top",
+          end: "bottom top",
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            // Se recalcula en cada tick a partir de posiciones en vivo,
+            // en vez de usar valores fijados una sola vez, porque el
+            // slot de destino puede desplazarse por reflow (fuentes,
+            // resize) y necesitamos siempre el valor actual.
+            const startDoc = docRect(startSlot);
+            const startRect2 = startSlot.getBoundingClientRect();
+            const startTop =
+              startDoc.top + startRect2.height / 2 - logo.offsetHeight / 2;
+            const startLeft =
+              startDoc.left + startRect2.width / 2 - logo.offsetWidth / 2;
+
+            const endDoc = docRect(endSlot);
+            const endRect = endSlot.getBoundingClientRect();
+            const endTop =
+              endDoc.top + endRect.height / 2 - logo.offsetHeight / 2;
+            const endLeft =
+              endDoc.left + endRect.width / 2 - logo.offsetWidth / 2;
+
+            setTop(gsap.utils.interpolate(startTop, endTop, self.progress));
+            setLeft(gsap.utils.interpolate(startLeft, endLeft, self.progress));
+
+            const bump = Math.sin(self.progress * Math.PI) * PEAK_SCALE_BUMP;
+            setScale(1 + bump);
+          },
+        });
+      });
+    }
+
+    initHeroLogoTransition();
+
+    const heroLogoWindow = window as HeroLogoWindow;
+
+    if (!heroLogoWindow.__heroLogoTransitionEventsRegistered) {
+      document.addEventListener("astro:page-load", initHeroLogoTransition);
+      document.addEventListener("astro:before-swap", destroyHeroLogoTransition);
+      heroLogoWindow.__heroLogoTransitionEventsRegistered = true;
+    }
+  </script>
 
 </Layout>

@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import ServiceVisualSuite from "../components/sections/ServiceVisualSuite.astro";
 import HoverStepCards from "../components/cards/HoverStepCards.astro";
 import StackedSections from "../components/scroll/StackedSections.astro";
+import ComparisonRows from "../components/cards/ComparisonRows.astro";
 
 const audienceCards = [
   {
@@ -2202,95 +2203,19 @@ const description =
               Llaman igual. Se ejecutan diferente. Los resultados son distintos.
             </p>
           </div>
-          <div class="comparison-table-wrapper">
-            <table class="comparison-table">
-              <thead>
-                <tr>
-                  <th scope="col">Estudio estándar de mercado</th>
-                  <th
-                    scope="col"
-                    aria-label="versus"
-                    style="width: 60px; text-align: center;"></th>
-                  <th scope="col">MindTEC</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Encuestadores leyendo un cuestionario</td>
-                  <td
-                    style="text-align: center; font-weight: 800; color: #94a3b8;"
-                    >vs</td
-                  >
-                  <td
-                    >Psicoantropólogos + IA leyendo el código detrás de la
-                    respuesta</td
-                  >
-                </tr>
-                <tr>
-                  <td>Lo que la gente declara en voz alta</td>
-                  <td
-                    style="text-align: center; font-weight: 800; color: #94a3b8;"
-                    >vs</td
-                  >
-                  <td
-                    >Lo que la gente siente aunque no lo verbalice — más
-                    neuromarketing cuando aplica</td
-                  >
-                </tr>
-                <tr>
-                  <td>Tablas con porcentajes y gráficos de barra</td>
-                  <td
-                    style="text-align: center; font-weight: 800; color: #94a3b8;"
-                    >vs</td
-                  >
-                  <td>Decisiones priorizadas con criterio estratégico</td>
-                </tr>
-                <tr>
-                  <td>El equipo senior diseña; junior ejecuta</td>
-                  <td
-                    style="text-align: center; font-weight: 800; color: #94a3b8;"
-                    >vs</td
-                  >
-                  <td>El mismo equipo senior en diseño, campo y entrega</td>
-                </tr>
-                <tr>
-                  <td>Un reporte que se archiva</td>
-                  <td
-                    style="text-align: center; font-weight: 800; color: #94a3b8;"
-                    >vs</td
-                  >
-                  <td>Un executive brief que mueve reuniones de directorio</td>
-                </tr>
-                <tr>
-                  <td>Sin seguimiento post-estudio</td>
-                  <td
-                    style="text-align: center; font-weight: 800; color: #94a3b8;"
-                    >vs</td
-                  >
-                  <td>Seguimiento estratégico post-estudio incluido siempre</td>
-                </tr>
-                <tr>
-                  <td>6–12 semanas de entrega</td>
-                  <td
-                    style="text-align: center; font-weight: 800; color: #94a3b8;"
-                    >vs</td
-                  >
-                  <td>7–21 días para proyectos estándar</td>
-                </tr>
-                <tr>
-                  <td>El conocimiento del consumidor queda en el documento</td>
-                  <td
-                    style="text-align: center; font-weight: 800; color: #94a3b8;"
-                    >vs</td
-                  >
-                  <td
-                    >Tu equipo sale entendiendo al consumidor, no solo leyendo
-                    sobre él</td
-                  >
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          <ComparisonRows
+            columnLabels={{ left: 'Estudio estándar de mercado', right: 'MindTEC' }}
+            rows={[
+              { before: 'Encuestadores leyendo un cuestionario', after: 'Psicoantropólogos + IA leyendo el código detrás de la respuesta' },
+              { before: 'Lo que la gente declara en voz alta', after: 'Lo que la gente siente aunque no lo verbalice — más neuromarketing cuando aplica' },
+              { before: 'Tablas con porcentajes y gráficos de barra', after: 'Decisiones priorizadas con criterio estratégico' },
+              { before: 'El equipo senior diseña; junior ejecuta', after: 'El mismo equipo senior en diseño, campo y entrega' },
+              { before: 'Un reporte que se archiva', after: 'Un executive brief que mueve reuniones de directorio' },
+              { before: 'Sin seguimiento post-estudio', after: 'Seguimiento estratégico post-estudio incluido siempre' },
+              { before: '6–12 semanas de entrega', after: '7–21 días para proyectos estándar' },
+              { before: 'El conocimiento del consumidor queda en el documento', after: 'Tu equipo sale entendiendo al consumidor, no solo leyendo sobre él' },
+            ]}
+          />
           <div style="text-align: center; margin-top: 2.5rem;">
             <a href="/contacto" class="btn btn-primary lg"
               >Hablemos de tu próxima decisión →</a
@@ -2471,14 +2396,14 @@ const description =
         >
           <div class="cta-content-v2">
             <h2
-              style="font-size: 3rem; line-height: 1.25; margin-bottom: 1.5rem;"
+              style="font-size: clamp(1.8rem, 5vw, 3rem); line-height: 1.25; margin-bottom: 1.5rem;"
             >
               Las empresas que lideran su mercado no adivinan. Deciden con
               inteligencia.
             </h2>
             <p
               class="cta-subtitle"
-              style="font-size: 1.25rem; margin-bottom: 2.5rem; opacity: 0.9;"
+              style="font-size: clamp(1rem, 2.2vw, 1.25rem); margin-bottom: 2.5rem; opacity: 0.9;"
             >
               Hablemos 45 minutos. Evaluamos tus desafíos de mercado y te
               presentamos una propuesta metodológica concreta — sin compromiso
@@ -2829,6 +2754,7 @@ const description =
 
     .services-final-cta .container {
       width: 100%;
+      min-width: 0;
     }
 
     .services-final-cta .cta-content-v2 {

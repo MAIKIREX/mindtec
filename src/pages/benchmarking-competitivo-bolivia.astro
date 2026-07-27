@@ -4,8 +4,55 @@ import ServiceVisualSuite from "../components/sections/ServiceVisualSuite.astro"
 import FaqSplit from "../components/faq/FaqSplit.astro";
 import HoverStepCards from "../components/cards/HoverStepCards.astro";
 import AreaPanelCards from "../components/cards/AreaPanelCards.astro";
+import ComparisonRows from "../components/cards/ComparisonRows.astro";
 import ScrollStory from "../components/scroll/ScrollStory.astro";
 import StackedSections from "../components/scroll/StackedSections.astro";
+
+const problemScenarios = [
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M136 40h64a16 16 0 0 1 16 16v64L100 236 20 156z"></path><circle cx="176" cy="80" r="12"></circle><path d="M176 140v56M152 172l24 24 24-24"></path></svg>`,
+    title: 'Precio desactualizado sin monitoreo',
+    description: 'Tu precio ya no es competitivo — y no te enteraste hasta que el cliente te lo dijo. Sin monitoreo continuo, los cambios de precio de la competencia son invisibles hasta que afectan tus ventas.',
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><rect x="48" y="88" width="160" height="128" rx="8"></rect><path d="M48 88l24-48h112l24 48"></path><path d="M96 216v-64h64v64"></path></svg>`,
+    title: 'Pérdida de exclusividad en canal',
+    description: 'Un competidor ganó distribución en canales donde tú tenías exclusividad. Cuando lo descubriste, ya tenían 3 meses de ventaja en el anaquel.',
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M128 24c40 24 48 80 32 128l-32 32-32-32c-16-48-8-104 32-128z"></path><path d="M96 168l-24 48M160 168l24 48"></path><circle cx="128" cy="96" r="16"></circle></svg>`,
+    title: 'Lanzamiento sin anticipar competencia',
+    description: 'Tu campaña de lanzamiento chocó con una acción competitiva que no anticipaste. Inteligencia oportuna habría permitido ajustar el timing o la propuesta.',
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><rect x="56" y="32" width="144" height="192" rx="8"></rect><path d="M88 176v-40M128 176v-72M168 176v-24"></path></svg>`,
+    title: 'Sin evidencia ante el directorio',
+    description: 'El directorio pide evidencia de dónde estás parado frente a la competencia. Y lo que tienes son suposiciones del equipo comercial, no datos.',
+  },
+];
+
+const comparisonRows = [
+  {
+    before: 'Revisión de precios en un momento puntual',
+    after: 'Monitoreo continuo de precios, promociones y estrategias de canal con alertas ante cambios significativos',
+  },
+  {
+    before: 'Datos de fuentes secundarias (informes de industria, internet)',
+    after: 'Inteligencia primaria de campo: auditores en PDV + entrevistas a consumidores + análisis digital',
+  },
+  {
+    before: 'Foto estática de la competencia',
+    after: 'Radar dinámico que detecta movimientos y tendencias antes de que impacten tu posición',
+  },
+  {
+    before: 'Sin voz del consumidor',
+    after: 'Percepción comparada: cómo diferencia el consumidor tu marca de los competidores',
+  },
+  {
+    before: 'Datos que el equipo comercial interpreta según su sesgo',
+    after: 'Análisis independiente con recomendaciones estratégicas priorizadas para el directorio',
+  },
+];
 
 const processSteps = [
   {
@@ -287,12 +334,9 @@ const description =
     </div>
 
     <!-- 2. EL PROBLEMA -->
-    <section class="problem-section bg-slate" style="padding: 5rem 0;" data-stack-section>
+    <section class="bg-slate" style="padding: 5rem 0;" data-stack-section>
       <div class="container">
-        <div
-          class="premium-card-white"
-          style="max-width: 900px; margin: 0 auto; padding: 4rem;"
-        >
+        <div style="max-width: 900px; margin: 0 auto;">
           <span class="eyebrow">EL PROBLEMA REAL</span>
           <h2
             class="text-navy"
@@ -312,43 +356,17 @@ const description =
           </p>
           <p
             class="text-gray-dark leading-relaxed"
-            style="font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.7;"
+            style="font-size: 1.05rem; line-height: 1.7;"
           >
             ¿Reconoces alguno de estos escenarios?
           </p>
-          <ul class="cap-list" style="font-size: 1.05rem; margin-bottom: 2rem;">
-            <li>
-              <strong class="text-navy"
-                >Tu precio ya no es competitivo — y no te enteraste hasta que el
-                cliente te lo dijo.</strong
-              > Sin monitoreo continuo, los cambios de precio de la competencia son
-              invisibles hasta que afectan tus ventas.
-            </li>
-            <li>
-              <strong class="text-navy"
-                >Un competidor ganó distribución en canales donde tú tenías
-                exclusividad.</strong
-              > Cuando lo descubriste, ya tenían 3 meses de ventaja en el anaquel.
-            </li>
-            <li>
-              <strong class="text-navy"
-                >Tu campaña de lanzamiento chocó con una acción competitiva que
-                no anticipaste.</strong
-              > Inteligencia oportuna habría permitido ajustar el timing o la propuesta.
-            </li>
-            <li>
-              <strong class="text-navy"
-                >El directorio pide evidencia de dónde estás parado frente a la
-                competencia.</strong
-              > Y lo que tienes son suposiciones del equipo comercial, no datos.
-            </li>
-          </ul>
-          <div
-            style="background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: 8px; font-weight: 600; font-size: 1.1rem; text-align: center;"
-          >
-            Competir sin inteligencia competitiva es como jugar ajedrez sin ver
-            el tablero completo.
-          </div>
+        </div>
+
+        <AreaPanelCards items={problemScenarios} columns={4} theme="navy" class="problem-panels" />
+
+        <div style="max-width: 900px; margin: 2.5rem auto 0; background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: var(--radius-md, 8px); font-weight: 600; font-size: 1.1rem; text-align: center;">
+          Competir sin inteligencia competitiva es como jugar ajedrez sin ver
+          el tablero completo.
         </div>
       </div>
     </section>
@@ -368,56 +386,10 @@ const description =
             Inteligencia competitiva que va más allá del precio en anaquel.
           </h2>
         </div>
-        <div class="comparison-table-wrapper">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th scope="col">Benchmarking estándar</th>
-                <th scope="col">MindTEC — Radar Competitivo</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Revisión de precios en un momento puntual</td>
-                <td
-                  >Monitoreo continuo de precios, promociones y estrategias de
-                  canal con alertas ante cambios significativos</td
-                >
-              </tr>
-              <tr>
-                <td
-                  >Datos de fuentes secundarias (informes de industria,
-                  internet)</td
-                >
-                <td
-                  >Inteligencia primaria de campo: auditores en PDV +
-                  entrevistas a consumidores + análisis digital</td
-                >
-              </tr>
-              <tr>
-                <td>Foto estática de la competencia</td>
-                <td
-                  >Radar dinámico que detecta movimientos y tendencias antes de
-                  que impacten tu posición</td
-                >
-              </tr>
-              <tr>
-                <td>Sin voz del consumidor</td>
-                <td
-                  >Percepción comparada: cómo diferencia el consumidor tu marca
-                  de los competidores</td
-                >
-              </tr>
-              <tr>
-                <td>Datos que el equipo comercial interpreta según su sesgo</td>
-                <td
-                  >Análisis independiente con recomendaciones estratégicas
-                  priorizadas para el directorio</td
-                >
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <ComparisonRows
+          columnLabels={{ left: 'Benchmarking estándar', right: 'MindTEC — Radar Competitivo' }}
+          rows={comparisonRows}
+        />
         <p
           class="text-gray-dark"
           style="font-size: 1.05rem; margin-top: 2rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.7;"
@@ -513,7 +485,7 @@ const description =
     </section>
 
     <!-- 6. SECTORES -->
-    <section class="problem-section bg-slate" style="padding: 5rem 0;" data-stack-section>
+    <section class="bg-slate" style="padding: 5rem 0;" data-stack-section>
       <div class="container">
         <div
           class="section-title-center"
@@ -869,6 +841,13 @@ const description =
 </Layout>
 
 <style>
+    /* Espacio entre la intro de "El Problema" y el grid de escenarios.
+       :global() porque la clase se aplica dentro de AreaPanelCards.astro;
+       doble clase para ganarle en especificidad al margin:0 auto de .areas-grid. */
+    :global(.areas-grid.problem-panels) {
+      margin-top: 3.5rem;
+    }
+
     /* 9. PRODUCTOS RELACIONADOS */
     .related-products-bleed {
       padding: 0 2rem;
@@ -901,8 +880,8 @@ const description =
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        flex: 1 1 calc((100% - 4 * 0.55rem) / 5);
-        max-width: calc((100% - 4 * 0.55rem) / 5);
+        flex: 1 1 calc((100% - 2 * 0.55rem) / 3);
+        max-width: calc((100% - 2 * 0.55rem) / 3);
         min-height: 290px;
         padding: 1.5rem 1.25rem;
         overflow: hidden;
@@ -1005,13 +984,6 @@ const description =
     .area-panel:focus-visible .area-panel__arrow {
         opacity: 1;
         transform: translateX(0);
-    }
-
-    @media (max-width: 1100px) {
-        .area-panel {
-            flex-basis: calc((100% - 2 * 0.55rem) / 3);
-            max-width: calc((100% - 2 * 0.55rem) / 3);
-        }
     }
 
     @media (max-width: 700px) {

@@ -1,6 +1,4 @@
 ---
-import StatCounter from '../scroll/StatCounter.astro';
-
 interface Metric {
   label: string;
   value: number;
@@ -18,7 +16,6 @@ interface Suite {
   image: string;
   alt: string;
   accent: string;
-  metrics: Metric[];
   cards: Card[];
 }
 
@@ -34,12 +31,6 @@ const suites: Record<string, Suite> = {
     image: '/imagenes-mindtec/generated/servicios-encuestas-retail.webp',
     alt: 'Equipo de campo realizando encuestas retail y auditoria de anaquel',
     accent: '#f26522',
-    metrics: [
-      { label: 'Research', value: 86 },
-      { label: 'Intelligence', value: 74 },
-      { label: 'Retail', value: 91 },
-      { label: 'Strategy', value: 68 },
-    ],
     cards: [
       { title: '1. Detectar', text: 'Ubicar la incertidumbre que frena la decision.' },
       { title: '2. Medir', text: 'Cruzar campo, biometria, datos e IA aplicada.' },
@@ -53,12 +44,6 @@ const suites: Record<string, Suite> = {
     image: '/imagenes-mindtec/participante-estudio-laboratorio-neuromarketing-1-1.jpg',
     alt: 'Participante en laboratorio de neuromarketing con medición biométrica',
     accent: '#f26522',
-    metrics: [
-      { label: 'Mirada', value: 92 },
-      { label: 'Carga', value: 63 },
-      { label: 'Emocion', value: 78 },
-      { label: 'Memoria', value: 71 },
-    ],
     cards: [
       { title: 'Heatmap', text: 'Zonas que capturan o pierden atencion visual.' },
       { title: 'EEG / GSR', text: 'Picos de interes, tension o friccion cognitiva.' },
@@ -72,12 +57,6 @@ const suites: Record<string, Suite> = {
     image: '/imagenes-mindtec/supermercado.jpg',
     alt: 'Consumidora usando tecnología de seguimiento visual en punto de venta',
     accent: '#2aa7c9',
-    metrics: [
-      { label: 'TAM', value: 81 },
-      { label: 'SAM', value: 66 },
-      { label: 'SOM', value: 44 },
-      { label: 'Riesgo', value: 58 },
-    ],
     cards: [
       { title: 'Mercado', text: 'Dimensionar demanda facturable por territorio.' },
       { title: 'Canal', text: 'Validar donde ocurre la transaccion real.' },
@@ -91,12 +70,6 @@ const suites: Record<string, Suite> = {
     image: '/imagenes-mindtec/generated/neuro-pricing-retail.webp',
     alt: 'Analisis de neuro pricing en anaquel con curva de precio y mapas de atencion',
     accent: '#22c55e',
-    metrics: [
-      { label: 'Margen', value: 84 },
-      { label: 'Valor', value: 73 },
-      { label: 'Dolor', value: 48 },
-      { label: 'Elasticidad', value: 62 },
-    ],
     cards: [
       { title: 'Umbral', text: 'Encontrar el punto donde el precio deja de sentirse justo.' },
       { title: 'Competencia', text: 'Comparar bandas de precio por canal y ciudad.' },
@@ -110,12 +83,6 @@ const suites: Record<string, Suite> = {
     image: '/imagenes-mindtec/Conoce-que-ve1.png',
     alt: 'Pieza visual de neuromarketing sobre lo que las personas ven y desean',
     accent: '#8b5cf6',
-    metrics: [
-      { label: 'Confianza', value: 79 },
-      { label: 'Diferencia', value: 54 },
-      { label: 'Lealtad', value: 72 },
-      { label: 'Precio', value: 61 },
-    ],
     cards: [
       { title: 'Percibido', text: 'Lo que el mercado cree de la marca hoy.' },
       { title: 'Deseado', text: 'La promesa que el directorio intenta proyectar.' },
@@ -129,12 +96,6 @@ const suites: Record<string, Suite> = {
     image: '/imagenes-mindtec/tiendas.jpg',
     alt: 'Tienda retail observada para auditoría de exhibición y ejecución comercial',
     accent: '#f26522',
-    metrics: [
-      { label: 'Shelf', value: 76 },
-      { label: 'Precio', value: 69 },
-      { label: 'Stock', value: 57 },
-      { label: 'POP', value: 82 },
-    ],
     cards: [
       { title: 'Foto + GPS', text: 'Evidencia georreferenciada desde el canal.' },
       { title: 'Alerta', text: 'Detectar desviaciones antes de perder venta.' },
@@ -148,12 +109,6 @@ const suites: Record<string, Suite> = {
     image: '/imagenes-mindtec/generated/shopper-encuestas-retail.webp',
     alt: 'Encuestadora realizando estudio shopper en anaquel de supermercado',
     accent: '#f26522',
-    metrics: [
-      { label: 'Entrada', value: 71 },
-      { label: 'Comparacion', value: 86 },
-      { label: 'Impulso', value: 64 },
-      { label: 'Cierre', value: 78 },
-    ],
     cards: [
       { title: 'Recorrido', text: 'Secuencia real de decision frente al anaquel.' },
       { title: 'Competidor', text: 'Marcas que capturan la mirada primero.' },
@@ -167,12 +122,6 @@ const suites: Record<string, Suite> = {
     image: '/imagenes-mindtec/generated/focus-group-profundo.webp',
     alt: 'Focus group profundo moderado para investigacion cualitativa de consumidores',
     accent: '#2aa7c9',
-    metrics: [
-      { label: 'Lenguaje', value: 80 },
-      { label: 'Tension', value: 58 },
-      { label: 'Consenso', value: 69 },
-      { label: 'Insight', value: 88 },
-    ],
     cards: [
       { title: 'Moderacion', text: 'Guia construida desde comportamiento del consumidor.' },
       { title: 'Lectura', text: 'Codigos, contradicciones y simbolos dominantes.' },
@@ -186,12 +135,6 @@ const suites: Record<string, Suite> = {
     image: '/imagenes-mindtec/social-lab-abril-dashboard-copia.jpg',
     alt: 'Dashboard competitivo con indicadores de crecimiento e interacciones por marca',
     accent: '#ef4444',
-    metrics: [
-      { label: 'Precio', value: 74 },
-      { label: 'Canal', value: 82 },
-      { label: 'Mensaje', value: 67 },
-      { label: 'Brecha', value: 59 },
-    ],
     cards: [
       { title: 'Observar', text: 'Movimientos comerciales y tacticas visibles.' },
       { title: 'Comparar', text: 'Ventajas y debilidades frente a su propuesta.' },
@@ -205,12 +148,6 @@ const suites: Record<string, Suite> = {
     image: '/imagenes-mindtec/tiendas.jpg',
     alt: 'Interior de tienda para evaluación de cliente misterioso y experiencia de servicio',
     accent: '#22c55e',
-    metrics: [
-      { label: 'Saludo', value: 73 },
-      { label: 'Venta', value: 61 },
-      { label: 'Servicio', value: 84 },
-      { label: 'Cierre', value: 57 },
-    ],
     cards: [
       { title: 'Visita', text: 'Evaluacion anonima de atencion y protocolo.' },
       { title: 'Evidencia', text: 'Hallazgos con trazabilidad por punto de contacto.' },
@@ -221,55 +158,70 @@ const suites: Record<string, Suite> = {
 
 const { variant = 'catalogo' } = Astro.props;
 const data = suites[variant] || suites.catalogo;
+
+const suiteMetrics: Record<string, Metric[]> = {
+  catalogo: [{ label: 'Research', value: 86 }, { label: 'Intelligence', value: 74 }, { label: 'Retail', value: 91 }, { label: 'Strategy', value: 68 }],
+  neuromarketing: [{ label: 'Mirada', value: 92 }, { label: 'Carga', value: 63 }, { label: 'Emoción', value: 78 }, { label: 'Memoria', value: 71 }],
+  mercado: [{ label: 'TAM', value: 81 }, { label: 'SAM', value: 66 }, { label: 'SOM', value: 44 }, { label: 'Riesgo', value: 58 }],
+  precios: [{ label: 'Margen', value: 84 }, { label: 'Valor', value: 73 }, { label: 'Dolor', value: 48 }, { label: 'Elasticidad', value: 62 }],
+  marca: [{ label: 'Confianza', value: 79 }, { label: 'Diferencia', value: 54 }, { label: 'Lealtad', value: 72 }, { label: 'Precio', value: 61 }],
+  retail: [{ label: 'Shelf', value: 76 }, { label: 'Precio', value: 69 }, { label: 'Stock', value: 57 }, { label: 'POP', value: 82 }],
+  shopper: [{ label: 'Entrada', value: 71 }, { label: 'Comparación', value: 86 }, { label: 'Impulso', value: 64 }, { label: 'Cierre', value: 78 }],
+  focus: [{ label: 'Lenguaje', value: 80 }, { label: 'Tensión', value: 58 }, { label: 'Consenso', value: 69 }, { label: 'Insight', value: 88 }],
+  benchmarking: [{ label: 'Precio', value: 74 }, { label: 'Canal', value: 82 }, { label: 'Mensaje', value: 67 }, { label: 'Brecha', value: 59 }],
+  misterioso: [{ label: 'Saludo', value: 73 }, { label: 'Venta', value: 61 }, { label: 'Servicio', value: 84 }, { label: 'Cierre', value: 57 }],
+};
+
+const metrics = suiteMetrics[variant] || suiteMetrics.catalogo;
 ---
 
-<section class="service-visual-suite" style={`--suite-accent: ${data.accent}`}>
+<section class="service-visual-suite" data-service-visual-suite style={`--suite-accent: ${data.accent}`}>
   <div class="service-visual-suite__inner">
-    <div class="service-visual-suite__media">
-      <img src={data.image} alt={data.alt} loading="lazy" />
-      <div class="suite-scan suite-scan--one"></div>
-      <div class="suite-scan suite-scan--two"></div>
-      {data.cards.slice(0, 3).map((card, index) => (
-        <button
-          type="button"
-          class:list={["suite-hotspot", `suite-hotspot--${['a', 'b', 'c'][index]}`]}
-          aria-label={card.title}
-        >
-          <span class="suite-hotspot__ring"></span>
-          <span class="suite-hotspot__tip">{card.title}</span>
-        </button>
-      ))}
-    </div>
-
-    <div class="service-visual-suite__content">
+    <header class="service-visual-suite__content" data-suite-intro>
       <span class="service-visual-suite__eyebrow">{data.eyebrow}</span>
       <h2>{data.title}</h2>
       <p>{data.intro}</p>
-
-      <div class="suite-dashboard" data-suite-dashboard aria-label="Indicadores visuales del servicio">
-        {data.metrics.map((metric) => (
-          <div class="suite-meter">
-            <div>
-              <span>{metric.label}</span>
-              <strong><StatCounter value={metric.value} suffix="%" duration={1.2} /></strong>
-            </div>
-            <div class="suite-meter__track" data-meter-track data-meter-value={metric.value}>
-              <span class="suite-meter__fill" data-meter-fill></span>
-            </div>
+      <dl class="suite-kpis" aria-label="Indicadores clave del servicio">
+        {metrics.map((metric) => (
+          <div class="suite-kpi">
+            <dt>{metric.label}</dt>
+            <dd>{metric.value}<span>%</span></dd>
           </div>
         ))}
-      </div>
+      </dl>
+      <span class="service-visual-suite__caption" aria-hidden="true">Un recorrido en tres movimientos</span>
+    </header>
 
-      <div class="suite-expander">
-        {data.cards.map((card, index) => (
-          <details open={index === 0}>
-            <summary>
-              <span>{String(index + 1).padStart(2, '0')}</span>
-              {card.title}
-            </summary>
+    <div class="suite-interactive" data-suite-interactive>
+      <figure class="suite-interactive__media">
+        <img src={data.image} alt={data.alt} loading="lazy" />
+        <figcaption>
+          <span data-suite-active-number>01</span>
+          <div>
+            <strong data-suite-active-title>{data.cards[0].title}</strong>
+            <p data-suite-active-text>{data.cards[0].text}</p>
+          </div>
+        </figcaption>
+      </figure>
+
+      <div class="suite-steps" role="group" aria-label={`Proceso: ${data.title}`}>
+      {data.cards.slice(0, 3).map((card, index) => (
+        <button
+          type="button"
+          class:list={['suite-step', { 'is-active': index === 0 }]}
+          data-suite-step
+          data-suite-number={String(index + 1).padStart(2, '0')}
+          data-suite-title={card.title}
+          data-suite-text={card.text}
+          aria-pressed={index === 0 ? 'true' : 'false'}
+        >
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          <div>
+            <h3>{card.title}</h3>
             <p>{card.text}</p>
-          </details>
-        ))}
+          </div>
+        </button>
+      ))}
       </div>
     </div>
   </div>
@@ -278,311 +230,66 @@ const data = suites[variant] || suites.catalogo;
 <style>
   .service-visual-suite {
     position: relative;
-    padding: clamp(3rem, 6vw, 5rem) 0;
-    background:
-      radial-gradient(circle at 14% 18%, color-mix(in srgb, var(--suite-accent) 20%, transparent), transparent 30rem),
-      linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-    overflow: hidden;
+    overflow: clip;
+    padding: clamp(4.5rem, 9vw, 8rem) 0 clamp(5.5rem, 11vw, 9rem);
+    background: radial-gradient(circle at 82% 26%, color-mix(in srgb, var(--suite-accent) 18%, transparent), transparent 30rem), linear-gradient(135deg, #f8fafc, #eef3f4);
   }
-
   .service-visual-suite::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(11, 43, 64, 0.045) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(11, 43, 64, 0.045) 1px, transparent 1px);
-    background-size: 42px 42px;
-    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-    pointer-events: none;
+    position: absolute; inset: 0; content: ''; pointer-events: none; opacity: .56;
+    background-image: linear-gradient(rgba(11,43,64,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(11,43,64,.045) 1px, transparent 1px);
+    background-size: 46px 46px; mask-image: linear-gradient(90deg, transparent, #000 18%, #000 88%, transparent);
   }
-
   .service-visual-suite__inner {
-    position: relative;
-    z-index: 1;
-    width: min(1180px, calc(100% - 2rem));
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
-    gap: clamp(2rem, 5vw, 4rem);
-    align-items: center;
+    position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, .82fr) minmax(25rem, 1.18fr);
+    gap: clamp(3rem, 8vw, 9rem); align-items: center; width: min(1240px, calc(100% - 2rem)); margin: 0 auto;
   }
-
-  .service-visual-suite__media {
-    position: relative;
-    min-height: 430px;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 28px 70px rgba(11, 43, 64, 0.18);
-    background: #0b2b40;
-    isolation: isolate;
+  .service-visual-suite__content { max-width: 34rem; }
+  .service-visual-suite__eyebrow, .service-visual-suite__caption {
+    color: var(--suite-accent); font-family: var(--font-display); font-size: .72rem; font-weight: 850; letter-spacing: .15em; text-transform: uppercase;
   }
-
-  .service-visual-suite__media img {
-    width: 100%;
-    height: 100%;
-    min-height: 430px;
-    object-fit: cover;
-    display: block;
-    filter: saturate(1.02) contrast(1.02);
-  }
-
-  .service-visual-suite__media::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(90deg, rgba(7, 25, 39, 0.18), rgba(7, 25, 39, 0.02)),
-      radial-gradient(circle at 74% 26%, color-mix(in srgb, var(--suite-accent) 16%, transparent), transparent 22rem);
-    z-index: 1;
-  }
-
-  .suite-scan {
-    position: absolute;
-    z-index: 2;
-    border: 1px solid color-mix(in srgb, var(--suite-accent) 80%, white 10%);
-    box-shadow: 0 0 24px color-mix(in srgb, var(--suite-accent) 42%, transparent);
-    pointer-events: none;
-  }
-
-  .suite-scan--one {
-    width: 38%;
-    height: 30%;
-    left: 11%;
-    top: 18%;
-  }
-
-  .suite-scan--two {
-    width: 28%;
-    height: 23%;
-    right: 12%;
-    bottom: 18%;
-  }
-
-  .suite-hotspot {
-    all: unset;
-    position: absolute;
-    z-index: 3;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: var(--suite-accent);
-    box-shadow: 0 0 0 9px color-mix(in srgb, var(--suite-accent) 18%, transparent);
-    cursor: pointer;
-  }
-
-  .suite-hotspot__ring {
-    position: absolute;
-    inset: -12px;
-    border: 1px solid color-mix(in srgb, var(--suite-accent) 70%, white 10%);
-    border-radius: inherit;
-    animation: suitePulse 2.4s ease-out infinite;
-    pointer-events: none;
-  }
-
-  .suite-hotspot__tip {
-    position: absolute;
-    z-index: 4;
-    bottom: calc(100% + 12px);
-    left: 50%;
-    min-width: 140px;
-    max-width: 200px;
-    padding: 0.55rem 0.8rem;
-    border-radius: 6px;
-    background: #0b2b40;
-    color: #fff;
-    font-family: var(--font-display);
-    font-size: 0.78rem;
-    font-weight: 800;
-    line-height: 1.3;
-    text-align: center;
-    opacity: 0;
-    pointer-events: none;
-    transform: translate(-50%, 6px);
-    transition: opacity 180ms ease, transform 180ms ease;
-  }
-
-  .suite-hotspot__tip::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    border: 6px solid transparent;
-    border-top-color: #0b2b40;
-    transform: translateX(-50%);
-  }
-
-  .suite-hotspot:hover .suite-hotspot__tip,
-  .suite-hotspot:focus-visible .suite-hotspot__tip,
-  .suite-hotspot.is-open .suite-hotspot__tip {
-    opacity: 1;
-    transform: translate(-50%, 0);
-  }
-
-  .suite-hotspot--a { left: 22%; top: 31%; }
-  .suite-hotspot--b { right: 25%; top: 42%; }
-  .suite-hotspot--c { left: 54%; bottom: 24%; }
-
-  .service-visual-suite__eyebrow {
-    display: inline-flex;
-    margin-bottom: 0.85rem;
-    color: var(--suite-accent);
-    font-family: var(--font-display);
-    font-size: 0.78rem;
-    font-weight: 900;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
+  .service-visual-suite__eyebrow { display: block; margin-bottom: 1rem; }
   .service-visual-suite__content h2 {
-    margin: 0 0 1rem;
-    color: var(--color-secondary);
-    font-family: var(--font-display);
-    font-size: clamp(1.8rem, 4vw, 3rem);
-    line-height: 1.08;
-    letter-spacing: -0.02em;
-    text-wrap: balance;
+    max-width: 12ch; margin: 0; color: var(--color-secondary); font-family: var(--font-display); font-size: clamp(2.35rem, 4.2vw, 4.35rem);
+    line-height: .98; letter-spacing: -.055em; text-wrap: balance;
   }
-
   .service-visual-suite__content > p {
-    max-width: 62ch;
-    margin: 0 0 1.75rem;
-    color: var(--color-text-muted);
-    font-size: 1.05rem;
-    line-height: 1.7;
+    max-width: 58ch; margin: 1.5rem 0 1.8rem; color: var(--color-text-muted); font-size: clamp(1rem, 1.3vw, 1.1rem); line-height: 1.7; text-wrap: pretty;
   }
-
-  .suite-dashboard {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.8rem;
-    margin-bottom: 1rem;
+  .suite-kpis {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem 2rem; margin: 2.2rem 0 1.9rem;
   }
-
-  .suite-meter {
-    padding: 1rem;
-    border-radius: 8px;
-    background: rgba(255, 255, 255, 0.78);
-    border: 1px solid rgba(11, 43, 64, 0.08);
-    box-shadow: 0 12px 28px rgba(11, 43, 64, 0.07);
+  .suite-kpi { padding-top: .85rem; border-top: 2px solid color-mix(in srgb, var(--suite-accent) 58%, rgba(11,43,64,.15)); }
+  .suite-kpi dt { color: var(--color-text-muted); font-size: .72rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+  .suite-kpi dd { margin: .4rem 0 0; color: var(--color-secondary); font-family: var(--font-display); font-size: clamp(2.45rem, 4.6vw, 4.8rem); font-variant-numeric: tabular-nums; font-weight: 900; line-height: .8; letter-spacing: -.07em; }
+  .suite-kpi dd span { margin-left: .12rem; color: var(--suite-accent); font-size: .38em; letter-spacing: 0; vertical-align: .45em; }
+  .service-visual-suite__caption { display: inline-flex; align-items: center; gap: .7rem; }
+  .service-visual-suite__caption::before { width: 2.2rem; height: 1px; content: ''; background: currentColor; }
+  .suite-interactive { width: min(100%, 36rem); }
+  .suite-interactive__media { position: relative; min-height: clamp(18rem, 29vw, 25rem); margin: 0 0 1.25rem; overflow: hidden; border-radius: 1rem; background: #0b2b40; box-shadow: 0 1.4rem 3.5rem rgba(11,43,64,.16); }
+  .suite-interactive__media::after { position: absolute; inset: 0; content: ''; background: linear-gradient(180deg, rgba(6,28,43,.04), rgba(6,28,43,.82)); pointer-events: none; }
+  .suite-interactive__media img { width: 100%; height: 100%; min-height: inherit; object-fit: cover; display: block; filter: saturate(.85) contrast(1.04); }
+  .suite-interactive__media figcaption { position: absolute; z-index: 1; right: 0; bottom: 0; left: 0; display: grid; grid-template-columns: 2.7rem minmax(0, 1fr); gap: .9rem; padding: clamp(1.25rem, 3vw, 2rem); color: #fff; }
+  .suite-interactive__media figcaption > span { color: var(--suite-accent); font-family: var(--font-display); font-size: .78rem; font-weight: 900; letter-spacing: .1em; }
+  .suite-interactive__media strong { font-family: var(--font-display); font-size: clamp(1.4rem, 2.3vw, 2rem); line-height: 1; letter-spacing: -.035em; }
+  .suite-interactive__media p { max-width: 36ch; margin: .5rem 0 0; color: rgba(255,255,255,.82); font-size: .95rem; line-height: 1.5; }
+  .suite-steps { display: grid; gap: 0; margin: 0; padding: 0; border-top: 1px solid rgba(11,43,64,.18); }
+  .suite-step { display: grid; grid-template-columns: 3.2rem minmax(0, 1fr); gap: 1rem; width: 100%; padding: clamp(1.2rem, 2.5vw, 1.8rem) 0; border: 0; border-bottom: 1px solid rgba(11,43,64,.18); background: transparent; text-align: left; cursor: pointer; transition: transform 180ms ease, color 180ms ease; }
+  .suite-step:hover, .suite-step:focus-visible, .suite-step.is-active { transform: translateX(.45rem); outline: none; }
+  .suite-step:focus-visible h3, .suite-step.is-active h3 { color: var(--suite-accent); }
+  .suite-step:active { transform: translateX(.25rem) scale(.99); }
+  .suite-step > span { color: var(--suite-accent); font-family: var(--font-display); font-size: .78rem; font-weight: 900; font-variant-numeric: tabular-nums; letter-spacing: .09em; }
+  .suite-step h3, .suite-step p { margin: 0; }
+  .suite-step h3 { color: var(--color-secondary); font-family: var(--font-display); font-size: clamp(1.35rem, 2vw, 1.85rem); line-height: 1; letter-spacing: -.035em; }
+  .suite-step p { max-width: 42ch; margin-top: .5rem; color: var(--color-text-muted); font-size: .98rem; line-height: 1.55; }
+  @media (max-width: 820px) {
+    .service-visual-suite__inner { grid-template-columns: 1fr; gap: 3rem; }
+    .service-visual-suite__content h2 { max-width: 15ch; }
   }
-
-  .suite-meter div {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1rem;
-    margin-bottom: 0.65rem;
-  }
-
-  .suite-meter span {
-    color: var(--color-secondary);
-    font-family: var(--font-display);
-    font-size: 0.86rem;
-    font-weight: 800;
-  }
-
-  .suite-meter strong {
-    color: var(--suite-accent);
-    font-family: var(--font-display);
-    font-variant-numeric: tabular-nums;
-    font-size: 1rem;
-  }
-
-  .suite-meter__track {
-    position: relative;
-    height: 8px;
-    border-radius: 999px;
-    overflow: hidden;
-    background: rgba(11, 43, 64, 0.1);
-  }
-
-  .suite-meter__fill {
-    position: absolute;
-    inset: 0;
-    width: 0%;
-    border-radius: inherit;
-    background: var(--suite-accent);
-  }
-
-  .suite-expander {
-    display: grid;
-    gap: 0.7rem;
-  }
-
-  .suite-expander details {
-    border-radius: 8px;
-    background: #ffffff;
-    border: 1px solid rgba(11, 43, 64, 0.08);
-    overflow: hidden;
-    transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease;
-  }
-
-  .suite-expander details:hover {
-    transform: translateY(-2px);
-    border-color: color-mix(in srgb, var(--suite-accent) 38%, rgba(11, 43, 64, 0.08));
-    box-shadow: 0 14px 32px rgba(11, 43, 64, 0.08);
-  }
-
-  .suite-expander summary {
-    cursor: pointer;
-    list-style: none;
-    padding: 0.95rem 1rem;
-    color: var(--color-secondary);
-    font-family: var(--font-display);
-    font-weight: 850;
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-  }
-
-  .suite-expander summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .suite-expander summary span {
-    width: 34px;
-    height: 34px;
-    display: inline-grid;
-    place-items: center;
-    border-radius: 6px;
-    background: color-mix(in srgb, var(--suite-accent) 14%, white);
-    color: var(--suite-accent);
-    font-size: 0.75rem;
-    font-weight: 900;
-  }
-
-  .suite-expander details p {
-    margin: 0;
-    padding: 0 1rem 1rem 3.7rem;
-    color: var(--color-text-muted);
-    font-size: 0.94rem;
-    line-height: 1.55;
-  }
-
-  @keyframes suitePulse {
-    0% { transform: scale(0.78); opacity: 0.9; }
-    100% { transform: scale(1.55); opacity: 0; }
-  }
-
-  @media (max-width: 980px) {
-    .service-visual-suite__inner {
-      grid-template-columns: 1fr;
-    }
-    .service-visual-suite__media,
-    .service-visual-suite__media img {
-      min-height: 340px;
-    }
-  }
-
   @media (max-width: 640px) {
-    .suite-dashboard {
-      grid-template-columns: 1fr;
-    }
-    .service-visual-suite__media,
-    .service-visual-suite__media img {
-      min-height: 260px;
-    }
+    .service-visual-suite { padding: 4.5rem 0 5rem; }
+    .service-visual-suite__inner { width: min(100% - 1.5rem, 34rem); }
+    .suite-kpis { gap: 1rem; }
+    .suite-step { grid-template-columns: 2.6rem minmax(0, 1fr); }
   }
 </style>
 
@@ -592,117 +299,91 @@ const data = suites[variant] || suites.catalogo;
 
   gsap.registerPlugin(ScrollTrigger);
 
-  type DashboardRoot = HTMLElement & {
-    __suiteMeterContext?: gsap.Context;
+  type SuiteRoot = HTMLElement & {
+    __suiteContext?: gsap.Context;
+    __suiteInteractionBound?: boolean;
   };
+  type SuiteWindow = typeof window & { __suiteEventsRegistered?: boolean };
 
-  type SuiteWindow = typeof window & {
-    __suiteMeterEventsRegistered?: boolean;
-    __suiteHotspotEventsRegistered?: boolean;
-  };
-
-  function destroySuiteMeters(): void {
-    document
-      .querySelectorAll<DashboardRoot>('[data-suite-dashboard]')
-      .forEach((root) => {
-        root.__suiteMeterContext?.revert();
-        delete root.__suiteMeterContext;
-      });
+  function destroySuites(): void {
+    document.querySelectorAll<SuiteRoot>('[data-service-visual-suite]').forEach((root) => {
+      root.__suiteContext?.revert();
+      delete root.__suiteContext;
+    });
   }
 
-  function initSuiteMeters(): void {
-    document
-      .querySelectorAll<DashboardRoot>('[data-suite-dashboard]')
-      .forEach((root) => {
-        root.__suiteMeterContext?.revert();
+  function activateSuiteStep(root: SuiteRoot, activeStep: HTMLButtonElement): void {
+    root.querySelectorAll<HTMLButtonElement>('[data-suite-step]').forEach((step) => {
+      const isActive = step === activeStep;
+      step.classList.toggle('is-active', isActive);
+      step.setAttribute('aria-pressed', String(isActive));
+    });
 
-        const fills = gsap.utils.toArray<HTMLElement>(
-          '[data-meter-fill]',
-          root,
-        );
+    const number = root.querySelector<HTMLElement>('[data-suite-active-number]');
+    const title = root.querySelector<HTMLElement>('[data-suite-active-title]');
+    const text = root.querySelector<HTMLElement>('[data-suite-active-text]');
 
-        if (fills.length === 0) return;
+    if (number) number.textContent = activeStep.dataset.suiteNumber ?? '';
+    if (title) title.textContent = activeStep.dataset.suiteTitle ?? '';
+    if (text) text.textContent = activeStep.dataset.suiteText ?? '';
+  }
 
-        const prefersReducedMotion = window.matchMedia(
-          '(prefers-reduced-motion: reduce)',
-        ).matches;
+  function bindSuiteInteraction(root: SuiteRoot): void {
+    if (root.__suiteInteractionBound) return;
+    root.__suiteInteractionBound = true;
 
-        root.__suiteMeterContext = gsap.context(() => {
-          fills.forEach((fill, index) => {
-            const track = fill.closest<HTMLElement>('[data-meter-track]');
-            const value = Number(track?.dataset.meterValue ?? 0);
+    root.querySelectorAll<HTMLButtonElement>('[data-suite-step]').forEach((step) => {
+      step.addEventListener('click', () => activateSuiteStep(root, step));
+    });
+  }
 
-            if (prefersReducedMotion) {
-              gsap.set(fill, { width: `${value}%` });
+  function initSuites(): void {
+    document.querySelectorAll<SuiteRoot>('[data-service-visual-suite]').forEach((root) => {
+      root.__suiteContext?.revert();
+      bindSuiteInteraction(root);
+      const intro = root.querySelector<HTMLElement>('[data-suite-intro]');
+      const steps = gsap.utils.toArray<HTMLElement>('[data-suite-step]', root);
+      const kpis = gsap.utils.toArray<HTMLElement>('.suite-kpi', root);
+      if (steps.length === 0) return;
 
-              return;
-            }
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      root.__suiteContext = gsap.context(() => {
+        if (reducedMotion) {
+          gsap.set([intro, ...kpis, ...steps], { clearProps: 'transform,opacity,visibility' });
+          return;
+        }
 
-            gsap.fromTo(
-              fill,
-              { width: '0%' },
-              {
-                width: `${value}%`,
-                duration: 1.1,
-                delay: index * 0.08,
-                ease: 'power3.out',
-
-                scrollTrigger: {
-                  trigger: root,
-                  start: 'top 85%',
-                  toggleActions: 'play none none none',
-                  invalidateOnRefresh: true,
-                },
-              },
-            );
+        const media = gsap.matchMedia();
+        media.add('(min-width: 641px)', () => {
+          const timeline = gsap.timeline({
+            scrollTrigger: { trigger: root, start: 'top 78%', toggleActions: 'play none none reverse', invalidateOnRefresh: true },
           });
-        }, root);
-      });
-
+          if (intro) timeline.fromTo(intro, { y: 28 }, { y: 0, duration: .65, ease: 'power3.out' }, 0);
+          timeline.fromTo(
+            [...kpis, ...steps],
+            { y: 26, scale: .98 },
+            { y: 0, scale: 1, duration: .7, stagger: .08, ease: 'power3.out' },
+            .12,
+          );
+        });
+        media.add('(max-width: 640px)', () => {
+          gsap.fromTo([...kpis, ...steps], { y: 18, scale: .99 }, {
+            y: 0, scale: 1, duration: .55, stagger: .1, ease: 'power3.out',
+            scrollTrigger: { trigger: root, start: 'top 82%', toggleActions: 'play none none reverse', invalidateOnRefresh: true },
+          });
+        });
+        return () => media.revert();
+      }, root);
+    });
     ScrollTrigger.refresh();
   }
 
-  function initSuiteHotspots(): void {
-    document
-      .querySelectorAll<HTMLButtonElement>('.suite-hotspot')
-      .forEach((hotspot) => {
-        if (hotspot.dataset.hotspotBound === 'true') return;
-        hotspot.dataset.hotspotBound = 'true';
-
-        hotspot.addEventListener('click', (event) => {
-          event.stopPropagation();
-
-          const isOpen = hotspot.classList.contains('is-open');
-
-          document
-            .querySelectorAll('.suite-hotspot.is-open')
-            .forEach((el) => el.classList.remove('is-open'));
-
-          if (!isOpen) hotspot.classList.add('is-open');
-        });
-      });
+  initSuites();
+  const suiteWindow = window as SuiteWindow;
+  if (!suiteWindow.__suiteEventsRegistered) {
+    document.addEventListener('astro:page-load', initSuites);
+    document.addEventListener('astro:before-swap', destroySuites);
+    suiteWindow.__suiteEventsRegistered = true;
   }
-
-  initSuiteMeters();
-  initSuiteHotspots();
-
-  const globalWindow = window as SuiteWindow;
-
-  if (!globalWindow.__suiteMeterEventsRegistered) {
-    document.addEventListener('astro:page-load', initSuiteMeters);
-    document.addEventListener('astro:before-swap', destroySuiteMeters);
-    globalWindow.__suiteMeterEventsRegistered = true;
-  }
-
-  if (!globalWindow.__suiteHotspotEventsRegistered) {
-    document.addEventListener('astro:page-load', initSuiteHotspots);
-
-    document.addEventListener('click', () => {
-      document
-        .querySelectorAll('.suite-hotspot.is-open')
-        .forEach((el) => el.classList.remove('is-open'));
-    });
-
-    globalWindow.__suiteHotspotEventsRegistered = true;
-  }
+  if ('fonts' in document) document.fonts.ready.then(() => ScrollTrigger.refresh());
 </script>

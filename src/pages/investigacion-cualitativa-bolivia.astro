@@ -7,6 +7,68 @@ import ScrollReveal from "../components/scroll/ScrollReveal.astro";
 import StackedSections from "../components/scroll/StackedSections.astro";
 import HoverStepCards from "../components/cards/HoverStepCards.astro";
 import FaqSplit from "../components/faq/FaqSplit.astro";
+import AreaPanelCards from "../components/cards/AreaPanelCards.astro";
+import ComparisonRows from "../components/cards/ComparisonRows.astro";
+
+const problemScenarios = [
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="96"></circle><path d="M128 72v56l40 24"></path></svg>`,
+    title:
+      "Lanzó un producto que `el mercado quería` según la encuesta, y no vendió lo esperado",
+    description:
+      "Lanzó un producto que `el mercado quería` según la encuesta, y no vendió lo esperado. La intención declarada no es comportamiento real. La cualitativa revela la brecha entre lo que la gente dice y lo que hace",
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="88"></circle><circle cx="128" cy="128" r="48"></circle><circle cx="128" cy="128" r="8"></circle></svg>`,
+    title: "Su campaña fue bien producida pero no conectó emocionalmente",
+    description:
+      "Su campaña fue bien producida pero no conectó emocionalmente. Sin exploración cualitativa previa, los territorios creativos se construyen sobre suposiciones del equipo, no sobre insights reales del consumidor",
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M116 156a40 40 0 1 1 40-40"></path><path d="M172 172l40 40"></path><path d="M148 108h-4v16"></path></svg>`,
+    title: "Percepción sin medición",
+    description:
+      "No entiende por qué un segmento específico rechaza su marca a pesar de tener buen producto y precio. Las barreras de adopción raramente son racionales — son simbólicas, culturales o emocionales.",
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M96 32h64l16 24H80z"></path><rect x="56" y="56" width="144" height="168" rx="8"></rect><path d="M92 112h72M92 144h72M92 176h40"></path></svg>`,
+    title: "Evidencia insuficiente",
+    description:
+      "Tiene datos de lo que el consumidor hace, pero no sabe qué lo motiva realmente a elegirle. Y sin ese insight, no puede construir una propuesta de valor diferenciada",
+  },
+];
+
+const comparisonRows = [
+  {
+    before: "Modera un psicólogo o comunicador con guía de tópicos",
+    after:
+      "Equipo interdisciplinario (psicoantropólogo + analista de comportamiento) con protocolo Sensitive Groups de 3 niveles: racional, emocional e inconsciente",
+  },
+  {
+    before: "Análisis basado en lo que los participantes verbalizan",
+    after:
+      "Análisis semántico con IA + codificación facial en tiempo real para detectar respuestas emocionales no verbalizadas",
+  },
+  {
+    before: "Mismo protocolo para todas las regiones de Bolivia",
+    after:
+      "MetodProtocolo adaptado por código cultural regional: no se modera igual en El Alto que en Santa Cruz o Cochabamba ",
+  },
+  {
+    before: "Reporte descriptivo de lo que se dijo en la sesión",
+    after: "Interpretación estratégica: qué implica cada hallazgo para ",
+  },
+  {
+    before: "Datos declarativos puros (lo que la gente dice)",
+    after:
+      "Validación cruzada con biometría y datos observacionales cuando la intención declarada no basta u posicionamiento, mensaje y propuesta de valor",
+  },
+  {
+    before: "Los participantes declaran lo que creen que quieren decir",
+    after:
+      "Técnicas proyectivas y de asociación simbólica para acceder a motivaciones no conscientes que la pregunta directa no revela",
+  },
+];
 
 const faqItems = [
   {
@@ -359,169 +421,85 @@ const relatedProductsCards = [
     </StackedSections>
 
     <!-- 2. EL PROBLEMA / MINDTEC+ -->
-    <ScrollReveal>
-      <section
-        class="problem-section bg-slate problem-section--logo-target"
-        style="padding: 5rem 0;"
-      >
-        <div class="logo-slot-right" data-logo-slot="right" aria-hidden="true">
-        </div>
-        <div
-          class="logo-slot-center"
-          data-logo-slot="center"
-          aria-hidden="true"
-        >
-        </div>
-        <div class="container">
-          <div
-            class="premium-card-white"
-            style="max-width: 900px; margin: 0 auto; padding: 4rem;"
+    <section class="bg-slate" style="padding: 5rem 0;" data-stack-section>
+      <div class="container">
+        <div style="max-width: 900px; margin: 0 auto;">
+          <span class="eyebrow">EL PROBLEMA REAL</span>
+          <h2
+            class="text-navy"
+            style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;"
           >
-            <span class="eyebrow">EL PROBLEMA REAL</span>
-            <h2
-              class="text-navy"
-              style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;"
-            >
-              Saber cuántos no es suficiente. Las empresas pierden dinero porque
-              no entienden por qué.
-            </h2>
-            <p
-              class="text-gray-dark leading-relaxed"
-              style="font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.7;"
-            >
-              Una encuesta puede decirle que el 68% de su mercado objetivo
-              "probablemente compraría" su producto. Pero no puede decirle por
-              qué el 32% restante lo rechaza, qué barrera emocional impide que
-              los indecisos actúen, ni qué código cultural hace que su mensaje
-              funcione en Santa Cruz pero falle en La Paz.
-            </p>
-            <p
-              class="text-gray-dark leading-relaxed"
-              style="font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.7;"
-            >
-              ¿Reconoce alguno de estos escenarios?
-            </p>
-            <ul
-              class="cap-list"
-              style="font-size: 1.05rem; margin-bottom: 2rem;"
-            >
-              <li>
-                <strong class="text-navy"
-                  >Lanzó un producto que "el mercado quería" según la encuesta,
-                  y no vendió lo esperado.</strong
-                > La intención declarada no es comportamiento real. La cualitativa
-                revela la brecha entre lo que la gente dice y lo que hace.
-              </li>
-              <li>
-                <strong class="text-navy"
-                  >Su campaña fue bien producida pero no conectó emocionalmente.</strong
-                > Sin exploración cualitativa previa, los territorios creativos se
-                construyen sobre suposiciones del equipo, no sobre insights reales
-                del consumidor.
-              </li>
-              <li>
-                <strong class="text-navy"
-                  >No entiende por qué un segmento específico rechaza su marca a
-                  pesar de tener buen producto y precio.</strong
-                > Las barreras de adopción raramente son racionales — son simbólicas,
-                culturales o emocionales.
-              </li>
-              <li>
-                <strong class="text-navy"
-                  >Tiene datos de lo que el consumidor hace, pero no sabe qué lo
-                  motiva realmente a elegirle.</strong
-                > Y sin ese insight, no puede construir una propuesta de valor diferenciada.
-              </li>
-            </ul>
-            <div
-              style="background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: 8px; font-weight: 600; font-size: 1.1rem; text-align: center;"
-            >
-              El consumidor boliviano no compra productos. Compra significados,
-              identidades y soluciones a tensiones que ni él mismo verbaliza.
-            </div>
-          </div>
-        </div>
-      </section>
-    </ScrollReveal>
-
-    <ScrollReveal>
-      <section style="padding: 5rem 0; background: #fff;">
-        <div class="container">
-          <div
-            class="section-title-center"
-            style="text-align: center; margin-bottom: 3rem;"
-          >
-            <span class="eyebrow">MINDTEC+</span>
-            <h2
-              class="text-navy"
-              style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;"
-            >
-              Investigación cualitativa con psicoantropología boliviana e
-              inteligencia artificial.
-            </h2>
-          </div>
-          <div class="comparison-table-wrapper">
-            <table class="comparison-table">
-              <thead>
-                <tr>
-                  <th scope="col">Focus group tradicional</th>
-                  <th scope="col">Mindtec — Metodología Sensitive Groups</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Modera un psicólogo o comunicador con guía de tópicos</td>
-                  <td
-                    >Equipo interdisciplinario (psicoantropólogo + analista de
-                    comportamiento) con protocolo Sensitive Groups de 3 niveles:
-                    racional, emocional e inconsciente</td
-                  >
-                </tr>
-                <tr>
-                  <td>Análisis basado en lo que los participantes verbalizan</td
-                  >
-                  <td
-                    >Análisis semántico con IA + codificación facial en tiempo
-                    real para detectar respuestas emocionales no verbalizadas</td
-                  >
-                </tr>
-                <tr>
-                  <td>Mismo protocolo para todas las regiones de Bolivia</td>
-                  <td
-                    >Protocolo adaptado por código cultural regional: no se
-                    modera igual en El Alto que en Santa Cruz o Cochabamba</td
-                  >
-                </tr>
-                <tr>
-                  <td>Reporte descriptivo de lo que se dijo en la sesión</td>
-                  <td
-                    >Interpretación estratégica: qué implica cada hallazgo para
-                    su posicionamiento, mensaje y propuesta de valor</td
-                  >
-                </tr>
-                <tr>
-                  <td
-                    >Los participantes declaran lo que creen que quieren decir</td
-                  >
-                  <td
-                    >Técnicas proyectivas y de asociación simbólica para acceder
-                    a motivaciones no conscientes que la pregunta directa no
-                    revela</td
-                  >
-                </tr>
-              </tbody>
-            </table>
-          </div>
+            Saber cuántos no es suficiente. Las empresas pierden dinero porque
+            no entienden por qué.
+          </h2>
           <p
-            class="text-gray-dark"
-            style="font-size: 1.05rem; margin-top: 2rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.7;"
+            class="text-gray-dark leading-relaxed"
+            style="font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.7;"
           >
-            No es un grupo de conversación. Es una metodología de decodificación
-            cultural aplicada al consumidor boliviano.
+            Una encuesta puede decirle que el 68% de su mercado objetivo
+            "probablemente compraría" su producto. Pero no puede decirle por qué
+            el 32% restante lo rechaza, qué barrera emocional impide que los
+            indecisos actúen, ni qué código cultural hace que su mensaje
+            funcione en Santa Cruz pero falle en La Paz.
+          </p>
+          <p
+            class="text-gray-dark leading-relaxed"
+            style="font-size: 1.05rem; line-height: 1.7;"
+          >
+            ¿Reconoce alguno de estos escenarios?
           </p>
         </div>
-      </section>
-    </ScrollReveal>
+
+        <AreaPanelCards
+          items={problemScenarios}
+          columns={4}
+          theme="navy"
+          class="problem-panels"
+        />
+
+        <div
+          style="max-width: 900px; margin: 2.5rem auto 0; background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: var(--radius-md, 8px); font-weight: 600; font-size: 1.1rem; text-align: center;"
+        >
+          El consumidor boliviano no compra productos. Compra significados,
+          identidades y soluciones a tensiones que ni él mismo verbaliza.
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. MINDTEC+ -->
+    <section style="padding: 5rem 0; background: #fff;" data-stack-section>
+      <div class="container">
+        <div
+          class="section-title-center"
+          style="text-align: center; margin-bottom: 3rem;"
+        >
+          <span class="eyebrow">MINDTEC+</span>
+          <h2
+            class="text-navy"
+            style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;"
+          >
+            Más que un recopilador de encuestas: inteligencia estratégica
+            respaldada por infraestructura de campo nacional.
+          </h2>
+        </div>
+
+        <ComparisonRows
+          columnLabels={{
+            left: "Focus group tradicional",
+            right: "Mindtec — Metodología Sensitive Groups",
+          }}
+          rows={comparisonRows}
+        />
+
+        <p
+          class="text-gray-dark"
+          style="font-size: 1.05rem; margin-top: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.7;"
+        >
+          La diferencia no está en el tamaño de la muestra. Está en lo que
+          hacemos con los datos después de recolectarlos.
+        </p>
+      </div>
+    </section>
 
     <!-- 4. ENTREGABLES -->
     <ScrollStoryLeft

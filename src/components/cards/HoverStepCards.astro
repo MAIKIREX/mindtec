@@ -250,4 +250,55 @@ const {
     opacity: 1;
     transform: rotate(0deg) scale(1);
   }
+
+  /* En touch no hay hover real: el contenido debe verse siempre y las
+     tarjetas no pueden respetar un minColumnWidth pensado para desktop
+     (p.ej. 480px) o desbordan el viewport. */
+  @media (max-width: 640px) {
+    .hover-step-cards {
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .hover-step-card {
+      aspect-ratio: unset;
+      clip-path: none;
+    }
+
+    .hover-step-card:hover,
+    .hover-step-card:focus-within {
+      clip-path: none;
+    }
+
+    .hover-step-card__inner {
+      position: static;
+      padding: 1.75rem;
+    }
+
+    .hover-step-card__title {
+      margin-top: 0;
+      max-width: 100%;
+    }
+
+    .hover-step-card__desc,
+    .hover-step-card:hover .hover-step-card__desc,
+    .hover-step-card:focus-within .hover-step-card__desc {
+      max-height: none;
+      opacity: 1;
+      overflow: visible;
+    }
+
+    .hover-step-card__services,
+    .hover-step-card:hover .hover-step-card__services,
+    .hover-step-card:focus-within .hover-step-card__services {
+      max-height: none;
+      opacity: 1;
+      overflow: visible;
+    }
+
+    .hover-step-card__icon {
+      position: static;
+      margin-top: 1.5rem;
+    }
+  }
 </style>

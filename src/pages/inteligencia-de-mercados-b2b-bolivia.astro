@@ -1,10 +1,55 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import BoliviaNetworkMapFilled from "../components/visual/BoliviaNetworkMapFilled.astro";
 import ServiceVisualSuite from "../components/sections/ServiceVisualSuite.astro";
 import HoverStepCards from "../components/cards/HoverStepCards.astro";
 import ScrollStoryLeft from "../components/scroll/ScrollStoryLeftNoCover.astro";
 import FaqSplit from "../components/faq/FaqSplit.astro";
 import StackedSections from "../components/scroll/StackedSections.astro";
+import AreaPanelCards from "../components/cards/AreaPanelCards.astro";
+import ComparisonRows from "../components/cards/ComparisonRows.astro";
+
+const problemScenarios = [
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="96"></circle><path d="M128 72v56l40 24"></path></svg>`,
+    title: 'Decisiones de inversión basadas en reportes de 200 páginas',
+    description: 'El Directorio aprueba CAPEX basado en investigaciones académicas que nadie lee. 3 meses después, el mercado no responde como el "plan maestro" predecía.',
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="88"></circle><circle cx="128" cy="128" r="48"></circle><circle cx="128" cy="128" r="8"></circle></svg>`,
+    title: 'Fusiones y adquisiciones sin diagnóstico de competencia',
+    description: 'Compró un competidor basándose en datos históricos de hace 2 años. Al integrar, descubre que la participación real era 40% menor de lo reportado.',
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M116 156a40 40 0 1 1 40-40"></path><path d="M172 172l40 40"></path><path d="M148 108h-4v16"></path></svg>`,
+    title: 'Estrategia de precios sin medición de elasticidad real',
+    description: 'Aumentó precios basándose en información del equipo de ventas. Perdió 25% de volumen porque nadie midió el umbral de dolor del cliente B2B.',
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M96 32h64l16 24H80z"></path><rect x="56" y="56" width="144" height="168" rx="8"></rect><path d="M92 112h72M92 144h72M92 176h40"></path></svg>`,
+    title: 'Expansión geográfica sin análisis de barreras de entrada',
+    description: 'Abrió operación en Santa Cruz basándose en "instinto de mercado". 6 meses después, descubrió que la competencia local tenía estructuras de costo imposibles de igualar.',
+  },
+];
+
+const comparisonRows = [
+  {
+    before: 'PDF estático de 150 páginas difícil de digerir y consultar',
+    after: 'Dashboard ejecutivo interactivo para filtrar datos en segundos',
+  },
+  {
+    before: 'Datos puramente históricos (una fotografía del año pasado)',
+    after: 'Monitorización de competencia y tendencias comerciales dinámicas',
+  },
+  {
+    before: 'Enfoque declarativo (el consumidor dice lo que quiere aparentar)',
+    after: 'Validación cruzada con modelos de compra reales y biometría',
+  },
+  {
+    before: 'Presentación formal de gráficos de barras sin dirección comercial',
+    after: 'Brief ejecutivo de riesgos y hoja de ruta con recomendaciones prioritarias',
+  },
+];
 
 const faqItems = [
   {
@@ -175,40 +220,11 @@ const quienUtilizaCards = [
             Directorio.
           </h1>
         </div>
-        <div class="hero-visual">
-          <div class="glass-card main-visual">
-            <div
-              class="neuro-visual-bg"
-              style="background-image: url('/service_intelligence_premium_1771034174670.webp');"
-            >
-            </div>
-            <div class="hero-map-badge" aria-hidden="true">
-              <svg viewBox="0 0 100 100" class="hero-map-globe">
-                <circle cx="50" cy="50" r="42" class="globe-outline"></circle>
-                <g class="globe-meridians">
-                  <ellipse cx="50" cy="50" rx="42" ry="16"></ellipse>
-                  <ellipse
-                    cx="50"
-                    cy="50"
-                    rx="42"
-                    ry="16"
-                    transform="rotate(60 50 50)"></ellipse>
-                  <ellipse
-                    cx="50"
-                    cy="50"
-                    rx="42"
-                    ry="16"
-                    transform="rotate(120 50 50)"></ellipse>
-                </g>
-                <g class="globe-pins">
-                  <circle cx="38" cy="40" r="2.4" class="pin pin-1"></circle>
-                  <circle cx="58" cy="52" r="2.4" class="pin pin-2"></circle>
-                  <circle cx="46" cy="64" r="2.4" class="pin pin-3"></circle>
-                </g>
-              </svg>
-              <div class="hero-map-sweep"></div>
-            </div>
-          </div>
+        <div
+          class="hero-visual"
+          style="display: flex; align-items: center; justify-content: center; max-width: 100%; overflow: visible;"
+        >
+          <BoliviaNetworkMapFilled size="clamp(300px, 32vw, 460px)" />
         </div>
       </div>
     </section>
@@ -265,141 +281,44 @@ const quienUtilizaCards = [
       </div>
     </section>
 
-    <!-- 2. EL PROBLEMA (MAIDER TOMASENA STYLE: PAIN POINT AMPLIFICATION) -->
-    <section class="problem-section bg-slate" style="padding: 5rem 0;" data-stack-section>
+    <!-- 2. EL PROBLEMA -->
+    <section class="bg-slate" style="padding: 5rem 0;" data-stack-section>
       <div class="container">
-        <div
-          class="premium-card-white"
-          style="max-width: 900px; margin: 0 auto; padding: 4rem;"
-        >
-          <span class="eyebrow">EL DIAGNÓSTICO HONESTO</span>
-          <h2
-            class="text-navy"
-            style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;"
-          >
-            ¿Cuánto cuesta un reporte de mercado de 200 páginas que nadie lee?
-          </h2>
-          <p
-            class="text-gray-dark leading-relaxed"
-            style="font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.7;"
-          >
-            El mayor pecado de la investigación tradicional en Bolivia es la <strong
-              >teorización desconectada del negocio</strong
-            >. Es común recibir documentos llenos de datos censales
-            desactualizados, metodologías complejas explicadas en jerga
-            inaccesible y ninguna recomendación comercial clara. El consultor
-            cobra, entrega el PDF y su equipo directivo sigue con la misma
-            incertidumbre.
+        <div style="max-width: 900px; margin: 0 auto;">
+          <span class="eyebrow">EL PROBLEMA REAL</span>
+          <h2 class="text-navy" style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;">¿Cuánto cuesta una decisión de inversión basada en reportes académicos que nadie lee?</h2>
+          <p class="text-gray-dark leading-relaxed" style="font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.7;">
+            El mayor pecado de la investigación tradicional en Bolivia es la teorización desconectada del negocio. Es común recibir documentos llenos de datos censales desactualizados, metodologías complejas explicadas en jerga inaccesible y ninguna recomendación comercial clara.
           </p>
-          <p
-            class="text-gray-dark leading-relaxed"
-            style="font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.7;"
-          >
-            Cuando la Gerencia General o el Directorio debe decidir si inyectar
-            capital en una nueva línea o adquirir un competidor local, no
-            necesita saber cuántos habitantes tiene una ciudad; necesita saber:
+          <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; line-height: 1.7;">
+            ¿Reconoce alguno de estos escenarios?
           </p>
-          <ul class="cap-list" style="font-size: 1.05rem; margin-bottom: 2rem;">
-            <li>
-              <strong class="text-navy"
-                >¿Cuál es el margen real del canal tradicional frente a la
-                cadena formal en el eje troncal?</strong
-              > Evite suponer y empiece a mapear la cadena de distribución con certeza.
-            </li>
-            <li>
-              <strong class="text-navy"
-                >¿Qué porcentaje de la participación de mercado de su competidor
-                es vulnerable hoy?</strong
-              > Localice los puntos ciegos en la ejecución de la competencia.
-            </li>
-            <li>
-              <strong class="text-navy"
-                >¿Cuál es el umbral de dolor del precio antes de provocar una
-                migración masiva de clientes?</strong
-              > Proteja su rentabilidad con simulaciones de elasticidad.
-            </li>
-          </ul>
-          <div
-            style="background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: 8px; font-weight: 600; font-size: 1.1rem; text-align: center;"
-          >
-            La investigación tradicional describe el pasado. El Market
-            Intelligence B2B prescribe el futuro inmediato de su negocio.
-          </div>
+        </div>
+
+        <AreaPanelCards items={problemScenarios} columns={4} theme="navy" class="problem-panels" />
+
+        <div style="max-width: 900px; margin: 2.5rem auto 0; background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: var(--radius-md, 8px); font-weight: 600; font-size: 1.1rem; text-align: center;">
+          Sin inteligencia de mercados accionable, su Directorio está aprobando CAPEX basado en suposiciones disfrazadas de datos.
         </div>
       </div>
     </section>
 
-    <!-- 3. COMPARATIVA (VILMA NUÑEZ STYLE: LOGICAL COMPARATIVE MATRIX) -->
+    <!-- 3. MINDTEC+ -->
     <section style="padding: 5rem 0; background: #fff;" data-stack-section>
       <div class="container">
-        <div
-          class="section-title-center"
-          style="text-align: center; margin-bottom: 3rem;"
-        >
-          <span class="eyebrow">DIFERENCIA METODOLÓGICA</span>
-          <h2
-            class="text-navy"
-            style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;"
-          >
-            Por qué la Inteligencia de Mercados no es Investigación Convencional
-          </h2>
+        <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
+          <span class="eyebrow">MINDTEC+</span>
+          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;">Más que investigación académica: inteligencia de markets diseñada para decisiones de Directorio.</h2>
         </div>
-        <div class="comparison-table-wrapper">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th scope="col">Investigación Académica / Tradicional</th>
-                <th scope="col">Inteligencia de Mercados B2B MindTEC</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td
-                  >PDF estático de 150 páginas difícil de digerir y consultar</td
-                >
-                <td
-                  >Dashboard ejecutivo interactivo para filtrar datos en
-                  segundos</td
-                >
-              </tr>
-              <tr>
-                <td
-                  >Datos puramente históricos (una fotografía del año pasado)</td
-                >
-                <td
-                  >Monitorización de competencia y tendencias comerciales
-                  dinámicas</td
-                >
-              </tr>
-              <tr>
-                <td
-                  >Enfoque declarativo (el consumidor dice lo que quiere
-                  aparentar)</td
-                >
-                <td
-                  >Validación cruzada con modelos de compra reales y biometría</td
-                >
-              </tr>
-              <tr>
-                <td
-                  >Presentación formal de gráficos de barras sin dirección
-                  comercial</td
-                >
-                <td
-                  >Brief ejecutivo de riesgos y hoja de ruta con recomendaciones
-                  prioritarias</td
-                >
-              </tr>
-              <tr>
-                <td>Diseñado por y para metodólogos académicos</td>
-                <td
-                  >Diseñado para comités de finanzas, marketing y juntas
-                  directivas</td
-                >
-              </tr>
-            </tbody>
-          </table>
-        </div>
+
+        <ComparisonRows
+          columnLabels={{ left: 'Investigación tradicional', right: 'Inteligencia de Mercados B2B' }}
+          rows={comparisonRows}
+        />
+
+        <p class="text-gray-dark" style="font-size: 1.05rem; margin-top: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.7;">
+          La diferencia no está en la cantidad de datos. Está en cómo los presentamos y qué tan rápido pueden traducirse en decisiones de negocio.
+        </p>
       </div>
     </section>
 
@@ -566,122 +485,11 @@ const quienUtilizaCards = [
   </main>
 
   <style>
-    .main-visual {
-      position: relative;
-    }
-
-    .hero-map-badge {
-      position: absolute;
-      top: -18px;
-      right: -18px;
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
-      background: rgba(6, 28, 43, 0.55);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      z-index: 3;
-    }
-
-    .hero-map-globe {
-      width: 78%;
-      height: 78%;
-      overflow: visible;
-    }
-
-    .globe-outline {
-      fill: none;
-      stroke: rgba(255, 255, 255, 0.35);
-      stroke-width: 1;
-    }
-
-    .globe-meridians {
-      fill: none;
-      stroke: rgba(242, 101, 34, 0.55);
-      stroke-width: 0.6;
-      transform-origin: 50px 50px;
-      animation: globe-spin 16s linear infinite;
-    }
-
-    .globe-meridians ellipse {
-      fill: none;
-      stroke: inherit;
-    }
-
-    .pin {
-      fill: var(--color-primary);
-    }
-
-    .pin-1 {
-      animation: pin-pulse 2.4s ease-in-out infinite;
-    }
-    .pin-2 {
-      animation: pin-pulse 2.4s ease-in-out infinite 0.6s;
-    }
-    .pin-3 {
-      animation: pin-pulse 2.4s ease-in-out infinite 1.2s;
-    }
-
-    .hero-map-sweep {
-      position: absolute;
-      inset: 0;
-      border-radius: 50%;
-      background: conic-gradient(
-        from 0deg,
-        rgba(242, 101, 34, 0.35),
-        transparent 35%
-      );
-      animation: sweep-spin 4s linear infinite;
-      mix-blend-mode: screen;
-      pointer-events: none;
-    }
-
-    @keyframes globe-spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes sweep-spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes pin-pulse {
-      0%,
-      100% {
-        opacity: 0.5;
-        transform: scale(1);
-      }
-      50% {
-        opacity: 1;
-        transform: scale(1.4);
-      }
-    }
-
-    @media (max-width: 640px) {
-      .hero-map-badge {
-        width: 72px;
-        height: 72px;
-        top: -12px;
-        right: -12px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .globe-meridians,
-      .hero-map-sweep,
-      .pin-1,
-      .pin-2,
-      .pin-3 {
-        animation: none;
-      }
+    /* Espacio entre la intro de "El Problema" y el grid de escenarios.
+       :global() porque la clase se aplica dentro de AreaPanelCards.astro;
+       doble clase para ganarle en especificidad al margin:0 auto de .areas-grid. */
+    :global(.areas-grid.problem-panels) {
+      margin-top: 3.5rem;
     }
   </style>
 </Layout>

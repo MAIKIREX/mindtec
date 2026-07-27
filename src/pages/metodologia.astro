@@ -5,6 +5,7 @@ import ScrollStoryLeft from "../components/scroll/ScrollStoryLeft.astro";
 import FaqSplit from "../components/faq/FaqSplit.astro";
 import StackedSections from "../components/scroll/StackedSections.astro";
 import AreaPanelCards from "../components/cards/AreaPanelCards.astro";
+import ComparisonRows from "../components/cards/ComparisonRows.astro";
 
 const faqItems = [
     {
@@ -666,93 +667,16 @@ const strategicBenefits = [
                         </p>
                     </div>
 
-                    <div class="comparison-table-wrapper">
-                        <table class="comparison-table">
-                            <thead>
-                                <tr>
-                                    <th
-                                        >Investigación Tradicional (El riesgo de
-                                        siempre)</th
-                                    >
-                                    <th
-                                        >Modelo Híbrido Mindtec (Su seguro de
-                                        decisión)</th
-                                    >
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td
-                                        ><strong
-                                            >La gente miente o adivina:</strong
-                                        > Basada en respuestas declarativas y lo que
-                                        el consumidor "cree" que hará.</td
-                                    >
-                                    <td
-                                        ><strong
-                                            >Respuestas inconscientes:</strong
-                                        > Medición biológica de la atención visual
-                                        y el impacto emocional real.</td
-                                    >
-                                </tr>
-                                <tr>
-                                    <td
-                                        ><strong>Focus Groups sesgados:</strong> Opiniones
-                                        dominadas por el participante más ruidoso
-                                        de la sala.</td
-                                    >
-                                    <td
-                                        ><strong
-                                            >IA e Inteligencia Colectiva:</strong
-                                        > Cruce de variables masivas y digital listening
-                                        espontáneo sin sesgos.</td
-                                    >
-                                </tr>
-                                <tr>
-                                    <td
-                                        ><strong
-                                            >Reportes teóricos de 80+ páginas:</strong
-                                        > Datos descriptivos sin una hoja de ruta
-                                        comercial accionable.</td
-                                    >
-                                    <td
-                                        ><strong
-                                            >Executive Brief de decisión:</strong
-                                        > Recomendaciones priorizadas listas para
-                                        defender ante su Directorio.</td
-                                    >
-                                </tr>
-                                <tr>
-                                    <td
-                                        ><strong
-                                            >Falta de matiz cultural regional:</strong
-                                        > Mismos análisis para mercados tan diferentes
-                                        como La Paz y Santa Cruz.</td
-                                    >
-                                    <td
-                                        ><strong
-                                            >Psicoantropología local:</strong
-                                        > Análisis adaptado a los códigos simbólicos
-                                        de cada región del país.</td
-                                    >
-                                </tr>
-                                <tr>
-                                    <td
-                                        ><strong
-                                            >Levantamiento de escritorio:</strong
-                                        > Datos teóricos sin verificación de lo que
-                                        ocurre en la góndola real.</td
-                                    >
-                                    <td
-                                        ><strong
-                                            >Auditoría de campo auditada:</strong
-                                        > Red nacional en terreno con registro fotográfico
-                                        y geolocalización satelital.</td
-                                    >
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <ComparisonRows
+                        columnLabels={{ left: 'Investigación Tradicional (El riesgo de siempre)', right: 'Modelo Híbrido Mindtec (Su seguro de decisión)' }}
+                        rows={[
+                            { before: 'La gente miente o adivina: Basada en respuestas declarativas y lo que el consumidor "cree" que hará.', after: 'Respuestas inconscientes: Medición biológica de la atención visual y el impacto emocional real.' },
+                            { before: 'Focus Groups sesgados: Opiniones dominadas por el participante más ruidoso de la sala.', after: 'IA e Inteligencia Colectiva: Cruce de variables masivas y digital listening espontáneo sin sesgos.' },
+                            { before: 'Reportes teóricos de 80+ páginas: Datos descriptivos sin una hoja de ruta comercial accionable.', after: 'Executive Brief de decisión: Recomendaciones priorizadas listas para defender ante su Directorio.' },
+                            { before: 'Falta de matiz cultural regional: Mismos análisis para mercados tan diferentes como La Paz y Santa Cruz.', after: 'Psicoantropología local: Análisis adaptado a los códigos simbólicos de cada región del país.' },
+                            { before: 'Levantamiento de escritorio: Datos teóricos sin verificación de lo que ocurre en la góndola real.', after: 'Auditoría de campo auditada: Red nacional en terreno con registro fotográfico y geolocalización satelital.' },
+                        ]}
+                    />
                 </div>
             </section>
         </StackedSections>

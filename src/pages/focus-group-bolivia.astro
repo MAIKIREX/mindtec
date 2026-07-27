@@ -4,6 +4,50 @@ import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro'
 import FaqSplit from '../components/faq/FaqSplit.astro';
 import HoverStepCards from '../components/cards/HoverStepCards.astro';
 import StackedSections from '../components/scroll/StackedSections.astro';
+import AreaPanelCards from '../components/cards/AreaPanelCards.astro';
+import ComparisonRows from '../components/cards/ComparisonRows.astro';
+
+const problemScenarios = [
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="96"></circle><path d="M128 72v56l40 24"></path></svg>`,
+    title: 'Lanzamientos basados en "lo que la gente dice"',
+    description: 'Invirtió $50,000 en un producto que focus groups tradicionales aprobaron por unanimidad. Tres meses después, las ventas están estancadas porque la compra es emocional, no racional.',
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="88"></circle><circle cx="128" cy="128" r="48"></circle><circle cx="128" cy="128" r="8"></circle></svg>`,
+    title: 'Campañas que "tienen buena intención" pero no conectan',
+    description: 'El brief creativo dice "conectar con las emociones", pero el spot resulta genérico. Nadie midió si las escenas realmente activan las emociones que busca.',
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M116 156a40 40 0 1 1 40-40"></path><path d="M172 172l40 40"></path><path d="M148 108h-4v16"></path></svg>`,
+    title: 'Mensajes que no activan los gatillos culturales',
+    description: 'La campaña está producida, el media plan definido, pero el mensaje usa códigos culturales que no resuenan con el mercado objetivo boliviano.',
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M96 32h64l16 24H80z"></path><rect x="56" y="56" width="144" height="168" rx="8"></rect><path d="M92 112h72M92 144h72M92 176h40"></path></svg>`,
+    title: 'Packaging que "se ve bien" pero no elige',
+    description: 'El rediseño pasó por tres rondas de aprobación interna y focus groups que dijeron "me gusta". En góndola, sigue sin destacar frente a la competencia.',
+  },
+];
+
+const comparisonRows = [
+  {
+    before: 'Sesgado por líderes de opinión en la mesa de discusión',
+    after: 'Grupos reducidos y técnicas de apertura gregoriana y cultural para neutralizar sesgos de dominancia',
+  },
+  {
+    before: 'Registra únicamente lo verbalizado (nivel consciente)',
+    after: 'Técnicas de investigación profunda subconsciente, cultural e instintiva con dinámicas proyectivas',
+  },
+  {
+    before: 'Moderadores genéricos que siguen un cuestionario lineal',
+    after: 'Psicoantropólogos especializados que elicitan metáforas inconscientes de compra',
+  },
+  {
+    before: 'Ideal para "aprobar" ideas de forma superficial',
+    after: 'Ideal para predecir tasas de conversión, rechazo y memorabilidad real de marca',
+  },
+];
 
 const applicationCards = [
   {
@@ -153,72 +197,44 @@ const description = "Focus group en Bolivia: evolucionado con neurociencia y psi
       <ServiceVisualSuite variant="focus" />
     </div>
 
-    <!-- 2. QUÉ ES Y CÓMO MINDTEC LO CONDUCE (MAIDER TOMASENA STYLE: STORYTELLING AND EMOTION) -->
-    <section class="problem-section bg-slate" style="padding: 5rem 0;" data-stack-section>
+    <!-- 2. EL PROBLEMA -->
+    <section class="bg-slate" style="padding: 5rem 0;" data-stack-section>
       <div class="container">
-        <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
-          <span class="eyebrow">EL ENFOQUE EN SENSITIVE GROUPS</span>
-          <h2 class="text-navy" style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;">El focus group tradicional captura respuestas políticamente correctas. Nosotros capturamos la verdad.</h2>
-          <p class="text-gray-dark leading-relaxed" style="font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.7;">
-            ¿Alguna vez ha presenciado un focus group tradicional detrás del espejo unidireccional? Un participante dominante monopoliza el debate, los más tímidos asienten por inercia social y el moderador apura el cuestionario. ¿El resultado? Un reporte descriptivo que valida lo que sus gerentes querían oír, pero que falla rotundamente en predecir el comportamiento real de compra.
+        <div style="max-width: 900px; margin: 0 auto;">
+          <span class="eyebrow">EL PROBLEMA REAL</span>
+          <h2 class="text-navy" style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;">Las respuestas racionalizadas en focus groups tradicionales rara vez predicen la compra real.</h2>
+          <p class="text-gray-dark leading-relaxed" style="font-size: 1.2rem; margin-bottom: 2rem;">
+            En Bolivia, la presión social y el deseo de complacer generan sesgos sistemáticos: los participantes dicen lo que "deberían" sentir, no lo que realmente sienten. El resultado es un falso sentido de seguridad que lleva a lanzamientos fallidos y campañas que no conectan emocionalmente.
           </p>
-          <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.7;">
-            En <strong>MindTEC Bolivia</strong>, rediseñamos este formato mediante la metodología <strong>Sensitive Groups</strong>. No permitimos que los participantes intelectualicen sus respuestas. Combinamos dinámicas psicoantropológicas proyectivas para separar la opinión declarada de la respuesta inconsciente.
+          <p class="text-gray-dark leading-relaxed" style="font-size: 1.1rem; line-height: 1.7;">
+            Los focus groups tradicionales sufren de una brecha crítica: recopilan opiniones conscientes y racionalizadas mientras ignoran los motivadores culturales, instintivos e inconscientes que realmente determinan el comportamiento de compra en el mercado boliviano.
           </p>
+        </div>
 
-          <div style="margin-top: 2.5rem; margin-bottom: 2.5rem; border-top: 1px solid #e2e8f0; padding-top: 2rem;">
-            <h3 class="text-navy" style="font-size: 1.3rem; margin-bottom: 1.25rem; font-weight: 700;">Áreas de aplicación del Sensitive Group:</h3>
-            <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; list-style: none; padding: 0;">
-              <li style="font-size: 0.95rem; color: #475569; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--color-primary); font-weight: bold;">✔</span> Conocimiento profundo del consumidor boliviano</li>
-              <li style="font-size: 0.95rem; color: #475569; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--color-primary); font-weight: bold;">✔</span> Lanzamientos de productos y servicios</li>
-              <li style="font-size: 0.95rem; color: #475569; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--color-primary); font-weight: bold;">✔</span> Brand Tracking y posicionamiento de marca</li>
-              <li style="font-size: 0.95rem; color: #475569; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--color-primary); font-weight: bold;">✔</span> Etnografía y códigos culturales locales</li>
-              <li style="font-size: 0.95rem; color: #475569; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--color-primary); font-weight: bold;">✔</span> Identificación de motivadores emocionales de compra</li>
-              <li style="font-size: 0.95rem; color: #475569; display: flex; align-items: center; gap: 0.5rem;"><span style="color: var(--color-primary); font-weight: bold;">✔</span> Testeo de campañas publicitarias y brief creativo</li>
-            </ul>
-          </div>
-          <div style="background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: 8px; font-weight: 600; font-size: 1.1rem; text-align: center;">
-            No buscamos la respuesta lógica y filtrada. Buscamos la reacción instintiva y real de su mercado.
-          </div>
+        <AreaPanelCards items={problemScenarios} columns={4} theme="navy" class="problem-panels" />
+
+        <div style="max-width: 900px; margin: 2.5rem auto 0; background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: var(--radius-md, 8px); font-weight: 600; font-size: 1.1rem; text-align: center;">
+          Sin acceder al nivel inconsciente y cultural del consumidor boliviano, su estrategia se basa en opiniones racionalizadas que no se traducen en comportamientos de compra reales.
         </div>
       </div>
     </section>
 
-    <!-- 3. TRADICIONAL VS PSICOANTROPOLOGÍA (VILMA NUÑEZ STYLE: ACTIONABLE COMPARISON FRAMEWORK) -->
+    <!-- 3. MINDTEC+ -->
     <section style="padding: 5rem 0; background: #fff;" data-stack-section>
       <div class="container">
         <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
-          <span class="eyebrow">EL GRAN CONTRASTE</span>
-          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;">Diferencias entre el Focus Group Tradicional y el Enfoque de Psicoantropología</h2>
+          <span class="eyebrow">MINDTEC+</span>
+          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;">Más que un moderador con cuestionario: psicoantropólogos que acceden al nivel inconsciente del consumidor boliviano.</h2>
         </div>
-        <div class="comparison-table-wrapper">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th scope="col">Focus Group Tradicional</th>
-                <th scope="col">Focus Group con Psicoantropología (MindTEC)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Sesgado por líderes de opinión en la mesa de discusión</td>
-                <td>Grupos reducidos y técnicas de apertura gregoriana y cultural</td>
-              </tr>
-              <tr>
-                <td>Registra únicamente lo verbalizado (nivel consciente)</td>
-                <td>Técnicas de investigación profunda subconsciente, cultural e instintiva</td>
-              </tr>
-              <tr>
-                <td>Moderadores genéricos que siguen un cuestionario lineal</td>
-                <td>Psicoantropólogos que elicitan metáforas inconscientes de compra</td>
-              </tr>
-              <tr>
-                <td>Ideal para 'aprobar' ideas de forma superficial</td>
-                <td>Ideal para predecir tasas de conversión, rechazo y memorabilidad de marca</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+
+        <ComparisonRows
+          columnLabels={{ left: 'Focus Group Tradicional', right: 'Sensitive Groups — Psicoantropología' }}
+          rows={comparisonRows}
+        />
+
+        <p class="text-gray-dark" style="font-size: 1.05rem; margin-top: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.7;">
+          La diferencia no está en el formato de grupo. Está en quién lo conduce y qué técnicas usa para acceder más allá de la respuesta racionalizada.
+        </p>
       </div>
     </section>
 
@@ -276,4 +292,5 @@ const description = "Focus group en Bolivia: evolucionado con neurociencia y psi
       </div>
     </nav>
   </main>
+
 </Layout>

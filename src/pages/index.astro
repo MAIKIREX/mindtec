@@ -6,6 +6,7 @@ import ScrollStoryLeft from "../components/scroll/ScrollStoryLeft.astro";
 import ScrollReveal from "../components/scroll/ScrollReveal.astro";
 import StatCounter from "../components/scroll/StatCounter.astro";
 import StackedSections from "../components/scroll/StackedSections.astro";
+import ComparisonRows from "../components/cards/ComparisonRows.astro";
 ---
 
 <Layout
@@ -358,6 +359,106 @@ import StackedSections from "../components/scroll/StackedSections.astro";
             </div>
         </section>
         </StackedSections>
+
+        <!-- ════════════════════════════════════════════════ -->
+        <!-- VIDEO SHOWCASE — Mindtec en movimiento          -->
+        <!-- ════════════════════════════════════════════════ -->
+        <section class="video-showcase-section" id="video-showcase">
+            <div class="container">
+                <ScrollReveal>
+                    <div class="section-header text-center">
+                        <span class="eyebrow">Mindtec en movimiento</span>
+                        <h2>
+                            La investigación no es un reporte. Es lo que pasa
+                            antes de escribirlo.
+                        </h2>
+                    </div>
+                </ScrollReveal>
+            </div>
+
+            <div class="video-showcase-grid">
+                    <div class="video-card">
+                        <ScrollReveal delay={0}>
+                            <div class="video-card__frame">
+                                <video
+                                    class="video-card__media"
+                                    src="https://res.cloudinary.com/dbrkedvyp/video/upload/v1785180842/maintec1_uvrfdk.webm"
+                                    autoplay
+                                    muted
+                                    loop
+                                    playsinline
+                                    preload="metadata"
+                                ></video>
+                                <div class="video-card__overlay"></div>
+                                <span class="video-card__index">01</span>
+                            </div>
+                            <div class="video-card__body">
+                                <span class="video-card__badge">Research</span>
+                                <h3>Neurociencia aplicada al consumidor</h3>
+                                <p>
+                                    Eye tracking, biometría y microexpresiones en
+                                    el único laboratorio de neuromarketing
+                                    operativo en Bolivia.
+                                </p>
+                            </div>
+                        </ScrollReveal>
+                    </div>
+
+                    <div class="video-card">
+                        <ScrollReveal delay={0.12}>
+                            <div class="video-card__frame">
+                                <video
+                                    class="video-card__media"
+                                    src="https://res.cloudinary.com/dbrkedvyp/video/upload/v1785180849/maintec2_izllv1.webm"
+                                    autoplay
+                                    muted
+                                    loop
+                                    playsinline
+                                    preload="metadata"
+                                ></video>
+                                <div class="video-card__overlay"></div>
+                                <span class="video-card__index">02</span>
+                            </div>
+                            <div class="video-card__body">
+                                <span class="video-card__badge">Terreno</span>
+                                <h3>Validación con el consumidor real</h3>
+                                <p>
+                                    Encuestadores propios, cliente misterioso y
+                                    auditoría retail en el punto de venta, en
+                                    todo el territorio boliviano.
+                                </p>
+                            </div>
+                        </ScrollReveal>
+                    </div>
+
+                    <div class="video-card">
+                        <ScrollReveal delay={0.24}>
+                            <div class="video-card__frame">
+                                <video
+                                    class="video-card__media"
+                                    src="https://res.cloudinary.com/dbrkedvyp/video/upload/v1785180856/maintec3_dgmzik.webm"
+                                    autoplay
+                                    muted
+                                    loop
+                                    playsinline
+                                    preload="metadata"
+                                ></video>
+                                <div class="video-card__overlay"></div>
+                                <span class="video-card__index">03</span>
+                            </div>
+                            <div class="video-card__body">
+                                <span class="video-card__badge">Strategy</span>
+                                <h3>Activación estratégica con IA</h3>
+                                <p>
+                                    Del hallazgo a la decisión: análisis con
+                                    inteligencia artificial y sesión de
+                                    activación con su equipo directivo.
+                                </p>
+                            </div>
+                        </ScrollReveal>
+                    </div>
+            </div>
+        </section>
 
         <!-- ════════════════════════════════════════════════ -->
         <!-- 3. PROBLEM SECTION — ScrollStoryCards (ancla 1) -->
@@ -745,56 +846,17 @@ import StackedSections from "../components/scroll/StackedSections.astro";
                     </h2>
                 </div>
 
-                <div
-                    class="comparison-table-wrapper"
-                    style="margin-bottom: 3rem;"
-                >
-                    <table class="comparison-table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Estudio estándar</th>
-                                <th scope="col">Mindtec</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Encuestadores con cuestionario</td>
-                                <td
-                                    >Psicólogos e IA leyendo el código detrás de
-                                    la respuesta</td
-                                >
-                            </tr>
-                            <tr>
-                                <td>Lo que la gente declara</td>
-                                <td
-                                    >Lo que la gente siente aunque no lo pueda
-                                    verbalizar</td
-                                >
-                            </tr>
-                            <tr>
-                                <td>Tablas con porcentajes</td>
-                                <td
-                                    >Decisiones priorizadas con criterio
-                                    estratégico</td
-                                >
-                            </tr>
-                            <tr>
-                                <td>Sin seguimiento post-estudio</td>
-                                <td
-                                    >Seguimiento estratégico post-estudio
-                                    incluido siempre</td
-                                >
-                            </tr>
-                            <tr>
-                                <td>Equipo senior diseña, junior ejecuta</td>
-                                <td
-                                    >El mismo equipo senior en diseño, campo y
-                                    presentación final</td
-                                >
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <ComparisonRows
+                    class="home-comparison"
+                    columnLabels={{ left: 'Estudio estándar', right: 'Mindtec' }}
+                    rows={[
+                        { before: 'Encuestadores con cuestionario', after: 'Psicólogos e IA leyendo el código detrás de la respuesta' },
+                        { before: 'Lo que la gente declara', after: 'Lo que la gente siente aunque no lo pueda verbalizar' },
+                        { before: 'Tablas con porcentajes', after: 'Decisiones priorizadas con criterio estratégico' },
+                        { before: 'Sin seguimiento post-estudio', after: 'Seguimiento estratégico post-estudio incluido siempre' },
+                        { before: 'Equipo senior diseña, junior ejecuta', after: 'El mismo equipo senior en diseño, campo y presentación final' },
+                    ]}
+                />
             </div>
 
             <div class="capabilities-grid-v2">
@@ -1445,6 +1507,126 @@ import StackedSections from "../components/scroll/StackedSections.astro";
 </Layout>
 
 <style>
+    .video-showcase-section {
+        padding: clamp(4rem, 8vw, var(--spacing-xl, 8rem)) 0;
+        background: var(--color-surface, #fafbfc);
+        overflow: clip;
+    }
+
+    .video-showcase-section .section-header {
+        margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+    }
+
+    .video-showcase-section .section-header h2 {
+        max-width: 44rem;
+        margin-inline: auto;
+    }
+
+    .video-showcase-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(1.25rem, 2.5vw, 2rem);
+        width: 100%;
+        padding-inline: clamp(1rem, 4vw, 3rem);
+    }
+
+    .video-card {
+        border-radius: var(--radius-lg, 24px);
+        overflow: hidden;
+        background: #fff;
+        box-shadow: var(--shadow-md);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    }
+
+    .video-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-xl), var(--shadow-glow);
+    }
+
+    .video-card__frame {
+        position: relative;
+        aspect-ratio: 4 / 5;
+        overflow: hidden;
+        background: var(--color-secondary-deep, #061c2b);
+    }
+
+    .video-card__media {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .video-card:hover .video-card__media {
+        transform: scale(1.05);
+    }
+
+    .video-card__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            180deg,
+            rgba(6, 28, 43, 0) 45%,
+            rgba(6, 28, 43, 0.75) 100%
+        );
+        pointer-events: none;
+    }
+
+    .video-card__index {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 0.8rem;
+        letter-spacing: 0.05em;
+        color: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 999px;
+        padding: 0.35rem 0.75rem;
+    }
+
+    .video-card__body {
+        padding: 1.5rem 1.5rem 1.75rem;
+    }
+
+    .video-card__badge {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--color-primary, #f26522);
+        margin-bottom: 0.6rem;
+    }
+
+    .video-card__body h3 {
+        font-size: 1.15rem;
+        line-height: 1.3;
+        color: var(--color-text-dark, #0b2b40);
+        margin-bottom: 0.6rem;
+    }
+
+    .video-card__body p {
+        font-size: 0.92rem;
+        line-height: 1.55;
+        color: var(--color-text-muted, #64748b);
+        margin: 0;
+    }
+
+    @media (max-width: 900px) {
+        .video-showcase-grid {
+            grid-template-columns: 1fr;
+            max-width: 26rem;
+            margin-inline: auto;
+            padding-inline: clamp(1rem, 6vw, 2rem);
+        }
+    }
+
     .problem-quote-section,
     .services-closing-section {
         padding: var(--spacing-xl, 5rem) 0;
