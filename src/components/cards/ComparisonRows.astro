@@ -1,0 +1,250 @@
+---
+export interface ComparisonRow {
+  before: string;
+  after: string;
+}
+
+interface Props {
+  columnLabels: { left: string; right: string };
+  rows: ComparisonRow[];
+  class?: string;
+}
+
+const { columnLabels, rows, class: className = "" } = Astro.props;
+---
+
+<div class:list={["comparison-rows", className]}>
+  <div class="comparison-rows__labels" aria-hidden="true">
+    <span class="comparison-rows__label">{columnLabels.left}</span>
+    <span class="comparison-rows__label comparison-rows__label--accent">{columnLabels.right}</span>
+  </div>
+
+  <div class="comparison-strip" data-reveal-group>
+    {rows.map((row) => (
+      <div class="comparison-row" data-reveal-item>
+        <span class="comparison-row__before">{row.before}</span>
+        <span class="comparison-row__seam" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </span>
+        <span class="comparison-row__after">{row.after}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  function initComparisonReveals(): void {
+    const groups = document.querySelectorAll<HTMLElement>(
+      "[data-reveal-group]:not([data-reveal-ready])",
+    );
+
+    groups.forEach((group) => {
+      group.setAttribute("data-reveal-ready", "true");
+
+      const items = Array.from(
+        group.querySelectorAll<HTMLElement>("[data-reveal-item]"),
+      );
+
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      if (reduceMotion) {
+        items.forEach((item) => item.classList.add("is-in"));
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            const index = items.indexOf(entry.target as HTMLElement);
+            (entry.target as HTMLElement).style.transitionDelay = `${Math.max(index, 0) * 80}ms`;
+            entry.target.classList.add("is-in");
+            observer.unobserve(entry.target);
+          });
+        },
+        { threshold: 0.2, rootMargin: "0px 0px -10% 0px" },
+      );
+
+      items.forEach((item) => observer.observe(item));
+    });
+  }
+
+  initComparisonReveals();
+  document.addEventListener("astro:page-load", initComparisonReveals);
+</script>
+
+<style>
+  .comparison-rows {
+    margin: 2.5rem 0;
+  }
+
+  .comparison-rows__labels {
+    display: grid;
+    grid-template-columns: 1fr 44px 1fr;
+    gap: 1rem;
+    align-items: center;
+    padding: 0 2rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .comparison-rows__label {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--color-text-muted, #64748b);
+  }
+
+  .comparison-rows__label--accent {
+    grid-column: 3;
+    color: var(--color-primary, #f26522);
+    text-align: right;
+  }
+
+  /* Cinta continua de paneles navy unidos por una muesca dentada,
+     como si cada fila fuera una pieza engarzada con la siguiente. */
+  .comparison-strip {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .comparison-row {
+    --reveal-y: 24px;
+    --reveal-o: 0;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 44px 1fr;
+    align-items: stretch;
+    gap: 0;
+    min-height: 85px;
+    background: #082235;
+    border-left: 1px solid rgba(141, 191, 221, 0.2);
+    border-right: 1px solid rgba(141, 191, 221, 0.2);
+    opacity: var(--reveal-o);
+    transform: translateY(var(--reveal-y));
+    clip-path: polygon(
+      0 0, 42% 0, 42% 16%, 58% 16%, 58% 0, 100% 0,
+      100% 84%, 58% 84%, 58% 100%, 42% 100%, 42% 84%, 0 84%
+    );
+    transition:
+      opacity 550ms cubic-bezier(0.16, 1, 0.3, 1),
+      transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 280ms ease;
+      margin-bottom: -8px;
+  }
+
+  .comparison-row.is-in {
+    --reveal-o: 1;
+    --reveal-y: 0px;
+  }
+
+  .comparison-row:first-child {
+    clip-path: polygon(
+      0 0, 100% 0,
+      100% 84%, 58% 84%, 58% 100%, 42% 100%, 42% 84%, 0 84%
+    );
+    border-top: 1px solid rgba(141, 191, 221, 0.2);
+  }
+
+  .comparison-row:last-child {
+    clip-path: polygon(
+      0 0, 42% 0, 42% 16%, 58% 16%, 58% 0, 100% 0, 100% 100%, 0 100%
+    );
+    border-bottom: 1px solid rgba(141, 191, 221, 0.2);
+  }
+
+  .comparison-row:hover {
+    background: #0b2c43;
+  }
+
+  .comparison-row__before,
+  .comparison-row__after {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
+
+  .comparison-row__before {
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 500;
+  }
+
+  .comparison-row__after {
+    justify-content: flex-end;
+    text-align: right;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  /* Insignia circular sentada justo en la muesca entre filas, como
+     el conector de las tarjetas de sectores del sitio. */
+  .comparison-row__seam {
+    display: grid;
+    place-items: center;
+    align-self: center;
+    justify-self: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #082235;
+    border: 1px solid rgba(168, 207, 232, 0.86);
+    color: #c5e3f3;
+    transition:
+      color 280ms ease,
+      border-color 280ms ease,
+      transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .comparison-row:hover .comparison-row__seam {
+    border-color: var(--color-primary, #e7a548);
+    color: var(--color-primary, #e7a548);
+    transform: scale(1.08);
+  }
+
+  .comparison-row__seam svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .comparison-row {
+      --reveal-y: 0px;
+      --reveal-o: 1;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .comparison-rows__labels {
+      display: none;
+    }
+
+    .comparison-row,
+    .comparison-row:first-child,
+    .comparison-row:last-child {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      text-align: center;
+      gap: 0.75rem;
+      padding: 1.75rem 1.5rem;
+      clip-path: none;
+      border: 1px solid rgba(141, 191, 221, 0.2);
+      margin-bottom: 0.75rem;
+    }
+
+    .comparison-row__before,
+    .comparison-row__after {
+      padding: 0;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .comparison-row__seam {
+      order: 2;
+    }
+  }
+</style>

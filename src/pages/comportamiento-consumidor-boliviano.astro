@@ -1,6 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
+import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro';
+import FaqSplit from '../components/faq/FaqSplit.astro';
+import StackedSections from '../components/scroll/StackedSections.astro';
+
+const faqItems = [
+  {
+    question:
+      "¿Por qué el consumidor boliviano cambia tanto de marca en los últimos años?",
+    answer:
+      "Principalmente por presión económica: la escasez de dólares y la inflación importada redujeron el ingreso disponible real, y el precio se volvió el primer filtro de decisión incluso para consumidores que antes eran leales a una marca.",
+  },
+  {
+    question: "¿El consumidor de Santa Cruz se comporta igual que el de La Paz?",
+    answer:
+      "No. Mindtec encuentra diferencias consistentes: el consumidor paceño es más deliberado y consultivo, el cruceño más rápido y sensible al estatus, y el cochabambino más negociador y orientado a la relación precio-calidad.",
+  },
+  {
+    question: "¿Cómo recolecta Mindtec estos datos sobre comportamiento de compra?",
+    answer:
+      "Con una red de campo activa en el eje troncal y El Alto, que combina encuestas estructuradas, observación en punto de venta, entrevistas cualitativas y herramientas de neuromarketing para medir lo que el consumidor hace, no solo lo que dice.",
+  },
+  {
+    question:
+      "¿Esta segmentación regional sirve para empresas pequeñas o solo para grandes marcas?",
+    answer:
+      "Sirve para ambas. Una pyme que vende solo en Cochabamba puede usar el perfil local para ajustar su mensaje y precio; una marca nacional lo necesita para no aplicar la misma estrategia en tres mercados que se comportan distinto.",
+  },
+];
 ---
 
 <Layout
@@ -66,8 +93,9 @@ import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
   </script>
 
   <main>
+    <StackedSections>
     <!-- 🟦 HERO -->
-    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
+    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;" data-stack-section>
       <div class="hero-shapes" aria-hidden="true">
         <div class="hero-shape"></div>
         <div class="hero-shape"></div>
@@ -111,10 +139,12 @@ import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
       </div>
     </section>
 
-    <ServiceVisualSuite variant="shopper" />
+    <div data-stack-section>
+      <ServiceVisualSuite variant="shopper" />
+    </div>
 
     <!-- 🟦 CONTEXTO ECONÓMICO -->
-    <section class="premium-section-padding bg-slate">
+    <section class="premium-section-padding bg-slate" data-stack-section>
       <div class="container">
         <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
           <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 2rem; line-height: 1.2;">El Contexto Económico que Está Redefiniendo el Consumo en Bolivia</h2>
@@ -137,7 +167,7 @@ import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
     </section>
 
     <!-- 🟦 DATOS EN VIVO MINDTEC -->
-    <section class="trust-bar-section" id="datos-vivos">
+    <section class="trust-bar-section" id="datos-vivos" data-stack-section>
       <div class="container text-center">
         <h3 class="trust-bar-title">Hallazgos de campo Mindtec sobre el consumidor boliviano</h3>
         <div class="trust-numbers-grid">
@@ -165,7 +195,7 @@ import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
     </section>
 
     <!-- 🟦 SEGMENTACIÓN REGIONAL INTERACTIVA -->
-    <section class="premium-section-padding bg-white">
+    <section class="premium-section-padding bg-white" data-stack-section>
       <div class="container" style="max-width: 1000px;">
         <div class="section-title-center" style="margin-bottom: 3rem;">
           <span class="eyebrow">Página viva — explore por región</span>
@@ -220,7 +250,7 @@ import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
     </section>
 
     <!-- 🟦 METODOLOGÍA -->
-    <section class="premium-section-padding bg-slate">
+    <section class="premium-section-padding bg-slate" data-stack-section>
       <div class="container premium-grid-2-split" style="align-items: center;">
         <div>
           <span class="eyebrow">Metodología Mindtec</span>
@@ -254,32 +284,12 @@ import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
     </section>
 
     <!-- 🟦 FAQ -->
-    <section class="premium-section-padding bg-white">
-      <div class="container" style="max-width: 800px;">
-        <h2 class="text-navy text-center" style="font-size: 2.5rem; margin-bottom: 3rem;">Preguntas Frecuentes</h2>
-        <div class="faq-list">
-          <div class="faq-item">
-            <h3>¿Por qué el consumidor boliviano cambia tanto de marca en los últimos años?</h3>
-            <p>Principalmente por presión económica: la escasez de dólares y la inflación importada redujeron el ingreso disponible real, y el precio se volvió el primer filtro de decisión incluso para consumidores que antes eran leales a una marca.</p>
-          </div>
-          <div class="faq-item">
-            <h3>¿El consumidor de Santa Cruz se comporta igual que el de La Paz?</h3>
-            <p>No. Mindtec encuentra diferencias consistentes: el consumidor paceño es más deliberado y consultivo, el cruceño más rápido y sensible al estatus, y el cochabambino más negociador y orientado a la relación precio-calidad.</p>
-          </div>
-          <div class="faq-item">
-            <h3>¿Cómo recolecta Mindtec estos datos sobre comportamiento de compra?</h3>
-            <p>Con una red de campo activa en el eje troncal y El Alto, que combina encuestas estructuradas, observación en punto de venta, entrevistas cualitativas y herramientas de neuromarketing para medir lo que el consumidor hace, no solo lo que dice.</p>
-          </div>
-          <div class="faq-item">
-            <h3>¿Esta segmentación regional sirve para empresas pequeñas o solo para grandes marcas?</h3>
-            <p>Sirve para ambas. Una pyme que vende solo en Cochabamba puede usar el perfil local para ajustar su mensaje y precio; una marca nacional lo necesita para no aplicar la misma estrategia en tres mercados que se comportan distinto.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+    <div data-stack-section>
+      <FaqSplit title="Preguntas Frecuentes" items={faqItems} />
+    </div>
 
     <!-- 🟦 CROSS-LINKING -->
-    <section class="premium-section-padding bg-slate" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
+    <section class="premium-section-padding bg-slate" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;" data-stack-section>
       <div class="container" style="max-width: 900px;">
         <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">Profundice el análisis</h3>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
@@ -303,7 +313,7 @@ import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
     </section>
 
     <!-- 🟦 CTA FINAL -->
-    <section class="cta-section-modern" style="padding: 6rem 0;">
+    <section class="cta-section-modern" style="padding: 6rem 0;" data-stack-section>
       <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
         <div class="cta-content-v2">
           <h2 style="font-size: 3rem; line-height: 1.25; margin-bottom: 1.5rem;">¿Conoce realmente a su consumidor en cada ciudad donde vende?</h2>
@@ -317,6 +327,7 @@ import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
         </div>
       </div>
     </section>
+    </StackedSections>
 
     <!-- BREADCRUMB -->
     <nav aria-label="Breadcrumb" class="breadcrumb-bottom">

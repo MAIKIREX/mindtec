@@ -1,0 +1,230 @@
+---
+import LayeredScrollScenes, {
+  type LayeredScene,
+} from "../components/scroll/LayeredScrollScenes.astro";
+
+const scenes: LayeredScene[] = [
+  {
+    id: "hero",
+    background: {
+      src: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2400&q=85",
+      alt: "Edificio corporativo moderno",
+      objectPosition: "center 48%",
+    },
+    overlay: "linear-gradient(180deg, rgba(3,7,20,.12), rgba(3,7,20,.42))",
+  },
+  {
+    id: "infrastructure",
+    background: {
+      src: "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=2400&q=85",
+      alt: "Vista aérea de una ciudad",
+    },
+    overlay: "linear-gradient(180deg, rgba(3,7,20,.08), rgba(3,7,20,.24))",
+    card: {
+      layout: "panel",
+      panelHeight: 65,
+      background: "#f4f3ef",
+      color: "#14192c",
+      eyebrow: "Territorio de innovación",
+      title: "Infraestructura que acompaña cada idea.",
+      description:
+        "El fondo cambia antes de que el panel alcance su punto de descanso. La tarjeta permanece estable para que el contenido pueda leerse sin perseguir el scroll.",
+      actions: [
+        { label: "Explorar espacios", href: "#espacios", variant: "primary" },
+        { label: "Ver detalles", href: "#detalles", variant: "secondary" },
+      ],
+    },
+  },
+  {
+    id: "cafes",
+    background: {
+      src: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=2400&q=85",
+      alt: "Taza de café sobre una mesa",
+      objectPosition: "center 58%",
+    },
+    overlay: "linear-gradient(90deg, rgba(2,5,18,.35), rgba(2,5,18,.08))",
+    card: {
+      position: "right",
+      shape: "notched",
+      width: "min(33rem, 40vw)",
+      minHeight: "31rem",
+      background: "#05091f",
+      color: "#ffffff",
+      eyebrow: "Cafés",
+      title: "Una pausa integrada al recorrido.",
+      description:
+        "La tarjeta entra lentamente desde abajo, rebasa el centro unos pocos píxeles y vuelve con un rebote sutil.",
+      actions: [{ label: "Conocer el concepto", href: "#cafes", variant: "secondary" }],
+    },
+  },
+  {
+    id: "restaurants",
+    background: {
+      src: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2400&q=85",
+      alt: "Plato de restaurante contemporáneo",
+      objectPosition: "center 55%",
+    },
+    overlay: "linear-gradient(90deg, rgba(2,5,18,.12), rgba(2,5,18,.32))",
+    card: {
+      position: "left",
+      shape: "notched",
+      width: "min(34rem, 41vw)",
+      minHeight: "30rem",
+      background: "#05091f",
+      color: "#ffffff",
+      eyebrow: "Restaurantes",
+      title: "La siguiente escena espera en el borde.",
+      description:
+        "Mientras esta tarjeta se centra, todavía se conserva una pequeña parte de la anterior arriba y de la siguiente abajo.",
+      actions: [
+        { label: "Reservar", href: "#reservar", variant: "primary" },
+        { label: "Menú", href: "#menu", variant: "text" },
+      ],
+    },
+  },
+];
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Demo LayeredScrollScenes</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <button class="menu" aria-label="Abrir menú"><span></span><span></span></button>
+      <a class="brand" href="#">LIKOVA</a>
+      <nav>
+        <a href="#espacios">Seleccionar espacio</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </header>
+
+    <LayeredScrollScenes
+      scenes={scenes}
+      panelHeight={65}
+      cardPeek={36}
+      scrollPerScene={118}
+      scrub={0.85}
+      backgroundDuration={0.56}
+      cardEnterDuration={0.96}
+      cardHoldDuration={0.72}
+      cardExitDuration={0.62}
+      snap={true}
+      snapDelay={0.14}
+      showProgress={true}
+    />
+
+    <section class="after" id="contacto">
+      <p>Contenido posterior al wrapper</p>
+      <h2>La página continúa normalmente después de la última escena.</h2>
+    </section>
+  </body>
+</html>
+
+<style is:global>
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    background: #05091f;
+    scroll-behavior: auto;
+  }
+
+  body {
+    margin: 0;
+    color: #fff;
+    background: #05091f;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .site-header {
+    position: fixed;
+    z-index: 2000;
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    width: 100%;
+    min-height: 5.5rem;
+    align-items: center;
+    gap: 5rem;
+    padding: 0 1.5rem;
+    color: #fff;
+    pointer-events: none;
+  }
+
+  .site-header > * {
+    pointer-events: auto;
+  }
+
+  .site-header a {
+    color: inherit;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .brand {
+    font-size: 1.55rem;
+    letter-spacing: 0.24em;
+  }
+
+  .site-header nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 4rem;
+    font-size: 0.78rem;
+  }
+
+  .menu {
+    display: grid;
+    width: 3.5rem;
+    gap: 0.35rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .menu span {
+    display: block;
+    height: 1px;
+    background: #fff;
+  }
+
+  .after {
+    min-height: 100svh;
+    display: grid;
+    place-content: center;
+    padding: 8vw;
+    color: #11162a;
+    background: #f4f3ef;
+  }
+
+  .after p {
+    margin: 0 0 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .after h2 {
+    max-width: 18ch;
+    margin: 0;
+    font-size: clamp(2.5rem, 6vw, 7rem);
+    line-height: 0.95;
+    letter-spacing: -0.06em;
+  }
+
+  @media (max-width: 767px) {
+    .site-header {
+      grid-template-columns: auto 1fr;
+      gap: 1rem;
+      min-height: 4.5rem;
+    }
+
+    .site-header nav {
+      display: none;
+    }
+  }
+</style>

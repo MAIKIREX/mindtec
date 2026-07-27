@@ -1,0 +1,575 @@
+---
+interface Props {
+  /** Tamaño CSS del componente. */
+  size?: string;
+  class?: string;
+}
+
+const {
+  size = "clamp(280px, 34vw, 460px)",
+  class: className = "",
+} = Astro.props;
+---
+
+<div
+  class:list={["bolivian-coin-network", className]}
+  data-bolivian-coin-network
+  style={`--bcn-size:${size};`}
+>
+  <div class="bolivian-coin-network__stage" data-bcn-stage>
+    <div
+      class="bolivian-coin-network__particles bolivian-coin-network__particles--outline"
+      data-bcn-outline
+      aria-hidden="true"
+    ></div>
+
+    <canvas
+      class="bolivian-coin-network__connections"
+      data-bcn-connections
+      aria-hidden="true"
+    ></canvas>
+
+    <!-- Fallback estático para usuarios con movimiento reducido. -->
+    <div
+      class="bolivian-coin-network__fallback"
+      role="img"
+      aria-label="Moneda boliviana representada como una red neuronal"
+    ></div>
+  </div>
+</div>
+
+<style>
+  .bolivian-coin-network {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: var(--bcn-size, clamp(280px, 34vw, 460px));
+    perspective: 900px;
+  }
+
+  .bolivian-coin-network__stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    --bcn-glow: 0px;
+    transform-style: preserve-3d;
+    will-change: transform;
+    filter: drop-shadow(
+      0 0 var(--bcn-glow) rgba(242, 101, 34, 0.65)
+    );
+  }
+
+  .bolivian-coin-network__particles,
+  .bolivian-coin-network__connections,
+  .bolivian-coin-network__fallback {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .bolivian-coin-network__particles {
+    transform: translateZ(0);
+  }
+
+  .bolivian-coin-network__particles--outline {
+    z-index: 2;
+  }
+
+  .bolivian-coin-network__connections {
+    z-index: 3;
+    pointer-events: none;
+  }
+
+  .bolivian-coin-network__fallback {
+    z-index: 0;
+    display: none;
+    background: #19bfff;
+    -webkit-mask:
+      url("/logos/moneda_boliviana_contenido.svg")
+      center / contain no-repeat;
+    mask:
+      url("/logos/moneda_boliviana_contenido.svg")
+      center / contain no-repeat;
+    filter: drop-shadow(0 0 8px rgba(25, 191, 255, 0.75));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bolivian-coin-network__fallback {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  let bcnInstanceCounter = 0;
+
+  function setupBolivianCoinNetwork(root: HTMLElement) {
+    const instanceId = bcnInstanceCounter++;
+
+    const stageEl =
+      root.querySelector<HTMLElement>("[data-bcn-stage]");
+    const outlineEl =
+      root.querySelector<HTMLElement>("[data-bcn-outline]");
+    const connectionsEl =
+      root.querySelector<HTMLCanvasElement>("[data-bcn-connections]");
+
+    if (!stageEl || !outlineEl || !connectionsEl) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    /*
+     * Copia el SVG generado dentro de:
+     * public/logos/moneda_boliviana_contenido.svg
+     *
+     * El viewBox original del SVG es 0 0 1402 1402.
+     */
+    const MASK_WIDTH = 1402;
+    const MASK_URL = "/logos/moneda_boliviana_contenido.svg";
+
+    let outlineContainer: any;
+    let resizeObserver: ResizeObserver | undefined;
+    let animationFrame = 0;
+
+    async function initParticles() {
+      const { tsParticles } = await import("@tsparticles/engine");
+      const { loadSlim } = await import("@tsparticles/slim");
+      const { loadPolygonMaskPlugin } = await import(
+        "@tsparticles/plugin-polygon-mask"
+      );
+      const { loadTwinkleUpdater } = await import(
+        "@tsparticles/updater-twinkle"
+      );
+      const { gsap } = await import("gsap");
+
+      await loadSlim(tsParticles);
+      await loadPolygonMaskPlugin(tsParticles);
+      await loadTwinkleUpdater(tsParticles);
+
+      const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
+      const buildOptions = (
+        count: number,
+        color: string,
+        polygonType: "inline" | "inside",
+        sizeRange: { min: number; max: number },
+      ) => {
+        const scale = stageEl.clientWidth / MASK_WIDTH;
+
+        return {
+          fullScreen: { enable: false },
+          fpsLimit: 60,
+          detectRetina: false,
+          pauseOnBlur: true,
+          pauseOnOutsideViewport: true,
+
+          particles: {
+            number: { value: count },
+            color: { value: color },
+            opacity: {
+              value: { min: 0.3, max: 1 },
+              animation: {
+                enable: true,
+                speed: 0.8,
+                sync: false,
+                startValue: "random",
+              },
+            },
+            size: { value: sizeRange },
+            links: { enable: false },
+            move: {
+              enable: false,
+              outModes: { default: "none" },
+            },
+          },
+
+          twinkle: {
+            particles: {
+              enable: true,
+              frequency: 0.035,
+              opacity: { min: 0.7, max: 1 },
+            },
+          },
+
+          polygon: {
+            enable: true,
+            type: polygonType,
+            url: MASK_URL,
+            scale,
+            inline: {
+              arrangement: "equidistant",
+            },
+            move: {
+              radius: 0,
+              type: "path",
+            },
+            draw: {
+              enable: false,
+            },
+          },
+
+          interactivity: {
+            events: {
+              resize: {
+                enable: true,
+                delay: 0.5,
+              },
+            },
+          },
+        };
+      };
+
+      /*
+       * Capa celeste.
+       * Recorre el borde y todos los trazos internos del SVG:
+       * texto, número, ornamentos y círculos.
+       */
+      outlineContainer = await tsParticles.load({
+        id: `bcn-outline-${instanceId}`,
+        element: outlineEl,
+        options: buildOptions(
+          isMobile ? 240 : 520,
+          "#19bfff",
+          "inline",
+          { min: 0.9, max: 2.35 },
+        ),
+      });
+
+      const context = connectionsEl.getContext("2d");
+
+      type DotRef = {
+        getPosition: () => { x: number; y: number };
+      };
+
+      type ActiveConnection = {
+        originIndex: number;
+        targetIndex: number;
+        bend: number;
+        start: number;
+        duration: number;
+      };
+
+      let dotsRef: DotRef[] = [];
+      let adjacency: number[][] = [];
+      let firingOrigins: number[] = [];
+      const activeConnections: ActiveConnection[] = [];
+      const maxActiveConnections = isMobile ? 10 : 22;
+      let nextBurstAt = 0;
+
+      const resizeConnections = () => {
+        const pixelRatio = window.devicePixelRatio || 1;
+
+        connectionsEl.width = stageEl.clientWidth * pixelRatio;
+        connectionsEl.height = stageEl.clientHeight * pixelRatio;
+
+        context?.setTransform(
+          pixelRatio,
+          0,
+          0,
+          pixelRatio,
+          0,
+          0,
+        );
+      };
+
+      const collectPairs = () => {
+        const outlineDots =
+          outlineContainer?.particles?.filter(() => true) ?? [];
+
+        dotsRef = [...outlineDots];
+        adjacency = dotsRef.map(() => []);
+
+        const stageWidth = stageEl.clientWidth || 1;
+        const minDistance = stageWidth * 0.025;
+        const maxDistance = stageWidth * 0.105;
+
+        for (let index = 0; index < dotsRef.length; index += 1) {
+          const start = dotsRef[index].getPosition();
+
+          for (
+            let targetIndex = index + 1;
+            targetIndex < dotsRef.length;
+            targetIndex += 1
+          ) {
+            const end = dotsRef[targetIndex].getPosition();
+            const distance = Math.hypot(
+              end.x - start.x,
+              end.y - start.y,
+            );
+
+            if (
+              distance > minDistance &&
+              distance < maxDistance
+            ) {
+              adjacency[index].push(targetIndex);
+              adjacency[targetIndex].push(index);
+            }
+          }
+        }
+
+        firingOrigins = adjacency
+          .map((neighbors, index) =>
+            neighbors.length >= 2 ? index : -1,
+          )
+          .filter((index) => index >= 0);
+      };
+
+      const addBurst = (now: number) => {
+        if (!firingOrigins.length) return;
+
+        const originIndex =
+          firingOrigins[
+            Math.floor(Math.random() * firingOrigins.length)
+          ];
+
+        const neighbors = adjacency[originIndex];
+        const branchCount = Math.min(
+          neighbors.length,
+          2 + Math.floor(Math.random() * 3),
+        );
+
+        const branches = [...neighbors]
+          .sort(() => Math.random() - 0.5)
+          .slice(0, branchCount);
+
+        const duration = 800 + Math.random() * 700;
+
+        branches.forEach((targetIndex, branchOrder) => {
+          activeConnections.push({
+            originIndex,
+            targetIndex,
+            bend: (Math.random() - 0.5) * 0.55,
+            start: now + branchOrder * 45,
+            duration,
+          });
+        });
+      };
+
+      const drawConnections = (now: number) => {
+        if (!context || !dotsRef.length) {
+          animationFrame =
+            requestAnimationFrame(drawConnections);
+          return;
+        }
+
+        context.clearRect(
+          0,
+          0,
+          stageEl.clientWidth,
+          stageEl.clientHeight,
+        );
+
+        while (
+          activeConnections.length < maxActiveConnections &&
+          now >= nextBurstAt
+        ) {
+          addBurst(now);
+          nextBurstAt = now + 260 + Math.random() * 180;
+        }
+
+        for (
+          let index = activeConnections.length - 1;
+          index >= 0;
+          index -= 1
+        ) {
+          const connection = activeConnections[index];
+
+          if (now < connection.start) continue;
+
+          const progress =
+            (now - connection.start) / connection.duration;
+
+          if (progress >= 1) {
+            activeConnections.splice(index, 1);
+            continue;
+          }
+
+          const origin = dotsRef[connection.originIndex];
+          const target = dotsRef[connection.targetIndex];
+
+          if (!origin || !target) {
+            activeConnections.splice(index, 1);
+            continue;
+          }
+
+          const from = origin.getPosition();
+          const to = target.getPosition();
+          const drawProgress = Math.min(progress * 2.4, 1);
+          const fade = Math.sin(
+            Math.min(progress, 1) * Math.PI,
+          );
+
+          const midX =
+            (from.x + to.x) / 2 -
+            (to.y - from.y) * connection.bend;
+          const midY =
+            (from.y + to.y) / 2 +
+            (to.x - from.x) * connection.bend;
+
+          const inverse = 1 - drawProgress;
+
+          const endX =
+            inverse * inverse * from.x +
+            2 * inverse * drawProgress * midX +
+            drawProgress * drawProgress * to.x;
+
+          const endY =
+            inverse * inverse * from.y +
+            2 * inverse * drawProgress * midY +
+            drawProgress * drawProgress * to.y;
+
+          context.beginPath();
+          context.moveTo(from.x, from.y);
+          context.quadraticCurveTo(
+            midX,
+            midY,
+            endX,
+            endY,
+          );
+          context.strokeStyle =
+            `rgba(255,255,255,${fade * 0.82})`;
+          context.lineWidth = 1.05;
+          context.shadowColor = "rgba(255,255,255,0.9)";
+          context.shadowBlur = 8;
+          context.stroke();
+
+          context.beginPath();
+          context.arc(endX, endY, 1.6, 0, Math.PI * 2);
+          context.fillStyle = `rgba(255,255,255,${fade})`;
+          context.shadowBlur = 10;
+          context.fill();
+
+          if (progress < 0.22) {
+            const flash = 1 - progress / 0.22;
+
+            context.beginPath();
+            context.arc(
+              from.x,
+              from.y,
+              2.4 * flash + 1,
+              0,
+              Math.PI * 2,
+            );
+            context.fillStyle =
+              `rgba(255,255,255,${flash * 0.8})`;
+            context.shadowBlur = 12;
+            context.fill();
+          }
+        }
+
+        animationFrame =
+          requestAnimationFrame(drawConnections);
+      };
+
+      resizeConnections();
+
+      /*
+       * tsParticles necesita unos instantes para construir
+       * los puntos generados por la máscara.
+       */
+      window.setTimeout(collectPairs, 180);
+
+      resizeObserver = new ResizeObserver(() => {
+        resizeConnections();
+        window.setTimeout(collectPairs, 120);
+      });
+
+      resizeObserver.observe(stageEl);
+      animationFrame = requestAnimationFrame(drawConnections);
+
+      const tiltCoin = (event: PointerEvent) => {
+        const bounds = root.getBoundingClientRect();
+        const x =
+          (event.clientX - bounds.left) / bounds.width - 0.5;
+        const y =
+          (event.clientY - bounds.top) / bounds.height - 0.5;
+
+        gsap.to(root, {
+          x: x * 14,
+          y: y * 10,
+          rotationY: x * 9,
+          rotationX: y * -7,
+          scale: 1.012,
+          duration: 0.55,
+          ease: "power3.out",
+          overwrite: "auto",
+        });
+
+        gsap.to(stageEl, {
+          "--bcn-glow": "16px",
+          duration: 0.35,
+          overwrite: "auto",
+        });
+      };
+
+      const resetTilt = () => {
+        gsap.to(root, {
+          x: 0,
+          y: 0,
+          rotationX: 0,
+          rotationY: 0,
+          scale: 1,
+          duration: 1.1,
+          ease: "elastic.out(1, 0.45)",
+          overwrite: "auto",
+        });
+
+        gsap.to(stageEl, {
+          "--bcn-glow": "0px",
+          duration: 0.8,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+      };
+
+      root.addEventListener("pointermove", tiltCoin);
+      root.addEventListener("pointerleave", resetTilt);
+
+      document.addEventListener("visibilitychange", () => {
+        if (!outlineContainer) return;
+
+        if (document.hidden) {
+          outlineContainer.pause();
+        } else {
+          outlineContainer.play();
+        }
+      });
+    }
+
+    if (!prefersReducedMotion) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            void initParticles();
+            observer.disconnect();
+          }
+        },
+        { rootMargin: "200px" },
+      );
+
+      observer.observe(root);
+    }
+
+    /*
+     * Limpieza para navegación de Astro.
+     * Evita animaciones duplicadas al cambiar entre páginas.
+     */
+    document.addEventListener(
+      "astro:before-swap",
+      () => {
+        cancelAnimationFrame(animationFrame);
+        resizeObserver?.disconnect();
+        outlineContainer?.destroy();
+      },
+      { once: true },
+    );
+  }
+
+  document
+    .querySelectorAll<HTMLElement>(
+      "[data-bolivian-coin-network]",
+    )
+    .forEach(setupBolivianCoinNetwork);
+</script>

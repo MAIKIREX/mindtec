@@ -1,9 +1,124 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
+import Layout from "../layouts/Layout.astro";
+import ServiceVisualSuite from "../components/sections/ServiceVisualSuite.astro";
+import FaqSplit from "../components/faq/FaqSplit.astro";
+import HoverStepCards from "../components/cards/HoverStepCards.astro";
+import AreaPanelCards from "../components/cards/AreaPanelCards.astro";
+import ComparisonRows from "../components/cards/ComparisonRows.astro";
+import ScrollStory from "../components/scroll/ScrollStory.astro";
+import StackedSections from "../components/scroll/StackedSections.astro";
+
+const problemScenarios = [
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M136 40h64a16 16 0 0 1 16 16v64L100 236 20 156z"></path><circle cx="176" cy="80" r="12"></circle><path d="M176 140v56M152 172l24 24 24-24"></path></svg>`,
+    title: 'Precio desactualizado sin monitoreo',
+    description: 'Tu precio ya no es competitivo — y no te enteraste hasta que el cliente te lo dijo. Sin monitoreo continuo, los cambios de precio de la competencia son invisibles hasta que afectan tus ventas.',
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><rect x="48" y="88" width="160" height="128" rx="8"></rect><path d="M48 88l24-48h112l24 48"></path><path d="M96 216v-64h64v64"></path></svg>`,
+    title: 'Pérdida de exclusividad en canal',
+    description: 'Un competidor ganó distribución en canales donde tú tenías exclusividad. Cuando lo descubriste, ya tenían 3 meses de ventaja en el anaquel.',
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M128 24c40 24 48 80 32 128l-32 32-32-32c-16-48-8-104 32-128z"></path><path d="M96 168l-24 48M160 168l24 48"></path><circle cx="128" cy="96" r="16"></circle></svg>`,
+    title: 'Lanzamiento sin anticipar competencia',
+    description: 'Tu campaña de lanzamiento chocó con una acción competitiva que no anticipaste. Inteligencia oportuna habría permitido ajustar el timing o la propuesta.',
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><rect x="56" y="32" width="144" height="192" rx="8"></rect><path d="M88 176v-40M128 176v-72M168 176v-24"></path></svg>`,
+    title: 'Sin evidencia ante el directorio',
+    description: 'El directorio pide evidencia de dónde estás parado frente a la competencia. Y lo que tienes son suposiciones del equipo comercial, no datos.',
+  },
+];
+
+const comparisonRows = [
+  {
+    before: 'Revisión de precios en un momento puntual',
+    after: 'Monitoreo continuo de precios, promociones y estrategias de canal con alertas ante cambios significativos',
+  },
+  {
+    before: 'Datos de fuentes secundarias (informes de industria, internet)',
+    after: 'Inteligencia primaria de campo: auditores en PDV + entrevistas a consumidores + análisis digital',
+  },
+  {
+    before: 'Foto estática de la competencia',
+    after: 'Radar dinámico que detecta movimientos y tendencias antes de que impacten tu posición',
+  },
+  {
+    before: 'Sin voz del consumidor',
+    after: 'Percepción comparada: cómo diferencia el consumidor tu marca de los competidores',
+  },
+  {
+    before: 'Datos que el equipo comercial interpreta según su sesgo',
+    after: 'Análisis independiente con recomendaciones estratégicas priorizadas para el directorio',
+  },
+];
+
+const processSteps = [
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
+    title: "Diagnóstico estratégico",
+    small: "45 min · sin costo",
+    description:
+      "45 min para identificar tus competidores prioritarios, las dimensiones que más te preocupan y la decisión de negocio que el benchmarking debe informar.",
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`,
+    title: "Diseño del radar",
+    small: "3–5 días hábiles",
+    description:
+      "Definimos qué dimensiones medir, qué competidores incluir, qué ciudades y canales cubrir y cómo combinar campo, percepción y análisis digital.",
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1" ry="1"/></svg>`,
+    title: "Recolección de inteligencia",
+    small: "1–3 semanas en campo",
+    description:
+      "Auditores de campo + entrevistas a consumidores + análisis de comunicación digital. Recolección simultánea en todos los competidores para comparabilidad exacta.",
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>`,
+    title: "Radar y recomendaciones",
+    small: "5–7 días post-campo",
+    description:
+      "Entrega del mapa competitivo completo con análisis de vulnerabilidades y oportunidades. Presentación ante directorio con sesión de priorización de respuestas estratégicas.",
+  },
+];
+
+const faqItems = [
+  {
+    question:
+      "¿Qué variables se incluyen en el benchmarking competitivo de MindTEC?",
+    answer:
+      "Mapeamos: precios en anaquel y canal, distribución y presencia por zona, ejecución en punto de venta (share of shelf, POP, planograma), posicionamiento y percepción de marca, estrategia de comunicación y lanzamientos recientes. El alcance se define según la decisión que necesitas tomar.",
+  },
+  {
+    question: "¿Cuántos competidores pueden incluirse en el radar?",
+    answer:
+      "El estándar incluye 3–5 competidores directos. Para estudios sectoriales o categorías complejas podemos mapear hasta 10 actores. El número óptimo depende de tu mercado y del nivel de profundidad requerido por dimensión.",
+  },
+  {
+    question: "¿Con qué frecuencia pueden hacer el benchmarking?",
+    answer:
+      "Ofrecemos estudios puntuales (fotografía del mercado en un momento dado) y monitoreo continuo en olas trimestrales o semestrales. El monitoreo continuo permite detectar movimientos de la competencia antes de que impacten tu posición.",
+  },
+  {
+    question:
+      "¿Cómo obtienen la información de la competencia sin violar ninguna ética o ley?",
+    answer:
+      "Toda la información que recopilamos es pública u observable: precios en anaquel, presencia en PDV, comunicación en medios, posicionamiento percibido por consumidores, y distribución en canal. No utilizamos métodos de espionaje industrial ni acceso a información confidencial de terceros.",
+  },
+  {
+    question:
+      "¿El benchmarking incluye la percepción del consumidor sobre la competencia?",
+    answer:
+      "Sí, cuando el proyecto lo requiere. El Radar Competitivo puede incluir entrevistas o mini-encuestas para mapear cómo el consumidor percibe y diferencia tu marca de los competidores, complementando los datos de campo con la voz del mercado.",
+  },
+];
 
 const title = "Análisis de la Competencia en Bolivia | Mindtec";
-const description = "Análisis de competencia en Bolivia: evaluamos precios, ejecución y estrategias de sus competidores con datos reales de mercado. Mindtec.";
+const description =
+  "Análisis de competencia en Bolivia: evaluamos precios, ejecución y estrategias de sus competidores con datos reales de mercado. Mindtec.";
 ---
 
 <Layout
@@ -13,460 +128,893 @@ const description = "Análisis de competencia en Bolivia: evaluamos precios, eje
   canonicalUrl="/benchmarking-competitivo-bolivia/"
 >
   <script type="application/ld+json" slot="head">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Service",
-        "@id": "https://www.mindtecbolivia.com/benchmarking-competitivo-bolivia",
-        "name": "Benchmarking Competitivo en Bolivia — Radar Competitivo MindTEC",
-        "description": "Servicio de benchmarking competitivo e inteligencia de mercado en Bolivia. Mapeamos precios, distribución, posicionamiento y ejecución en PDV de tus competidores con campo real y análisis de IA.",
-        "provider": {
-          "@type": "Organization",
-          "name": "MindTEC Bolivia",
-          "url": "https://www.mindtecbolivia.com"
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Service",
+          "@id": "https://www.mindtecbolivia.com/benchmarking-competitivo-bolivia",
+          "name": "Benchmarking Competitivo en Bolivia — Radar Competitivo MindTEC",
+          "description": "Servicio de benchmarking competitivo e inteligencia de mercado en Bolivia. Mapeamos precios, distribución, posicionamiento y ejecución en PDV de tus competidores con campo real y análisis de IA.",
+          "provider": {
+            "@type": "Organization",
+            "name": "MindTEC Bolivia",
+            "url": "https://www.mindtecbolivia.com"
+          },
+          "areaServed": { "@type": "Country", "name": "Bolivia" },
+          "serviceType": "Benchmarking Competitivo / Inteligencia de Mercado",
+          "url": "https://www.mindtecbolivia.com/benchmarking-competitivo-bolivia"
         },
-        "areaServed": {"@type": "Country", "name": "Bolivia"},
-        "serviceType": "Benchmarking Competitivo / Inteligencia de Mercado",
-        "url": "https://www.mindtecbolivia.com/benchmarking-competitivo-bolivia"
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "¿Qué variables se incluyen en el benchmarking competitivo de MindTEC?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Mapeamos: precios en anaquel y canal, distribución y presencia por zona, ejecución en punto de venta (share of shelf, POP, planograma), posicionamiento y percepción de marca, estrategia de comunicación y lanzamientos recientes. El alcance se define según la decisión que necesitas tomar."
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Qué variables se incluyen en el benchmarking competitivo de MindTEC?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Mapeamos: precios en anaquel y canal, distribución y presencia por zona, ejecución en punto de venta (share of shelf, POP, planograma), posicionamiento y percepción de marca, estrategia de comunicación y lanzamientos recientes. El alcance se define según la decisión que necesitas tomar."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cuántos competidores pueden incluirse en el radar?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "El estándar incluye 3–5 competidores directos. Para estudios sectoriales o categorías complejas podemos mapear hasta 10 actores. El número óptimo depende de tu mercado y del nivel de profundidad requerido por dimensión."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Con qué frecuencia pueden hacer el benchmarking?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Ofrecemos estudios puntuales (fotografía del mercado en un momento dado) y monitoreo continuo en olas trimestrales o semestrales. El monitoreo continuo permite detectar movimientos de la competencia antes de que impacten tu posición."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cómo obtienen la información de la competencia sin violar ninguna ética o ley?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Toda la información que recopilamos es pública u observable: precios en anaquel, presencia en PDV, comunicación en medios, posicionamiento percibido por consumidores, y distribución en canal. No utilizamos métodos de espionaje industrial ni acceso a información confidencial de terceros."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿El benchmarking incluye la percepción del consumidor sobre la competencia?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, cuando el proyecto lo requiere. El Radar Competitivo puede incluir entrevistas o mini-encuestas para mapear cómo el consumidor percibe y diferencia tu marca de los competidores, complementando los datos de campo con la voz del mercado."
+              }
             }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Cuántos competidores pueden incluirse en el radar?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "El estándar incluye 3–5 competidores directos. Para estudios sectoriales o categorías complejas podemos mapear hasta 10 actores. El número óptimo depende de tu mercado y del nivel de profundidad requerido por dimensión."
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Inicio",
+              "item": "https://www.mindtecbolivia.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Servicios",
+              "item": "https://www.mindtecbolivia.com/servicios"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Benchmarking Competitivo en Bolivia",
+              "item": "https://www.mindtecbolivia.com/benchmarking-competitivo-bolivia"
             }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Con qué frecuencia pueden hacer el benchmarking?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Ofrecemos estudios puntuales (fotografía del mercado en un momento dado) y monitoreo continuo en olas trimestrales o semestrales. El monitoreo continuo permite detectar movimientos de la competencia antes de que impacten tu posición."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Cómo obtienen la información de la competencia sin violar ninguna ética o ley?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Toda la información que recopilamos es pública u observable: precios en anaquel, presencia en PDV, comunicación en medios, posicionamiento percibido por consumidores, y distribución en canal. No utilizamos métodos de espionaje industrial ni acceso a información confidencial de terceros."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿El benchmarking incluye la percepción del consumidor sobre la competencia?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Sí, cuando el proyecto lo requiere. El Radar Competitivo puede incluir entrevistas o mini-encuestas para mapear cómo el consumidor percibe y diferencia tu marca de los competidores, complementando los datos de campo con la voz del mercado."
-            }
-          }
-        ]
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.mindtecbolivia.com/"},
-          {"@type": "ListItem", "position": 2, "name": "Servicios", "item": "https://www.mindtecbolivia.com/servicios"},
-          {"@type": "ListItem", "position": 3, "name": "Benchmarking Competitivo en Bolivia", "item": "https://www.mindtecbolivia.com/benchmarking-competitivo-bolivia"}
-        ]
-      }
-    ]
-  }
+          ]
+        }
+      ]
+    }
   </script>
 
   <main>
-
-
+    <StackedSections>
     <!-- 1. HERO -->
-    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
+    <section
+      class="hero-section"
+      style="padding-bottom: 4rem; padding-top: 4rem;"
+      data-stack-section
+    >
       <div class="hero-shapes" aria-hidden="true">
-        <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
-        <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
-        <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
-        <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
-        <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
+        <div class="hero-shape"></div><div class="hero-shape"></div><div
+          class="hero-shape"
+        >
+        </div>
+        <div class="hero-shape"></div><div class="hero-shape"></div><div
+          class="hero-shape"
+        >
+        </div>
+        <div class="hero-shape"></div><div class="hero-shape"></div><div
+          class="hero-shape"
+        >
+        </div>
+        <div class="hero-shape"></div><div class="hero-shape"></div><div
+          class="hero-shape"
+        >
+        </div>
+        <div class="hero-shape"></div><div class="hero-shape"></div><div
+          class="hero-shape"
+        >
+        </div>
         <div class="hero-shape"></div>
       </div>
-      <div class="hero-mobile-canvas" id="hero-mobile-canvas" aria-hidden="true"></div>
+      <div
+        class="hero-mobile-canvas"
+        id="hero-mobile-canvas"
+        aria-hidden="true"
+      >
+      </div>
       <div class="container hero-container">
         <div class="hero-content">
-          <span class="eyebrow fade-in">INTELIGENCIA COMPETITIVA DE MERCADO</span>
+          <span class="eyebrow fade-in"
+            >INTELIGENCIA COMPETITIVA DE MERCADO</span
+          >
           <span class="freshness-tag">Actualizado: julio 2026</span>
-          <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;">
-            Benchmarking Competitivo en Bolivia — Lo que tu competencia hace y tú no estás viendo.
+          <h1
+            class="hero-title"
+            style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;"
+          >
+            Benchmarking Competitivo en Bolivia — Lo que tu competencia hace y
+            tú no estás viendo.
           </h1>
           <div class="direct-answer-box">
             <strong>En resumen</strong>
-            <p>MindTEC ofrece benchmarking competitivo e inteligencia de mercado en Bolivia, mapeando precios, distribución, posicionamiento y ejecución en PDV de la competencia con campo real y análisis de IA.</p>
+            <p>
+              MindTEC ofrece benchmarking competitivo e inteligencia de mercado
+              en Bolivia, mapeando precios, distribución, posicionamiento y
+              ejecución en PDV de la competencia con campo real y análisis de
+              IA.
+            </p>
           </div>
-          <p class="hero-subtitle" style="font-size: 1.25rem; margin-bottom: 1.5rem; max-width: 800px;">
-            Inteligencia competitiva sistematizada en campo, percepción de mercado y análisis digital. Mapeamos precios, distribución, posicionamiento y ejecución en PDV de tus competidores más relevantes.
+          <p
+            class="hero-subtitle"
+            style="font-size: 1.25rem; margin-bottom: 1.5rem; max-width: 800px;"
+          >
+            Inteligencia competitiva sistematizada en campo, percepción de
+            mercado y análisis digital. Mapeamos precios, distribución,
+            posicionamiento y ejecución en PDV de tus competidores más
+            relevantes.
           </p>
-          <p style="font-size: 1.05rem; color: rgba(255,255,255,0.75); max-width: 800px; margin-bottom: 2.5rem;">
-            No son datos de fuentes secundarias ni reportes de industria genéricos. Es inteligencia de campo recolectada en el mercado boliviano real, combinada con análisis de percepción del consumidor y seguimiento digital.
+          <p
+            style="font-size: 1.05rem; color: rgba(255,255,255,0.75); max-width: 800px; margin-bottom: 2.5rem;"
+          >
+            No son datos de fuentes secundarias ni reportes de industria
+            genéricos. Es inteligencia de campo recolectada en el mercado
+            boliviano real, combinada con análisis de percepción del consumidor
+            y seguimiento digital.
           </p>
-          <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2.5rem;">
-            <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Precios · Distribución · PDV</span>
-            <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">3–5 competidores</span>
-            <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Percepción de consumidores</span>
-            <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Monitoreo continuo disponible</span>
+          <div
+            style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2.5rem;"
+          >
+            <span
+              style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;"
+              >Precios · Distribución · PDV</span
+            >
+            <span
+              style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;"
+              >3–5 competidores</span
+            >
+            <span
+              style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;"
+              >Percepción de consumidores</span
+            >
+            <span
+              style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;"
+              >Monitoreo continuo disponible</span
+            >
           </div>
-          <a href="/contacto" class="btn btn-primary lg">Agendar diagnóstico estratégico (45 min) →</a>
+          <a href="/contacto" class="btn btn-primary lg"
+            >Agendar diagnóstico estratégico (45 min) →</a
+          >
         </div>
         <div class="hero-visual">
           <div class="glass-card main-visual">
-            <div class="neuro-visual-bg" style="background-image: url('/heroes/hero-auditoria-retail-bolivia.jpg');"></div>
+            <div
+              class="neuro-visual-bg"
+              style="background-image: url('/heroes/hero-auditoria-retail-bolivia.jpg');"
+            >
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <ServiceVisualSuite variant="benchmarking" />
+    <div data-stack-section>
+      <ServiceVisualSuite variant="benchmarking" />
+    </div>
 
     <!-- 2. EL PROBLEMA -->
-    <section class="problem-section bg-slate" style="padding: 5rem 0;">
+    <section class="bg-slate" style="padding: 5rem 0;" data-stack-section>
       <div class="container">
-        <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
+        <div style="max-width: 900px; margin: 0 auto;">
           <span class="eyebrow">EL PROBLEMA REAL</span>
-          <h2 class="text-navy" style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;">Las empresas que pierden cuota de mercado casi nunca lo ven venir — hasta que ya es tarde.</h2>
-          <p class="text-gray-dark leading-relaxed" style="font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.7;">
-            El problema no es no tener competidores. El problema es no saber qué están haciendo. La mayoría de las empresas en Bolivia toma decisiones de precio, canal y comunicación basándose en suposiciones sobre la competencia — no en evidencia.
+          <h2
+            class="text-navy"
+            style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;"
+          >
+            Las empresas que pierden cuota de mercado casi nunca lo ven venir —
+            hasta que ya es tarde.
+          </h2>
+          <p
+            class="text-gray-dark leading-relaxed"
+            style="font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.7;"
+          >
+            El problema no es no tener competidores. El problema es no saber qué
+            están haciendo. La mayoría de las empresas en Bolivia toma
+            decisiones de precio, canal y comunicación basándose en suposiciones
+            sobre la competencia — no en evidencia.
           </p>
-          <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.7;">
+          <p
+            class="text-gray-dark leading-relaxed"
+            style="font-size: 1.05rem; line-height: 1.7;"
+          >
             ¿Reconoces alguno de estos escenarios?
           </p>
-          <ul class="cap-list" style="font-size: 1.05rem; margin-bottom: 2rem;">
-            <li><strong class="text-navy">Tu precio ya no es competitivo — y no te enteraste hasta que el cliente te lo dijo.</strong> Sin monitoreo continuo, los cambios de precio de la competencia son invisibles hasta que afectan tus ventas.</li>
-            <li><strong class="text-navy">Un competidor ganó distribución en canales donde tú tenías exclusividad.</strong> Cuando lo descubriste, ya tenían 3 meses de ventaja en el anaquel.</li>
-            <li><strong class="text-navy">Tu campaña de lanzamiento chocó con una acción competitiva que no anticipaste.</strong> Inteligencia oportuna habría permitido ajustar el timing o la propuesta.</li>
-            <li><strong class="text-navy">El directorio pide evidencia de dónde estás parado frente a la competencia.</strong> Y lo que tienes son suposiciones del equipo comercial, no datos.</li>
-          </ul>
-          <div style="background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: 8px; font-weight: 600; font-size: 1.1rem; text-align: center;">
-            Competir sin inteligencia competitiva es como jugar ajedrez sin ver el tablero completo.
-          </div>
+        </div>
+
+        <AreaPanelCards items={problemScenarios} columns={4} theme="navy" class="problem-panels" />
+
+        <div style="max-width: 900px; margin: 2.5rem auto 0; background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: var(--radius-md, 8px); font-weight: 600; font-size: 1.1rem; text-align: center;">
+          Competir sin inteligencia competitiva es como jugar ajedrez sin ver
+          el tablero completo.
         </div>
       </div>
     </section>
 
     <!-- 3. MINDTEC+ -->
-    <section style="padding: 5rem 0; background: #fff;">
+    <section style="padding: 5rem 0; background: #fff;" data-stack-section>
       <div class="container">
-        <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
+        <div
+          class="section-title-center"
+          style="text-align: center; margin-bottom: 3rem;"
+        >
           <span class="eyebrow">MINDTEC+</span>
-          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;">Inteligencia competitiva que va más allá del precio en anaquel.</h2>
+          <h2
+            class="text-navy"
+            style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;"
+          >
+            Inteligencia competitiva que va más allá del precio en anaquel.
+          </h2>
         </div>
-        <div class="comparison-table-wrapper">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th scope="col">Benchmarking estándar</th>
-                <th scope="col">MindTEC — Radar Competitivo</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Revisión de precios en un momento puntual</td>
-                <td>Monitoreo continuo de precios, promociones y estrategias de canal con alertas ante cambios significativos</td>
-              </tr>
-              <tr>
-                <td>Datos de fuentes secundarias (informes de industria, internet)</td>
-                <td>Inteligencia primaria de campo: auditores en PDV + entrevistas a consumidores + análisis digital</td>
-              </tr>
-              <tr>
-                <td>Foto estática de la competencia</td>
-                <td>Radar dinámico que detecta movimientos y tendencias antes de que impacten tu posición</td>
-              </tr>
-              <tr>
-                <td>Sin voz del consumidor</td>
-                <td>Percepción comparada: cómo diferencia el consumidor tu marca de los competidores</td>
-              </tr>
-              <tr>
-                <td>Datos que el equipo comercial interpreta según su sesgo</td>
-                <td>Análisis independiente con recomendaciones estratégicas priorizadas para el directorio</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="text-gray-dark" style="font-size: 1.05rem; margin-top: 2rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.7;">
-          El Radar Competitivo no es un snapshot del mercado. Es el sistema de alerta temprana que tu equipo necesita para anticipar — no reaccionar.
+        <ComparisonRows
+          columnLabels={{ left: 'Benchmarking estándar', right: 'MindTEC — Radar Competitivo' }}
+          rows={comparisonRows}
+        />
+        <p
+          class="text-gray-dark"
+          style="font-size: 1.05rem; margin-top: 2rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.7;"
+        >
+          El Radar Competitivo no es un snapshot del mercado. Es el sistema de
+          alerta temprana que tu equipo necesita para anticipar — no reaccionar.
         </p>
       </div>
     </section>
+    </StackedSections>
 
     <!-- 4. ENTREGABLES -->
-    <section class="problem-section bg-slate" style="padding: 5rem 0;">
-      <div class="container">
-        <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
-          <span class="eyebrow">QUÉ RECIBES</span>
-          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Entregables que informan decisiones de precio, canal y comunicación.</h2>
-        </div>
-        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; list-style: none; padding: 0;">
-          <li class="premium-card-white" style="padding: 2rem;">
-            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Mapa de Posicionamiento Competitivo</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Diagrama visual de dónde está cada competidor en los ejes clave de tu categoría (precio vs. calidad percibida, cobertura vs. profundidad de línea, etc.).</p>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem;">
-            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Análisis de Precios y Estrategia de Canal</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Comparación de precios en canal moderno, tradicional y digital. Análisis de descuentos, promociones y estrategias de pricing de cada competidor relevante.</p>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem;">
-            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Auditoría de Ejecución en PDV de Competidores</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Share of shelf, materiales POP, exhibiciones especiales y presencia en anaquel de tus competidores. Con evidencia fotográfica georreferenciada.</p>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem;">
-            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Percepción Comparada del Consumidor</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Cómo diferencia el consumidor tu marca de los competidores: atributos percibidos, razones de elección/rechazo y posicionamiento mental real vs. declarado.</p>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem;">
-            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Mapa de Vulnerabilidades y Oportunidades</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Identificación de los puntos donde la competencia es débil y tú puedes ganar terreno — y de donde eres vulnerable a sus movimientos. Base para decisiones ofensivas y defensivas.</p>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem;">
-            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Brief Estratégico para Directorio</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Síntesis ejecutiva con las 3–5 decisiones que el hallazgo competitivo obliga a tomar, priorizadas por impacto en cuota de mercado y urgencia.</p>
-          </li>
-        </ul>
-        <p class="text-gray-dark" style="text-align: center; margin-top: 2rem; font-size: 0.95rem; font-weight: 600;">
-          Plazo de entrega: 2–4 semanas según alcance · Cobertura: eje troncal boliviano y ciudades intermedias
-        </p>
-      </div>
-    </section>
+    <ScrollStory
+      scrub={0.85}
+      sceneDistance={1.1}
+      cover={{
+        background: "/imagenes-mindtec/generated/benchmarking-competitivo/entregables/entregables-cover.webp",
+        eyebrow: "Qué recibes",
+        title: "Entregables que informan decisiones de precio, canal y comunicación.",
+        description: "Documentos y análisis diseñados para traducir la inteligencia competitiva en decisiones accionables."
+      }}
+      intro={{
+        background: "/imagenes-mindtec/generated/benchmarking-competitivo/entregables/entregables-intro.webp",
+        number: "00",
+        eyebrow: "Plazo de entrega",
+        title: "2–4 semanas según alcance. Cobertura: eje troncal boliviano y ciudades intermedias.",
+        description: "Recorra los seis entregables que puede esperar del Radar Competitivo."
+      }}
+      items={[
+        {
+          background: "/imagenes-mindtec/generated/benchmarking-competitivo/entregables/entregable-01-mapa-posicionamiento.webp",
+          eyebrow: "Posicionamiento",
+          title: "Mapa de Posicionamiento Competitivo",
+          description: "Diagrama visual de dónde está cada competidor en los ejes clave de tu categoría (precio vs. calidad percibida, cobertura vs. profundidad de línea, etc.).",
+          icon: "road"
+        },
+        {
+          background: "/imagenes-mindtec/generated/benchmarking-competitivo/entregables/entregable-02-precios-canal.webp",
+          eyebrow: "Precios",
+          title: "Análisis de Precios y Estrategia de Canal",
+          description: "Comparación de precios en canal moderno, tradicional y digital. Análisis de descuentos, promociones y estrategias de pricing de cada competidor relevante.",
+          icon: "building"
+        },
+        {
+          background: "/imagenes-mindtec/generated/benchmarking-competitivo/entregables/entregable-03-auditoria-pdv.webp",
+          eyebrow: "Ejecución",
+          title: "Auditoría de Ejecución en PDV de Competidores",
+          description: "Share of shelf, materiales POP, exhibiciones especiales y presencia en anaquel de tus competidores. Con evidencia fotográfica georreferenciada.",
+          icon: "services"
+        },
+        {
+          background: "/imagenes-mindtec/generated/benchmarking-competitivo/entregables/entregable-04-percepcion-consumidor.webp",
+          eyebrow: "Percepción",
+          title: "Percepción Comparada del Consumidor",
+          description: "Cómo diferencia el consumidor tu marca de los competidores: atributos percibidos, razones de elección/rechazo y posicionamiento mental real vs. declarado.",
+          icon: "airport"
+        },
+        {
+          background: "/imagenes-mindtec/generated/benchmarking-competitivo/entregables/entregable-05-vulnerabilidades.webp",
+          eyebrow: "Oportunidad",
+          title: "Mapa de Vulnerabilidades y Oportunidades",
+          description: "Identificación de los puntos donde la competencia es débil y tú puedes ganar terreno — y de donde eres vulnerable a sus movimientos. Base para decisiones ofensivas y defensivas.",
+          icon: "road"
+        },
+        {
+          background: "/imagenes-mindtec/generated/benchmarking-competitivo/entregables/entregable-06-brief-directorio.webp",
+          eyebrow: "Síntesis",
+          title: "Brief Estratégico para Directorio",
+          description: "Síntesis ejecutiva con las 3–5 decisiones que el hallazgo competitivo obliga a tomar, priorizadas por impacto en cuota de mercado y urgencia.",
+          icon: "building"
+        }
+      ]}
+    />
 
+    <StackedSections>
     <!-- 5. PROCESO -->
-    <section style="padding: 5rem 0; background: #f8fafc;">
+    <section style="padding: 5rem 0; background: #f8fafc;" data-stack-section>
       <div class="container">
-        <div class="section-title-center" style="text-align: center; margin-bottom: 4rem;">
+        <div
+          class="section-title-center"
+          style="text-align: center; margin-bottom: 4rem;"
+        >
           <span class="eyebrow">CÓMO FUNCIONA</span>
-          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Del diagnóstico al radar competitivo accionable en 4 pasos.</h2>
+          <h2
+            class="text-navy"
+            style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;"
+          >
+            Del diagnóstico al radar competitivo accionable en 4 pasos.
+          </h2>
         </div>
-        <ol style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
-          <li class="premium-card-white" style="padding: 2rem; position: relative;">
-            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">01</span>
-            <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Diagnóstico estratégico</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">45 min para identificar tus competidores prioritarios, las dimensiones que más te preocupan y la decisión de negocio que el benchmarking debe informar.</p>
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">45 min · sin costo</span>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem; position: relative;">
-            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">02</span>
-            <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Diseño del radar</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Definimos qué dimensiones medir, qué competidores incluir, qué ciudades y canales cubrir y cómo combinar campo, percepción y análisis digital.</p>
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">3–5 días hábiles</span>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem; position: relative;">
-            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">03</span>
-            <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Recolección de inteligencia</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Auditores de campo + entrevistas a consumidores + análisis de comunicación digital. Recolección simultánea en todos los competidores para comparabilidad exacta.</p>
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">1–3 semanas en campo</span>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem; position: relative;">
-            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">04</span>
-            <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Radar y recomendaciones</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Entrega del mapa competitivo completo con análisis de vulnerabilidades y oportunidades. Presentación ante directorio con sesión de priorización de respuestas estratégicas.</p>
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">5–7 días post-campo</span>
-          </li>
-        </ol>
+        <AreaPanelCards items={processSteps} columns={4} />
       </div>
     </section>
 
     <!-- 6. SECTORES -->
-    <section class="problem-section bg-slate" style="padding: 5rem 0;">
+    <section class="bg-slate" style="padding: 5rem 0;" data-stack-section>
       <div class="container">
-        <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
+        <div
+          class="section-title-center"
+          style="text-align: center; margin-bottom: 3rem;"
+        >
           <span class="eyebrow">SECTORES</span>
-          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">¿Tu sector está aquí?</h2>
+          <h2
+            class="text-navy"
+            style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;"
+          >
+            ¿Tu sector está aquí?
+          </h2>
         </div>
-        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; list-style: none; padding: 0;">
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Consumo masivo y retail</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Telecomunicaciones</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Banca y servicios financieros</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Agroindustria y alimentos</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Farmacéutico y salud</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Tecnología y servicios digitales</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Construcción e inmobiliario</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Educación y capacitación</li>
+        <ul
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; list-style: none; padding: 0;"
+        >
+          <li
+            class="premium-card-white"
+            style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;"
+          >
+            Consumo masivo y retail
+          </li>
+          <li
+            class="premium-card-white"
+            style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;"
+          >
+            Telecomunicaciones
+          </li>
+          <li
+            class="premium-card-white"
+            style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;"
+          >
+            Banca y servicios financieros
+          </li>
+          <li
+            class="premium-card-white"
+            style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;"
+          >
+            Agroindustria y alimentos
+          </li>
+          <li
+            class="premium-card-white"
+            style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;"
+          >
+            Farmacéutico y salud
+          </li>
+          <li
+            class="premium-card-white"
+            style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;"
+          >
+            Tecnología y servicios digitales
+          </li>
+          <li
+            class="premium-card-white"
+            style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;"
+          >
+            Construcción e inmobiliario
+          </li>
+          <li
+            class="premium-card-white"
+            style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;"
+          >
+            Educación y capacitación
+          </li>
         </ul>
       </div>
     </section>
 
     <!-- 7. FAQ -->
-    <section style="padding: 5rem 0; background: #fff;">
-      <div class="container" style="max-width: 800px;">
-        <div style="text-align: center; margin-bottom: 3rem;">
-          <span class="eyebrow">PREGUNTAS FRECUENTES</span>
-          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Lo que suelen preguntar antes de contratar.</h2>
-        </div>
-        <dl style="display: flex; flex-direction: column; gap: 1rem;">
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-1-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Qué variables se incluyen en el benchmarking competitivo de MindTEC?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-1-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Mapeamos: precios en anaquel y canal, distribución y presencia por zona, ejecución en punto de venta (share of shelf, POP, planograma), posicionamiento y percepción de marca, estrategia de comunicación y lanzamientos recientes. El alcance se define según la decisión que necesitas tomar.</p>
-            </dd>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-2-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Cuántos competidores pueden incluirse en el radar?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-2-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">El estándar incluye 3–5 competidores directos. Para estudios sectoriales o categorías complejas podemos mapear hasta 10 actores. El número óptimo depende de tu mercado y del nivel de profundidad requerido por dimensión.</p>
-            </dd>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-3-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Con qué frecuencia pueden hacer el benchmarking?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-3-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Ofrecemos estudios puntuales (fotografía del mercado en un momento dado) y monitoreo continuo en olas trimestrales o semestrales. El monitoreo continuo permite detectar movimientos de la competencia antes de que impacten tu posición.</p>
-            </dd>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-4-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Cómo obtienen la información de la competencia sin violar ninguna ética o ley?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-4-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Toda la información que recopilamos es pública u observable: precios en anaquel, presencia en PDV, comunicación en medios, posicionamiento percibido por consumidores, y distribución en canal. No utilizamos métodos de espionaje industrial ni acceso a información confidencial de terceros.</p>
-            </dd>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-5-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿El benchmarking incluye la percepción del consumidor sobre la competencia?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-5-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Sí, cuando el proyecto lo requiere. El Radar Competitivo puede incluir entrevistas o mini-encuestas para mapear cómo el consumidor percibe y diferencia tu marca de los competidores, complementando los datos de campo con la voz del mercado.</p>
-            </dd>
-          </div>
-
-        </dl>
-      </div>
-    </section>
+    <div data-stack-section>
+      <FaqSplit
+        eyebrow="PREGUNTAS FRECUENTES"
+        title="Lo que suelen preguntar antes de contratar."
+        items={faqItems}
+      />
+    </div>
 
     <!-- 8. PRUEBA SOCIAL -->
-    <section style="padding: 4rem 0; background: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
-      <div class="container" style="text-align: center; max-width: 800px;">
-        <p class="text-navy" style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.5;">
-          Empresas de consumo masivo, telecomunicaciones, banca y agroindustria en Bolivia han usado el Radar Competitivo para anticipar movimientos de la competencia y tomar decisiones de precio, canal y comunicación con evidencia.
-        </p>
-        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center;">
-          <span style="background: #fff; border: 1px solid #e2e8f0; color: #475569; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Consumo masivo</span>
-          <span style="background: #fff; border: 1px solid #e2e8f0; color: #475569; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Telecomunicaciones</span>
-          <span style="background: #fff; border: 1px solid #e2e8f0; color: #475569; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Banca</span>
-          <span style="background: #fff; border: 1px solid #e2e8f0; color: #475569; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Agroindustria</span>
-          <span style="background: #fff; border: 1px solid #e2e8f0; color: #475569; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Farmacéutico</span>
-          <span style="background: #fff; border: 1px solid #e2e8f0; color: #475569; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Tecnología</span>
+    <section
+      style="padding: 5rem 0; background: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;"
+      data-stack-section
+    >
+      <div class="container" style="max-width: 1400px;">
+        <div style="text-align: center; margin-bottom: 3.5rem;">
+          <h3
+            class="text-navy"
+            style="font-size: 1.8rem; margin-bottom: 1.5rem;"
+          >
+            Industrias que confían en nosotros
+          </h3>
+          <p
+            class="text-navy"
+            style="font-size: 1.1rem; font-weight: 500; max-width: 900px; margin: 0 auto; line-height: 1.6; color: #475569;"
+          >
+            Empresas de consumo masivo, telecomunicaciones, banca y
+            agroindustria en Bolivia han usado el Radar Competitivo para
+            anticipar movimientos de la competencia y tomar decisiones de
+            precio, canal y comunicación con evidencia.
+          </p>
+        </div>
+        <div class="areas-grid">
+          <div class="area-panel" style="cursor: default;">
+            <span class="area-panel__icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 256 256"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="15"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M48 160V96l112-48v160z"></path>
+                <path d="M160 96h24a24 24 0 0 1 0 48h-24"></path>
+                <path d="M48 160h32l16 48H64z"></path>
+                <path d="M48 96v64"></path>
+              </svg>
+            </span>
+            <span class="area-panel__title">Consumo Masivo</span>
+            <span class="area-panel__arrow" style="opacity: 0.3;">✓</span>
+          </div>
+          <div class="area-panel" style="cursor: default;">
+            <span class="area-panel__icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 256 256"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="15"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M48 208h176"></path>
+                <path d="M64 192V96h32v96"></path>
+                <path d="M112 192v-96h32v96"></path>
+                <path d="M160 192V64h32v128"></path>
+                <path d="M56 112l48-48 32 24 64-64"></path>
+                <path d="M160 32h40v40"></path>
+              </svg>
+            </span>
+            <span class="area-panel__title">Telecomunicaciones</span>
+            <span class="area-panel__arrow" style="opacity: 0.3;">✓</span>
+          </div>
+          <div class="area-panel" style="cursor: default;">
+            <span class="area-panel__icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 256 256"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="15"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M40 208h176"></path>
+                <path d="M72 192v-56h32v56"></path>
+                <path d="M120 192V96h32v96"></path>
+                <path d="M168 192V56h32v136"></path>
+                <circle cx="200" cy="64" r="24"></circle>
+                <path d="M56 216h160"></path>
+              </svg>
+            </span>
+            <span class="area-panel__title">Banca</span>
+            <span class="area-panel__arrow" style="opacity: 0.3;">✓</span>
+          </div>
+          <div class="area-panel" style="cursor: default;">
+            <span class="area-panel__icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 256 256"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="15"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M48 160V96l112-48v160z"></path>
+                <path d="M160 96h24a24 24 0 0 1 0 48h-24"></path>
+                <path d="M48 160h32l16 48H64z"></path>
+                <path d="M48 96v64"></path>
+                <path d="M80 216h96"></path>
+                <path d="M128 184l16 32"></path>
+                <path d="M96 184l16 32"></path>
+                <path d="M160 184l16 32"></path>
+              </svg>
+            </span>
+            <span class="area-panel__title">Agroindustria</span>
+            <span class="area-panel__arrow" style="opacity: 0.3;">✓</span>
+          </div>
+          <div class="area-panel" style="cursor: default;">
+            <span class="area-panel__icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 256 256"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="15"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="96" cy="96" r="48"></circle>
+                <path d="M160 208v-32h-32"></path>
+                <path d="M128 176l32-32"></path>
+                <circle cx="192" cy="80" r="12"></circle>
+                <path d="M56 216h96"></path>
+                <path d="M80 184h48"></path>
+                <path d="M104 152h16"></path>
+              </svg>
+            </span>
+            <span class="area-panel__title">Farmacéutico</span>
+            <span class="area-panel__arrow" style="opacity: 0.3;">✓</span>
+          </div>
+          <div class="area-panel" style="cursor: default;">
+            <span class="area-panel__icon" aria-hidden="true">
+              <svg
+                viewBox="0 0 256 256"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="15"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M40 208h176"></path>
+                <path d="M64 192V96h32v96"></path>
+                <path d="M112 192v-96h32v96"></path>
+                <path d="M160 192V64h32v128"></path>
+                <path d="M56 112l48-48 32 24 64-64"></path>
+                <path d="M160 32h40v40"></path>
+                <circle cx="200" cy="80" r="8"></circle>
+                <circle cx="168" cy="144" r="8"></circle>
+              </svg>
+            </span>
+            <span class="area-panel__title">Tecnología</span>
+            <span class="area-panel__arrow" style="opacity: 0.3;">✓</span>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- 9. PRODUCTOS RELACIONADOS -->
-    <section style="padding: 5rem 0; background: #fff;">
-      <div class="container" style="max-width: 900px;">
-        <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">También puede interesarle</h3>
-        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; list-style: none; padding: 0;">
-          <li>
-            <a href="/auditoria-retail-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none'">
-              <h4 style="font-size: 1.05rem; color: var(--color-secondary); margin-bottom: 0.5rem;">Auditoría Retail en Bolivia</h4>
-              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; line-height: 1.5;">Monitorea la ejecución en PDV de tu marca y la de la competencia en el anaquel real.</p>
-              <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem;">Explorar →</span>
-            </a>
-          </li>
-          <li>
-            <a href="/percepcion-de-marca-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none'">
-              <h4 style="font-size: 1.05rem; color: var(--color-secondary); margin-bottom: 0.5rem;">Percepción de Marca en Bolivia</h4>
-              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; line-height: 1.5;">Audit de cómo te percibe el mercado en relación a tu competencia directa.</p>
-              <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem;">Explorar →</span>
-            </a>
-          </li>
-          <li>
-            <a href="/estudio-de-precios-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none'">
-              <h4 style="font-size: 1.05rem; color: var(--color-secondary); margin-bottom: 0.5rem;">Estudio de Precios en Bolivia</h4>
-              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; line-height: 1.5;">Valida el precio óptimo de tu producto frente a la elasticidad real del mercado.</p>
-              <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem;">Explorar →</span>
-            </a>
-          </li>
-        </ul>
-        <div style="text-align: center; margin-top: 2rem;">
-          <a href="/servicios" style="color: var(--color-primary); font-weight: 700; text-decoration: none; font-size: 0.95rem;">Ver todos los servicios →</a>
+    <section style="padding: 5rem 0; background: #fff;" data-stack-section>
+      <div class="container">
+        <h3
+          class="text-navy"
+          style="font-size: 1.8rem; margin-bottom: 3rem; text-align: center;"
+        >
+          También puede interesarle
+        </h3>
+      </div>
+      <div class="related-products-bleed">
+        <HoverStepCards
+          minColumnWidth="340px"
+          items={[
+            {
+              eyebrow: "SERVICIO RELACIONADO",
+              title: "Auditoría Retail en Bolivia",
+              description:
+                "Monitorea la ejecución en PDV de tu marca y la de la competencia en el anaquel real con evidencia fotográfica georreferenciada.",
+              href: "/auditoria-retail-bolivia",
+            },
+            {
+              eyebrow: "SERVICIO RELACIONADO",
+              title: "Percepción de Marca en Bolivia",
+              description:
+                "Audit de cómo te percibe el mercado en relación a tu competencia directa con técnicas de investigación cualitativa y cuantitativa.",
+              href: "/percepcion-de-marca-bolivia",
+            },
+            {
+              eyebrow: "SERVICIO RELACIONADO",
+              title: "Estudio de Precios en Bolivia",
+              description:
+                "Valida el precio óptimo de tu producto frente a la elasticidad real del mercado boliviano con métodos de investigación conjunta.",
+              href: "/estudio-de-precios-bolivia",
+            },
+          ]}
+        />
+      </div>
+      <div class="container">
+        <div style="text-align: center; margin-top: 3rem;">
+          <a
+            href="/servicios"
+            style="color: var(--color-primary); font-weight: 700; text-decoration: none; font-size: 0.95rem;"
+            >Ver todos los servicios →</a
+          >
         </div>
       </div>
     </section>
 
     <!-- 10. CTA FINAL -->
-    <section class="cta-section-modern" style="padding: 6rem 0;">
-      <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
+    <section class="cta-section-modern" style="padding: 6rem 0;" data-stack-section>
+      <div
+        class="container"
+        style="max-width: 900px; margin: 0 auto; text-align: center;"
+      >
         <div class="cta-content-v2">
-          <h2 style="font-size: 2.8rem; line-height: 1.25; margin-bottom: 1.5rem;">¿Sabes realmente qué está haciendo tu competencia en el mercado boliviano?</h2>
-          <p class="cta-subtitle" style="font-size: 1.2rem; margin-bottom: 2.5rem; opacity: 0.9;">
-            Hablemos 45 minutos. Evaluamos qué dimensiones son más críticas para tu industria y diseñamos el radar competitivo que informa tus próximas decisiones estratégicas.
+          <h2
+            style="font-size: 2.8rem; line-height: 1.25; margin-bottom: 1.5rem;"
+          >
+            ¿Sabes realmente qué está haciendo tu competencia en el mercado
+            boliviano?
+          </h2>
+          <p
+            class="cta-subtitle"
+            style="font-size: 1.2rem; margin-bottom: 2.5rem; opacity: 0.9;"
+          >
+            Hablemos 45 minutos. Evaluamos qué dimensiones son más críticas para
+            tu industria y diseñamos el radar competitivo que informa tus
+            próximas decisiones estratégicas.
           </p>
-          <div class="cta-actions" style="justify-content: center; flex-direction: column; align-items: center;">
-            <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar diagnóstico estratégico (45 min) →</a>
-            <p style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">Confidencial · Sin costo · Sin compromiso · Por Zoom o Teams</p>
+          <div
+            class="cta-actions"
+            style="justify-content: center; flex-direction: column; align-items: center;"
+          >
+            <a
+              href="/contacto"
+              class="btn btn-primary lg"
+              style="font-size: 1.1rem; padding: 1rem 2.5rem;"
+              >Agendar diagnóstico estratégico (45 min) →</a
+            >
+            <p
+              style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;"
+            >
+              Confidencial · Sin costo · Sin compromiso · Por Zoom o Teams
+            </p>
           </div>
         </div>
       </div>
     </section>
+    </StackedSections>
 
     <!-- BREADCRUMB -->
     <nav aria-label="Breadcrumb" class="breadcrumb-bottom">
       <div class="container">
         <ol>
-          <li><a href="/" style="color: rgba(255,255,255,0.6); text-decoration: none;">Inicio</a></li>
+          <li>
+            <a
+              href="/"
+              style="color: rgba(255,255,255,0.6); text-decoration: none;"
+              >Inicio</a
+            >
+          </li>
           <li style="color: rgba(255,255,255,0.3);">›</li>
-          <li><a href="/servicios" style="color: rgba(255,255,255,0.6); text-decoration: none;">Servicios</a></li>
+          <li>
+            <a
+              href="/servicios"
+              style="color: rgba(255,255,255,0.6); text-decoration: none;"
+              >Servicios</a
+            >
+          </li>
           <li style="color: rgba(255,255,255,0.3);">›</li>
-          <li aria-current="page" style="color: #fff; font-weight: 600;">Benchmarking Competitivo en Bolivia</li>
+          <li aria-current="page" style="color: #fff; font-weight: 600;">
+            Benchmarking Competitivo en Bolivia
+          </li>
         </ol>
       </div>
     </nav>
-
   </main>
-
-  <script>
-    document.querySelectorAll('dt button[aria-expanded]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const ddId = btn.getAttribute('aria-controls');
-        const dd = document.getElementById(ddId);
-        const expandido = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', expandido ? 'false' : 'true');
-        const icon = btn.querySelector('span[aria-hidden]');
-        if (icon) icon.textContent = expandido ? '+' : '−';
-        if (dd) dd.hidden = expandido;
-      });
-    });
-  </script>
-
 </Layout>
+
+<style>
+    /* Espacio entre la intro de "El Problema" y el grid de escenarios.
+       :global() porque la clase se aplica dentro de AreaPanelCards.astro;
+       doble clase para ganarle en especificidad al margin:0 auto de .areas-grid. */
+    :global(.areas-grid.problem-panels) {
+      margin-top: 3.5rem;
+    }
+
+    /* 9. PRODUCTOS RELACIONADOS */
+    .related-products-bleed {
+      padding: 0 2rem;
+    }
+
+    @media (min-width: 900px) {
+      .related-products-bleed {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        padding: 0 clamp(1.5rem, 4vw, 4rem);
+      }
+    }
+
+    .areas-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.55rem;
+        max-width: 1320px;
+        margin: 0 auto;
+        text-align: left;
+    }
+
+    .area-panel {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex: 1 1 calc((100% - 2 * 0.55rem) / 3);
+        max-width: calc((100% - 2 * 0.55rem) / 3);
+        min-height: 290px;
+        padding: 1.5rem 1.25rem;
+        overflow: hidden;
+        background: #082235;
+        border: 1px solid rgba(141, 191, 221, 0.72);
+        color: #fff;
+        text-decoration: none;
+        isolation: isolate;
+        transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1), background-color 280ms cubic-bezier(0.16, 1, 0.3, 1), border-color 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .area-panel::after {
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background: linear-gradient(145deg, rgba(29, 82, 112, 0.42), transparent 55%);
+        content: "";
+        opacity: 0;
+        transition: opacity 280ms ease;
+    }
+
+    .area-panel:nth-child(odd) {
+        clip-path: polygon(0 0, 100% 0, 100% 31%, 88% 31%, 88% 69%, 100% 69%, 100% 100%, 0 100%);
+    }
+
+    .area-panel:nth-child(even) {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 69%, 12% 69%, 12% 31%, 0 31%);
+    }
+
+    .area-panel:hover {
+        transform: translateY(-6px);
+        background: #0b2c43;
+        border-color: var(--color-primary, #e7a548);
+    }
+
+    .area-panel:hover::after {
+        opacity: 1;
+    }
+
+    .area-panel:focus-visible {
+        outline: 3px solid var(--color-primary, #e7a548);
+        outline-offset: 4px;
+    }
+
+    .area-panel__icon {
+        display: grid;
+        width: 76px;
+        height: 76px;
+        place-items: center;
+        align-self: center;
+        margin: auto 0;
+        border: 1px solid rgba(168, 207, 232, 0.86);
+        border-radius: 50%;
+        color: #c5e3f3;
+        transition: color 280ms ease, border-color 280ms ease, transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .area-panel:hover .area-panel__icon {
+        border-color: var(--color-primary, #e7a548);
+        color: var(--color-primary, #e7a548);
+        transform: scale(1.06);
+    }
+
+    .area-panel__icon svg {
+        width: 42px;
+        height: 42px;
+    }
+
+    .area-panel__title {
+        display: block;
+        max-width: 14ch;
+        font-family: var(--font-display);
+        font-size: clamp(1rem, 1.3vw, 1.2rem);
+        font-weight: 700;
+        line-height: 1.17;
+        letter-spacing: -0.02em;
+    }
+
+    .area-panel__title small {
+        display: block;
+        margin-top: 0.15rem;
+        color: rgba(255, 255, 255, 0.66);
+        font-size: 0.78em;
+        font-weight: 600;
+    }
+
+    .area-panel__arrow {
+        position: absolute;
+        right: 1.2rem;
+        bottom: 1.15rem;
+        color: var(--color-primary, #e7a548);
+        font-size: 1.3rem;
+        line-height: 1;
+        opacity: 0;
+        transform: translateX(-8px);
+        transition: opacity 220ms ease, transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .area-panel:hover .area-panel__arrow,
+    .area-panel:focus-visible .area-panel__arrow {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    @media (max-width: 700px) {
+        .area-panel {
+            flex-basis: calc((100% - 0.55rem) / 2);
+            max-width: calc((100% - 0.55rem) / 2);
+        }
+
+        .area-panel,
+        .area-panel:nth-child(odd),
+        .area-panel:nth-child(even) {
+            min-height: 235px;
+            clip-path: none;
+        }
+    }
+
+    @media (max-width: 460px) {
+        .area-panel {
+            flex-basis: 100%;
+            max-width: 100%;
+            min-height: 205px;
+        }
+
+        .area-panel__icon {
+            width: 64px;
+            height: 64px;
+        }
+
+        .area-panel__icon svg {
+            width: 35px;
+            height: 35px;
+        }
+    }
+</style>

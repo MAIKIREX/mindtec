@@ -1,30 +1,166 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import ScrollStoryCardsPaged from "../components/scroll/ScrollStoryCardsPaged.astro";
+import ScrollStory from "../components/scroll/ScrollStory.astro";
+import ScrollStoryLeft from "../components/scroll/ScrollStoryLeft.astro";
+import ScrollReveal from "../components/scroll/ScrollReveal.astro";
+import StatCounter from "../components/scroll/StatCounter.astro";
+import StackedSections from "../components/scroll/StackedSections.astro";
+import ComparisonRows from "../components/cards/ComparisonRows.astro";
 ---
 
 <Layout
-  title="Investigación de Mercados en Bolivia | Neurociencia e IA"
-  description="Investigación de mercados en Bolivia para banca, seguros e industria: neurociencia, IA y validación en terreno para decisiones que su Directorio defienda."
-  headerLightBg={false}
+    title="Investigación de Mercados en Bolivia | Estudios con Neurociencia e IA | Mindtec"
+    description="Investigación de mercados en Bolivia para banca, seguros e industria. Neurociencia, IA y validación en terreno para decisiones que su Directorio puede defender. Mindtec."
+    headerLightBg={false}
+    showIntroLoader={true}
 >
-  <script type="application/ld+json" slot="head">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "@id": "https://www.mindtecbolivia.com/#webpage",
-    "url": "https://www.mindtecbolivia.com",
-    "name": "Investigación de Mercados en Bolivia | Neurociencia e IA",
-    "description": "Firma boliviana que integra neurociencia, inteligencia artificial y consultoría de mercados para decisiones críticas de alta dirección en banca, seguros, industria y consumo masivo.",
-    "isPartOf": { "@id": "https://www.mindtecbolivia.com/#website" },
-    "about": { "@id": "https://www.mindtecbolivia.com/#organization" },
-    "knowsAbout": ["Investigación de mercados", "Neuromarketing", "Psicoantropología del consumidor", "Estudios de precios", "Percepción de marca", "Auditoría retail"]
-  }
-  </script>
-  <main>
+    <script type="application/ld+json" slot="head">
+        {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "@id": "https://www.mindtecbolivia.com/#webpage",
+            "url": "https://www.mindtecbolivia.com",
+            "name": "Investigación de Mercados en Bolivia | Estudios con Neurociencia e IA | Mindtec",
+            "description": "Firma boliviana que integra neurociencia, inteligencia artificial y consultoría de mercados para decisiones críticas de alta dirección en banca, seguros, industria y consumo masivo.",
+            "isPartOf": { "@id": "https://www.mindtecbolivia.com/#website" },
+            "about": { "@id": "https://www.mindtecbolivia.com/#organization" },
+            "knowsAbout": [
+                "Investigación de mercados",
+                "Neuromarketing",
+                "Psicoantropología del consumidor",
+                "Estudios de precios",
+                "Percepción de marca",
+                "Auditoría retail"
+            ]
+        }
+    </script>
+    <div id="page-loader" class="page-loader">
+        <div class="zoom-text-wrapper" aria-hidden="true">
+            <h1 class="zoom-giant-text">
+                <span>MIND</span><span class="accent">TEC</span>
+            </h1>
+            <div class="loader-progress" aria-hidden="true">
+                <span class="loader-progress-track">
+                    <span class="loader-progress-bar"></span>
+                </span>
+                <span class="loader-progress-count">0%</span>
+            </div>
+        </div>
+        <span class="sr-only" role="status">Cargando…</span>
+    </div>
+
+    <script>
+        import { gsap } from "gsap";
+
+        const loader = document.getElementById("page-loader");
+        const SEEN_KEY = "mtIntroSeen";
+
+        if (loader) {
+            const alreadySeen = sessionStorage.getItem(SEEN_KEY);
+            const prefersReducedMotion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)",
+            ).matches;
+            const textWrapper = loader.querySelector(".zoom-text-wrapper");
+            const progressWrapper = loader.querySelector(".loader-progress");
+            const countEl = loader.querySelector(".loader-progress-count");
+            const barEl = loader.querySelector(".loader-progress-bar") as HTMLElement | null;
+            const progress = { value: 0 };
+
+            let cleaned = false;
+            function cleanup() {
+                if (cleaned) return;
+                cleaned = true;
+                loader?.remove();
+                document.body.classList.remove("loader-active");
+            }
+
+            // Red de seguridad: si por lo que sea las animaciones no llegan a
+            // completar (pestaña en segundo plano, dispositivo muy lento), no
+            // dejamos al usuario atrapado detrás del loader.
+            setTimeout(cleanup, 8000);
+
+            function renderProgress() {
+                const v = Math.round(progress.value);
+                if (countEl) countEl.textContent = `${v}%`;
+                if (barEl) barEl.style.width = `${v}%`;
+            }
+
+            if (alreadySeen) {
+                // Ya se vio el intro en esta sesión: no repetir la animación.
+                cleanup();
+            } else {
+                sessionStorage.setItem(SEEN_KEY, "1");
+
+                function whenPageReady() {
+                    return new Promise<void>((resolve) => {
+                        if (document.readyState === "complete") resolve();
+                        else window.addEventListener("load", () => resolve(), { once: true });
+                    });
+                }
+
+                const minDisplay = new Promise((r) => setTimeout(r, 1200));
+                const maxWait = new Promise((r) => setTimeout(r, 6000));
+
+                if (prefersReducedMotion) {
+                    progress.value = 100;
+                    renderProgress();
+                } else {
+                    // Avance simulado hasta 90% mientras se espera la carga real;
+                    // window.load es una señal binaria, no da progreso granular.
+                    gsap.to(progress, {
+                        value: 90,
+                        duration: 3.5,
+                        ease: "power1.out",
+                        onUpdate: renderProgress,
+                    });
+                }
+
+                Promise.race([
+                    Promise.all([
+                        whenPageReady(),
+                        document.fonts ? document.fonts.ready : Promise.resolve(),
+                        minDisplay,
+                    ]),
+                    maxWait,
+                ]).then(() => {
+                    gsap.killTweensOf(progress);
+                    gsap.to(progress, {
+                        value: 100,
+                        duration: 0.4,
+                        ease: "power1.out",
+                        onUpdate: renderProgress,
+                        onComplete: () => {
+                            if (prefersReducedMotion) {
+                                gsap.to(loader, {
+                                    autoAlpha: 0,
+                                    duration: 0.3,
+                                    onComplete: cleanup,
+                                });
+                                return;
+                            }
+                            gsap
+                                .timeline({ onComplete: cleanup })
+                                .to(
+                                    textWrapper,
+                                    { scale: 40, opacity: 0, duration: 1.1, ease: "power2.inOut" },
+                                    0,
+                                )
+                                .to(progressWrapper, { opacity: 0, duration: 0.3 }, 0)
+                                .to(loader, { autoAlpha: 0, duration: 0.45 }, "-=0.35");
+                        },
+                    });
+                });
+            }
+        }
+    </script>
+
+    <main>
+        <StackedSections>
         <!-- ════════════════════════════════════════════════ -->
-        <!-- HERO SECTION — Cinematic Dark                   -->
+        <!-- 1. HERO — Cinematic Dark                        -->
         <!-- ════════════════════════════════════════════════ -->
-        <section class="hero-section" id="hero">
+        <section class="hero-section" id="hero" data-stack-section>
             <!-- Geometric floating shapes (always visible, CSS-animated) -->
             <div class="hero-shapes" aria-hidden="true">
                 <div class="hero-shape"></div>
@@ -69,28 +205,68 @@ import Layout from '../layouts/Layout.astro';
                 <div class="hero-shape"></div>
             </div>
             <!-- Mobile-first neural canvas background -->
-            <div class="hero-mobile-canvas" id="hero-mobile-canvas" aria-hidden="true"></div>
+            <div
+                class="hero-mobile-canvas"
+                id="hero-mobile-canvas"
+                aria-hidden="true"
+            >
+            </div>
             <div class="container hero-container">
                 <div class="hero-content">
-                    <span class="eyebrow">Firma de investigación de mercados · La Paz, Bolivia</span>
-                    <h1 style="font-size: clamp(2.3rem, 4vw, 3.5rem); line-height: 1.25;">Investigación de Mercados en Bolivia: decisiones, no archivos.</h1>
-                    <p style="font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 1.25rem; line-height: 1.5;">El <span style="color: var(--color-primary);">95% de las decisiones de compra</span> son inconscientes. Su estrategia probablemente solo mide el otro 5%.</p>
-                    <p class="hero-subtitle" style="margin-bottom: 1.5rem;">Reduzca el riesgo de sus lanzamientos, branding y estrategias de precios combinando neurociencia, IA y validación en terreno.</p>
-                    <p class="hero-subtitle" style="font-size: 1.15rem; color: rgba(255, 255, 255, 0.7); margin-bottom: 2.5rem;">Obtenga datos científicos sobre lo que su cliente realmente hace, piensa y siente — no solo sobre lo que dice.</p>
+                    <span class="eyebrow"
+                        >Firma de investigación de mercados · La Paz, Bolivia</span
+                    >
+                    <h1
+                        style="font-size: clamp(2.3rem, 4vw, 3.5rem); line-height: 1.25;"
+                    >
+                        Investigación de Mercados en Bolivia: decisiones, no
+                        archivos.
+                    </h1>
+                    <p
+                        style="font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 1.25rem; line-height: 1.5;"
+                    >
+                        El <span style="color: var(--color-primary);"
+                            >95% de las decisiones de compra</span
+                        > son inconscientes. Su estrategia probablemente solo mide
+                        el otro 5%.
+                    </p>
+                    <p class="hero-subtitle" style="margin-bottom: 2.5rem;">
+                        Reduzca el riesgo de sus lanzamientos, branding y
+                        estrategias de precios combinando neurociencia, IA y
+                        validación en terreno.
+                    </p>
                     <div class="hero-buttons">
-                        <a href="/contacto" class="btn btn-primary">Agendar sesión de diagnóstico (45 min) <span class="btn-arrow">→</span></a>
-                        <a href="/metodologia" class="btn btn-outline-light">Conozca la metodología</a>
+                        <a href="/contacto" class="btn btn-primary"
+                            >Agendar sesión de diagnóstico (45 min) <span
+                                class="btn-arrow">→</span
+                            ></a
+                        >
+                        <a href="#contacto" class="btn btn-outline-light"
+                            >¿Tienen un TDR o proceso en curso? Envíenoslo →</a
+                        >
                     </div>
                 </div>
                 <div class="hero-visual">
                     <figure class="hero-proof-card glass-card main-visual">
-                        <img src="/imagenes-mindtec/participante-estudio-laboratorio-neuromarketing-1-1.jpg" alt="Participante en laboratorio de neuromarketing Mindtec durante una prueba biométrica" loading="eager" fetchpriority="high">
+                        <img
+                            src="/imagenes-mindtec/participante-estudio-laboratorio-neuromarketing-1-1.jpg"
+                            alt="Participante en laboratorio de neuromarketing Mindtec durante una prueba biométrica"
+                            loading="eager"
+                            fetchpriority="high"
+                        />
                         <figcaption>
                             <span>Laboratorio en uso</span>
-                            <strong>Mirada, emoción y decisión medidas con personas reales.</strong>
+                            <strong
+                                >Mirada, emoción y decisión medidas con personas
+                                reales.</strong
+                            >
                         </figcaption>
-                        <div class="hero-proof-chip hero-proof-chip--top">Único laboratorio de neuromarketing en Bolivia</div>
-                        <div class="hero-proof-chip hero-proof-chip--bottom">Evidencia antes de invertir</div>
+                        <div class="hero-proof-chip hero-proof-chip--top">
+                            Único laboratorio de neuromarketing en Bolivia
+                        </div>
+                        <div class="hero-proof-chip hero-proof-chip--bottom">
+                            Evidencia antes de invertir
+                        </div>
                     </figure>
                 </div>
             </div>
@@ -99,527 +275,2030 @@ import Layout from '../layouts/Layout.astro';
         <!-- ════════════════════════════════════════════════ -->
         <!-- KINETIC MARQUEE                                 -->
         <!-- ════════════════════════════════════════════════ -->
-        <section class="marquee-section" aria-hidden="true">
+        <section class="marquee-section" aria-hidden="true" data-stack-section>
             <div class="marquee-track">
-                <span class="marquee-item"><span class="dot"></span> Neuromarketing</span>
-                <span class="marquee-item"><span class="dot"></span> Psicoantropología</span>
-                <span class="marquee-item"><span class="dot"></span> Investigación cuantitativa</span>
-                <span class="marquee-item"><span class="dot"></span> Investigación cualitativa</span>
-                <span class="marquee-item"><span class="dot"></span> Inteligencia artificial</span>
-                <span class="marquee-item"><span class="dot"></span> Validación en terreno</span>
-                <span class="marquee-item"><span class="dot"></span> Análisis competitivo</span>
-                <span class="marquee-item"><span class="dot"></span> Shopper insights</span>
+                <span class="marquee-item"
+                    ><span class="dot"></span> Neuromarketing</span
+                >
+                <span class="marquee-item"
+                    ><span class="dot"></span> Psicoantropología</span
+                >
+                <span class="marquee-item"
+                    ><span class="dot"></span> Investigación cuantitativa</span
+                >
+                <span class="marquee-item"
+                    ><span class="dot"></span> Investigación cualitativa</span
+                >
+                <span class="marquee-item"
+                    ><span class="dot"></span> Inteligencia artificial</span
+                >
+                <span class="marquee-item"
+                    ><span class="dot"></span> Validación en terreno</span
+                >
+                <span class="marquee-item"
+                    ><span class="dot"></span> Análisis competitivo</span
+                >
+                <span class="marquee-item"
+                    ><span class="dot"></span> Shopper insights</span
+                >
                 <!-- Duplicate for seamless loop -->
-                <span class="marquee-item"><span class="dot"></span> Neuromarketing</span>
-                <span class="marquee-item"><span class="dot"></span> Psicoantropología</span>
-                <span class="marquee-item"><span class="dot"></span> Investigación cuantitativa</span>
-                <span class="marquee-item"><span class="dot"></span> Investigación cualitativa</span>
-                <span class="marquee-item"><span class="dot"></span> Inteligencia artificial</span>
-                <span class="marquee-item"><span class="dot"></span> Validación en terreno</span>
-                <span class="marquee-item"><span class="dot"></span> Análisis competitivo</span>
-                <span class="marquee-item"><span class="dot"></span> Shopper insights</span>
+                <span class="marquee-item"
+                    ><span class="dot"></span> Neuromarketing</span
+                >
+                <span class="marquee-item"
+                    ><span class="dot"></span> Psicoantropología</span
+                >
+                <span class="marquee-item"
+                    ><span class="dot"></span> Investigación cuantitativa</span
+                >
+                <span class="marquee-item"
+                    ><span class="dot"></span> Investigación cualitativa</span
+                >
+                <span class="marquee-item"
+                    ><span class="dot"></span> Inteligencia artificial</span
+                >
+                <span class="marquee-item"
+                    ><span class="dot"></span> Validación en terreno</span
+                >
+                <span class="marquee-item"
+                    ><span class="dot"></span> Análisis competitivo</span
+                >
+                <span class="marquee-item"
+                    ><span class="dot"></span> Shopper insights</span
+                >
             </div>
         </section>
 
         <!-- ════════════════════════════════════════════════ -->
-        <!-- TRUST BAR                                       -->
+        <!-- 2. TRUST BAR                                    -->
         <!-- ════════════════════════════════════════════════ -->
-        <section class="trust-bar-section" id="trust-bar">
+        <section class="trust-bar-section" id="trust-bar" data-stack-section>
             <div class="container text-center">
-                <h2 class="trust-bar-title">Empresas e instituciones que confían en la inteligencia de mercados de Mindtec</h2>
-                <div class="trust-numbers-grid">
-                    <div class="trust-item">
-                        <span class="trust-number" data-count-target="9" data-count-suffix="+">0</span>
-                        <span class="trust-label">Años de exp.</span>
-                    </div>
-                    <div class="trust-item">
-                        <span class="trust-number" data-count-target="80" data-count-suffix="+">0</span>
-                        <span class="trust-label">Encuestadores</span>
-                    </div>
-                    <div class="trust-item">
-                        <span class="trust-number" data-count-target="1" data-count-prefix="" data-count-suffix="er">0</span>
-                        <span class="trust-label">Lab. Neuromarketing</span>
-                    </div>
-                    <div class="trust-item">
-                        <span class="trust-number" data-count-target="4" data-count-suffix="">0</span>
-                        <span class="trust-label">Bases operativas</span>
-                    </div>
+                <h4 class="trust-bar-title">
+                    Empresas e instituciones que confían en la inteligencia de
+                    mercados de Mindtec
+                </h4>
+            </div>
+            <div class="trust-numbers-grid">
+                <div class="trust-item">
+                    <span class="trust-label">Años de<br />experiencia</span>
+                    <StatCounter class="trust-number" value={9} suffix="+" />
+                </div>
+                <div class="trust-item">
+                    <span class="trust-label">Encuestadores<br />activos</span>
+                    <StatCounter class="trust-number" value={80} suffix="+" />
+                </div>
+                <div class="trust-item">
+                    <span class="trust-label">Laboratorio de<br />neuromarketing</span>
+                    <StatCounter class="trust-number" value={1} suffix="er" />
+                </div>
+                <div class="trust-item">
+                    <span class="trust-label">Bases<br />operativas</span>
+                    <StatCounter class="trust-number" value={4} />
                 </div>
             </div>
         </section>
+        </StackedSections>
 
         <!-- ════════════════════════════════════════════════ -->
-        <!-- HUMAN EVIDENCE                                  -->
+        <!-- VIDEO SHOWCASE — Mindtec en movimiento          -->
         <!-- ════════════════════════════════════════════════ -->
-        <section class="human-evidence-section" id="evidencia-humana">
+        <section class="video-showcase-section" id="video-showcase">
             <div class="container">
-                <div class="human-evidence-layout">
-                    <div class="human-evidence-copy animate-on-observe stagger-1">
-                        <span class="eyebrow">Confianza visible</span>
-                        <h2>Más humanidad en cada dato: vemos personas, no solo métricas.</h2>
-                        <p>Para reducir el sesgo de respuesta y aumentar la confianza, mostramos el proceso real: consumidores observados, equipo local y evidencia de campo. Esta es la base emocional y racional que necesita una decisión directiva.</p>
+                <ScrollReveal>
+                    <div class="section-header text-center">
+                        <span class="eyebrow">Mindtec en movimiento</span>
+                        <h2>
+                            La investigación no es un reporte. Es lo que pasa
+                            antes de escribirlo.
+                        </h2>
                     </div>
-                    <div class="human-evidence-grid">
-                        <article class="human-evidence-card animate-on-observe stagger-2">
-                            <img src="/imagenes-mindtec/generated/human-field-research-tienda.webp" alt="Equipo de investigacion Mindtec conversando con propietario de tienda de barrio" loading="lazy">
-                            <div>
-                                <span>Similitud y cercania</span>
-                                <strong>Un equipo boliviano interpretando comportamiento boliviano.</strong>
+                </ScrollReveal>
+            </div>
+
+            <div class="video-showcase-grid">
+                    <div class="video-card">
+                        <ScrollReveal delay={0}>
+                            <div class="video-card__frame">
+                                <video
+                                    class="video-card__media"
+                                    src="https://res.cloudinary.com/dbrkedvyp/video/upload/v1785180842/maintec1_uvrfdk.webm"
+                                    autoplay
+                                    muted
+                                    loop
+                                    playsinline
+                                    preload="metadata"
+                                ></video>
+                                <div class="video-card__overlay"></div>
+                                <span class="video-card__index">01</span>
                             </div>
-                        </article>
-                        <article class="human-evidence-card human-evidence-card--tall animate-on-observe stagger-3">
-                            <img src="/imagenes-mindtec/Conferencia-mindtec20.jpg" alt="Asistentes en conferencia de Mindtec sobre neuromarketing" loading="lazy">
-                            <div>
-                                <span>Prueba social</span>
-                                <strong>La metodologia se conversa, se entrena y se contrasta con clientes reales.</strong>
+                            <div class="video-card__body">
+                                <span class="video-card__badge">Research</span>
+                                <h3>Neurociencia aplicada al consumidor</h3>
+                                <p>
+                                    Eye tracking, biometría y microexpresiones en
+                                    el único laboratorio de neuromarketing
+                                    operativo en Bolivia.
+                                </p>
                             </div>
-                        </article>
-                        <article class="human-evidence-card animate-on-observe stagger-4">
-                            <img src="/imagenes-mindtec/supermercado.jpg" alt="Consumidora usando tecnología de seguimiento visual frente a góndolas" loading="lazy">
-                            <div>
-                                <span>Contexto de compra</span>
-                                <strong>Medimos lo que la persona ve antes de explicar lo que compra.</strong>
-                            </div>
-                        </article>
+                        </ScrollReveal>
                     </div>
-                </div>
+
+                    <div class="video-card">
+                        <ScrollReveal delay={0.12}>
+                            <div class="video-card__frame">
+                                <video
+                                    class="video-card__media"
+                                    src="https://res.cloudinary.com/dbrkedvyp/video/upload/v1785180849/maintec2_izllv1.webm"
+                                    autoplay
+                                    muted
+                                    loop
+                                    playsinline
+                                    preload="metadata"
+                                ></video>
+                                <div class="video-card__overlay"></div>
+                                <span class="video-card__index">02</span>
+                            </div>
+                            <div class="video-card__body">
+                                <span class="video-card__badge">Terreno</span>
+                                <h3>Validación con el consumidor real</h3>
+                                <p>
+                                    Encuestadores propios, cliente misterioso y
+                                    auditoría retail en el punto de venta, en
+                                    todo el territorio boliviano.
+                                </p>
+                            </div>
+                        </ScrollReveal>
+                    </div>
+
+                    <div class="video-card">
+                        <ScrollReveal delay={0.24}>
+                            <div class="video-card__frame">
+                                <video
+                                    class="video-card__media"
+                                    src="https://res.cloudinary.com/dbrkedvyp/video/upload/v1785180856/maintec3_dgmzik.webm"
+                                    autoplay
+                                    muted
+                                    loop
+                                    playsinline
+                                    preload="metadata"
+                                ></video>
+                                <div class="video-card__overlay"></div>
+                                <span class="video-card__index">03</span>
+                            </div>
+                            <div class="video-card__body">
+                                <span class="video-card__badge">Strategy</span>
+                                <h3>Activación estratégica con IA</h3>
+                                <p>
+                                    Del hallazgo a la decisión: análisis con
+                                    inteligencia artificial y sesión de
+                                    activación con su equipo directivo.
+                                </p>
+                            </div>
+                        </ScrollReveal>
+                    </div>
             </div>
         </section>
 
         <!-- ════════════════════════════════════════════════ -->
-        <!-- PREMIO MAYA SECTION — Innovation Recognition   -->
+        <!-- 3. PROBLEM SECTION — ScrollStoryCards (ancla 1) -->
         <!-- ════════════════════════════════════════════════ -->
-        <section class="maya-award-section" id="premios-maya" style="padding: var(--spacing-lg) 0; background: var(--color-surface); position: relative; overflow: hidden; border-bottom: 1px solid rgba(0,0,0,0.05);">
-            <!-- Subtle background accent -->
-            <div style="position: absolute; top: -10%; right: -5%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(242, 101, 34, 0.04) 0%, transparent 70%); pointer-events: none; z-index: 1;"></div>
+        <ScrollStoryCardsPaged
+            cover={{
+                background:
+                    "/imagenes-mindtec/generated/index-problem/cover.webp",
+                alt: "Directora comercial revisando reportes en su oficina de noche",
+                eyebrow: "Estudio de mercado y análisis competitivo",
+                title: "¿Cuánto le costó la última decisión que tomaron sin suficiente evidencia?",
+                description:
+                    "Un lanzamiento que no conectó. Un precio mal calibrado. Una expansión que no funcionó.",
+            }}
+            items={{
+                background:
+                    "/imagenes-mindtec/generated/index-problem/intro.webp",
+                alt: "Directora observando una sesión de investigación de mercado en curso",
+                eyebrow: "La evidencia que falta",
+                title: "Estos errores no se recuperan fácilmente",
+                description:
+                    "Para bancos, aseguradoras e industrias en Bolivia, cuestan meses de ventaja competitiva y capital que no vuelve.",
+            }}
+            cards={[
+                { eyebrow: "Lanzamiento", title: "¿Está seguro de que el mercado está listo para lo que van a lanzar?", description: "Validar antes de lanzar evita invertir en propuestas que no conectan con la demanda real.", image: "/imagenes-mindtec/generated/index-problem/item-01-lanzamiento.webp", imageAlt: "Directora revisando un lanzamiento de producto en anaquel de retail", accentColor: "var(--color-primary, #f26522)" },
+                { eyebrow: "Pricing", title: "¿Saben exactamente cuánto puede pagar su cliente — o están estimando?", description: "Una decisión de precio sin evidencia puede comprometer margen, adopción y crecimiento.", image: "/imagenes-mindtec/generated/index-problem/item-02-pricing.webp", imageAlt: "Directora analizando una curva de pricing en mostrador de tienda", accentColor: "var(--color-primary, #f26522)" },
+                { eyebrow: "Marca", title: "¿Conocen cómo los percibe realmente el mercado antes de cambiar la marca?", description: "La percepción real del cliente debe guiar cada ajuste de posicionamiento y comunicación.", image: "/imagenes-mindtec/generated/index-problem/item-03-percepcion-marca.webp", imageAlt: "Directora revisando un panel de percepción de marca en pared de research", accentColor: "var(--color-primary, #f26522)" },
+                { eyebrow: "Expansión", title: "¿Tienen evidencia real de la demanda en el nuevo territorio?", description: "Expandirse exige entender dónde existe oportunidad antes de movilizar capital y operación.", image: "/imagenes-mindtec/generated/index-problem/item-04-expansion-territorial.webp", imageAlt: "Directora revisando un mapa de expansión territorial sobre una mesa", accentColor: "var(--color-primary, #f26522)" },
+                { eyebrow: "Competencia", title: "¿Saben por qué están perdiendo terreno — o solo ven el resultado?", description: "Leer el resultado no basta: hay que identificar los factores que desplazan la preferencia.", image: "/imagenes-mindtec/generated/index-problem/item-05-market-share.webp", imageAlt: "Directora revisando un dashboard competitivo con tendencia a la baja", accentColor: "var(--color-primary, #f26522)" },
+                { eyebrow: "Posicionamiento", title: "¿Su posición en la mente del cliente boliviano es la que creen que es?", description: "La posición de marca se mide en el mercado, no solo dentro de la empresa.", image: "/imagenes-mindtec/generated/index-problem/item-06-shopper-positioning.webp", imageAlt: "Directora observando a un comprador real frente al anaquel en punto de venta", accentColor: "var(--color-primary, #f26522)" }
+            ]}
+        >
+            <!-- Legacy scenes replaced by ScrollStoryCardsPaged.
+            <ScrollStoryCardsItem
+                background="/imagenes-mindtec/generated/index-problem/item-01-lanzamiento.webp"
+                alt="Directora revisando un lanzamiento de producto en anaquel de retail"
+                index={0}
+                total={6}
+                cardPosition="left"
+                cardBackground="var(--color-secondary-deep, #061c2b)"
+                cardTextColor="var(--color-text-light, #fff)"
+            >
+                <div class="problem-card-content">
+                    <div class="problem-icon-large">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 256 256"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="16"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path d="M128 16v160M72 96h112"></path><polyline
+                                points="96 72 128 16 160 72"></polyline><path
+                                d="M128 176c-39.76 0-72 32.24-72 72s32.24 72 72 72 72-32.24 72-72-32.24-72-72-72Z"
+                            ></path></svg
+                        >
+                    </div>
+                    <h3 class="problem-card-title">
+                        ¿Está seguro de que el mercado está listo para lo que
+                        van a lanzar?
+                    </h3>
+                </div>
+            </ScrollStoryCardsItem>
+
+            <ScrollStoryCardsItem
+                background="/imagenes-mindtec/generated/index-problem/item-02-pricing.webp"
+                alt="Directora analizando una curva de pricing en mostrador de tienda"
+                index={1}
+                total={6}
+                cardPosition="right"
+                cardBackground="var(--color-secondary-deep, #061c2b)"
+                cardTextColor="var(--color-text-light, #fff)"
+            >
+                <div class="problem-card-content">
+                    <div class="problem-icon-large">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 256 256"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="16"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><circle cx="128" cy="128" r="80"></circle><path
+                                d="M128 64v128M92 128h72"></path></svg
+                        >
+                    </div>
+                    <h3 class="problem-card-title">
+                        ¿Saben exactamente cuánto puede pagar su cliente — o
+                        están estimando?
+                    </h3>
+                </div>
+            </ScrollStoryCardsItem>
+
+            <ScrollStoryCardsItem
+                background="/imagenes-mindtec/generated/index-problem/item-03-percepcion-marca.webp"
+                alt="Directora revisando un panel de percepción de marca en pared de research"
+                index={2}
+                total={6}
+                cardPosition="left"
+                cardBackground="var(--color-secondary-deep, #061c2b)"
+                cardTextColor="var(--color-text-light, #fff)"
+            >
+                <div class="problem-card-content">
+                    <div class="problem-icon-large">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 256 256"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="16"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><circle cx="76" cy="76" r="20" fill="currentColor"
+                            ></circle><circle
+                                cx="180"
+                                cy="76"
+                                r="20"
+                                fill="currentColor"></circle><circle
+                                cx="128"
+                                cy="160"
+                                r="20"
+                                fill="currentColor"></circle><circle
+                                cx="76"
+                                cy="180"
+                                r="20"
+                                fill="currentColor"></circle><circle
+                                cx="180"
+                                cy="180"
+                                r="20"
+                                fill="currentColor"></circle></svg
+                        >
+                    </div>
+                    <h3 class="problem-card-title">
+                        ¿Conocen cómo los percibe realmente el mercado antes de
+                        cambiar la marca?
+                    </h3>
+                </div>
+            </ScrollStoryCardsItem>
+
+            <ScrollStoryCardsItem
+                background="/imagenes-mindtec/generated/index-problem/item-04-expansion-territorial.webp"
+                alt="Directora revisando un mapa de expansión territorial sobre una mesa"
+                index={3}
+                total={6}
+                cardPosition="right"
+                cardBackground="var(--color-secondary-deep, #061c2b)"
+                cardTextColor="var(--color-text-light, #fff)"
+            >
+                <div class="problem-card-content">
+                    <div class="problem-icon-large">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 256 256"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="16"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path
+                                d="M64 168l48-48m80 0l48-48M64 88l48 48m80-48l48 48M128 32a96 96 0 1 0 0 192 96 96 0 0 0 0-192Z"
+                            ></path><circle
+                                cx="128"
+                                cy="128"
+                                r="16"
+                                fill="currentColor"></circle></svg
+                        >
+                    </div>
+                    <h3 class="problem-card-title">
+                        ¿Tienen evidencia real de la demanda en el nuevo
+                        territorio?
+                    </h3>
+                </div>
+            </ScrollStoryCardsItem>
+
+            <ScrollStoryCardsItem
+                background="/imagenes-mindtec/generated/index-problem/item-05-market-share.webp"
+                alt="Directora revisando un dashboard competitivo con tendencia a la baja"
+                index={4}
+                total={6}
+                cardPosition="left"
+                cardBackground="var(--color-secondary-deep, #061c2b)"
+                cardTextColor="var(--color-text-light, #fff)"
+            >
+                <div class="problem-card-content">
+                    <div class="problem-icon-large">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 256 256"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="16"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><polyline
+                                points="224 208 176 160 128 176 64 112 32 80"
+                            ></polyline><polyline
+                                points="224 208 224 160 176 160"
+                            ></polyline></svg
+                        >
+                    </div>
+                    <h3 class="problem-card-title">
+                        ¿Saben por qué están perdiendo terreno — o solo ven el
+                        resultado?
+                    </h3>
+                </div>
+            </ScrollStoryCardsItem>
+
+            <ScrollStoryCardsItem
+                background="/imagenes-mindtec/generated/index-problem/item-06-shopper-positioning.webp"
+                alt="Directora observando a un comprador real frente al anaquel en punto de venta"
+                index={5}
+                total={6}
+                cardPosition="right"
+                cardBackground="var(--color-secondary-deep, #061c2b)"
+                cardTextColor="var(--color-text-light, #fff)"
+            >
+                <div class="problem-card-content">
+                    <div class="problem-icon-large">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 256 256"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="16"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><circle cx="128" cy="128" r="96"></circle><circle
+                                cx="128"
+                                cy="128"
+                                r="64"></circle><circle cx="128" cy="128" r="32"
+                            ></circle><circle
+                                cx="128"
+                                cy="128"
+                                r="8"
+                                fill="currentColor"></circle></svg
+                        >
+                    </div>
+                    <h3 class="problem-card-title">
+                        ¿Su posición en la mente del cliente boliviano es la que
+                        creen que es?
+                    </h3>
+                </div>
+            </ScrollStoryCardsItem>
+            -->
+        </ScrollStoryCardsPaged>
+
+        <section class="problem-quote-section" id="problem">
             <div class="container">
-                <div class="maya-award-grid">
-                    <!-- Left: Content -->
-                    <div class="award-content animate-on-observe stagger-1" style="z-index: 2;">
-                        <span class="eyebrow"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 256 256" fill="currentColor" style="margin-right: 4px; vertical-align: middle;"><path d="M128,16a88,88,0,0,0-80,88c0,27.52,11.23,54.89,31.62,77.06a8,8,0,0,1,2,6.59l-11.45,49A8,8,0,0,0,78,245.92l44.4-22.2,44.4,22.2a8,8,0,0,0,7.81-.76,8,8,0,0,0,3.77-7.23L167,189.28a8,8,0,0,1,2.05-6.59c20.39-22.17,31.62-49.54,31.62-77.06A88.1,88.1,0,0,0,128,16Zm40,88a40,40,0,1,1-40-40A40,40,0,0,1,168,104Z"/></svg> Galardón a la Excelencia</span>
-                        <h2 style="font-size: clamp(2rem, 3.5vw, 2.8rem); line-height: 1.25; margin-bottom: var(--spacing-sm);">La innovación que protege sus decisiones, avalada a nivel nacional</h2>
-                        <p style="font-size: 1.1rem; font-weight: 600; color: var(--color-primary); margin-bottom: 1rem;">Mindtec ganador del premio MAYA a la Innovación</p>
-                        <p style="margin-bottom: 1.5rem; color: var(--color-text-muted); line-height: 1.7;">Este reconocimiento valida la rigurosidad del modelo híbrido en Bolivia. Para su Directorio, esto significa recibir auditorías y estudios con respaldo científico real (IA y biometría avanzada) en lugar de encuestas declarativas simples. La tranquilidad de decidir con base en datos validados y no en suposiciones.</p>
-                        <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
-                            <div style="display: flex; align-items: center; gap: 0.5rem; background: rgba(11, 43, 64, 0.05); padding: 8px 16px; border-radius: var(--radius-sm); font-size: 0.88rem; font-weight: 700; color: var(--color-secondary);">
-                                <span style="color: var(--color-primary);">★</span> Innovación Tecnológica
-                            </div>
-                            <div style="display: flex; align-items: center; gap: 0.5rem; background: rgba(11, 43, 64, 0.05); padding: 8px 16px; border-radius: var(--radius-sm); font-size: 0.88rem; font-weight: 700; color: var(--color-secondary);">
-                                <span style="color: var(--color-primary);">★</span> Rigor Científico
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Right: Visual -->
-                    <div class="award-visual animate-on-observe stagger-2" style="position: relative; width: 100%; max-width: 480px; z-index: 2;">
-                        <div class="card-shell maya-award-card" style="transform: rotate(1deg);">
-                            <div class="glass-card" style="padding: 1rem; overflow: hidden; border-radius: var(--radius-lg); background: #ffffff;">
-                                <img src="/premios-maya-mindtec.webp" alt="Premio MAYA a la Innovación en Investigación de Mercados - Mindtec" style="width: 100%; height: auto; object-fit: cover; border-radius: var(--radius-md);" loading="lazy">
-                                <div style="padding: 1.25rem 0.5rem 0.5rem 0.5rem; text-align: center;">
-                                    <span style="font-family: var(--font-display); font-weight: 800; font-size: 0.88rem; letter-spacing: 2px; text-transform: uppercase; color: var(--color-secondary-deep); display: block; margin-bottom: 4px;">Premio MAYA</span>
-                                    <span style="font-size: 0.78rem; color: var(--color-text-muted); font-weight: 500;">Galardón a la Innovación en Investigación de Mercados</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="problem-statement">
+                    <p class="problem-statement__paragraph">
+                        Cada uno de estos escenarios tiene solución —
+                        si se aborda con la <strong>evidencia correcta</strong> y a tiempo.
+                    </p>
+                    <p class="problem-statement__paragraph problem-statement__paragraph--conclusion">
+                        La diferencia entre las empresas que crecen y las que
+                        se estancan no es el tamaño del presupuesto, sino la
+                        calidad de la inteligencia detrás de cada decisión.
+                    </p>
                 </div>
             </div>
         </section>
 
         <!-- ════════════════════════════════════════════════ -->
-        <!-- PROBLEM SECTION                                 -->
+        <!-- 4. SERVICES — ScrollStory (ancla 2)             -->
         <!-- ════════════════════════════════════════════════ -->
-        <section class="problem-section" id="problem">
+        <ScrollStory
+            cover={{
+                background: "/imagenes-mindtec/Conferencia-mindtec20.jpg",
+                alt: "Sesión de activación estratégica de Mindtec con equipos directivos",
+                eyebrow: "Servicios disponibles",
+                title: "Servicios de Investigación de Mercado, Inteligencia Competitiva y Retail en Bolivia",
+                description:
+                    "Cuatro líneas, un solo estándar: evidencia que mueve decisiones de directorio. Cada línea tiene un punto de entrada bajo y un techo premium.",
+            }}
+            intro={{
+                background:
+                    "/imagenes-mindtec/generated/investigacion-profunda.png",
+                alt: "Analistas de Mindtec en investigación profunda con heatmaps y biometría",
+                number: "01",
+                badge: "Research",
+                title: "Investigación Profunda del Consumidor",
+                description:
+                    "Estudio de mercado en Bolivia, focus group, investigación cualitativa y cuantitativa, neuromarketing para empresas.",
+            }}
+            items={[
+                {
+                    background:
+                        "/imagenes-mindtec/generated/branding-heatmap-lab.webp",
+                    alt: "Análisis de branding y mapas de calor sobre empaques y piezas de marca",
+                    badge: "Intelligence",
+                    title: "Inteligencia de Mercado y Marca",
+                    description:
+                        "Estudio de percepción de marca, benchmarking competitivo, inteligencia de mercados B2B, estudio de precios.",
+                },
+                {
+                    background:
+                        "/imagenes-mindtec/generated/retail-tienda-barrio-encuestador.webp",
+                    alt: "Encuestador de campo Mindtec auditando una tienda de barrio en Bolivia",
+                    badge: "Retail",
+                    title: "Inteligencia en Punto de Venta",
+                    description:
+                        "Cliente misterioso en Bolivia, auditoría retail, shopper insights, neuromarketing en punto de venta.",
+                },
+                {
+                    background:
+                        "/imagenes-mindtec/generated/focus-group-analisis-ia.webp",
+                    alt: "Análisis cualitativo con inteligencia artificial para activación estratégica",
+                    badge: "Strategy",
+                    title: "Activación Estratégica",
+                    description:
+                        "Metodología y talleres de activación, consultoría Witmind, comportamiento del consumidor boliviano.",
+                },
+            ]}
+        />
+
+        <section id="servicios" class="services-closing-section">
             <div class="container">
-                <div class="section-header text-center">
-                    <span class="eyebrow">Estudio de mercado y análisis competitivo</span>
-                    <h2>¿Cuánto le costó la última decisión que tomaron sin suficiente evidencia?</h2>
-                    <p style="max-width: 800px; margin: 1.5rem auto 0 auto; color: var(--color-text-muted); font-size: 1.15rem; line-height: 1.7;">Un lanzamiento que no conectó. Un precio mal calibrado. Una expansión que no funcionó. Para bancos, aseguradoras e industrias en Bolivia, estos errores no se recuperan fácilmente — cuestan meses de ventaja competitiva y capital que no vuelve.</p>
-                </div>
-                <div class="problem-grid-list">
-                    <div class="problem-item glass-card animate-on-observe stagger-1">
-                        <div class="problem-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M128 16v160M72 96h112"/><polyline points="96 72 128 16 160 72"/><path d="M128 176c-39.76 0-72 32.24-72 72s32.24 72 72 72 72-32.24 72-72-32.24-72-72-72Z"/></svg>
+                <ScrollReveal>
+                    <div class="areas-section">
+                        <p class="areas-section__eyebrow">¿Desde qué área trabaja?</p>
+                        <div class="areas-grid">
+                            <a class="area-panel" href="/percepcion-de-marca-bolivia">
+                                <span class="area-panel__icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M48 160V96l112-48v160z"></path><path d="M160 96h24a24 24 0 0 1 0 48h-24"></path><path d="M48 160h32l16 48H64z"></path><path d="M48 96v64"></path></svg></span>
+                                <span class="area-panel__title">Marketing y Marca</span>
+                                <span class="area-panel__arrow" aria-hidden="true">→</span>
+                            </a>
+                            <a class="area-panel" href="/focus-group-bolivia">
+                                <span class="area-panel__icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M96 216h64"></path><path d="M110 216l8-32h20l8 32"></path><path d="M128 24a72 72 0 0 0-41 131c7 5 11 13 11 21v8h60v-8c0-8 4-16 11-21A72 72 0 0 0 128 24z"></path><path d="M100 208h56"></path></svg></span>
+                                <span class="area-panel__title">Producto e Innovación</span>
+                                <span class="area-panel__arrow" aria-hidden="true">→</span>
+                            </a>
+                            <a class="area-panel" href="/auditoria-retail-bolivia">
+                                <span class="area-panel__icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M40 208h176"></path><path d="M64 192v-48h32v48"></path><path d="M112 192V96h32v96"></path><path d="M160 192V56h32v136"></path><path d="M56 112l48-48 32 24 64-64"></path><path d="M160 24h40v40"></path></svg></span>
+                                <span class="area-panel__title">Ventas y Comercial</span>
+                                <span class="area-panel__arrow" aria-hidden="true">→</span>
+                            </a>
+                            <a class="area-panel" href="/estudio-de-mercado-bolivia">
+                                <span class="area-panel__icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="88" r="48"></circle><path d="M80 88h96M128 40c14 14 22 30 22 48s-8 34-22 48c-14-14-22-30-22-48s8-34 22-48"></path><path d="M32 216c8-48 32-72 56-72 16 0 29 10 40 32 11-22 24-32 40-32 24 0 48 24 56 72"></path></svg></span>
+                                <span class="area-panel__title">ONG y Cooperación</span>
+                                <span class="area-panel__arrow" aria-hidden="true">→</span>
+                            </a>
+                            <a class="area-panel" href="/contacto">
+                                <span class="area-panel__icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M40 216h176"></path><path d="M56 200V96h144v104"></path><path d="M32 96h192L128 32z"></path><path d="M88 120v56M128 120v56M168 120v56"></path><path d="M48 216h160"></path></svg></span>
+                                <span class="area-panel__title">Estado y Licitaciones <small>(SICOES)</small></span>
+                                <span class="area-panel__arrow" aria-hidden="true">→</span>
+                            </a>
                         </div>
-                        <h3>¿Está seguro de que el mercado está listo para lo que van a lanzar?</h3>
+                        <p style="margin: 1.5rem auto 0; max-width: none;">
+                            <a
+                                href="/servicios"
+                                class="btn btn-primary"
+                                style="font-size: 0.9rem;"
+                                >Explorar el catálogo completo de servicios →</a
+                            >
+                        </p>
                     </div>
-                    <div class="problem-item glass-card animate-on-observe stagger-2">
-                        <div class="problem-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="80"/><path d="M128 64v128M92 128h72"/></svg>
-                        </div>
-                        <h3>¿Saben exactamente cuánto puede pagar su cliente — o están estimando?</h3>
-                    </div>
-                    <div class="problem-item glass-card animate-on-observe stagger-3">
-                        <div class="problem-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><circle cx="76" cy="76" r="20" fill="currentColor"/><circle cx="180" cy="76" r="20" fill="currentColor"/><circle cx="128" cy="160" r="20" fill="currentColor"/><circle cx="76" cy="180" r="20" fill="currentColor"/><circle cx="180" cy="180" r="20" fill="currentColor"/></svg>
-                        </div>
-                        <h3>¿Conocen cómo los percibe realmente el mercado antes de cambiar la marca?</h3>
-                    </div>
-                    <div class="problem-item glass-card animate-on-observe stagger-4">
-                        <div class="problem-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M64 168l48-48m80 0l48-48M64 88l48 48m80-48l48 48M128 32a96 96 0 1 0 0 192 96 96 0 0 0 0-192Z"/><circle cx="128" cy="128" r="16" fill="currentColor"/></svg>
-                        </div>
-                        <h3>¿Tienen evidencia real de la demanda en el nuevo territorio?</h3>
-                    </div>
-                    <div class="problem-item glass-card animate-on-observe stagger-5">
-                        <div class="problem-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><polyline points="224 208 176 160 128 176 64 112 32 80"/><polyline points="224 208 224 160 176 160"/></svg>
-                        </div>
-                        <h3>¿Saben por qué están perdiendo terreno — o solo ven el resultado?</h3>
-                    </div>
-                    <div class="problem-item glass-card animate-on-observe stagger-6">
-                        <div class="problem-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="96"/><circle cx="128" cy="128" r="64"/><circle cx="128" cy="128" r="32"/><circle cx="128" cy="128" r="8" fill="currentColor"/></svg>
-                        </div>
-                        <h3>¿Su posición en la mente del cliente boliviano es la que creen que es?</h3>
-                    </div>
-                </div>
-                <div class="modern-quote animate-on-observe">
-                    <p>Cada uno de estos escenarios tiene solución — si se aborda con la evidencia correcta y a tiempo.</p>
-                    <p>La diferencia entre las empresas que crecen y las que se estancan no es el tamaño del presupuesto, sino la calidad de la inteligencia detrás de cada decisión.</p>
-                </div>
+                </ScrollReveal>
             </div>
         </section>
 
         <!-- ════════════════════════════════════════════════ -->
-        <!-- CAPABILITIES SECTION                            -->
+        <!-- 5. DIFERENCIAL MINDTEC (tabla + capacidades)    -->
         <!-- ════════════════════════════════════════════════ -->
         <section class="differential-section" id="capabilities">
             <div class="container">
                 <div class="section-header text-center">
                     <span class="eyebrow">Por qué Mindtec</span>
-                    <h2>El mismo nombre de servicio. Una diferencia que se siente en los resultados.</h2>
+                    <h2>
+                        El mismo nombre de servicio. Una diferencia que se
+                        siente en los resultados.
+                    </h2>
                 </div>
 
-                <div class="comparison-table-wrapper" style="margin-bottom: 3rem;">
-                    <table class="comparison-table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Estudio estándar</th>
-                                <th scope="col">Mindtec</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Encuestadores con cuestionario</td>
-                                <td>Psicólogos e IA leyendo el código detrás de la respuesta</td>
-                            </tr>
-                            <tr>
-                                <td>Lo que la gente declara</td>
-                                <td>Lo que la gente siente aunque no lo pueda verbalizar</td>
-                            </tr>
-                            <tr>
-                                <td>Tablas con porcentajes</td>
-                                <td>Decisiones priorizadas con criterio estratégico</td>
-                            </tr>
-                            <tr>
-                                <td>El conocimiento queda en el documento</td>
-                                <td>Su equipo sale sabiendo qué hacer — no solo qué encontramos</td>
-                            </tr>
-                            <tr>
-                                <td>Sin seguimiento post-estudio</td>
-                                <td>Seguimiento estratégico post-estudio incluido siempre</td>
-                            </tr>
-                            <tr>
-                                <td>Equipo senior diseña, junior ejecuta</td>
-                                <td>El mismo equipo senior en diseño, campo y presentación final</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                <ComparisonRows
+                    class="home-comparison"
+                    columnLabels={{ left: 'Estudio estándar', right: 'Mindtec' }}
+                    rows={[
+                        { before: 'Encuestadores con cuestionario', after: 'Psicólogos e IA leyendo el código detrás de la respuesta' },
+                        { before: 'Lo que la gente declara', after: 'Lo que la gente siente aunque no lo pueda verbalizar' },
+                        { before: 'Tablas con porcentajes', after: 'Decisiones priorizadas con criterio estratégico' },
+                        { before: 'Sin seguimiento post-estudio', after: 'Seguimiento estratégico post-estudio incluido siempre' },
+                        { before: 'Equipo senior diseña, junior ejecuta', after: 'El mismo equipo senior en diseño, campo y presentación final' },
+                    ]}
+                />
+            </div>
 
-                <div class="capabilities-grid">
-                    <div class="capability-card glass-card animate-on-observe stagger-1">
-                        <div class="cap-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="40"/><path d="M128 16v32M128 208v32M236.8 100.5l-27.7 16M46.9 139.5l-27.7 16M236.8 155.5l-27.7-16M46.9 116.5l-27.7-16"/></svg>
-                        </div>
-                        <h3>① Único laboratorio de neuromarketing operativo en Bolivia</h3>
-                        <p><strong>En cristiano:</strong> medimos la respuesta real del cerebro — no lo que el consumidor cree o dice sentir. Eye tracking, biometría y análisis de microexpresiones. Ningún competidor local tiene esta capacidad.</p>
-                        <div class="cap-footer"><a href="/neuromarketing-bolivia">Explorar Neuromarketing →</a></div>
+            <div class="capabilities-grid-v2">
+                    <div class="capability-card-v2">
+                        <ScrollReveal delay={0}>
+                            <div class="cap-icon">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="26"
+                                    height="26"
+                                    viewBox="0 0 256 256"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="16"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    ><circle cx="128" cy="128" r="40"
+                                    ></circle><path
+                                        d="M128 16v32M128 208v32M236.8 100.5l-27.7 16M46.9 139.5l-27.7 16M236.8 155.5l-27.7-16M46.9 116.5l-27.7-16"
+                                    ></path></svg
+                                >
+                            </div>
+                            <h3>
+                                ① Único laboratorio de neuromarketing operativo
+                                en Bolivia
+                            </h3>
+                            <p>
+                                <strong>En cristiano:</strong> medimos la respuesta
+                                real del cerebro — no lo que el consumidor cree o
+                                dice sentir. Eye tracking, biometría y análisis de
+                                microexpresiones. Ningún competidor local tiene esta
+                                capacidad.
+                            </p>
+                            <div class="cap-footer">
+                                <a href="/neuromarketing-bolivia"
+                                    >Explorar Neuromarketing →</a
+                                >
+                            </div>
+                        </ScrollReveal>
                     </div>
-                    <div class="capability-card glass-card animate-on-observe stagger-2">
-                        <div class="cap-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><circle cx="100" cy="116" r="36"/><circle cx="172" cy="116" r="36"/><path d="M72 164c0-20 12.5-36 28-36s28 16 28 36M144 164c0-20 12.5-36 28-36s28 16 28 36"/></svg>
-                        </div>
-                        <h3>② Psicoantropología aplicada al consumidor boliviano</h3>
-                        <p><strong>En cristiano:</strong> psicología del comportamiento + antropología cultural para descifrar los códigos culturales y simbólicos que determinan si su marca conecta o es rechazada. Lectura de lo que el consumidor no dice — que es donde está la decisión real. El consumidor boliviano no decide como el latinoamericano promedio, y Mindtec trabaja desde adentro de esa realidad.</p>
-                        <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0;">
-                            <span style="background: rgba(11,43,64,0.05); color: var(--color-secondary); padding: 0.3rem 0.75rem; border-radius: 14px; font-size: 0.78rem; font-weight: 700;">Códigos culturales</span>
-                            <span style="background: rgba(11,43,64,0.05); color: var(--color-secondary); padding: 0.3rem 0.75rem; border-radius: 14px; font-size: 0.78rem; font-weight: 700;">Significados simbólicos</span>
-                            <span style="background: rgba(11,43,64,0.05); color: var(--color-secondary); padding: 0.3rem 0.75rem; border-radius: 14px; font-size: 0.78rem; font-weight: 700;">Entendimiento profundo del consumidor</span>
-                        </div>
-                        <div class="cap-footer"><a href="/investigacion-cualitativa-bolivia">Explorar Investigación Cualitativa →</a></div>
+                    <div class="capability-card-v2">
+                        <ScrollReveal delay={0.1}>
+                            <div class="cap-icon">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="26"
+                                    height="26"
+                                    viewBox="0 0 256 256"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="16"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    ><circle cx="100" cy="116" r="36"
+                                    ></circle><circle cx="172" cy="116" r="36"
+                                    ></circle><path
+                                        d="M72 164c0-20 12.5-36 28-36s28 16 28 36M144 164c0-20 12.5-36 28-36s28 16 28 36"
+                                    ></path></svg
+                                >
+                            </div>
+                            <h3>
+                                ② Psicoantropología aplicada al consumidor
+                                boliviano
+                            </h3>
+                            <p>
+                                <strong>En cristiano:</strong> psicología del comportamiento
+                                + antropología cultural para descifrar los códigos
+                                culturales y simbólicos que determinan si su marca
+                                conecta o es rechazada. El consumidor boliviano no
+                                decide como el latinoamericano promedio, y Mindtec
+                                trabaja desde adentro de esa realidad.
+                            </p>
+                            <div
+                                style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0;"
+                            >
+                                <span
+                                    style="background: rgba(255,255,255,0.12); color: var(--color-text-light, #fff); padding: 0.3rem 0.75rem; border-radius: 14px; font-size: 0.78rem; font-weight: 700;"
+                                    >Códigos culturales</span
+                                >
+                                <span
+                                    style="background: rgba(255,255,255,0.12); color: var(--color-text-light, #fff); padding: 0.3rem 0.75rem; border-radius: 14px; font-size: 0.78rem; font-weight: 700;"
+                                    >Significados simbólicos</span
+                                >
+                                <span
+                                    style="background: rgba(255,255,255,0.12); color: var(--color-text-light, #fff); padding: 0.3rem 0.75rem; border-radius: 14px; font-size: 0.78rem; font-weight: 700;"
+                                    >Entendimiento profundo del consumidor</span
+                                >
+                            </div>
+                            <div class="cap-footer">
+                                <a href="/investigacion-cualitativa-bolivia"
+                                    >Explorar Investigación Cualitativa →</a
+                                >
+                            </div>
+                        </ScrollReveal>
                     </div>
-                    <div class="capability-card glass-card animate-on-observe stagger-3">
-                        <div class="cap-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M128,16a88,88,0,0,0-80,88c0,27.52,11.23,54.89,31.62,77.06a8,8,0,0,1,2,6.59l-11.45,49A8,8,0,0,0,78,245.92l44.4-22.2,44.4,22.2a8,8,0,0,0,7.81-.76,8,8,0,0,0,3.77-7.23L167,189.28a8,8,0,0,1,2.05-6.59c20.39-22.17,31.62-49.54,31.62-77.06A88.1,88.1,0,0,0,128,16Zm40,88a40,40,0,1,1-40-40A40,40,0,0,1,168,104Z"/></svg>
-                        </div>
-                        <h3>③ Premio MAYA a la Innovación en Investigación de Mercados</h3>
-                        <p>Reconocimiento nacional al rigor metodológico y a la introducción de neurociencia al entorno corporativo boliviano. Para su Directorio: evidencia de que el estándar metodológico está validado externamente.</p>
-                        <div class="cap-footer"><a href="#premios-maya">Ver el reconocimiento →</a></div>
+                    <div class="capability-card-v2 capability-card-v2--feature">
+                        <ScrollReveal delay={0.2}>
+                            <div class="capability-feature">
+                                <img
+                                    class="capability-feature__image"
+                                    src="/premios-maya-mindtec.webp"
+                                    alt="Premio MAYA a la Innovación en Investigación de Mercados - Mindtec"
+                                    loading="lazy"
+                                />
+                                <div class="capability-feature__body">
+                                    <div class="cap-icon">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            width="26"
+                                            height="26"
+                                            viewBox="0 0 256 256"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="16"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            ><path
+                                                d="M128,16a88,88,0,0,0-80,88c0,27.52,11.23,54.89,31.62,77.06a8,8,0,0,1,2,6.59l-11.45,49A8,8,0,0,0,78,245.92l44.4-22.2,44.4,22.2a8,8,0,0,0,7.81-.76,8,8,0,0,0,3.77-7.23L167,189.28a8,8,0,0,1,2.05-6.59c20.39-22.17,31.62-49.54,31.62-77.06A88.1,88.1,0,0,0,128,16Zm40,88a40,40,0,1,1-40-40A40,40,0,0,1,168,104Z"
+                                            ></path></svg
+                                        >
+                                    </div>
+                                    <h3>
+                                        ③ Premio MAYA a la Innovación en
+                                        Investigación de Mercados
+                                    </h3>
+                                    <p>
+                                        Reconocimiento nacional al rigor
+                                        metodológico y a la introducción de
+                                        neurociencia al entorno corporativo
+                                        boliviano. Para su Directorio:
+                                        evidencia de que el estándar
+                                        metodológico está validado
+                                        externamente.
+                                    </p>
+                                    <div class="cap-footer">
+                                        <a href="/firma">Conocer la firma →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </ScrollReveal>
                     </div>
-                </div>
+            </div>
 
-                <p class="text-gray-dark" style="text-align: center; margin-top: 2.5rem; font-size: 0.95rem;">
-                    Conozca también: <a href="/metodologia" style="color: var(--color-primary); font-weight: 700;">Inteligencia Artificial aplicada →</a> · <a href="/auditoria-retail-bolivia" style="color: var(--color-primary); font-weight: 700;">Auditoría Retail y Trade Intelligence →</a> · <a href="/firma" style="color: var(--color-primary); font-weight: 700;">Nuestro equipo →</a>
+            <div class="container">
+                <p
+                    class="text-gray-dark"
+                    style="text-align: center; margin: 2.5rem auto 0; max-width: none; font-size: 0.95rem;"
+                >
+                    Conozca también: <a
+                        href="/metodologia"
+                        style="color: var(--color-primary); font-weight: 700;"
+                        >Inteligencia Artificial aplicada →</a
+                    > · <a
+                        href="/auditoria-retail-bolivia"
+                        style="color: var(--color-primary); font-weight: 700;"
+                        >Auditoría Retail y Trade Intelligence →</a
+                    > · <a
+                        href="/firma"
+                        style="color: var(--color-primary); font-weight: 700;"
+                        >Nuestro equipo →</a
+                    >
                 </p>
             </div>
         </section>
 
         <!-- ════════════════════════════════════════════════ -->
-        <!-- CÓMO TRABAJAMOS                                 -->
+        <!-- 6. EVIDENCIA Y RESULTADOS                       -->
         <!-- ════════════════════════════════════════════════ -->
-        <section style="padding: 5rem 0; background: #f8fafc;" id="como-trabajamos">
-            <div class="container">
-                <div class="section-header text-center">
-                    <span class="eyebrow">Cómo trabajamos</span>
-                    <h2>Del diagnóstico a la decisión — sin reportes para archivar.</h2>
+        <section id="nuestra-oferta" class="offer-section offer-section--full">
+            <ScrollReveal>
+                <div class="offer-box-modern">
+                    <div class="container">
+                        <div class="offer-header">
+                            <span class="eyebrow-light"
+                                >Evidencia y resultados</span
+                            >
+                            <h2>
+                                Resultados de una Investigación de Mercados
+                                estructurada
+                            </h2>
+                            <p
+                                class="offer-tagline"
+                                style="color: var(--color-text); font-weight: 600;"
+                            >
+                                Al integrar inteligencia corporativa, análisis
+                                avanzado y validación en terreno.
+                            </p>
+                        </div>
+
+                        <!-- Testimonial -->
+                        <div class="testimonial-card">
+                            <div
+                                style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;"
+                            >
+                                <span
+                                    style="font-family: var(--font-display); font-weight: 900; font-size: 3.2rem; line-height: 1; color: var(--color-primary);"
+                                    >+18%</span
+                                >
+                                <span
+                                    style="font-size: 0.95rem; font-weight: 700; color: rgba(255,255,255,0.9); max-width: 320px; line-height: 1.4;"
+                                    >de margen adicional sin perder volumen —
+                                    validado con neuro-pricing antes de tocar la
+                                    lista de precios.</span
+                                >
+                            </div>
+                            <p>
+                                "Antes de Mindtec, tomábamos decisiones de
+                                pricing basándonos en la competencia. El estudio
+                                de precios con neuro-pricing nos reveló que
+                                nuestro producto podía soportar un precio 18%
+                                mayor sin perder volumen. Eso cambió nuestra
+                                estructura de margen para todo el año."
+                            </p>
+                            <p class="testimonial-author">
+                                — Gerencia Comercial, empresa de consumo masivo
+                                (Bolivia)
+                            </p>
+                        </div>
+
+                        <div class="offer-cta-modern">
+                            <p class="offer-final-statement">
+                                No entregamos reportes densos de datos
+                                descriptivos. Le entregamos eliminación de
+                                puntos ciegos comerciales, blindaje financiero
+                                antes de inyectar capital y sustento técnico
+                                defendible ante su Directorio.
+                            </p>
+                            <a href="/contacto" class="btn btn-primary"
+                                >Agendar sesión de diagnóstico (45 min) <span
+                                    class="btn-arrow">→</span
+                                ></a
+                            >
+                        </div>
+                    </div>
                 </div>
-                <ol style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 3rem;">
-                    <li class="premium-card-white" style="padding: 2rem; position: relative;">
-                        <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">01</span>
-                        <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Sesión de diagnóstico · 45 min · sin costo</h3>
-                        <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Entendemos la decisión que necesitan tomar y el nivel de evidencia que requiere. Sin metodología genérica, sin presión comercial.</p>
-                        <ul style="margin: 0.85rem 0 0; padding-left: 1.1rem; font-size: 0.85rem; color: var(--color-text-muted); line-height: 1.6;">
-                            <li>Diagnóstico de la decisión que enfrenta su empresa</li>
-                            <li>3 ideas de aplicación inmediata, sin compromiso</li>
-                            <li>Recomendación honesta de metodología — o de no hacer nada, si no lo necesita</li>
-                        </ul>
-                    </li>
-                    <li class="premium-card-white" style="padding: 2rem; position: relative;">
-                        <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">02</span>
-                        <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Diseño metodológico a medida</h3>
-                        <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Arquitectura específica para su pregunta: qué metodología, cuántas muestras, qué ciudades, cuánto tiempo. Siempre justificado por la decisión a tomar — nunca por el catálogo disponible.</p>
-                    </li>
-                    <li class="premium-card-white" style="padding: 2rem; position: relative;">
-                        <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">03</span>
-                        <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Investigación</h3>
-                        <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Ejecución en campo, laboratorio de neuromarketing y análisis con IA. Actualizamos semanalmente con avances concretos. Sin cajas negras — saben en qué etapa está su estudio en todo momento.</p>
-                    </li>
-                    <li class="premium-card-white" style="padding: 2rem; position: relative;">
-                        <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">04</span>
-                        <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Activación de la decisión</h3>
-                        <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">No entregamos un reporte. Entregamos una sesión donde su equipo sale sabiendo exactamente qué hacer y por qué. El seguimiento estratégico post-estudio está incluido siempre — sin costo adicional.</p>
-                    </li>
-                </ol>
-                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 2.5rem;">
-                    <span style="background: #fff; border: 1px solid #e2e8f0; color: var(--color-secondary); padding: 0.6rem 1.25rem; border-radius: 24px; font-size: 0.88rem; font-weight: 700; box-shadow: var(--shadow-sm);">80+ encuestadores activos</span>
-                    <span style="background: #fff; border: 1px solid #e2e8f0; color: var(--color-secondary); padding: 0.6rem 1.25rem; border-radius: 24px; font-size: 0.88rem; font-weight: 700; box-shadow: var(--shadow-sm);">4+ ciudades con cobertura</span>
-                    <span style="background: #fff; border: 1px solid #e2e8f0; color: var(--color-secondary); padding: 0.6rem 1.25rem; border-radius: 24px; font-size: 0.88rem; font-weight: 700; box-shadow: var(--shadow-sm);">Único laboratorio de neuromarketing en Bolivia</span>
-                    <span style="background: #fff; border: 1px solid #e2e8f0; color: var(--color-secondary); padding: 0.6rem 1.25rem; border-radius: 24px; font-size: 0.88rem; font-weight: 700; box-shadow: var(--shadow-sm);">7 a 21 días de entrega</span>
+            </ScrollReveal>
+        </section>
+
+        <!-- ════════════════════════════════════════════════ -->
+        <!-- 7. CÓMO TRABAJAMOS — ScrollStoryLeft            -->
+        <!-- ════════════════════════════════════════════════ -->
+        <ScrollStoryLeft
+            cover={{
+                background:
+                    "/imagenes-mindtec/generated/como-trabajamos/cover-diagnostico-decision.png",
+                alt: "Equipo de investigación de mercados analizando el recorrido de compra en una tienda boliviana",
+                eyebrow: "Cómo trabajamos",
+                title: "Del diagnóstico a la decisión — sin reportes para archivar.",
+                description:
+                    "Sin reuniones innecesarias. Sin reportes para archivar. Con el foco puesto en la decisión que necesitan tomar.",
+            }}
+            intro={{
+                background:
+                    "/imagenes-mindtec/generated/como-trabajamos/paso-01-sesion-diagnostico.png",
+                alt: "Consultora de investigación escuchando a un equipo durante una sesión de diagnóstico",
+                number: "01",
+                eyebrow: "Sesión de diagnóstico · 45 min · sin costo",
+                title: "Entendemos la decisión que necesitan tomar",
+                description:
+                    "El nivel de evidencia que requiere, sin metodología genérica y sin presión comercial. Incluye 3 ideas de aplicación inmediata y una recomendación honesta de metodología — o de no hacer nada, si no lo necesitan.",
+            }}
+            items={[
+                {
+                    background:
+                        "/imagenes-mindtec/generated/como-trabajamos/paso-02-diseno-metodologico.png",
+                    alt: "Equipo de investigación diseñando una metodología a medida sobre un mapa de Bolivia",
+                    eyebrow: "Paso 02",
+                    title: "Diseño metodológico a medida",
+                    description:
+                        "Arquitectura específica para su pregunta: qué metodología, cuántas muestras, qué ciudades, cuánto tiempo. Siempre justificado por la decisión a tomar — nunca por el catálogo disponible.",
+                },
+                {
+                    background:
+                        "/imagenes-mindtec/generated/como-trabajamos/paso-03-investigacion-campo.png",
+                    alt: "Investigadora de campo entrevistando a una compradora en un supermercado boliviano",
+                    eyebrow: "Paso 03",
+                    title: "Investigación",
+                    description:
+                        "Ejecución en campo, laboratorio de neuromarketing y análisis con IA. Actualizamos semanalmente con avances concretos. Sin cajas negras — saben en qué etapa está su estudio en todo momento.",
+                },
+                {
+                    background:
+                        "/imagenes-mindtec/generated/como-trabajamos/paso-04-activacion-decision.png",
+                    alt: "Equipo directivo y consultora tomando decisiones durante una sesión estratégica",
+                    eyebrow: "Paso 04",
+                    title: "Activación de la decisión",
+                    description:
+                        "No entregamos un reporte. Entregamos una sesión donde su equipo sale sabiendo exactamente qué hacer y por qué. El seguimiento estratégico post-estudio está incluido siempre — sin costo adicional.",
+                },
+            ]}
+            cardBackground="var(--color-surface, #fafbfc)"
+            cardTextColor="var(--color-text-dark, #0b2b40)"
+            cardMutedColor="var(--color-text-muted, #64748b)"
+        />
+
+        <StackedSections>
+        <section
+            style="padding: 3rem 0 0; background: #f8fafc;"
+            id="como-trabajamos"
+            data-stack-section
+        >
+            <div class="container">
+                <ScrollReveal>
+                    <p
+                        style="text-align: center; font-size: 1.25rem; font-weight: 800; color: var(--color-secondary);"
+                    >
+                        De <span style="color: var(--color-primary);"
+                            >7 a 21 días</span
+                        > desde el kickoff hasta la presentación a su Directorio —
+                        proyectos estándar.
+                    </p>
+                </ScrollReveal>
+            </div>
+
+            <div class="stats-strip">
+                <div class="stats-strip__item">
+                    <ScrollReveal delay={0}>
+                        <span class="stats-strip__label"
+                            >Encuestadores<br />activos</span
+                        >
+                        <span class="stats-strip__number"
+                            ><StatCounter
+                                value={80}
+                                suffix="+"
+                                duration={1.4}
+                            /></span
+                        >
+                    </ScrollReveal>
+                </div>
+                <div class="stats-strip__item">
+                    <ScrollReveal delay={0.08}>
+                        <span class="stats-strip__label"
+                            >Ciudades con<br />cobertura</span
+                        >
+                        <span class="stats-strip__number"
+                            ><StatCounter
+                                value={4}
+                                suffix="+"
+                                duration={1.4}
+                            /></span
+                        >
+                    </ScrollReveal>
+                </div>
+                <div class="stats-strip__item">
+                    <ScrollReveal delay={0.16}>
+                        <span class="stats-strip__label"
+                            >Laboratorio de<br />neuromarketing en Bolivia</span
+                        >
+                        <span class="stats-strip__number"
+                            ><StatCounter
+                                value={1}
+                                suffix="er"
+                                duration={1.2}
+                            /></span
+                        >
+                    </ScrollReveal>
+                </div>
+                <div class="stats-strip__item">
+                    <ScrollReveal delay={0.24}>
+                        <span class="stats-strip__label"
+                            >Seguimiento<br />post-estudio incluido</span
+                        >
+                        <span class="stats-strip__number"
+                            ><StatCounter
+                                value={100}
+                                suffix="%"
+                                duration={1.4}
+                            /></span
+                        >
+                    </ScrollReveal>
                 </div>
             </div>
         </section>
 
         <!-- ════════════════════════════════════════════════ -->
-        <!-- OFFER SECTION                                   -->
+        <!-- 8. EXPERIENCIA MULTISECTORIAL                   -->
         <!-- ════════════════════════════════════════════════ -->
-        <section id="nuestra-oferta" class="offer-section">
-            <div class="container">
-                <div class="offer-box-modern animate-on-observe">
-                    <div class="offer-header">
-                        <span class="eyebrow-light">Rentabilidad y seguridad táctica</span>
-                        <h2>Resultados de una Investigación de Mercados estructurada</h2>
-                        <p class="offer-tagline" style="color: var(--color-text); font-weight: 600;">Al integrar inteligencia corporativa, análisis avanzado y validación en terreno.</p>
-                    </div>
-
-                    <div class="offer-grid-modern">
-                        <div class="offer-card-v2 animate-on-observe stagger-1">
-                            <h3>Claridad y Control</h3>
-                            <ul>
-                                <li>Eliminación de puntos ciegos comerciales</li>
-                                <li>Mapeo exacto de oportunidades de ganancia</li>
-                                <li>Visibilidad anticipada sobre los movimientos del competidor</li>
-                            </ul>
-                        </div>
-                        <div class="offer-card-v2 animate-on-observe stagger-2">
-                            <h3>Ahorro y Seguridad</h3>
-                            <ul>
-                                <li>Blindaje financiero antes de inyectar capital</li>
-                                <li>Reducción del estrés táctico gerencial</li>
-                                <li>Sustento técnico defendible ante su Directorio</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Testimonial -->
-                    <div class="testimonial-card">
-                        <div style="display: flex; align-items: center; gap: 1.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
-                            <span style="font-family: var(--font-display); font-weight: 900; font-size: 3.2rem; line-height: 1; color: var(--color-primary);">+18%</span>
-                            <span style="font-size: 0.95rem; font-weight: 700; color: rgba(255,255,255,0.9); max-width: 320px; line-height: 1.4;">de margen adicional sin perder volumen — validado con neuro-pricing antes de tocar la lista de precios.</span>
-                        </div>
-                        <p>"Antes de Mindtec, tomábamos decisiones de pricing basándonos en la competencia. El estudio de precios con neuro-pricing nos reveló que nuestro producto podía soportar un precio 18% mayor sin perder volumen. Eso cambió nuestra estructura de margen para todo el año."</p>
-                        <p class="testimonial-author">— Gerencia Comercial, empresa de consumo masivo (Bolivia)</p>
-                    </div>
-
-                    <div class="offer-cta-modern">
-                        <p class="offer-final-statement">No entregamos reportes densos de datos descriptivos. Le entregamos ahorro de tiempo directivo, reducción de riesgo y la tranquilidad de decidir correctamente.</p>
-                        <a href="/contacto" class="btn btn-primary">Agendar sesión de diagnóstico (45 min) <span class="btn-arrow">→</span></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ════════════════════════════════════════════════ -->
-        <!-- SERVICES SECTION                                -->
-        <!-- ════════════════════════════════════════════════ -->
-        <section id="servicios" class="services-section">
-            <div class="container">
-                <div class="section-header text-center">
-                    <span class="eyebrow">Servicios disponibles</span>
-                    <h2>Servicios de Investigación de Mercado, Branding y Análisis Competitivo en Bolivia</h2>
-                </div>
-                <div class="services-grid-modern">
-                    <div class="service-card-v3 animate-on-observe stagger-1">
-                        <a href="/servicios" class="card-visual" style="display: block;">
-                            <img src="/imagenes-mindtec/supermercado.jpg" alt="Investigación de mercado con seguimiento visual en punto de venta" loading="lazy">
-                        </a>
-                        <div class="badge">Pilar 1</div>
-                        <h3><a href="/servicios" style="color: inherit; text-decoration: none;">Investigación de Mercado y Estudios de Precio</a></h3>
-                        <ul class="service-list-minimal">
-                            <li><a href="/estudio-de-mercado-bolivia">Estudio de mercado en Bolivia</a></li>
-                            <li><a href="/estudio-de-precios-bolivia">Estudio de precios</a></li>
-                            <li><a href="/investigacion-cuantitativa-bolivia">Investigación cuantitativa</a></li>
-                            <li><a href="/investigacion-cualitativa-bolivia">Investigación cualitativa</a></li>
-                        </ul>
-                    </div>
-                    <div class="service-card-v3 highlight animate-on-observe stagger-2">
-                        <a href="/servicios" class="card-visual" style="display: block;">
-                            <img src="/imagenes-mindtec/generated/branding-heatmap-lab.webp" alt="Analisis de branding y mapas de calor sobre empaques y piezas de marca" loading="lazy">
-                        </a>
-                        <div class="badge">Pilar 2</div>
-                        <h3><a href="/servicios" style="color: inherit; text-decoration: none;">Branding y Posicionamiento de Marca</a></h3>
-                        <ul class="service-list-minimal">
-                            <li>Auditoría de branding</li>
-                            <li><a href="/percepcion-de-marca-bolivia">Estudio de percepción de marca</a></li>
-                            <li>Diagnóstico de posicionamiento</li>
-                            <li>Evaluación antes de rebranding</li>
-                            <li>Testeo de packaging</li>
-                        </ul>
-                    </div>
-                    <div class="service-card-v3 animate-on-observe stagger-3">
-                        <a href="/servicios" class="card-visual" style="display: block;">
-                            <img src="/imagenes-mindtec/generated/retail-tienda-barrio-encuestador.webp" alt="Encuestador de campo Mindtec auditando una tienda de barrio en Bolivia" loading="lazy">
-                        </a>
-                        <div class="badge">Pilar 3</div>
-                        <h3><a href="/servicios" style="color: inherit; text-decoration: none;">Análisis Competitivo y Auditoría de Mercado</a></h3>
-                        <ul class="service-list-minimal">
-                            <li>Análisis competitivo estructurado</li>
-                            <li><a href="/auditoria-retail-bolivia">Auditoría retail en Bolivia</a></li>
-                            <li>Benchmark estratégico</li>
-                            <li>Inteligencia de ejecución en punto de venta</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ════════════════════════════════════════════════ -->
-        <!-- EXPERIENCIA MULTISECTORIAL                      -->
-        <!-- ════════════════════════════════════════════════ -->
-        <section class="authority-section" id="sectors">
+        <section class="authority-section" id="sectors" data-stack-section>
             <div class="container text-center">
-                <span class="eyebrow">Experiencia multisectorial en Bolivia</span>
-                <p class="authority-description">Rigor metodológico y seguridad corporativa para directorios y tomadores de decisión. Bancos, aseguradoras e industrias en Bolivia requieren evidencia estructurada antes de comprometer inversión — no promedios genéricos de LATAM.</p>
+                <span class="eyebrow"
+                    >Experiencia multisectorial en Bolivia</span
+                >
+                <p class="authority-description">
+                    Rigor metodológico y seguridad corporativa para directorios
+                    y tomadores de decisión. Bancos, aseguradoras e industrias
+                    en Bolivia requieren evidencia estructurada antes de
+                    comprometer inversión — no promedios genéricos de LATAM.
+                </p>
+            </div>
 
-                <div class="sectors-grid">
-                    <div class="glass-card sector-card animate-on-observe stagger-1">
+            <div class="sectors-grid-v2">
+                <div class="sector-card-v2">
+                    <ScrollReveal delay={0}>
                         <div class="sector-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><rect x="32" y="80" width="192" height="128" rx="8"/><path d="M80 80V64a48 48 0 0 1 96 0v16"/><line x1="128" y1="136" x2="128" y2="152"/></svg>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 256 256"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="16"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><rect
+                                    x="32"
+                                    y="80"
+                                    width="192"
+                                    height="128"
+                                    rx="8"></rect><path
+                                    d="M80 80V64a48 48 0 0 1 96 0v16"
+                                ></path><line
+                                    x1="128"
+                                    y1="136"
+                                    x2="128"
+                                    y2="152"></line></svg
+                            >
                         </div>
                         <h4>Banca y Financieras</h4>
                         <p>CX, segmentación, percepción de marca</p>
-                    </div>
-                    <div class="glass-card sector-card animate-on-observe stagger-2">
+                    </ScrollReveal>
+                </div>
+                <div class="sector-card-v2">
+                    <ScrollReveal delay={0.05}>
                         <div class="sector-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M128 24l88 40v40c0 68-40 108-88 128-48-20-88-60-88-128V64z"/><polyline points="96 128 116 148 160 104"/></svg>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 256 256"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="16"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><path
+                                    d="M128 24l88 40v40c0 68-40 108-88 128-48-20-88-60-88-128V64z"
+                                ></path><polyline
+                                    points="96 128 116 148 160 104"
+                                ></polyline></svg
+                            >
                         </div>
                         <h4>Seguros</h4>
                         <p>Percepción de póliza, confianza de marca, CX</p>
-                    </div>
-                    <div class="glass-card sector-card animate-on-observe stagger-3">
+                    </ScrollReveal>
+                </div>
+                <div class="sector-card-v2">
+                    <ScrollReveal delay={0.1}>
                         <div class="sector-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M24 216V120l64-40 64 40v96M152 216v-64l56-32 24 14v82"/><line x1="8" y1="216" x2="248" y2="216"/></svg>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 256 256"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="16"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><path
+                                    d="M24 216V120l64-40 64 40v96M152 216v-64l56-32 24 14v82"
+                                ></path><line x1="8" y1="216" x2="248" y2="216"
+                                ></line></svg
+                            >
                         </div>
                         <h4>Industria y Manufactura</h4>
-                        <p>Posicionamiento B2B, satisfacción de canal, expansión</p>
-                    </div>
-                    <div class="glass-card sector-card animate-on-observe stagger-4">
+                        <p>
+                            Posicionamiento B2B, satisfacción de canal,
+                            expansión
+                        </p>
+                    </ScrollReveal>
+                </div>
+                <div class="sector-card-v2">
+                    <ScrollReveal delay={0.15}>
                         <div class="sector-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M184 184H69.8l-20-120H32"/><circle cx="80" cy="216" r="16"/><circle cx="172" cy="216" r="16"/><path d="M72 64h152l-24 120"/></svg>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 256 256"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="16"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><path d="M184 184H69.8l-20-120H32"
+                                ></path><circle cx="80" cy="216" r="16"
+                                ></circle><circle cx="172" cy="216" r="16"
+                                ></circle><path d="M72 64h152l-24 120"
+                                ></path></svg
+                            >
                         </div>
                         <h4>Consumo Masivo</h4>
                         <p>Pricing, test de producto, auditoría de canal</p>
-                    </div>
-                    <div class="glass-card sector-card animate-on-observe stagger-5">
+                    </ScrollReveal>
+                </div>
+                <div class="sector-card-v2">
+                    <ScrollReveal delay={0.2}>
                         <div class="sector-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M48 192V64a16 16 0 0 1 16-16h128a16 16 0 0 1 16 16v128"/><line x1="32" y1="192" x2="224" y2="192"/><rect x="88" y="120" width="80" height="72" rx="4"/></svg>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 256 256"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="16"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><path
+                                    d="M48 192V64a16 16 0 0 1 16-16h128a16 16 0 0 1 16 16v128"
+                                ></path><line x1="32" y1="192" x2="224" y2="192"
+                                ></line><rect
+                                    x="88"
+                                    y="120"
+                                    width="80"
+                                    height="72"
+                                    rx="4"></rect></svg
+                            >
                         </div>
                         <h4>Retail y Comercio</h4>
-                        <p>Auditoría POS, mystery shopper, trade intelligence</p>
-                    </div>
-                    <div class="glass-card sector-card animate-on-observe stagger-6">
+                        <p>
+                            Auditoría POS, mystery shopper, trade intelligence
+                        </p>
+                    </ScrollReveal>
+                </div>
+                <div class="sector-card-v2">
+                    <ScrollReveal delay={0.25}>
                         <div class="sector-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M200 224H56a8 8 0 0 1-8-8V40"/><polyline points="200 40 200 224"/><rect x="72" y="112" width="40" height="104" rx="4"/><rect x="136" y="72" width="40" height="144" rx="4"/></svg>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 256 256"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="16"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><path d="M200 224H56a8 8 0 0 1-8-8V40"
+                                ></path><polyline points="200 40 200 224"
+                                ></polyline><rect
+                                    x="72"
+                                    y="112"
+                                    width="40"
+                                    height="104"
+                                    rx="4"></rect><rect
+                                    x="136"
+                                    y="72"
+                                    width="40"
+                                    height="144"
+                                    rx="4"></rect></svg
+                            >
                         </div>
                         <h4>Instituciones y ONG</h4>
                         <p>Líneas base, evaluaciones de impacto, percepción</p>
-                    </div>
-                    <div class="glass-card sector-card animate-on-observe stagger-1">
+                    </ScrollReveal>
+                </div>
+                <div class="sector-card-v2">
+                    <ScrollReveal delay={0.3}>
                         <div class="sector-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M128 32L32 80v96l96 48 96-48V80z"/><polyline points="128 128 128 224"/><polyline points="32 80 128 128 224 80"/></svg>
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 256 256"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="16"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><path d="M128 32L32 80v96l96 48 96-48V80z"
+                                ></path><polyline points="128 128 128 224"
+                                ></polyline><polyline
+                                    points="32 80 128 128 224 80"
+                                ></polyline></svg
+                            >
                         </div>
                         <h4>Educación</h4>
                         <p>Posicionamiento, demanda, satisfacción</p>
-                    </div>
+                    </ScrollReveal>
                 </div>
             </div>
         </section>
+        </StackedSections>
 
         <!-- ════════════════════════════════════════════════ -->
-        <!-- WHY US                                          -->
+        <!-- 9. FINAL CTA — DOBLE VÍA                        -->
         <!-- ════════════════════════════════════════════════ -->
-        <section class="why-us-modern" id="why-us">
-            <div class="container">
-                <div class="why-layout">
-                    <div class="why-visual-bar"></div>
-                    <div class="why-text-content">
-                        <h2>¿Por qué Mindtec es la Firma de Investigación de Mercados correcta para su empresa?</h2>
-                        <div class="why-features">
-                            <div class="feature animate-on-observe stagger-1">
-                                <strong>Red Nacional de Inteligencia de Campo</strong>
-                                <p>Sin suposiciones. La evidencia se valida en campo para revelar lo que realmente determina la decisión del consumidor final.</p>
-                                <div class="feature-stat"><span class="arrow">→</span> Más de 80 encuestadores activos en 4+ ciudades</div>
-                            </div>
-                            <div class="feature animate-on-observe stagger-2">
-                                <strong>Integración de IA y Neuromarketing</strong>
-                                <p>La lógica irracional del consumo queda expuesta al unir inteligencia de datos con biometría avanzada. Señales que los métodos tradicionales nunca detectan.</p>
-                                <div class="feature-stat"><span class="arrow">→</span> Primera y única firma con laboratorio de neuromarketing operativo en Bolivia</div>
-                            </div>
-                            <div class="feature animate-on-observe stagger-3">
-                                <strong>Análisis diseñado para la Gerencia</strong>
-                                <p>El caos métrico se convierte en conclusiones claras y ejecutivas. Sin jerga académica, directo a proteger sus resultados financieros.</p>
-                                <div class="feature-stat"><span class="arrow">→</span> Entrega promedio: 7 a 21 días según complejidad</div>
-                            </div>
+        <section
+            id="contacto"
+            class="cta-section-modern cta-section-modern--full"
+        >
+            <ScrollReveal>
+                <div class="cta-content-v2">
+                    <div class="container">
+                        <h2>
+                            Las empresas que lideran su mercado no adivinan.
+                            Deciden con inteligencia.
+                        </h2>
+                        <p class="cta-subtitle">
+                            Hablemos 45 minutos. Evaluamos su desafío de mercado
+                            y le presentamos una propuesta metodológica concreta
+                            — no un catálogo de servicios.
+                        </p>
+                        <div class="cta-actions">
+                            <a href="/contacto" class="btn btn-primary"
+                                >Agendar sesión de diagnóstico (45 min) <span
+                                    class="btn-arrow">→</span
+                                ></a
+                            >
+                        </div>
+                        <p
+                            style="margin: 1.5rem auto 0; max-width: none; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;"
+                        >
+                            Por Zoom o Teams · Llegue con una decisión pendiente
+                            · Salga con claridad sobre cómo tomarla ·
+                            Confidencial · Sin presión comercial
+                        </p>
+                        <div
+                            style="margin-top: 3rem; padding: 2rem; border: 1px solid rgba(255,255,255,0.2); border-radius: var(--radius-md); max-width: 720px; margin-left: auto; margin-right: auto;"
+                        >
+                            <p
+                                style="font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 0.75rem;"
+                            >
+                                ¿Están armando un proceso de contratación o ya
+                                tienen un TDR?
+                            </p>
+                            <p
+                                style="font-size: 0.95rem; color: rgba(255,255,255,0.75); margin-bottom: 1.5rem; line-height: 1.6;"
+                            >
+                                Invítenos al proceso o envíenos los términos de
+                                referencia. Respondemos con propuesta técnica
+                                estructurada: diseño muestral, cronograma y
+                                entregables ejecutivos.
+                            </p>
+                            <a
+                                href="mailto:info@mindtecbolivia.com?subject=Invitaci%C3%B3n%20a%20proceso%20%2F%20TDR%20%E2%80%94%20Investigaci%C3%B3n%20de%20mercados"
+                                class="btn btn-outline-light"
+                                >Escribir a info@mindtecbolivia.com →</a
+                            >
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-        <!-- ════════════════════════════════════════════════ -->
-        <!-- FINAL CTA                                       -->
-        <!-- ════════════════════════════════════════════════ -->
-        <section id="contacto" class="cta-section-modern">
-            <div class="container">
-                <div class="cta-content-v2 animate-on-observe">
-                    <h2>Las empresas que lideran su mercado no adivinan. Deciden con inteligencia.</h2>
-                    <p class="cta-subtitle">Hablemos 45 minutos. Evaluamos su desafío de mercado y le presentamos una propuesta metodológica concreta — no un catálogo de servicios.</p>
-                    <div class="cta-actions">
-                        <a href="/contacto" class="btn btn-primary">Agendar sesión de diagnóstico (45 min) <span class="btn-arrow">→</span></a>
-                    </div>
-                    <p style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">Por Zoom o Teams · Llegue con una decisión pendiente · Salga con claridad sobre cómo tomarla · Confidencial · Sin presión comercial</p>
-                </div>
-            </div>
+            </ScrollReveal>
         </section>
     </main>
 </Layout>
+
+<style>
+    .video-showcase-section {
+        padding: clamp(4rem, 8vw, var(--spacing-xl, 8rem)) 0;
+        background: var(--color-surface, #fafbfc);
+        overflow: clip;
+    }
+
+    .video-showcase-section .section-header {
+        margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+    }
+
+    .video-showcase-section .section-header h2 {
+        max-width: 44rem;
+        margin-inline: auto;
+    }
+
+    .video-showcase-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(1.25rem, 2.5vw, 2rem);
+        width: 100%;
+        padding-inline: clamp(1rem, 4vw, 3rem);
+    }
+
+    .video-card {
+        border-radius: var(--radius-lg, 24px);
+        overflow: hidden;
+        background: #fff;
+        box-shadow: var(--shadow-md);
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    }
+
+    .video-card:hover {
+        transform: translateY(-6px);
+        box-shadow: var(--shadow-xl), var(--shadow-glow);
+    }
+
+    .video-card__frame {
+        position: relative;
+        aspect-ratio: 4 / 5;
+        overflow: hidden;
+        background: var(--color-secondary-deep, #061c2b);
+    }
+
+    .video-card__media {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .video-card:hover .video-card__media {
+        transform: scale(1.05);
+    }
+
+    .video-card__overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            180deg,
+            rgba(6, 28, 43, 0) 45%,
+            rgba(6, 28, 43, 0.75) 100%
+        );
+        pointer-events: none;
+    }
+
+    .video-card__index {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        font-family: var(--font-display);
+        font-weight: 800;
+        font-size: 0.8rem;
+        letter-spacing: 0.05em;
+        color: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(6px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 999px;
+        padding: 0.35rem 0.75rem;
+    }
+
+    .video-card__body {
+        padding: 1.5rem 1.5rem 1.75rem;
+    }
+
+    .video-card__badge {
+        display: inline-block;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--color-primary, #f26522);
+        margin-bottom: 0.6rem;
+    }
+
+    .video-card__body h3 {
+        font-size: 1.15rem;
+        line-height: 1.3;
+        color: var(--color-text-dark, #0b2b40);
+        margin-bottom: 0.6rem;
+    }
+
+    .video-card__body p {
+        font-size: 0.92rem;
+        line-height: 1.55;
+        color: var(--color-text-muted, #64748b);
+        margin: 0;
+    }
+
+    @media (max-width: 900px) {
+        .video-showcase-grid {
+            grid-template-columns: 1fr;
+            max-width: 26rem;
+            margin-inline: auto;
+            padding-inline: clamp(1rem, 6vw, 2rem);
+        }
+    }
+
+    .problem-quote-section,
+    .services-closing-section {
+        padding: var(--spacing-xl, 5rem) 0;
+    }
+
+    .problem-quote-section {
+        overflow: clip;
+        padding-block: clamp(6rem, 13vw, 13rem);
+    }
+
+    .problem-quote-section :global(.container) {
+        width: 100%;
+        max-width: none;
+        padding-inline: clamp(1rem, 3vw, 4rem);
+    }
+
+    .problem-statement {
+        width: 100%;
+        max-width: 56rem;
+        margin: 0 auto;
+        color: var(--color-secondary-deep, #061c2b);
+        font-family: var(--font-display);
+        font-size: clamp(1.15rem, 2vw, 1.85rem);
+        font-style: normal;
+        font-weight: 700;
+        line-height: 1.35;
+        letter-spacing: -0.03em;
+        text-align: center;
+    }
+
+    .problem-statement__paragraph {
+        margin: 0;
+    }
+
+    .problem-statement strong {
+        font: inherit;
+    }
+
+    .problem-statement__paragraph--conclusion {
+        margin-top: clamp(1.5rem, 3vw, 2.5rem);
+        color: var(--color-primary, #e65a2b);
+    }
+
+    @media (max-width: 720px) {
+        .problem-quote-section {
+            padding-block: clamp(4.5rem, 18vw, 7rem);
+        }
+
+        .problem-statement {
+            font-size: clamp(1.05rem, 4.5vw, 1.5rem);
+            line-height: 1.4;
+            letter-spacing: -0.02em;
+        }
+
+        .problem-statement__paragraph--conclusion {
+            margin-top: 1.75rem;
+        }
+
+    }
+
+    .problem-card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
+    .problem-icon-large {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 68px;
+        height: 68px;
+        flex-shrink: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.14);
+        color: #fff;
+    }
+
+    .problem-icon-large svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    .problem-card-title {
+        margin: 0;
+        max-width: 22ch;
+        font-family: var(--font-display);
+        font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+        font-weight: 700;
+        line-height: 1.3;
+        color: inherit;
+    }
+
+    /* Áreas de trabajo: módulos continuos con muescas, inspirados en el
+       esquema de piezas encajables. Cada bloque completo es un enlace. */
+    .areas-section {
+        margin-top: 2.5rem;
+        text-align: center;
+    }
+
+    .areas-section__eyebrow {
+        margin: 0 0 1.25rem;
+        color: var(--color-text-muted);
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+    }
+
+    .areas-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.55rem;
+        max-width: 1320px;
+        margin: 0 auto;
+        text-align: left;
+    }
+
+    .area-panel {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex: 1 1 calc((100% - 4 * 0.55rem) / 5);
+        max-width: calc((100% - 4 * 0.55rem) / 5);
+        min-height: 290px;
+        padding: 1.5rem 1.25rem;
+        overflow: hidden;
+        background: #082235;
+        border: 1px solid rgba(141, 191, 221, 0.72);
+        color: #fff;
+        text-decoration: none;
+        isolation: isolate;
+        transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1), background-color 280ms cubic-bezier(0.16, 1, 0.3, 1), border-color 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .area-panel::after {
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background: linear-gradient(145deg, rgba(29, 82, 112, 0.42), transparent 55%);
+        content: "";
+        opacity: 0;
+        transition: opacity 280ms ease;
+    }
+
+    .area-panel:nth-child(odd) {
+        clip-path: polygon(0 0, 100% 0, 100% 31%, 88% 31%, 88% 69%, 100% 69%, 100% 100%, 0 100%);
+    }
+
+    .area-panel:nth-child(even) {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 69%, 12% 69%, 12% 31%, 0 31%);
+    }
+
+    .area-panel:hover {
+        transform: translateY(-6px);
+        background: #0b2c43;
+        border-color: var(--color-primary, #e7a548);
+    }
+
+    .area-panel:hover::after {
+        opacity: 1;
+    }
+
+    .area-panel:focus-visible {
+        outline: 3px solid var(--color-primary, #e7a548);
+        outline-offset: 4px;
+    }
+
+    .area-panel__icon {
+        display: grid;
+        width: 76px;
+        height: 76px;
+        place-items: center;
+        align-self: center;
+        margin: auto 0;
+        border: 1px solid rgba(168, 207, 232, 0.86);
+        border-radius: 50%;
+        color: #c5e3f3;
+        transition: color 280ms ease, border-color 280ms ease, transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .area-panel:hover .area-panel__icon {
+        border-color: var(--color-primary, #e7a548);
+        color: var(--color-primary, #e7a548);
+        transform: scale(1.06);
+    }
+
+    .area-panel__icon svg {
+        width: 42px;
+        height: 42px;
+    }
+
+    .area-panel__title {
+        display: block;
+        max-width: 14ch;
+        font-family: var(--font-display);
+        font-size: clamp(1rem, 1.3vw, 1.2rem);
+        font-weight: 700;
+        line-height: 1.17;
+        letter-spacing: -0.02em;
+    }
+
+    .area-panel__title small {
+        display: block;
+        margin-top: 0.15rem;
+        color: rgba(255, 255, 255, 0.66);
+        font-size: 0.78em;
+        font-weight: 600;
+        letter-spacing: 0;
+    }
+
+    .area-panel__arrow {
+        position: absolute;
+        right: 1.2rem;
+        bottom: 1.15rem;
+        color: var(--color-primary, #e7a548);
+        font-size: 1.3rem;
+        line-height: 1;
+        opacity: 0;
+        transform: translateX(-8px);
+        transition: opacity 220ms ease, transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .area-panel:hover .area-panel__arrow,
+    .area-panel:focus-visible .area-panel__arrow {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    @media (max-width: 1100px) {
+        .area-panel {
+            flex-basis: calc((100% - 2 * 0.55rem) / 3);
+            max-width: calc((100% - 2 * 0.55rem) / 3);
+        }
+    }
+
+    @media (max-width: 700px) {
+        .area-panel {
+            flex-basis: calc((100% - 0.55rem) / 2);
+            max-width: calc((100% - 0.55rem) / 2);
+        }
+
+        .area-panel,
+        .area-panel:nth-child(odd),
+        .area-panel:nth-child(even) {
+            min-height: 235px;
+            clip-path: none;
+        }
+    }
+
+    @media (max-width: 460px) {
+        .area-panel {
+            flex-basis: 100%;
+            max-width: 100%;
+            min-height: 205px;
+        }
+
+        .area-panel__icon {
+            width: 64px;
+            height: 64px;
+        }
+
+        .area-panel__icon svg {
+            width: 35px;
+            height: 35px;
+        }
+    }
+
+    /* Franja de estadísticas a ancho completo, estilo columnas con
+       divisores finos (número grande + etiqueta), debajo de
+       "Cómo trabajamos". */
+    .stats-strip {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: 3rem;
+        border-top: 1px solid rgba(11, 43, 64, 0.1);
+    }
+
+    .stats-strip__item {
+        padding: 2rem 2rem 3rem;
+        border-left: 1px solid rgba(11, 43, 64, 0.1);
+    }
+
+    .stats-strip__item:first-child {
+        border-left: none;
+    }
+
+    .stats-strip__label {
+        display: block;
+        max-width: 18ch;
+        font-family: var(--font-display);
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        color: var(--color-secondary);
+        line-height: 1.4;
+    }
+
+    .stats-strip__number {
+        display: block;
+        margin-top: 3.5rem;
+        font-family: var(--font-display);
+        font-weight: 300;
+        font-size: clamp(2.6rem, 5vw, 5rem);
+        line-height: 1;
+        letter-spacing: -0.02em;
+        color: var(--color-secondary);
+    }
+
+    @media (max-width: 900px) {
+        .stats-strip {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .stats-strip__item:nth-child(3) {
+            border-left: none;
+        }
+
+        .stats-strip__item:nth-child(1),
+        .stats-strip__item:nth-child(2) {
+            border-bottom: 1px solid rgba(11, 43, 64, 0.1);
+        }
+    }
+
+    @media (max-width: 560px) {
+        .stats-strip {
+            grid-template-columns: 1fr;
+        }
+
+        .stats-strip__item {
+            border-left: none !important;
+            border-bottom: 1px solid rgba(11, 43, 64, 0.1);
+        }
+
+        .stats-strip__number {
+            margin-top: 1.5rem;
+        }
+    }
+
+    /* Sectores multisectoriales: grid de 3 columnas (3 + 3 + 1 a ancho
+       completo), cards oscuras con muescas que encajan entre sí como
+       piezas, ícono blanco centrado. */
+    .sectors-grid-v2 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+        text-align: left;
+    }
+
+    .sector-card-v2 {
+        position: relative;
+        min-height: 320px;
+        padding: clamp(1.75rem, 2.5vw, 2.5rem);
+        background: var(--color-secondary-deep, #061c2b);
+        color: var(--color-text-light, #fff);
+        overflow: hidden;
+    }
+
+    .sector-card-v2:nth-child(3n + 1) {
+        clip-path: polygon(0 0, 72% 0, 72% 14%, 100% 14%, 100% 100%, 0 100%);
+    }
+
+    .sector-card-v2:nth-child(3n + 2) {
+        clip-path: polygon(
+            28% 0,
+            72% 0,
+            72% 14%,
+            100% 14%,
+            100% 100%,
+            0 100%,
+            0 14%,
+            28% 14%
+        );
+    }
+
+    .sector-card-v2:nth-child(3n + 3):not(:last-child) {
+        clip-path: polygon(28% 0, 100% 0, 100% 100%, 0 100%, 0 14%, 28% 14%);
+    }
+
+    .sector-card-v2:last-child {
+        grid-column: 1 / -1;
+        min-height: 220px;
+        clip-path: none;
+    }
+
+    .sector-card-v2 :global(.scroll-reveal__content) {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        height: 100%;
+        min-height: 260px;
+        padding-top: clamp(2.75rem, 7vh, 4.5rem);
+    }
+
+    .sector-card-v2 .sector-icon {
+        order: 2;
+        margin: auto 0;
+        align-self: center;
+        width: 64px;
+        height: 64px;
+        background: rgba(255, 255, 255, 0.12);
+        color: var(--color-text-light, #fff);
+    }
+
+    .sector-card-v2 .sector-icon svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    .sector-card-v2 h4 {
+        order: 1;
+        margin: 0;
+        font-family: var(--font-display);
+        font-size: clamp(1.15rem, 1.8vw, 1.55rem);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+        line-height: 1.3;
+        color: var(--color-text-light, #fff);
+        max-width: 18ch;
+    }
+
+    .sector-card-v2 p {
+        order: 3;
+        margin: 0;
+        max-width: 34ch;
+        font-size: 0.85rem;
+        line-height: 1.55;
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    @media (max-width: 900px) {
+        .sectors-grid-v2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .sector-card-v2,
+        .sector-card-v2:nth-child(3n + 1),
+        .sector-card-v2:nth-child(3n + 2),
+        .sector-card-v2:nth-child(3n + 3):not(:last-child) {
+            clip-path: none;
+        }
+
+        .sector-card-v2:last-child {
+            grid-column: 1 / -1;
+        }
+    }
+
+    @media (max-width: 560px) {
+        .sectors-grid-v2 {
+            grid-template-columns: 1fr;
+        }
+
+        .sector-card-v2 {
+            min-height: 260px;
+        }
+    }
+
+    /* CTA final a ancho completo: el fondo naranja llega hasta los
+       bordes de la ventana; el contenido de texto se mantiene legible
+       dentro de un .container interno. */
+    .cta-section-modern--full {
+        padding: 0;
+    }
+
+    .cta-section-modern--full :global(.cta-content-v2) {
+        max-width: none;
+        margin: 0;
+        border-radius: 0;
+        padding: clamp(3.5rem, 8vw, 7rem) 0;
+    }
+
+    /* Caja "Resultados de una Investigación..." a ancho completo. */
+    .offer-section--full {
+        padding: 0;
+    }
+
+    .offer-section--full :global(.offer-box-modern) {
+        border-radius: 0;
+        padding: clamp(3.5rem, 8vw, 6rem) 0;
+    }
+
+    /* "Por qué Mindtec": 3 cards a ancho completo, 2 filas (2 + 1),
+       con muescas tipo lego que encajan entre las 2 primeras, ícono
+       blanco centrado y título más abajo, fuera de la zona cortada. */
+    .capabilities-grid-v2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+        margin: 3rem 0;
+    }
+
+    .capability-card-v2 {
+        position: relative;
+        min-height: 340px;
+        padding: clamp(1.75rem, 2.5vw, 2.5rem);
+        background: var(--color-secondary-deep, #061c2b);
+        color: var(--color-text-light, #fff);
+        overflow: hidden;
+    }
+
+    .capability-card-v2:nth-child(1) {
+        clip-path: polygon(0 0, 72% 0, 72% 14%, 100% 14%, 100% 100%, 0 100%);
+    }
+
+    .capability-card-v2:nth-child(2):not(:last-child) {
+        clip-path: polygon(28% 0, 100% 0, 100% 100%, 0 100%, 0 14%, 28% 14%);
+    }
+
+    .capability-card-v2--feature {
+        grid-column: 1 / -1;
+        min-height: 0;
+        padding: 0;
+        clip-path: none;
+    }
+
+    .capability-card-v2--feature :global(.scroll-reveal__content) {
+        display: block;
+        height: 100%;
+        min-height: 0;
+        padding-top: 0;
+        text-align: left;
+    }
+
+    .capability-feature {
+        display: grid;
+        grid-template-columns: minmax(260px, 0.85fr) 1.15fr;
+        align-items: stretch;
+        height: 100%;
+        min-height: 360px;
+    }
+
+    .capability-card-v2--feature .capability-feature__image {
+        order: 0;
+        width: 100%;
+        height: 100%;
+        min-height: 280px;
+        max-width: none;
+        margin: 0;
+        object-fit: cover;
+        object-position: center 30%;
+    }
+
+    .capability-feature__body {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 1rem;
+        padding: clamp(2rem, 3vw, 3rem);
+    }
+
+    .capability-card-v2--feature .capability-feature__body .cap-icon {
+        order: 0;
+        margin: 0;
+    }
+
+    .capability-card-v2--feature .capability-feature__body h3 {
+        order: 0;
+        max-width: none;
+        text-align: left;
+    }
+
+    .capability-card-v2--feature .capability-feature__body p {
+        order: 0;
+        text-align: left;
+        max-width: 46ch;
+    }
+
+    .capability-card-v2--feature .capability-feature__body .cap-footer {
+        order: 0;
+        width: 100%;
+    }
+
+    @media (max-width: 700px) {
+        .capability-feature {
+            grid-template-columns: 1fr;
+            min-height: 0;
+        }
+
+        .capability-card-v2--feature .capability-feature__image {
+            min-height: 220px;
+        }
+    }
+
+    .capability-card-v2 :global(.scroll-reveal__content) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        height: 100%;
+        min-height: 280px;
+        padding-top: clamp(2.75rem, 7vh, 4.5rem);
+        gap: 1rem;
+    }
+
+    .capability-card-v2 h3 {
+        order: 1;
+        margin: 0;
+        max-width: 26ch;
+        font-family: var(--font-display);
+        font-size: clamp(1.15rem, 1.8vw, 1.55rem);
+        font-weight: 700;
+        text-transform: none;
+        letter-spacing: 0;
+        line-height: 1.3;
+        color: var(--color-text-light, #fff);
+    }
+
+    .capability-card-v2 .cap-icon {
+        order: 2;
+        margin: auto 0;
+        width: 64px;
+        height: 64px;
+        background: rgba(255, 255, 255, 0.12);
+        color: var(--color-text-light, #fff);
+    }
+
+    .capability-card-v2 .cap-icon svg {
+        width: 32px;
+        height: 32px;
+    }
+
+    .capability-card-v2 p {
+        order: 3;
+        margin: 0;
+        max-width: 44ch;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.65);
+    }
+
+    .capability-card-v2 img {
+        order: 4;
+        max-width: 320px;
+        border-radius: var(--radius-sm, 10px);
+    }
+
+    .capability-card-v2 :global(.scroll-reveal__content) > div:not(.capability-feature) {
+        order: 4;
+        display: flex;
+        justify-content: center;
+    }
+
+    .capability-card-v2 .cap-footer {
+        order: 5;
+        margin-top: 0;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.18);
+        color: var(--color-primary);
+    }
+
+    @media (max-width: 900px) {
+        .capabilities-grid-v2 {
+            grid-template-columns: 1fr;
+        }
+
+        .capability-card-v2,
+        .capability-card-v2:nth-child(1),
+        .capability-card-v2:nth-child(2):not(:last-child) {
+            clip-path: none;
+        }
+
+        .capability-card-v2--feature {
+            grid-column: auto;
+        }
+    }
+</style>

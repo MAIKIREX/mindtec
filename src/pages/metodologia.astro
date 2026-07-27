@@ -1,67 +1,131 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import MorphScrollStory from "../components/scroll/MorphScrollStory.astro";
+import ScrollStoryLeft from "../components/scroll/ScrollStoryLeft.astro";
+import FaqSplit from "../components/faq/FaqSplit.astro";
+import StackedSections from "../components/scroll/StackedSections.astro";
+import AreaPanelCards from "../components/cards/AreaPanelCards.astro";
+import ComparisonRows from "../components/cards/ComparisonRows.astro";
+
+const faqItems = [
+    {
+        question:
+            "¿Cuál es la diferencia entre investigación cuantitativa y cualitativa?",
+        answer: "La cuantitativa mide volumen, frecuencia y tendencia a través de muestras estadísticamente representativas. La cualitativa explora motivaciones profundas, barreras emocionales y códigos culturales que las encuestas no capturan. En Mindtec integramos ambas en un modelo híbrido que también incorpora neuromarketing, asegurando que la decisión no dependa de una sola perspectiva.",
+    },
+    {
+        question: "¿Qué aporta el neuromarketing?",
+        answer: "Permite medir respuestas de atención y emoción que el consumidor no puede verbalizar. Con herramientas como eye tracking, EEG y facial coding, detectamos qué elementos de una pieza publicitaria, packaging o punto de venta realmente capturan atención y generan aceptación — antes de invertir en producción o pauta masiva.",
+    },
+    {
+        question: "¿Cómo integran IA en la investigación de mercados?",
+        answer: "Utilizamos inteligencia artificial para análisis de grandes volúmenes de texto abierto, detección de patrones en datos de percepción, modelos predictivos de comportamiento y generación automatizada de dashboards. Esto reduce tiempos de análisis de semanas a días, sin sacrificar profundidad interpretativa.",
+    },
+    {
+        question: "¿Pueden ejecutar estudios a nivel nacional?",
+        answer: "Sí. Mindtec cuenta con una red de más de 80 encuestadores activos con cobertura en La Paz, El Alto, Santa Cruz, Cochabamba y ciudades intermedias. La infraestructura permite ejecutar levantamientos simultáneos en múltiples ciudades con supervisión centralizada y control de calidad en tiempo real.",
+    },
+];
+
+const strategicBenefits = [
+    {
+        title: "Reducción de riesgo financiero",
+        icon: '<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M128 24 40 64v56c0 52 36 92 88 112 52-20 88-60 88-112V64z"/><path d="m88 128 24 24 56-56"/></svg>',
+    },
+    {
+        title: "Ahorro de tiempo directivo",
+        icon: '<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="88"/><path d="M128 72v60l40 24"/><path d="M128 24v16M232 128h-16M128 232v-16M24 128h16"/></svg>',
+    },
+    {
+        title: "Claridad estructural",
+        icon: '<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><rect x="40" y="40" width="64" height="48" rx="4"/><rect x="152" y="40" width="64" height="48" rx="4"/><rect x="96" y="168" width="64" height="48" rx="4"/><path d="M72 88v32h112V88M128 120v48"/></svg>',
+    },
+    {
+        title: "Disminución de improvisación",
+        icon: '<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M48 208h160"/><path d="m64 176 40-40 32 24 56-64"/><path d="M152 72h40v40"/><path d="M72 48h64M72 80h40"/></svg>',
+    },
+    {
+        title: "Decisiones defendibles ante inversionistas",
+        icon: '<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M48 208h160"/><path d="M64 192v-48h32v48M112 192V96h32v96M160 192V56h32v136"/><path d="m56 112 48-48 32 24 64-64"/><path d="M160 24h40v40"/></svg>',
+    },
+];
 ---
 
 <Layout
-  title="Metodología de Investigación de Mercados | Mindtec"
-  description="Metodología híbrida de investigación: neuromarketing + IA + validación en campo. Modelo multicapa exclusivo de Mindtec Bolivia."
-  headerLightBg={false}
+    title="Metodología de Investigación de Mercados | Mindtec"
+    description="Metodología híbrida de investigación: neuromarketing + IA + validación en campo. Modelo multicapa exclusivo de Mindtec Bolivia."
+    headerLightBg={false}
 >
-  <script type="application/ld+json" slot="head">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.mindtecbolivia.com/"},
-          {"@type": "ListItem", "position": 2, "name": "Metodología", "item": "https://www.mindtecbolivia.com/metodologia"}
-        ]
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "¿Cuál es la diferencia entre investigación cuantitativa y cualitativa?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "La cuantitativa mide volumen, frecuencia y tendencia a través de muestras estadísticamente representativas. La cualitativa explora motivaciones profundas, barreras emocionales y códigos culturales que las encuestas no capturan. En Mindtec integramos ambas en un modelo híbrido que también incorpora neuromarketing, asegurando que la decisión no dependa de una sola perspectiva."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Qué aporta el neuromarketing?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Permite medir respuestas de atención y emoción que el consumidor no puede verbalizar. Con herramientas como eye tracking, EEG y facial coding, detectamos qué elementos de una pieza publicitaria, packaging o punto de venta realmente capturan atención y generan aceptación — antes de invertir en producción o pauta masiva."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Cómo integran IA en la investigación de mercados?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Utilizamos inteligencia artificial para análisis de grandes volúmenes de texto abierto, detección de patrones en datos de percepción, modelos predictivos de comportamiento y generación automatizada de dashboards. Esto reduce tiempos de análisis de semanas a días, sin sacrificar profundidad interpretativa."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Pueden ejecutar estudios a nivel nacional?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Sí. Mindtec cuenta con una red de más de 80 encuestadores activos con cobertura en La Paz, El Alto, Santa Cruz, Cochabamba y ciudades intermedias. La infraestructura permite ejecutar levantamientos simultáneos en múltiples ciudades con supervisión centralizada y control de calidad en tiempo real."
-            }
-          }
-        ]
-      }
-    ]
-  }
-  </script>
+    <script type="application/ld+json" slot="head">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "BreadcrumbList",
+                    "itemListElement": [
+                        {
+                            "@type": "ListItem",
+                            "position": 1,
+                            "name": "Inicio",
+                            "item": "https://www.mindtecbolivia.com/"
+                        },
+                        {
+                            "@type": "ListItem",
+                            "position": 2,
+                            "name": "Metodología",
+                            "item": "https://www.mindtecbolivia.com/metodologia"
+                        }
+                    ]
+                },
+                {
+                    "@type": "FAQPage",
+                    "mainEntity": [
+                        {
+                            "@type": "Question",
+                            "name": "¿Cuál es la diferencia entre investigación cuantitativa y cualitativa?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "La cuantitativa mide volumen, frecuencia y tendencia a través de muestras estadísticamente representativas. La cualitativa explora motivaciones profundas, barreras emocionales y códigos culturales que las encuestas no capturan. En Mindtec integramos ambas en un modelo híbrido que también incorpora neuromarketing, asegurando que la decisión no dependa de una sola perspectiva."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "¿Qué aporta el neuromarketing?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Permite medir respuestas de atención y emoción que el consumidor no puede verbalizar. Con herramientas como eye tracking, EEG y facial coding, detectamos qué elementos de una pieza publicitaria, packaging o punto de venta realmente capturan atención y generan aceptación — antes de invertir en producción o pauta masiva."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "¿Cómo integran IA en la investigación de mercados?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Utilizamos inteligencia artificial para análisis de grandes volúmenes de texto abierto, detección de patrones en datos de percepción, modelos predictivos de comportamiento y generación automatizada de dashboards. Esto reduce tiempos de análisis de semanas a días, sin sacrificar profundidad interpretativa."
+                            }
+                        },
+                        {
+                            "@type": "Question",
+                            "name": "¿Pueden ejecutar estudios a nivel nacional?",
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": "Sí. Mindtec cuenta con una red de más de 80 encuestadores activos con cobertura en La Paz, El Alto, Santa Cruz, Cochabamba y ciudades intermedias. La infraestructura permite ejecutar levantamientos simultáneos en múltiples ciudades con supervisión centralizada y control de calidad en tiempo real."
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    </script>
 
-  <main>
+    <main>
+        <StackedSections>
         <!-- 🟦 HERO -->
-        <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
+        <section
+            class="hero-section"
+            style="padding-bottom: 4rem; padding-top: 4rem;"
+            data-stack-section
+        >
             <!-- Geometric floating shapes (always visible, CSS-animated) -->
             <div class="hero-shapes" aria-hidden="true">
                 <div class="hero-shape"></div>
@@ -106,420 +170,783 @@ import Layout from '../layouts/Layout.astro';
                 <div class="hero-shape"></div>
             </div>
             <!-- Mobile-first neural canvas background -->
-            <div class="hero-mobile-canvas" id="hero-mobile-canvas" aria-hidden="true"></div>
+            <div
+                class="hero-mobile-canvas"
+                id="hero-mobile-canvas"
+                aria-hidden="true"
+            >
+            </div>
             <div class="container hero-container">
                 <div class="hero-content">
-                    <span class="eyebrow fade-in">ARQUITECTURA CIENTÍFICA Y TECNOLÓGICA</span>
-                    <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;">
+                    <span class="eyebrow fade-in"
+                        >ARQUITECTURA CIENTÍFICA Y TECNOLÓGICA</span
+                    >
+                    <h1
+                        class="hero-title"
+                        style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;"
+                    >
                         Modelo Híbrido: Neurociencia + IA + Validación en Campo
                     </h1>
-                    <p class="hero-subtitle" style="font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 800px;">
-                        Proteja sus inversiones de capital reduciendo el margen de error. El modelo de 4 capas simultáneas revela lo que el consumidor realmente hace y siente en el punto de venta, eliminando los sesgos de la encuesta de escritorio tradicional.
+                    <p
+                        class="hero-subtitle"
+                        style="font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 800px;"
+                    >
+                        Proteja sus inversiones de capital reduciendo el margen
+                        de error. El modelo de 4 capas simultáneas revela lo que
+                        el consumidor realmente hace y siente en el punto de
+                        venta, eliminando los sesgos de la encuesta de
+                        escritorio tradicional.
                     </p>
                     <div class="cta-actions" style="margin-top: 2rem;">
-                        <a href="/contacto" class="btn btn-primary lg">Solicitar sesión metodológica ejecutiva (45 min)</a>
+                        <a href="/contacto" class="btn btn-primary lg"
+                            >Solicitar sesión metodológica ejecutiva (45 min)</a
+                        >
                     </div>
                 </div>
                 <div class="hero-visual">
                     <div class="glass-card main-visual">
-                        <div class="neuro-visual-bg" style="background-image: url('/heroes/hero-metodologia-mindtec.jpg');"></div>
+                        <div
+                            class="neuro-visual-bg"
+                            style="background-image: url('/heroes/hero-metodologia-mindtec.jpg');"
+                        >
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 🟦 1️⃣ EL PROBLEMA DEL MODELO TRADICIONAL -->
-        <section class="problem-section bg-slate" style="padding: 5rem 0;">
+        <!-- 🟦 BLOQUE A — Problema del modelo tradicional -->
+        <section class="problem-section bg-slate" style="padding: 5rem 0;" data-stack-section>
             <div class="container">
-                <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
-                    <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 2rem;">La investigación tradicional tiene brechas críticas</h2>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3.5rem;">
-                        <!-- Tradicional -->
-                        <div style="background-color: #fff5f5; border-left: 4px solid #fc8181; padding: 2rem; border-radius: 8px;">
-                            <h3 style="color: #c53030; font-size: 1.3rem; margin-bottom: 1.5rem;">Método Tradicional</h3>
-                            <ul style="font-size: 1.05rem; padding-left: 0; list-style: none;">
-                                <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"><span style="color:#fc8181; font-weight: bold;">✕</span> Encuesta declarativa aislada</li>
-                                <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"><span style="color:#fc8181; font-weight: bold;">✕</span> Focus groups genéricos</li>
-                                <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"><span style="color:#fc8181; font-weight: bold;">✕</span> Reportes descriptivos de 80+ páginas</li>
-                                <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"><span style="color:#fc8181; font-weight: bold;">✕</span> Datos sin validación territorial</li>
-                                <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"><span style="color:#fc8181; font-weight: bold;">✕</span> Solo mide lo que la gente dice</li>
-                            </ul>
-                        </div>
-                        
-                        <!-- Mindtec -->
-                        <div style="background-color: #f0fff4; border-left: 4px solid #48bb78; padding: 2rem; border-radius: 8px; box-shadow: 0 10px 25px rgba(72, 187, 120, 0.1);">
-                            <h3 style="color: #276749; font-size: 1.3rem; margin-bottom: 1.5rem;">Modelo Mindtec</h3>
-                            <ul style="font-size: 1.05rem; padding-left: 0; list-style: none;">
-                                <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"><span style="color:#48bb78; font-weight: bold;">✓</span> 4 capas simultáneas de análisis</li>
-                                <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"><span style="color:#48bb78; font-weight: bold;">✓</span> Investigación profunda + neuromarketing</li>
-                                <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"><span style="color:#48bb78; font-weight: bold;">✓</span> Executive brief + dashboard interactivo</li>
-                                <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"><span style="color:#48bb78; font-weight: bold;">✓</span> Red nacional de validación en campo</li>
-                                <li style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; font-weight: 700;"><span style="color:#48bb78; font-weight: bold;">✓</span> Mide lo que la gente hace, piensa y siente</li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div style="background-color: var(--color-secondary); color: white; padding: 2rem; border-radius: 8px;">
-                        <h3 style="color: white; font-size: 1.4rem; margin-bottom: 1rem;">El problema:</h3>
-                        <p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.8); margin-bottom: 0;">Las decisiones millonarias no pueden basarse solo en lo que la gente dice.</p>
-                        <p style="font-size: 1.2rem; font-weight: 700; color: var(--color-primary); margin-bottom: 0; margin-top: 1rem;">El comportamiento real y el subconsciente determinan resultados.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 🟦 2️⃣ MODELO HÍBRIDO MINDTEC® -->
-        <section class="premium-section-padding bg-light-gray">
-            <div class="container">
-                <div class="section-title-center" style="margin-bottom: 4rem;">
-                    <h2 class="text-navy" style="font-size: 2.5rem;">Sistema de Investigación Multicapa para Decisiones Defendibles</h2>
-                    <p class="text-gray-dark" style="font-size: 1.1rem; margin-top: 1rem;">El modelo integra 4 niveles de análisis simultáneos para blindar sus inversiones.</p>
-                </div>
-
-                <div class="premium-grid-2">
-                    <!-- Capa 1 -->
-                    <div class="premium-card-white">
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; border-bottom: 2px solid rgba(11, 43, 64, 0.06); padding-bottom: 1rem;">
-                            <h3 class="text-navy" style="font-size: 1.3rem; margin: 0;">Capa Cultural — Psicoantropología</h3>
-                            <span style="font-size: 1.8rem; font-weight: 900; color: var(--color-primary); line-height: 1;">01</span>
-                        </div>
-                        <p style="color: #64748b; margin-bottom: 1rem; font-weight: 500;">El mercado boliviano no es homogéneo. Analizamos:</p>
-                        <ul class="cap-list" style="margin-bottom: 1.5rem;">
-                            <li>Códigos culturales locales</li>
-                            <li>Narrativas sociales e imaginarios urbanos</li>
-                            <li>Arquetipos dominantes por región</li>
-                            <li>Tensiones económicas cotidianas</li>
-                            <li>Significados simbólicos reales del consumo</li>
-                        </ul>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 6px; font-size: 0.95rem; color: #475569;">
-                            Permite entender por qué una estrategia exitosa en Santa Cruz puede fracasar en La Paz.
-                        </div>
-                    </div>
-
-                    <!-- Capa 2 -->
-                    <div class="premium-card-white">
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; border-bottom: 2px solid rgba(11, 43, 64, 0.06); padding-bottom: 1rem;">
-                            <h3 class="text-navy" style="font-size: 1.3rem; margin: 0;">Capa Cognitiva — Neurociencia</h3>
-                            <span style="font-size: 1.8rem; font-weight: 900; color: var(--color-primary); line-height: 1;">02</span>
-                        </div>
-                        <p style="color: #64748b; margin-bottom: 1rem; font-weight: 500;">Mide lo que el consumidor no puede verbalizar:</p>
-                        <ul class="cap-list" style="margin-bottom: 1.5rem;">
-                            <li>Atención visual objetiva (Eye Tracking)</li>
-                            <li>Nivel de impacto emocional y agrado/desagrado</li>
-                            <li>Fricción cognitiva y nivel de esfuerzo</li>
-                            <li>Validación de empaques antes de impresión masiva</li>
-                            <li>Eficacia publicitaria en los primeros 3 segundos</li>
-                        </ul>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 6px; font-size: 0.95rem; color: #475569;">
-                            Mide la reacción biológica subconsciente, libre del filtro racional de la encuesta.
-                        </div>
-                    </div>
-
-                    <!-- Capa 3 -->
-                    <div class="premium-card-white">
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; border-bottom: 2px solid rgba(11, 43, 64, 0.06); padding-bottom: 1rem;">
-                            <h3 class="text-navy" style="font-size: 1.3rem; margin: 0;">Capa Tecnológica — IA y Data</h3>
-                            <span style="font-size: 1.8rem; font-weight: 900; color: var(--color-primary); line-height: 1;">03</span>
-                        </div>
-                        <p style="color: #64748b; margin-bottom: 1rem; font-weight: 500;">Escalabilidad analítica mediante software:</p>
-                        <ul class="cap-list" style="margin-bottom: 1.5rem;">
-                            <li>Cruce masivo de data pública, sectorial y primaria</li>
-                            <li>Social Listening estructurado de opiniones digitales</li>
-                            <li>Modelamiento matemático de elasticidad de precios</li>
-                            <li>Procesamiento predictivo del comportamiento de mercado</li>
-                            <li>Visualización ejecutiva en dashboards en tiempo real</li>
-                        </ul>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 6px; font-size: 0.95rem; color: #475569;">
-                            Simplifica volúmenes masivos de datos para reducir el tiempo directivo de análisis.
-                        </div>
-                    </div>
-
-                    <!-- Capa 4 -->
-                    <div class="premium-card-white">
-                        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; border-bottom: 2px solid rgba(11, 43, 64, 0.06); padding-bottom: 1rem;">
-                            <h3 class="text-navy" style="font-size: 1.3rem; margin: 0;">Capa Territorial — Validación</h3>
-                            <span style="font-size: 1.8rem; font-weight: 900; color: var(--color-primary); line-height: 1;">04</span>
-                        </div>
-                        <p style="color: #64748b; margin-bottom: 1rem; font-weight: 500;">Validación física en el punto de venta real:</p>
-                        <ul class="cap-list" style="margin-bottom: 1.5rem;">
-                            <li>Red nacional de más de 80 encuestadores y auditores</li>
-                            <li>Presencia en las principales áreas urbanas de Bolivia</li>
-                            <li>Relevamiento georreferenciado e historial fotográfico</li>
-                            <li>Auditoría física de precios y presencia de competencia</li>
-                            <li>Validación de canal tradicional y canal moderno</li>
-                        </ul>
-                        <div style="background: #f8fafc; padding: 1rem; border-radius: 6px; font-size: 0.95rem; color: #475569;">
-                            Constata si los acuerdos de Trade y planes comerciales se aplican en la góndola.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 🟦 3️⃣ INTEGRACIÓN TECNOLÓGICA Y BIG DATA -->
-        <section class="premium-section-padding bg-white">
-            <div class="container premium-grid-2-split" style="align-items: center;">
-                <div>
-                    <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Inteligencia Artificial y análisis de datos para decisiones rápidas</h2>
-                    <p class="text-gray-dark" style="font-size: 1.1rem; margin-bottom: 2rem;">La plataforma analítica de Mindtec optimiza su toma de decisiones gerenciales mediante:</p>
-
-                    <ul class="cap-list text-gray-dark" style="margin-bottom: 3rem;">
-                        <li>Cruce estructurado de data demográfica y hábitos de consumo local.</li>
-                        <li>Generación de modelos predictivos de aceptación de nuevos productos.</li>
-                        <li>Monitoreo de reputación de marca e insights mediante escucha social inteligente.</li>
-                        <li>Análisis de semántica digital y percepciones en tiempo real.</li>
-                    </ul>
-
-                    <div style="font-size: 1.4rem; font-weight: 700; color: var(--color-secondary);">
-                        El objetivo no es acumular datos descriptivos.<br>
-                        <span style="color: var(--color-primary);">Es reducir el riesgo y acelerar los tiempos directivos.</span>
-                    </div>
-                </div>
-                <div>
-                    <div class="premium-card-white" style="background: linear-gradient(145deg, #ffffff, #f8fafc); border: 1px solid #e2e8f0; text-align: center; padding: 4rem; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                        <div class="cap-icon" style="margin-bottom: 1.5rem;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v12M6 12h12"/><circle cx="12" cy="12" r="3" fill="var(--color-primary)"/></svg>
-                        </div>
-                        <h3 class="text-navy" style="font-size: 1.6rem; margin-bottom: 1rem;">Tecnología + Estrategia</h3>
-                        <p style="color: #64748b; margin-bottom: 0; max-width: 320px;">Traducimos el caos de grandes volúmenes de información en visualizaciones claras y hojas de ruta estratégicas.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 🟦 4️⃣ VALIDACIÓN EN CAMPO REAL -->
-        <section class="premium-section-padding bg-slate">
-            <div class="container">
-                <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem; text-align: center; display: flex; flex-direction: column; align-items: center;">
-                    <div class="cap-icon" style="margin-bottom: 1.5rem;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                    </div>
-                    <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 2rem;">No operamos únicamente desde escritorio</h2>
-
-                    <p class="text-gray-dark leading-relaxed" style="font-size: 1.2rem; margin-bottom: 2rem; max-width: 700px;">
-                        Para que la inteligencia de mercados sea valiosa, debe respaldarse en campo. La infraestructura nacional de Mindtec ofrece:
-                    </p>
-                    <ul class="cap-list" style="margin-bottom: 2.5rem; font-size: 1.1rem; text-align: left; display: inline-block; max-width: 500px;">
-                        <li>Más de 80 encuestadores y supervisores activos en Bolivia.</li>
-                        <li>Cobertura completa en el eje troncal y principales ciudades intermedias.</li>
-                        <li>Auditorías físicas de exhibición en canal moderno y tradicional.</li>
-                        <li>Levantamiento digital de datos con geolocalización satelital.</li>
-                        <li>Historiales fotográficos auditados para máxima transparencia.</li>
-                    </ul>
-                    <div style="font-weight: 700; font-size: 1.3rem; color: var(--color-secondary); margin-top: 1rem;">
-                        Toda recomendación estratégica se contrasta con la realidad del terreno.
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 🟦 5️⃣ TABLA COMPARATIVA – TRADICIONAL VS MINDTEC -->
-        <section class="premium-section-padding bg-white">
-            <div class="container">
-                <div class="section-title-center" style="max-width: 800px; margin: 0 auto 3rem auto;">
-                    <h2 class="text-navy" style="font-size: 2.2rem;">Por qué el modelo Mindtec reduce el riesgo en la toma de decisiones</h2>
-                    <p class="text-gray-dark" style="font-size: 1.1rem; margin-top: 1rem;">Comparativa de valor entre el análisis declarativo simple y el modelo híbrido científico.</p>
-                </div>
-
-                <div class="comparison-table-wrapper">
-                    <table class="comparison-table">
-                        <thead>
-                            <tr>
-                                <th>Investigación Tradicional (El riesgo de siempre)</th>
-                                <th>Modelo Híbrido Mindtec (Su seguro de decisión)</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>La gente miente o adivina:</strong> Basada en respuestas declarativas y lo que el consumidor "cree" que hará.</td>
-                                <td><strong>Respuestas inconscientes:</strong> Medición biológica de la atención visual y el impacto emocional real.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Focus Groups sesgados:</strong> Opiniones dominadas por el participante más ruidoso de la sala.</td>
-                                <td><strong>IA e Inteligencia Colectiva:</strong> Cruce de variables masivas y digital listening espontáneo sin sesgos.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Reportes teóricos de 80+ páginas:</strong> Datos descriptivos sin una hoja de ruta comercial accionable.</td>
-                                <td><strong>Executive Brief de decisión:</strong> Recomendaciones priorizadas listas para defender ante su Directorio.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Falta de matiz cultural regional:</strong> Mismos análisis para mercados tan diferentes como La Paz y Santa Cruz.</td>
-                                <td><strong>Psicoantropología local:</strong> Análisis adaptado a los códigos simbólicos de cada región del país.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Levantamiento de escritorio:</strong> Datos teóricos sin verificación de lo que ocurre en la góndola real.</td>
-                                <td><strong>Auditoría de campo auditada:</strong> Red nacional en terreno con registro fotográfico y geolocalización satelital.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-            </div>
-        </section>
-
-        <!-- 🟦 6️⃣ HORIZONTES DE EJECUCIÓN -->
-        <section class="elementor-section premium-section-padding bg-slate" style="padding: 5rem 0;">
-            <div class="container elementor-container">
-                <div class="section-title-center" style="margin-bottom: 4rem;">
-                    <h2 class="text-navy" style="font-size: 2.5rem;">Metodología adaptada al tiempo estratégico de su
-                        decisión</h2>
-                </div>
-
-                <div class="offer-grid-modern">
-                    <div class="offer-card-v2 light" style="padding: 2rem;">
-                        <h3 style="color: var(--color-primary);">Horizonte 7 Días</h3>
-                        <ul class="service-list-minimal" style="margin-top: 1.5rem;">
-                            <li>Diagnósticos tácticos rápidos</li>
-                            <li>Auditoría exprés de precios</li>
-                            <li>Monitoreo puntual</li>
-                        </ul>
-                    </div>
-                    <div class="offer-card-v2 light"
-                        style="padding: 2rem; border-top: 4px solid var(--color-secondary);">
-                        <h3 style="color: var(--color-secondary);">Horizonte 30 Días</h3>
-                        <ul class="service-list-minimal" style="margin-top: 1.5rem;">
-                            <li>Estudios de percepción</li>
-                            <li>Evaluación de experiencia de cliente</li>
-                            <li>Benchmark competitivo</li>
-                        </ul>
-                    </div>
-                    <div class="offer-card-v2 dark" style="padding: 2rem; background: var(--color-secondary); color: white;">
-                        <h3 style="color: #fff;">Horizonte 60–90 Días</h3>
-                        <ul class="service-list-minimal" style="margin-top: 1.5rem; color: #cbd5e1;">
-                            <li>Estudios nacionales</li>
-                            <li>Modelos predictivos</li>
-                            <li>Proyectos de viabilidad estructural</li>
-                        </ul>
-                    </div>
-                
-                </div>
-                
-                <div style="text-align: center; margin-top: 4rem;">
-                    <p style="font-size: 1.15rem; color: #4a5b6f; font-weight: 600; margin-bottom: 1.5rem;">
-                        ¿No está seguro qué horizonte necesita? El equipo de Mindtec le ayuda a definirlo en la sesión inicial.
-                    </p>
-                    <a href="/contacto" class="btn btn-primary" style="background-color: var(--color-secondary); color: white; padding: 12px 28px;">Solicitar evaluación de horizonte →</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- 🟦 7️⃣ ARQUITECTURA DE DECISIÓN -->
-        <section class="elementor-section premium-section-padding bg-white" style="padding: 5rem 0;">
-            <div class="container elementor-container text-center" style="max-width: 800px;">
-                <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 2rem;">De dato a decisión ejecutiva</h2>
-                <p class="text-gray-dark" style="font-size: 1.2rem; margin-bottom: 2rem;">La metodología no termina en
-                    análisis.</p>
-
                 <div
-                    style="text-align: left; background: #f8fafc; padding: 3rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #e2e8f0;">
-                    <h3 style="color: #0f172a; margin-bottom: 1.5rem; font-size: 1.4rem;">Entregamos:</h3>
-                    <ul class="service-list-minimal text-gray-dark" style="font-size: 1.1rem;">
-                        <li>Executive brief para directorio</li>
-                        <li>Escenarios comparativos</li>
-                        <li>Matrices de riesgo</li>
-                        <li>Recomendaciones priorizadas</li>
-                        <li>Dashboard interactivo cuando aplica</li>
-                    </ul>
-                </div>
+                    class="premium-card-white"
+                    style="max-width: 900px; margin: 0 auto; padding: 4rem;"
+                >
+                    <h2
+                        class="text-navy"
+                        style="font-size: 2.5rem; margin-bottom: 2rem;"
+                    >
+                        La investigación tradicional tiene brechas críticas
+                    </h2>
 
-                <div style="font-size: 1.4rem; font-weight: 700; color: var(--color-primary);">
-                    La información se transforma en dirección.
-                </div>
-            </div>
-        </section>
+                    <div
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3.5rem;"
+                    >
+                        <!-- Tradicional -->
+                        <div
+                            style="background-color: #fff5f5; border-left: 4px solid #fc8181; padding: 2rem; border-radius: 8px;"
+                        >
+                            <h3
+                                style="color: #c53030; font-size: 1.3rem; margin-bottom: 1.5rem;"
+                            >
+                                Método Tradicional
+                            </h3>
+                            <ul
+                                style="font-size: 1.05rem; padding-left: 0; list-style: none;"
+                            >
+                                <li
+                                    style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"
+                                >
+                                    <span
+                                        style="color:#fc8181; font-weight: bold;"
+                                        >✕</span
+                                    > Encuesta declarativa aislada
+                                </li>
+                                <li
+                                    style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"
+                                >
+                                    <span
+                                        style="color:#fc8181; font-weight: bold;"
+                                        >✕</span
+                                    > Focus groups genéricos
+                                </li>
+                                <li
+                                    style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"
+                                >
+                                    <span
+                                        style="color:#fc8181; font-weight: bold;"
+                                        >✕</span
+                                    > Reportes descriptivos de 80+ páginas
+                                </li>
+                                <li
+                                    style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"
+                                >
+                                    <span
+                                        style="color:#fc8181; font-weight: bold;"
+                                        >✕</span
+                                    > Datos sin validación territorial
+                                </li>
+                                <li
+                                    style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"
+                                >
+                                    <span
+                                        style="color:#fc8181; font-weight: bold;"
+                                        >✕</span
+                                    > Solo mide lo que la gente dice
+                                </li>
+                            </ul>
+                        </div>
 
-        <!-- 🟦 8️⃣ IMPACTO EN LA ORGANIZACIÓN -->
-        <section class="elementor-section premium-section-padding bg-slate" style="padding: 5rem 0;">
-            <div class="container elementor-container">
-                <div class="section-title-center" style="margin-bottom: 4rem;">
-                    <h2 class="text-navy" style="font-size: 2.5rem;">Beneficios estratégicos del modelo híbrido</h2>
-                </div>
+                        <!-- Mindtec -->
+                        <div
+                            style="background-color: #f0fff4; border-left: 4px solid #48bb78; padding: 2rem; border-radius: 8px; box-shadow: 0 10px 25px rgba(72, 187, 120, 0.1);"
+                        >
+                            <h3
+                                style="color: #276749; font-size: 1.3rem; margin-bottom: 1.5rem;"
+                            >
+                                Modelo Mindtec
+                            </h3>
+                            <ul
+                                style="font-size: 1.05rem; padding-left: 0; list-style: none;"
+                            >
+                                <li
+                                    style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"
+                                >
+                                    <span
+                                        style="color:#48bb78; font-weight: bold;"
+                                        >✓</span
+                                    > 4 capas simultáneas de análisis
+                                </li>
+                                <li
+                                    style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"
+                                >
+                                    <span
+                                        style="color:#48bb78; font-weight: bold;"
+                                        >✓</span
+                                    > Investigación profunda + neuromarketing
+                                </li>
+                                <li
+                                    style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"
+                                >
+                                    <span
+                                        style="color:#48bb78; font-weight: bold;"
+                                        >✓</span
+                                    > Executive brief + dashboard interactivo
+                                </li>
+                                <li
+                                    style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"
+                                >
+                                    <span
+                                        style="color:#48bb78; font-weight: bold;"
+                                        >✓</span
+                                    > Red nacional de validación en campo
+                                </li>
+                                <li
+                                    style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; font-weight: 700;"
+                                >
+                                    <span
+                                        style="color:#48bb78; font-weight: bold;"
+                                        >✓</span
+                                    > Mide lo que la gente hace, piensa y siente
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
 
-                <div class="premium-grid-5">
-                    <div class="premium-card-white"
-                        style="text-align: center; padding: 2rem 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                        <h3 style="margin: 0; font-weight: 600; font-size: 1.1rem; color: #0f172a;">Reducción de riesgo
-                            financiero</h4>
-                    </div>
-                    <div class="premium-card-white"
-                        style="text-align: center; padding: 2rem 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                        <h3 style="margin: 0; font-weight: 600; font-size: 1.1rem; color: #0f172a;">Ahorro de tiempo
-                            directivo</h4>
-                    </div>
-                    <div class="premium-card-white"
-                        style="text-align: center; padding: 2rem 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                        <h3 style="margin: 0; font-weight: 600; font-size: 1.1rem; color: #0f172a;">Claridad estructural
-                        </h4>
-                    </div>
-                    <div class="premium-card-white"
-                        style="text-align: center; padding: 2rem 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                        <h3 style="margin: 0; font-weight: 600; font-size: 1.1rem; color: #0f172a;">Disminución de
-                            improvisación</h4>
-                    </div>
-                    <div class="premium-card-white"
-                        style="text-align: center; padding: 2rem 1.5rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                        <h3 style="margin: 0; font-weight: 600; font-size: 1.1rem; color: #0f172a;">Decisiones
-                            defendibles ante inversionistas</h4>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 🟦 9️⃣ FAQ (SEO + Autoridad) -->
-        <section class="elementor-section premium-section-padding bg-white" style="padding: 5rem 0;">
-            <div class="container elementor-container" style="max-width: 800px;">
-                <h2 class="text-navy text-center" style="font-size: 2.5rem; margin-bottom: 3rem;">Preguntas Frecuentes
-                </h2>
-
-                <div class="faq-list">
-                    <div class="faq-item">
-                        <h3>¿Cuál es la diferencia entre investigación cuantitativa y cualitativa?</h3>
-                        <p>La cuantitativa mide volumen, frecuencia y tendencia a través de muestras estadísticamente representativas. La cualitativa explora motivaciones profundas, barreras emocionales y códigos culturales que las encuestas no capturan. En Mindtec integramos ambas en un modelo híbrido que también incorpora neuromarketing, asegurando que la decisión no dependa de una sola perspectiva.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>¿Qué aporta el neuromarketing?</h3>
-                        <p>Permite medir respuestas de atención y emoción que el consumidor no puede verbalizar. Con herramientas como eye tracking, EEG y facial coding, detectamos qué elementos de una pieza publicitaria, packaging o punto de venta realmente capturan atención y generan aceptación — antes de invertir en producción o pauta masiva.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>¿Cómo integran IA en la investigación de mercados?</h3>
-                        <p>Utilizamos inteligencia artificial para análisis de grandes volúmenes de texto abierto, detección de patrones en datos de percepción, modelos predictivos de comportamiento y generación automatizada de dashboards. Esto reduce tiempos de análisis de semanas a días, sin sacrificar profundidad interpretativa.</p>
-                    </div>
-                    <div class="faq-item">
-                        <h3>¿Pueden ejecutar estudios a nivel nacional?</h3>
-                        <p>Sí. Mindtec cuenta con una red de más de 80 encuestadores activos con cobertura en La Paz, El Alto, Santa Cruz, Cochabamba y ciudades intermedias. La infraestructura permite ejecutar levantamientos simultáneos en múltiples ciudades con supervisión centralizada y control de calidad en tiempo real.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 🟦 CTA FINAL -->
-        <section class="cta-section-modern elementor-section" style="padding: 6rem 0;">
-            <div class="container elementor-container glass-container"
-                style="max-width: 900px; margin: 0 auto; text-align: center;">
-                <div class="cta-content-v2">
-                    <h2 style="font-size: 3rem; line-height: 1.25; margin-bottom: 1.5rem;">Si su decisión requiere
-                        certeza, la metodología de Mindtec reduce el margen de error.</h2>
-                    <div class="cta-actions"
-                        style="justify-content: center; flex-direction: column; align-items: center; margin-top: 2.5rem;">
-                        <a href="/contacto" class="btn btn-primary lg"
-                            style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar sesión ejecutiva confidencial</a>
+                    <div
+                        style="background-color: var(--color-secondary); color: white; padding: 2rem; border-radius: 8px;"
+                    >
+                        <h3
+                            style="color: white; font-size: 1.4rem; margin-bottom: 1rem;"
+                        >
+                            El problema:
+                        </h3>
                         <p
-                            style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">
-                            Primera sesión estratégica sin compromiso
+                            style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.8); margin-bottom: 0;"
+                        >
+                            Las decisiones millonarias no pueden basarse solo en
+                            lo que la gente dice.
+                        </p>
+                        <p
+                            style="font-size: 1.2rem; font-weight: 700; color: var(--color-primary); margin-bottom: 0; margin-top: 1rem;"
+                        >
+                            El comportamiento real y el subconsciente determinan
+                            resultados.
                         </p>
                     </div>
                 </div>
             </div>
         </section>
+        </StackedSections>
 
+        <!-- 🟦 MODELO HÍBRIDO MINDTEC® — 4 capas (MorphScrollStory) -->
+        <MorphScrollStory
+            scrub={0.9}
+            sceneDistance={1.15}
+            cardColor="#05091f"
+            cover={{
+                background:
+                    "/imagenes-mindtec/generated/investigacion-profunda-hero.png",
+                eyebrow: "Modelo Mindtec",
+                title: "Decisiones defendibles, capa por capa",
+                description:
+                    "Cuatro lecturas conectadas convierten señales dispersas en una decisión que se puede sostener.",
+                titleSize: "clamp(2.7rem, 5.6vw, 5.9rem)",
+                titleMaxWidth: "14ch",
+            }}
+            intro={{
+                background:
+                    "/imagenes-mindtec/generated/bolivia-inteligencia-territorial.webp",
+                number: "00",
+                eyebrow: "4 capas simultáneas",
+                title: "Mide lo que la gente hace, piensa y siente",
+                description:
+                    "Investigación profunda + neuromarketing + executive brief + dashboard interactivo, respaldados por una red nacional de validación en campo.",
+            }}
+            items={[
+                {
+                    background:
+                        "/imagenes-mindtec/generated/metodologia-multicapa/capa-cultural-psicoantropologia.png",
+                    alt: "Consumidora boliviana eligiendo productos en un mercado local",
+                    eyebrow: "Capa 01",
+                    title: "Capa Cultural — Psicoantropología",
+                    description:
+                        "El mercado boliviano no es homogéneo. Analizamos:",
+                    list: [
+                        "Códigos culturales locales",
+                        "Narrativas sociales e imaginarios urbanos",
+                        "Arquetipos dominantes por región",
+                        "Tensiones económicas cotidianas",
+                        "Significados simbólicos reales del consumo",
+                    ],
+                    note: "Permite entender por qué una estrategia exitosa en Santa Cruz puede fracasar en La Paz.",
+                },
+                {
+                    background:
+                        "/imagenes-mindtec/generated/metodologia-multicapa/capa-cognitiva-neurociencia.png",
+                    alt: "Participante en una sesión de investigación con eye tracking",
+                    eyebrow: "Capa 02",
+                    title: "Capa Cognitiva — Neurociencia",
+                    description:
+                        "Mide lo que el consumidor no puede verbalizar:",
+                    list: [
+                        "Atención visual objetiva (Eye Tracking)",
+                        "Nivel de impacto emocional y agrado/desagrado",
+                        "Fricción cognitiva y nivel de esfuerzo",
+                        "Validación de empaques antes de impresión masiva",
+                        "Eficacia publicitaria en los primeros 3 segundos",
+                    ],
+                    note: "Mide la reacción biológica subconsciente, libre del filtro racional de la encuesta.",
+                },
+                {
+                    background:
+                        "/imagenes-mindtec/generated/metodologia-multicapa/capa-tecnologica-data.png",
+                    alt: "Analista revisando señales de mercado en visualizaciones de datos",
+                    eyebrow: "Capa 03",
+                    title: "Capa Tecnológica — IA y Data",
+                    description: "Escalabilidad analítica mediante software:",
+                    list: [
+                        "Cruce masivo de data pública, sectorial y primaria",
+                        "Social Listening estructurado de opiniones digitales",
+                        "Modelamiento matemático de elasticidad de precios",
+                        "Procesamiento predictivo del comportamiento de mercado",
+                        "Visualización ejecutiva en dashboards en tiempo real",
+                    ],
+                    note: "Simplifica volúmenes masivos de datos para reducir el tiempo directivo de análisis.",
+                },
+                {
+                    background:
+                        "/imagenes-mindtec/generated/metodologia-multicapa/capa-territorial-validacion.png",
+                    alt: "Auditora documentando productos y precios en una tienda boliviana",
+                    eyebrow: "Capa 04",
+                    title: "Capa Territorial — Validación",
+                    description: "Validación física en el punto de venta real:",
+                    list: [
+                        "Red nacional de más de 80 encuestadores y auditores",
+                        "Presencia en las principales áreas urbanas de Bolivia",
+                        "Relevamiento georreferenciado e historial fotográfico",
+                        "Auditoría física de precios y presencia de competencia",
+                        "Validación de canal tradicional y canal moderno",
+                    ],
+                    note: "Constata si los acuerdos de Trade y planes comerciales se aplican en la góndola.",
+                },
+            ]}
+        />
+
+        <!-- 🟦 BLOQUE B — Integración tecnológica, validación en campo, tabla comparativa -->
+        <StackedSections>
+            <section
+                class="premium-section-padding bg-white"
+                data-stack-section
+            >
+                <div
+                    class="container premium-grid-2-split"
+                    style="align-items: center;"
+                >
+                    <div>
+                        <h2
+                            class="text-navy"
+                            style="font-size: 2.5rem; margin-bottom: 1.5rem;"
+                        >
+                            Inteligencia Artificial y análisis de datos para
+                            decisiones rápidas
+                        </h2>
+                        <p
+                            class="text-gray-dark"
+                            style="font-size: 1.1rem; margin-bottom: 2rem;"
+                        >
+                            La plataforma analítica de Mindtec optimiza su toma
+                            de decisiones gerenciales mediante:
+                        </p>
+
+                        <ul
+                            class="cap-list text-gray-dark"
+                            style="margin-bottom: 3rem;"
+                        >
+                            <li>
+                                Cruce estructurado de data demográfica y hábitos
+                                de consumo local.
+                            </li>
+                            <li>
+                                Generación de modelos predictivos de aceptación
+                                de nuevos productos.
+                            </li>
+                            <li>
+                                Monitoreo de reputación de marca e insights
+                                mediante escucha social inteligente.
+                            </li>
+                            <li>
+                                Análisis de semántica digital y percepciones en
+                                tiempo real.
+                            </li>
+                        </ul>
+
+                        <div
+                            style="font-size: 1.4rem; font-weight: 700; color: var(--color-secondary);"
+                        >
+                            El objetivo no es acumular datos descriptivos.<br />
+                            <span style="color: var(--color-primary);"
+                                >Es reducir el riesgo y acelerar los tiempos
+                                directivos.</span
+                            >
+                        </div>
+                    </div>
+                    <div>
+                        <div
+                            class="premium-card-white"
+                            style="background: linear-gradient(145deg, #ffffff, #f8fafc); border: 1px solid #e2e8f0; text-align: center; padding: 4rem; display: flex; flex-direction: column; align-items: center; justify-content: center;"
+                        >
+                            <div
+                                class="cap-icon"
+                                style="margin-bottom: 1.5rem;"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="48"
+                                    height="48"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    ><path
+                                        d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
+                                    ></path><path d="M12 6v12M6 12h12"
+                                    ></path><circle
+                                        cx="12"
+                                        cy="12"
+                                        r="3"
+                                        fill="var(--color-primary)"
+                                    ></circle></svg
+                                >
+                            </div>
+                            <h3
+                                class="text-navy"
+                                style="font-size: 1.6rem; margin-bottom: 1rem;"
+                            >
+                                Tecnología + Estrategia
+                            </h3>
+                            <p
+                                style="color: #64748b; margin-bottom: 0; max-width: 320px;"
+                            >
+                                Traducimos el caos de grandes volúmenes de
+                                información en visualizaciones claras y hojas de
+                                ruta estratégicas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section
+                class="premium-section-padding bg-slate"
+                data-stack-section
+            >
+                <div class="container">
+                    <div
+                        class="premium-card-white"
+                        style="max-width: 900px; margin: 0 auto; padding: 4rem; text-align: center; display: flex; flex-direction: column; align-items: center;"
+                    >
+                        <div class="cap-icon" style="margin-bottom: 1.5rem;">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="48"
+                                height="48"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                ><path
+                                    d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                                ></path><circle cx="12" cy="10" r="3"
+                                ></circle></svg
+                            >
+                        </div>
+                        <h2
+                            class="text-navy"
+                            style="font-size: 2.5rem; margin-bottom: 2rem;"
+                        >
+                            No operamos únicamente desde escritorio
+                        </h2>
+
+                        <p
+                            class="text-gray-dark leading-relaxed"
+                            style="font-size: 1.2rem; margin-bottom: 2rem; max-width: 700px;"
+                        >
+                            Para que la inteligencia de mercados sea valiosa,
+                            debe respaldarse en campo. La infraestructura
+                            nacional de Mindtec ofrece:
+                        </p>
+                        <ul
+                            class="cap-list"
+                            style="margin-bottom: 2.5rem; font-size: 1.1rem; text-align: left; display: inline-block; max-width: 500px;"
+                        >
+                            <li>
+                                Más de 80 encuestadores y supervisores activos
+                                en Bolivia.
+                            </li>
+                            <li>
+                                Cobertura completa en el eje troncal y
+                                principales ciudades intermedias.
+                            </li>
+                            <li>
+                                Auditorías físicas de exhibición en canal
+                                moderno y tradicional.
+                            </li>
+                            <li>
+                                Levantamiento digital de datos con
+                                geolocalización satelital.
+                            </li>
+                            <li>
+                                Historiales fotográficos auditados para máxima
+                                transparencia.
+                            </li>
+                        </ul>
+                        <div
+                            style="font-weight: 700; font-size: 1.3rem; color: var(--color-secondary); margin-top: 1rem;"
+                        >
+                            Toda recomendación estratégica se contrasta con la
+                            realidad del terreno.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section
+                class="premium-section-padding bg-white"
+                data-stack-section
+            >
+                <div class="container">
+                    <div
+                        class="section-title-center"
+                        style="max-width: 800px; margin: 0 auto 3rem auto;"
+                    >
+                        <h2 class="text-navy" style="font-size: 2.2rem;">
+                            Por qué el modelo Mindtec reduce el riesgo en la
+                            toma de decisiones
+                        </h2>
+                        <p
+                            class="text-gray-dark"
+                            style="font-size: 1.1rem; margin-top: 1rem;"
+                        >
+                            Comparativa de valor entre el análisis declarativo
+                            simple y el modelo híbrido científico.
+                        </p>
+                    </div>
+
+                    <ComparisonRows
+                        columnLabels={{ left: 'Investigación Tradicional (El riesgo de siempre)', right: 'Modelo Híbrido Mindtec (Su seguro de decisión)' }}
+                        rows={[
+                            { before: 'La gente miente o adivina: Basada en respuestas declarativas y lo que el consumidor "cree" que hará.', after: 'Respuestas inconscientes: Medición biológica de la atención visual y el impacto emocional real.' },
+                            { before: 'Focus Groups sesgados: Opiniones dominadas por el participante más ruidoso de la sala.', after: 'IA e Inteligencia Colectiva: Cruce de variables masivas y digital listening espontáneo sin sesgos.' },
+                            { before: 'Reportes teóricos de 80+ páginas: Datos descriptivos sin una hoja de ruta comercial accionable.', after: 'Executive Brief de decisión: Recomendaciones priorizadas listas para defender ante su Directorio.' },
+                            { before: 'Falta de matiz cultural regional: Mismos análisis para mercados tan diferentes como La Paz y Santa Cruz.', after: 'Psicoantropología local: Análisis adaptado a los códigos simbólicos de cada región del país.' },
+                            { before: 'Levantamiento de escritorio: Datos teóricos sin verificación de lo que ocurre en la góndola real.', after: 'Auditoría de campo auditada: Red nacional en terreno con registro fotográfico y geolocalización satelital.' },
+                        ]}
+                    />
+                </div>
+            </section>
+        </StackedSections>
+
+        <!-- 🟦 HORIZONTES DE EJECUCIÓN (ScrollStoryLeft) -->
+        <ScrollStoryLeft
+            scrub={0.9}
+            sceneDistance={1.1}
+            cover={{
+                background:
+                    "/imagenes-mindtec/generated/metodologia-horizontes/cover-horizontes.webp",
+                eyebrow: "Horizontes de ejecución",
+                title: "Metodología adaptada al tiempo estratégico de su decisión",
+                description:
+                    "Cada decisión tiene un ritmo distinto. Adaptamos el alcance metodológico al tiempo real que su equipo directivo tiene disponible.",
+            }}
+            intro={{
+                background:
+                    "/imagenes-mindtec/generated/metodologia-horizontes/intro-horizontes.webp",
+                number: "00",
+                eyebrow: "¿Cuál es su horizonte?",
+                title: "El equipo de Mindtec le ayuda a definirlo en la sesión inicial",
+                description:
+                    "¿No está seguro qué horizonte necesita? Recorra los tres niveles de profundidad disponibles.",
+            }}
+            items={[
+                {
+                    background:
+                        "/imagenes-mindtec/generated/servicios-encuestas-retail.webp",
+                    eyebrow: "Corto plazo",
+                    title: "Horizonte 7 Días",
+                    description:
+                        "Respuestas tácticas inmediatas para decisiones urgentes:",
+                    list: [
+                        "Diagnósticos tácticos rápidos",
+                        "Auditoría exprés de precios",
+                        "Monitoreo puntual",
+                    ],
+                },
+                {
+                    background:
+                        "/imagenes-mindtec/generated/focus-group-profundo.webp",
+                    eyebrow: "Mediano plazo",
+                    title: "Horizonte 30 Días",
+                    description:
+                        "Profundidad suficiente para decisiones de posicionamiento:",
+                    list: [
+                        "Estudios de percepción",
+                        "Evaluación de experiencia de cliente",
+                        "Benchmark competitivo",
+                    ],
+                },
+                {
+                    background:
+                        "/imagenes-mindtec/generated/bolivia-inteligencia-territorial.webp",
+                    eyebrow: "Largo plazo",
+                    title: "Horizonte 60–90 Días",
+                    description:
+                        "Alcance nacional para decisiones estructurales:",
+                    list: [
+                        "Estudios nacionales",
+                        "Modelos predictivos",
+                        "Proyectos de viabilidad estructural",
+                    ],
+                },
+            ]}
+        />
+
+        <!-- 🟦 BLOQUE C — Arquitectura de decisión, impacto, FAQ -->
+        <StackedSections>
+        <section
+            class="premium-section-padding bg-slate"
+            style="padding: 3rem 0;"
+            data-stack-section
+        >
+            <div class="container" style="text-align: center;">
+                <p
+                    style="font-size: 1.15rem; color: #4a5b6f; font-weight: 600; margin-bottom: 1.5rem;"
+                >
+                    ¿No está seguro qué horizonte necesita? El equipo de Mindtec
+                    le ayuda a definirlo en la sesión inicial.
+                </p>
+                <a
+                    href="/contacto"
+                    class="btn btn-primary"
+                    style="background-color: var(--color-secondary); color: white; padding: 12px 28px;"
+                    >Solicitar evaluación de horizonte →</a
+                >
+            </div>
+        </section>
+
+            <section
+                class="elementor-section premium-section-padding bg-white"
+                data-stack-section
+            >
+                <div
+                    class="container elementor-container text-center"
+                    style="max-width: 800px;"
+                >
+                    <h2
+                        class="text-navy"
+                        style="font-size: 2.5rem; margin-bottom: 2rem;"
+                    >
+                        De dato a decisión ejecutiva
+                    </h2>
+                    <p
+                        class="text-gray-dark"
+                        style="font-size: 1.2rem; margin-bottom: 2rem;"
+                    >
+                        La metodología no termina en análisis.
+                    </p>
+
+                    <div
+                        style="text-align: left; background: #f8fafc; padding: 3rem; border-radius: 12px; margin-bottom: 2rem; border: 1px solid #e2e8f0;"
+                    >
+                        <h3
+                            style="color: #0f172a; margin-bottom: 1.5rem; font-size: 1.4rem;"
+                        >
+                            Entregamos:
+                        </h3>
+                        <ul
+                            class="service-list-minimal text-gray-dark"
+                            style="font-size: 1.1rem;"
+                        >
+                            <li>Executive brief para directorio</li>
+                            <li>Escenarios comparativos</li>
+                            <li>Matrices de riesgo</li>
+                            <li>Recomendaciones priorizadas</li>
+                            <li>Dashboard interactivo cuando aplica</li>
+                        </ul>
+                    </div>
+
+                    <div
+                        style="font-size: 1.4rem; font-weight: 700; color: var(--color-primary);"
+                    >
+                        La información se transforma en dirección.
+                    </div>
+                </div>
+            </section>
+
+            <section
+                class="elementor-section premium-section-padding bg-slate"
+                data-stack-section
+            >
+                <div class="container elementor-container">
+                    <div
+                        class="section-title-center"
+                        style="margin-bottom: 4rem;"
+                    >
+                        <h2 class="text-navy" style="font-size: 2.5rem;">
+                            Beneficios estratégicos del modelo híbrido
+                        </h2>
+                    </div>
+
+                    <AreaPanelCards items={strategicBenefits} />
+                </div>
+            </section>
+
+            <div data-stack-section>
+                <FaqSplit title="Preguntas Frecuentes" items={faqItems} />
+            </div>
+
+            <!-- 🟦 CTA FINAL -->
+            <section
+                class="cta-section-modern cta-section-fullwidth elementor-section"
+                style="padding: 6rem 0;"
+                data-stack-section
+            >
+                <div
+                    class="container elementor-container glass-container"
+                    style="max-width: 900px; margin: 0 auto; text-align: center;"
+                >
+                    <div class="cta-content-v2">
+                        <h2
+                            style="font-size: 3rem; line-height: 1.25; margin-bottom: 1.5rem;"
+                        >
+                            Si su decisión requiere certeza, la metodología de
+                            Mindtec reduce el margen de error.
+                        </h2>
+                        <div
+                            class="cta-actions"
+                            style="justify-content: center; flex-direction: column; align-items: center; margin-top: 2.5rem;"
+                        >
+                            <a
+                                href="/contacto"
+                                class="btn btn-primary lg"
+                                style="font-size: 1.1rem; padding: 1rem 2.5rem;"
+                                >Agendar sesión ejecutiva confidencial</a
+                            >
+                            <p
+                                style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;"
+                            >
+                                Primera sesión estratégica sin compromiso
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </StackedSections>
         <!-- BREADCRUMB -->
         <nav aria-label="Breadcrumb" class="breadcrumb-bottom">
-          <div class="container">
-            <ol>
-              <li><a href="/" style="color: rgba(255,255,255,0.6); text-decoration: none;">Inicio</a></li>
-              <li style="color: rgba(255,255,255,0.3);">›</li>
-              <li aria-current="page" style="color: #fff; font-weight: 600;">Metodología</li>
-            </ol>
-          </div>
+            <div class="container">
+                <ol>
+                    <li>
+                        <a
+                            href="/"
+                            style="color: rgba(255,255,255,0.6); text-decoration: none;"
+                            >Inicio</a
+                        >
+                    </li>
+                    <li style="color: rgba(255,255,255,0.3);">›</li>
+                    <li
+                        aria-current="page"
+                        style="color: #fff; font-weight: 600;"
+                    >
+                        Metodología
+                    </li>
+                </ol>
+            </div>
         </nav>
     </main>
+
+    <script>
+        import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+        /*
+         * Esta página combina MorphScrollStory y ScrollStoryLeft,
+         * uno detrás de otro. Cada componente crea
+         * sus propios ScrollTrigger y hace su propio refresh() en
+         * cuanto termina de inicializarse, sin esperar a que los
+         * demás componentes de la página también hayan reservado su
+         * espacio de pin. Eso hace que una animación calcule su punto
+         * de inicio antes de que la anterior haya terminado de reservar
+         * el alto de su propia animación, y ambas animaciones "chocan" y se
+         * muestran a la vez.
+         *
+         * Un refresh() final, después de que todos los scripts de la
+         * página ya corrieron (siguiente frame tras "load"), vuelve a
+         * calcular la posición de inicio/fin de TODOS los triggers ya
+         * creados con el layout definitivo del documento.
+         */
+        function finalizeScrollTriggers() {
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    ScrollTrigger.refresh();
+                });
+            });
+        }
+
+        if (document.readyState === "complete") {
+            finalizeScrollTriggers();
+        } else {
+            window.addEventListener("load", finalizeScrollTriggers, {
+                once: true,
+            });
+        }
+
+        document.addEventListener("astro:page-load", finalizeScrollTriggers);
+    </script>
+
+    <style>
+        .cta-section-fullwidth {
+            background: linear-gradient(135deg, var(--color-primary), #d94e10);
+        }
+
+        .cta-section-fullwidth .cta-content-v2 {
+            background: none;
+            box-shadow: none;
+            border-radius: 0;
+            max-width: 100%;
+        }
+    </style>
 </Layout>

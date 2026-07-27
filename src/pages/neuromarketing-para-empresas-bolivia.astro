@@ -1,9 +1,108 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
+import Layout from "../layouts/Layout.astro";
+import ServiceVisualSuite from "../components/sections/ServiceVisualSuite.astro";
+import FaqSplit from "../components/faq/FaqSplit.astro";
+import HoverStepCards from "../components/cards/HoverStepCards.astro";
+import ExpandingImageCarousel from "../components/cards/ExpandingImageCarousel.astro";
+import StackedSections from "../components/scroll/StackedSections.astro";
+import AreaPanelCards from "../components/cards/AreaPanelCards.astro";
+
+const problemScenarios = [
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="96"></circle><path d="M128 72v56l40 24"></path></svg>`,
+    title: 'Lanzamientos basados en "me gusta"',
+    description:
+      'Aprobó un empaque porque focus groups dijeron "me gusta". En góndola, pasa desapercibido porque el ojo humano no procesa el diseño racionalizado.',
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="88"></circle><circle cx="128" cy="128" r="48"></circle><circle cx="128" cy="128" r="8"></circle></svg>`,
+    title: "Campañas aprobadas por comité",
+    description:
+      "El directorio aprobó el spot por consenso. Nadie midió si las escenas realmente activan el sistema límbico o si el cerebro las filtra como ruido.",
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M116 156a40 40 0 1 1 40-40"></path><path d="M172 172l40 40"></path><path d="M148 108h-4v16"></path></svg>`,
+    title: "Conversión digital sin datos biométricos",
+    description:
+      'La tasa de conversión de su pasarela es baja. El equipo de UX dice "funciona bien" pero nadie midió la fricción cognitiva real del usuario.',
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M96 32h64l16 24H80z"></path><rect x="56" y="56" width="144" height="168" rx="8"></rect><path d="M92 112h72M92 144h72M92 176h40"></path></svg>`,
+    title: "Presupuesto millonario en suposiciones",
+    description:
+      "Invierte millones en pauta y distribución basado en opiniones declaradas que el cerebro consciente racionaliza después de la decisión inconsciente.",
+  },
+];
+
+const labCards = [
+  {
+    title: "Electroencefalografía (EEG)",
+    subtitle: "Ondas cerebrales",
+    description:
+      "Medición de las ondas cerebrales en tiempo real para capturar la carga cognitiva (fricción o claridad), el nivel de agrado y la retención emocional del estímulo.",
+    image: "/laboratorio/IMG 10.jpg",
+    alt: "Electroencefalografía (EEG) en laboratorio MindTEC",
+  },
+  {
+    title: "Eye Tracking de Precisión",
+    subtitle: "Mapeo visual",
+    description:
+      "Mapeo visual del recorrido exacto que hace el ojo del consumidor en un empaque, anaquel o pantalla. Mide velocidad de fijación y zonas calientes.",
+    image: "/laboratorio/re-2.jpg",
+    alt: "Eye Tracking en laboratorio MindTEC",
+  },
+  {
+    title: "Mapas de Atención y Calor",
+    subtitle: "Heatmaps biométricos",
+    description:
+      "Visualización directa y cuantitativa de las áreas que concentran el interés del cliente y las zonas que pasan desapercibidas (puntos ciegos).",
+    image: "/imagenes-mindtec/heatmap.jpg",
+    video:
+      "https://res.cloudinary.com/dbrkedvyp/video/upload/v1785180865/maindtec5_e1q8nc.webm",
+    alt: "Mapas de calor biométricos MindTEC",
+  },
+];
+
+const sectorCards = [
+  {
+    title: "Consumo Masivo y Alimentos",
+    description:
+      "Evaluamos si los colores de su empaque o la tipografía compiten con éxito en góndolas saturadas.",
+    services: ["Resultado: Reducción de merma por diseño ineficaz."],
+  },
+  {
+    title: "Banca y Aplicaciones Móviles",
+    description:
+      "Mapeamos los cuellos de botella y picos de estrés cognitivo en flujos de transferencia o pasarelas.",
+    services: ["Resultado: Incremento inmediato de la tasa de conversión."],
+  },
+  {
+    title: "Agencias de Publicidad",
+    description:
+      "Auditamos la curva de atención del spot de TV, identificando el segundo exacto donde se pierde el gancho.",
+    services: [
+      "Resultado: Optimización de presupuestos de pauta digital y TV.",
+    ],
+  },
+];
+
+const faqItems = [
+  {
+    question:
+      "¿El neuromarketing es un gasto o una inversión de reducción de riesgo?",
+    answer:
+      "Es la herramienta de reducción de riesgo más potente que existe. Validar un empaque o campaña con neuromarketing cuesta menos del 3% del presupuesto de pauta o impresión. Si su diseño no contrasta o confunde al consumidor, lo sabrá en el laboratorio antes de gastar miles de dólares en distribución.",
+  },
+  {
+    question: "¿Qué tecnologías biométricas reales utiliza MindTEC?",
+    answer:
+      "Contamos con equipos de grado científico en nuestro laboratorio: Electroencefalografía (EEG) móvil de alta resolución, Eye Tracking (fijo y móvil en lentes para PDV), codificación de microexpresiones faciales (Facial Coding) y sensores de respuesta galvánica de la piel (GSR).",
+  },
+];
 
 const title = "Neuromarketing para Empresas en Bolivia | MindTEC";
-const description = "Neuromarketing científico para empresas en Bolivia. Valide campañas, empaques y conversión digital midiendo la respuesta biológica inconsciente.";
+const description =
+  "Neuromarketing científico para empresas en Bolivia. Valide campañas, empaques y conversión digital midiendo la respuesta biológica inconsciente.";
 ---
 
 <Layout
@@ -13,269 +112,339 @@ const description = "Neuromarketing científico para empresas en Bolivia. Valide
   canonicalUrl="/neuromarketing-para-empresas-bolivia/"
 >
   <script type="application/ld+json" slot="head">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Service",
-        "@id": "https://www.mindtecbolivia.com/neuromarketing-para-empresas-bolivia",
-        "name": "Neuromarketing para Empresas en Bolivia — Laboratorio MindTEC",
-        "description": "Estudios científicos de neuromarketing con EEG, Eye Tracking, Facial Coding y GSR para optimizar campañas y empaques en Bolivia.",
-        "provider": {
-          "@type": "Organization",
-          "name": "MindTEC Bolivia",
-          "url": "https://www.mindtecbolivia.com"
-        },
-        "areaServed": {"@type": "Country", "name": "Bolivia"},
-        "serviceType": "Neuromarketing / Biometría Aplicada a Negocios",
-        "url": "https://www.mindtecbolivia.com/neuromarketing-para-empresas-bolivia"
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "¿El neuromarketing es un gasto o una inversión de reducción de riesgo?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Es la herramienta de reducción de riesgo más potente que existe. Validar un empaque o campaña con neuromarketing cuesta menos del 3% del presupuesto de pauta o impresión. Si su diseño no contrasta o confunde al consumidor, lo sabrá en el laboratorio antes de gastar miles de dólares en distribución."
-            }
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Service",
+          "@id": "https://www.mindtecbolivia.com/neuromarketing-para-empresas-bolivia",
+          "name": "Neuromarketing para Empresas en Bolivia — Laboratorio MindTEC",
+          "description": "Estudios científicos de neuromarketing con EEG, Eye Tracking, Facial Coding y GSR para optimizar campañas y empaques en Bolivia.",
+          "provider": {
+            "@type": "Organization",
+            "name": "MindTEC Bolivia",
+            "url": "https://www.mindtecbolivia.com"
           },
-          {
-            "@type": "Question",
-            "name": "¿Qué tecnologías biométricas reales utiliza MindTEC?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Contamos con equipos de grado científico en nuestro laboratorio: Electroencefalografía (EEG) móvil de alta resolución, Eye Tracking (fijo y móvil en lentes para PDV), codificación de microexpresiones faciales (Facial Coding) y sensores de respuesta galvánica de la piel (GSR)."
+          "areaServed": { "@type": "Country", "name": "Bolivia" },
+          "serviceType": "Neuromarketing / Biometría Aplicada a Negocios",
+          "url": "https://www.mindtecbolivia.com/neuromarketing-para-empresas-bolivia"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿El neuromarketing es un gasto o una inversión de reducción de riesgo?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Es la herramienta de reducción de riesgo más potente que existe. Validar un empaque o campaña con neuromarketing cuesta menos del 3% del presupuesto de pauta o impresión. Si su diseño no contrasta o confunde al consumidor, lo sabrá en el laboratorio antes de gastar miles de dólares en distribución."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Qué tecnologías biométricas reales utiliza MindTEC?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Contamos con equipos de grado científico en nuestro laboratorio: Electroencefalografía (EEG) móvil de alta resolución, Eye Tracking (fijo y móvil en lentes para PDV), codificación de microexpresiones faciales (Facial Coding) y sensores de respuesta galvánica de la piel (GSR)."
+              }
             }
-          }
-        ]
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.mindtecbolivia.com/"},
-          {"@type": "ListItem", "position": 2, "name": "Servicios", "item": "https://www.mindtecbolivia.com/servicios"},
-          {"@type": "ListItem", "position": 3, "name": "Neuromarketing para Empresas", "item": "https://www.mindtecbolivia.com/neuromarketing-para-empresas-bolivia"}
-        ]
-      }
-    ]
-  }
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Inicio",
+              "item": "https://www.mindtecbolivia.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Servicios",
+              "item": "https://www.mindtecbolivia.com/servicios"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Neuromarketing para Empresas",
+              "item": "https://www.mindtecbolivia.com/neuromarketing-para-empresas-bolivia"
+            }
+          ]
+        }
+      ]
+    }
   </script>
 
   <main>
-    <!-- 1. HERO -->
-    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
-      <div class="hero-shapes" aria-hidden="true">
-        <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
-        <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
-        <div class="hero-shape"></div><div class="hero-shape"></div>
-      </div>
-      <div class="hero-mobile-canvas" id="hero-mobile-canvas" aria-hidden="true"></div>
-      <div class="container hero-container">
-        <div class="hero-content">
-          <span class="eyebrow fade-in">VALIDACIÓN CIENTÍFICA DEL CONSUMIDOR</span>
-          <span class="freshness-tag">Actualizado: julio 2026</span>
-          <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;">
-            Neuromarketing para Empresas — Erradique las suposiciones de su presupuesto.
-          </h1>
-          <div class="direct-answer-box">
-            <strong>En resumen</strong>
-            <p>MindTEC realiza estudios científicos de neuromarketing con EEG, Eye Tracking, Facial Coding y GSR para optimizar campañas y empaques de empresas en Bolivia.</p>
+    <StackedSections>
+      <!-- 1. HERO -->
+      <section
+        class="hero-section"
+        style="padding-bottom: 4rem; padding-top: 4rem;"
+        data-stack-section
+      >
+        <div class="hero-shapes" aria-hidden="true">
+          <div class="hero-shape"></div><div class="hero-shape"></div><div
+            class="hero-shape"
+          >
           </div>
-          <p class="hero-subtitle" style="font-size: 1.25rem; margin-bottom: 1.5rem; max-width: 800px;">
-            Mida la atención visual, la excitación emocional y la fricción cognitiva inconsciente del comprador en Bolivia. El diferenciador competitivo que ningún rival de su sector posee.
-          </p>
-          <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2.5rem;">
-            <span style="background: rgba(242,101,34,0.25); border: 1px solid rgba(242,101,34,0.5); color: var(--color-primary); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700;">Laboratorio Biométrico Propio</span>
-            <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Eye Tracking & EEG</span>
-            <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Evidencia Científica B2B</span>
+          <div class="hero-shape"></div><div class="hero-shape"></div><div
+            class="hero-shape"
+          >
           </div>
-          <a href="/contacto" class="btn btn-primary lg">Agendar diagnóstico de neuromarketing (45 min) →</a>
+          <div class="hero-shape"></div><div class="hero-shape"></div>
         </div>
-        <div class="hero-visual">
-          <div class="glass-card main-visual">
-            <div class="neuro-visual-bg" style="background-image: url('/heroes/hero-neuromarketing-bolivia.jpg');"></div>
-          </div>
+        <div
+          class="hero-mobile-canvas"
+          id="hero-mobile-canvas"
+          aria-hidden="true"
+        >
         </div>
-      </div>
-    </section>
-
-    <ServiceVisualSuite variant="neuromarketing" />
-
-    <!-- 2. QUÉ ES Y CÓMO MINDTEC LO USA (MAIDER TOMASENA STYLE: SHATTERING THE STATUS QUO) -->
-    <section class="problem-section bg-slate" style="padding: 5rem 0;">
-      <div class="container">
-        <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
-          <span class="eyebrow">NEUROCIENCIA ESTRATÉGICA</span>
-          <h2 class="text-navy" style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;">El consumidor decide en milisegundos y a nivel no consciente. ¿Por qué le sigue preguntando su opinión lógica?</h2>
-          <p class="text-gray-dark leading-relaxed" style="font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.7;">
-            El ser humano es incapaz de verbalizar por qué compra. Decidimos de manera visceral, guiados por el sistema límbico, y milisegundos después inventamos una justificación lógica ("estaba en oferta", "es de buena calidad") para convencer al encuestador, a nuestro cónyuge o a nosotros mismos.
-          </p>
-          <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.7;">
-            Diseñar una campaña publicitaria millonaria o imprimir toneladas de empaques basándose únicamente en lo que un grupo de personas "declara" en una encuesta es el equivalente comercial a lanzar una moneda al aire.
-          </p>
-          <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; margin-bottom: 2.5rem; line-height: 1.7;">
-            En <strong>MindTEC</strong>, erradicamos la especulación. Sometemos sus piezas de diseño, empaques, flujos digitales y comerciales a auditorías biológicas en nuestro laboratorio de grado científico. Medimos la respuesta física pura antes de que el participante aplique filtros sociales o intelectuales.
-          </p>
-          <div style="background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: 8px; font-weight: 600; font-size: 1.1rem; text-align: center;">
-            No pregunte. Mida la actividad cerebral de su consumidor frente a su marca.
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. FOTOS REALES DEL LABORATORIO EEG (VISUAL PROOF AND SYSTEM EXPLANATION) -->
-    <section style="padding: 5rem 0; background: #fff;">
-      <div class="container">
-        <div class="section-title-center" style="text-align: center; margin-bottom: 4rem;">
-          <span class="eyebrow">EVIDENCIA REAL</span>
-          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2;">Nuestro Laboratorio de Neuromarketing</h2>
-          <p class="text-gray-dark" style="font-size: 1.1rem; max-width: 700px; margin: 0 auto; margin-top: 1rem;">
-            Tecnologías e instalaciones en Bolivia para auditar el comportamiento del consumidor.
-          </p>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
-          <div class="premium-card-white" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-            <img src="/imagenes-mindtec/eeg-mindtec.jpg" alt="Electroencefalografía (EEG) en laboratorio MindTEC" style="height: 220px; width: 100%; object-fit: cover;" />
-            <div style="padding: 2rem;">
-              <h3 class="text-navy" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;">Electroencefalografía (EEG)</h3>
-              <p style="font-size: 0.9rem; line-height: 1.6; color: #475569;">Medición de las ondas cerebrales en tiempo real para capturar la carga cognitiva (fricción o claridad), el nivel de agrado y la retención emocional del estímulo.</p>
+        <div class="container hero-container">
+          <div class="hero-content">
+            <span class="eyebrow fade-in"
+              >VALIDACIÓN CIENTÍFICA DEL CONSUMIDOR</span
+            >
+            <span class="freshness-tag">Actualizado: julio 2026</span>
+            <h1
+              class="hero-title"
+              style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;"
+            >
+              Neuromarketing para Empresas — Erradique las suposiciones de su
+              presupuesto.
+            </h1>
+            <div class="direct-answer-box">
+              <strong>En resumen</strong>
+              <p>
+                MindTEC realiza estudios científicos de neuromarketing con EEG,
+                Eye Tracking, Facial Coding y GSR para optimizar campañas y
+                empaques de empresas en Bolivia.
+              </p>
             </div>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-            <img src="/imagenes-mindtec/eyetracker-mindtec.jpg" alt="Eye Tracking en laboratorio MindTEC" style="height: 220px; width: 100%; object-fit: cover;" />
-            <div style="padding: 2rem;">
-              <h3 class="text-navy" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;">Eye Tracking de Precisión</h3>
-              <p style="font-size: 0.9rem; line-height: 1.6; color: #475569;">Mapeo visual del recorrido exacto que hace el ojo del consumidor en un empaque, anaquel o pantalla. Mide velocidad de fijación y zonas calientes.</p>
+            <p
+              class="hero-subtitle"
+              style="font-size: 1.25rem; margin-bottom: 1.5rem; max-width: 800px;"
+            >
+              Mida la atención visual, la excitación emocional y la fricción
+              cognitiva inconsciente del comprador en Bolivia. El diferenciador
+              competitivo que ningún rival de su sector posee.
+            </p>
+            <div
+              style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2.5rem;"
+            >
+              <span
+                style="background: rgba(242,101,34,0.25); border: 1px solid rgba(242,101,34,0.5); color: var(--color-primary); padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 700;"
+                >Laboratorio Biométrico Propio</span
+              >
+              <span
+                style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;"
+                >Eye Tracking & EEG</span
+              >
+              <span
+                style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;"
+                >Evidencia Científica B2B</span
+              >
             </div>
+            <a href="/contacto" class="btn btn-primary lg"
+              >Agendar diagnóstico de neuromarketing (45 min) →</a
+            >
           </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden; display: flex; flex-direction: column;">
-            <img src="/heatmap.webp" alt="Mapas de calor biométricos MindTEC" style="height: 220px; width: 100%; object-fit: cover;" />
-            <div style="padding: 2rem;">
-              <h3 class="text-navy" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem;">Mapas de Atención y Calor</h3>
-              <p style="font-size: 0.9rem; line-height: 1.6; color: #475569;">Visualización directa y cuantitativa de las áreas que concentran el interés del cliente y las zonas que pasan desapercibidas (puntos ciegos).</p>
+          <div class="hero-visual">
+            <div class="glass-card main-visual">
+              <div
+                class="neuro-visual-bg"
+                style="background-image: url('/heroes/hero-neuromarketing-bolivia.jpg');"
+              >
+              </div>
             </div>
           </div>
         </div>
+      </section>
+
+      <div data-stack-section>
+        <ServiceVisualSuite variant="neuromarketing" />
       </div>
-    </section>
 
-    <!-- 4. CASOS POR SECTOR (VILMA NUÑEZ STYLE: MULTI-SECTOR MATRIX FRAMEWORK) -->
-    <section style="padding: 5rem 0; background: var(--color-accent);">
-      <div class="container">
-        <div class="section-title-center" style="text-align: center; margin-bottom: 4rem;">
-          <span class="eyebrow">APLICACIÓN SECTORIAL</span>
-          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2;">¿Cómo aplicamos el neuromarketing en su sector de negocio?</h2>
-        </div>
-
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.5rem;">
-          <div class="premium-card-white" style="padding: 2rem; border-top: 4px solid var(--color-secondary);">
-            <h3 class="text-navy" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem;">Consumo Masivo y Alimentos</h3>
-            <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;">
-              Evaluamos si los colores de su empaque o la tipografía compiten con éxito en góndolas saturadas.
+      <!-- 2. EL PROBLEMA -->
+      <section class="bg-slate" style="padding: 5rem 0;" data-stack-section>
+        <div class="container">
+          <div style="max-width: 900px; margin: 0 auto;">
+            <span class="eyebrow">EL PROBLEMA REAL</span>
+            <h2
+              class="text-navy"
+              style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;"
+            >
+              Las decisiones de compra se toman en milisegundos a nivel
+              inconsciente. ¿Por qué sigue basando su presupuesto en opiniones
+              racionalizadas?
+            </h2>
+            <p
+              class="text-gray-dark leading-relaxed"
+              style="font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.7;"
+            >
+              El ser humano es incapaz de verbalizar por qué compra. Decidimos
+              de manera visceral, guiados por el sistema límbico, y milisegundos
+              después inventamos una justificación lógica para convencer al
+              encuestador, a nuestro cónyuge o a nosotros mismos.
             </p>
-            <span style="font-size: 0.85rem; font-weight: 700; color: var(--color-primary);">Resultado: Reducción de merma por diseño ineficaz.</span>
-          </div>
-
-          <div class="premium-card-white" style="padding: 2rem; border-top: 4px solid var(--color-secondary);">
-            <h3 class="text-navy" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem;">Banca y Aplicaciones Móviles</h3>
-            <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;">
-              Mapeamos los cuellos de botella y picos de estrés cognitivo en flujos de transferencia o pasarelas.
+            <p
+              class="text-gray-dark leading-relaxed"
+              style="font-size: 1.05rem; line-height: 1.7;"
+            >
+              ¿Reconoce alguno de estos escenarios?
             </p>
-            <span style="font-size: 0.85rem; font-weight: 700; color: var(--color-primary);">Resultado: Incremento inmediato de la tasa de conversión.</span>
           </div>
 
-          <div class="premium-card-white" style="padding: 2rem; border-top: 4px solid var(--color-secondary);">
-            <h3 class="text-navy" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.75rem;">Agencias de Publicidad</h3>
-            <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.6; margin-bottom: 1rem;">
-              Auditamos la curva de atención del spot de TV, identificando el segundo exacto donde se pierde el gancho.
+          <AreaPanelCards
+            items={problemScenarios}
+            columns={4}
+            theme="navy"
+            class="problem-panels"
+          />
+
+          <div
+            style="max-width: 900px; margin: 2.5rem auto 0; background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: var(--radius-md, 8px); font-weight: 600; font-size: 1.1rem; text-align: center;"
+          >
+            Sin medir la actividad cerebral y visual real del consumidor, su
+            estrategia de marketing es una apuesta, no una decisión informada.
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. FOTOS REALES DEL LABORATORIO EEG (VISUAL PROOF AND SYSTEM EXPLANATION) -->
+      <section style="padding: 5rem 0; background: #fff;" data-stack-section>
+        <div class="container">
+          <div
+            class="section-title-center"
+            style="text-align: center; margin-bottom: 4rem;"
+          >
+            <span class="eyebrow">EVIDENCIA REAL</span>
+            <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2;">
+              Nuestro Laboratorio de Neuromarketing
+            </h2>
+            <p
+              class="text-gray-dark"
+              style="font-size: 1.1rem; max-width: 700px; margin: 0 auto; margin-top: 1rem;"
+            >
+              Tecnologías e instalaciones en Bolivia para auditar el
+              comportamiento del consumidor.
             </p>
-            <span style="font-size: 0.85rem; font-weight: 700; color: var(--color-primary);">Resultado: Optimización de presupuestos de pauta digital y TV.</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. FAQ -->
-    <section style="padding: 5rem 0; background: #f8fafc;">
-      <div class="container" style="max-width: 800px;">
-        <div style="text-align: center; margin-bottom: 3rem;">
-          <span class="eyebrow">RESOLVIENDO DUDAS</span>
-          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Preguntas de negocio recurrentes</h2>
-        </div>
-        <dl style="display: flex; flex-direction: column; gap: 1rem;">
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-nm-1" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿El neuromarketing es un gasto o una inversión de reducción de riesgo?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-nm-1" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Es la herramienta de reducción de riesgo más potente que existe. Validar un empaque o campaña con neuromarketing cuesta menos del 3% del presupuesto de pauta o impresión. Si su diseño no contrasta o confunde al consumidor, lo sabrá en el laboratorio antes de gastar miles de dólares en distribución.</p>
-            </dd>
           </div>
 
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-nm-2" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Qué tecnologías biométricas reales utiliza MindTEC?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-nm-2" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Contamos con equipos de grado científico en nuestro laboratorio: Electroencefalografía (EEG) móvil de alta resolución, Eye Tracking (fijo y móvil en lentes para PDV), codificación de microexpresiones faciales (Facial Coding) y sensores de respuesta galvánica de la piel (GSR).</p>
-            </dd>
-          </div>
-        </dl>
-      </div>
-    </section>
+          <ExpandingImageCarousel items={labCards} />
+        </div>
+      </section>
 
-    <!-- 6. FINAL CTA -->
-    <section class="cta-section-modern" style="padding: 6rem 0;">
-      <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
-        <div class="cta-content-v2">
-          <h2 style="font-size: 2.8rem; line-height: 1.25; margin-bottom: 1.5rem;">Sustente sus activos de marca en evidencia biológica medible.</h2>
-          <p class="cta-subtitle" style="font-size: 1.2rem; margin-bottom: 2.5rem; opacity: 0.9;">
-            Descubra cómo reacciona inconscientemente el cerebro de su comprador ante sus empaques o campañas. Hablemos sin compromiso.
-          </p>
-          <div class="cta-actions" style="justify-content: center; flex-direction: column; align-items: center;">
-            <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar sesión de diagnóstico (45 min) →</a>
-            <p style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">Confidencial · Demo de biometría en laboratorio · Sin costo inicial.</p>
+      <!-- 4. CASOS POR SECTOR (VILMA NUÑEZ STYLE: MULTI-SECTOR MATRIX FRAMEWORK) -->
+      <section
+        style="padding: 5rem 0; background: var(--color-accent);"
+        data-stack-section
+      >
+        <div class="container">
+          <div
+            class="section-title-center"
+            style="text-align: center; margin-bottom: 4rem;"
+          >
+            <span class="eyebrow">APLICACIÓN SECTORIAL</span>
+            <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2;">
+              ¿Cómo aplicamos el neuromarketing en su sector de negocio?
+            </h2>
+          </div>
+
+          <HoverStepCards items={sectorCards} minColumnWidth="290px" />
+        </div>
+      </section>
+
+      <!-- 5. FAQ -->
+      <div data-stack-section>
+        <FaqSplit
+          eyebrow="RESOLVIENDO DUDAS"
+          title="Preguntas de negocio recurrentes"
+          items={faqItems}
+        />
+      </div>
+
+      <!-- 6. FINAL CTA -->
+      <section
+        class="cta-section-modern"
+        style="padding: 6rem 0;"
+        data-stack-section
+      >
+        <div
+          class="container"
+          style="max-width: 900px; margin: 0 auto; text-align: center;"
+        >
+          <div class="cta-content-v2">
+            <h2
+              style="font-size: 2.8rem; line-height: 1.25; margin-bottom: 1.5rem;"
+            >
+              Sustente sus activos de marca en evidencia biológica medible.
+            </h2>
+            <p
+              class="cta-subtitle"
+              style="font-size: 1.2rem; margin-bottom: 2.5rem; opacity: 0.9;"
+            >
+              Descubra cómo reacciona inconscientemente el cerebro de su
+              comprador ante sus empaques o campañas. Hablemos sin compromiso.
+            </p>
+            <div
+              class="cta-actions"
+              style="justify-content: center; flex-direction: column; align-items: center;"
+            >
+              <a
+                href="/contacto"
+                class="btn btn-primary lg"
+                style="font-size: 1.1rem; padding: 1rem 2.5rem;"
+                >Agendar sesión de diagnóstico (45 min) →</a
+              >
+              <p
+                style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;"
+              >
+                Confidencial · Demo de biometría en laboratorio · Sin costo
+                inicial.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </StackedSections>
 
     <!-- BREADCRUMB -->
     <nav aria-label="Breadcrumb" class="breadcrumb-bottom">
       <div class="container">
         <ol>
-          <li><a href="/" style="color: rgba(255,255,255,0.6); text-decoration: none;">Inicio</a></li>
+          <li>
+            <a
+              href="/"
+              style="color: rgba(255,255,255,0.6); text-decoration: none;"
+              >Inicio</a
+            >
+          </li>
           <li style="color: rgba(255,255,255,0.3);">›</li>
-          <li><a href="/servicios" style="color: rgba(255,255,255,0.6); text-decoration: none;">Servicios</a></li>
+          <li>
+            <a
+              href="/servicios"
+              style="color: rgba(255,255,255,0.6); text-decoration: none;"
+              >Servicios</a
+            >
+          </li>
           <li style="color: rgba(255,255,255,0.3);">›</li>
-          <li aria-current="page" style="color: #fff; font-weight: 600;">Neuromarketing para Empresas</li>
+          <li aria-current="page" style="color: #fff; font-weight: 600;">
+            Neuromarketing para Empresas
+          </li>
         </ol>
       </div>
     </nav>
   </main>
 
-  <script>
-    document.querySelectorAll('dt button[aria-expanded]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const ddId = btn.getAttribute('aria-controls');
-        const dd = document.getElementById(ddId);
-        const expandido = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', expandido ? 'false' : 'true');
-        const icon = btn.querySelector('span[aria-hidden]');
-        if (icon) icon.textContent = expandido ? '+' : '−';
-        if (dd) dd.hidden = expandido;
-      });
-    });
-  </script>
+  <style>
+    /* Espacio entre la intro de "El Problema" y el grid de escenarios.
+       :global() porque la clase se aplica dentro de AreaPanelCards.astro;
+       doble clase para ganarle en especificidad al margin:0 auto de .areas-grid. */
+    :global(.areas-grid.problem-panels) {
+      margin-top: 3.5rem;
+    }
+  </style>
 </Layout>

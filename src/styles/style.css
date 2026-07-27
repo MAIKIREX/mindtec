@@ -80,7 +80,12 @@ html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    overflow-x: hidden;
+    /*
+     * overflow-x: hidden convierte a html/body en contenedores de scroll
+     * (fuerza overflow-y: auto) y eso rompe position: sticky dentro de
+     * ellos. clip recorta igual sin ese efecto secundario.
+     */
+    overflow-x: clip;
 }
 
 body {
@@ -88,7 +93,7 @@ body {
     background-color: var(--color-offwhite);
     color: var(--color-text-main);
     line-height: 1.7;
-    overflow-x: hidden;
+    overflow-x: clip;
     position: relative;
 }
 
@@ -445,6 +450,35 @@ p {
 
 .site-header.scrolled .logo-light {
     display: none;
+}
+
+/* Header sobre secciones oscuras (ScrollStory, LayeredScrollScenes,
+   ScrollStack) más abajo en la página: aunque ya se pasó el umbral de
+   "scrolled", vuelve al look transparente/claro-sobre-oscuro en vez del
+   glass blanco, para mantener contraste. Ver data-header-theme y
+   initHeaderScroll() en public/js/main.js. */
+.site-header.scrolled.header-force-dark {
+    background: rgba(8, 10, 22, 0.55);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    box-shadow: none;
+}
+.site-header.header-force-dark .main-nav a:not(.btn) {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+.site-header.header-force-dark .main-nav a:not(.btn):hover {
+    color: var(--color-primary) !important;
+}
+.site-header.header-force-dark .dropdown-content a {
+    color: #333 !important;
+}
+.site-header.header-force-dark .logo-dark {
+    display: none !important;
+}
+.site-header.header-force-dark .logo-light {
+    display: block !important;
+}
+.site-header.header-force-dark .hamburger span {
+    background-color: #fff !important;
 }
 
 /* Subpages with always-light header */
@@ -1676,7 +1710,7 @@ p {
 /* ── 11. TRUST BAR ────────────────────────────────────── */
 .trust-bar-section {
     background: var(--color-white);
-    padding: 4rem 0;
+    padding: 4rem 0 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.04);
 }
 
@@ -1688,49 +1722,36 @@ p {
     letter-spacing: 2.5px;
     margin-bottom: 2.5rem;
     font-weight: 700;
+    text-align: center;
 }
 
 .trust-numbers-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    align-items: start;
+    margin-top: 1rem;
+    border-top: 1px solid rgba(11, 43, 64, 0.1);
 }
 
 .trust-item {
-    text-align: center;
-    padding: 1.5rem 1rem;
-    position: relative;
-    transition: all var(--transition-base);
+    text-align: left;
+    padding: 2rem 2rem 3rem;
+    border-left: 1px solid rgba(11, 43, 64, 0.1);
 }
 
-.trust-item::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%) scaleX(0);
-    width: 40px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--color-primary), rgba(242, 101, 34, 0.3));
-    border-radius: 2px;
-    transition: transform 800ms var(--ease-spring);
-}
-
-.trust-item.is-counted::after {
-    transform: translateX(-50%) scaleX(1);
+.trust-item:first-child {
+    border-left: none;
 }
 
 .trust-number {
     display: block;
+    margin-top: 3.5rem;
     font-family: var(--font-display);
-    font-size: clamp(2.5rem, 4vw, 3.5rem);
-    font-weight: 900;
-    color: var(--color-primary);
+    font-weight: 300;
+    font-size: clamp(2.6rem, 5vw, 5rem);
     line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--color-primary);
     font-variant-numeric: tabular-nums;
-    text-shadow: 0 0 40px rgba(242, 101, 34, 0.15);
-    transition: text-shadow 600ms ease;
 }
 
 .trust-number.counted-glow {
@@ -1745,12 +1766,14 @@ p {
 
 .trust-label {
     display: block;
-    font-size: 0.88rem;
-    color: var(--color-text-muted);
-    font-weight: 600;
-    margin-top: 0.6rem;
+    max-width: 18ch;
+    font-family: var(--font-display);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    color: var(--color-secondary);
+    line-height: 1.4;
 }
 
 .human-evidence-section {
@@ -2645,19 +2668,20 @@ p {
 /* ── 18. CTA SECTION — Maximum Impact ─────────────────── */
 .cta-section-modern {
     padding: var(--spacing-lg) 0 var(--spacing-xl);
+    background: linear-gradient(135deg, var(--color-primary), #D94E10);
 }
 
 .cta-content-v2 {
-    background: linear-gradient(135deg, var(--color-primary), #D94E10);
+    background: transparent;
     padding: clamp(3rem, 6vw, 6rem);
-    border-radius: var(--radius-xl);
+    border-radius: 0;
     text-align: center;
     color: var(--color-white);
-    max-width: 1000px;
+    max-width: 100%;
     margin: 0 auto;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 32px 64px -16px rgba(242, 101, 34, 0.3);
+    box-shadow: none;
 }
 
 .cta-content-v2::before {
@@ -3468,6 +3492,20 @@ p {
     }
 }
 
+/* El nav completo (5 links + botón) empieza a envolverse en dos líneas
+   entre 900-950px; el hamburger se activa antes de ese punto para
+   que nunca se vea partido. */
+@media (max-width: 991px) {
+    /* Show hamburger, hide nav */
+    .hamburger {
+        display: block;
+    }
+
+    .main-nav {
+        display: none;
+    }
+}
+
 @media (max-width: 768px) {
     :root {
         --spacing-xl: 5rem;
@@ -3479,15 +3517,6 @@ p {
 
     .site-header {
         padding: 0.75rem 0;
-    }
-
-    /* Show hamburger, hide nav */
-    .hamburger {
-        display: block;
-    }
-
-    .main-nav {
-        display: none;
     }
 
     .hero-container {
@@ -3539,7 +3568,15 @@ p {
 
     .trust-numbers-grid {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1.25rem;
+    }
+
+    .trust-item:nth-child(3) {
+        border-left: none;
+    }
+
+    .trust-item:nth-child(1),
+    .trust-item:nth-child(2) {
+        border-bottom: 1px solid rgba(11, 43, 64, 0.1);
     }
 
     .cta-actions {
@@ -3607,6 +3644,9 @@ p {
         min-height: 48px;
         width: 100%;
         justify-content: center;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.3;
     }
 
     .hero-buttons .btn {
@@ -4465,5 +4505,134 @@ body:has(.nav-overlay.active) .site-header .logo-dark {
 
 .nav-overlay-inner .btn-mobile {
     color: var(--color-primary) !important;
+}
+
+/* ════════════════════════════════════════════════ */
+/* PAGE LOADER — Intro splash con zoom de salida     */
+/* ════════════════════════════════════════════════ */
+.page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #0b1220 0%, #020617 70%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+body.loader-active {
+    overflow: hidden;
+}
+
+.zoom-text-wrapper {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.zoom-giant-text {
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(3.5rem, 15vw, 13rem);
+    letter-spacing: -0.03em;
+    color: #fff;
+    margin: 0;
+    text-align: center;
+    will-change: transform, opacity;
+}
+
+.zoom-giant-text .accent {
+    color: var(--color-primary);
+}
+
+.loader-progress {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.loader-progress-count {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.85);
+    font-variant-numeric: tabular-nums;
+}
+
+.loader-progress-track {
+    display: block;
+    width: 140px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+}
+
+.loader-progress-bar {
+    display: block;
+    height: 100%;
+    width: 0%;
+    background: var(--color-primary);
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .page-loader {
+        transition: opacity 0.3s ease;
+    }
+}
+
+/* ── CUSTOM CURSOR — Orange Dot (follows native cursor) ──── */
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    box-shadow: 0 0 12px rgba(242, 101, 34, 0.5);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+    opacity: 0;
+    will-change: transform;
+}
+
+.custom-cursor.is-active {
+    opacity: 1;
+}
+
+.custom-cursor.is-hover {
+    width: 40px;
+    height: 40px;
+    background: rgba(242, 101, 34, 0.18);
+    border: 2px solid var(--color-primary);
+}
+
+.custom-cursor.is-click {
+    width: 12px;
+    height: 12px;
 }
 
