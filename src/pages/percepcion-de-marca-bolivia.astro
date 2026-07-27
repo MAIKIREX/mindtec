@@ -1,36 +1,41 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro';
-import FaqSplit from '../components/faq/FaqSplit.astro';
-import HoverStepCards from '../components/cards/HoverStepCards.astro';
-import StackedSections from '../components/scroll/StackedSections.astro';
+import Layout from "../layouts/Layout.astro";
+import ServiceVisualSuite from "../components/sections/ServiceVisualSuite.astro";
+import FaqSplit from "../components/faq/FaqSplit.astro";
+import HoverStepCards from "../components/cards/HoverStepCards.astro";
+import StackedSections from "../components/scroll/StackedSections.astro";
 
 const criticalScenarios = [
   {
     eyebrow: "01",
     title: "Diagnóstico Pre-Rebranding",
-    description: "Para no destruir el valor histórico y el reconocimiento acumulado en años de trayectoria comercial al modificar logotipos o empaques."
+    description:
+      "Para no destruir el valor histórico y el reconocimiento acumulado en años de trayectoria comercial al modificar logotipos o empaques.",
   },
   {
     eyebrow: "02",
     title: "Inundación Competitiva",
-    description: "Cuando competidores locales o globales ganan visibilidad y su marca pierde relevancia visual y presencia mental en las decisiones del comprador."
+    description:
+      "Cuando competidores locales o globales ganan visibilidad y su marca pierde relevancia visual y presencia mental en las decisiones del comprador.",
   },
   {
     eyebrow: "03",
     title: "Fugas de Conversión (CAC)",
-    description: "Cuando el costo de adquisición de leads B2B o clientes masivos se dispara porque la marca no proyecta la confianza suficiente en la primera impresión."
+    description:
+      "Cuando el costo de adquisición de leads B2B o clientes masivos se dispara porque la marca no proyecta la confianza suficiente en la primera impresión.",
   },
   {
     eyebrow: "04",
     title: "Fusiones, M&A y Valuaciones",
-    description: "Para cuantificar el valor financiero del intangible marcario ante rondas de inversión, alianzas comerciales o fusiones en el mercado nacional."
+    description:
+      "Para cuantificar el valor financiero del intangible marcario ante rondas de inversión, alianzas comerciales o fusiones en el mercado nacional.",
   },
   {
     eyebrow: "05",
     title: "Expansión de Categoría",
-    description: "Al lanzar nuevas líneas de negocio que requieran apalancarse en la credibilidad de su marca matriz para ingresar a nuevos mercados con menor fricción."
-  }
+    description:
+      "Al lanzar nuevas líneas de negocio que requieran apalancarse en la credibilidad de su marca matriz para ingresar a nuevos mercados con menor fricción.",
+  },
 ];
 
 const faqItems = [
@@ -61,15 +66,17 @@ const relatedSolutions = [
   {
     eyebrow: "Solución 01",
     title: "Neuromarketing",
-    description: "Mida científicamente el impacto emocional subconsciente de sus activos visuales y publicidad.",
-    href: "/neuromarketing-bolivia"
+    description:
+      "Mida científicamente el impacto emocional subconsciente de sus activos visuales y publicidad.",
+    href: "/neuromarketing-bolivia",
   },
   {
     eyebrow: "Solución 02",
     title: "Estudio de Mercado",
-    description: "Audite en profundidad su nicho, competidores directos y oportunidades del sector.",
-    href: "/estudio-de-mercado-bolivia"
-  }
+    description:
+      "Audite en profundidad su nicho, competidores directos y oportunidades del sector.",
+    href: "/estudio-de-mercado-bolivia",
+  },
 ];
 ---
 
@@ -79,295 +86,655 @@ const relatedSolutions = [
   headerLightBg={false}
 >
   <script type="application/ld+json" slot="head">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Service",
-        "name": "Estudio de Percepción de Marca en Bolivia",
-        "provider": { "@type": "LocalBusiness", "name": "Mindtec Bolivia" },
-        "description": "Estudio de percepción de marca en Bolivia con auditoría de reputación, mapa perceptual y diagnóstico pre-rebranding mediante neuromarketing.",
-        "areaServed": ["La Paz", "Santa Cruz", "Cochabamba", "El Alto"]
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.mindtecbolivia.com/"},
-          {"@type": "ListItem", "position": 2, "name": "Servicios", "item": "https://www.mindtecbolivia.com/servicios"},
-          {"@type": "ListItem", "position": 3, "name": "Estudio de percepción de marca", "item": "https://www.mindtecbolivia.com/percepcion-de-marca-bolivia"}
-        ]
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "¿Cuánto tarda un estudio de percepción de marca?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Suelen tomar entre 4 a 6 semanas. Este plazo abarca el diseño metodológico de la muestra, el levantamiento de datos en el Eje Troncal de Bolivia, y el procesamiento analítico en el laboratorio biométrico de Mindtec." }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Se pueden obtener análisis desagregados por zona geográfica?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Sí, la segmentación geográfica es uno de los pilares de la metodología. Se evalúan y comparan los atributos de marca de forma específica para Santa Cruz, La Paz y Cochabamba, permitiendo modular los esfuerzos publicitarios según la cultura de cada región." }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Cómo se integra el Neuromarketing en el estudio de percepción de marca?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Utilizamos tecnologías no invasivas (como eye-tracking y análisis de respuesta galvánica de la piel) para medir la reacción no consciente del target al observar el logotipo, colores corporativos y anuncios de su empresa. Esto remueve el sesgo declarativo de las encuestas tradicionales." }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Es útil este estudio para justificar un aumento en los precios?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Es la herramienta idónea. Si el estudio demuestra un alto valor percibido en atributos de exclusividad y baja elasticidad de demanda, la junta directiva obtiene el respaldo científico necesario para optimizar el margen y ajustar sus precios con seguridad." }
-          }
-        ]
-      }
-    ]
-  }
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Service",
+          "name": "Estudio de Percepción de Marca en Bolivia",
+          "provider": { "@type": "LocalBusiness", "name": "Mindtec Bolivia" },
+          "description": "Estudio de percepción de marca en Bolivia con auditoría de reputación, mapa perceptual y diagnóstico pre-rebranding mediante neuromarketing.",
+          "areaServed": ["La Paz", "Santa Cruz", "Cochabamba", "El Alto"]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Inicio",
+              "item": "https://www.mindtecbolivia.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Servicios",
+              "item": "https://www.mindtecbolivia.com/servicios"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Estudio de percepción de marca",
+              "item": "https://www.mindtecbolivia.com/percepcion-de-marca-bolivia"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Cuánto tarda un estudio de percepción de marca?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Suelen tomar entre 4 a 6 semanas. Este plazo abarca el diseño metodológico de la muestra, el levantamiento de datos en el Eje Troncal de Bolivia, y el procesamiento analítico en el laboratorio biométrico de Mindtec."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Se pueden obtener análisis desagregados por zona geográfica?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Sí, la segmentación geográfica es uno de los pilares de la metodología. Se evalúan y comparan los atributos de marca de forma específica para Santa Cruz, La Paz y Cochabamba, permitiendo modular los esfuerzos publicitarios según la cultura de cada región."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cómo se integra el Neuromarketing en el estudio de percepción de marca?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Utilizamos tecnologías no invasivas (como eye-tracking y análisis de respuesta galvánica de la piel) para medir la reacción no consciente del target al observar el logotipo, colores corporativos y anuncios de su empresa. Esto remueve el sesgo declarativo de las encuestas tradicionales."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Es útil este estudio para justificar un aumento en los precios?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Es la herramienta idónea. Si el estudio demuestra un alto valor percibido en atributos de exclusividad y baja elasticidad de demanda, la junta directiva obtiene el respaldo científico necesario para optimizar el margen y ajustar sus precios con seguridad."
+              }
+            }
+          ]
+        }
+      ]
+    }
   </script>
   <main>
     <StackedSections>
-    <!-- 🟦 1️⃣ HERO -->
-    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;" data-stack-section>
-      <!-- Geometric floating shapes (always visible, CSS-animated) -->
-      <div class="hero-shapes" aria-hidden="true">
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-      </div>
-      <!-- Mobile-first neural canvas background -->
-      <div class="hero-mobile-canvas" id="hero-mobile-canvas" aria-hidden="true"></div>
-      <div class="container hero-container">
-        <div class="hero-content">
-          <span class="eyebrow fade-in">AUDITORÍA DE REPUTACIÓN Y POSICIONAMIENTO</span>
-          <span class="freshness-tag">Actualizado: julio 2026</span>
-          <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;">
-            Estudio de Percepción de Marca en Bolivia
-          </h1>
-          <div class="direct-answer-box">
-            <strong>En resumen</strong>
-            <p>Mindtec realiza el estudio de percepción de marca en Bolivia con auditoría de reputación, mapa perceptual y diagnóstico pre-rebranding mediante neuromarketing.</p>
-          </div>
-          <p class="hero-subtitle" style="font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 800px;">
-            La brecha entre lo que su empresa cree proyectar y cómo el mercado la valora realmente es la principal fuga de capital. Mapee su posicionamiento B2B de forma científica.
-            <br><br>
-            <span style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.75);">Combinamos auditoría cultural, mapas perceptuales y biometría no consciente para descifrar el valor intangible real de su corporación.</span>
-          </p>
-          <div class="cta-actions" style="margin-top: 2rem;">
-            <a href="/contacto" class="btn btn-primary lg">Agendar sesión de diagnóstico (45 min)</a>
-          </div>
-          <p style="margin-top: 1rem; font-size: 0.9rem; color: #64748b; font-weight: 500;">Sesión estratégica confidencial de 45 minutos | Sin compromiso</p>
+      <!-- 🟦 1️⃣ HERO -->
+      <section
+        class="hero-section"
+        style="padding-bottom: 4rem; padding-top: 4rem;"
+        data-stack-section
+      >
+        <!-- Geometric floating shapes (always visible, CSS-animated) -->
+        <div class="hero-shapes" aria-hidden="true">
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
         </div>
-        <div class="hero-visual">
-          <div class="glass-card main-visual">
-            <div class="neuro-visual-bg" style="background-image: url('/heroes/hero-percepcion-marca-bolivia.jpg');"></div>
+        <!-- Mobile-first neural canvas background -->
+        <div
+          class="hero-mobile-canvas"
+          id="hero-mobile-canvas"
+          aria-hidden="true"
+        >
+        </div>
+        <div class="container hero-container">
+          <div class="hero-content">
+            <span class="eyebrow fade-in"
+              >AUDITORÍA DE REPUTACIÓN Y POSICIONAMIENTO</span
+            >
+            <span class="freshness-tag">Actualizado: julio 2026</span>
+            <h1
+              class="hero-title"
+              style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;"
+            >
+              Estudio de Percepción de Marca en Bolivia
+            </h1>
+            <div class="direct-answer-box">
+              <strong>En resumen</strong>
+              <p>
+                Mindtec realiza el estudio de percepción de marca en Bolivia con
+                auditoría de reputación, mapa perceptual y diagnóstico
+                pre-rebranding mediante neuromarketing.
+              </p>
+            </div>
+            <p
+              class="hero-subtitle"
+              style="font-size: 1.25rem; margin-bottom: 2.5rem; max-width: 800px;"
+            >
+              La brecha entre lo que su empresa cree proyectar y cómo el mercado
+              la valora realmente es la principal fuga de capital. Mapee su
+              posicionamiento B2B de forma científica.
+              <br /><br />
+              <span style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.75);"
+                >Combinamos auditoría cultural, mapas perceptuales y biometría
+                no consciente para descifrar el valor intangible real de su
+                corporación.</span
+              >
+            </p>
+            <div class="cta-actions" style="margin-top: 2rem;">
+              <a href="/contacto" class="btn btn-primary lg"
+                >Agendar sesión de diagnóstico (45 min)</a
+              >
+            </div>
+            <p
+              style="margin-top: 1rem; font-size: 0.9rem; color: #64748b; font-weight: 500;"
+            >
+              Sesión estratégica confidencial de 45 minutos | Sin compromiso
+            </p>
+          </div>
+          <div class="hero-visual">
+            <div class="glass-card main-visual">
+              <div
+                class="neuro-visual-bg"
+                style="background-image: url('/heroes/hero-percepcion-marca-bolivia.jpg');"
+              >
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <div data-stack-section>
-      <ServiceVisualSuite variant="marca" />
-    </div>
+      <div data-stack-section>
+        <ServiceVisualSuite variant="marca" />
+      </div>
     </StackedSections>
 
     <!-- MINI NAVEGACIÓN ANCLAS -->
-    <div style="background: rgba(11, 43, 64, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 1.25rem 0; position: sticky; top: 80px; z-index: 999; backdrop-filter: blur(10px);">
-      <div class="container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; align-items: center; font-size: 0.92rem; font-weight: 600; color: rgba(255, 255, 255, 0.7);">
-        <span style="color: var(--color-primary); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 1.5px; font-weight: 800;">En esta página:</span>
-        <a href="#problema" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">Recuperar el Control</a>
+    <div
+      style="background: rgba(11, 43, 64, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 1.25rem 0; position: sticky; top: 80px; z-index: 999; backdrop-filter: blur(10px);"
+    >
+      <div
+        class="container"
+        style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; align-items: center; font-size: 0.92rem; font-weight: 600; color: rgba(255, 255, 255, 0.7);"
+      >
+        <span
+          style="color: var(--color-primary); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 1.5px; font-weight: 800;"
+          >En esta página:</span
+        >
+        <a
+          href="#problema"
+          style="color: #fff; text-decoration: none; transition: color 0.3s;"
+          onmouseover="this.style.color='var(--color-primary)'"
+          onmouseout="this.style.color='#fff'">Recuperar el Control</a
+        >
         <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-        <a href="#critico" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">Casos Críticos</a>
+        <a
+          href="#critico"
+          style="color: #fff; text-decoration: none; transition: color 0.3s;"
+          onmouseover="this.style.color='var(--color-primary)'"
+          onmouseout="this.style.color='#fff'">Casos Críticos</a
+        >
         <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-        <a href="#evaluacion" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">KPIs Evaluados</a>
+        <a
+          href="#evaluacion"
+          style="color: #fff; text-decoration: none; transition: color 0.3s;"
+          onmouseover="this.style.color='var(--color-primary)'"
+          onmouseout="this.style.color='#fff'">KPIs Evaluados</a
+        >
         <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-        <a href="#comparativa" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">Tradicional vs. Mindtec</a>
+        <a
+          href="#comparativa"
+          style="color: #fff; text-decoration: none; transition: color 0.3s;"
+          onmouseover="this.style.color='var(--color-primary)'"
+          onmouseout="this.style.color='#fff'">Tradicional vs. Mindtec</a
+        >
         <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-        <a href="#faqs" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">FAQs</a>
+        <a
+          href="#faqs"
+          style="color: #fff; text-decoration: none; transition: color 0.3s;"
+          onmouseover="this.style.color='var(--color-primary)'"
+          onmouseout="this.style.color='#fff'">FAQs</a
+        >
       </div>
     </div>
 
     <StackedSections>
-    <!-- 🟦 2️⃣ EL RIESGO DE LA IDENTIDAD FANTASMA -->
-    <section id="problema" class="problem-section bg-slate" style="padding: 5rem 0;" data-stack-section>
-      <div class="container">
-        <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
-          <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 2rem; line-height: 1.2;">El riesgo de la "Identidad Fantasma": Cuando sus vendedores deben disculparse por su precio</h2>
-          <p class="text-gray-dark leading-relaxed" style="font-size: 1.2rem; margin-bottom: 2rem;">
-            Si su mercado objetivo no percibe una diferencia clara de valor B2B o corporativo en su marca, su equipo de ventas se ve desarmado. Sin un posicionamiento sólido, la única herramienta que les queda para cerrar tratos es bajar el precio, erosionando directamente sus márgenes y reduciendo la rentabilidad de su negocio.
-          </p>
-          <p class="text-gray-dark leading-relaxed" style="font-size: 1.1rem; margin-bottom: 2.5rem;">
-            La auditoría de percepción de marca trasciende la simple recopilación de adjetivos amables. Este análisis aísla los disparadores reales de confianza e insatisfacción que determinan si los tomadores de decisiones en Bolivia seleccionan la propuesta de su negocio o la de sus competidores.
-          </p>
-          <hr style="margin: 2.5rem 0; border: 0; border-top: 1px solid rgba(11, 43, 64, 0.08);">
-          <h3 class="text-navy" style="font-size: 1.5rem; margin-bottom: 1.5rem;">Activos de posicionamiento estratégico:</h3>
-          <ul class="cap-list" style="font-size: 1.1rem;">
-            <li><strong class="text-navy">Mapeo de Atributos de Decisión B2B:</strong> Aislamiento de las variables no declaradas (como solidez institucional, soporte técnico y continuidad operativa) que definen el cierre de contratos corporativos.</li>
-            <li><strong class="text-navy">Diagnóstico de Salud de Marca:</strong> Medición de la lealtad y el riesgo de migración de sus clientes clave antes de que la competencia los capte con ofertas agresivas.</li>
-            <li><strong class="text-navy">Auditoría de consistencia corporativa:</strong> Revelación de descalces entre la promesa que su directorio define y la experiencia de servicio que el cliente recibe en terreno.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- 🟦 3️⃣ CUÁNDO ES CRÍTICO MEDIR -->
-    <section id="critico" class="premium-section-padding bg-navy text-white" style="padding: 5rem 0;" data-stack-section>
-      <div class="container">
-        <div class="section-title-center" style="margin-bottom: 4rem; text-align: center;">
-          <h2 class="text-white" style="font-size: 2.5rem; line-height: 1.2;">¿Cuándo es crítico auditar la percepción y reputación?</h2>
-          <p style="color: rgba(255,255,255,0.7); font-size: 1.1rem; margin-top: 1rem;">Cinco coyunturas de negocio donde la falta de datos objetivos puede costar millones en capital de marca.</p>
-        </div>
-        <HoverStepCards items={criticalScenarios} class="critical-scenarios-cards" />
-
-        <style>
-          /* Override card background for navy section */
-          .critical-scenarios-cards .hover-step-card {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-          }
-
-          .critical-scenarios-cards .hover-step-card:hover,
-          .critical-scenarios-cards .hover-step-card:focus-within {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: rgba(242, 101, 34, 0.3);
-          }
-        </style>
-      </div>
-    </section>
-
-    <!-- 🟦 4️⃣ QUÉ EVALÚA EL ESTUDIO -->
-    <section id="evaluacion" class="premium-section-padding bg-slate" data-stack-section>
-      <div class="container">
-        <div class="section-title-center" style="margin-bottom: 4rem; text-align: center;">
-          <h2 class="text-navy" style="font-size: 2.5rem; line-height: 1.2;">Dimensiones tácticas de auditoría marcaria</h2>
-          <p class="text-gray-dark" style="font-size: 1.1rem; margin-top: 1rem;">Desglosamos los factores lógicos e inconscientes que deciden la cuota visual y la recomendación B2B.</p>
-        </div>
-        <div class="areas-grid">
-          <a class="area-panel" href="#awareness">
-            <span class="area-panel__icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M1 128s32-96 128-96 128 96 128 96-32 96-128 96-128-96-128-96z"></path><circle cx="128" cy="128" r="32"></circle></svg></span>
-            <span class="area-panel__title">Awareness y Recordación Competitiva</span>
-            <span class="area-panel__arrow" aria-hidden="true">→</span>
-          </a>
-          <a class="area-panel" href="#atributos">
-            <span class="area-panel__icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><polygon points="128 16 154.67 87.47 232 94.14 176.59 146.29 190.68 224 128 181.33 65.32 224 79.41 146.29 24 94.14 101.33 87.47 128 16"></polygon></svg></span>
-            <span class="area-panel__title">Atributos de Valor Corporativo</span>
-            <span class="area-panel__arrow" aria-hidden="true">→</span>
-          </a>
-          <a class="area-panel" href="#nps">
-            <span class="area-panel__icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M149.33 96V42.67a32 32 0 0 0-32-32l-42.67 96v117.33h120.53a21.33 21.33 0 0 0 21.33-21.33l14.67-96a21.33 21.33 0 0 0-21.33-21.34z"></path><path d="M74.67 234.67H42.67a21.33 21.33 0 0 1-21.34-21.34V128a21.33 21.33 0 0 1 21.34-21.33h32"></path></svg></span>
-            <span class="area-panel__title">Net Promoter Score (NPS) y Lealtad B2B</span>
-            <span class="area-panel__arrow" aria-hidden="true">→</span>
-          </a>
-          <a class="area-panel" href="#mapa">
-            <span class="area-panel__icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><line x1="128" y1="21.33" x2="128" y2="234.67"></line><line x1="21.33" y1="128" x2="234.67" y2="128"></line><circle cx="192" cy="64" r="21.33" fill="currentColor"></circle><circle cx="64" cy="192" r="21.33" fill="currentColor"></circle></svg></span>
-            <span class="area-panel__title">Mapa Perceptual de Competencia Directa</span>
-            <span class="area-panel__arrow" aria-hidden="true">→</span>
-          </a>
-          <a class="area-panel" href="#brecha">
-            <span class="area-panel__icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M181.33 32H74.67a21.33 21.33 0 0 0-21.34-21.33v149.33a21.33 21.33 0 0 0 21.34 21.33h149.33a21.33 21.33 0 0 0 21.33-21.33v-74.67"></path><path d="M197.33 21.33a21.33 21.33 0 1 1 32 32L128 154.67l-42.67 10.67 10.67-42.67z"></path></svg></span>
-            <span class="area-panel__title">Análisis de Brecha (Gap) de Identidad</span>
-            <span class="area-panel__arrow" aria-hidden="true">→</span>
-          </a>
-          <a class="area-panel" href="#neuro">
-            <span class="area-panel__icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M21.33 128s32-96 128-96 128 96 128 96-32 96-128 96-128-96-128-96z"></path><circle cx="128" cy="128" r="32"></circle><path d="M128 32V10.67M128 245.33v-21.34M32 128H10.67M245.33 128H224"></path></svg></span>
-            <span class="area-panel__title">Evaluación Neuro-Visual Marcaria</span>
-            <span class="area-panel__arrow" aria-hidden="true">→</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 🟦 5️⃣ TABLA COMPARATIVA -->
-    <section id="comparativa" class="premium-section-padding bg-white" data-stack-section>
-      <div class="container">
-        <div class="section-title-center" style="max-width: 800px; margin: 0 auto 3rem auto; text-align: center;">
-          <h2 class="text-navy" style="font-size: 2.2rem;">Por qué superar la encuesta tradicional de imagen</h2>
-          <p class="text-gray-dark" style="font-size: 1.1rem; margin-top: 1rem;">La diferencia entre recopilar opiniones autodeclaradas y hacer ciencia de posicionamiento.</p>
-        </div>
-
-        <div class="comparison-table-wrapper">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th>Auditoría de Marca Tradicional</th>
-                <th>Estudio Científico Mindtec</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Cuestionarios de imagen autodeclarativos superficiales</td>
-                <td>Mapa perceptual multicapa integrado con neuromarketing</td>
-              </tr>
-              <tr>
-                <td>Datos declarados racionales (sujetos a sesgo de complacencia)</td>
-                <td>Evaluación no consciente (atención y respuesta emocional real)</td>
-              </tr>
-              <tr>
-                <td>Reportes estadísticos planos sin traducción estratégica</td>
-                <td>Executive brief con lineamientos específicos de posicionamiento</td>
-              </tr>
-              <tr>
-                <td>Recomendaciones genéricas de pauta o branding</td>
-                <td>Acompañamiento directivo integral y consultoría estratégica</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- 🟦 6️⃣ PREGUNTAS FRECUENTES -->
-    <div data-stack-section>
-      <FaqSplit id="faqs" title="Preguntas Frecuentes" items={faqItems} />
-    </div>
-
-    <!-- 🟦 7️⃣ CROSS-LINKING ESTRATÉGICO -->
-    <section class="premium-section-padding bg-slate" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;" data-stack-section>
-      <div class="container" style="max-width: 900px;">
-        <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">Otras soluciones de inteligencia relacionadas</h3>
-        <HoverStepCards items={relatedSolutions} />
-      </div>
-    </section>
-
-    <!-- 🟦 8️⃣ FINAL CTA -->
-    <section class="cta-section-modern" style="padding: 6rem 0;" data-stack-section>
-      <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
-        <div class="cta-content-v2">
-          <h2 style="font-size: 3rem; line-height: 1.25; margin-bottom: 1.5rem;">La reputación corporativa puede medirse para ser protegida.</h2>
-          <p class="cta-subtitle" style="font-size: 1.25rem; margin-bottom: 2.5rem; opacity: 0.9;">
-            Antes de reposicionar su marca o lanzar nuevas campañas, valide el estado de su posicionamiento real en el mercado boliviano.
-          </p>
-          <div class="cta-actions" style="justify-content: center; flex-direction: column; align-items: center;">
-            <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar sesión de diagnóstico (45 min)</a>
-            <p style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">Primera sesión diagnóstica: 45 minutos | Confidencial | Sin compromiso</p>
+      <!-- 🟦 2️⃣ EL RIESGO DE LA IDENTIDAD FANTASMA -->
+      <section
+        id="problema"
+        class="problem-section bg-slate"
+        style="padding: 5rem 0;"
+        data-stack-section
+      >
+        <div class="container">
+          <div
+            class="premium-card-white"
+            style="max-width: 900px; margin: 0 auto; padding: 4rem;"
+          >
+            <h2
+              class="text-navy"
+              style="font-size: 2.5rem; margin-bottom: 2rem; line-height: 1.2;"
+            >
+              El riesgo de la "Identidad Fantasma": Cuando sus vendedores deben
+              disculparse por su precio
+            </h2>
+            <p
+              class="text-gray-dark leading-relaxed"
+              style="font-size: 1.2rem; margin-bottom: 2rem;"
+            >
+              Si su mercado objetivo no percibe una diferencia clara de valor
+              B2B o corporativo en su marca, su equipo de ventas se ve
+              desarmado. Sin un posicionamiento sólido, la única herramienta que
+              les queda para cerrar tratos es bajar el precio, erosionando
+              directamente sus márgenes y reduciendo la rentabilidad de su
+              negocio.
+            </p>
+            <p
+              class="text-gray-dark leading-relaxed"
+              style="font-size: 1.1rem; margin-bottom: 2.5rem;"
+            >
+              La auditoría de percepción de marca trasciende la simple
+              recopilación de adjetivos amables. Este análisis aísla los
+              disparadores reales de confianza e insatisfacción que determinan
+              si los tomadores de decisiones en Bolivia seleccionan la propuesta
+              de su negocio o la de sus competidores.
+            </p>
+            <hr
+              style="margin: 2.5rem 0; border: 0; border-top: 1px solid rgba(11, 43, 64, 0.08);"
+            />
+            <h3
+              class="text-navy"
+              style="font-size: 1.5rem; margin-bottom: 1.5rem;"
+            >
+              Activos de posicionamiento estratégico:
+            </h3>
+            <ul class="cap-list" style="font-size: 1.1rem;">
+              <li>
+                <strong class="text-navy"
+                  >Mapeo de Atributos de Decisión B2B:</strong
+                > Aislamiento de las variables no declaradas (como solidez institucional,
+                soporte técnico y continuidad operativa) que definen el cierre de
+                contratos corporativos.
+              </li>
+              <li>
+                <strong class="text-navy">Diagnóstico de Salud de Marca:</strong
+                > Medición de la lealtad y el riesgo de migración de sus clientes
+                clave antes de que la competencia los capte con ofertas agresivas.
+              </li>
+              <li>
+                <strong class="text-navy"
+                  >Auditoría de consistencia corporativa:</strong
+                > Revelación de descalces entre la promesa que su directorio define
+                y la experiencia de servicio que el cliente recibe en terreno.
+              </li>
+            </ul>
           </div>
         </div>
+      </section>
+
+      <!-- 🟦 3️⃣ CUÁNDO ES CRÍTICO MEDIR -->
+      <section
+        id="critico"
+        class="premium-section-padding bg-navy text-white"
+        style="padding: 5rem 0;"
+        data-stack-section
+      >
+        <div class="container">
+          <div
+            class="section-title-center"
+            style="margin-bottom: 4rem; text-align: center;"
+          >
+            <h2 class="text-white" style="font-size: 2.5rem; line-height: 1.2;">
+              ¿Cuándo es crítico auditar la percepción y reputación?
+            </h2>
+            <p
+              style="color: rgba(255,255,255,0.7); font-size: 1.1rem; margin-top: 1rem;"
+            >
+              Cinco coyunturas de negocio donde la falta de datos objetivos
+              puede costar millones en capital de marca.
+            </p>
+          </div>
+          <HoverStepCards
+            items={criticalScenarios}
+            class="critical-scenarios-cards"
+          />
+
+          <style>
+            /* Override card background for navy section */
+            .critical-scenarios-cards .hover-step-card {
+              background: rgba(255, 255, 255, 0.06);
+              border: 1px solid rgba(255, 255, 255, 0.12);
+            }
+
+            .critical-scenarios-cards .hover-step-card:hover,
+            .critical-scenarios-cards .hover-step-card:focus-within {
+              background: rgba(255, 255, 255, 0.1);
+              border-color: rgba(242, 101, 34, 0.3);
+            }
+          </style>
+        </div>
+      </section>
+
+      <!-- 🟦 4️⃣ QUÉ EVALÚA EL ESTUDIO -->
+      <section
+        id="evaluacion"
+        class="premium-section-padding bg-slate"
+        data-stack-section
+      >
+        <div class="container">
+          <div
+            class="section-title-center"
+            style="margin-bottom: 4rem; text-align: center;"
+          >
+            <h2 class="text-navy" style="font-size: 2.5rem; line-height: 1.2;">
+              Dimensiones tácticas de auditoría marcaria
+            </h2>
+            <p
+              class="text-gray-dark"
+              style="font-size: 1.1rem; margin-top: 1rem;"
+            >
+              Desglosamos los factores lógicos e inconscientes que deciden la
+              cuota visual y la recomendación B2B.
+            </p>
+          </div>
+          <div class="areas-grid">
+            <a class="area-panel" href="#awareness">
+              <span class="area-panel__icon" aria-hidden="true"
+                ><svg
+                  viewBox="0 0 256 256"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path
+                    d="M1 128s32-96 128-96 128 96 128 96-32 96-128 96-128-96-128-96z"
+                  ></path><circle cx="128" cy="128" r="32"></circle></svg
+                ></span
+              >
+              <span class="area-panel__title"
+                >Awareness y Recordación Competitiva</span
+              >
+              <span class="area-panel__arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="area-panel" href="#atributos">
+              <span class="area-panel__icon" aria-hidden="true"
+                ><svg
+                  viewBox="0 0 256 256"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><polygon
+                    points="128 16 154.67 87.47 232 94.14 176.59 146.29 190.68 224 128 181.33 65.32 224 79.41 146.29 24 94.14 101.33 87.47 128 16"
+                  ></polygon></svg
+                ></span
+              >
+              <span class="area-panel__title"
+                >Atributos de Valor Corporativo</span
+              >
+              <span class="area-panel__arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="area-panel" href="#nps">
+              <span class="area-panel__icon" aria-hidden="true"
+                ><svg
+                  viewBox="0 0 256 256"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path
+                    d="M149.33 96V42.67a32 32 0 0 0-32-32l-42.67 96v117.33h120.53a21.33 21.33 0 0 0 21.33-21.33l14.67-96a21.33 21.33 0 0 0-21.33-21.34z"
+                  ></path><path
+                    d="M74.67 234.67H42.67a21.33 21.33 0 0 1-21.34-21.34V128a21.33 21.33 0 0 1 21.34-21.33h32"
+                  ></path></svg
+                ></span
+              >
+              <span class="area-panel__title"
+                >Net Promoter Score (NPS) y Lealtad B2B</span
+              >
+              <span class="area-panel__arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="area-panel" href="#mapa">
+              <span class="area-panel__icon" aria-hidden="true"
+                ><svg
+                  viewBox="0 0 256 256"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><line x1="128" y1="21.33" x2="128" y2="234.67"></line><line
+                    x1="21.33"
+                    y1="128"
+                    x2="234.67"
+                    y2="128"></line><circle
+                    cx="192"
+                    cy="64"
+                    r="21.33"
+                    fill="currentColor"></circle><circle
+                    cx="64"
+                    cy="192"
+                    r="21.33"
+                    fill="currentColor"></circle></svg
+                ></span
+              >
+              <span class="area-panel__title"
+                >Mapa Perceptual de Competencia Directa</span
+              >
+              <span class="area-panel__arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="area-panel" href="#brecha">
+              <span class="area-panel__icon" aria-hidden="true"
+                ><svg
+                  viewBox="0 0 256 256"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path
+                    d="M181.33 32H74.67a21.33 21.33 0 0 0-21.34-21.33v149.33a21.33 21.33 0 0 0 21.34 21.33h149.33a21.33 21.33 0 0 0 21.33-21.33v-74.67"
+                  ></path><path
+                    d="M197.33 21.33a21.33 21.33 0 1 1 32 32L128 154.67l-42.67 10.67 10.67-42.67z"
+                  ></path></svg
+                ></span
+              >
+              <span class="area-panel__title"
+                >Análisis de Brecha (Gap) de Identidad</span
+              >
+              <span class="area-panel__arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="area-panel" href="#neuro">
+              <span class="area-panel__icon" aria-hidden="true"
+                ><svg
+                  viewBox="0 0 256 256"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path
+                    d="M21.33 128s32-96 128-96 128 96 128 96-32 96-128 96-128-96-128-96z"
+                  ></path><circle cx="128" cy="128" r="32"></circle><path
+                    d="M128 32V10.67M128 245.33v-21.34M32 128H10.67M245.33 128H224"
+                  ></path></svg
+                ></span
+              >
+              <span class="area-panel__title"
+                >Evaluación Neuro-Visual Marcaria</span
+              >
+              <span class="area-panel__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 🟦 5️⃣ TABLA COMPARATIVA -->
+      <section
+        id="comparativa"
+        class="premium-section-padding bg-white"
+        data-stack-section
+      >
+        <div class="container">
+          <div
+            class="section-title-center"
+            style="max-width: 800px; margin: 0 auto 3rem auto; text-align: center;"
+          >
+            <h2 class="text-navy" style="font-size: 2.2rem;">
+              Por qué superar la encuesta tradicional de imagen
+            </h2>
+            <p
+              class="text-gray-dark"
+              style="font-size: 1.1rem; margin-top: 1rem;"
+            >
+              La diferencia entre recopilar opiniones autodeclaradas y hacer
+              ciencia de posicionamiento.
+            </p>
+          </div>
+
+          <div class="comparison-table-wrapper">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th>Auditoría de Marca Tradicional</th>
+                  <th>Estudio Científico Mindtec</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Cuestionarios de imagen autodeclarativos superficiales</td
+                  >
+                  <td>Mapa perceptual multicapa integrado con neuromarketing</td
+                  >
+                </tr>
+                <tr>
+                  <td
+                    >Datos declarados racionales (sujetos a sesgo de
+                    complacencia)</td
+                  >
+                  <td
+                    >Evaluación no consciente (atención y respuesta emocional
+                    real)</td
+                  >
+                </tr>
+                <tr>
+                  <td
+                    >Reportes estadísticos planos sin traducción estratégica</td
+                  >
+                  <td
+                    >Executive brief con lineamientos específicos de
+                    posicionamiento</td
+                  >
+                </tr>
+                <tr>
+                  <td>Recomendaciones genéricas de pauta o branding</td>
+                  <td
+                    >Acompañamiento directivo integral y consultoría estratégica</td
+                  >
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- 🟦 6️⃣ PREGUNTAS FRECUENTES -->
+      <div data-stack-section>
+        <FaqSplit id="faqs" title="Preguntas Frecuentes" items={faqItems} />
       </div>
-    </section>
+
+      <!-- 🟦 7️⃣ CROSS-LINKING ESTRATÉGICO -->
+      <section
+        class="premium-section-padding bg-slate"
+        style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;"
+        data-stack-section
+      >
+        <div class="container" style="max-width: 900px;">
+          <h3
+            class="text-navy"
+            style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;"
+          >
+            Otras soluciones de inteligencia relacionadas
+          </h3>
+          <HoverStepCards items={relatedSolutions} />
+        </div>
+      </section>
+
+      <!-- 🟦 8️⃣ FINAL CTA -->
+      <section
+        class="cta-section-modern"
+        style="padding: 6rem 0;"
+        data-stack-section
+      >
+        <div
+          class="container"
+          style="max-width: 900px; margin: 0 auto; text-align: center;"
+        >
+          <div class="cta-content-v2">
+            <h2
+              style="font-size: 3rem; line-height: 1.25; margin-bottom: 1.5rem;"
+            >
+              La reputación corporativa puede medirse para ser protegida.
+            </h2>
+            <p
+              class="cta-subtitle"
+              style="font-size: 1.25rem; margin-bottom: 2.5rem; opacity: 0.9;"
+            >
+              Antes de reposicionar su marca o lanzar nuevas campañas, valide el
+              estado de su posicionamiento real en el mercado boliviano.
+            </p>
+            <div
+              class="cta-actions"
+              style="justify-content: center; flex-direction: column; align-items: center;"
+            >
+              <a
+                href="/contacto"
+                class="btn btn-primary lg"
+                style="font-size: 1.1rem; padding: 1rem 2.5rem;"
+                >Agendar sesión de diagnóstico (45 min)</a
+              >
+              <p
+                style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;"
+              >
+                Primera sesión diagnóstica: 45 minutos | Confidencial | Sin
+                compromiso
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     </StackedSections>
 
     <!-- BREADCRUMB -->
     <nav aria-label="Breadcrumb" class="breadcrumb-bottom">
       <div class="container">
         <ol>
-          <li><a href="/" style="color: rgba(255,255,255,0.6); text-decoration: none;">Inicio</a></li>
+          <li>
+            <a
+              href="/"
+              style="color: rgba(255,255,255,0.6); text-decoration: none;"
+              >Inicio</a>
+          </li>
           <li style="color: rgba(255,255,255,0.3);">›</li>
-          <li><a href="/servicios" style="color: rgba(255,255,255,0.6); text-decoration: none;">Servicios</a></li>
+          <li>
+            <a
+              href="/servicios"
+              style="color: rgba(255,255,255,0.6); text-decoration: none;"
+              >Servicios</a>
+          </li>
           <li style="color: rgba(255,255,255,0.3);">›</li>
-          <li aria-current="page" style="color: #fff; font-weight: 600;">Estudio de percepción de marca</li>
+          <li aria-current="page" style="color: #fff; font-weight: 600;">
+            Estudio de percepción de marca
+          </li>
         </ol>
       </div>
     </nav>
@@ -375,163 +742,193 @@ const relatedSolutions = [
 </Layout>
 
 <style>
-    .areas-grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.55rem;
-        max-width: 1320px;
-        margin: 0 auto;
-        text-align: left;
-    }
+  .areas-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.55rem;
+    max-width: 1320px;
+    margin: 0 auto;
+    text-align: left;
+  }
 
+  .area-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1 1 calc((100% - 4 * 0.55rem) / 5);
+    max-width: calc((100% - 4 * 0.55rem) / 5);
+    min-height: 290px;
+    padding: 1.5rem 1.25rem;
+    overflow: hidden;
+    background: #082235;
+    border: 1px solid rgba(141, 191, 221, 0.72);
+    color: #fff;
+    text-decoration: none;
+    isolation: isolate;
+    transition:
+      transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 280ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .area-panel::after {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: linear-gradient(
+      145deg,
+      rgba(29, 82, 112, 0.42),
+      transparent 55%
+    );
+    content: "";
+    opacity: 0;
+    transition: opacity 280ms ease;
+  }
+
+  .area-panel:nth-child(odd) {
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 31%,
+      88% 31%,
+      88% 69%,
+      100% 69%,
+      100% 100%,
+      0 100%
+    );
+  }
+
+  .area-panel:nth-child(even) {
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% 100%,
+      0 100%,
+      0 69%,
+      12% 69%,
+      12% 31%,
+      0 31%
+    );
+  }
+
+  .area-panel:hover {
+    transform: translateY(-6px);
+    background: #0b2c43;
+    border-color: var(--color-primary, #e7a548);
+  }
+
+  .area-panel:hover::after {
+    opacity: 1;
+  }
+
+  .area-panel:focus-visible {
+    outline: 3px solid var(--color-primary, #e7a548);
+    outline-offset: 4px;
+  }
+
+  .area-panel__icon {
+    display: grid;
+    width: 76px;
+    height: 76px;
+    place-items: center;
+    align-self: center;
+    margin: auto 0;
+    border: 1px solid rgba(168, 207, 232, 0.86);
+    border-radius: 50%;
+    color: #c5e3f3;
+    transition:
+      color 280ms ease,
+      border-color 280ms ease,
+      transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .area-panel:hover .area-panel__icon {
+    border-color: var(--color-primary, #e7a548);
+    color: var(--color-primary, #e7a548);
+    transform: scale(1.06);
+  }
+
+  .area-panel__icon svg {
+    width: 42px;
+    height: 42px;
+  }
+
+  .area-panel__title {
+    display: block;
+    max-width: 14ch;
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 1.3vw, 1.2rem);
+    font-weight: 700;
+    line-height: 1.17;
+    letter-spacing: -0.02em;
+  }
+
+  .area-panel__title small {
+    display: block;
+    margin-top: 0.15rem;
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 0.78em;
+    font-weight: 600;
+  }
+
+  .area-panel__arrow {
+    position: absolute;
+    right: 1.2rem;
+    bottom: 1.15rem;
+    color: var(--color-primary, #e7a548);
+    font-size: 1.3rem;
+    line-height: 1;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition:
+      opacity 220ms ease,
+      transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .area-panel:hover .area-panel__arrow,
+  .area-panel:focus-visible .area-panel__arrow {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  @media (max-width: 1100px) {
     .area-panel {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        flex: 1 1 calc((100% - 4 * 0.55rem) / 5);
-        max-width: calc((100% - 4 * 0.55rem) / 5);
-        min-height: 290px;
-        padding: 1.5rem 1.25rem;
-        overflow: hidden;
-        background: #082235;
-        border: 1px solid rgba(141, 191, 221, 0.72);
-        color: #fff;
-        text-decoration: none;
-        isolation: isolate;
-        transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1), background-color 280ms cubic-bezier(0.16, 1, 0.3, 1), border-color 280ms cubic-bezier(0.16, 1, 0.3, 1);
+      flex-basis: calc((100% - 2 * 0.55rem) / 3);
+      max-width: calc((100% - 2 * 0.55rem) / 3);
+    }
+  }
+
+  @media (max-width: 700px) {
+    .area-panel {
+      flex-basis: calc((100% - 0.55rem) / 2);
+      max-width: calc((100% - 0.55rem) / 2);
     }
 
-    .area-panel::after {
-        position: absolute;
-        z-index: -1;
-        inset: 0;
-        background: linear-gradient(145deg, rgba(29, 82, 112, 0.42), transparent 55%);
-        content: "";
-        opacity: 0;
-        transition: opacity 280ms ease;
-    }
-
-    .area-panel:nth-child(odd) {
-        clip-path: polygon(0 0, 100% 0, 100% 31%, 88% 31%, 88% 69%, 100% 69%, 100% 100%, 0 100%);
-    }
-
+    .area-panel,
+    .area-panel:nth-child(odd),
     .area-panel:nth-child(even) {
-        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 69%, 12% 69%, 12% 31%, 0 31%);
+      min-height: 235px;
+      clip-path: none;
     }
+  }
 
-    .area-panel:hover {
-        transform: translateY(-6px);
-        background: #0b2c43;
-        border-color: var(--color-primary, #e7a548);
-    }
-
-    .area-panel:hover::after {
-        opacity: 1;
-    }
-
-    .area-panel:focus-visible {
-        outline: 3px solid var(--color-primary, #e7a548);
-        outline-offset: 4px;
+  @media (max-width: 460px) {
+    .area-panel {
+      flex-basis: 100%;
+      max-width: 100%;
+      min-height: 205px;
     }
 
     .area-panel__icon {
-        display: grid;
-        width: 76px;
-        height: 76px;
-        place-items: center;
-        align-self: center;
-        margin: auto 0;
-        border: 1px solid rgba(168, 207, 232, 0.86);
-        border-radius: 50%;
-        color: #c5e3f3;
-        transition: color 280ms ease, border-color 280ms ease, transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .area-panel:hover .area-panel__icon {
-        border-color: var(--color-primary, #e7a548);
-        color: var(--color-primary, #e7a548);
-        transform: scale(1.06);
+      width: 64px;
+      height: 64px;
     }
 
     .area-panel__icon svg {
-        width: 42px;
-        height: 42px;
+      width: 35px;
+      height: 35px;
     }
-
-    .area-panel__title {
-        display: block;
-        max-width: 14ch;
-        font-family: var(--font-display);
-        font-size: clamp(1rem, 1.3vw, 1.2rem);
-        font-weight: 700;
-        line-height: 1.17;
-        letter-spacing: -0.02em;
-    }
-
-    .area-panel__title small {
-        display: block;
-        margin-top: 0.15rem;
-        color: rgba(255, 255, 255, 0.66);
-        font-size: 0.78em;
-        font-weight: 600;
-    }
-
-    .area-panel__arrow {
-        position: absolute;
-        right: 1.2rem;
-        bottom: 1.15rem;
-        color: var(--color-primary, #e7a548);
-        font-size: 1.3rem;
-        line-height: 1;
-        opacity: 0;
-        transform: translateX(-8px);
-        transition: opacity 220ms ease, transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .area-panel:hover .area-panel__arrow,
-    .area-panel:focus-visible .area-panel__arrow {
-        opacity: 1;
-        transform: translateX(0);
-    }
-
-    @media (max-width: 1100px) {
-        .area-panel {
-            flex-basis: calc((100% - 2 * 0.55rem) / 3);
-            max-width: calc((100% - 2 * 0.55rem) / 3);
-        }
-    }
-
-    @media (max-width: 700px) {
-        .area-panel {
-            flex-basis: calc((100% - 0.55rem) / 2);
-            max-width: calc((100% - 0.55rem) / 2);
-        }
-
-        .area-panel,
-        .area-panel:nth-child(odd),
-        .area-panel:nth-child(even) {
-            min-height: 235px;
-            clip-path: none;
-        }
-    }
-
-    @media (max-width: 460px) {
-        .area-panel {
-            flex-basis: 100%;
-            max-width: 100%;
-            min-height: 205px;
-        }
-
-        .area-panel__icon {
-            width: 64px;
-            height: 64px;
-        }
-
-        .area-panel__icon svg {
-            width: 35px;
-            height: 35px;
-        }
-    }
+  }
 </style>

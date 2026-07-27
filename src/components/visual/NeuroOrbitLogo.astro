@@ -293,12 +293,18 @@ const {
       new ResizeObserver(resizeField).observe(root);
       requestAnimationFrame(drawField);
 
-      // --- Synapse-spark connections between nearby contour particles ---
+      // --- Synapse bursts: a single origin point fires toward several of
+      // its nearby neighbours at once (fan-out), the way a real neuron
+      // radiates to multiple synapses instead of pinging one lone point to
+      // another. Each branch is a soft white quadratic arc with a travelling
+      // spark at its tip and a brief flash at the origin when it fires. ---
       const connectionsContext = connectionsEl!.getContext("2d");
-      const particlePairs: any[] = [];
+      let dotsRef: any[] = [];
+      let adjacency: number[][] = [];
+      let firingOrigins: number[] = [];
       const activeConnections: any[] = [];
-      const connectionCount = isMobile ? 7 : 14;
-      let nextConnectionAt = 0;
+      const maxActiveConnections = isMobile ? 10 : 20;
+      let nextBurstAt = 0;
 
       const resizeConnections = () => {
         const pixelRatio = window.devicePixelRatio || 1;
@@ -308,38 +314,65 @@ const {
       };
 
       const collectPairs = () => {
-        particlePairs.length = 0;
-        const dots = particlesContainer.particles.filter(() => true);
+        dotsRef = particlesContainer.particles.filter(() => true);
+        adjacency = dotsRef.map(() => []);
 
-        for (let index = 0; index < dots.length; index += 1) {
-          const start = dots[index].getPosition();
+        for (let index = 0; index < dotsRef.length; index += 1) {
+          const start = dotsRef[index].getPosition();
           for (
             let targetIndex = index + 1;
-            targetIndex < dots.length;
+            targetIndex < dotsRef.length;
             targetIndex += 1
           ) {
-            const end = dots[targetIndex].getPosition();
+            const end = dotsRef[targetIndex].getPosition();
             const distance = Math.hypot(end.x - start.x, end.y - start.y);
             if (distance > 18 && distance < 68) {
-              particlePairs.push([dots[index], dots[targetIndex]]);
+              adjacency[index].push(targetIndex);
+              adjacency[targetIndex].push(index);
             }
           }
         }
+
+        // Only points with at least two nearby neighbours can "fire" a
+        // fan-out burst — a lone pair would look like the old single-line
+        // effect again.
+        firingOrigins = adjacency
+          .map((neighbors, index) => (neighbors.length >= 2 ? index : -1))
+          .filter((index) => index >= 0);
       };
 
-      const addConnection = (now: number) => {
-        const pair =
-          particlePairs[Math.floor(Math.random() * particlePairs.length)];
-        if (!pair) return;
-        activeConnections.push({
-          pair,
-          start: now,
-          duration: 750 + Math.random() * 650,
+      const addBurst = (now: number) => {
+        if (firingOrigins.length === 0) return;
+        const originIndex =
+          firingOrigins[Math.floor(Math.random() * firingOrigins.length)];
+        const neighbors = adjacency[originIndex];
+        const branchCount = Math.min(
+          neighbors.length,
+          2 + Math.floor(Math.random() * 3),
+        );
+        const branches = [...neighbors]
+          .sort(() => Math.random() - 0.5)
+          .slice(0, branchCount);
+        const duration = 800 + Math.random() * 700;
+
+        branches.forEach((targetIndex, branchOrder) => {
+          activeConnections.push({
+            originIndex,
+            targetIndex,
+            // Fixed at creation time so each arc keeps a stable, gentle
+            // curvature instead of jittering frame to frame.
+            bend: (Math.random() - 0.5) * 0.6,
+            start: now + branchOrder * 45,
+            duration,
+          });
         });
       };
 
       const drawConnections = (now: number) => {
-        if (!connectionsContext) return;
+        if (!connectionsContext || !dotsRef.length) {
+          requestAnimationFrame(drawConnections);
+          return;
+        }
         connectionsContext.clearRect(
           0,
           0,
@@ -348,11 +381,11 @@ const {
         );
 
         while (
-          activeConnections.length < connectionCount &&
-          now >= nextConnectionAt
+          activeConnections.length < maxActiveConnections &&
+          now >= nextBurstAt
         ) {
-          addConnection(now);
-          nextConnectionAt = now + 85;
+          addBurst(now);
+          nextBurstAt = now + 260 + Math.random() * 180;
         }
 
         for (
@@ -361,28 +394,69 @@ const {
           index -= 1
         ) {
           const connection = activeConnections[index];
+          if (now < connection.start) continue;
+
           const progress = (now - connection.start) / connection.duration;
           if (progress >= 1) {
             activeConnections.splice(index, 1);
             continue;
           }
 
-          const [origin, destination] = connection.pair;
+          const origin = dotsRef[connection.originIndex];
+          const target = dotsRef[connection.targetIndex];
+          if (!origin || !target) {
+            activeConnections.splice(index, 1);
+            continue;
+          }
+
           const from = origin.getPosition();
-          const to = destination.getPosition();
-          const drawProgress = Math.min(progress * 2.6, 1);
-          const opacity = Math.sin(progress * Math.PI) * 0.9;
-          const endX = from.x + (to.x - from.x) * drawProgress;
-          const endY = from.y + (to.y - from.y) * drawProgress;
+          const to = target.getPosition();
+          const drawProgress = Math.min(progress * 2.4, 1);
+          const fade = Math.sin(Math.min(progress, 1) * Math.PI);
+          const midX = (from.x + to.x) / 2 - (to.y - from.y) * connection.bend;
+          const midY = (from.y + to.y) / 2 + (to.x - from.x) * connection.bend;
+          const inverse = 1 - drawProgress;
+          const endX =
+            inverse * inverse * from.x +
+            2 * inverse * drawProgress * midX +
+            drawProgress * drawProgress * to.x;
+          const endY =
+            inverse * inverse * from.y +
+            2 * inverse * drawProgress * midY +
+            drawProgress * drawProgress * to.y;
 
           connectionsContext.beginPath();
           connectionsContext.moveTo(from.x, from.y);
-          connectionsContext.lineTo(endX, endY);
-          connectionsContext.strokeStyle = `rgba(255, 139, 76, ${opacity})`;
-          connectionsContext.lineWidth = 1.35;
-          connectionsContext.shadowColor = "rgba(255, 139, 76, 0.8)";
-          connectionsContext.shadowBlur = 7;
+          connectionsContext.quadraticCurveTo(midX, midY, endX, endY);
+          connectionsContext.strokeStyle = `rgba(255, 255, 255, ${fade * 0.85})`;
+          connectionsContext.lineWidth = 1.1;
+          connectionsContext.shadowColor = "rgba(255, 255, 255, 0.9)";
+          connectionsContext.shadowBlur = 8;
           connectionsContext.stroke();
+
+          // Travelling spark at the drawing tip.
+          connectionsContext.beginPath();
+          connectionsContext.arc(endX, endY, 1.6, 0, Math.PI * 2);
+          connectionsContext.fillStyle = `rgba(255, 255, 255, ${fade})`;
+          connectionsContext.shadowBlur = 10;
+          connectionsContext.fill();
+
+          // Brief flash at the origin the instant a branch fires — makes
+          // the fan-out read as "one point signalling outward".
+          if (progress < 0.22) {
+            const flash = 1 - progress / 0.22;
+            connectionsContext.beginPath();
+            connectionsContext.arc(
+              from.x,
+              from.y,
+              2.4 * flash + 1,
+              0,
+              Math.PI * 2,
+            );
+            connectionsContext.fillStyle = `rgba(255, 255, 255, ${flash * 0.8})`;
+            connectionsContext.shadowBlur = 12;
+            connectionsContext.fill();
+          }
         }
 
         requestAnimationFrame(drawConnections);

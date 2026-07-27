@@ -2,9 +2,56 @@
 import Layout from '../layouts/Layout.astro';
 import HoverStepCards from '../components/cards/HoverStepCards.astro';
 import AreaPanelCards from '../components/cards/AreaPanelCards.astro';
+import ComparisonRows from '../components/cards/ComparisonRows.astro';
 import ScrollStory from '../components/scroll/ScrollStory.astro';
 import FaqSplit from '../components/faq/FaqSplit.astro';
 import StackedSections from '../components/scroll/StackedSections.astro';
+
+const problemScenarios = [
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="96"></circle><path d="M128 72v56l40 24"></path></svg>`,
+    title: 'Lanzamientos sin validar demanda',
+    description: 'Lanzó un producto sin medir la demanda real y tardó 6 meses en darse cuenta que el precio no era aceptable. Una encuesta de valoración habría tomado 4 semanas.',
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="88"></circle><circle cx="128" cy="128" r="48"></circle><circle cx="128" cy="128" r="8"></circle></svg>`,
+    title: 'Segmentación genérica',
+    description: 'Su empresa asumió que el mercado objetivo eran "todos los bolivianos de 25 a 45 años". Sin segmentación estadística, el presupuesto de comunicación se diluyó sin resultados.',
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M116 156a40 40 0 1 1 40-40"></path><path d="M172 172l40 40"></path><path d="M148 108h-4v16"></path></svg>`,
+    title: 'Percepción sin medición',
+    description: 'El equipo comercial reporta que "el producto está bien posicionado". Pero nadie midió qué porcentaje del mercado efectivamente lo conoce, lo prefiere o lo compra.',
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M96 32h64l16 24H80z"></path><rect x="56" y="56" width="144" height="168" rx="8"></rect><path d="M92 112h72M92 144h72M92 176h40"></path></svg>`,
+    title: 'Evidencia insuficiente',
+    description: 'El Directorio exige evidencia estadística antes de aprobar la inversión. Y lo que hay son proyecciones del equipo de ventas, no datos de mercado.',
+  },
+];
+
+const comparisonRows = [
+  {
+    before: 'Entrega tablas de frecuencias y porcentajes',
+    after: 'Entrega conclusiones accionables con recomendaciones estratégicas priorizadas para el directorio',
+  },
+  {
+    before: 'Muestra diseñada genéricamente por ciudad',
+    after: 'Diseño muestral estratificado que refleja la diversidad cultural y económica del mercado boliviano real',
+  },
+  {
+    before: 'Solo método presencial o solo online',
+    after: 'Metodología mixta (presencial + CATI + CAWI) según el perfil del segmento objetivo',
+  },
+  {
+    before: 'Cuestionario estándar aplicado igual en todo el país',
+    after: 'Cuestionarios adaptados por región para capturar diferencias culturales entre Santa Cruz, La Paz y el interior',
+  },
+  {
+    before: 'Datos declarativos puros (lo que la gente dice)',
+    after: 'Validación cruzada con biometría y datos observacionales cuando la intención declarada no basta',
+  },
+];
 
 const processSteps = [
   {
@@ -30,6 +77,49 @@ const processSteps = [
     title: "Análisis y presentación",
     small: "5–7 días post-campo",
     description: "Procesamiento estadístico, análisis multivariado donde aplica y síntesis ejecutiva con recomendaciones priorizadas. Presentación ante el equipo directivo con sesión de preguntas.",
+  },
+];
+
+const sectorItems = [
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M64 96V72a64 64 0 0 1 128 0v24"></path><rect x="40" y="96" width="176" height="128" rx="8"></rect></svg>`,
+    title: "Consumo masivo y retail",
+    href: "/contacto",
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M32 96h192L128 32z"></path><path d="M48 96v104M96 96v104M160 96v104M208 96v104"></path><path d="M32 224h192"></path></svg>`,
+    title: "Banca y servicios financieros",
+    href: "/contacto",
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="16"></circle><path d="M88 88a56 56 0 0 1 80 0"></path><path d="M64 64a92 92 0 0 1 128 0"></path><path d="M112 152a24 24 0 0 1 32 0"></path></svg>`,
+    title: "Telecomunicaciones",
+    href: "/contacto",
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="96"></circle><path d="M128 88v80M88 128h80"></path></svg>`,
+    title: "Farmacéutico y salud",
+    href: "/contacto",
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M128 224V64"></path><path d="M128 64c0 0-64 8-64 72 64 0 64-72 64-72z"></path><path d="M128 100c0 0 64 8 64 72-64 0-64-72-64-72z"></path></svg>`,
+    title: "Agroindustria y alimentos",
+    href: "/contacto",
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M16 96l112-48 112 48-112 48z"></path><path d="M72 120v48c0 16 24 32 56 32s56-16 56-32v-48"></path><path d="M224 96v56"></path></svg>`,
+    title: "Educación e instituciones",
+    href: "/contacto",
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M48 224V96l64-32 64 32v128"></path><path d="M176 224V64l32-16 32 16v176"></path><path d="M24 224h208"></path><path d="M80 128h16M80 168h16M136 128h16M136 168h16"></path></svg>`,
+    title: "Construcción e inmobiliario",
+    href: "/contacto",
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="96"></circle><path d="M32 128h192"></path><path d="M128 32c40 32 40 160 0 192M128 32c-40 32-40 160 0 192"></path></svg>`,
+    title: "ONGs y organismos internacionales",
+    href: "/contacto",
   },
 ];
 
@@ -217,26 +307,23 @@ const relatedProductsCards = [
     </section>
 
     <!-- 2. EL PROBLEMA -->
-    <section class="problem-section bg-slate" style="padding: 5rem 0;" data-stack-section>
+    <section class="bg-slate" style="padding: 5rem 0;" data-stack-section>
       <div class="container">
-        <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
+        <div style="max-width: 900px; margin: 0 auto;">
           <span class="eyebrow">EL PROBLEMA REAL</span>
           <h2 class="text-navy" style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;">Decidir con datos anecdóticos en un mercado de 12 millones es demasiado costoso.</h2>
           <p class="text-gray-dark leading-relaxed" style="font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.7;">
             Bolivia tiene 9 departamentos, 3 pisos ecológicos y docenas de culturas activas. Un gerente que toma decisiones basado en lo que "ve en el mercado" o en la opinión de 5 distribuidores no tiene datos — tiene anécdotas. Y las anécdotas no escalan.
           </p>
-          <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.7;">
+          <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; line-height: 1.7;">
             ¿Reconoce alguno de estos escenarios?
           </p>
-          <ul class="cap-list" style="font-size: 1.05rem; margin-bottom: 2rem;">
-            <li><strong class="text-navy">Lanzó un producto sin medir la demanda real y tardó 6 meses en darse cuenta que el precio no era aceptable.</strong> Una encuesta de valoración habría tomado 4 semanas.</li>
-            <li><strong class="text-navy">Su empresa asumió que el mercado objetivo eran "todos los bolivianos de 25 a 45 años".</strong> Sin segmentación estadística, el presupuesto de comunicación se diluyó sin resultados.</li>
-            <li><strong class="text-navy">El equipo comercial reporta que "el producto está bien posicionado".</strong> Pero nadie midió qué porcentaje del mercado efectivamente lo conoce, lo prefiere o lo compra.</li>
-            <li><strong class="text-navy">El Directorio exige evidencia estadística antes de aprobar la inversión.</strong> Y lo que hay son proyecciones del equipo de ventas, no datos de mercado.</li>
-          </ul>
-          <div style="background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: 8px; font-weight: 600; font-size: 1.1rem; text-align: center;">
-            Sin evidencia estadística representativa, la aprobación del Directorio es una promesa — no una decisión informada.
-          </div>
+        </div>
+
+        <AreaPanelCards items={problemScenarios} columns={4} theme="navy" class="problem-panels" />
+
+        <div style="max-width: 900px; margin: 2.5rem auto 0; background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: var(--radius-md, 8px); font-weight: 600; font-size: 1.1rem; text-align: center;">
+          Sin evidencia estadística representativa, la aprobación del Directorio es una promesa — no una decisión informada.
         </div>
       </div>
     </section>
@@ -248,39 +335,13 @@ const relatedProductsCards = [
           <span class="eyebrow">MINDTEC+</span>
           <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;">Más que un recopilador de encuestas: inteligencia estratégica respaldada por infraestructura de campo nacional.</h2>
         </div>
-        <div class="comparison-table-wrapper">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th scope="col">Encuestadora tradicional</th>
-                <th scope="col">Mindtec — Investigación Cuantitativa</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Entrega tablas de frecuencias y porcentajes</td>
-                <td>Entrega conclusiones accionables con recomendaciones estratégicas priorizadas para el directorio</td>
-              </tr>
-              <tr>
-                <td>Muestra diseñada genéricamente por ciudad</td>
-                <td>Diseño muestral estratificado que refleja la diversidad cultural y económica del mercado boliviano real</td>
-              </tr>
-              <tr>
-                <td>Solo método presencial o solo online</td>
-                <td>Metodología mixta (presencial + CATI + CAWI) según el perfil del segmento objetivo</td>
-              </tr>
-              <tr>
-                <td>Cuestionario estándar aplicado igual en todo el país</td>
-                <td>Cuestionarios adaptados por región para capturar diferencias culturales entre Santa Cruz, La Paz y el interior</td>
-              </tr>
-              <tr>
-                <td>Datos declarativos puros (lo que la gente dice)</td>
-                <td>Validación cruzada con biometría y datos observacionales cuando la intención declarada no basta</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="text-gray-dark" style="font-size: 1.05rem; margin-top: 2rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.7;">
+
+        <ComparisonRows
+          columnLabels={{ left: 'Encuestadora tradicional', right: 'Mindtec — Investigación Cuantitativa' }}
+          rows={comparisonRows}
+        />
+
+        <p class="text-gray-dark" style="font-size: 1.05rem; margin-top: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.7;">
           La diferencia no está en el tamaño de la muestra. Está en lo que hacemos con los datos después de recolectarlos.
         </p>
       </div>
@@ -369,16 +430,7 @@ const relatedProductsCards = [
           <span class="eyebrow">SECTORES</span>
           <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">¿Su sector está aquí?</h2>
         </div>
-        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; list-style: none; padding: 0;">
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Consumo masivo y retail</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Banca y servicios financieros</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Telecomunicaciones</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Farmacéutico y salud</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Agroindustria y alimentos</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Educación e instituciones</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Construcción e inmobiliario</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">ONGs y organismos internacionales</li>
-        </ul>
+        <AreaPanelCards items={sectorItems} columns={4} />
       </div>
     </section>
 
@@ -449,6 +501,13 @@ const relatedProductsCards = [
     </StackedSections>
 
     <style>
+      /* Espacio entre la intro de "El Problema" y el grid de escenarios.
+         :global() porque la clase se aplica dentro de AreaPanelCards.astro;
+         doble clase para ganarle en especificidad al margin:0 auto de .areas-grid. */
+      :global(.areas-grid.problem-panels) {
+        margin-top: 3.5rem;
+      }
+
       /* CTA final del StackedSections: el fondo naranja ocupa toda la ventana. */
       .cta-section-modern--viewport {
         min-height: 100svh;

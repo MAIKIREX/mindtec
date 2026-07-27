@@ -16,18 +16,20 @@ const seedRef = process.argv
   ?.slice('--seed-ref='.length);
 
 const STYLE_PREFIX =
-  'Realistic editorial corporate photography, natural lighting, shallow depth of field, ' +
-  'color grade with deep navy blue ambient and shadow tones (#0B2B40 / #061C2B) and warm orange accent light (#F26522), ' +
-  'no on-image text, no logos, no watermarks, high detail, photojournalistic, not futuristic, not illustrated, not 3D render. ';
+  'Realistic editorial corporate photography, shot on a full-frame DSLR with a natural warm window light source, ' +
+  'true-to-life color grade with deep navy blue shadow tones (#0B2B40 / #061C2B) and a warm amber accent light (#F26522) picked up on skin and surfaces, ' +
+  'authentic unposed moment, real physical objects and printed paper only (no glowing screens, no holographic overlays, no on-screen dashboards, no floating UI graphics), ' +
+  'no on-image text, no logos, no watermarks, high detail, photojournalistic, documentary style, not futuristic, not illustrated, not 3D render. ';
 
 // Card sits on the LEFT (ScrollStoryLeft) -> keep the subject on the right.
-const LEFT_CARD_COMPOSITION = 'Keep the main subject in the right two-thirds of the frame, leaving the left third relatively open. ';
+const LEFT_CARD_COMPOSITION = 'Keep the main subject and any props in the right two-thirds of the frame, leaving the left third relatively open and uncluttered. ';
 
 /**
- * Narrative: a market-viability "war room" where an analyst reviews a large glass
- * data wall. Each frame focuses on a different abstract data visualization on that
- * wall, echoing the 4 dimensions of Mindtec's viability model. Subjects and props
- * stay consistent across frames via image-to-image chaining (filesUrl).
+ * Narrative: real, grounded moments across Mindtec's market-viability process —
+ * from the analyst's desk to the actual retail floor — echoing the 4 dimensions
+ * of the viability model without resorting to abstract sci-fi data-wall visuals.
+ * Each frame is generated independently (no image-to-image chaining) so every
+ * scene can live in its own real, concrete location.
  */
 const IMAGES = [
   {
@@ -37,47 +39,52 @@ const IMAGES = [
     prompt:
       STYLE_PREFIX +
       LEFT_CARD_COMPOSITION +
-      'A focused business analyst in her late 30s, business casual attire, standing in a dim glass-walled office, looking at a large glass data wall covered in abstract financial charts, concentric circular market-sizing diagrams and layered translucent panels glowing in orange and navy tones. Establishing wide shot introducing her and the room.',
+      'A focused business analyst in her late 30s, business casual attire, seated at a wooden desk in a bright office with large windows, golden late-afternoon light streaming in, reviewing a printed market feasibility report and a spread of paper charts, a laptop closed beside her, a soft city skyline visible through the window behind her.',
   },
   {
     id: 'intro',
     outFile: 'intro',
+    chainStart: true,
     prompt:
       STYLE_PREFIX +
       LEFT_CARD_COMPOSITION +
-      'Same analyst and same glass data wall as the reference image, now closer, pointing at a cluster of four distinct abstract data panels arranged side by side on the glass wall, as if comparing four different dimensions of analysis.',
+      'Two colleagues, a woman and a man in business casual attire, standing at a wooden conference table in a naturally lit office, comparing four printed report sections spread out side by side on the table, one of them pointing at a page, warm daylight through large windows.',
   },
   {
     id: 'item-01-arquitectura-financiera',
     outFile: 'item-01-arquitectura-financiera',
+    chainStart: true,
     prompt:
       STYLE_PREFIX +
       LEFT_CARD_COMPOSITION +
-      'Same glass data wall and office as the reference image, now filling the frame with a close-up of concentric translucent circles of decreasing size (three nested rings) glowing in orange and navy light, representing layered market-sizing data, faint grid lines behind them, the analyst blurred in the foreground.',
+      'Close-up over-the-shoulder shot of a business analyst\'s hand pointing with a pen at a printed diagram of three concentric circles of decreasing size labeled as a market-sizing chart, resting on a wooden desk next to a coffee cup and a notebook, warm natural window light, shallow depth of field.',
   },
   {
     id: 'item-02-validacion-demanda',
     outFile: 'item-02-validacion-demanda',
+    chainStart: true,
     prompt:
       STYLE_PREFIX +
       LEFT_CARD_COMPOSITION +
-      'Same glass data wall and office as the reference image, now a close-up of a dense abstract heatmap of small glowing orange and navy dots of varying intensity clustered unevenly across the glass panel, suggesting hidden patterns in behavior data, analyst blurred in the background.',
+      'Candid, authentic photo inside a small traditional Bolivian neighborhood store, a real customer\'s hand reaching to pick up a packaged product from a crowded shelf, warm natural daylight coming through the storefront, shallow depth of field, genuine everyday shopping moment, no posing.',
   },
   {
     id: 'item-03-inteligencia-competitiva',
     outFile: 'item-03-inteligencia-competitiva',
+    chainStart: true,
     prompt:
       STYLE_PREFIX +
       LEFT_CARD_COMPOSITION +
-      'Same glass data wall and office as the reference image, now a close-up of an abstract radar-style network diagram with several glowing orange nodes connected by thin navy lines at different distances from a central point, representing competitor mapping, analyst blurred in the background.',
+      'A field auditor in casual field clothing discreetly holding up a smartphone to photograph a competitor\'s product display on a retail store shelf, aisle softly lit by natural store lighting, shallow depth of field, candid documentary moment.',
   },
   {
     id: 'item-04-stop-go',
     outFile: 'item-04-stop-go',
+    chainStart: true,
     prompt:
       STYLE_PREFIX +
       LEFT_CARD_COMPOSITION +
-      'Same glass data wall and office as the reference image, now a close-up of two large translucent panels side by side, one glowing warm orange and one glowing deep navy, meeting at a sharp dividing line like a fork, representing a binary strategic decision, analyst blurred in the background reaching toward the panels.',
+      'A small group of three executives in business attire around a boardroom table in a naturally lit meeting room, one of them pointing decisively at a highlighted line on a one-page printed executive brief, engaged and serious body language, warm window light, shallow depth of field.',
   },
 ];
 
