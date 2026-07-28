@@ -1,108 +1,23 @@
-# Redirects from legacy/html URLs to live, equivalent pages.
-# These must never point to retired blog slugs: a 301 followed by a 404 is still
-# reported by Search Console as a broken URL.
-/articulo-3-ejemplos-de-neuromarketing-en-la-vida-diaria-que-quiza-no-sabias.html /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/articulo-5-tips-diferenciar-tu-marca.html /percepcion-de-marca-bolivia/ 301
-/articulo-codigo-cultural.html /investigacion-cualitativa-bolivia/ 301
-/articulo-como-emocionar-a-mis-clientes.html /percepcion-de-marca-bolivia/ 301
-/articulo-conoce-las-5c-del-neuromarketing-y-potenciate.html /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/articulo-diferencias-hombres-y-mujeres-al-comprar-i.html /comportamiento-consumidor-boliviano/ 301
-/articulo-eres-capaz-de-descubrir-mentiras-de-tu-cliente-aprende-como-hacerlo-parte-i.html /investigacion-cualitativa-bolivia/ 301
-/articulo-evoluciona-tus-tecnicas-de-investigacion-de-mercados-con-neuromarketing.html /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/articulo-fidelizar_cliente.html /percepcion-de-marca-bolivia/ 301
-/articulo-herramientas-recoleccion-datos-cualitativos.html /investigacion-cualitativa-bolivia/ 301
-/articulo-investigacion-de-mercado-en-bolivia-consumer-behavior.html /comportamiento-consumidor-boliviano/ 301
-/articulo-investigacion-de-mercado-en-pymes-paso-a-paso.html /estudio-de-mercado-bolivia/ 301
-/articulo-investigacion-de-mercados.html /estudio-de-mercado-bolivia/ 301
-/articulo-investigacion-de-mercados-bolivia.html /estudio-de-mercado-bolivia/ 301
-/articulo-investigacion-de-mercados-con-neuromarketing.html /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/articulo-investigacion-de-mercados-consumidor.html /comportamiento-consumidor-boliviano/ 301
-/articulo-investigacion-de-mercados-cuantitativa-vs-cualitativa.html /investigacion-cuantitativa-bolivia/ 301
-/articulo-marketing-emocional-y-de-la-mente.html /percepcion-de-marca-bolivia/ 301
-/articulo-mente_del_consumidor.html /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/articulo-por-que-utilizar-neuromarketing-en-mi-publicidad.html /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/articulo-publicidad-efectiva-en-tu-campana-como-saber-si-lo-sera.html /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/articulo-que-es-el-neuromarketing.html /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/articulo-sabes-la-diferencia-entre-marketing-de-emociones-y-neuromarketing.html /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-
-# URLs editoriales del WordPress anterior sin la extensión .html.
-/3-ejemplos-de-neuromarketing-en-la-vida-diaria-que-quiza-no-sabias/ /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/5-tips-diferenciar-tu-marca/ /percepcion-de-marca-bolivia/ 301
-/codigo-cultural/ /investigacion-cualitativa-bolivia/ 301
-/como-emocionar-a-mis-clientes/ /percepcion-de-marca-bolivia/ 301
-/conoce-las-5c-del-neuromarketing-y-potenciate/ /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/diferencias-hombres-y-mujeres-al-comprar-i/ /comportamiento-consumidor-boliviano/ 301
-/eres-capaz-de-descubrir-mentiras-de-tu-cliente-aprende-como-hacerlo-parte-i/ /investigacion-cualitativa-bolivia/ 301
-/evoluciona-tus-tecnicas-de-investigacion-de-mercados-con-neuromarketing/ /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/fidelizar_cliente/ /percepcion-de-marca-bolivia/ 301
-/herramientas-recoleccion-datos-cualitativos/ /investigacion-cualitativa-bolivia/ 301
-/investigacion-de-mercado-en-bolivia-consumer-behavior/ /comportamiento-consumidor-boliviano/ 301
-/investigacion-de-mercado-en-pymes-paso-a-paso/ /estudio-de-mercado-bolivia/ 301
-/investigacion-de-mercados/ /estudio-de-mercado-bolivia/ 301
-/investigacion-de-mercados-bolivia/ /estudio-de-mercado-bolivia/ 301
-/investigacion-de-mercados-con-neuromarketing/ /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/investigacion-de-mercados-consumidor/ /comportamiento-consumidor-boliviano/ 301
-/investigacion-de-mercados-cuantitativa-vs-cualitativa/ /investigacion-cuantitativa-bolivia/ 301
-/investigaciones-de-neuromarketing-en-bolivia/ /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/marketing-emocional-y-de-la-mente/ /percepcion-de-marca-bolivia/ 301
-/mente_del_consumidor/ /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/neuromarketing/ /neuromarketing-bolivia/ 301
-/por-que-utilizar-neuromarketing-en-mi-publicidad/ /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/publicidad-efectiva-en-tu-campana-como-saber-si-lo-sera/ /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/que-es-el-neuromarketing/ /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/sabes-la-diferencia-entre-marketing-de-emociones-y-neuromarketing/ /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-
-# Antiguas rutas de artículos bajo /blog/ que ya no son parte de la colección.
-/blog/3-ejemplos-de-neuromarketing-en-la-vida-diaria-que-quiza-no-sabias /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/blog/3-ejemplos-de-neuromarketing-en-la-vida-diaria-que-quiza-no-sabias/ /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/blog/5-tips-diferenciar-tu-marca /percepcion-de-marca-bolivia/ 301
-/blog/5-tips-diferenciar-tu-marca/ /percepcion-de-marca-bolivia/ 301
-/blog/codigo-cultural /investigacion-cualitativa-bolivia/ 301
-/blog/codigo-cultural/ /investigacion-cualitativa-bolivia/ 301
-/blog/como-emocionar-a-mis-clientes /percepcion-de-marca-bolivia/ 301
-/blog/diferencias-hombres-y-mujeres-al-comprar-i /comportamiento-consumidor-boliviano/ 301
-/blog/eres-capaz-de-descubrir-mentiras-de-tu-cliente-aprende-como-hacerlo-parte-i /investigacion-cualitativa-bolivia/ 301
-/blog/fidelizar_cliente /percepcion-de-marca-bolivia/ 301
-/blog/herramientas-recoleccion-datos-cualitativos /investigacion-cualitativa-bolivia/ 301
-/blog/investigacion-de-mercados /estudio-de-mercado-bolivia/ 301
-/blog/investigacion-de-mercado-en-bolivia-consumer-behavior /comportamiento-consumidor-boliviano/ 301
-/blog/investigacion-de-mercado-en-pymes-paso-a-paso /estudio-de-mercado-bolivia/ 301
-/blog/investigacion-de-mercados-consumidor /comportamiento-consumidor-boliviano/ 301
-/blog/investigacion-de-mercados-cuantitativa-vs-cualitativa /investigacion-cuantitativa-bolivia/ 301
-/blog/por-que-utilizar-neuromarketing-en-mi-publicidad /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/blog/publicidad-efectiva-en-tu-campana-como-saber-si-lo-sera /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/blog/publicidad-efectiva-en-tu-campana-como-saber-si-lo-sera/ /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/blog/que-es-el-neuromarketing /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-
-# Archivos de taxonomía y paginación retirados del WordPress anterior.
-/tag/* /blog/ 301
-/author/* /firma/ 301
-/page/* /blog/ 301
-/2017/* /blog/ 301
-/2018/* /blog/ 301
-/blog-3/ /blog/ 301
-/conocenos/ /firma/ 301
-/contact/ /contacto/ 301
-/contacta/ /contacto/ 301
-/contactanos /contacto/ 301
-/labo-neuromarketing/ /neuromarketing-bolivia/ 301
-/omnilab-bolivia/ /neuromarketing-bolivia/ 301
-/serviciosneuro/ /servicios/ 301
-/social-lab/ /firma/ 301
-
-# Feeds RSS de artículos retirados: llevan al contenido editorial vigente.
-/como-emocionar-a-mis-clientes/feed/ /percepcion-de-marca-bolivia/ 301
-/conoce-las-5c-del-neuromarketing-y-potenciate/feed/ /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/diferencias-hombres-y-mujeres-al-comprar-i/feed/ /comportamiento-consumidor-boliviano/ 301
-/eres-capaz-de-descubrir-mentiras-de-tu-cliente-aprende-como-hacerlo-parte-i/feed/ /investigacion-cualitativa-bolivia/ 301
-/fidelizar_cliente/feed/ /percepcion-de-marca-bolivia/ 301
-/herramientas-recoleccion-datos-cualitativos/feed/ /investigacion-cualitativa-bolivia/ 301
-/investigacion-de-mercado-en-pymes-paso-a-paso/feed/ /estudio-de-mercado-bolivia/ 301
-/investigacion-de-mercados-consumidor/feed/ /comportamiento-consumidor-boliviano/ 301
-/investigacion-de-mercados-cuantitativa-vs-cualitativa/feed/ /investigacion-cuantitativa-bolivia/ 301
-/por-que-utilizar-neuromarketing-en-mi-publicidad/feed/ /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/publicidad-efectiva-en-tu-campana-como-saber-si-lo-sera/feed/ /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
-/que-es-el-neuromarketing/feed/ /blog/como-funciona-el-neuromarketing-en-bolivia/ 301
+# Redirects from legacy/html URLs to clean Astro URLs
+/articulo-3-ejemplos-de-neuromarketing-en-la-vida-diaria-que-quiza-no-sabias.html /blog/3-ejemplos-de-neuromarketing-en-la-vida-diaria-que-quiza-no-sabias/ 301
+/articulo-5-tips-diferenciar-tu-marca.html /blog/5-tips-diferenciar-tu-marca/ 301
+/articulo-codigo-cultural.html /blog/codigo-cultural/ 301
+/articulo-como-emocionar-a-mis-clientes.html /blog/como-emocionar-a-mis-clientes/ 301
+/articulo-conoce-las-5c-del-neuromarketing-y-potenciate.html /blog/conoce-las-5c-del-neuromarketing-y-potenciate/ 301
+/articulo-diferencias-hombres-y-mujeres-al-comprar-i.html /blog/diferencias-hombres-y-mujeres-al-comprar-i/ 301
+/articulo-eres-capaz-de-descubrir-mentiras-de-tu-cliente-aprende-como-hacerlo-parte-i.html /blog/eres-capaz-de-descubrir-mentiras-de-tu-cliente-aprende-como-hacerlo-parte-i/ 301
+/articulo-fidelizar_cliente.html /blog/fidelizar_cliente/ 301
+/articulo-herramientas-recoleccion-datos-cualitativos.html /blog/herramientas-recoleccion-datos-cualitativos/ 301
+/articulo-investigacion-de-mercado-en-bolivia-consumer-behavior.html /blog/investigacion-de-mercado-en-bolivia-consumer-behavior/ 301
+/articulo-investigacion-de-mercado-en-pymes-paso-a-paso.html /blog/investigacion-de-mercado-en-pymes-paso-a-paso/ 301
+/articulo-investigacion-de-mercados-con-neuromarketing.html /blog/investigacion-de-mercados-con-neuromarketing/ 301
+/articulo-investigacion-de-mercados-consumidor.html /blog/investigacion-de-mercados-consumidor/ 301
+/articulo-investigacion-de-mercados-cuantitativa-vs-cualitativa.html /blog/investigacion-de-mercados-cuantitativa-vs-cualitativa/ 301
+/articulo-mente_del_consumidor.html /blog/mente_del_consumidor/ 301
+/articulo-por-que-utilizar-neuromarketing-en-mi-publicidad.html /blog/por-que-utilizar-neuromarketing-en-mi-publicidad/ 301
+/articulo-publicidad-efectiva-en-tu-campana-como-saber-si-lo-sera.html /blog/publicidad-efectiva-en-tu-campana-como-saber-si-lo-sera/ 301
+/articulo-que-es-el-neuromarketing.html /blog/que-es-el-neuromarketing/ 301
+/articulo-sabes-la-diferencia-entre-marketing-de-emociones-y-neuromarketing.html /blog/sabes-la-diferencia-entre-marketing-de-emociones-y-neuromarketing/ 301
 /auditoria-retail-bolivia.html /auditoria-retail-bolivia/ 301
 /benchmarking-competitivo-bolivia.html /benchmarking-competitivo-bolivia/ 301
 /blog.html /blog/ 301

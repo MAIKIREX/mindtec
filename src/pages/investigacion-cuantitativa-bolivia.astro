@@ -1,182 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import NeuroOrbitLogo from '../components/visual/NeuroOrbitLogo.astro';
-import HoverStepCards from '../components/cards/HoverStepCards.astro';
-import AreaPanelCards from '../components/cards/AreaPanelCards.astro';
-import ComparisonRows from '../components/cards/ComparisonRows.astro';
-import ScrollStory from '../components/scroll/ScrollStory.astro';
-import FaqSplit from '../components/faq/FaqSplit.astro';
-import StackedSections from '../components/scroll/StackedSections.astro';
-
-const problemScenarios = [
-  {
-    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="96"></circle><path d="M128 72v56l40 24"></path></svg>`,
-    title: 'Lanzamientos sin validar demanda',
-    description: 'Lanzó un producto sin medir la demanda real y tardó 6 meses en darse cuenta que el precio no era aceptable. Una encuesta de valoración habría tomado 4 semanas.',
-  },
-  {
-    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="88"></circle><circle cx="128" cy="128" r="48"></circle><circle cx="128" cy="128" r="8"></circle></svg>`,
-    title: 'Segmentación genérica',
-    description: 'Su empresa asumió que el mercado objetivo eran "todos los bolivianos de 25 a 45 años". Sin segmentación estadística, el presupuesto de comunicación se diluyó sin resultados.',
-  },
-  {
-    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M116 156a40 40 0 1 1 40-40"></path><path d="M172 172l40 40"></path><path d="M148 108h-4v16"></path></svg>`,
-    title: 'Percepción sin medición',
-    description: 'El equipo comercial reporta que "el producto está bien posicionado". Pero nadie midió qué porcentaje del mercado efectivamente lo conoce, lo prefiere o lo compra.',
-  },
-  {
-    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M96 32h64l16 24H80z"></path><rect x="56" y="56" width="144" height="168" rx="8"></rect><path d="M92 112h72M92 144h72M92 176h40"></path></svg>`,
-    title: 'Evidencia insuficiente',
-    description: 'El Directorio exige evidencia estadística antes de aprobar la inversión. Y lo que hay son proyecciones del equipo de ventas, no datos de mercado.',
-  },
-];
-
-const comparisonRows = [
-  {
-    before: 'Entrega tablas de frecuencias y porcentajes',
-    after: 'Entrega conclusiones accionables con recomendaciones estratégicas priorizadas para el directorio',
-  },
-  {
-    before: 'Muestra diseñada genéricamente por ciudad',
-    after: 'Diseño muestral estratificado que refleja la diversidad cultural y económica del mercado boliviano real',
-  },
-  {
-    before: 'Solo método presencial o solo online',
-    after: 'Metodología mixta (presencial + CATI + CAWI) según el perfil del segmento objetivo',
-  },
-  {
-    before: 'Cuestionario estándar aplicado igual en todo el país',
-    after: 'Cuestionarios adaptados por región para capturar diferencias culturales entre Santa Cruz, La Paz y el interior',
-  },
-  {
-    before: 'Datos declarativos puros (lo que la gente dice)',
-    after: 'Validación cruzada con biometría y datos observacionales cuando la intención declarada no basta',
-  },
-];
-
-const processSteps = [
-  {
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
-    title: "Diagnóstico y diseño metodológico",
-    small: "45 min · sin costo",
-    description: "45 min para definir el objetivo de investigación, el universo, la muestra óptima, el método de recolección y las variables clave. Le entregamos el plan metodológico antes de iniciar.",
-  },
-  {
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`,
-    title: "Diseño del instrumento",
-    small: "3–5 días hábiles",
-    description: "Construcción del cuestionario con técnicas de psicología del cuestionario para minimizar sesgos de respuesta. Piloto de campo para validar tiempos y comprensión antes del despliegue masivo.",
-  },
-  {
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1" ry="1"/></svg>`,
-    title: "Recolección y control de calidad",
-    small: "2–5 semanas en campo",
-    description: "Despliegue de la red de encuestadores con supervisión en tiempo real, georreferenciación y revisión lógica de cuestionarios. Tasa de rechazo y sustitución controlada para garantizar representatividad.",
-  },
-  {
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>`,
-    title: "Análisis y presentación",
-    small: "5–7 días post-campo",
-    description: "Procesamiento estadístico, análisis multivariado donde aplica y síntesis ejecutiva con recomendaciones priorizadas. Presentación ante el equipo directivo con sesión de preguntas.",
-  },
-];
-
-const sectorItems = [
-  {
-    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M64 96V72a64 64 0 0 1 128 0v24"></path><rect x="40" y="96" width="176" height="128" rx="8"></rect></svg>`,
-    title: "Consumo masivo y retail",
-    href: "/contacto/",
-  },
-  {
-    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M32 96h192L128 32z"></path><path d="M48 96v104M96 96v104M160 96v104M208 96v104"></path><path d="M32 224h192"></path></svg>`,
-    title: "Banca y servicios financieros",
-    href: "/contacto/",
-  },
-  {
-    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="16"></circle><path d="M88 88a56 56 0 0 1 80 0"></path><path d="M64 64a92 92 0 0 1 128 0"></path><path d="M112 152a24 24 0 0 1 32 0"></path></svg>`,
-    title: "Telecomunicaciones",
-    href: "/contacto/",
-  },
-  {
-    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="96"></circle><path d="M128 88v80M88 128h80"></path></svg>`,
-    title: "Farmacéutico y salud",
-    href: "/contacto/",
-  },
-  {
-    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M128 224V64"></path><path d="M128 64c0 0-64 8-64 72 64 0 64-72 64-72z"></path><path d="M128 100c0 0 64 8 64 72-64 0-64-72-64-72z"></path></svg>`,
-    title: "Agroindustria y alimentos",
-    href: "/contacto/",
-  },
-  {
-    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M16 96l112-48 112 48-112 48z"></path><path d="M72 120v48c0 16 24 32 56 32s56-16 56-32v-48"></path><path d="M224 96v56"></path></svg>`,
-    title: "Educación e instituciones",
-    href: "/contacto/",
-  },
-  {
-    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M48 224V96l64-32 64 32v128"></path><path d="M176 224V64l32-16 32 16v176"></path><path d="M24 224h208"></path><path d="M80 128h16M80 168h16M136 128h16M136 168h16"></path></svg>`,
-    title: "Construcción e inmobiliario",
-    href: "/contacto/",
-  },
-  {
-    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="96"></circle><path d="M32 128h192"></path><path d="M128 32c40 32 40 160 0 192M128 32c-40 32-40 160 0 192"></path></svg>`,
-    title: "ONGs y organismos internacionales",
-    href: "/contacto/",
-  },
-];
-
-const faqItems = [
-  {
-    question:
-      "¿Qué tamaño de muestra necesita una encuesta representativa en Bolivia?",
-    answer:
-      "Depende del universo y el nivel de confianza requerido. Para mercados urbanos con universos de más de 100.000 personas, una muestra de 384 casos garantiza representatividad estadística con 95% de confianza y 5% de margen de error. Para análisis por segmentos o ciudades específicas, la muestra se amplía. Definimos el diseño muestral según la decisión que necesita tomar.",
-  },
-  {
-    question:
-      "¿Cuál es la diferencia entre una encuesta y un estudio de mercado cuantitativo?",
-    answer:
-      "Una encuesta es el instrumento de recolección. Un estudio de mercado cuantitativo es el proceso completo: diseño metodológico, selección de muestra, recolección en campo, procesamiento estadístico e interpretación estratégica. Mindtec no entrega tablas de datos — entrega conclusiones accionables con sustento estadístico.",
-  },
-  {
-    question: "¿Pueden cubrir varias ciudades de Bolivia en simultáneo?",
-    answer:
-      "Sí. Contamos con una red de más de 80 encuestadores activos en Santa Cruz, La Paz, Cochabamba, El Alto y ciudades intermedias. Esto permite recolectar datos en múltiples ciudades de forma simultánea, asegurando comparabilidad temporal entre regiones y reduciendo el tiempo total de campo.",
-  },
-  {
-    question: "¿Cuánto tarda una investigación cuantitativa en Bolivia?",
-    answer:
-      "Un estudio cuantitativo estándar en una ciudad tarda entre 3 y 5 semanas desde el diseño hasta la presentación final. Estudios nacionales con muestras en 4 o más ciudades pueden tomar de 5 a 8 semanas. Contamos con modalidad express para decisiones urgentes.",
-  },
-  {
-    question: "¿En qué se diferencia Mindtec de una encuestadora tradicional?",
-    answer:
-      "Las encuestadoras tradicionales entregan tablas de frecuencias. Mindtec integra la metodología cuantitativa con análisis de comportamiento del consumidor, cruce con datos cualitativos y biometría cuando el proyecto lo requiere, entregando recomendaciones estratégicas que el equipo directivo puede defender ante el directorio.",
-  },
-];
 
 const title = "Investigación Cuantitativa en Bolivia | Mindtec";
 const description = "Investigación cuantitativa en Bolivia: encuestas presenciales y digitales con respaldo estadístico de nuestra red nacional de encuestadores. Mindtec.";
-
-const relatedProductsCards = [
-  {
-    href: "/investigacion-cualitativa-bolivia/",
-    eyebrow: "Investigación Cualitativa",
-    title: "Investigación Cualitativa",
-    description: "Entienda el por qué detrás de los números: grupos focales, etnografía y entrevistas en profundidad.",
-  },
-  {
-    href: "/estudio-de-mercado-bolivia/",
-    eyebrow: "Análisis Integral",
-    title: "Estudio de Mercado",
-    description: "Evaluación integral de viabilidad que combina métodos cuantitativos y cualitativos con análisis competitivo.",
-  },
-  {
-    href: "/estudio-de-precios-bolivia/",
-    eyebrow: "Precios & Neuro-pricing",
-    title: "Estudio de Precios",
-    description: "Mida la sensibilidad al precio y el rango aceptable del consumidor con evidencia estadística y neuro-pricing.",
-  },
-];
 ---
 
 <Layout
@@ -261,10 +87,10 @@ const relatedProductsCards = [
   </script>
 
   <main>
-    <StackedSections>
+
 
     <!-- 1. HERO -->
-    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;" data-stack-section>
+    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
       <div class="hero-shapes" aria-hidden="true">
         <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
         <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
@@ -281,31 +107,14 @@ const relatedProductsCards = [
           <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;">
             Investigación Cuantitativa en Bolivia — Evidencia estadística que su Directorio puede defender.
           </h1>
-        </div>
-        <div class="hero-visual" style="display: flex; align-items: center; justify-content: center; max-width: 100%; overflow: visible;">
-          <div class="hero-visual-slot" data-logo-slot="start" style="width: min(52vw, 560px); aspect-ratio: 1;">
-            <NeuroOrbitLogo
-              size="min(68vw, 720px)"
-              stageSize="clamp(260px, 30vw, 380px)"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Nueva sección debajo del hero -->
-    <section class="hero-details-section" style="background: var(--color-secondary-deep, #061c2b); padding: 4rem 0;" data-stack-section>
-      <div class="container hero-details-grid">
-        <div class="hero-details-logo-slot" data-logo-slot="end"></div>
-        <div class="hero-details-text">
           <div class="direct-answer-box">
             <strong>En resumen</strong>
             <p>Mindtec realiza investigación cuantitativa en Bolivia: encuestas presenciales, telefónicas y online con muestras estadísticamente representativas para dimensionar mercados, medir actitudes y sustentar decisiones corporativas.</p>
           </div>
-          <p class="hero-subtitle" style="font-size: 1.25rem; margin-bottom: 1.5rem; max-width: 600px; color: #fff; line-height: 1.6;">
+          <p class="hero-subtitle" style="font-size: 1.25rem; margin-bottom: 1.5rem; max-width: 800px;">
             Encuestas presenciales, telefónicas y online con muestras estadísticamente representativas del mercado boliviano. Red de 80+ encuestadores activos en 4 ciudades. Análisis que va más allá de las tablas de frecuencias.
           </p>
-          <p style="font-size: 1.05rem; color: rgba(255,255,255,0.75); max-width: 600px; margin-bottom: 2.5rem; line-height: 1.7;">
+          <p style="font-size: 1.05rem; color: rgba(255,255,255,0.75); max-width: 800px; margin-bottom: 2.5rem;">
             No entregamos reportes de datos. Entregamos conclusiones accionables con sustento estadístico que permiten tomar decisiones de lanzamiento, precio, distribución y posicionamiento con certeza científica.
           </p>
           <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2.5rem;">
@@ -314,152 +123,256 @@ const relatedProductsCards = [
             <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Muestras representativas</span>
             <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Cobertura nacional</span>
           </div>
-          <div style="text-align: center;">
-            <a href="/contacto/" class="btn btn-primary lg">Agendar diagnóstico estratégico (45 min) →</a>
+          <a href="/contacto" class="btn btn-primary lg">Agendar diagnóstico estratégico (45 min) →</a>
+        </div>
+        <div class="hero-visual">
+          <div class="glass-card main-visual">
+            <div class="neuro-visual-bg"></div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- 2. EL PROBLEMA -->
-    <section class="bg-slate" style="padding: 5rem 0;" data-stack-section>
+    <section class="problem-section bg-slate" style="padding: 5rem 0;">
       <div class="container">
-        <div style="max-width: 900px; margin: 0 auto;">
+        <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
           <span class="eyebrow">EL PROBLEMA REAL</span>
           <h2 class="text-navy" style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;">Decidir con datos anecdóticos en un mercado de 12 millones es demasiado costoso.</h2>
           <p class="text-gray-dark leading-relaxed" style="font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.7;">
             Bolivia tiene 9 departamentos, 3 pisos ecológicos y docenas de culturas activas. Un gerente que toma decisiones basado en lo que "ve en el mercado" o en la opinión de 5 distribuidores no tiene datos — tiene anécdotas. Y las anécdotas no escalan.
           </p>
-          <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; line-height: 1.7;">
+          <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.7;">
             ¿Reconoce alguno de estos escenarios?
           </p>
-        </div>
-
-        <AreaPanelCards items={problemScenarios} columns={4} theme="navy" class="problem-panels" />
-
-        <div style="max-width: 900px; margin: 2.5rem auto 0; background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: var(--radius-md, 8px); font-weight: 600; font-size: 1.1rem; text-align: center;">
-          Sin evidencia estadística representativa, la aprobación del Directorio es una promesa — no una decisión informada.
+          <ul class="cap-list" style="font-size: 1.05rem; margin-bottom: 2rem;">
+            <li><strong class="text-navy">Lanzó un producto sin medir la demanda real y tardó 6 meses en darse cuenta que el precio no era aceptable.</strong> Una encuesta de valoración habría tomado 4 semanas.</li>
+            <li><strong class="text-navy">Su empresa asumió que el mercado objetivo eran "todos los bolivianos de 25 a 45 años".</strong> Sin segmentación estadística, el presupuesto de comunicación se diluyó sin resultados.</li>
+            <li><strong class="text-navy">El equipo comercial reporta que "el producto está bien posicionado".</strong> Pero nadie midió qué porcentaje del mercado efectivamente lo conoce, lo prefiere o lo compra.</li>
+            <li><strong class="text-navy">El Directorio exige evidencia estadística antes de aprobar la inversión.</strong> Y lo que hay son proyecciones del equipo de ventas, no datos de mercado.</li>
+          </ul>
+          <div style="background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: 8px; font-weight: 600; font-size: 1.1rem; text-align: center;">
+            Sin evidencia estadística representativa, la aprobación del Directorio es una promesa — no una decisión informada.
+          </div>
         </div>
       </div>
     </section>
 
     <!-- 3. MINDTEC+ -->
-    <section style="padding: 5rem 0; background: #fff;" data-stack-section>
+    <section style="padding: 5rem 0; background: #fff;">
       <div class="container">
         <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
           <span class="eyebrow">MINDTEC+</span>
           <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;">Más que un recopilador de encuestas: inteligencia estratégica respaldada por infraestructura de campo nacional.</h2>
         </div>
-
-        <ComparisonRows
-          columnLabels={{ left: 'Encuestadora tradicional', right: 'Mindtec — Investigación Cuantitativa' }}
-          rows={comparisonRows}
-        />
-
-        <p class="text-gray-dark" style="font-size: 1.05rem; margin-top: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.7;">
+        <div class="comparison-table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th scope="col">Encuestadora tradicional</th>
+                <th scope="col">Mindtec — Investigación Cuantitativa</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Entrega tablas de frecuencias y porcentajes</td>
+                <td>Entrega conclusiones accionables con recomendaciones estratégicas priorizadas para el directorio</td>
+              </tr>
+              <tr>
+                <td>Muestra diseñada genéricamente por ciudad</td>
+                <td>Diseño muestral estratificado que refleja la diversidad cultural y económica del mercado boliviano real</td>
+              </tr>
+              <tr>
+                <td>Solo método presencial o solo online</td>
+                <td>Metodología mixta (presencial + CATI + CAWI) según el perfil del segmento objetivo</td>
+              </tr>
+              <tr>
+                <td>Cuestionario estándar aplicado igual en todo el país</td>
+                <td>Cuestionarios adaptados por región para capturar diferencias culturales entre Santa Cruz, La Paz y el interior</td>
+              </tr>
+              <tr>
+                <td>Datos declarativos puros (lo que la gente dice)</td>
+                <td>Validación cruzada con biometría y datos observacionales cuando la intención declarada no basta</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-gray-dark" style="font-size: 1.05rem; margin-top: 2rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.7;">
           La diferencia no está en el tamaño de la muestra. Está en lo que hacemos con los datos después de recolectarlos.
         </p>
       </div>
     </section>
-    </StackedSections>
 
     <!-- 4. ENTREGABLES -->
-    <ScrollStory
-      scrub={0.85}
-      sceneDistance={1.1}
-      cover={{
-        background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregables-cover.webp",
-        eyebrow: "Qué recibe",
-        title: "Entregables que sustentan decisiones de inversión, lanzamiento y posicionamiento.",
-        description: "Documentos y análisis diseñados para traducir la evidencia estadística en decisiones de negocio."
-      }}
-      intro={{
-        background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregables-intro.webp",
-        number: "00",
-        eyebrow: "Plazo de entrega",
-        title: "3–8 semanas según alcance. Cobertura: eje troncal boliviano y ciudades intermedias.",
-        description: "Recorra los seis entregables que puede esperar de un estudio cuantitativo Mindtec."
-      }}
-      items={[
-        {
-          background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregable-01-reporte-ejecutivo.webp",
-          eyebrow: "Síntesis",
-          title: "Reporte Ejecutivo con Conclusiones Accionables",
-          description: "Síntesis de hallazgos clave con lenguaje directivo. Sin jerga estadística. Directo a las implicaciones para su negocio, con recomendaciones priorizadas por impacto.",
-          icon: "report"
-        },
-        {
-          background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregable-02-segmentacion.webp",
-          eyebrow: "Segmentos",
-          title: "Segmentación Estadística del Mercado",
-          description: "Identificación y dimensionamiento de segmentos de consumidores con perfil sociodemográfico, psicográfico y conductual. La base para cualquier estrategia de targeting real.",
-          icon: "segments"
-        },
-        {
-          background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregable-03-awareness-preferencia.webp",
-          eyebrow: "Embudo de marca",
-          title: "Medición de Awareness, Preferencia y Compra",
-          description: "Top of mind, reconocimiento espontáneo y asistido, preferencia de marca y penetración de consumo. El embudo de marca medido estadísticamente en su mercado objetivo.",
-          icon: "funnel"
-        },
-        {
-          background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregable-04-demanda-dimensionamiento.webp",
-          eyebrow: "Demanda",
-          title: "Análisis de Demanda y Dimensionamiento",
-          description: "Estimación del tamaño del mercado objetivo, frecuencia de compra, intención de adopción y potencial de penetración. Los números que justifican la inversión ante el directorio.",
-          icon: "chart"
-        },
-        {
-          background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregable-05-dashboard-datos.webp",
-          eyebrow: "Datos",
-          title: "Dashboard de Datos y Base Completa",
-          description: "Entrega de la base de datos procesada, tablas de frecuencias y cruce de variables para que su equipo de analítica pueda profundizar en los hallazgos más relevantes.",
-          icon: "database"
-        },
-        {
-          background: "/imagenes-mindtec/generated/investigacion-cuantitativa/entregables/entregable-06-presentacion-directorio.webp",
-          eyebrow: "Presentación",
-          title: "Presentación ante Directorio",
-          description: "Sesión de presentación de hallazgos con el equipo de Mindtec, diseñada para el formato de Directorio o Gerencia: máximo impacto en mínimo tiempo.",
-          icon: "presentation"
-        }
-      ]}
-    />
+    <section class="problem-section bg-slate" style="padding: 5rem 0;">
+      <div class="container">
+        <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
+          <span class="eyebrow">QUÉ RECIBE</span>
+          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Entregables que sustentan decisiones de inversión, lanzamiento y posicionamiento.</h2>
+        </div>
+        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; list-style: none; padding: 0;">
+          <li class="premium-card-white" style="padding: 2rem;">
+            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Reporte Ejecutivo con Conclusiones Accionables</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Síntesis de hallazgos clave con lenguaje directivo. Sin jerga estadística. Directo a las implicaciones para su negocio, con recomendaciones priorizadas por impacto.</p>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem;">
+            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Segmentación Estadística del Mercado</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Identificación y dimensionamiento de segmentos de consumidores con perfil sociodemográfico, psicográfico y conductual. La base para cualquier estrategia de targeting real.</p>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem;">
+            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Medición de Awareness, Preferencia y Compra</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Top of mind, reconocimiento espontáneo y asistido, preferencia de marca y penetración de consumo. El embudo de marca medido estadísticamente en su mercado objetivo.</p>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem;">
+            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Análisis de Demanda y Dimensionamiento</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Estimación del tamaño del mercado objetivo, frecuencia de compra, intención de adopción y potencial de penetración. Los números que justifican la inversión ante el directorio.</p>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem;">
+            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Dashboard de Datos y Base Completa</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Entrega de la base de datos procesada, tablas de frecuencias y cruce de variables para que su equipo de analítica pueda profundizar en los hallazgos más relevantes.</p>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem;">
+            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Presentación ante Directorio</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Sesión de presentación de hallazgos con el equipo de Mindtec, diseñada para el formato de Directorio o Gerencia: máximo impacto en mínimo tiempo.</p>
+          </li>
+        </ul>
+        <p class="text-gray-dark" style="text-align: center; margin-top: 2rem; font-size: 0.95rem; font-weight: 600;">
+          Plazo de entrega: 3–8 semanas según alcance · Cobertura: eje troncal boliviano y ciudades intermedias
+        </p>
+      </div>
+    </section>
 
-    <StackedSections>
     <!-- 5. PROCESO -->
-    <section style="padding: 5rem 0; background: #f8fafc;" data-stack-section>
+    <section style="padding: 5rem 0; background: #f8fafc;">
       <div class="container">
         <div class="section-title-center" style="text-align: center; margin-bottom: 4rem;">
           <span class="eyebrow">CÓMO FUNCIONA</span>
           <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Del diagnóstico a la evidencia estadística en 4 pasos.</h2>
         </div>
-        <AreaPanelCards items={processSteps} columns={4} />
+        <ol style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
+          <li class="premium-card-white" style="padding: 2rem; position: relative;">
+            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">01</span>
+            <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Diagnóstico y diseño metodológico</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">45 min para definir el objetivo de investigación, el universo, la muestra óptima, el método de recolección y las variables clave. Le entregamos el plan metodológico antes de iniciar.</p>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">45 min · sin costo</span>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem; position: relative;">
+            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">02</span>
+            <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Diseño del instrumento</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Construcción del cuestionario con técnicas de psicología del cuestionario para minimizar sesgos de respuesta. Piloto de campo para validar tiempos y comprensión antes del despliegue masivo.</p>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">3–5 días hábiles</span>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem; position: relative;">
+            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">03</span>
+            <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Recolección y control de calidad</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Despliegue de la red de encuestadores con supervisión en tiempo real, georreferenciación y revisión lógica de cuestionarios. Tasa de rechazo y sustitución controlada para garantizar representatividad.</p>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">2–5 semanas en campo</span>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem; position: relative;">
+            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">04</span>
+            <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Análisis y presentación</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Procesamiento estadístico, análisis multivariado donde aplica y síntesis ejecutiva con recomendaciones priorizadas. Presentación ante el equipo directivo con sesión de preguntas.</p>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">5–7 días post-campo</span>
+          </li>
+        </ol>
       </div>
     </section>
 
     <!-- 6. SECTORES -->
-    <section class="problem-section bg-slate" style="padding: 5rem 0;" data-stack-section>
+    <section class="problem-section bg-slate" style="padding: 5rem 0;">
       <div class="container">
         <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
           <span class="eyebrow">SECTORES</span>
           <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">¿Su sector está aquí?</h2>
         </div>
-        <AreaPanelCards items={sectorItems} columns={4} />
+        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; list-style: none; padding: 0;">
+          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Consumo masivo y retail</li>
+          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Banca y servicios financieros</li>
+          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Telecomunicaciones</li>
+          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Farmacéutico y salud</li>
+          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Agroindustria y alimentos</li>
+          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Educación e instituciones</li>
+          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Construcción e inmobiliario</li>
+          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">ONGs y organismos internacionales</li>
+        </ul>
       </div>
     </section>
 
     <!-- 7. FAQ -->
-    <div data-stack-section>
-      <FaqSplit
-        eyebrow="PREGUNTAS FRECUENTES"
-        title="Lo que suelen preguntar antes de contratar."
-        items={faqItems}
-      />
-    </div>
+    <section style="padding: 5rem 0; background: #fff;">
+      <div class="container" style="max-width: 800px;">
+        <div style="text-align: center; margin-bottom: 3rem;">
+          <span class="eyebrow">PREGUNTAS FRECUENTES</span>
+          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Lo que suelen preguntar antes de contratar.</h2>
+        </div>
+        <dl style="display: flex; flex-direction: column; gap: 1rem;">
+
+          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
+            <dt>
+              <button aria-expanded="false" aria-controls="faq-1-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                ¿Qué tamaño de muestra necesita una encuesta representativa en Bolivia?
+                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
+              </button>
+            </dt>
+            <dd id="faq-1-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
+              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Depende del universo y el nivel de confianza requerido. Para mercados urbanos con universos de más de 100.000 personas, una muestra de 384 casos garantiza representatividad estadística con 95% de confianza y 5% de margen de error. Para análisis por segmentos o ciudades específicas, la muestra se amplía. Definimos el diseño muestral según la decisión que necesita tomar.</p>
+            </dd>
+          </div>
+
+          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
+            <dt>
+              <button aria-expanded="false" aria-controls="faq-2-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                ¿Cuál es la diferencia entre una encuesta y un estudio de mercado cuantitativo?
+                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
+              </button>
+            </dt>
+            <dd id="faq-2-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
+              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Una encuesta es el instrumento de recolección. Un estudio de mercado cuantitativo es el proceso completo: diseño metodológico, selección de muestra, recolección en campo, procesamiento estadístico e interpretación estratégica. Mindtec no entrega tablas de datos — entrega conclusiones accionables con sustento estadístico.</p>
+            </dd>
+          </div>
+
+          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
+            <dt>
+              <button aria-expanded="false" aria-controls="faq-3-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                ¿Pueden cubrir varias ciudades de Bolivia en simultáneo?
+                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
+              </button>
+            </dt>
+            <dd id="faq-3-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
+              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Sí. Contamos con una red de más de 80 encuestadores activos en Santa Cruz, La Paz, Cochabamba, El Alto y ciudades intermedias. Esto permite recolectar datos en múltiples ciudades de forma simultánea, asegurando comparabilidad temporal entre regiones y reduciendo el tiempo total de campo.</p>
+            </dd>
+          </div>
+
+          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
+            <dt>
+              <button aria-expanded="false" aria-controls="faq-4-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                ¿Cuánto tarda una investigación cuantitativa en Bolivia?
+                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
+              </button>
+            </dt>
+            <dd id="faq-4-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
+              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Un estudio cuantitativo estándar en una ciudad tarda entre 3 y 5 semanas desde el diseño hasta la presentación final. Estudios nacionales con muestras en 4 o más ciudades pueden tomar de 5 a 8 semanas. Contamos con modalidad express para decisiones urgentes.</p>
+            </dd>
+          </div>
+
+          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
+            <dt>
+              <button aria-expanded="false" aria-controls="faq-5-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                ¿En qué se diferencia Mindtec de una encuestadora tradicional?
+                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
+              </button>
+            </dt>
+            <dd id="faq-5-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
+              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Las encuestadoras tradicionales entregan tablas de frecuencias. Mindtec integra la metodología cuantitativa con análisis de comportamiento del consumidor, cruce con datos cualitativos y biometría cuando el proyecto lo requiere, entregando recomendaciones estratégicas que el equipo directivo puede defender ante el directorio.</p>
+            </dd>
+          </div>
+
+        </dl>
+      </div>
+    </section>
 
     <!-- 8. PRUEBA SOCIAL -->
-    <section style="padding: 4rem 0; background: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;" data-stack-section>
+    <section style="padding: 4rem 0; background: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
       <div class="container" style="text-align: center; max-width: 800px;">
         <p class="text-navy" style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.5;">
           Empresas de consumo masivo, banca, telecomunicaciones y organismos internacionales en Bolivia han usado la investigación cuantitativa de Mindtec para dimensionar mercados, evaluar lanzamientos y medir posicionamiento de marca con rigor estadístico.
@@ -475,31 +388,40 @@ const relatedProductsCards = [
     </section>
 
     <!-- 9. PRODUCTOS RELACIONADOS -->
-    <section style="padding: 5rem 0; background: #fff;" data-stack-section>
-      <div class="container">
-        <h3
-          class="text-navy"
-          style="font-size: 1.8rem; margin-bottom: 2.5rem; text-align: center;"
-        >
-          También puede interesarle
-        </h3>
-      </div>
-      <div class="related-products-bleed">
-        <HoverStepCards items={relatedProductsCards} minColumnWidth="300px" />
-      </div>
-      <div class="container">
-        <div style="text-align: center; margin-top: 2.5rem;">
-          <a
-            href="/servicios/"
-            style="color: var(--color-primary); font-weight: 700; text-decoration: none; font-size: 0.95rem;"
-            >Ver todos los servicios →</a
-          >
+    <section style="padding: 5rem 0; background: #fff;">
+      <div class="container" style="max-width: 900px;">
+        <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">También puede interesarle</h3>
+        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; list-style: none; padding: 0;">
+          <li>
+            <a href="/investigacion-cualitativa-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none'">
+              <h4 style="font-size: 1.05rem; color: var(--color-secondary); margin-bottom: 0.5rem;">Investigación Cualitativa en Bolivia</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; line-height: 1.5;">Entienda el por qué detrás de los números: grupos focales, etnografía y entrevistas en profundidad.</p>
+              <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem;">Explorar →</span>
+            </a>
+          </li>
+          <li>
+            <a href="/estudio-de-mercado-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none'">
+              <h4 style="font-size: 1.05rem; color: var(--color-secondary); margin-bottom: 0.5rem;">Estudio de Mercado en Bolivia</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; line-height: 1.5;">Evaluación integral de viabilidad que combina métodos cuantitativos y cualitativos con análisis competitivo.</p>
+              <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem;">Explorar →</span>
+            </a>
+          </li>
+          <li>
+            <a href="/estudio-de-precios-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none'">
+              <h4 style="font-size: 1.05rem; color: var(--color-secondary); margin-bottom: 0.5rem;">Estudio de Precios en Bolivia</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; line-height: 1.5;">Mida la sensibilidad al precio y el rango aceptable del consumidor con evidencia estadística y neuro-pricing.</p>
+              <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem;">Explorar →</span>
+            </a>
+          </li>
+        </ul>
+        <div style="text-align: center; margin-top: 2rem;">
+          <a href="/servicios" style="color: var(--color-primary); font-weight: 700; text-decoration: none; font-size: 0.95rem;">Ver todos los servicios →</a>
         </div>
       </div>
     </section>
 
     <!-- 10. CTA FINAL -->
-    <section class="cta-section-modern cta-section-modern--viewport" data-stack-section>
+    <section class="cta-section-modern" style="padding: 6rem 0;">
       <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
         <div class="cta-content-v2">
           <h2 style="font-size: 2.8rem; line-height: 1.25; margin-bottom: 1.5rem;">¿Necesita evidencia estadística para su próxima decisión de mercado en Bolivia?</h2>
@@ -507,40 +429,12 @@ const relatedProductsCards = [
             Hablemos 45 minutos. Definimos el diseño muestral, el método y el alcance de su investigación. Se lleva un plan claro antes de comprometer inversión.
           </p>
           <div class="cta-actions" style="justify-content: center; flex-direction: column; align-items: center;">
-            <a href="/contacto/" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar diagnóstico estratégico (45 min) →</a>
+            <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar diagnóstico estratégico (45 min) →</a>
             <p style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">Confidencial · Sin costo · Sin compromiso · Por Zoom o Teams</p>
           </div>
         </div>
       </div>
     </section>
-    </StackedSections>
-
-    <style>
-      /* Espacio entre la intro de "El Problema" y el grid de escenarios.
-         :global() porque la clase se aplica dentro de AreaPanelCards.astro;
-         doble clase para ganarle en especificidad al margin:0 auto de .areas-grid. */
-      :global(.areas-grid.problem-panels) {
-        margin-top: 3.5rem;
-      }
-
-      /* CTA final del StackedSections: el fondo naranja ocupa toda la ventana. */
-      .cta-section-modern--viewport {
-        min-height: 100svh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 4rem 0;
-        background: linear-gradient(135deg, var(--color-primary), #D94E10);
-      }
-
-      .cta-section-modern--viewport .cta-content-v2 {
-        background: transparent;
-        box-shadow: none;
-        max-width: none;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
 
     <!-- BREADCRUMB -->
     <nav aria-label="Breadcrumb" class="breadcrumb-bottom">
@@ -548,7 +442,7 @@ const relatedProductsCards = [
         <ol>
           <li><a href="/" style="color: rgba(255,255,255,0.6); text-decoration: none;">Inicio</a></li>
           <li style="color: rgba(255,255,255,0.3);">›</li>
-          <li><a href="/servicios/" style="color: rgba(255,255,255,0.6); text-decoration: none;">Servicios</a></li>
+          <li><a href="/servicios" style="color: rgba(255,255,255,0.6); text-decoration: none;">Servicios</a></li>
           <li style="color: rgba(255,255,255,0.3);">›</li>
           <li aria-current="page" style="color: #fff; font-weight: 600;">Investigación Cuantitativa en Bolivia</li>
         </ol>
@@ -557,189 +451,18 @@ const relatedProductsCards = [
 
   </main>
 
-  <style>
-    /* 9. PRODUCTOS RELACIONADOS */
-    .related-products-bleed {
-      padding: 0 2rem;
-    }
-
-    @media (min-width: 900px) {
-      .related-products-bleed {
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-        padding: 0 clamp(1.5rem, 4vw, 4rem);
-      }
-    }
-
-    /* Hero -> hero-details logo scroll transition */
-    .hero-visual-slot {
-      position: relative;
-    }
-
-    .hero-details-grid {
-      display: grid;
-      grid-template-columns: minmax(280px, 500px) 1fr;
-      gap: 3rem;
-      align-items: center;
-      max-width: 1200px;
-    }
-
-    .hero-details-logo-slot {
-      width: 100%;
-      max-width: 500px;
-      aspect-ratio: 1;
-    }
-
-    @media (max-width: 900px) {
-      .hero-details-grid {
-        grid-template-columns: 1fr;
-        max-width: 900px;
-      }
-
-      .hero-details-logo-slot {
-        display: none;
-      }
-    }
-  </style>
-
   <script>
-    import gsap from "gsap";
-    import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    type HeroLogoWindow = typeof window & {
-      __heroLogoTransitionEventsRegistered?: boolean;
-    };
-
-    let heroLogoContext: gsap.Context | undefined;
-
-    function destroyHeroLogoTransition(): void {
-      heroLogoContext?.revert();
-      heroLogoContext = undefined;
-    }
-
-    // Coordenadas en espacio de documento (no de viewport), para que el
-    // logo -posicionado en position:absolute sobre <body>- se desplace de
-    // forma natural junto con el scroll de la página.
-    function docRect(el: HTMLElement) {
-      const rect = el.getBoundingClientRect();
-      return {
-        top: rect.top + window.scrollY,
-        left: rect.left + window.scrollX,
-      };
-    }
-
-    function initHeroLogoTransition(): void {
-      destroyHeroLogoTransition();
-
-      const heroSection = document.querySelector<HTMLElement>(".hero-section");
-      const startSlot = document.querySelector<HTMLElement>(
-        '[data-logo-slot="start"]',
-      );
-      const endSlot = document.querySelector<HTMLElement>(
-        '[data-logo-slot="end"]',
-      );
-      const logo = startSlot?.querySelector<HTMLElement>(
-        "[data-neuro-orbit-logo]",
-      );
-
-      if (!heroSection || !startSlot || !endSlot || !logo) return;
-
-      const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)",
-      ).matches;
-      const isDesktop = window.matchMedia("(min-width: 900px)").matches;
-
-      // En mobile o con reduced-motion el logo se queda tal cual quedó
-      // maquetado dentro del hero: sin flotar, sin animación de scroll.
-      if (prefersReducedMotion || !isDesktop) return;
-
-      heroLogoContext = gsap.context(() => {
-        document.body.appendChild(logo);
-
-        // Centrado sobre el slot (no top-left directo): el núcleo del
-        // logo puede ser más grande que la caja del slot que reserva su
-        // espacio en el layout, así que se alinea por el centro de ambos.
-        const startRect = startSlot.getBoundingClientRect();
-        const startDocInit = docRect(startSlot);
-        gsap.set(logo, {
-          position: "absolute",
-          top: startDocInit.top + startRect.height / 2 - logo.offsetHeight / 2,
-          left: startDocInit.left + startRect.width / 2 - logo.offsetWidth / 2,
-          zIndex: 5,
-          opacity: 1,
-        });
-
-        // quickTo evita crear tweens nuevos en cada tick de scroll: solo
-        // reapunta el mismo tween hacia el valor fresco, con una leve
-        // inercia (duration) que es justamente lo que da la sensación
-        // fluida al desplazamiento en X/Y.
-        const setTop = gsap.quickTo(logo, "top", {
-          duration: 0.5,
-          ease: "power3.out",
-        });
-        const setLeft = gsap.quickTo(logo, "left", {
-          duration: 0.5,
-          ease: "power3.out",
-        });
-        const setScale = gsap.quickTo(logo, "scale", {
-          duration: 0.4,
-          ease: "power2.out",
-        });
-
-        // Curva en campana: 1 en los extremos (inicio y destino), pico en
-        // el centro del recorrido -> crece al pasar por la mitad de la
-        // pantalla y vuelve a su tamaño normal al llegar al slot final.
-        const PEAK_SCALE_BUMP = 0.35;
-
-        ScrollTrigger.create({
-          trigger: heroSection,
-          start: "top top",
-          end: "bottom top",
-          invalidateOnRefresh: true,
-          onUpdate: (self) => {
-            // Se recalcula en cada tick a partir de posiciones en vivo,
-            // en vez de usar valores fijados una sola vez, porque el
-            // slot de destino puede desplazarse por reflow (fuentes,
-            // resize) y necesitamos siempre el valor actual.
-            const startDoc = docRect(startSlot);
-            const startRect2 = startSlot.getBoundingClientRect();
-            const startTop =
-              startDoc.top + startRect2.height / 2 - logo.offsetHeight / 2;
-            const startLeft =
-              startDoc.left + startRect2.width / 2 - logo.offsetWidth / 2;
-
-            const endDoc = docRect(endSlot);
-            const endRect = endSlot.getBoundingClientRect();
-            const endTop =
-              endDoc.top + endRect.height / 2 - logo.offsetHeight / 2;
-            const endLeft =
-              endDoc.left + endRect.width / 2 - logo.offsetWidth / 2;
-
-            setTop(gsap.utils.interpolate(startTop, endTop, self.progress));
-            setLeft(gsap.utils.interpolate(startLeft, endLeft, self.progress));
-
-            const bump = Math.sin(self.progress * Math.PI) * PEAK_SCALE_BUMP;
-            setScale(1 + bump);
-          },
-        });
+    document.querySelectorAll('dt button[aria-expanded]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const ddId = btn.getAttribute('aria-controls');
+        const dd = document.getElementById(ddId);
+        const expandido = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', expandido ? 'false' : 'true');
+        const icon = btn.querySelector('span[aria-hidden]');
+        if (icon) icon.textContent = expandido ? '+' : '−';
+        if (dd) dd.hidden = expandido;
       });
-    }
-
-    initHeroLogoTransition();
-
-    const heroLogoWindow = window as HeroLogoWindow;
-
-    if (!heroLogoWindow.__heroLogoTransitionEventsRegistered) {
-      document.addEventListener("astro:page-load", initHeroLogoTransition);
-      document.addEventListener("astro:before-swap", destroyHeroLogoTransition);
-      heroLogoWindow.__heroLogoTransitionEventsRegistered = true;
-    }
+    });
   </script>
 
 </Layout>

@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import StackedSections from '../components/scroll/StackedSections.astro';
 ---
 
 <Layout
@@ -20,9 +19,8 @@ import StackedSections from '../components/scroll/StackedSections.astro';
   </script>
 
   <main class="contact-page">
-    <StackedSections>
     <!-- Contact Hero Header -->
-    <section class="contact-hero" data-stack-section>
+    <section class="contact-hero">
       <div class="container text-center">
         <span class="eyebrow animate-on-observe">Reserva Confidencial</span>
         <h1 class="animate-on-observe stagger-1">Conversemos sobre su estrategia de mercado</h1>
@@ -33,7 +31,7 @@ import StackedSections from '../components/scroll/StackedSections.astro';
     </section>
 
     <!-- Main Contact Grid -->
-    <section class="contact-grid-section" data-stack-section>
+    <section class="contact-grid-section">
       <div class="container contact-grid-container">
         <!-- Left: Form -->
         <div class="form-wrapper animate-on-observe stagger-3">
@@ -165,15 +163,14 @@ import StackedSections from '../components/scroll/StackedSections.astro';
     </section>
 
     <!-- Services Quick Link Section -->
-    <section class="services-link-section" data-stack-section>
+    <section class="services-link-section">
       <div class="container text-center">
         <p class="animate-on-observe">¿Desea conocer más sobre el enfoque científico de Mindtec antes de conversar?</p>
-        <a href="/servicios/" class="btn btn-secondary animate-on-observe stagger-1">
+        <a href="/servicios" class="btn btn-secondary animate-on-observe stagger-1">
           Ver Servicios y Metodología
         </a>
       </div>
     </section>
-    </StackedSections>
 
     <!-- BREADCRUMB -->
     <nav aria-label="Breadcrumb" class="breadcrumb-bottom">

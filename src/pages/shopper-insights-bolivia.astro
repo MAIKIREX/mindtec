@@ -1,117 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro';
-import FaqSplit from '../components/faq/FaqSplit.astro';
-import HoverStepCards from '../components/cards/HoverStepCards.astro';
-import AreaPanelCards from '../components/cards/AreaPanelCards.astro';
-import ComparisonRows from '../components/cards/ComparisonRows.astro';
-import ScrollStory from '../components/scroll/ScrollStory.astro';
-import StackedSections from '../components/scroll/StackedSections.astro';
-
-const problemScenarios = [
-  {
-    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M32 208V64l64 32 64-32 64 32v112z"></path><path d="M96 96v112M160 96v112"></path><path d="M56 48h144"></path></svg>`,
-    title: 'Presencia en canal sin ventas proporcionales',
-    description: 'Tienes buena distribución pero las ventas no reflejan tu presencia en el canal. El comprador pasa frente a tu producto y no lo ve — o lo ve pero no lo elige.',
-  },
-  {
-    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M48 56h160v144H48z"></path><path d="M80 88h96M80 120h64M80 152h48"></path><circle cx="184" cy="176" r="24"></circle><path d="m202 194 18 18"></path></svg>`,
-    title: 'POP sin atención comprobada',
-    description: 'Invertiste en material POP premium y no sabes si alguien lo nota. Sin datos de atención, no sabes si tu inversión en visibilidad está funcionando.',
-  },
-  {
-    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M32 208V64l64 32 64-32 64 32v112z"></path><path d="M96 96v112M160 96v112"></path><circle cx="128" cy="152" r="20"></circle></svg>`,
-    title: 'Producto fuerte que pierde en anaquel',
-    description: 'Tu producto tiene la mejor calidad del mercado pero pierde en el anaquel. El problema puede estar en el packaging, la posición, el precio percibido o el momento de decisión — sin shopper insights, no sabrás cuál.',
-  },
-  {
-    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M40 208V48h176v160z"></path><path d="M72 168v-40M112 168V88M152 168v-64M192 168v-96"></path><path d="M48 88h152"></path></svg>`,
-    title: 'Ejecución sin mejora de conversión',
-    description: 'El equipo de ventas reporta excelente ejecución, pero la conversión no mejora. La ejecución y el comportamiento del shopper son dos cosas distintas.',
-  },
-];
-
-const processSteps = [
-  {
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
-    title: "Diagnóstico estratégico",
-    small: "45 min · sin costo",
-    description: "45 min para entender tu situación de trade, los indicadores de conversión que te preocupan y qué decisiones de inversión necesitas justificar con evidencia.",
-  },
-  {
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`,
-    title: "Diseño del estudio",
-    small: "3–5 días hábiles",
-    description: "Definimos canales, número de observaciones, perfil de shoppers a observar, herramientas (etnografía, eye tracking, entrevistas) y variables clave a medir.",
-  },
-  {
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1" ry="1"/></svg>`,
-    title: "Observación en PDV",
-    small: "1–2 semanas en campo",
-    description: "Etnógrafos entrenados observan compradores reales en el PDV. Eye tracking portátil en anaquel. Entrevistas post-compra inmediatas con compradores que aceptan participar.",
-  },
-  {
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>`,
-    title: "Insights y activación",
-    small: "7–10 días post-campo",
-    description: "Análisis de datos de observación, eye tracking y entrevistas. Entrega del brief de trade marketing con recomendaciones priorizadas. Presentación ante equipo comercial y directivo.",
-  },
-];
-
-const relatedProductsItems = [
-  {
-    eyebrow: "SERVICIO RELACIONADO",
-    title: "Cliente Misterioso en Bolivia",
-    description: "Evalúa la experiencia de compra desde el punto de vista del servicio y el protocolo de atención.",
-    href: "/cliente-misterioso-bolivia/",
-  },
-  {
-    eyebrow: "SERVICIO RELACIONADO",
-    title: "Neuromarketing en Bolivia",
-    description: "Mide la respuesta emocional e inconsciente ante packaging, anaquel y material POP con biometría.",
-    href: "/neuromarketing-bolivia/",
-  },
-  {
-    eyebrow: "SERVICIO RELACIONADO",
-    title: "Auditoría Retail en Bolivia",
-    description: "Monitorea share of shelf, precios y ejecución en PDV con red de 80+ auditores en todo Bolivia.",
-    href: "/auditoria-retail-bolivia/",
-  },
-  {
-    eyebrow: "SERVICIO RELACIONADO",
-    title: "Comportamiento del Consumidor Boliviano",
-    description: "Datos reales de Mindtec sobre hábitos de compra por región y contexto económico.",
-    href: "/comportamiento-consumidor-boliviano/",
-  },
-];
-
-const faqItems = [
-  {
-    question: "¿Qué es un estudio de shopper insights?",
-    answer:
-      "Un estudio de shopper insights analiza el comportamiento del comprador en el punto de venta: cómo navega el espacio, cuánto tiempo dedica a cada zona, qué lo detiene frente al anaquel, qué desencadena la decisión de compra y por qué elige una marca sobre otra. Se realiza en el PDV real, no en laboratorio.",
-  },
-  {
-    question: "¿Cómo se hace un estudio de shopper en Bolivia?",
-    answer:
-      "Combinamos tres metodologías: observación etnográfica en el PDV (observadores entrenados siguen a compradores reales), análisis de trayectoria y tiempo de permanencia frente al anaquel, y entrevistas post-compra inmediatas para capturar la racionalización de la decisión. Cuando aplica, incorporamos eye tracking portátil para medir exactamente qué captura la atención.",
-  },
-  {
-    question: "¿En qué tipo de puntos de venta hacen los estudios?",
-    answer:
-      "Trabajamos en supermercados de cadena, hipermercados, minimarkets, farmacias, ferreterías, tiendas de conveniencia y mercados populares. El tipo de PDV se define según el canal más relevante para tu categoría.",
-  },
-  {
-    question: "¿Cuántos shoppers se observan en un estudio típico?",
-    answer:
-      "Para estudios exploratorios: 30–50 observaciones. Para estudios con validez estadística: 100–200 observaciones. El número final depende de la variabilidad del comportamiento en tu categoría y del nivel de confianza requerido.",
-  },
-  {
-    question: "¿Los compradores saben que están siendo observados?",
-    answer:
-      "Dependiendo del diseño: en la fase etnográfica de observación pasiva, el comprador no sabe que está siendo observado. En las entrevistas post-compra, sí. Este diseño nos permite capturar el comportamiento real (sin el sesgo de saber que te observan) y luego explorar el por qué con el comprador dispuesto a hablar.",
-  },
-];
+import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
 
 const title = "Shopper Insights en Bolivia | Canal y PDV | Mindtec";
 const description = "Shopper insights Bolivia: etnografía, eye tracking y entrevistas en PDV para entender la decisión de compra real en el momento en que ocurre. Mindtec.";
@@ -199,10 +88,10 @@ const description = "Shopper insights Bolivia: etnografía, eye tracking y entre
   </script>
 
   <main>
-    <StackedSections>
+
 
     <!-- 1. HERO -->
-    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;" data-stack-section>
+    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
       <div class="hero-shapes" aria-hidden="true">
         <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
         <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
@@ -235,7 +124,7 @@ const description = "Shopper insights Bolivia: etnografía, eye tracking y entre
             <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Entrevistas Post-Compra</span>
             <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">ROI de Trade Marketing</span>
           </div>
-          <a href="/contacto/" class="btn btn-primary lg">Agendar diagnóstico estratégico (45 min) →</a>
+          <a href="/contacto" class="btn btn-primary lg">Agendar diagnóstico estratégico (45 min) →</a>
         </div>
         <div class="hero-visual">
           <div class="glass-card main-visual">
@@ -245,11 +134,9 @@ const description = "Shopper insights Bolivia: etnografía, eye tracking y entre
       </div>
     </section>
 
-    <div data-stack-section>
-      <ServiceVisualSuite variant="shopper" />
-    </div>
+    <ServiceVisualSuite variant="shopper" />
 
-    <section class="generated-insight-section" data-stack-section>
+    <section class="generated-insight-section">
       <div class="container">
         <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
           <span class="eyebrow">Evidencia visual en PDV</span>
@@ -276,128 +163,152 @@ const description = "Shopper insights Bolivia: etnografía, eye tracking y entre
     </section>
 
     <!-- 2. EL PROBLEMA -->
-    <section class="bg-slate" style="padding: 5rem 0;" data-stack-section>
+    <section class="problem-section bg-slate" style="padding: 5rem 0;">
       <div class="container">
-        <div style="max-width: 900px; margin: 0 auto;">
+        <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
           <span class="eyebrow">EL PROBLEMA REAL</span>
           <h2 class="text-navy" style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;">Inviertes en trade marketing sin saber qué parte de esa inversión realmente influye al comprador.</h2>
           <p class="text-gray-dark leading-relaxed" style="font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.7;">
             La mayoría de las decisiones de inversión en trade marketing se toman sin evidencia sobre cómo se comporta el comprador en el anaquel. Se asume que más material POP, mejor posición o más facings automáticamente generan más ventas. Muchas veces no es así.
           </p>
-          <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; line-height: 1.7;">
+          <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.7;">
             ¿Reconoces alguno de estos escenarios?
           </p>
-        </div>
-
-        <AreaPanelCards items={problemScenarios} columns={4} theme="navy" class="problem-panels" />
-
-        <div style="max-width: 900px; margin: 2.5rem auto 0; background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: var(--radius-md, 8px); font-weight: 600; font-size: 1.1rem; text-align: center;">
-          El 70% de las decisiones de compra se toman frente al anaquel. Sin shopper insights, estás adivinando qué las mueve.
+          <ul class="cap-list" style="font-size: 1.05rem; margin-bottom: 2rem;">
+            <li><strong class="text-navy">Tienes buena distribución pero las ventas no reflejan tu presencia en el canal.</strong> El comprador pasa frente a tu producto y no lo ve — o lo ve pero no lo elige.</li>
+            <li><strong class="text-navy">Invertiste en material POP premium y no sabes si alguien lo nota.</strong> Sin datos de atención, no sabes si tu inversión en visibilidad está funcionando.</li>
+            <li><strong class="text-navy">Tu producto tiene la mejor calidad del mercado pero pierde en el anaquel.</strong> El problema puede estar en el packaging, la posición, el precio percibido o el momento de decisión — sin shopper insights, no sabrás cuál.</li>
+            <li><strong class="text-navy">El equipo de ventas reporta excelente ejecución, pero la conversión no mejora.</strong> La ejecución y el comportamiento del shopper son dos cosas distintas.</li>
+          </ul>
+          <div style="background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: 8px; font-weight: 600; font-size: 1.1rem; text-align: center;">
+            El 70% de las decisiones de compra se toman frente al anaquel. Sin shopper insights, estás adivinando qué las mueve.
+          </div>
         </div>
       </div>
     </section>
 
     <!-- 3. MINDTEC+ -->
-    <section style="padding: 5rem 0; background: #fff;" data-stack-section>
+    <section style="padding: 5rem 0; background: #fff;">
       <div class="container">
         <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
           <span class="eyebrow">MINDTEC+</span>
           <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;">La decisión de compra se estudia donde ocurre — no en una sala de reuniones.</h2>
         </div>
-        <ComparisonRows
-          columnLabels={{ left: 'Investigación de shopper estándar', right: 'MindTEC — Shopper Insights' }}
-          rows={[
-            { before: 'Encuestas sobre comportamiento de compra declarado (lo que el comprador dice que hace)', after: 'Observación directa del comportamiento real en el PDV (lo que el comprador realmente hace)' },
-            { before: 'Focus groups sobre preferencias de producto en sala', after: 'Entrevistas post-compra inmediatas capturando la racionalización en caliente, justo después de la decisión' },
-            { before: 'Sin medición de atención visual', after: 'Eye tracking portátil en anaquel real para saber exactamente qué captura la mirada del comprador' },
-            { before: 'Datos del comportamiento de un shopper genérico', after: 'Segmentación del comportamiento por tipo de comprador: planificado vs. impulsivo, usuario vs. comprador' },
-            { before: 'Hallazgos descriptivos sin implicaciones para trade marketing', after: 'Brief de activación para trade marketing: qué cambiar en packaging, posición, POP y categoría para mejorar conversión' },
-          ]}
-        />
-        <p class="text-gray-dark" style="font-size: 1.05rem; margin-top: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.7;">
+        <div class="comparison-table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th scope="col">Investigación de shopper estándar</th>
+                <th scope="col">MindTEC — Shopper Insights</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Encuestas sobre comportamiento de compra declarado (lo que el comprador dice que hace)</td>
+                <td>Observación directa del comportamiento real en el PDV (lo que el comprador realmente hace)</td>
+              </tr>
+              <tr>
+                <td>Focus groups sobre preferencias de producto en sala</td>
+                <td>Entrevistas post-compra inmediatas capturando la racionalización en caliente, justo después de la decisión</td>
+              </tr>
+              <tr>
+                <td>Sin medición de atención visual</td>
+                <td>Eye tracking portátil en anaquel real para saber exactamente qué captura la mirada del comprador</td>
+              </tr>
+              <tr>
+                <td>Datos del comportamiento de un shopper genérico</td>
+                <td>Segmentación del comportamiento por tipo de comprador: planificado vs. impulsivo, usuario vs. comprador</td>
+              </tr>
+              <tr>
+                <td>Hallazgos descriptivos sin implicaciones para trade marketing</td>
+                <td>Brief de activación para trade marketing: qué cambiar en packaging, posición, POP y categoría para mejorar conversión</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-gray-dark" style="font-size: 1.05rem; margin-top: 2rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.7;">
           Combinamos psicoantropología, ciencias del comportamiento y neuromarketing aplicado al punto de venta para entender la decisión de compra en su contexto real.
         </p>
       </div>
     </section>
-    </StackedSections>
 
     <!-- 4. ENTREGABLES -->
-    <ScrollStory
-      scrub={0.85}
-      sceneDistance={1.1}
-      cover={{
-        background: "/imagenes-mindtec/generated/shopper-insights/entregables/entregables-cover.webp",
-        eyebrow: "Qué recibes",
-        title: "Entregables que optimizan tu inversión en trade marketing.",
-        description: "Documentos y análisis diseñados para traducir el comportamiento del shopper en decisiones de trade."
-      }}
-      intro={{
-        background: "/imagenes-mindtec/generated/shopper-insights/entregables/entregables-intro.webp",
-        number: "00",
-        eyebrow: "Plazo de entrega",
-        title: "2–4 semanas desde el inicio del campo. Cobertura: supermercados, canal moderno y mercados populares.",
-        description: "Recorra los seis entregables que puede esperar de un estudio Shopper Insights."
-      }}
-      items={[
-        {
-          background: "/imagenes-mindtec/generated/shopper-insights/entregables/entregable-01-journey-shopper.webp",
-          eyebrow: "Journey",
-          title: "Mapa del Journey del Shopper",
-          description: "Diagrama visual del recorrido completo del comprador en el PDV: puntos de entrada, zonas de permanencia, momentos de decisión y triggers de compra o abandono.",
-          icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="4.5" cy="19" r="1.5"/><circle cx="19.5" cy="5" r="1.5"/><circle cx="12" cy="12" r="1.5"/><path d="M6 18c3-1 4-3 5-5"/><path d="M13 11c1-2 2-4 5-5"/><path d="m21 3-1.2 2.6L17 6"/></svg>`
-        },
-        {
-          background: "/imagenes-mindtec/generated/shopper-insights/entregables/entregable-02-trayectoria-permanencia.webp",
-          eyebrow: "Trayectoria",
-          title: "Análisis de Trayectoria y Tiempo de Permanencia",
-          description: "Cuánto tiempo pasa el comprador en cada zona, qué lo detiene, qué lo hace avanzar. Identificación de zonas frías y zonas calientes de atención en el espacio comercial.",
-          icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>`
-        },
-        {
-          background: "/imagenes-mindtec/generated/shopper-insights/entregables/entregable-03-atencion-visual.webp",
-          eyebrow: "Eye tracking",
-          title: "Mapa de Atención Visual en Anaquel",
-          description: "Con eye tracking portátil: qué elementos del anaquel capturan la mirada, cuánto tiempo permanece la atención y qué zona del packaging concentra la fijación visual en los primeros 3 segundos.",
-          icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3.2"/></svg>`
-        },
-        {
-          background: "/imagenes-mindtec/generated/shopper-insights/entregables/entregable-04-decisores-compra.webp",
-          eyebrow: "Decisión",
-          title: "Análisis de Decisores de Compra",
-          description: "Qué variables determinan la elección en el momento de verdad: precio, packaging, posición, recomendación, hábito o impulso. Ponderación de cada factor según tipo de comprador y canal.",
-          icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 7h14"/><path d="M5 7 2.5 12.5a2.5 2.5 0 0 0 5 0L5 7Z"/><path d="M19 7l-2.5 5.5a2.5 2.5 0 0 0 5 0L19 7Z"/><path d="M8 21h8"/></svg>`
-        },
-        {
-          background: "/imagenes-mindtec/generated/shopper-insights/entregables/entregable-05-brief-trade-marketing.webp",
-          eyebrow: "Optimización",
-          title: "Brief de Optimización de Trade Marketing",
-          description: "Recomendaciones concretas para equipo de trade: qué cambiar en posición de anaquel, diseño de POP, layout de categoría, packaging y argumentación de venta para mejorar la tasa de conversión.",
-          icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="12" height="18" rx="1.5"/><path d="M8 8h4M8 12h4M8 16h2"/><path d="M16 9c3 .3 5 2.4 5 5.5S18.5 20 15 19.6"/><path d="m18.5 12 2.5 2.5-2.5 2.5"/></svg>`
-        },
-        {
-          background: "/imagenes-mindtec/generated/shopper-insights/entregables/entregable-06-executive-brief-comercial.webp",
-          eyebrow: "Síntesis",
-          title: "Executive Brief para Directorio Comercial",
-          description: "Síntesis ejecutiva con el impacto estimado en conversión de cada cambio recomendado, priorizados por facilidad de implementación y potencial de mejora en ventas.",
-          icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M9 20h6M12 16v4"/><path d="m7 12 3-3 2.5 2 4-4.5"/></svg>`
-        }
-      ]}
-    />
+    <section class="problem-section bg-slate" style="padding: 5rem 0;">
+      <div class="container">
+        <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
+          <span class="eyebrow">QUÉ RECIBES</span>
+          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Entregables que optimizan tu inversión en trade marketing.</h2>
+        </div>
+        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; list-style: none; padding: 0;">
+          <li class="premium-card-white" style="padding: 2rem;">
+            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Mapa del Journey del Shopper</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Diagrama visual del recorrido completo del comprador en el PDV: puntos de entrada, zonas de permanencia, momentos de decisión y triggers de compra o abandono.</p>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem;">
+            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Análisis de Trayectoria y Tiempo de Permanencia</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Cuánto tiempo pasa el comprador en cada zona, qué lo detiene, qué lo hace avanzar. Identificación de zonas frías y zonas calientes de atención en el espacio comercial.</p>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem;">
+            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Mapa de Atención Visual en Anaquel</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Con eye tracking portátil: qué elementos del anaquel capturan la mirada, cuánto tiempo permanece la atención y qué zona del packaging concentra la fijación visual en los primeros 3 segundos.</p>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem;">
+            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Análisis de Decisores de Compra</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Qué variables determinan la elección en el momento de verdad: precio, packaging, posición, recomendación, hábito o impulso. Ponderación de cada factor según tipo de comprador y canal.</p>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem;">
+            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Brief de Optimización de Trade Marketing</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Recomendaciones concretas para equipo de trade: qué cambiar en posición de anaquel, diseño de POP, layout de categoría, packaging y argumentación de venta para mejorar la tasa de conversión.</p>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem;">
+            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Executive Brief para Directorio Comercial</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Síntesis ejecutiva con el impacto estimado en conversión de cada cambio recomendado, priorizados por facilidad de implementación y potencial de mejora en ventas.</p>
+          </li>
+        </ul>
+        <p class="text-gray-dark" style="text-align: center; margin-top: 2rem; font-size: 0.95rem; font-weight: 600;">
+          Plazo de entrega: 2–4 semanas desde el inicio del campo · Cobertura: supermercados, canal moderno y mercados populares del eje troncal boliviano
+        </p>
+      </div>
+    </section>
 
-    <StackedSections>
     <!-- 5. PROCESO -->
-    <section style="padding: 5rem 0; background: #f8fafc;" data-stack-section>
+    <section style="padding: 5rem 0; background: #f8fafc;">
       <div class="container">
         <div class="section-title-center" style="text-align: center; margin-bottom: 4rem;">
           <span class="eyebrow">CÓMO FUNCIONA</span>
           <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Del diagnóstico al brief de trade marketing en 4 pasos.</h2>
         </div>
-        <AreaPanelCards items={processSteps} columns={4} />
+        <ol style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
+          <li class="premium-card-white" style="padding: 2rem; position: relative;">
+            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">01</span>
+            <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Diagnóstico estratégico</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">45 min para entender tu situación de trade, los indicadores de conversión que te preocupan y qué decisiones de inversión necesitas justificar con evidencia.</p>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">45 min · sin costo</span>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem; position: relative;">
+            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">02</span>
+            <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Diseño del estudio</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Definimos canales, número de observaciones, perfil de shoppers a observar, herramientas (etnografía, eye tracking, entrevistas) y variables clave a medir.</p>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">3–5 días hábiles</span>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem; position: relative;">
+            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">03</span>
+            <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Observación en PDV</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Etnógrafos entrenados observan compradores reales en el PDV. Eye tracking portátil en anaquel. Entrevistas post-compra inmediatas con compradores que aceptan participar.</p>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">1–2 semanas en campo</span>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem; position: relative;">
+            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">04</span>
+            <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Insights y activación</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Análisis de datos de observación, eye tracking y entrevistas. Entrega del brief de trade marketing con recomendaciones priorizadas. Presentación ante equipo comercial y directivo.</p>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">7–10 días post-campo</span>
+          </li>
+        </ol>
       </div>
     </section>
 
     <!-- 6. SECTORES -->
-    <section class="problem-section bg-slate" style="padding: 5rem 0;" data-stack-section>
+    <section class="problem-section bg-slate" style="padding: 5rem 0;">
       <div class="container">
         <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
           <span class="eyebrow">SECTORES Y CANALES</span>
@@ -417,16 +328,80 @@ const description = "Shopper insights Bolivia: etnografía, eye tracking y entre
     </section>
 
     <!-- 7. FAQ -->
-    <div data-stack-section>
-      <FaqSplit
-        eyebrow="PREGUNTAS FRECUENTES"
-        title="Lo que suelen preguntar antes de contratar."
-        items={faqItems}
-      />
-    </div>
+    <section style="padding: 5rem 0; background: #fff;">
+      <div class="container" style="max-width: 800px;">
+        <div style="text-align: center; margin-bottom: 3rem;">
+          <span class="eyebrow">PREGUNTAS FRECUENTES</span>
+          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Lo que suelen preguntar antes de contratar.</h2>
+        </div>
+        <dl style="display: flex; flex-direction: column; gap: 1rem;">
+
+          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
+            <dt>
+              <button aria-expanded="false" aria-controls="faq-1-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                ¿Qué es un estudio de shopper insights?
+                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
+              </button>
+            </dt>
+            <dd id="faq-1-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
+              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Un estudio de shopper insights analiza el comportamiento del comprador en el punto de venta: cómo navega el espacio, cuánto tiempo dedica a cada zona, qué lo detiene frente al anaquel, qué desencadena la decisión de compra y por qué elige una marca sobre otra. Se realiza en el PDV real, no en laboratorio.</p>
+            </dd>
+          </div>
+
+          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
+            <dt>
+              <button aria-expanded="false" aria-controls="faq-2-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                ¿Cómo se hace un estudio de shopper en Bolivia?
+                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
+              </button>
+            </dt>
+            <dd id="faq-2-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
+              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Combinamos tres metodologías: observación etnográfica en el PDV (observadores entrenados siguen a compradores reales), análisis de trayectoria y tiempo de permanencia frente al anaquel, y entrevistas post-compra inmediatas para capturar la racionalización de la decisión. Cuando aplica, incorporamos eye tracking portátil para medir exactamente qué captura la atención.</p>
+            </dd>
+          </div>
+
+          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
+            <dt>
+              <button aria-expanded="false" aria-controls="faq-3-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                ¿En qué tipo de puntos de venta hacen los estudios?
+                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
+              </button>
+            </dt>
+            <dd id="faq-3-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
+              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Trabajamos en supermercados de cadena, hipermercados, minimarkets, farmacias, ferreterías, tiendas de conveniencia y mercados populares. El tipo de PDV se define según el canal más relevante para tu categoría.</p>
+            </dd>
+          </div>
+
+          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
+            <dt>
+              <button aria-expanded="false" aria-controls="faq-4-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                ¿Cuántos shoppers se observan en un estudio típico?
+                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
+              </button>
+            </dt>
+            <dd id="faq-4-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
+              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Para estudios exploratorios: 30–50 observaciones. Para estudios con validez estadística: 100–200 observaciones. El número final depende de la variabilidad del comportamiento en tu categoría y del nivel de confianza requerido.</p>
+            </dd>
+          </div>
+
+          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
+            <dt>
+              <button aria-expanded="false" aria-controls="faq-5-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                ¿Los compradores saben que están siendo observados?
+                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
+              </button>
+            </dt>
+            <dd id="faq-5-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
+              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Dependiendo del diseño: en la fase etnográfica de observación pasiva, el comprador no sabe que está siendo observado. En las entrevistas post-compra, sí. Este diseño nos permite capturar el comportamiento real (sin el sesgo de saber que te observan) y luego explorar el por qué con el comprador dispuesto a hablar.</p>
+            </dd>
+          </div>
+
+        </dl>
+      </div>
+    </section>
 
     <!-- 8. PRUEBA SOCIAL -->
-    <section style="padding: 4rem 0; background: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;" data-stack-section>
+    <section style="padding: 4rem 0; background: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
       <div class="container" style="text-align: center; max-width: 800px;">
         <p class="text-navy" style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.5;">
           Marcas de consumo masivo, farmacéuticas y empresas de retail en Bolivia han usado Shopper Insights para rediseñar su estrategia de trade marketing con evidencia del comportamiento real del comprador en el anaquel.
@@ -443,22 +418,47 @@ const description = "Shopper insights Bolivia: etnografía, eye tracking y entre
     </section>
 
     <!-- 9. PRODUCTOS RELACIONADOS -->
-    <section style="padding: 5rem 0; background: #fff;" data-stack-section>
-      <div class="container">
+    <section style="padding: 5rem 0; background: #fff;">
+      <div class="container" style="max-width: 900px;">
         <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">También puede interesarle</h3>
-      </div>
-      <div class="related-products-bleed">
-        <HoverStepCards items={relatedProductsItems} minColumnWidth="340px" />
-      </div>
-      <div class="container">
+        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; list-style: none; padding: 0;">
+          <li>
+            <a href="/cliente-misterioso-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none'">
+              <h4 style="font-size: 1.05rem; color: var(--color-secondary); margin-bottom: 0.5rem;">Cliente Misterioso en Bolivia</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; line-height: 1.5;">Evalúa la experiencia de compra desde el punto de vista del servicio y el protocolo de atención.</p>
+              <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem;">Explorar →</span>
+            </a>
+          </li>
+          <li>
+            <a href="/neuromarketing-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none'">
+              <h4 style="font-size: 1.05rem; color: var(--color-secondary); margin-bottom: 0.5rem;">Neuromarketing en Bolivia</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; line-height: 1.5;">Mide la respuesta emocional e inconsciente ante packaging, anaquel y material POP con biometría.</p>
+              <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem;">Explorar →</span>
+            </a>
+          </li>
+          <li>
+            <a href="/auditoria-retail-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none'">
+              <h4 style="font-size: 1.05rem; color: var(--color-secondary); margin-bottom: 0.5rem;">Auditoría Retail en Bolivia</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; line-height: 1.5;">Monitorea share of shelf, precios y ejecución en PDV con red de 80+ auditores en todo Bolivia.</p>
+              <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem;">Explorar →</span>
+            </a>
+          </li>
+          <li>
+            <a href="/comportamiento-consumidor-boliviano" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none'">
+              <h4 style="font-size: 1.05rem; color: var(--color-secondary); margin-bottom: 0.5rem;">Comportamiento del Consumidor Boliviano</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; line-height: 1.5;">Datos reales de Mindtec sobre hábitos de compra por región y contexto económico.</p>
+              <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem;">Explorar →</span>
+            </a>
+          </li>
+        </ul>
         <div style="text-align: center; margin-top: 2rem;">
-          <a href="/servicios/" style="color: var(--color-primary); font-weight: 700; text-decoration: none; font-size: 0.95rem;">Ver todos los servicios →</a>
+          <a href="/servicios" style="color: var(--color-primary); font-weight: 700; text-decoration: none; font-size: 0.95rem;">Ver todos los servicios →</a>
         </div>
       </div>
     </section>
 
     <!-- 10. CTA FINAL -->
-    <section class="cta-section-modern" style="padding: 6rem 0;" data-stack-section>
+    <section class="cta-section-modern" style="padding: 6rem 0;">
       <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
         <div class="cta-content-v2">
           <h2 style="font-size: 2.8rem; line-height: 1.25; margin-bottom: 1.5rem;">¿Sabes por qué el comprador elige tu producto — o lo descarta — frente al anaquel?</h2>
@@ -466,13 +466,12 @@ const description = "Shopper insights Bolivia: etnografía, eye tracking y entre
             Hablemos 45 minutos. Evaluamos tu categoría, tus canales y el tipo de comportamiento que necesitas entender para diseñar el estudio de shopper que informa tus decisiones de trade marketing.
           </p>
           <div class="cta-actions" style="justify-content: center; flex-direction: column; align-items: center;">
-            <a href="/contacto/" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar diagnóstico estratégico (45 min) →</a>
+            <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar diagnóstico estratégico (45 min) →</a>
             <p style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">Confidencial · Sin costo · Sin compromiso · Por Zoom o Teams</p>
           </div>
         </div>
       </div>
     </section>
-    </StackedSections>
 
     <!-- BREADCRUMB -->
     <nav aria-label="Breadcrumb" class="breadcrumb-bottom">
@@ -480,7 +479,7 @@ const description = "Shopper insights Bolivia: etnografía, eye tracking y entre
         <ol>
           <li><a href="/" style="color: rgba(255,255,255,0.6); text-decoration: none;">Inicio</a></li>
           <li style="color: rgba(255,255,255,0.3);">›</li>
-          <li><a href="/servicios/" style="color: rgba(255,255,255,0.6); text-decoration: none;">Servicios</a></li>
+          <li><a href="/servicios" style="color: rgba(255,255,255,0.6); text-decoration: none;">Servicios</a></li>
           <li style="color: rgba(255,255,255,0.3);">›</li>
           <li aria-current="page" style="color: #fff; font-weight: 600;">Shopper Insights en Bolivia</li>
         </ol>
@@ -489,23 +488,18 @@ const description = "Shopper insights Bolivia: etnografía, eye tracking y entre
 
   </main>
 
-  <style>
-    /* 9. PRODUCTOS RELACIONADOS */
-    .related-products-bleed {
-      padding: 0 2rem;
-    }
-
-    @media (min-width: 900px) {
-      .related-products-bleed {
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-        padding: 0 clamp(1.5rem, 4vw, 4rem);
-      }
-    }
-  </style>
+  <script>
+    document.querySelectorAll('dt button[aria-expanded]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const ddId = btn.getAttribute('aria-controls');
+        const dd = document.getElementById(ddId);
+        const expandido = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', expandido ? 'false' : 'true');
+        const icon = btn.querySelector('span[aria-hidden]');
+        if (icon) icon.textContent = expandido ? '+' : '−';
+        if (dd) dd.hidden = expandido;
+      });
+    });
+  </script>
 
 </Layout>

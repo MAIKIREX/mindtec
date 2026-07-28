@@ -1,135 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro';
-import FaqSplit from '../components/faq/FaqSplit.astro';
-import HoverStepCards from '../components/cards/HoverStepCards.astro';
-import AreaPanelCards from '../components/cards/AreaPanelCards.astro';
-import ComparisonRows from '../components/cards/ComparisonRows.astro';
-import ScrollStory from '../components/scroll/ScrollStory.astro';
-import StackedSections from '../components/scroll/StackedSections.astro';
-
-const problemScenarios = [
-  {
-    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M56 128a72 72 0 1 1 24 54"></path><path d="M40 158v-30h30"></path><circle cx="176" cy="128" r="8"></circle></svg>`,
-    title: 'NPS alto pero ventas estancadas',
-    description: 'Las encuestas de satisfacción dan alto, pero las ventas no crecen. El NPS mide lo que el cliente declara, no lo que realmente experimentó.',
-  },
-  {
-    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><rect x="48" y="96" width="160" height="120" rx="8"></rect><path d="M88 96V64a16 16 0 0 1 16-16h48a16 16 0 0 1 16 16v32"></path><path d="M96 152h64"></path></svg>`,
-    title: 'Protocolo sin verificación real',
-    description: 'Los supervisores reportan cumplimiento del protocolo. Pero no tienen cómo verificarlo sin aparecer en el local.',
-  },
-  {
-    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M32 208V64l64 32 64-32 64 32v112z"></path><path d="M96 96v112M160 96v112"></path></svg>`,
-    title: 'Competencia con mejor conversión',
-    description: 'Tu competencia tiene locales con mejor conversión. No sabes qué están haciendo diferente en la experiencia de compra.',
-  },
-  {
-    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M64 216V56l96 40 32-24v144"></path><path d="M64 96h96"></path><path d="M176 160l24 24-24 24"></path></svg>`,
-    title: 'Capacitación sin cambio medible',
-    description: 'Invertiste en capacitación, pero no ves cambio en resultados. Sin evidencia externa, no sabes si el entrenamiento se está aplicando.',
-  },
-];
-
-const comparisonRows = [
-  {
-    before: 'Checklist de puntos a verificar (¿saludó? ¿ofreció producto adicional?)',
-    after: 'Rúbricas construidas desde ciencias del comportamiento: momentos de decisión, señales de fricción y confianza',
-  },
-  {
-    before: 'Evaluador sin formación específica en comportamiento del consumidor',
-    after: 'Auditores entrenados en psicología del consumidor, comunicación no verbal y journey del comprador',
-  },
-  {
-    before: 'Informe con puntuaciones y porcentajes por indicador',
-    after: 'Reporte ejecutivo con mapeo de la experiencia, momentos críticos y plan de mejora priorizado',
-  },
-  {
-    before: 'Visitas a tus propios locales únicamente',
-    after: 'Opción de benchmarking simultáneo con 3–5 competidores directos en la misma rúbrica',
-  },
-  {
-    before: 'Sin recomendaciones de implementación',
-    after: 'Brief de activación con acciones específicas por rol (gerente de tienda, vendedor, supervisor)',
-  },
-];
-
-const processSteps = [
-  {
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
-    title: "Diagnóstico estratégico",
-    small: "45 min · sin costo",
-    description: "45 min para entender tu contexto, los indicadores que más te preocupan y cuántos locales hay que auditar. Definimos alcance y prioridad juntos.",
-  },
-  {
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`,
-    title: "Diseño de rúbricas",
-    small: "3–5 días hábiles",
-    description: "Construimos los instrumentos de evaluación desde tu protocolo de atención, tus KPIs comerciales y los estándares de experiencia del sector.",
-  },
-  {
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1" ry="1"/></svg>`,
-    title: "Visitas de campo",
-    small: "1–2 semanas en campo",
-    description: "Los auditores visitan los puntos de venta como consumidores reales. Sin avisar al equipo. Con registro detallado de la experiencia en tiempo real.",
-  },
-  {
-    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>`,
-    title: "Reporte y activación",
-    small: "Entrega en 5 días post-campo",
-    description: "Entregamos el reporte ejecutivo con hallazgos, scorecard y plan de acción. Presentamos los resultados ante tu equipo directivo con sesión de priorización incluida.",
-  },
-];
-
-const relatedProductsItems = [
-  {
-    eyebrow: "SERVICIO RELACIONADO",
-    title: "Shopper Insights",
-    description: "Entiende la decisión de compra en el momento exacto en que ocurre en el anaquel.",
-    href: "/shopper-insights-bolivia/",
-  },
-  {
-    eyebrow: "SERVICIO RELACIONADO",
-    title: "Auditoría Retail en Bolivia",
-    description: "Monitorea share of shelf, precios y ejecución en punto de venta con red de 80+ auditores.",
-    href: "/auditoria-retail-bolivia/",
-  },
-  {
-    eyebrow: "SERVICIO RELACIONADO",
-    title: "Benchmarking Competitivo",
-    description: "Mapea los movimientos de precio, distribución y posicionamiento de tu competencia.",
-    href: "/benchmarking-competitivo-bolivia/",
-  },
-];
-
-const faqItems = [
-  {
-    question: "¿Qué es el cliente misterioso o mystery shopper?",
-    answer:
-      "El cliente misterioso es un auditor entrenado que visita un punto de venta haciéndose pasar por consumidor real. Evalúa objetivamente la experiencia: atención, protocolo, ambiente, argumentación de ventas y cumplimiento de estándares — sin que el equipo sepa que está siendo evaluado.",
-  },
-  {
-    question: "¿En cuántos puntos de venta y ciudades operan?",
-    answer:
-      "Operamos en todo el eje troncal boliviano: La Paz, El Alto, Cochabamba, Santa Cruz, Oruro y Sucre. También en ciudades intermedias según requerimiento. Podemos auditar desde un solo punto de venta hasta cientos de locales de forma simultánea.",
-  },
-  {
-    question: "¿Cuánto tiempo toma una auditoría de cliente misterioso?",
-    answer:
-      "El diseño de rúbricas y brief toma 3–5 días. Las visitas de campo se ejecutan en 1–2 semanas según el número de puntos. El reporte ejecutivo se entrega 5 días después de completar el campo.",
-  },
-  {
-    question: "¿Pueden auditar también a la competencia?",
-    answer:
-      "Sí. El benchmarking competitivo es uno de los usos más valiosos del cliente misterioso. Auditamos la experiencia en tus locales y en los de tus competidores con la misma rúbrica, entregando una comparación objetiva del nivel de servicio en el mercado.",
-  },
-  {
-    question:
-      "¿Qué diferencia a MindTEC de un proveedor de mystery shopping estándar?",
-    answer:
-      "Los auditores no siguen un checklist genérico. Las rúbricas se diseñan desde ciencias del comportamiento del consumidor: medimos no solo el protocolo sino los momentos de decisión, las barreras a la compra y las señales de fricción o confianza que determinan si el cliente compra o se va.",
-  },
-];
+import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
 
 const title = "Cliente Misterioso en Bolivia (Mystery Shopper) | Mindtec";
 const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la calidad de servicio y la experiencia de compra real en el punto de venta. Mindtec.";
@@ -220,10 +91,10 @@ const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la cal
   </script>
 
   <main>
-    <StackedSections>
+
 
     <!-- 1. HERO -->
-    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;" data-stack-section>
+    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
       <div class="hero-shapes" aria-hidden="true">
         <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
         <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
@@ -256,7 +127,7 @@ const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la cal
             <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Benchmarking vs. Competencia</span>
             <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Resultados en 7–14 días</span>
           </div>
-          <a href="/contacto/" class="btn btn-primary lg">Agendar diagnóstico estratégico (45 min) →</a>
+          <a href="/contacto" class="btn btn-primary lg">Agendar diagnóstico estratégico (45 min) →</a>
         </div>
         <div class="hero-visual">
           <div class="glass-card main-visual">
@@ -266,189 +137,248 @@ const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la cal
       </div>
     </section>
 
-    <div data-stack-section>
-      <ServiceVisualSuite variant="misterioso" />
-    </div>
+    <ServiceVisualSuite variant="misterioso" />
 
     <!-- 2. EL PROBLEMA -->
-    <section class="bg-slate" style="padding: 5rem 0;" data-stack-section>
+    <section class="problem-section bg-slate" style="padding: 5rem 0;">
       <div class="container">
-        <div style="max-width: 900px; margin: 0 auto;">
+        <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
           <span class="eyebrow">EL PROBLEMA REAL</span>
           <h2 class="text-navy" style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;">Tu equipo sabe que está siendo observado. El cliente real, no.</h2>
           <p class="text-gray-dark leading-relaxed" style="font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.7;">
             El mayor punto ciego en la gestión comercial es que los equipos de tienda cambian su comportamiento cuando saben que el supervisor está presente. El cliente real vive una experiencia completamente diferente a la que reporta tu equipo de calidad.
           </p>
-          <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; line-height: 1.7;">
+          <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.7;">
             ¿Reconoces alguno de estos escenarios?
           </p>
-        </div>
-
-        <AreaPanelCards items={problemScenarios} columns={4} theme="navy" class="problem-panels" />
-
-        <div style="max-width: 900px; margin: 2.5rem auto 0; background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: var(--radius-md, 8px); font-weight: 600; font-size: 1.1rem; text-align: center;">
-          Lo que no ves en tus reportes internos es exactamente lo que decide si el cliente compra o se va.
+          <ul class="cap-list" style="font-size: 1.05rem; margin-bottom: 2rem;">
+            <li><strong class="text-navy">Las encuestas de satisfacción dan alto, pero las ventas no crecen.</strong> El NPS mide lo que el cliente declara, no lo que realmente experimentó.</li>
+            <li><strong class="text-navy">Los supervisores reportan cumplimiento del protocolo.</strong> Pero no tienen cómo verificarlo sin aparecer en el local.</li>
+            <li><strong class="text-navy">Tu competencia tiene locales con mejor conversión.</strong> No sabes qué están haciendo diferente en la experiencia de compra.</li>
+            <li><strong class="text-navy">Invertiste en capacitación, pero no ves cambio en resultados.</strong> Sin evidencia externa, no sabes si el entrenamiento se está aplicando.</li>
+          </ul>
+          <div style="background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: 8px; font-weight: 600; font-size: 1.1rem; text-align: center;">
+            Lo que no ves en tus reportes internos es exactamente lo que decide si el cliente compra o se va.
+          </div>
         </div>
       </div>
     </section>
 
     <!-- 3. MINDTEC+ (Tabla comparativa) -->
-    <section style="padding: 5rem 0; background: #fff;" data-stack-section>
+    <section style="padding: 5rem 0; background: #fff;">
       <div class="container">
         <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
           <span class="eyebrow">MINDTEC+</span>
           <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;">No es un checklist. Es una lectura del comportamiento real.</h2>
         </div>
-        <ComparisonRows
-          columnLabels={{ left: 'Mystery shopping estándar', right: 'MindTEC — Auditoría de Experiencia en PDV' }}
-          rows={comparisonRows}
-        />
-
-        <p class="text-gray-dark" style="font-size: 1.05rem; margin-top: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.7;">
+        <div class="comparison-table-wrapper">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th scope="col">Mystery shopping estándar</th>
+                <th scope="col">MindTEC — Auditoría de Experiencia en PDV</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Checklist de puntos a verificar (¿saludó? ¿ofreció producto adicional?)</td>
+                <td>Rúbricas construidas desde ciencias del comportamiento: momentos de decisión, señales de fricción y confianza</td>
+              </tr>
+              <tr>
+                <td>Evaluador sin formación específica en comportamiento del consumidor</td>
+                <td>Auditores entrenados en psicología del consumidor, comunicación no verbal y journey del comprador</td>
+              </tr>
+              <tr>
+                <td>Informe con puntuaciones y porcentajes por indicador</td>
+                <td>Reporte ejecutivo con mapeo de la experiencia, momentos críticos y plan de mejora priorizado</td>
+              </tr>
+              <tr>
+                <td>Visitas a tus propios locales únicamente</td>
+                <td>Opción de benchmarking simultáneo con 3–5 competidores directos en la misma rúbrica</td>
+              </tr>
+              <tr>
+                <td>Sin recomendaciones de implementación</td>
+                <td>Brief de activación con acciones específicas por rol (gerente de tienda, vendedor, supervisor)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="text-gray-dark" style="font-size: 1.05rem; margin-top: 2rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.7;">
           El objetivo no es saber si el vendedor siguió el script. Es entender si la experiencia activa la compra — o la bloquea.
         </p>
       </div>
     </section>
-    </StackedSections>
 
     <!-- 4. ENTREGABLES -->
-    <ScrollStory
-      scrub={0.85}
-      sceneDistance={1.1}
-      cover={{
-        background: "/imagenes-mindtec/generated/cliente-misterioso/entregables/entregables-cover.webp",
-        eyebrow: "Qué recibes",
-        title: "Entregables que mueven decisiones de gerencia.",
-        description: "Documentos y análisis diseñados para traducir la auditoría de experiencia en acciones concretas."
-      }}
-      intro={{
-        background: "/imagenes-mindtec/generated/cliente-misterioso/entregables/entregables-intro.webp",
-        number: "00",
-        eyebrow: "Plazo de entrega",
-        title: "7–14 días desde el inicio del campo. Cobertura: eje troncal boliviano y ciudades intermedias.",
-        description: "Recorra los seis entregables que puede esperar de la Auditoría de Experiencia en PDV."
-      }}
-      items={[
-        {
-          background: "/imagenes-mindtec/generated/cliente-misterioso/entregables/entregable-01-mapa-experiencia.webp",
-          eyebrow: "Journey",
-          title: "Mapa de la Experiencia del Consumidor",
-          description: "Diagrama visual del journey completo en el PDV: desde el primer contacto hasta el cierre de venta, con momentos de fricción y oportunidad identificados.",
-          icon: '<svg viewBox="0 0 24 24"><circle cx="4.5" cy="12" r="2"/><circle cx="12" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><circle cx="19.5" cy="12" r="2"/><path d="M6.3 11.1 10 6.9M14 6.9l3.7 4.2M6.3 12.9 10 17.1M14 17.1l3.7-4.2"/></svg>'
-        },
-        {
-          background: "/imagenes-mindtec/generated/cliente-misterioso/entregables/entregable-02-scorecard-locales.webp",
-          eyebrow: "Scorecard",
-          title: "Scorecard de Desempeño por Local y por Zona",
-          description: "Puntuaciones comparables entre locales, ciudades y periodos. Identifica a los mejores ejecutores y los puntos de intervención prioritaria.",
-          icon: "chart"
-        },
-        {
-          background: "/imagenes-mindtec/generated/cliente-misterioso/entregables/entregable-03-benchmark-competencia.webp",
-          eyebrow: "Benchmark",
-          title: "Benchmark vs. Competencia (cuando aplica)",
-          description: "Comparación objetiva de la experiencia en tus locales vs. la de 3–5 competidores evaluados con la misma rúbrica en el mismo periodo.",
-          icon: '<svg viewBox="0 0 24 24"><rect x="3" y="10" width="6" height="11"/><rect x="15" y="4" width="6" height="17"/><path d="M9 15.5h6"/></svg>'
-        },
-        {
-          background: "/imagenes-mindtec/generated/cliente-misterioso/entregables/entregable-04-brief-activacion.webp",
-          eyebrow: "Activación",
-          title: "Brief de Activación por Rol",
-          description: "Acciones concretas diferenciadas: qué debe hacer el gerente de tienda, qué el vendedor, qué el supervisor. Sin ambigüedad, con prioridad.",
-          icon: '<svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="3"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/><path d="m9.5 14.5 2 2 3-3.5"/></svg>'
-        },
-        {
-          background: "/imagenes-mindtec/generated/cliente-misterioso/entregables/entregable-05-executive-brief.webp",
-          eyebrow: "Síntesis",
-          title: "Executive Brief para Directorio",
-          description: "Síntesis de 2 páginas con los hallazgos clave, el nivel de riesgo comercial y las 3–5 decisiones que requieren acción inmediata.",
-          icon: "report"
-        },
-        {
-          background: "/imagenes-mindtec/generated/cliente-misterioso/entregables/entregable-06-seguimiento.webp",
-          eyebrow: "Seguimiento",
-          title: "Seguimiento Post-Auditoría",
-          description: "Sesión de revisión 30–60 días después para evaluar si las mejoras se implementaron y si el impacto en experiencia es medible.",
-          icon: '<svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 1 2.6 6.36"/><path d="M3 21v-5h5"/><path d="M12 7v5l3.5 2"/></svg>'
-        }
-      ]}
-    />
+    <section class="problem-section bg-slate" style="padding: 5rem 0;">
+      <div class="container">
+        <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
+          <span class="eyebrow">QUÉ RECIBES</span>
+          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;">Entregables que mueven decisiones de gerencia.</h2>
+        </div>
+        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; list-style: none; padding: 0;">
+          <li class="premium-card-white" style="padding: 2rem;">
+            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Mapa de la Experiencia del Consumidor</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Diagrama visual del journey completo en el PDV: desde el primer contacto hasta el cierre de venta, con momentos de fricción y oportunidad identificados.</p>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem;">
+            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Scorecard de Desempeño por Local y por Zona</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Puntuaciones comparables entre locales, ciudades y periodos. Identifica a los mejores ejecutores y los puntos de intervención prioritaria.</p>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem;">
+            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Benchmark vs. Competencia (cuando aplica)</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Comparación objetiva de la experiencia en tus locales vs. la de 3–5 competidores evaluados con la misma rúbrica en el mismo periodo.</p>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem;">
+            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Brief de Activación por Rol</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Acciones concretas diferenciadas: qué debe hacer el gerente de tienda, qué el vendedor, qué el supervisor. Sin ambigüedad, con prioridad.</p>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem;">
+            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Executive Brief para Directorio</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Síntesis de 2 páginas con los hallazgos clave, el nivel de riesgo comercial y las 3–5 decisiones que requieren acción inmediata.</p>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem;">
+            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Seguimiento Post-Auditoría</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Sesión de revisión 30–60 días después para evaluar si las mejoras se implementaron y si el impacto en experiencia es medible.</p>
+          </li>
+        </ul>
+        <p class="text-gray-dark" style="text-align: center; margin-top: 2rem; font-size: 0.95rem; font-weight: 600;">
+          Plazo de entrega: 7–14 días desde el inicio del campo · Cobertura: eje troncal boliviano y ciudades intermedias
+        </p>
+      </div>
+    </section>
 
-    <StackedSections>
     <!-- 5. PROCESO -->
-    <section style="padding: 5rem 0; background: #f8fafc;" data-stack-section>
+    <section style="padding: 5rem 0; background: #f8fafc;">
       <div class="container">
         <div class="section-title-center" style="text-align: center; margin-bottom: 4rem;">
           <span class="eyebrow">CÓMO FUNCIONA</span>
           <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Del diagnóstico al plan de mejora en 4 pasos.</h2>
         </div>
-        <AreaPanelCards items={processSteps} columns={4} />
+        <ol style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; counter-reset: proceso;">
+          <li class="premium-card-white" style="padding: 2rem; position: relative;">
+            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">01</span>
+            <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Diagnóstico estratégico</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">45 min para entender tu contexto, los indicadores que más te preocupan y cuántos locales hay que auditar. Definimos alcance y prioridad juntos.</p>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">45 min · sin costo</span>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem; position: relative;">
+            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">02</span>
+            <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Diseño de rúbricas</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Construimos los instrumentos de evaluación desde tu protocolo de atención, tus KPIs comerciales y los estándares de experiencia del sector.</p>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">3–5 días hábiles</span>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem; position: relative;">
+            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">03</span>
+            <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Visitas de campo</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Los auditores visitan los puntos de venta como consumidores reales. Sin avisar al equipo. Con registro detallado de la experiencia en tiempo real.</p>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">1–2 semanas en campo</span>
+          </li>
+          <li class="premium-card-white" style="padding: 2rem; position: relative;">
+            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">04</span>
+            <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Reporte y activación</h3>
+            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Entregamos el reporte ejecutivo con hallazgos, scorecard y plan de acción. Presentamos los resultados ante tu equipo directivo con sesión de priorización incluida.</p>
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">Entrega en 5 días post-campo</span>
+          </li>
+        </ol>
       </div>
     </section>
 
     <!-- 6. SECTORES -->
-    <section class="problem-section bg-slate sectors-section" style="padding: 5rem 0;" data-stack-section>
+    <section class="problem-section bg-slate" style="padding: 5rem 0;">
       <div class="container">
         <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
           <span class="eyebrow">SECTORES</span>
           <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">¿Tu sector está aquí?</h2>
         </div>
+        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; list-style: none; padding: 0;">
+          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Retail de moda y accesorios</li>
+          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Banca y servicios financieros</li>
+          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Restaurantes y HORECA</li>
+          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Concesionarios y automotriz</li>
+          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Supermercados y canal moderno</li>
+          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Farmacias y salud</li>
+          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Telecomunicaciones y tecnología</li>
+          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Seguros y servicios profesionales</li>
+        </ul>
       </div>
-      <ul class="sectors-grid-v2">
-          <li class="sector-card-v2">
-            <div class="sector-icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M48 192V64a16 16 0 0 1 16-16h128a16 16 0 0 1 16 16v128"/><path d="M32 192h192M88 192v-72h80v72"/></svg></div>
-            <h3>Retail de moda y accesorios</h3>
-            <p>Experiencia de compra, atención en tienda y conversión.</p>
-          </li>
-          <li class="sector-card-v2">
-            <div class="sector-icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><rect x="32" y="80" width="192" height="128" rx="8"/><path d="M80 80V64a48 48 0 0 1 96 0v16M128 136v16"/></svg></div>
-            <h3>Banca y servicios financieros</h3>
-            <p>Calidad de atención, confianza y cumplimiento de protocolos.</p>
-          </li>
-          <li class="sector-card-v2">
-            <div class="sector-icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M40 104h176M56 104l16-48h112l16 48M64 104v96M192 104v96M40 200h176"/><path d="M104 136h48"/></svg></div>
-            <h3>Restaurantes y HORECA</h3>
-            <p>Servicio, tiempos de atención y experiencia de consumo.</p>
-          </li>
-          <li class="sector-card-v2">
-            <div class="sector-icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M32 144l32-56h112l48 56v48H32z"/><path d="M72 144h72M168 144h24"/><circle cx="80" cy="192" r="20"/><circle cx="184" cy="192" r="20"/></svg></div>
-            <h3>Concesionarios y automotriz</h3>
-            <p>Asesoría comercial, prueba de producto y seguimiento.</p>
-          </li>
-          <li class="sector-card-v2">
-            <div class="sector-icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M32 216V96l48-40 48 40v120M128 216v-72l48-32 48 32v72M8 216h240"/></svg></div>
-            <h3>Supermercados y canal moderno</h3>
-            <p>Disponibilidad, ejecución en góndola y atención en caja.</p>
-          </li>
-          <li class="sector-card-v2">
-            <div class="sector-icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><rect x="72" y="24" width="112" height="208" rx="20"/><path d="M128 80v80M88 120h80"/></svg></div>
-            <h3>Farmacias y salud</h3>
-            <p>Orientación al cliente, disponibilidad y confianza.</p>
-          </li>
-          <li class="sector-card-v2">
-            <div class="sector-icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M128 216V112M80 216h96M88 80a56 56 0 0 1 80 0M56 48a102 102 0 0 1 144 0"/><circle cx="128" cy="112" r="12"/></svg></div>
-            <h3>Telecomunicaciones y tecnología</h3>
-            <p>Venta consultiva, soporte y experiencia omnicanal.</p>
-          </li>
-          <li class="sector-card-v2">
-            <div class="sector-icon" aria-hidden="true"><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M128 24l88 40v40c0 68-40 108-88 128-48-20-88-60-88-128V64z"/><path d="m92 132 24 24 48-56"/></svg></div>
-            <h3>Seguros y servicios profesionales</h3>
-            <p>Claridad comercial, confianza y asesoramiento experto.</p>
-          </li>
-      </ul>
     </section>
 
     <!-- 7. FAQ ACORDEÓN -->
-    <div data-stack-section>
-      <FaqSplit
-        eyebrow="PREGUNTAS FRECUENTES"
-        title="Lo que suelen preguntar antes de contratar."
-        items={faqItems}
-      />
-    </div>
+    <section style="padding: 5rem 0; background: #fff;">
+      <div class="container" style="max-width: 800px;">
+        <div style="text-align: center; margin-bottom: 3rem;">
+          <span class="eyebrow">PREGUNTAS FRECUENTES</span>
+          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Lo que suelen preguntar antes de contratar.</h2>
+        </div>
+        <dl style="display: flex; flex-direction: column; gap: 1rem;">
+
+          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
+            <dt>
+              <button aria-expanded="false" aria-controls="faq-1-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                ¿Qué es el cliente misterioso o mystery shopper?
+                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary); transition: transform 0.2s;">+</span>
+              </button>
+            </dt>
+            <dd id="faq-1-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
+              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">El cliente misterioso es un auditor entrenado que visita un punto de venta haciéndose pasar por consumidor real. Evalúa objetivamente la experiencia: atención, protocolo, ambiente, argumentación de ventas y cumplimiento de estándares — sin que el equipo sepa que está siendo evaluado.</p>
+            </dd>
+          </div>
+
+          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
+            <dt>
+              <button aria-expanded="false" aria-controls="faq-2-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                ¿En cuántos puntos de venta y ciudades operan?
+                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary); transition: transform 0.2s;">+</span>
+              </button>
+            </dt>
+            <dd id="faq-2-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
+              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Operamos en todo el eje troncal boliviano: La Paz, El Alto, Cochabamba, Santa Cruz, Oruro y Sucre. También en ciudades intermedias según requerimiento. Podemos auditar desde un solo punto de venta hasta cientos de locales de forma simultánea.</p>
+            </dd>
+          </div>
+
+          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
+            <dt>
+              <button aria-expanded="false" aria-controls="faq-3-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                ¿Cuánto tiempo toma una auditoría de cliente misterioso?
+                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary); transition: transform 0.2s;">+</span>
+              </button>
+            </dt>
+            <dd id="faq-3-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
+              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">El diseño de rúbricas y brief toma 3–5 días. Las visitas de campo se ejecutan en 1–2 semanas según el número de puntos. El reporte ejecutivo se entrega 5 días después de completar el campo.</p>
+            </dd>
+          </div>
+
+          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
+            <dt>
+              <button aria-expanded="false" aria-controls="faq-4-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                ¿Pueden auditar también a la competencia?
+                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary); transition: transform 0.2s;">+</span>
+              </button>
+            </dt>
+            <dd id="faq-4-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
+              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Sí. El benchmarking competitivo es uno de los usos más valiosos del cliente misterioso. Auditamos la experiencia en tus locales y en los de tus competidores con la misma rúbrica, entregando una comparación objetiva del nivel de servicio en el mercado.</p>
+            </dd>
+          </div>
+
+          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
+            <dt>
+              <button aria-expanded="false" aria-controls="faq-5-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                ¿Qué diferencia a MindTEC de un proveedor de mystery shopping estándar?
+                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary); transition: transform 0.2s;">+</span>
+              </button>
+            </dt>
+            <dd id="faq-5-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
+              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Los auditores no siguen un checklist genérico. Las rúbricas se diseñan desde ciencias del comportamiento del consumidor: medimos no solo el protocolo sino los momentos de decisión, las barreras a la compra y las señales de fricción o confianza que determinan si el cliente compra o se va.</p>
+            </dd>
+          </div>
+
+        </dl>
+      </div>
+    </section>
 
     <!-- 8. PRUEBA SOCIAL -->
-    <section style="padding: 4rem 0; background: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;" data-stack-section>
+    <section style="padding: 4rem 0; background: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
       <div class="container" style="text-align: center; max-width: 800px;">
         <p class="text-navy" style="font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.5;">
           Empresas de retail, banca, HORECA y telecomunicaciones en Bolivia han usado la Auditoría de Experiencia en PDV para identificar brechas en su servicio y reducir la pérdida de ventas por fricción en el punto de contacto.
@@ -465,22 +395,40 @@ const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la cal
     </section>
 
     <!-- 9. PRODUCTOS RELACIONADOS -->
-    <section style="padding: 5rem 0; background: #fff;" data-stack-section>
-      <div class="container">
+    <section style="padding: 5rem 0; background: #fff;">
+      <div class="container" style="max-width: 900px;">
         <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">También puede interesarle</h3>
-      </div>
-      <div class="related-products-bleed">
-        <HoverStepCards items={relatedProductsItems} minColumnWidth="340px" />
-      </div>
-      <div class="container">
+        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; list-style: none; padding: 0;">
+          <li>
+            <a href="/shopper-insights-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none'">
+              <h4 style="font-size: 1.05rem; color: var(--color-secondary); margin-bottom: 0.5rem;">Shopper Insights</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; line-height: 1.5;">Entiende la decisión de compra en el momento exacto en que ocurre en el anaquel.</p>
+              <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem;">Explorar →</span>
+            </a>
+          </li>
+          <li>
+            <a href="/auditoria-retail-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none'">
+              <h4 style="font-size: 1.05rem; color: var(--color-secondary); margin-bottom: 0.5rem;">Auditoría Retail en Bolivia</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; line-height: 1.5;">Monitorea share of shelf, precios y ejecución en punto de venta con red de 80+ auditores.</p>
+              <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem;">Explorar →</span>
+            </a>
+          </li>
+          <li>
+            <a href="/benchmarking-competitivo-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none'">
+              <h4 style="font-size: 1.05rem; color: var(--color-secondary); margin-bottom: 0.5rem;">Benchmarking Competitivo</h4>
+              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; line-height: 1.5;">Mapea los movimientos de precio, distribución y posicionamiento de tu competencia.</p>
+              <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem;">Explorar →</span>
+            </a>
+          </li>
+        </ul>
         <div style="text-align: center; margin-top: 2rem;">
-          <a href="/servicios/" style="color: var(--color-primary); font-weight: 700; text-decoration: none; font-size: 0.95rem;">Ver todos los servicios →</a>
+          <a href="/servicios" style="color: var(--color-primary); font-weight: 700; text-decoration: none; font-size: 0.95rem;">Ver todos los servicios →</a>
         </div>
       </div>
     </section>
 
     <!-- 10. CTA FINAL -->
-    <section class="cta-section-modern" style="padding: 6rem 0;" data-stack-section>
+    <section class="cta-section-modern" style="padding: 6rem 0;">
       <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
         <div class="cta-content-v2">
           <h2 style="font-size: 2.8rem; line-height: 1.25; margin-bottom: 1.5rem;">¿Sabes realmente lo que experimenta tu cliente cuando entra a tu local?</h2>
@@ -488,13 +436,12 @@ const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la cal
             Hablemos 45 minutos. Evaluamos tu contexto y te presentamos cómo estructurar la auditoría para que los hallazgos sean accionables desde el primer día.
           </p>
           <div class="cta-actions" style="justify-content: center; flex-direction: column; align-items: center;">
-            <a href="/contacto/" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar diagnóstico estratégico (45 min) →</a>
+            <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar diagnóstico estratégico (45 min) →</a>
             <p style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">Confidencial · Sin costo · Sin compromiso · Por Zoom o Teams</p>
           </div>
         </div>
       </div>
     </section>
-    </StackedSections>
 
     <!-- BREADCRUMB -->
     <nav aria-label="Breadcrumb" class="breadcrumb-bottom">
@@ -502,7 +449,7 @@ const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la cal
         <ol>
           <li><a href="/" style="color: rgba(255,255,255,0.6); text-decoration: none;">Inicio</a></li>
           <li style="color: rgba(255,255,255,0.3);">›</li>
-          <li><a href="/servicios/" style="color: rgba(255,255,255,0.6); text-decoration: none;">Servicios</a></li>
+          <li><a href="/servicios" style="color: rgba(255,255,255,0.6); text-decoration: none;">Servicios</a></li>
           <li style="color: rgba(255,255,255,0.3);">›</li>
           <li aria-current="page" style="color: #fff; font-weight: 600;">Cliente Misterioso en Bolivia</li>
         </ol>
@@ -511,115 +458,18 @@ const description = "Estudios de cliente misterioso en Bolivia. Evaluamos la cal
 
   </main>
 
+  <script>
+    document.querySelectorAll('dt button[aria-expanded]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const ddId = btn.getAttribute('aria-controls');
+        const dd = document.getElementById(ddId);
+        const expandido = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', expandido ? 'false' : 'true');
+        const icon = btn.querySelector('span[aria-hidden]');
+        if (icon) icon.textContent = expandido ? '+' : '−';
+        if (dd) dd.hidden = expandido;
+      });
+    });
+  </script>
+
 </Layout>
-
-<style>
-  /* 9. PRODUCTOS RELACIONADOS */
-  .related-products-bleed {
-    padding: 0 2rem;
-  }
-
-  @media (min-width: 900px) {
-    .related-products-bleed {
-      width: 100vw;
-      position: relative;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
-      padding: 0 clamp(1.5rem, 4vw, 4rem);
-    }
-  }
-
-  .sectors-grid-v2 {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 1.35rem;
-    width: 100%;
-    margin: 0 auto;
-    padding: 3.25rem 0 0;
-    list-style: none;
-  }
-
-  .sector-card-v2 {
-    position: relative;
-    display: flex;
-    min-height: 340px;
-    padding: 4.7rem 2.9rem 1.85rem;
-    flex-direction: column;
-    background: #061c2b;
-    color: #fff;
-    overflow: visible;
-    clip-path: polygon(0 0, 37% 0, 37% 3.25rem, 63% 3.25rem, 63% 0, 100% 0, 100% 100%, 0 100%);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s ease;
-  }
-
-  .sector-card-v2:nth-child(-n + 6) { grid-column: span 2; }
-  .sector-card-v2:nth-child(n + 7) { grid-column: span 3; }
-
-  .sector-card-v2:first-child::after {
-    position: absolute;
-    top: 4.85rem;
-    right: 3rem;
-    width: 1.1rem;
-    height: 1.1rem;
-    content: '';
-    background: var(--color-primary);
-    border-radius: 50%;
-    box-shadow: 0 0 18px rgba(242, 101, 34, 0.28);
-  }
-
-  .sector-card-v2:hover {
-    background: #082536;
-    transform: translateY(-5px);
-  }
-
-  .sector-icon {
-    display: grid;
-    width: 5.5rem;
-    height: 5.5rem;
-    margin: auto;
-    place-items: center;
-    color: rgba(255, 255, 255, 0.82);
-    background: #203746;
-    border-radius: 10px;
-    order: 2;
-  }
-
-  .sector-icon svg {
-    width: 2.2rem;
-    height: 2.2rem;
-  }
-
-  .sector-card-v2 h3 {
-    margin: 0 0 0.65rem;
-    color: #fff;
-    font-size: clamp(1.05rem, 1.35vw, 1.35rem);
-    font-weight: 800;
-    line-height: 1.25;
-    letter-spacing: -0.02em;
-    text-align: left;
-    text-transform: uppercase;
-    order: 1;
-  }
-
-  .sector-card-v2 p {
-    margin: 0;
-    color: rgba(255, 255, 255, 0.56);
-    font-size: 0.9rem;
-    line-height: 1.45;
-    text-align: left;
-    order: 3;
-  }
-
-  @media (max-width: 980px) {
-    .sectors-grid-v2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .sector-card-v2:nth-child(n) { grid-column: span 1; }
-  }
-
-  @media (max-width: 540px) {
-    .sectors-grid-v2 { grid-template-columns: 1fr; }
-    .sector-card-v2 { min-height: 310px; padding: 4.25rem 2rem 1.65rem; }
-    .sector-card-v2:first-child::after { right: 2rem; }
-  }
-</style>

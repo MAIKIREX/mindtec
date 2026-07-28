@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
-import StackedSections from '../components/scroll/StackedSections.astro';
 
 // Fetch all blog posts
 const posts = await getCollection('posts');
@@ -66,9 +65,8 @@ const getFilterSlug = (category: string) => {
     </script>
 
     <main class="elementor-content">
-        <StackedSections>
         <!-- Hero Section -->
-        <section class="hero-section elementor-section" style="padding: 160px 0 80px; min-height: auto; background: var(--color-secondary);" data-stack-section>
+        <section class="hero-section elementor-section" style="padding: 160px 0 80px; min-height: auto; background: var(--color-secondary);">
             <!-- Floating shapes -->
             <div class="hero-shapes" aria-hidden="true">
                 <div class="hero-shape" style="width: 300px; height: 300px; top: -50px; right: 10%; background: radial-gradient(circle, rgba(242,101,34,0.12), transparent 70%);"></div>
@@ -106,7 +104,7 @@ const getFilterSlug = (category: string) => {
         </section>
 
         <!-- Blog Articles Grid Section -->
-        <section class="elementor-section" style="padding: 5rem 0 9rem; background: #fcfcfc;" data-stack-section>
+        <section class="elementor-section" style="padding: 5rem 0 9rem; background: #fcfcfc;">
             <div class="container elementor-container" style="max-width: 1200px;">
                 
                 {featuredPost && (
@@ -119,7 +117,7 @@ const getFilterSlug = (category: string) => {
                         <div class="featured-article-body">
                             <span class="article-tag">{featuredPost.data.category}</span>
                             <h2 class="featured-article-title">
-                                <a href={`/blog/${featuredPost.slug}/`}>{featuredPost.data.title}</a>
+                                <a href={`/blog/${featuredPost.slug}`}>{featuredPost.data.title}</a>
                             </h2>
                             <p class="featured-article-excerpt">{featuredPost.data.excerpt}</p>
                             <div class="featured-article-meta">
@@ -131,7 +129,7 @@ const getFilterSlug = (category: string) => {
                                     <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" style="opacity: 0.8; vertical-align: middle; margin-right: 4px;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
                                     Wilmar Velasquez
                                 </span>
-                                <a href={`/blog/${featuredPost.slug}/`} class="article-readmore" style="margin-left: auto;">Leer Artículo →</a>
+                                <a href={`/blog/${featuredPost.slug}`} class="article-readmore" style="margin-left: auto;">Leer Artículo →</a>
                             </div>
                         </div>
                     </article>
@@ -150,12 +148,12 @@ const getFilterSlug = (category: string) => {
                             <div class="article-body">
                                 <span class="article-tag">{post.data.category}</span>
                                 <h3 class="article-title">
-                                    <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+                                    <a href={`/blog/${post.slug}`}>{post.data.title}</a>
                                 </h3>
                                 <p class="article-excerpt">{post.data.excerpt}</p>
                                 <div class="article-footer">
                                     <span class="article-date">{post.data.date}</span>
-                                    <a href={`/blog/${post.slug}/`} class="article-readmore">Leer artículo →</a>
+                                    <a href={`/blog/${post.slug}`} class="article-readmore">Leer artículo →</a>
                                 </div>
                             </div>
                         </article>
@@ -165,13 +163,12 @@ const getFilterSlug = (category: string) => {
             </div>
         </section>
     
-        <section class="elementor-section bg-white" style="padding: 3rem 0; text-align: center;" data-stack-section>
+        <section class="elementor-section bg-white" style="padding: 3rem 0; text-align: center;">
             <div class="container">
                 <p style="color: #64748b; margin-bottom: 1rem;">La investigación profunda sustenta cada área de negocio.</p>
-                <a href="/servicios/" style="color: var(--color-primary); font-weight: 600; text-decoration: none;">Conozca las áreas de consultoría →</a>
+                <a href="/servicios" style="color: var(--color-primary); font-weight: 600; text-decoration: none;">Conozca las áreas de consultoría →</a>
             </div>
         </section>
-        </StackedSections>
     </main>
 
     <!-- Blog dynamic filtering and search script -->

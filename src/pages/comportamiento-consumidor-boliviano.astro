@@ -1,33 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ServiceVisualSuite from '../components/sections/ServiceVisualSuite.astro';
-import FaqSplit from '../components/faq/FaqSplit.astro';
-import StackedSections from '../components/scroll/StackedSections.astro';
-
-const faqItems = [
-  {
-    question:
-      "¿Por qué el consumidor boliviano cambia tanto de marca en los últimos años?",
-    answer:
-      "Principalmente por presión económica: la escasez de dólares y la inflación importada redujeron el ingreso disponible real, y el precio se volvió el primer filtro de decisión incluso para consumidores que antes eran leales a una marca.",
-  },
-  {
-    question: "¿El consumidor de Santa Cruz se comporta igual que el de La Paz?",
-    answer:
-      "No. Mindtec encuentra diferencias consistentes: el consumidor paceño es más deliberado y consultivo, el cruceño más rápido y sensible al estatus, y el cochabambino más negociador y orientado a la relación precio-calidad.",
-  },
-  {
-    question: "¿Cómo recolecta Mindtec estos datos sobre comportamiento de compra?",
-    answer:
-      "Con una red de campo activa en el eje troncal y El Alto, que combina encuestas estructuradas, observación en punto de venta, entrevistas cualitativas y herramientas de neuromarketing para medir lo que el consumidor hace, no solo lo que dice.",
-  },
-  {
-    question:
-      "¿Esta segmentación regional sirve para empresas pequeñas o solo para grandes marcas?",
-    answer:
-      "Sirve para ambas. Una pyme que vende solo en Cochabamba puede usar el perfil local para ajustar su mensaje y precio; una marca nacional lo necesita para no aplicar la misma estrategia en tres mercados que se comportan distinto.",
-  },
-];
+import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
 ---
 
 <Layout
@@ -93,9 +66,8 @@ const faqItems = [
   </script>
 
   <main>
-    <StackedSections>
     <!-- 🟦 HERO -->
-    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;" data-stack-section>
+    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
       <div class="hero-shapes" aria-hidden="true">
         <div class="hero-shape"></div>
         <div class="hero-shape"></div>
@@ -126,8 +98,8 @@ const faqItems = [
             Datos de campo, no supuestos: así se segmenta y explica el cambio de hábitos de compra en cada ciudad del eje troncal.
           </p>
           <div class="cta-actions" style="margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
-            <a href="/contacto/" class="btn btn-primary lg">Agendar sesión de diagnóstico (45 min)</a>
-            <a href="/estudio-de-mercado-bolivia/" class="btn btn-navy-outline lg">Conocer estudio de mercado</a>
+            <a href="/contacto" class="btn btn-primary lg">Agendar sesión de diagnóstico (45 min)</a>
+            <a href="/estudio-de-mercado-bolivia" class="btn btn-navy-outline lg">Conocer estudio de mercado</a>
           </div>
           <p style="margin-top: 1rem; font-size: 0.9rem; color: #64748b; font-weight: 500;">Datos de campo actualizados | Cobertura nacional | Confidencial</p>
         </div>
@@ -139,12 +111,10 @@ const faqItems = [
       </div>
     </section>
 
-    <div data-stack-section>
-      <ServiceVisualSuite variant="shopper" />
-    </div>
+    <ServiceVisualSuite variant="shopper" />
 
     <!-- 🟦 CONTEXTO ECONÓMICO -->
-    <section class="premium-section-padding bg-slate" data-stack-section>
+    <section class="premium-section-padding bg-slate">
       <div class="container">
         <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
           <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 2rem; line-height: 1.2;">El Contexto Económico que Está Redefiniendo el Consumo en Bolivia</h2>
@@ -167,7 +137,7 @@ const faqItems = [
     </section>
 
     <!-- 🟦 DATOS EN VIVO MINDTEC -->
-    <section class="trust-bar-section" id="datos-vivos" data-stack-section>
+    <section class="trust-bar-section" id="datos-vivos">
       <div class="container text-center">
         <h3 class="trust-bar-title">Hallazgos de campo Mindtec sobre el consumidor boliviano</h3>
         <div class="trust-numbers-grid">
@@ -195,7 +165,7 @@ const faqItems = [
     </section>
 
     <!-- 🟦 SEGMENTACIÓN REGIONAL INTERACTIVA -->
-    <section class="premium-section-padding bg-white" data-stack-section>
+    <section class="premium-section-padding bg-white">
       <div class="container" style="max-width: 1000px;">
         <div class="section-title-center" style="margin-bottom: 3rem;">
           <span class="eyebrow">Página viva — explore por región</span>
@@ -250,7 +220,7 @@ const faqItems = [
     </section>
 
     <!-- 🟦 METODOLOGÍA -->
-    <section class="premium-section-padding bg-slate" data-stack-section>
+    <section class="premium-section-padding bg-slate">
       <div class="container premium-grid-2-split" style="align-items: center;">
         <div>
           <span class="eyebrow">Metodología Mindtec</span>
@@ -284,26 +254,46 @@ const faqItems = [
     </section>
 
     <!-- 🟦 FAQ -->
-    <div data-stack-section>
-      <FaqSplit title="Preguntas Frecuentes" items={faqItems} />
-    </div>
+    <section class="premium-section-padding bg-white">
+      <div class="container" style="max-width: 800px;">
+        <h2 class="text-navy text-center" style="font-size: 2.5rem; margin-bottom: 3rem;">Preguntas Frecuentes</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            <h3>¿Por qué el consumidor boliviano cambia tanto de marca en los últimos años?</h3>
+            <p>Principalmente por presión económica: la escasez de dólares y la inflación importada redujeron el ingreso disponible real, y el precio se volvió el primer filtro de decisión incluso para consumidores que antes eran leales a una marca.</p>
+          </div>
+          <div class="faq-item">
+            <h3>¿El consumidor de Santa Cruz se comporta igual que el de La Paz?</h3>
+            <p>No. Mindtec encuentra diferencias consistentes: el consumidor paceño es más deliberado y consultivo, el cruceño más rápido y sensible al estatus, y el cochabambino más negociador y orientado a la relación precio-calidad.</p>
+          </div>
+          <div class="faq-item">
+            <h3>¿Cómo recolecta Mindtec estos datos sobre comportamiento de compra?</h3>
+            <p>Con una red de campo activa en el eje troncal y El Alto, que combina encuestas estructuradas, observación en punto de venta, entrevistas cualitativas y herramientas de neuromarketing para medir lo que el consumidor hace, no solo lo que dice.</p>
+          </div>
+          <div class="faq-item">
+            <h3>¿Esta segmentación regional sirve para empresas pequeñas o solo para grandes marcas?</h3>
+            <p>Sirve para ambas. Una pyme que vende solo en Cochabamba puede usar el perfil local para ajustar su mensaje y precio; una marca nacional lo necesita para no aplicar la misma estrategia en tres mercados que se comportan distinto.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- 🟦 CROSS-LINKING -->
-    <section class="premium-section-padding bg-slate" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;" data-stack-section>
+    <section class="premium-section-padding bg-slate" style="background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
       <div class="container" style="max-width: 900px;">
         <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">Profundice el análisis</h3>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-          <a href="/estudio-de-mercado-bolivia/" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)';" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none';this.style.boxShadow='none';">
+          <a href="/estudio-de-mercado-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)';" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none';this.style.boxShadow='none';">
             <h4 style="font-size: 1.1rem; color: var(--color-secondary); margin-bottom: 0.5rem; line-height: 1.3;">Estudio de Mercado</h4>
             <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.5;">Dimensione la demanda real para su categoría y ciudad.</p>
             <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem; text-transform: uppercase;">Explorar →</span>
           </a>
-          <a href="/neuromarketing-bolivia/" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)';" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none';this.style.boxShadow='none';">
+          <a href="/neuromarketing-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)';" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none';this.style.boxShadow='none';">
             <h4 style="font-size: 1.1rem; color: var(--color-secondary); margin-bottom: 0.5rem; line-height: 1.3;">Neuromarketing</h4>
             <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.5;">Mida la respuesta emocional real detrás de la decisión de compra.</p>
             <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem; text-transform: uppercase;">Explorar →</span>
           </a>
-          <a href="/shopper-insights-bolivia/" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)';" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none';this.style.boxShadow='none';">
+          <a href="/shopper-insights-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)';" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none';this.style.boxShadow='none';">
             <h4 style="font-size: 1.1rem; color: var(--color-secondary); margin-bottom: 0.5rem; line-height: 1.3;">Shopper Insights</h4>
             <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.5;">Entienda qué pasa frente al anaquel en el punto de venta.</p>
             <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem; text-transform: uppercase;">Explorar →</span>
@@ -313,7 +303,7 @@ const faqItems = [
     </section>
 
     <!-- 🟦 CTA FINAL -->
-    <section class="cta-section-modern" style="padding: 6rem 0;" data-stack-section>
+    <section class="cta-section-modern" style="padding: 6rem 0;">
       <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
         <div class="cta-content-v2">
           <h2 style="font-size: 3rem; line-height: 1.25; margin-bottom: 1.5rem;">¿Conoce realmente a su consumidor en cada ciudad donde vende?</h2>
@@ -321,13 +311,12 @@ const faqItems = [
             Obtenga el perfil de comportamiento de su categoría con datos de campo de Mindtec, segmentados por región y ajustados al contexto económico actual.
           </p>
           <div class="cta-actions" style="justify-content: center; flex-direction: column; align-items: center;">
-            <a href="/contacto/" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar sesión de diagnóstico (45 min)</a>
+            <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar sesión de diagnóstico (45 min)</a>
             <p style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">Primera sesión: 45 minutos | Confidencial | Sin compromiso</p>
           </div>
         </div>
       </div>
     </section>
-    </StackedSections>
 
     <!-- BREADCRUMB -->
     <nav aria-label="Breadcrumb" class="breadcrumb-bottom">
