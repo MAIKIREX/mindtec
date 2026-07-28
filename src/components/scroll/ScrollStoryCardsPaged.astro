@@ -387,6 +387,8 @@ const cardPages = Array.from(
   if ("fonts" in document) {
     document.fonts.ready.then(() => ScrollTrigger.refresh());
   }
+
+  window.addEventListener("load", () => ScrollTrigger.refresh());
 </script>
 
 <style>

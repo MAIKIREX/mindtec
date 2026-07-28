@@ -386,4 +386,5 @@ const metrics = suiteMetrics[variant] || suiteMetrics.catalogo;
     suiteWindow.__suiteEventsRegistered = true;
   }
   if ('fonts' in document) document.fonts.ready.then(() => ScrollTrigger.refresh());
+  window.addEventListener('load', () => ScrollTrigger.refresh());
 </script>

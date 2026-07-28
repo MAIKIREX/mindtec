@@ -766,6 +766,8 @@ const introTitleLineHeight = introTitleFontSize ? "1.15" : undefined;
       ScrollTrigger.refresh();
     });
   }
+
+  window.addEventListener("load", () => ScrollTrigger.refresh());
 </script>
 
 <style>
