@@ -9,6 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "seo:check": "npm run build && node scripts/seo-check.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
