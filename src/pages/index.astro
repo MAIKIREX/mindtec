@@ -51,6 +51,9 @@ import ComparisonRows from "../components/cards/ComparisonRows.astro";
 
     <script>
         import { gsap } from "gsap";
+        import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+        gsap.registerPlugin(ScrollTrigger);
 
         const loader = document.getElementById("page-loader");
         const SEEN_KEY = "mtIntroSeen";
@@ -74,6 +77,18 @@ import ComparisonRows from "../components/cards/ComparisonRows.astro";
                 cleaned = true;
                 loader?.remove();
                 document.body.classList.remove("loader-active");
+
+                // Mientras el loader está activo, body.loader-active aplica
+                // overflow:hidden. Si algun ScrollTrigger con pin se crea
+                // durante esa ventana (primera visita, sin sessionStorage),
+                // GSAP mide el documento sin poder hacer scroll y deja el
+                // pin fijado en 0x0 de forma permanente. Al quitar el
+                // bloqueo aquí es el único momento determinista en el que
+                // sabemos que ya se puede hacer scroll, así que forzamos un
+                // refresh justo en ese instante en vez de confiar en
+                // window.load (que puede completarse antes o después de
+                // este cleanup dependiendo de la latencia de red).
+                requestAnimationFrame(() => ScrollTrigger.refresh());
             }
 
             // Red de seguridad: si por lo que sea las animaciones no llegan a
