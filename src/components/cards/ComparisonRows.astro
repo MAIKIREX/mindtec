@@ -16,23 +16,150 @@ const { columnLabels, rows, class: className = "" } = Astro.props;
 <div class:list={["comparison-rows", className]}>
   <div class="comparison-rows__labels" aria-hidden="true">
     <span class="comparison-rows__label">{columnLabels.left}</span>
+    <span class="comparison-rows__vs">VS</span>
     <span class="comparison-rows__label comparison-rows__label--accent">{columnLabels.right}</span>
   </div>
 
   <div class="comparison-strip" data-reveal-group>
     {rows.map((row) => (
       <div class="comparison-row" data-reveal-item>
-        <span class="comparison-row__before">{row.before}</span>
+        <span class="comparison-row__before" data-crack-panel>
+          <span class="comparison-row__shard" data-shard="0" aria-hidden="true"></span>
+          <span class="comparison-row__shard" data-shard="1" aria-hidden="true"></span>
+          <span class="comparison-row__shard" data-shard="2" aria-hidden="true"></span>
+          <svg class="comparison-row__cracks" data-crack-svg viewBox="0 0 300 120" preserveAspectRatio="none" aria-hidden="true">
+            <path class="crack-line" data-crack="0" d="M0,58 L62,52 L98,70 L150,48 L188,66 L242,40 L300,55" />
+            <path class="crack-line crack-line--branch" data-crack="1" d="M98,70 L112,96 L94,118" />
+            <path class="crack-line crack-line--branch" data-crack="2" d="M188,66 L206,30 L226,8" />
+            <path class="crack-line crack-line--branch" data-crack="3" d="M62,52 L46,22 L58,4" />
+            <path class="crack-line crack-line--branch" data-crack="4" d="M150,48 L166,78 L158,104" />
+            <path class="crack-line crack-line--branch" data-crack="5" d="M242,40 L262,64 L286,58" />
+          </svg>
+          <span class="comparison-row__before-text">
+            <svg class="comparison-row__icon comparison-row__icon--x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            {row.before}
+          </span>
+        </span>
         <span class="comparison-row__seam" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
         </span>
-        <span class="comparison-row__after">{row.after}</span>
+        <span class="comparison-row__after">
+          <svg class="comparison-row__icon comparison-row__icon--check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          {row.after}
+        </span>
       </div>
     ))}
   </div>
 </div>
 
 <script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  type CrackPanelElement = HTMLElement & {
+    __crackContext?: gsap.Context;
+  };
+
+  type CrackWindow = typeof window & {
+    __crackEventsRegistered?: boolean;
+  };
+
+  function destroyCrackPanels(): void {
+    document
+      .querySelectorAll<CrackPanelElement>("[data-crack-panel]")
+      .forEach((panel) => {
+        panel.__crackContext?.revert();
+        delete panel.__crackContext;
+      });
+  }
+
+  function initCrackPanels(): void {
+    document
+      .querySelectorAll<CrackPanelElement>("[data-crack-panel]")
+      .forEach((panel) => {
+        panel.__crackContext?.revert();
+
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        const shards = Array.from(
+          panel.querySelectorAll<HTMLElement>(".comparison-row__shard"),
+        );
+        const cracks = Array.from(
+          panel.querySelectorAll<SVGPathElement>(".crack-line"),
+        );
+
+        panel.__crackContext = gsap.context(() => {
+          if (reduceMotion) {
+            gsap.set(shards, { x: 0, y: 0, rotate: 0, autoAlpha: 1 });
+            cracks.forEach((crack) => gsap.set(crack, { strokeDashoffset: 0 }));
+            return;
+          }
+
+          const mm = gsap.matchMedia();
+
+          mm.add("(min-width: 701px)", () => {
+            cracks.forEach((crack) => {
+              const length = crack.getTotalLength();
+              gsap.set(crack, { strokeDasharray: length, strokeDashoffset: length });
+            });
+
+            const timeline = gsap.timeline({
+              paused: true,
+              scrollTrigger: {
+                trigger: panel.closest<HTMLElement>("[data-reveal-item]") ?? panel,
+                start: "top 85%",
+                toggleActions: "play none none none",
+                invalidateOnRefresh: true,
+              },
+            });
+
+            timeline
+              .to(cracks[0], { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, 0)
+              .to(cracks.slice(1), { strokeDashoffset: 0, duration: 0.4, ease: "power1.out", stagger: 0.08 }, 0.25)
+              .fromTo(
+                shards[0],
+                { x: -4, y: -3, rotate: -1.6, autoAlpha: 0.65 },
+                { x: 0, y: 0, rotate: 0, autoAlpha: 1, duration: 0.55, ease: "power3.out" },
+                0.1,
+              )
+              .fromTo(
+                shards[1],
+                { x: 5, y: 4, rotate: 2.1, autoAlpha: 0.6 },
+                { x: 0, y: 0, rotate: 0, autoAlpha: 1, duration: 0.6, ease: "power3.out" },
+                0.15,
+              )
+              .fromTo(
+                shards[2],
+                { x: -3, y: 5, rotate: -1.2, autoAlpha: 0.65 },
+                { x: 0, y: 0, rotate: 0, autoAlpha: 1, duration: 0.5, ease: "power3.out" },
+                0.2,
+              );
+          });
+
+          mm.add("(max-width: 700px)", () => {
+            cracks.forEach((crack) => gsap.set(crack, { strokeDashoffset: 0 }));
+            gsap.set(shards, { x: 0, y: 0, rotate: 0, autoAlpha: 1 });
+          });
+        }, panel);
+      });
+
+    ScrollTrigger.refresh();
+  }
+
+  initCrackPanels();
+
+  const crackWindow = window as CrackWindow;
+
+  if (!crackWindow.__crackEventsRegistered) {
+    document.addEventListener("astro:page-load", initCrackPanels);
+    document.addEventListener("astro:before-swap", destroyCrackPanels);
+    crackWindow.__crackEventsRegistered = true;
+  }
+
   function initComparisonReveals(): void {
     const groups = document.querySelectorAll<HTMLElement>(
       "[data-reveal-group]:not([data-reveal-ready])",
@@ -79,6 +206,8 @@ const { columnLabels, rows, class: className = "" } = Astro.props;
 <style>
   .comparison-rows {
     margin: 2.5rem 0;
+    --color-crack: #04121d;
+    --color-crack-highlight: rgba(180, 210, 230, 0.16);
   }
 
   .comparison-rows__labels {
@@ -92,9 +221,10 @@ const { columnLabels, rows, class: className = "" } = Astro.props;
 
   .comparison-rows__label {
     font-family: var(--font-display);
-    font-size: 1.1rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
+    font-size: clamp(1.25rem, 1.8vw, 1.55rem);
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    line-height: 1.2;
     color: var(--color-text-muted, #64748b);
   }
 
@@ -102,6 +232,10 @@ const { columnLabels, rows, class: className = "" } = Astro.props;
     grid-column: 3;
     color: var(--color-primary, #f26522);
     text-align: right;
+  }
+
+  .comparison-rows__vs {
+    display: none;
   }
 
   /* Cinta continua de paneles navy unidos por una muesca dentada,
@@ -170,15 +304,100 @@ const { columnLabels, rows, class: className = "" } = Astro.props;
   }
 
   .comparison-row__before {
+    position: relative;
+    overflow: hidden;
     color: rgba(255, 255, 255, 0.55);
     font-weight: 500;
   }
 
+  /* Los "shards" son losas de fondo sin texto, como piedras de un
+     empedrado -- solo ellas se fragmentan/asientan; el texto real
+     nunca se recorta ni se duplica, para que el mensaje siga
+     siendo legible durante la animación. */
+  .comparison-row__shard {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: #0a2740;
+    box-shadow:
+      inset 0 2px 3px rgba(0, 0, 0, 0.4),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+      0 1px 2px rgba(0, 0, 0, 0.35);
+    pointer-events: none;
+  }
+
+  .comparison-row__shard[data-shard="0"] {
+    background: #0b2c46;
+    clip-path: polygon(0 0, 100% 0, 100% 42%, 65% 46%, 40% 58%, 0 52%);
+  }
+
+  .comparison-row__shard[data-shard="1"] {
+    background: #071f33;
+    clip-path: polygon(0 52%, 40% 58%, 33% 82%, 0 88%);
+  }
+
+  .comparison-row__shard[data-shard="2"] {
+    background: #0d3049;
+    clip-path: polygon(40% 58%, 65% 46%, 100% 42%, 100% 100%, 0 100%, 0 88%, 33% 82%);
+  }
+
+  .comparison-row__cracks {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    filter:
+      drop-shadow(0 1px 0 var(--color-crack-highlight))
+      drop-shadow(0 -1px 1px rgba(0, 0, 0, 0.55));
+  }
+
+  .crack-line {
+    fill: none;
+    stroke: var(--color-crack);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .comparison-row__before-text {
+    position: relative;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
   .comparison-row__after {
+    position: relative;
     justify-content: flex-end;
     text-align: right;
     color: #fff;
     font-weight: 700;
+    gap: 0.5rem;
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0.03) 0%,
+      rgba(242, 101, 34, 0.07) 55%,
+      rgba(242, 101, 34, 0.12) 100%
+    );
+    box-shadow: inset 0 0 0 1px rgba(242, 101, 34, 0.1);
+  }
+
+  .comparison-row__icon {
+    display: none;
+    flex-shrink: 0;
+    width: 15px;
+    height: 15px;
+  }
+
+  .comparison-row__icon--x {
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .comparison-row__icon--check {
+    color: var(--color-primary, #f26522);
   }
 
   /* Insignia circular sentada justo en la muesca entre filas, como
@@ -216,24 +435,77 @@ const { columnLabels, rows, class: className = "" } = Astro.props;
       --reveal-y: 0px;
       --reveal-o: 1;
     }
+
+    .crack-line {
+      stroke-dashoffset: 0 !important;
+    }
+
+    .comparison-row__shard {
+      transform: none !important;
+      opacity: 1 !important;
+    }
   }
 
   @media (max-width: 700px) {
     .comparison-rows__labels {
-      display: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .comparison-rows__label,
+    .comparison-rows__label--accent {
+      grid-column: auto;
+      text-align: center;
+      font-size: 1.05rem;
+    }
+
+    .comparison-rows__vs {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: #082235;
+      border: 1px solid rgba(168, 207, 232, 0.5);
+      color: var(--color-primary, #f26522);
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
     }
 
     .comparison-row,
     .comparison-row:first-child,
     .comparison-row:last-child {
-      grid-template-columns: 1fr;
-      justify-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
       gap: 0.75rem;
       padding: 1.75rem 1.5rem;
       clip-path: none;
       border: 1px solid rgba(141, 191, 221, 0.2);
       margin-bottom: 0.75rem;
+    }
+
+    /* Orden visual explícito -- problema, conector, solución --
+       para que la lectura en móvil siga siempre esa secuencia. */
+    .comparison-row__before {
+      order: 1;
+    }
+
+    .comparison-row__seam {
+      order: 2;
+    }
+
+    .comparison-row__after {
+      order: 3;
     }
 
     .comparison-row__before,
@@ -243,8 +515,21 @@ const { columnLabels, rows, class: className = "" } = Astro.props;
       text-align: center;
     }
 
-    .comparison-row__seam {
-      order: 2;
+    .comparison-row__after {
+      border-top: 2px solid rgba(242, 101, 34, 0.3);
+      padding-top: 0.85rem;
+    }
+
+    .comparison-row__icon {
+      display: inline-flex;
+    }
+
+    .comparison-row__cracks {
+      opacity: 0.7;
+    }
+
+    .comparison-row__shard {
+      display: none;
     }
   }
 </style>

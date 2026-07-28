@@ -216,154 +216,82 @@ const strategicBenefits = [
         </section>
 
         <!-- 🟦 BLOQUE A — Problema del modelo tradicional -->
-        <section class="problem-section bg-slate" style="padding: 5rem 0;" data-stack-section>
+        <section class="problem-section bg-slate" data-stack-section>
             <div class="container">
-                <div
-                    class="premium-card-white"
-                    style="max-width: 900px; margin: 0 auto; padding: 4rem;"
-                >
-                    <h2
-                        class="text-navy"
-                        style="font-size: 2.5rem; margin-bottom: 2rem;"
-                    >
+                <div class="clash-intro">
+                    <h2 class="text-navy clash-intro__title">
                         La investigación tradicional tiene brechas críticas
                     </h2>
+                    <p class="clash-intro__lede">
+                        Dos formas de llegar a una decisión. Solo una se
+                        sostiene cuando el capital ya está comprometido.
+                    </p>
+                </div>
 
-                    <div
-                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 3.5rem;"
-                    >
-                        <!-- Tradicional -->
-                        <div
-                            style="background-color: #fff5f5; border-left: 4px solid #fc8181; padding: 2rem; border-radius: 8px;"
-                        >
-                            <h3
-                                style="color: #c53030; font-size: 1.3rem; margin-bottom: 1.5rem;"
-                            >
-                                Método Tradicional
-                            </h3>
-                            <ul
-                                style="font-size: 1.05rem; padding-left: 0; list-style: none;"
-                            >
-                                <li
-                                    style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"
+                <div class="clash-grid">
+                    <article class="clash-panel clash-panel--old">
+                        <header class="clash-panel__head">
+                            <span class="clash-panel__icon" aria-hidden="true">
+                                <svg
+                                    viewBox="0 0 256 256"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="18"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    ><path d="M64 64l128 128M192 64L64 192"
+                                    ></path></svg
                                 >
-                                    <span
-                                        style="color:#fc8181; font-weight: bold;"
-                                        >✕</span
-                                    > Encuesta declarativa aislada
-                                </li>
-                                <li
-                                    style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"
-                                >
-                                    <span
-                                        style="color:#fc8181; font-weight: bold;"
-                                        >✕</span
-                                    > Focus groups genéricos
-                                </li>
-                                <li
-                                    style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"
-                                >
-                                    <span
-                                        style="color:#fc8181; font-weight: bold;"
-                                        >✕</span
-                                    > Reportes descriptivos de 80+ páginas
-                                </li>
-                                <li
-                                    style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"
-                                >
-                                    <span
-                                        style="color:#fc8181; font-weight: bold;"
-                                        >✕</span
-                                    > Datos sin validación territorial
-                                </li>
-                                <li
-                                    style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"
-                                >
-                                    <span
-                                        style="color:#fc8181; font-weight: bold;"
-                                        >✕</span
-                                    > Solo mide lo que la gente dice
-                                </li>
-                            </ul>
-                        </div>
+                            </span>
+                            <h3>Método tradicional</h3>
+                        </header>
+                        <ul class="clash-panel__list">
+                            <li>Encuesta declarativa aislada</li>
+                            <li>Focus groups genéricos</li>
+                            <li>Reportes descriptivos de 80+ páginas</li>
+                            <li>Datos sin validación territorial</li>
+                            <li>Solo mide lo que la gente dice</li>
+                        </ul>
+                    </article>
 
-                        <!-- Mindtec -->
-                        <div
-                            style="background-color: #f0fff4; border-left: 4px solid #48bb78; padding: 2rem; border-radius: 8px; box-shadow: 0 10px 25px rgba(72, 187, 120, 0.1);"
-                        >
-                            <h3
-                                style="color: #276749; font-size: 1.3rem; margin-bottom: 1.5rem;"
-                            >
-                                Modelo Mindtec
-                            </h3>
-                            <ul
-                                style="font-size: 1.05rem; padding-left: 0; list-style: none;"
-                            >
-                                <li
-                                    style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"
-                                >
-                                    <span
-                                        style="color:#48bb78; font-weight: bold;"
-                                        >✓</span
-                                    > 4 capas simultáneas de análisis
-                                </li>
-                                <li
-                                    style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"
-                                >
-                                    <span
-                                        style="color:#48bb78; font-weight: bold;"
-                                        >✓</span
-                                    > Investigación profunda + neuromarketing
-                                </li>
-                                <li
-                                    style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"
-                                >
-                                    <span
-                                        style="color:#48bb78; font-weight: bold;"
-                                        >✓</span
-                                    > Executive brief + dashboard interactivo
-                                </li>
-                                <li
-                                    style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem;"
-                                >
-                                    <span
-                                        style="color:#48bb78; font-weight: bold;"
-                                        >✓</span
-                                    > Red nacional de validación en campo
-                                </li>
-                                <li
-                                    style="padding: 0.5rem 0; display: flex; align-items: center; gap: 0.5rem; font-weight: 700;"
-                                >
-                                    <span
-                                        style="color:#48bb78; font-weight: bold;"
-                                        >✓</span
-                                    > Mide lo que la gente hace, piensa y siente
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <div class="clash-seam" aria-hidden="true">VS</div>
 
-                    <div
-                        style="background-color: var(--color-secondary); color: white; padding: 2rem; border-radius: 8px;"
-                    >
-                        <h3
-                            style="color: white; font-size: 1.4rem; margin-bottom: 1rem;"
-                        >
-                            El problema:
-                        </h3>
-                        <p
-                            style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.8); margin-bottom: 0;"
-                        >
-                            Las decisiones millonarias no pueden basarse solo en
-                            lo que la gente dice.
-                        </p>
-                        <p
-                            style="font-size: 1.2rem; font-weight: 700; color: var(--color-primary); margin-bottom: 0; margin-top: 1rem;"
-                        >
-                            El comportamiento real y el subconsciente determinan
-                            resultados.
-                        </p>
-                    </div>
+                    <article class="clash-panel clash-panel--new">
+                        <header class="clash-panel__head">
+                            <span class="clash-panel__icon" aria-hidden="true">
+                                <svg
+                                    viewBox="0 0 256 256"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="18"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    ><path d="M48 128l56 56 104-112"></path></svg
+                                >
+                            </span>
+                            <h3>Modelo Mindtec</h3>
+                        </header>
+                        <ul class="clash-panel__list">
+                            <li>4 capas simultáneas de análisis</li>
+                            <li>Investigación profunda + neuromarketing</li>
+                            <li>Executive brief + dashboard interactivo</li>
+                            <li>Red nacional de validación en campo</li>
+                            <li class="clash-panel__list-highlight">
+                                Mide lo que la gente hace, piensa y siente
+                            </li>
+                        </ul>
+                    </article>
+                </div>
+
+                <div class="clash-verdict">
+                    <p class="clash-verdict__lede">
+                        Las decisiones millonarias no pueden basarse solo en lo
+                        que la gente dice.
+                    </p>
+                    <p class="clash-verdict__punch">
+                        El comportamiento real y el subconsciente determinan
+                        resultados.
+                    </p>
                 </div>
             </div>
         </section>
@@ -376,7 +304,7 @@ const strategicBenefits = [
             cardColor="#05091f"
             cover={{
                 background:
-                    "/imagenes-mindtec/generated/investigacion-profunda-hero.png",
+                    "/imagenes-mindtec/generated/investigacion-profunda-hero.webp",
                 eyebrow: "Modelo Mindtec",
                 title: "Decisiones defendibles, capa por capa",
                 description:
@@ -396,7 +324,7 @@ const strategicBenefits = [
             items={[
                 {
                     background:
-                        "/imagenes-mindtec/generated/metodologia-multicapa/capa-cultural-psicoantropologia.png",
+                        "/imagenes-mindtec/generated/metodologia-multicapa/capa-cultural-psicoantropologia.webp",
                     alt: "Consumidora boliviana eligiendo productos en un mercado local",
                     eyebrow: "Capa 01",
                     title: "Capa Cultural — Psicoantropología",
@@ -413,7 +341,7 @@ const strategicBenefits = [
                 },
                 {
                     background:
-                        "/imagenes-mindtec/generated/metodologia-multicapa/capa-cognitiva-neurociencia.png",
+                        "/imagenes-mindtec/generated/metodologia-multicapa/capa-cognitiva-neurociencia.webp",
                     alt: "Participante en una sesión de investigación con eye tracking",
                     eyebrow: "Capa 02",
                     title: "Capa Cognitiva — Neurociencia",
@@ -430,7 +358,7 @@ const strategicBenefits = [
                 },
                 {
                     background:
-                        "/imagenes-mindtec/generated/metodologia-multicapa/capa-tecnologica-data.png",
+                        "/imagenes-mindtec/generated/metodologia-multicapa/capa-tecnologica-data.webp",
                     alt: "Analista revisando señales de mercado en visualizaciones de datos",
                     eyebrow: "Capa 03",
                     title: "Capa Tecnológica — IA y Data",
@@ -446,7 +374,7 @@ const strategicBenefits = [
                 },
                 {
                     background:
-                        "/imagenes-mindtec/generated/metodologia-multicapa/capa-territorial-validacion.png",
+                        "/imagenes-mindtec/generated/metodologia-multicapa/capa-territorial-validacion.webp",
                     alt: "Auditora documentando productos y precios en una tienda boliviana",
                     eyebrow: "Capa 04",
                     title: "Capa Territorial — Validación",
@@ -947,6 +875,172 @@ const strategicBenefits = [
             box-shadow: none;
             border-radius: 0;
             max-width: 100%;
+        }
+
+        /* 🟦 BLOQUE A — clash comparativo (tradicional vs. Mindtec) */
+        .problem-section {
+            padding: 6rem 0;
+        }
+
+        .clash-intro {
+            max-width: 640px;
+            margin-bottom: 3rem;
+        }
+
+        .clash-intro__title {
+            font-size: clamp(2rem, 3.4vw, 2.6rem);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .clash-intro__lede {
+            font-size: 1.1rem;
+            color: var(--color-text-muted, #64748b);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .clash-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: stretch;
+            gap: 0 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .clash-panel {
+            padding: 2.5rem 2.25rem;
+            color: #fff;
+        }
+
+        .clash-panel--old {
+            background: #1c2733;
+            border-top: 3px solid rgba(255, 255, 255, 0.18);
+        }
+
+        .clash-panel--new {
+            background: var(--color-secondary-deep, #061c2b);
+            border-top: 3px solid var(--color-primary);
+        }
+
+        .clash-panel__head {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .clash-panel__icon {
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 1px solid rgba(168, 207, 232, 0.4);
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .clash-panel__icon svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        .clash-panel--new .clash-panel__icon {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .clash-panel__head h3 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0;
+            color: #fff;
+        }
+
+        .clash-panel__list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .clash-panel__list li {
+            padding: 0.65rem 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .clash-panel__list li:first-child {
+            border-top: none;
+        }
+
+        .clash-panel--old .clash-panel__list li {
+            color: rgba(255, 255, 255, 0.55);
+        }
+
+        .clash-panel--new .clash-panel__list li {
+            color: rgba(255, 255, 255, 0.82);
+        }
+
+        .clash-panel__list-highlight {
+            color: #fff !important;
+            font-weight: 700;
+        }
+
+        .clash-seam {
+            display: grid;
+            place-items: center;
+            place-self: center;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--color-secondary);
+            border: 1px solid var(--color-primary);
+            color: var(--color-primary);
+            font-family: var(--font-display);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+        }
+
+        .clash-verdict {
+            max-width: 820px;
+            margin: 3rem auto 0;
+            padding: 2rem 2.5rem;
+            border-left: 3px solid var(--color-primary);
+            background: rgba(11, 43, 64, 0.04);
+        }
+
+        .clash-verdict__lede {
+            font-size: 1.1rem;
+            color: var(--color-text-muted, #64748b);
+            margin: 0 0 0.5rem;
+        }
+
+        .clash-verdict__punch {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin: 0;
+        }
+
+        @media (max-width: 780px) {
+            .clash-grid {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+                justify-items: center;
+            }
+
+            .clash-panel {
+                width: 100%;
+            }
+
+            .clash-verdict {
+                padding: 1.75rem;
+            }
         }
     </style>
 </Layout>

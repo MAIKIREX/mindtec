@@ -400,7 +400,14 @@ const {
               pinSpacing: true,
               scrub,
               anticipatePin: 1,
-              invalidateOnRefresh: true
+              invalidateOnRefresh: true,
+              snap: {
+                snapTo: "labels",
+                delay: 0.05,
+                duration: { min: 0.15, max: 0.4 },
+                ease: "power1.out",
+                inertia: false
+              }
             }
           });
 

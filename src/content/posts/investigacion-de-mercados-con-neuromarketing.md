@@ -72,7 +72,7 @@ Esta última herramienta es particularmente poderosa: cuando el consumidor dice 
 
 ## La Capa Neurocientífica: Medir Directamente el Cerebro
 
-![EEG en laboratorio de neuromarketing Bolivia](/imagenes-mindtec/eeg-mindtec.jpg)
+![EEG en laboratorio de neuromarketing Bolivia](/imagenes-mindtec/eeg-mindtec.webp)
 
 La psicoantropología revela comportamientos e interpretaciones profundas. Pero hay una capa más profunda aún: lo que ocurre en el sistema nervioso en tiempo real.
 

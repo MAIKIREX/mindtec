@@ -291,4 +291,4 @@ keywords: "investigación de mercado pymes Bolivia, estudio de mercado pymes, c�
 
 
 
-<p>Aprende más sobre la investigación de mercado AQUI: <strong><a href="/blog/investigacion-de-mercados">No es lo que Dice tu Consumidor, es lo que Siente</a> </strong><br></p>
+<p>Aprende más sobre la investigación de mercado AQUI: <strong><a href="/blog/investigacion-de-mercados-consumidor">No es lo que Dice tu Consumidor, es lo que Siente</a> </strong><br></p>

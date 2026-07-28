@@ -266,7 +266,7 @@ const description =
           <div class="glass-card main-visual">
             <div
               class="neuro-visual-bg"
-              style="background-image: url('/imagenes-mindtec/generated/investigacion-profunda-hero.png');"
+              style="background-image: url('/imagenes-mindtec/generated/investigacion-profunda-hero.webp');"
             >
             </div>
           </div>
@@ -443,7 +443,7 @@ const description =
                 style="position: relative; overflow: hidden; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); border: 1px solid rgba(11, 43, 64, 0.08); max-width: 540px; justify-self: center; width: 100%;"
               >
                 <img
-                  src="/imagenes-mindtec/generated/investigacion-profunda.png"
+                  src="/imagenes-mindtec/generated/investigacion-profunda.webp"
                   alt="Analistas de Mindtec investigando profundamente con heatmaps y biometría"
                   style="width: 100%; height: 280px; object-fit: cover; border-radius: inherit; display: block; filter: saturate(1.02) contrast(1.02);"
                   loading="lazy"
@@ -2244,7 +2244,11 @@ const description =
               la academia.
             </p>
           </div>
-          <HoverStepCards items={audienceCards} minColumnWidth="480px" />
+          <HoverStepCards
+            items={audienceCards}
+            minColumnWidth="480px"
+            desktopColumns={3}
+          />
         </div>
       </section>
 

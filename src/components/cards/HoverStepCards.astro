@@ -6,6 +6,8 @@ export interface HoverStepCardItem {
   /** Optional services or capabilities revealed with the description. */
   services?: string[];
   href?: string;
+  /** Optional background image for the card */
+  backgroundImage?: string;
 }
 
 interface Props {
@@ -14,6 +16,9 @@ interface Props {
 
   /** Ancho mínimo de columna antes de que el grid haga wrap. */
   minColumnWidth?: string;
+
+  /** Número fijo de columnas en escritorio, cuando la composición lo requiera. */
+  desktopColumns?: number;
 
   /** Alto del notch escalonado como % del alto de la tarjeta. */
   notchHeight?: string;
@@ -26,6 +31,7 @@ const {
   items,
   class: className = "",
   minColumnWidth = "320px",
+  desktopColumns,
   notchHeight = "24%",
   notchInset = "70%"
 } = Astro.props;
@@ -33,12 +39,18 @@ const {
 
 <div
   class:list={["hover-step-cards", className]}
-  style={`--hsc-min-col:${minColumnWidth};--hsc-notch-h:${notchHeight};--hsc-notch-x:${notchInset};`}
+  data-desktop-columns={desktopColumns ?? undefined}
+  style={`--hsc-min-col:${minColumnWidth};--hsc-desktop-columns:${desktopColumns ?? 1};--hsc-notch-h:${notchHeight};--hsc-notch-x:${notchInset};`}
 >
   {items.map((item) => {
     const Tag = item.href ? "a" : "div";
     return (
-      <Tag class="hover-step-card" href={item.href}>
+      <Tag
+        class="hover-step-card"
+        href={item.href}
+        style={item.backgroundImage ? `background-image: url('${item.backgroundImage}'); background-size: cover; background-position: center;` : undefined}
+      >
+        <div class="hover-step-card__overlay"></div>
         <div class="hover-step-card__inner">
           {item.eyebrow && (
             <span class="hover-step-card__eyebrow">{item.eyebrow}</span>
@@ -77,6 +89,12 @@ const {
     gap: 2rem;
   }
 
+  @media (min-width: 1024px) {
+    .hover-step-cards[data-desktop-columns] {
+      grid-template-columns: repeat(var(--hsc-desktop-columns), minmax(0, 1fr));
+    }
+  }
+
   .hover-step-card {
     position: relative;
     display: block;
@@ -100,6 +118,14 @@ const {
     box-shadow: var(--shadow-md, 0 8px 32px rgba(11, 43, 64, 0.12));
   }
 
+  .hover-step-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(11, 43, 64, 0.85) 0%, rgba(11, 43, 64, 0.65) 50%, rgba(11, 43, 64, 0.4) 100%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
   .hover-step-card:hover,
   .hover-step-card:focus-within {
     clip-path: polygon(
@@ -119,6 +145,7 @@ const {
     padding: 2.25rem;
     display: flex;
     flex-direction: column;
+    z-index: 1;
   }
 
   .hover-step-card__eyebrow {

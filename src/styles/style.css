@@ -776,7 +776,7 @@ p {
     }
 
     /* Custom overrides for mega menu links */
-    .dropdown-content.mega-menu .mega-menu-links a {
+    .site-header .dropdown-content.mega-menu .mega-menu-links a {
         color: var(--color-text-dark) !important;
         padding: 6px 0 !important;
         font-size: 0.85rem !important;
@@ -788,7 +788,7 @@ p {
         width: 100% !important;
     }
 
-    .dropdown-content.mega-menu .mega-menu-links a:hover {
+    .site-header .dropdown-content.mega-menu .mega-menu-links a:hover {
         color: var(--color-primary) !important;
         background: transparent !important;
         padding-left: 6px !important;

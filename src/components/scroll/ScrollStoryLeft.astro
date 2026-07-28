@@ -531,8 +531,17 @@ const totalItems = items.length;
               scrub,
               anticipatePin: 1,
               invalidateOnRefresh: true,
+              snap: {
+                snapTo: "labels",
+                delay: 0.05,
+                duration: { min: 0.15, max: 0.4 },
+                ease: "power1.out",
+                inertia: false,
+              },
             },
           });
+
+          timeline.addLabel("scene-cover", 0);
 
           const introBackground = backgrounds[1];
           const introBackgroundImage = introBackground.querySelector("img");
@@ -566,6 +575,8 @@ const totalItems = items.length;
             },
             "intro-card",
           );
+
+          timeline.addLabel("scene-intro");
 
           for (let itemIndex = 0; itemIndex < itemCount; itemIndex += 1) {
             const label = `story-left-item-${itemIndex}`;
@@ -635,6 +646,8 @@ const totalItems = items.length;
               },
               `${label}+=0.5`,
             );
+
+            timeline.addLabel(`scene-item-${itemIndex}`);
           }
         }, story);
       });
