@@ -443,11 +443,18 @@
           observer.unobserve(el);
         }
       });
-    }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
+    }, { threshold: 0.01, rootMargin: '200px 0px 200px 0px' });
 
     targets.forEach(function (el) {
       observer.observe(el);
     });
+
+    // Fail-safe: ensure all elements become visible after a max delay (preventing blank sections)
+    setTimeout(function () {
+      targets.forEach(function (el) {
+        el.classList.add('is-visible');
+      });
+    }, 1200);
   }
 
   /* ═══════════════════════════════════════════
@@ -798,7 +805,7 @@
           highlightObserver.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.2, rootMargin: '0px 0px -100px 0px' });
+    }, { threshold: 0.01, rootMargin: '200px 0px 200px 0px' });
 
     marks.forEach(function (mark) {
       highlightObserver.observe(mark);
