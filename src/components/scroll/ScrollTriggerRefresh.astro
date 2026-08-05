@@ -1,0 +1,78 @@
+<script>
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  type RefreshWindow = typeof window & {
+    __scrollTriggerRefreshCoordinatorReady?: boolean;
+  };
+
+  const refreshWindow = window as RefreshWindow;
+
+  if (!refreshWindow.__scrollTriggerRefreshCoordinatorReady) {
+    refreshWindow.__scrollTriggerRefreshCoordinatorReady = true;
+
+    let refreshTimer = 0;
+
+    /**
+     * Agrupa los cambios de layout que llegan juntos (imágenes, fuentes y
+     * navegación de Astro) y refresca en dos frames consecutivos. El segundo
+     * frame permite que el navegador aplique primero las nuevas dimensiones.
+     */
+    function scheduleRefresh(): void {
+      window.clearTimeout(refreshTimer);
+
+      refreshTimer = window.setTimeout(() => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => ScrollTrigger.refresh());
+        });
+      }, 80);
+    }
+
+    function waitForEagerImages(): Promise<void> {
+      const eagerImages = Array.from(document.images).filter(
+        (image) => image.loading !== "lazy",
+      );
+
+      return Promise.all(
+        eagerImages.map((image) => {
+          if (image.complete) {
+            return image.decode?.().catch(() => undefined) ?? Promise.resolve();
+          }
+
+          return new Promise<void>((resolve) => {
+            image.addEventListener("load", () => resolve(), { once: true });
+            image.addEventListener("error", () => resolve(), { once: true });
+          });
+        }),
+      ).then(() => undefined);
+    }
+
+    function refreshAfterLayoutIsStable(): void {
+      Promise.all([
+        document.fonts?.ready ?? Promise.resolve(),
+        waitForEagerImages(),
+      ]).then(scheduleRefresh);
+
+      scheduleRefresh();
+    }
+
+    // Captura imágenes eager y lazy que cambien la altura de contenido antes
+    // de una sección pineada. No espera a cada imagen: las agrupa arriba.
+    document.addEventListener(
+      "load",
+      (event) => {
+        if (event.target instanceof HTMLImageElement) scheduleRefresh();
+      },
+      true,
+    );
+
+    if (document.readyState === "complete") {
+      refreshAfterLayoutIsStable();
+    } else {
+      window.addEventListener("load", refreshAfterLayoutIsStable, {
+        once: true,
+      });
+    }
+
+    document.addEventListener("astro:page-load", refreshAfterLayoutIsStable);
+  }
+</script>

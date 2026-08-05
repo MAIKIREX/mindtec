@@ -531,17 +531,12 @@ const totalItems = items.length;
               scrub,
               anticipatePin: 1,
               invalidateOnRefresh: true,
-              snap: {
-                snapTo: "labels",
-                delay: 0.05,
-                duration: { min: 0.15, max: 0.4 },
-                ease: "power1.out",
-                inertia: false,
-              },
+              refreshPriority: 30,
             },
           });
 
           timeline.addLabel("scene-cover", 0);
+          timeline.addLabel("intro-background", 0);
 
           const introBackground = backgrounds[1];
           const introBackgroundImage = introBackground.querySelector("img");
@@ -566,6 +561,8 @@ const totalItems = items.length;
             );
           }
 
+          timeline.addLabel("intro-card", 1);
+
           timeline.to(
             card,
             {
@@ -576,7 +573,7 @@ const totalItems = items.length;
             "intro-card",
           );
 
-          timeline.addLabel("scene-intro");
+          timeline.addLabel("scene-intro", 2);
 
           for (let itemIndex = 0; itemIndex < itemCount; itemIndex += 1) {
             const label = `story-left-item-${itemIndex}`;

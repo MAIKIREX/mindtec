@@ -1,5 +1,6 @@
 ---
 import '../styles/style.css';
+import ScrollTriggerRefresh from "../components/scroll/ScrollTriggerRefresh.astro";
 
 interface Props {
   title?: string;
@@ -355,6 +356,7 @@ const isCurrent = (path: string) => {
     </a>
 
     <!-- Scripts -->
+    <ScrollTriggerRefresh />
     <script is:inline src="/js/main.js"></script>
 </body>
 </html>
