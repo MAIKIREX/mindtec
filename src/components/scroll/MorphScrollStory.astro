@@ -1,0 +1,1382 @@
+---
+export type ShapePreset = string;
+export type ShapePoint = number[];
+export type ShapeValue = unknown;
+
+export interface StoryCardLayout {
+  /** Ancho expresado en vw. */
+  width?: number;
+
+  /** Alto expresado en vh. */
+  height?: number;
+
+  /** Distancia desde la izquierda expresada en vw. */
+  left?: number;
+
+  /** Distancia desde abajo expresada en vh. */
+  bottom?: number;
+}
+
+export interface MorphStoryCover {
+  background: string;
+  alt?: string;
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  scrollLabel?: string;
+
+  /** Escala CSS del titular. Permite que cada cover conserve 1-3 l\u00edneas. */
+  titleSize?: string;
+
+  /** Ancho m\u00e1ximo CSS del titular, por ejemplo `14ch` o `760px`. */
+  titleMaxWidth?: string;
+
+  textColor?: string;
+  titleColor?: string;
+  descriptionColor?: string;
+  eyebrowColor?: string;
+  scrollLabelColor?: string;
+}
+
+export interface MorphStoryIntro {
+  background: string;
+  alt?: string;
+  number?: string;
+  eyebrow?: string;
+  title: string;
+  description: string;
+  shape?: ShapeValue;
+  mobileShape?: ShapeValue;
+  card?: StoryCardLayout;
+  eyebrowColor?: string;
+  titleColor?: string;
+  descriptionColor?: string;
+}
+
+export interface MorphStoryItem {
+  background: string;
+  alt?: string;
+  eyebrow?: string;
+  title: string;
+  description: string;
+
+  /** Lista de puntos opcional, se renderiza debajo de la descripción. */
+  list?: string[];
+
+  /** Nota o cita destacada opcional, se renderiza como bloque de cierre. */
+  note?: string;
+
+  /** Forma predefinida o polígono personalizado. */
+  shape?: ShapeValue;
+
+  /** Forma simplificada opcional para móvil. */
+  mobileShape?: ShapeValue;
+
+  /** Tamaño y posición individual de la tarjeta. */
+  card?: StoryCardLayout;
+
+  eyebrowColor?: string;
+  titleColor?: string;
+  descriptionColor?: string;
+}
+
+interface Props {
+  cover: MorphStoryCover;
+  intro: MorphStoryIntro;
+  items: MorphStoryItem[];
+
+  class?: string;
+
+  /** Suavidad con la que GSAP sigue el scroll. */
+  scrub?: number;
+
+  /** Recorrido de scroll por escena. 1 equivale a unos 100vh. */
+  sceneDistance?: number;
+
+  /** Color principal de la tarjeta. */
+  cardColor?: string;
+
+  /** Colores generales del texto dentro de la tarjeta (intro + items). */
+  cardTextColor?: string;
+  cardMutedColor?: string;
+}
+
+const {
+  cover,
+  intro,
+  items,
+  class: className = "",
+  scrub = 0.9,
+  sceneDistance = 1,
+  cardColor = "#05091f",
+  cardTextColor = "#ffffff",
+  cardMutedColor = "rgba(255, 255, 255, 0.7)"
+} = Astro.props;
+
+const totalItems = items.length;
+
+const clientConfig = {
+  intro: {
+    shape: intro.shape ?? "panel",
+    mobileShape: intro.mobileShape ?? "panel",
+    card: {
+      width: intro.card?.width ?? 42,
+      height: intro.card?.height ?? 72,
+      left: intro.card?.left ?? 4.5,
+      bottom: intro.card?.bottom ?? 6
+    }
+  },
+  items: items.map((item) => ({
+    shape: item.shape ?? "panel",
+    mobileShape: item.mobileShape ?? "panel",
+    card: {
+      width: item.card?.width ?? 42,
+      height: item.card?.height ?? 74,
+      left: item.card?.left ?? 4.5,
+      bottom: item.card?.bottom ?? 6
+    }
+  }))
+};
+---
+
+<section
+  class:list={["morph-story", className]}
+  data-morph-story
+  data-header-theme="dark"
+  data-scrub={scrub}
+  data-scene-distance={sceneDistance}
+  data-story-config={JSON.stringify(clientConfig)}
+  style={`--morph-card-color: ${cardColor}; --morph-cover-title-size: ${cover.titleSize ?? "clamp(2.8rem, 6.2vw, 6.5rem)"}; --morph-cover-title-width: ${cover.titleMaxWidth ?? "15ch"}; --morph-cover-color: ${cover.textColor ?? "#fff"}; --morph-cover-title-color: ${cover.titleColor ?? cover.textColor ?? "#fff"}; --morph-cover-description-color: ${cover.descriptionColor ?? cover.textColor ?? "rgba(255, 255, 255, 0.9)"}; --morph-cover-eyebrow-color: ${cover.eyebrowColor ?? cover.textColor ?? "#fff"}; --morph-cover-scroll-label-color: ${cover.scrollLabelColor ?? cover.textColor ?? "#fff"}; --morph-card-text-color: ${cardTextColor}; --morph-card-muted-color: ${cardMutedColor}; --morph-intro-eyebrow-color: ${intro.eyebrowColor ?? cardTextColor}; --morph-intro-title-color: ${intro.titleColor ?? cardTextColor}; --morph-intro-description-color: ${intro.descriptionColor ?? cardMutedColor};`}
+>
+  <div class="morph-story__stage" data-morph-stage>
+    <div class="morph-story__backgrounds">
+      <figure
+        class="morph-story__background"
+        data-morph-background
+      >
+        <img
+          src={cover.background}
+          alt={cover.alt ?? ""}
+          loading="eager"
+        />
+
+        <div class="morph-story__background-overlay"></div>
+
+        <div class="morph-story__cover-content">
+          {
+            cover.eyebrow && (
+              <span
+                class="morph-story__eyebrow"
+                style={`color:${cover.eyebrowColor ?? cover.textColor ?? "inherit"};`}
+              >
+                {cover.eyebrow}
+              </span>
+            )
+          }
+
+          <h1>{cover.title}</h1>
+
+          {
+            cover.description && (
+              <p>{cover.description}</p>
+            )
+          }
+
+          <div
+            class="morph-story__scroll-message"
+            style={`color:${cover.scrollLabelColor ?? cover.textColor ?? "inherit"};`}
+          >
+            <span>{cover.scrollLabel ?? "Desliza para explorar"}</span>
+            <span class="morph-story__scroll-line"></span>
+          </div>
+        </div>
+      </figure>
+
+      <figure
+        class="morph-story__background"
+        data-morph-background
+      >
+        <img
+          src={intro.background}
+          alt={intro.alt ?? ""}
+          loading="eager"
+        />
+
+        <div class="morph-story__background-overlay"></div>
+      </figure>
+
+      {
+        items.map((item) => (
+          <figure
+            class="morph-story__background"
+            data-morph-background
+          >
+            <img
+              src={item.background}
+              alt={item.alt ?? ""}
+              loading="lazy"
+            />
+
+            <div class="morph-story__background-overlay"></div>
+          </figure>
+        ))
+      }
+    </div>
+
+    <article
+      class="morph-story__card"
+      data-morph-card
+    >
+      <div
+        class="morph-story__card-shape"
+        data-morph-card-shape
+      >
+        <section
+          class:list={[
+            "morph-story__panel",
+            "morph-story__panel--intro"
+          ]}
+          data-morph-panel
+        >
+          <span class="morph-story__intro-number">
+            {intro.number ?? "01"}
+          </span>
+
+          <div class="morph-story__intro-heading">
+            {
+              intro.eyebrow && (
+                <span
+                  class="morph-story__card-eyebrow"
+                  style={`color:${intro.eyebrowColor ?? cardTextColor};`}
+                >
+                  {intro.eyebrow}
+                </span>
+              )
+            }
+
+            <h2 style={`color:${intro.titleColor ?? cardTextColor};`}>{intro.title}</h2>
+          </div>
+
+          <div class="morph-story__intro-copy">
+            <p style={`color:${intro.descriptionColor ?? cardMutedColor};`}>{intro.description}</p>
+          </div>
+
+          <footer class="morph-story__intro-footer">
+            <span>01</span>
+            <span class="morph-story__intro-rule"></span>
+            <span>Continúa</span>
+          </footer>
+        </section>
+
+        {
+          items.map((item, index) => (
+            <section
+              class:list={[
+                "morph-story__panel",
+                "morph-story__panel--item"
+              ]}
+              data-morph-panel
+            >
+              <div class="morph-story__item-copy">
+                {
+                  item.eyebrow && (
+                    <span
+                      class="morph-story__card-eyebrow"
+                      style={`color:${item.eyebrowColor ?? cardTextColor};`}
+                    >
+                      {item.eyebrow}
+                    </span>
+                  )
+                }
+
+                <h2 style={`color:${item.titleColor ?? cardTextColor};`}>{item.title}</h2>
+
+                <p style={`color:${item.descriptionColor ?? cardMutedColor};`}>{item.description}</p>
+
+                {
+                  item.list && item.list.length > 0 && (
+                    <ul class="morph-story__item-list">
+                      {item.list.map((point) => (
+                        <li>{point}</li>
+                      ))}
+                    </ul>
+                  )
+                }
+
+                {
+                  item.note && (
+                    <div class="morph-story__item-note">{item.note}</div>
+                  )
+                }
+              </div>
+
+              <footer class="morph-story__item-footer">
+                <div class="morph-story__counter">
+                  <span>{index + 1}</span>
+                  <span>/</span>
+                  <span>{totalItems}</span>
+                </div>
+              </footer>
+            </section>
+          ))
+        }
+      </div>
+    </article>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  const SHAPE_POINT_COUNT = 10;
+
+  const PRESET_SHAPES: Record<string, ShapePoint[]> = {
+    panel: [
+      [0, 0],
+      [100, 0],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [0, 100]
+    ],
+
+    "intro-step": [
+      [0, 12],
+      [52, 12],
+      [52, 0],
+      [100, 0],
+      [100, 42],
+      [94, 42],
+      [94, 76],
+      [88, 76],
+      [88, 100],
+      [0, 100]
+    ],
+
+    "step-right": [
+      [0, 14],
+      [48, 14],
+      [48, 0],
+      [100, 0],
+      [100, 40],
+      [94, 40],
+      [94, 72],
+      [88, 72],
+      [88, 100],
+      [0, 100]
+    ],
+
+    "double-step": [
+      [0, 0],
+      [39, 0],
+      [39, 8],
+      [74, 8],
+      [74, 15],
+      [100, 15],
+      [100, 56],
+      [94, 56],
+      [94, 100],
+      [0, 100]
+    ],
+
+    "upper-center": [
+      [0, 10],
+      [50, 10],
+      [50, 0],
+      [100, 0],
+      [100, 38],
+      [98, 38],
+      [98, 79],
+      [88, 79],
+      [88, 100],
+      [0, 100]
+    ],
+
+    "side-notch": [
+      [0, 0],
+      [67, 0],
+      [67, 10],
+      [100, 10],
+      [100, 48],
+      [91, 48],
+      [91, 82],
+      [82, 82],
+      [82, 100],
+      [0, 100]
+    ],
+
+    "inverse-step": [
+      [0, 17],
+      [31, 17],
+      [31, 8],
+      [67, 8],
+      [67, 0],
+      [100, 0],
+      [100, 84],
+      [92, 84],
+      [92, 100],
+      [0, 100]
+    ]
+  };
+
+  const MOBILE_SHAPES: Record<string, ShapePoint[]> = {
+    panel: [
+      [0, 0],
+      [100, 0],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [0, 100]
+    ],
+
+    "intro-step": [
+      [0, 9],
+      [38, 9],
+      [38, 0],
+      [100, 0],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [0, 100]
+    ],
+
+    "step-right": [
+      [0, 9],
+      [42, 9],
+      [42, 0],
+      [100, 0],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [0, 100]
+    ],
+
+    "double-step": [
+      [0, 0],
+      [35, 0],
+      [35, 7],
+      [70, 7],
+      [70, 13],
+      [100, 13],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [0, 100]
+    ],
+
+    "upper-center": [
+      [0, 9],
+      [52, 9],
+      [52, 0],
+      [100, 0],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [0, 100]
+    ],
+
+    "side-notch": [
+      [0, 0],
+      [67, 0],
+      [67, 8],
+      [100, 8],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [0, 100]
+    ],
+
+    "inverse-step": [
+      [0, 11],
+      [35, 11],
+      [35, 5],
+      [68, 5],
+      [68, 0],
+      [100, 0],
+      [100, 100],
+      [100, 100],
+      [100, 100],
+      [0, 100]
+    ]
+  };
+
+  const REVEAL_SHAPE = Array.from(
+    { length: SHAPE_POINT_COUNT },
+    () => [50, 100]
+  );
+
+  function readNumber(element, property, fallback) {
+    const value = Number(element.dataset[property]);
+    return Number.isFinite(value) ? value : fallback;
+  }
+
+  function normalizeShape(points) {
+    if (points.length === 0) {
+      return PRESET_SHAPES["intro-step"];
+    }
+
+    const normalized = points
+      .slice(0, SHAPE_POINT_COUNT)
+      .map(([x, y]) => [
+        Math.max(0, Math.min(100, Number(x))),
+        Math.max(0, Math.min(100, Number(y)))
+      ]);
+
+    while (normalized.length < SHAPE_POINT_COUNT) {
+      normalized.push(normalized[normalized.length - 1]);
+    }
+
+    return normalized;
+  }
+
+  function resolveShape(shape, mobile) {
+    if (Array.isArray(shape)) {
+      return normalizeShape(shape);
+    }
+
+    const source = mobile ? MOBILE_SHAPES : PRESET_SHAPES;
+
+    return normalizeShape(
+      source[shape] ?? source["intro-step"]
+    );
+  }
+
+  function toPolygon(points) {
+    return `polygon(${points
+      .map(([x, y]) => `${x}% ${y}%`)
+      .join(", ")})`;
+  }
+
+  function parseConfig(story) {
+    try {
+      const raw = story.dataset.storyConfig;
+
+      if (!raw) return null;
+
+      return JSON.parse(raw);
+    } catch (error) {
+      console.error("No se pudo leer la configuración de MorphScrollStory.", error);
+      return null;
+    }
+  }
+
+  function getLayout(layout, viewportWidth, viewportHeight) {
+    if (viewportWidth <= 560) {
+      return {
+        left: viewportWidth * 0.04,
+        bottom: viewportHeight * 0.02,
+        width: viewportWidth * 0.92,
+        height: viewportHeight * 0.65
+      };
+    }
+
+    if (viewportWidth <= 900) {
+      return {
+        left: viewportWidth * 0.04,
+        bottom: viewportHeight * 0.025,
+        width: viewportWidth * 0.88,
+        height: viewportHeight * 0.72
+      };
+    }
+
+    return {
+      left: viewportWidth * (layout.left / 100),
+      bottom: viewportHeight * (layout.bottom / 100),
+      width: viewportWidth * (layout.width / 100),
+      height: viewportHeight * (layout.height / 100)
+    };
+  }
+
+  function destroyMorphStories() {
+    document
+      .querySelectorAll("[data-morph-story]")
+      .forEach((story) => {
+        story.__morphStoryContext?.revert();
+        delete story.__morphStoryContext;
+      });
+  }
+
+  function initMorphStories() {
+    document
+      .querySelectorAll("[data-morph-story]")
+      .forEach((story) => {
+        story.__morphStoryContext?.revert();
+
+        const config = parseConfig(story);
+
+        const stage = story.querySelector(
+          "[data-morph-stage]"
+        );
+
+        const card = story.querySelector(
+          "[data-morph-card]"
+        );
+
+        const cardShape = story.querySelector(
+          "[data-morph-card-shape]"
+        );
+
+        const backgrounds = gsap.utils.toArray(
+          "[data-morph-background]",
+          story
+        );
+
+        const panels = gsap.utils.toArray(
+          "[data-morph-panel]",
+          story
+        );
+
+        if (
+          !config ||
+          !stage ||
+          !card ||
+          !cardShape ||
+          backgrounds.length < 3 ||
+          panels.length < 2
+        ) {
+          return;
+        }
+
+        const itemCount = config.items.length;
+        const scrub = readNumber(story, "scrub", 0.9);
+        const sceneDistance = readNumber(
+          story,
+          "sceneDistance",
+          1
+        );
+
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        story.__morphStoryContext = gsap.context(() => {
+          const isMobile = () => window.innerWidth <= 560;
+
+          const resolveResponsiveShape = (configItem) => {
+            const value =
+              isMobile() && configItem.mobileShape
+                ? configItem.mobileShape
+                : configItem.shape;
+
+            return toPolygon(
+              resolveShape(value, isMobile())
+            );
+          };
+
+          backgrounds.forEach((background, index) => {
+            gsap.set(background, {
+              yPercent: index === 0 ? 0 : 100,
+              zIndex: index + 1
+            });
+
+            const image = background.querySelector("img");
+
+            if (image) {
+              gsap.set(image, {
+                scale: index === 0 ? 1.02 : 1.06
+              });
+            }
+          });
+
+          panels.forEach((panel, index) => {
+            gsap.set(panel, {
+              autoAlpha: index === 0 ? 1 : 0,
+              y: index === 0 ? 0 : 36
+            });
+          });
+
+          const introLayout = getLayout(
+            config.intro.card,
+            window.innerWidth,
+            window.innerHeight
+          );
+
+          gsap.set(card, {
+            left: introLayout.left,
+            bottom: introLayout.bottom,
+            width: introLayout.width,
+            height: introLayout.height,
+            yPercent: 125
+          });
+
+          gsap.set(cardShape, {
+            clipPath: toPolygon(REVEAL_SHAPE)
+          });
+
+          if (reduceMotion) {
+            const finalItem = config.items[itemCount - 1];
+            const finalLayout = getLayout(
+              finalItem.card,
+              window.innerWidth,
+              window.innerHeight
+            );
+
+            backgrounds.forEach((background, index) => {
+              gsap.set(background, {
+                yPercent:
+                  index === backgrounds.length - 1
+                    ? 0
+                    : 100
+              });
+            });
+
+            panels.forEach((panel, index) => {
+              gsap.set(panel, {
+                autoAlpha:
+                  index === panels.length - 1 ? 1 : 0,
+                y: 0
+              });
+            });
+
+            gsap.set(card, {
+              left: finalLayout.left,
+              bottom: finalLayout.bottom,
+              width: finalLayout.width,
+              height: finalLayout.height,
+              yPercent: 0
+            });
+
+            gsap.set(cardShape, {
+              clipPath: resolveResponsiveShape(finalItem)
+            });
+
+            return;
+          }
+
+          const transitionCount = 2 + itemCount;
+
+          const timeline = gsap.timeline({
+            defaults: {
+              ease: "none"
+            },
+
+            scrollTrigger: {
+              trigger: story,
+              start: "top top",
+              end: () =>
+                `+=${
+                  window.innerHeight *
+                  transitionCount *
+                  sceneDistance
+                }`,
+              pin: stage,
+              pinSpacing: true,
+              scrub,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+              snap: {
+                snapTo: "labels",
+                delay: 0.05,
+                duration: { min: 0.15, max: 0.4 },
+                ease: "power1.out",
+                inertia: false
+              }
+            }
+          });
+
+          timeline.addLabel("scene-cover", 0);
+
+          const introBackground = backgrounds[1];
+          const introImage = introBackground.querySelector("img");
+
+          timeline.to(
+            introBackground,
+            {
+              yPercent: 0,
+              duration: 1
+            },
+            "intro-background"
+          );
+
+          if (introImage) {
+            timeline.to(
+              introImage,
+              {
+                scale: 1,
+                duration: 1
+              },
+              "intro-background"
+            );
+          }
+
+          timeline.to(
+            card,
+            {
+              yPercent: 0,
+              duration: 1,
+              ease: "power2.out"
+            },
+            "intro-card"
+          );
+
+          timeline.to(
+            cardShape,
+            {
+              clipPath: () =>
+                resolveResponsiveShape(config.intro),
+              duration: 1,
+              ease: "power2.out"
+            },
+            "intro-card"
+          );
+
+          timeline.addLabel("scene-intro");
+
+          for (
+            let itemIndex = 0;
+            itemIndex < itemCount;
+            itemIndex += 1
+          ) {
+            const label = `morph-item-${itemIndex}`;
+            const currentConfig = config.items[itemIndex];
+            const currentBackground = backgrounds[itemIndex + 2];
+            const currentImage = currentBackground.querySelector("img");
+            const previousPanel = panels[itemIndex];
+            const currentPanel = panels[itemIndex + 1];
+
+            timeline.to(
+              currentBackground,
+              {
+                yPercent: 0,
+                duration: 1
+              },
+              label
+            );
+
+            if (currentImage) {
+              timeline.to(
+                currentImage,
+                {
+                  scale: 1,
+                  duration: 1
+                },
+                label
+              );
+            }
+
+            timeline.to(
+              card,
+              {
+                left: () =>
+                  getLayout(
+                    currentConfig.card,
+                    window.innerWidth,
+                    window.innerHeight
+                  ).left,
+                bottom: () =>
+                  getLayout(
+                    currentConfig.card,
+                    window.innerWidth,
+                    window.innerHeight
+                  ).bottom,
+                width: () =>
+                  getLayout(
+                    currentConfig.card,
+                    window.innerWidth,
+                    window.innerHeight
+                  ).width,
+                height: () =>
+                  getLayout(
+                    currentConfig.card,
+                    window.innerWidth,
+                    window.innerHeight,
+                    false
+                  ).height,
+                duration: 0.6,
+                ease: "power2.inOut"
+              },
+              `${label}+=0.2`
+            );
+
+            timeline.to(
+              cardShape,
+              {
+                clipPath: () =>
+                  resolveResponsiveShape(currentConfig),
+                duration: 0.6,
+                ease: "power2.inOut"
+              },
+              `${label}+=0.2`
+            );
+
+            timeline.to(
+              previousPanel,
+              {
+                y: -38,
+                autoAlpha: 0,
+                duration: 0.2,
+                ease: "power2.in"
+              },
+              `${label}+=0.56`
+            );
+
+            timeline.fromTo(
+              currentPanel,
+              {
+                y: 38,
+                autoAlpha: 0
+              },
+              {
+                y: 0,
+                autoAlpha: 1,
+                duration: 0.3,
+                ease: "power2.out"
+              },
+              `${label}+=0.7`
+            );
+
+            timeline.addLabel(`scene-item-${itemIndex}`);
+          }
+        }, story);
+      });
+
+    ScrollTrigger.refresh();
+  }
+
+  initMorphStories();
+
+  const globalWindow = window;
+
+  if (!globalWindow.__morphStoryEventsRegistered) {
+    document.addEventListener(
+      "astro:page-load",
+      initMorphStories
+    );
+
+    document.addEventListener(
+      "astro:before-swap",
+      destroyMorphStories
+    );
+
+    globalWindow.__morphStoryEventsRegistered = true;
+  }
+
+  if ("fonts" in document) {
+    document.fonts.ready.then(() => {
+      ScrollTrigger.refresh();
+    });
+  }
+</script>
+
+<style>
+  .morph-story {
+    position: relative;
+    width: 100%;
+    min-height: 100svh;
+    isolation: isolate;
+    background: #05091f;
+  }
+
+  .morph-story__stage {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    overflow: hidden;
+    background: #05091f;
+  }
+
+  .morph-story__backgrounds {
+    position: absolute;
+    inset: 0;
+  }
+
+  .morph-story__background {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  .morph-story__background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    will-change: transform;
+  }
+
+  .morph-story__background-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(5, 8, 20, 0.58),
+        rgba(5, 8, 20, 0.08) 58%,
+        rgba(5, 8, 20, 0.12)
+      );
+  }
+
+  .morph-story__cover-content {
+    position: absolute;
+    z-index: 2;
+    left: clamp(28px, 7vw, 120px);
+    bottom: clamp(50px, 10vh, 120px);
+    width: min(900px, 82vw);
+    color: var(--morph-cover-color);
+  }
+
+  .morph-story__eyebrow,
+  .morph-story__card-eyebrow {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .morph-story__cover-content h1 {
+    max-width: var(--morph-cover-title-width);
+    margin: 0;
+    color: var(--morph-cover-title-color);
+    font-size: var(--morph-cover-title-size);
+    line-height: 0.94;
+    letter-spacing: -0.065em;
+    text-wrap: balance;
+    text-shadow: 0 3px 28px rgba(3, 8, 20, 0.34);
+  }
+
+  .morph-story__cover-content p {
+    max-width: 620px;
+    margin: 30px 0 0;
+    color: var(--morph-cover-description-color);
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    line-height: 1.65;
+    opacity: 0.75;
+    text-shadow: 0 2px 16px rgba(3, 8, 20, 0.46);
+  }
+
+  .morph-story__scroll-message {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 45px;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.55;
+  }
+
+  .morph-story__scroll-line {
+    width: 90px;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .morph-story__card {
+    position: absolute;
+    z-index: 30;
+    will-change: left, bottom, width, height, transform;
+    filter: drop-shadow(0 24px 70px rgba(0, 0, 0, 0.25));
+  }
+
+  .morph-story__card-shape {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    color: var(--morph-card-text-color);
+    background: linear-gradient(135deg, var(--morph-card-color, #05091f) 0%, color-mix(in srgb, var(--morph-card-color, #05091f) 92%, transparent) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    backdrop-filter: blur(8px);
+    will-change: clip-path;
+  }
+
+  .morph-story__panel {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .morph-story__panel--intro {
+    display: flex;
+    flex-direction: column;
+    padding: clamp(28px, 3vw, 50px);
+    padding-top: clamp(58px, 6vw, 94px);
+  }
+
+  .morph-story__intro-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: #05091f;
+    background: white;
+    border-radius: 50%;
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  .morph-story__intro-heading {
+    margin-top: clamp(24px, 3vw, 42px);
+    text-align: left;
+  }
+
+  .morph-story__intro-heading h2 {
+    margin: 0;
+    font-size: clamp(1.9rem, 3.2vw, 3.45rem);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+    text-transform: uppercase;
+    text-wrap: balance;
+  }
+
+  .morph-story__intro-copy {
+    align-self: auto;
+    margin-top: clamp(22px, 3vw, 38px);
+    max-width: 650px;
+  }
+
+  .morph-story__intro-copy p {
+    margin: 0;
+    color: var(--morph-card-muted-color);
+    font-size: clamp(0.9rem, 1.2vw, 1.15rem);
+    font-weight: 500;
+    line-height: 1.28;
+    text-transform: uppercase;
+  }
+
+  .morph-story__intro-footer {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 22px;
+    margin-top: auto;
+    padding-top: 28px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+  }
+
+  .morph-story__intro-rule {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .morph-story__panel--item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(28px, 3vw, 50px);
+    padding-top: clamp(58px, 6vw, 94px);
+  }
+
+  .morph-story__item-copy {
+    max-width: 100%;
+    max-height: 100%;
+
+    /*
+     * Nunca overflow-y:auto aquí: esta tarjeta vive dentro de una
+     * sección con scroll-jacking (GSAP ScrollTrigger + scrub). Un
+     * contenedor con scroll propio le roba el wheel al scroll de la
+     * página en cuanto el cursor pasa por encima, y el timeline
+     * pineado se traba. overflow:hidden solo recorta en el peor caso.
+     */
+    overflow: hidden;
+  }
+
+  .morph-story__item-copy h2 {
+    margin: 0;
+    font-size: clamp(1.4rem, 2.4vw, 2.6rem);
+    font-weight: 400;
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    text-transform: uppercase;
+  }
+
+  .morph-story__item-copy p {
+    max-width: 560px;
+    margin: 20px 0 0;
+    color: var(--morph-card-muted-color);
+    font-size: clamp(0.85rem, 1vw, 1rem);
+    line-height: 1.45;
+  }
+
+  .morph-story__item-list {
+    max-width: 560px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .morph-story__item-list li {
+    position: relative;
+    padding-left: 18px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: clamp(0.78rem, 0.95vw, 0.92rem);
+    line-height: 1.4;
+  }
+
+  .morph-story__item-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.7;
+  }
+
+  .morph-story__item-note {
+    max-width: 560px;
+    margin: 18px 0 0;
+    padding: 0.85rem 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.82);
+    font-size: clamp(0.78rem, 0.95vw, 0.9rem);
+    line-height: 1.4;
+  }
+
+  .morph-story__item-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .morph-story__counter {
+    display: flex;
+    gap: 14px;
+    font-size: 0.78rem;
+    font-weight: 500;
+  }
+
+  .morph-story__counter span:nth-child(2) {
+    opacity: 0.36;
+  }
+
+  @media (max-width: 900px) {
+    .morph-story__panel--intro {
+      grid-template-columns: 64px 1fr;
+      column-gap: 18px;
+      padding: 72px 30px 34px;
+    }
+
+    .morph-story__intro-heading h2 {
+      font-size: clamp(2.4rem, 8vw, 5rem);
+    }
+
+    .morph-story__intro-copy {
+      grid-column: 1 / -1;
+    }
+
+    .morph-story__panel--item {
+      padding: 80px 34px 34px;
+    }
+
+    .morph-story__item-copy {
+      max-width: 78%;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .morph-story__cover-content {
+      left: 22px;
+      right: 22px;
+      bottom: 70px;
+      width: auto;
+    }
+
+    .morph-story__cover-content h1 {
+      font-size: clamp(3rem, 15vw, 5rem);
+    }
+
+    .morph-story__cover-content p {
+      font-size: 0.95rem;
+    }
+
+    .morph-story__panel--intro {
+      display: flex;
+      flex-direction: column;
+      padding: 62px 20px 24px;
+    }
+
+    .morph-story__intro-number {
+      width: 27px;
+      height: 27px;
+    }
+
+    .morph-story__intro-heading {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .morph-story__intro-heading h2 {
+      font-size: clamp(2.15rem, 12vw, 3.8rem);
+    }
+
+    .morph-story__intro-copy {
+      margin-top: auto;
+    }
+
+    .morph-story__intro-footer {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .morph-story__panel--item {
+      padding: 62px 20px 24px;
+    }
+
+    .morph-story__item-copy {
+      max-width: 92%;
+    }
+
+    .morph-story__item-copy h2 {
+      font-size: clamp(1.2rem, 6vw, 1.7rem);
+    }
+
+    .morph-story__item-copy p {
+      margin-top: 14px;
+      font-size: 0.78rem;
+    }
+
+    .morph-story__item-list {
+      margin-top: 10px;
+      gap: 4px;
+    }
+
+    .morph-story__item-list li {
+      font-size: 0.72rem;
+    }
+
+    .morph-story__item-note {
+      margin-top: 10px;
+      padding: 0.6rem 0.75rem;
+      font-size: 0.72rem;
+    }
+  }
+</style>

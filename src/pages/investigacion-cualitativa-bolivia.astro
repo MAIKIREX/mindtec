@@ -1,494 +1,1798 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import NeuroOrbitLogo from "../components/visual/NeuroOrbitLogo.astro";
+import ScrollStoryLeft from "../components/scroll/ScrollStoryLeft.astro";
+import ScrollStory from "../components/scroll/ScrollStory.astro";
+import ScrollReveal from "../components/scroll/ScrollReveal.astro";
+import StackedSections from "../components/scroll/StackedSections.astro";
+import HoverStepCards from "../components/cards/HoverStepCards.astro";
+import FaqSplit from "../components/faq/FaqSplit.astro";
+import AreaPanelCards from "../components/cards/AreaPanelCards.astro";
+import ComparisonRows from "../components/cards/ComparisonRows.astro";
+
+const problemScenarios = [
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="96"></circle><path d="M128 72v56l40 24"></path></svg>`,
+    title:
+      "Lanzó un producto que `el mercado quería` según la encuesta, y no vendió lo esperado",
+    description:
+      "Lanzó un producto que `el mercado quería` según la encuesta, y no vendió lo esperado. La intención declarada no es comportamiento real. La cualitativa revela la brecha entre lo que la gente dice y lo que hace",
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><circle cx="128" cy="128" r="88"></circle><circle cx="128" cy="128" r="48"></circle><circle cx="128" cy="128" r="8"></circle></svg>`,
+    title: "Su campaña fue bien producida pero no conectó emocionalmente",
+    description:
+      "Su campaña fue bien producida pero no conectó emocionalmente. Sin exploración cualitativa previa, los territorios creativos se construyen sobre suposiciones del equipo, no sobre insights reales del consumidor",
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M116 156a40 40 0 1 1 40-40"></path><path d="M172 172l40 40"></path><path d="M148 108h-4v16"></path></svg>`,
+    title: "Percepción sin medición",
+    description:
+      "No entiende por qué un segmento específico rechaza su marca a pesar de tener buen producto y precio. Las barreras de adopción raramente son racionales — son simbólicas, culturales o emocionales.",
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M96 32h64l16 24H80z"></path><rect x="56" y="56" width="144" height="168" rx="8"></rect><path d="M92 112h72M92 144h72M92 176h40"></path></svg>`,
+    title: "Evidencia insuficiente",
+    description:
+      "Tiene datos de lo que el consumidor hace, pero no sabe qué lo motiva realmente a elegirle. Y sin ese insight, no puede construir una propuesta de valor diferenciada",
+  },
+];
+
+const comparisonRows = [
+  {
+    before: "Modera un psicólogo o comunicador con guía de tópicos",
+    after:
+      "Equipo interdisciplinario (psicoantropólogo + analista de comportamiento) con protocolo Sensitive Groups de 3 niveles: racional, emocional e inconsciente",
+  },
+  {
+    before: "Análisis basado en lo que los participantes verbalizan",
+    after:
+      "Análisis semántico con IA + codificación facial en tiempo real para detectar respuestas emocionales no verbalizadas",
+  },
+  {
+    before: "Mismo protocolo para todas las regiones de Bolivia",
+    after:
+      "MetodProtocolo adaptado por código cultural regional: no se modera igual en El Alto que en Santa Cruz o Cochabamba ",
+  },
+  {
+    before: "Reporte descriptivo de lo que se dijo en la sesión",
+    after: "Interpretación estratégica: qué implica cada hallazgo para ",
+  },
+  {
+    before: "Datos declarativos puros (lo que la gente dice)",
+    after:
+      "Validación cruzada con biometría y datos observacionales cuando la intención declarada no basta u posicionamiento, mensaje y propuesta de valor",
+  },
+  {
+    before: "Los participantes declaran lo que creen que quieren decir",
+    after:
+      "Técnicas proyectivas y de asociación simbólica para acceder a motivaciones no conscientes que la pregunta directa no revela",
+  },
+];
+
+const faqItems = [
+  {
+    question:
+      "¿Cuándo es más útil la investigación cualitativa que la cuantitativa?",
+    answer:
+      "La investigación cualitativa es superior cuando necesita entender el por qué detrás de un comportamiento, no solo el qué o el cuánto. Es ideal para: explorar territorios de marca, entender barreras de adopción, identificar motivadores no declarados de compra, desarrollar conceptos antes de testearlos cuantitativamente, o diagnosticar por qué una campaña no conectó con el consumidor boliviano.",
+  },
+  {
+    question: "¿Qué es la psicoantropología y cómo se aplica en Bolivia?",
+    answer:
+      "La psicoantropología combina psicología del comportamiento con antropología cultural para entender cómo los códigos culturales bolivianos influyen en las decisiones de compra. Mindtec es la única firma en Bolivia que aplica esta disciplina de forma sistemática en investigación de mercados, identificando los significados simbólicos que determinan la preferencia de marca en cada región.",
+  },
+  {
+    question: "¿Cuántos grupos focales necesita un estudio cualitativo?",
+    answer:
+      "Depende de la heterogeneidad de su mercado objetivo. Un estudio básico en una ciudad con un segmento homogéneo puede requerir 2 grupos. Un estudio que compare segmentos por ciudad, género o nivel socioeconómico puede necesitar entre 6 y 12 grupos para alcanzar saturación teórica. Diseñamos el número óptimo para responder su pregunta de investigación sin desperdiciar presupuesto.",
+  },
+  {
+    question: "¿Cuánto tarda una investigación cualitativa en Bolivia?",
+    answer:
+      "Un estudio cualitativo estándar (2–4 grupos focales en una ciudad) tarda entre 3 y 5 semanas. Estudios etnográficos o de mayor alcance geográfico pueden requerir de 6 a 10 semanas. La profundidad que requiere el análisis de psicoantropología toma tiempo, pero garantiza hallazgos que las encuestas nunca revelarán.",
+  },
+  {
+    question: "¿Cómo integra Mindtec la IA en la investigación cualitativa?",
+    answer:
+      "Usamos IA para el análisis semántico de transcripciones, análisis facial en tiempo real durante las sesiones para detectar respuestas emocionales no verbalizadas, y síntesis asistida de grandes volúmenes de material etnográfico. Esto acelera el análisis sin sacrificar la profundidad interpretativa del equipo humano.",
+  },
+];
 
 const title = "Investigación Cualitativa en Bolivia | Mindtec";
-const description = "Investigación cualitativa en Bolivia: focus groups y etnografía para descubrir insights y los motivadores reales del consumidor boliviano. Mindtec.";
+const description =
+  "Investigación cualitativa en Bolivia: focus groups y etnografía para descubrir insights y los motivadores reales del consumidor boliviano. Mindtec.";
+
+const relatedProductsCards = [
+  {
+    href: "/investigacion-cuantitativa-bolivia",
+    eyebrow: "Investigación Cuantitativa",
+    title: "Investigación Cuantitativa",
+    description:
+      "Cuando ya sabe el por qué, mida el cuánto con encuestas representativas y análisis estadístico.",
+  },
+  {
+    href: "/focus-group-bolivia",
+    eyebrow: "Sensitive Groups",
+    title: "Focus Group",
+    description:
+      "La evolución del focus group tradicional: 3 niveles de análisis con psicoantropología e IA.",
+  },
+  {
+    href: "/neuromarketing-bolivia",
+    eyebrow: "Biometría & Neurociencia",
+    title: "Neuromarketing",
+    description:
+      "Mida lo que el consumidor no puede verbalizar: atención, emoción y respuesta no consciente con biometría.",
+  },
+];
 ---
 
 <Layout
   title={title}
   description={description}
   headerLightBg={false}
-  canonicalUrl="/investigacion-cualitativa-bolivia/"
+  canonicalUrl="/investigacion-cualitativa-bolivia"
 >
   <script type="application/ld+json" slot="head">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Service",
-        "@id": "https://www.mindtecbolivia.com/investigacion-cualitativa-bolivia",
-        "name": "Investigación Cualitativa en Bolivia",
-        "description": "Servicio de investigación cualitativa en Bolivia: grupos focales, etnografía, entrevistas en profundidad y psicoantropología para entender motivaciones, barreras y comportamientos del consumidor boliviano.",
-        "provider": {
-          "@type": "Organization",
-          "name": "Mindtec Bolivia",
-          "url": "https://www.mindtecbolivia.com"
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Service",
+          "@id": "https://www.mindtecbolivia.com/investigacion-cualitativa-bolivia",
+          "name": "Investigación Cualitativa en Bolivia",
+          "description": "Servicio de investigación cualitativa en Bolivia: grupos focales, etnografía, entrevistas en profundidad y psicoantropología para entender motivaciones, barreras y comportamientos del consumidor boliviano.",
+          "provider": {
+            "@type": "Organization",
+            "name": "Mindtec Bolivia",
+            "url": "https://www.mindtecbolivia.com"
+          },
+          "areaServed": { "@type": "Country", "name": "Bolivia" },
+          "serviceType": "Investigación Cualitativa / Grupos Focales / Etnografía",
+          "url": "https://www.mindtecbolivia.com/investigacion-cualitativa-bolivia"
         },
-        "areaServed": {"@type": "Country", "name": "Bolivia"},
-        "serviceType": "Investigación Cualitativa / Grupos Focales / Etnografía",
-        "url": "https://www.mindtecbolivia.com/investigacion-cualitativa-bolivia"
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "¿Cuándo es más útil la investigación cualitativa que la cuantitativa?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "La investigación cualitativa es superior cuando necesita entender el por qué detrás de un comportamiento, no solo el qué o el cuánto. Es ideal para: explorar territorios de marca, entender barreras de adopción, identificar motivadores no declarados de compra, desarrollar conceptos antes de testearlos cuantitativamente, o diagnosticar por qué una campaña no conectó con el consumidor boliviano."
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "¿Cuándo es más útil la investigación cualitativa que la cuantitativa?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "La investigación cualitativa es superior cuando necesita entender el por qué detrás de un comportamiento, no solo el qué o el cuánto. Es ideal para: explorar territorios de marca, entender barreras de adopción, identificar motivadores no declarados de compra, desarrollar conceptos antes de testearlos cuantitativamente, o diagnosticar por qué una campaña no conectó con el consumidor boliviano."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Qué es la psicoantropología y cómo se aplica en la investigación de mercados en Bolivia?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "La psicoantropología combina psicología del comportamiento con antropología cultural para entender cómo los códigos culturales bolivianos — desde la cosmovisión andina hasta las identidades urbanas de Santa Cruz o El Alto — influyen en las decisiones de compra. Mindtec es la única firma en Bolivia que aplica esta disciplina de forma sistemática en investigación de mercados, permitiendo identificar los significados simbólicos que determinan la preferencia de marca en cada región."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cuántos grupos focales necesita un estudio cualitativo?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Depende de la heterogeneidad de su mercado objetivo. Un estudio básico en una ciudad con un segmento homogéneo puede requerir 2 grupos. Un estudio que compare segmentos por ciudad, género o nivel socioeconómico puede necesitar entre 6 y 12 grupos para alcanzar saturación teórica. Diseñamos el número óptimo para responder su pregunta de investigación sin desperdiciar presupuesto."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cuánto tarda una investigación cualitativa en Bolivia?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Un estudio cualitativo estándar (2–4 grupos focales en una ciudad) tarda entre 3 y 5 semanas. Estudios etnográficos o de mayor alcance geográfico pueden requerir de 6 a 10 semanas. La profundidad que requiere un análisis de psicoantropología toma tiempo, pero garantiza hallazgos que las encuestas nunca revelarán."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "¿Cómo integra Mindtec la IA en la investigación cualitativa?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Usamos IA para el análisis semántico de transcripciones (identificación de patrones de lenguaje, emociones y discursos recurrentes), análisis facial en tiempo real durante las sesiones para detectar respuestas emocionales no verbalizadas, y síntesis asistida de grandes volúmenes de material etnográfico. Esto acelera el análisis sin sacrificar la profundidad interpretativa del equipo humano."
+              }
             }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Qué es la psicoantropología y cómo se aplica en la investigación de mercados en Bolivia?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "La psicoantropología combina psicología del comportamiento con antropología cultural para entender cómo los códigos culturales bolivianos — desde la cosmovisión andina hasta las identidades urbanas de Santa Cruz o El Alto — influyen en las decisiones de compra. Mindtec es la única firma en Bolivia que aplica esta disciplina de forma sistemática en investigación de mercados, permitiendo identificar los significados simbólicos que determinan la preferencia de marca en cada región."
+          ]
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Inicio",
+              "item": "https://www.mindtecbolivia.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Servicios",
+              "item": "https://www.mindtecbolivia.com/servicios"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Investigación Cualitativa en Bolivia",
+              "item": "https://www.mindtecbolivia.com/investigacion-cualitativa-bolivia"
             }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Cuántos grupos focales necesita un estudio cualitativo?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Depende de la heterogeneidad de su mercado objetivo. Un estudio básico en una ciudad con un segmento homogéneo puede requerir 2 grupos. Un estudio que compare segmentos por ciudad, género o nivel socioeconómico puede necesitar entre 6 y 12 grupos para alcanzar saturación teórica. Diseñamos el número óptimo para responder su pregunta de investigación sin desperdiciar presupuesto."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Cuánto tarda una investigación cualitativa en Bolivia?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Un estudio cualitativo estándar (2–4 grupos focales en una ciudad) tarda entre 3 y 5 semanas. Estudios etnográficos o de mayor alcance geográfico pueden requerir de 6 a 10 semanas. La profundidad que requiere un análisis de psicoantropología toma tiempo, pero garantiza hallazgos que las encuestas nunca revelarán."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Cómo integra Mindtec la IA en la investigación cualitativa?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Usamos IA para el análisis semántico de transcripciones (identificación de patrones de lenguaje, emociones y discursos recurrentes), análisis facial en tiempo real durante las sesiones para detectar respuestas emocionales no verbalizadas, y síntesis asistida de grandes volúmenes de material etnográfico. Esto acelera el análisis sin sacrificar la profundidad interpretativa del equipo humano."
-            }
-          }
-        ]
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.mindtecbolivia.com/"},
-          {"@type": "ListItem", "position": 2, "name": "Servicios", "item": "https://www.mindtecbolivia.com/servicios"},
-          {"@type": "ListItem", "position": 3, "name": "Investigación Cualitativa en Bolivia", "item": "https://www.mindtecbolivia.com/investigacion-cualitativa-bolivia"}
-        ]
-      }
-    ]
-  }
+          ]
+        }
+      ]
+    }
   </script>
 
   <main>
-
-
-    <!-- 1. HERO -->
-    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
-      <div class="hero-shapes" aria-hidden="true">
-        <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
-        <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
-        <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
-        <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
-        <div class="hero-shape"></div><div class="hero-shape"></div><div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-      </div>
-      <div class="hero-mobile-canvas" id="hero-mobile-canvas" aria-hidden="true"></div>
-      <div class="container hero-container">
-        <div class="hero-content">
-          <span class="eyebrow fade-in">GRUPOS FOCALES · ETNOGRAFÍA · ENTREVISTAS EN PROFUNDIDAD · PSICOANTROPOLOGÍA</span>
-          <span class="freshness-tag">Actualizado: julio 2026</span>
-          <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;">
-            Investigación Cualitativa en Bolivia — Descubra el por qué detrás de cada decisión de compra.
-          </h1>
-          <div class="direct-answer-box">
-            <strong>En resumen</strong>
-            <p>Mindtec ofrece investigación cualitativa en Bolivia (grupos focales, etnografía, entrevistas en profundidad y psicoantropología) para entender motivaciones, barreras y comportamientos del consumidor boliviano.</p>
+    <StackedSections>
+      <!-- 1. HERO -->
+      <section
+        class="hero-section"
+        style="padding-bottom: 4rem; padding-top: 4rem;"
+        data-stack-section
+      >
+        <div class="hero-shapes" aria-hidden="true">
+          <div class="hero-shape"></div><div class="hero-shape"></div><div
+            class="hero-shape"
+          >
           </div>
-          <p class="hero-subtitle" style="font-size: 1.25rem; margin-bottom: 1.5rem; max-width: 800px;">
-            Grupos focales, etnografía, entrevistas en profundidad y psicoantropología aplicada al mercado boliviano. Metodología Sensitive Groups para acceder a lo que el consumidor no dice pero siente.
-          </p>
-          <p style="font-size: 1.05rem; color: rgba(255,255,255,0.75); max-width: 800px; margin-bottom: 2.5rem;">
-            La encuesta le dice cuántos. La investigación cualitativa le dice por qué. Y en un mercado con la diversidad cultural de Bolivia, el por qué cambia radicalmente entre Santa Cruz, La Paz y El Alto.
-          </p>
-          <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2.5rem;">
-            <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Grupos focales · Etnografía</span>
-            <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Entrevistas en profundidad</span>
-            <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Psicoantropología boliviana</span>
-            <span style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Análisis de IA en tiempo real</span>
+          <div class="hero-shape"></div><div class="hero-shape"></div><div
+            class="hero-shape"
+          >
           </div>
-          <a href="/contacto" class="btn btn-primary lg">Agendar diagnóstico estratégico (45 min) →</a>
+          <div class="hero-shape"></div><div class="hero-shape"></div><div
+            class="hero-shape"
+          >
+          </div>
+          <div class="hero-shape"></div><div class="hero-shape"></div><div
+            class="hero-shape"
+          >
+          </div>
+          <div class="hero-shape"></div><div class="hero-shape"></div><div
+            class="hero-shape"
+          >
+          </div>
+          <div class="hero-shape"></div>
         </div>
-        <div class="hero-visual">
-          <div class="glass-card main-visual">
-            <div class="neuro-visual-bg"></div>
+        <div
+          class="hero-mobile-canvas"
+          id="hero-mobile-canvas"
+          aria-hidden="true"
+        >
+        </div>
+        <div class="container hero-container">
+          <div class="hero-content">
+            <span class="eyebrow fade-in"
+              >GRUPOS FOCALES · ETNOGRAFÍA · ENTREVISTAS EN PROFUNDIDAD ·
+              PSICOANTROPOLOGÍA</span
+            >
+            <span class="freshness-tag">Actualizado: julio 2026</span>
+            <h1
+              class="hero-title"
+              style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;"
+            >
+              Investigación Cualitativa en Bolivia — Descubra el por qué detrás
+              de cada decisión de compra.
+            </h1>
+          </div>
+          <div
+            class="hero-visual"
+            style="display: flex; align-items: center; justify-content: center; max-width: 100%; overflow: visible;"
+          >
+            <div
+              class="hero-visual-slot"
+              data-logo-slot="start"
+              style="width: min(52vw, 560px); aspect-ratio: 1;"
+            >
+              <NeuroOrbitLogo
+                size="min(68vw, 720px)"
+                stageSize="clamp(260px, 30vw, 380px)"
+              />
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="generated-insight-section">
+      <!-- Nueva sección debajo del hero -->
+      <section
+        class="hero-details-section"
+        style="background: var(--color-secondary-deep, #061c2b); padding: 4rem 0;"
+        data-stack-section
+      >
+        <div class="container hero-details-grid">
+          <div class="hero-details-logo-slot" data-logo-slot="end"></div>
+          <div class="hero-details-text">
+            <div class="direct-answer-box">
+              <strong>En resumen</strong>
+              <p>
+                Mindtec ofrece investigación cualitativa en Bolivia (grupos
+                focales, etnografía, entrevistas en profundidad y
+                psicoantropología) para entender motivaciones, barreras y
+                comportamientos del consumidor boliviano.
+              </p>
+            </div>
+            <p
+              class="hero-subtitle"
+              style="font-size: 1.25rem; margin-bottom: 1.5rem; max-width: 600px; color: #fff; line-height: 1.6;"
+            >
+              Grupos focales, etnografía, entrevistas en profundidad y
+              psicoantropología aplicada al mercado boliviano. Metodología
+              Sensitive Groups para acceder a lo que el consumidor no dice pero
+              siente.
+            </p>
+            <p
+              style="font-size: 1.05rem; color: rgba(255,255,255,0.75); max-width: 600px; margin-bottom: 2.5rem; line-height: 1.7;"
+            >
+              La encuesta le dice cuántos. La investigación cualitativa le dice
+              por qué. Y en un mercado con la diversidad cultural de Bolivia, el
+              por qué cambia radicalmente entre Santa Cruz, La Paz y El Alto.
+            </p>
+            <div
+              style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 2.5rem;"
+            >
+              <span
+                style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;"
+                >Grupos focales · Etnografía</span
+              >
+              <span
+                style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;"
+                >Entrevistas en profundidad</span
+              >
+              <span
+                style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;"
+                >Psicoantropología boliviana</span
+              >
+              <span
+                style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: #fff; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;"
+                >Análisis de IA en tiempo real</span
+              >
+            </div>
+            <div style="text-align: center;">
+              <a href="/contacto" class="btn btn-primary lg"
+                >Agendar diagnóstico estratégico (45 min) →</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="generated-insight-section generated-insight-section--dark"
+        data-stack-section
+      >
+        <div
+          class="generated-insight-logo-slot"
+          data-logo-slot="mid"
+          aria-hidden="true"
+        >
+        </div>
+        <div class="container">
+          <div
+            class="section-title-center"
+            style="text-align: center; margin-bottom: 3rem;"
+          >
+            <span class="eyebrow">Focus groups profundos</span>
+            <h2
+              style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; color: #fff;"
+            >
+              De la conversación al insight que explica la decisión.
+            </h2>
+            <p
+              style="font-size: 1.05rem; max-width: 760px; margin: 1rem auto 0; line-height: 1.7; color: rgba(255,255,255,0.72);"
+            >
+              Las sesiones cualitativas se registran, codifican y sintetizan
+              para revelar tensiones culturales, motivadores no declarados y
+              oportunidades de posicionamiento.
+            </p>
+          </div>
+          <div class="generated-insight-grid">
+            <figure class="generated-insight-card">
+              <img
+                src="/imagenes-mindtec/generated/focus-group-profundo.webp"
+                alt="Focus group profundo con moderadora y participantes analizando conceptos de mercado"
+                loading="lazy"
+              />
+              <figcaption>
+                <span>Sesión profunda</span>
+                <strong
+                  >Moderación sensible al contexto cultural y a respuestas no
+                  verbales.</strong
+                >
+              </figcaption>
+            </figure>
+            <figure class="generated-insight-card">
+              <img
+                src="/imagenes-mindtec/generated/focus-group-analisis-ia.webp"
+                alt="Analisis cualitativo con mapas de afinidad, transcripciones y dashboard semantico"
+                loading="lazy"
+              />
+              <figcaption>
+                <span>Análisis real</span>
+                <strong
+                  >Mapas de afinidad, patrones semánticos y síntesis para
+                  decisiones de marca.</strong
+                >
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+    </StackedSections>
+
+    <!-- 2. EL PROBLEMA / MINDTEC+ -->
+    <section class="bg-slate" style="padding: 5rem 0;" data-stack-section>
       <div class="container">
-        <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
-          <span class="eyebrow">Focus groups profundos</span>
-          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">De la conversación al insight que explica la decisión.</h2>
-          <p class="text-gray-dark" style="font-size: 1.05rem; max-width: 760px; margin: 1rem auto 0; line-height: 1.7;">Las sesiones cualitativas se registran, codifican y sintetizan para revelar tensiones culturales, motivadores no declarados y oportunidades de posicionamiento.</p>
-        </div>
-        <div class="generated-insight-grid">
-          <figure class="generated-insight-card">
-            <img src="/imagenes-mindtec/generated/focus-group-profundo.webp" alt="Focus group profundo con moderadora y participantes analizando conceptos de mercado" loading="lazy">
-            <figcaption>
-              <span>Sesión profunda</span>
-              <strong>Moderación sensible al contexto cultural y a respuestas no verbales.</strong>
-            </figcaption>
-          </figure>
-          <figure class="generated-insight-card">
-            <img src="/imagenes-mindtec/generated/focus-group-analisis-ia.webp" alt="Analisis cualitativo con mapas de afinidad, transcripciones y dashboard semantico" loading="lazy">
-            <figcaption>
-              <span>Análisis real</span>
-              <strong>Mapas de afinidad, patrones semánticos y síntesis para decisiones de marca.</strong>
-            </figcaption>
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- 2. EL PROBLEMA -->
-    <section class="problem-section bg-slate" style="padding: 5rem 0;">
-      <div class="container">
-        <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
+        <div style="max-width: 900px; margin: 0 auto;">
           <span class="eyebrow">EL PROBLEMA REAL</span>
-          <h2 class="text-navy" style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;">Saber cuántos no es suficiente. Las empresas pierden dinero porque no entienden por qué.</h2>
-          <p class="text-gray-dark leading-relaxed" style="font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.7;">
-            Una encuesta puede decirle que el 68% de su mercado objetivo "probablemente compraría" su producto. Pero no puede decirle por qué el 32% restante lo rechaza, qué barrera emocional impide que los indecisos actúen, ni qué código cultural hace que su mensaje funcione en Santa Cruz pero falle en La Paz.
+          <h2
+            class="text-navy"
+            style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;"
+          >
+            Saber cuántos no es suficiente. Las empresas pierden dinero porque
+            no entienden por qué.
+          </h2>
+          <p
+            class="text-gray-dark leading-relaxed"
+            style="font-size: 1.15rem; margin-bottom: 1.5rem; line-height: 1.7;"
+          >
+            Una encuesta puede decirle que el 68% de su mercado objetivo
+            "probablemente compraría" su producto. Pero no puede decirle por qué
+            el 32% restante lo rechaza, qué barrera emocional impide que los
+            indecisos actúen, ni qué código cultural hace que su mensaje
+            funcione en Santa Cruz pero falle en La Paz.
           </p>
-          <p class="text-gray-dark leading-relaxed" style="font-size: 1.05rem; margin-bottom: 2rem; line-height: 1.7;">
+          <p
+            class="text-gray-dark leading-relaxed"
+            style="font-size: 1.05rem; line-height: 1.7;"
+          >
             ¿Reconoce alguno de estos escenarios?
           </p>
-          <ul class="cap-list" style="font-size: 1.05rem; margin-bottom: 2rem;">
-            <li><strong class="text-navy">Lanzó un producto que "el mercado quería" según la encuesta, y no vendió lo esperado.</strong> La intención declarada no es comportamiento real. La cualitativa revela la brecha entre lo que la gente dice y lo que hace.</li>
-            <li><strong class="text-navy">Su campaña fue bien producida pero no conectó emocionalmente.</strong> Sin exploración cualitativa previa, los territorios creativos se construyen sobre suposiciones del equipo, no sobre insights reales del consumidor.</li>
-            <li><strong class="text-navy">No entiende por qué un segmento específico rechaza su marca a pesar de tener buen producto y precio.</strong> Las barreras de adopción raramente son racionales — son simbólicas, culturales o emocionales.</li>
-            <li><strong class="text-navy">Tiene datos de lo que el consumidor hace, pero no sabe qué lo motiva realmente a elegirle.</strong> Y sin ese insight, no puede construir una propuesta de valor diferenciada.</li>
-          </ul>
-          <div style="background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: 8px; font-weight: 600; font-size: 1.1rem; text-align: center;">
-            El consumidor boliviano no compra productos. Compra significados, identidades y soluciones a tensiones que ni él mismo verbaliza.
-          </div>
+        </div>
+
+        <AreaPanelCards
+          items={problemScenarios}
+          columns={4}
+          theme="navy"
+          class="problem-panels"
+        />
+
+        <div
+          style="max-width: 900px; margin: 2.5rem auto 0; background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: var(--radius-md, 8px); font-weight: 600; font-size: 1.1rem; text-align: center;"
+        >
+          El consumidor boliviano no compra productos. Compra significados,
+          identidades y soluciones a tensiones que ni él mismo verbaliza.
         </div>
       </div>
     </section>
 
     <!-- 3. MINDTEC+ -->
-    <section style="padding: 5rem 0; background: #fff;">
+    <section style="padding: 5rem 0; background: #fff;" data-stack-section>
       <div class="container">
-        <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
+        <div
+          class="section-title-center"
+          style="text-align: center; margin-bottom: 3rem;"
+        >
           <span class="eyebrow">MINDTEC+</span>
-          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;">Investigación cualitativa con psicoantropología boliviana e inteligencia artificial.</h2>
+          <h2
+            class="text-navy"
+            style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem; margin-bottom: 1rem;"
+          >
+            Más que un recopilador de encuestas: inteligencia estratégica
+            respaldada por infraestructura de campo nacional.
+          </h2>
         </div>
-        <div class="comparison-table-wrapper">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th scope="col">Focus group tradicional</th>
-                <th scope="col">Mindtec — Metodología Sensitive Groups</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Modera un psicólogo o comunicador con guía de tópicos</td>
-                <td>Equipo interdisciplinario (psicoantropólogo + analista de comportamiento) con protocolo Sensitive Groups de 3 niveles: racional, emocional e inconsciente</td>
-              </tr>
-              <tr>
-                <td>Análisis basado en lo que los participantes verbalizan</td>
-                <td>Análisis semántico con IA + codificación facial en tiempo real para detectar respuestas emocionales no verbalizadas</td>
-              </tr>
-              <tr>
-                <td>Mismo protocolo para todas las regiones de Bolivia</td>
-                <td>Protocolo adaptado por código cultural regional: no se modera igual en El Alto que en Santa Cruz o Cochabamba</td>
-              </tr>
-              <tr>
-                <td>Reporte descriptivo de lo que se dijo en la sesión</td>
-                <td>Interpretación estratégica: qué implica cada hallazgo para su posicionamiento, mensaje y propuesta de valor</td>
-              </tr>
-              <tr>
-                <td>Los participantes declaran lo que creen que quieren decir</td>
-                <td>Técnicas proyectivas y de asociación simbólica para acceder a motivaciones no conscientes que la pregunta directa no revela</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="text-gray-dark" style="font-size: 1.05rem; margin-top: 2rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.7;">
-          No es un grupo de conversación. Es una metodología de decodificación cultural aplicada al consumidor boliviano.
+
+        <ComparisonRows
+          columnLabels={{
+            left: "Focus group tradicional",
+            right: "Mindtec — Metodología Sensitive Groups",
+          }}
+          rows={comparisonRows}
+        />
+
+        <p
+          class="text-gray-dark"
+          style="font-size: 1.05rem; margin-top: 1.5rem; max-width: 800px; margin-left: auto; margin-right: auto; text-align: center; line-height: 1.7;"
+        >
+          La diferencia no está en el tamaño de la muestra. Está en lo que
+          hacemos con los datos después de recolectarlos.
         </p>
       </div>
     </section>
 
-    <!-- 4. ENTREGABLES -->
-    <section class="problem-section bg-slate" style="padding: 5rem 0;">
-      <div class="container">
-        <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
-          <span class="eyebrow">QUÉ RECIBE</span>
-          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Entregables que desbloquean el insight que sus datos cuantitativos no explican.</h2>
-        </div>
-        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; list-style: none; padding: 0;">
-          <li class="premium-card-white" style="padding: 2rem;">
-            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Mapa de Motivaciones y Barreras</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Identificación de los motivadores conscientes e inconscientes de compra/rechazo por segmento. La base para construir una propuesta de valor que realmente resuena — no la que el equipo cree que resuena.</p>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem;">
-            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Decodificación Cultural por Región</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Análisis de cómo los códigos culturales bolivianos (andino, mestizo urbano, cruceño) modulan la percepción de su categoría y su marca. Fundamental antes de cualquier campaña nacional.</p>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem;">
-            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Territorios de Marca y Oportunidades de Posicionamiento</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Identificación de los espacios emocionales y simbólicos disponibles en su categoría que su marca puede ocupar de forma creíble y diferenciada frente a los competidores.</p>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem;">
-            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Evaluación de Conceptos o Creatividades</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Testeo cualitativo de conceptos de producto, nombres, empaques o piezas creativas antes de producción o lanzamiento. Detecta qué conecta, qué confunde y qué genera rechazo involuntario.</p>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem;">
-            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Grabaciones y Transcripciones Analizadas</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Acceso a material de sesiones con análisis semántico y de comportamiento no verbal, para que su equipo de marketing y comunicación pueda profundizar en el lenguaje real del consumidor.</p>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem;">
-            <h3 class="text-navy" style="font-size: 1.05rem; margin-bottom: 0.75rem;">Brief Estratégico para Creatividad y Comunicación</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Documento síntesis que traslada los hallazgos cualitativos en un brief accionable para agencias de publicidad, equipos de producto o dirección de marketing: el insight, la tensión, el territorio y el tono.</p>
-          </li>
-        </ul>
-        <p class="text-gray-dark" style="text-align: center; margin-top: 2rem; font-size: 0.95rem; font-weight: 600;">
-          Plazo de entrega: 3–8 semanas según alcance · Modalidades: presencial, online o etnografía en campo
-        </p>
-      </div>
-    </section>
+    <!-- 4. ENTREGABLES: contenido visual actualizado -->
+    <ScrollStoryLeft
+      scrub={0.9}
+      sceneDistance={1.1}
+      cardBackground="#f7f7f5"
+      cardTextColor="#0B2B40"
+      cardMutedColor="rgba(11, 43, 64, 0.62)"
+      cover={{
+        background:
+          "/imagenes-mindtec/generated/investigacion-cualitativa/entregables-cover-bolivia.png",
+        eyebrow: "Qué recibe",
+        title: "El insight que sus datos cuantitativos no explican.",
+        description:
+          "Documentos y análisis diseñados para traducir la conversación cualitativa en decisiones de marca.",
+      }}
+      intro={{
+        background:
+          "/imagenes-mindtec/generated/investigacion-cualitativa/entregables-intro-bolivia.png",
+        number: "00",
+        eyebrow: "Plazo de entrega",
+        title:
+          "3–8 semanas según alcance. Presencial, online o etnografía en campo.",
+        description:
+          "Recorra los seis entregables que puede esperar de un estudio cualitativo Mindtec.",
+      }}
+      items={[
+        {
+          background:
+            "/imagenes-mindtec/generated/investigacion-cualitativa/entregable-01-mapa-motivaciones-barreras-bolivia.webp",
+          eyebrow: "Insight",
+          title: "Mapa de Motivaciones y Barreras",
+          description:
+            "Motivadores conscientes e inconscientes de compra o rechazo, por segmento.",
+          icon: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle><path d="M12 1v3M12 20v3M1 12h3M20 12h3"></path><path d="M10 12l1.4 1.4L15 9.8"></path></svg>`,
+        },
+        {
+          background:
+            "/imagenes-mindtec/generated/investigacion-cualitativa/entregable-02-decodificacion-cultural-bolivia.webp",
+          eyebrow: "Cultura",
+          title: "Decodificación Cultural por Región",
+          description:
+            "Cómo los códigos culturales bolivianos modulan la percepción de su marca.",
+          icon: `<svg viewBox="0 0 24 24"><path d="M4 18.5c2.4-5.7 5.1-9.5 8-13 2.9 3.5 5.6 7.3 8 13"></path><path d="M4 18.5h16"></path><path d="M8 15.5h8"></path><circle cx="8" cy="9" r="1"></circle><circle cx="16" cy="11.5" r="1"></circle><circle cx="12" cy="15.5" r="1"></circle></svg>`,
+        },
+        {
+          background:
+            "/imagenes-mindtec/generated/investigacion-cualitativa/entregable-03-territorios-marca-bolivia.webp",
+          eyebrow: "Posicionamiento",
+          title: "Territorios de Marca y Oportunidades",
+          description:
+            "Espacios emocionales y simbólicos que su marca puede ocupar de forma creíble.",
+          icon: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"></circle><path d="m14.8 9.2-2 5.6-5.6 2 2-5.6z"></path><path d="M12 4v2M20 12h-2M12 20v-2M4 12h2"></path></svg>`,
+        },
+        {
+          background:
+            "/imagenes-mindtec/generated/investigacion-cualitativa/entregable-04-evaluacion-conceptos-bolivia.webp",
+          eyebrow: "Testeo",
+          title: "Evaluación de Conceptos o Creatividades",
+          description:
+            "Testeo cualitativo de conceptos, nombres, empaques o piezas creativas.",
+          icon: `<svg viewBox="0 0 24 24"><rect x="4" y="5" width="7" height="14" rx="1"></rect><rect x="13" y="5" width="7" height="14" rx="1"></rect><path d="m6 14 1.5 1.5L10 12"></path><path d="m15 10 3 3M18 10l-3 3"></path></svg>`,
+        },
+        {
+          background:
+            "/imagenes-mindtec/generated/investigacion-cualitativa/entregable-05-grabaciones-transcripciones-bolivia.webp",
+          eyebrow: "Material",
+          title: "Grabaciones y Transcripciones Analizadas",
+          description:
+            "Sesiones con análisis semántico y de comportamiento no verbal.",
+          icon: `<svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M8 9v6M10 7v10M12 10v4M14 6v12M16 9v6"></path></svg>`,
+        },
+        {
+          background:
+            "/imagenes-mindtec/generated/investigacion-cualitativa/entregable-06-brief-estrategico-bolivia.webp",
+          eyebrow: "Síntesis",
+          title: "Brief Estratégico para Creatividad y Comunicación",
+          description:
+            "El insight, la tensión, el territorio y el tono en un documento accionable.",
+          icon: `<svg viewBox="0 0 24 24"><path d="M7 3h7l3 3v15H7z"></path><path d="M14 3v4h4M10 12h4M10 16h4"></path><path d="m9.5 8.5 1 1 2-2"></path></svg>`,
+        },
+      ]}
+    />
 
     <!-- 5. PROCESO -->
-    <section style="padding: 5rem 0; background: #f8fafc;">
-      <div class="container">
-        <div class="section-title-center" style="text-align: center; margin-bottom: 4rem;">
-          <span class="eyebrow">CÓMO FUNCIONA</span>
-          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Del diagnóstico al insight accionable en 4 pasos.</h2>
-        </div>
-        <ol style="list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
-          <li class="premium-card-white" style="padding: 2rem; position: relative;">
-            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">01</span>
-            <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Diagnóstico de la pregunta</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">45 min para identificar qué decisión de negocio necesita informar la investigación, qué segmentos priorizar y qué metodología cualitativa responde mejor: grupos focales, etnografía o entrevistas.</p>
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">45 min · sin costo</span>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem; position: relative;">
-            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">02</span>
-            <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Diseño metodológico y reclutamiento</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Definición del número y perfil de grupos o entrevistas, criterios de reclutamiento y guía de moderación con técnicas proyectivas específicas para el segmento. Reclutamiento de perfiles exactos.</p>
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">5–7 días hábiles</span>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem; position: relative;">
-            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">03</span>
-            <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Ejecución con análisis en tiempo real</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Moderación con equipo psicoantropológico, codificación facial asistida por IA durante las sesiones y análisis semántico de transcripciones. Captura tanto lo que se dice como lo que se siente.</p>
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">1–3 semanas</span>
-          </li>
-          <li class="premium-card-white" style="padding: 2rem; position: relative;">
-            <span style="font-size: 2.5rem; font-weight: 900; color: rgba(242,101,34,0.12); position: absolute; top: 1rem; right: 1.25rem; line-height: 1;">04</span>
-            <h3 class="text-navy" style="font-size: 1.1rem; margin-bottom: 0.75rem;">Síntesis y presentación estratégica</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; line-height: 1.6;">Reporte de hallazgos con interpretación estratégica y brief accionable para comunicación, producto o pricing. Presentación diseñada para el formato directivo con sesión de preguntas.</p>
-            <span style="font-size: 0.8rem; font-weight: 700; color: var(--color-primary);">7–10 días post-campo</span>
-          </li>
-        </ol>
-      </div>
-    </section>
+    <ScrollStory
+      scrub={0.85}
+      sceneDistance={1.1}
+      cover={{
+        background:
+          "/imagenes-mindtec/generated/investigacion-cualitativa/proceso-cover.webp",
+        eyebrow: "Cómo funciona",
+        title: "Del diagnóstico al insight accionable en 4 pasos.",
+        description:
+          "Un proceso metodológico que combina moderación humana, psicoantropología e IA en cada etapa.",
+      }}
+      intro={{
+        background:
+          "/imagenes-mindtec/generated/investigacion-cualitativa/proceso-intro.webp",
+        number: "00",
+        badge: "Proceso",
+        eyebrow: "Antes de empezar",
+        title:
+          "45 minutos para definir qué decisión necesita informar la investigación.",
+        description:
+          "Recorra las cuatro etapas, desde el diagnóstico hasta la presentación estratégica.",
+      }}
+      items={[
+        {
+          background:
+            "/imagenes-mindtec/generated/investigacion-cualitativa/proceso-01-diagnostico-pregunta.webp",
+          badge: "45 min · sin costo",
+          eyebrow: "Paso 01",
+          title: "Diagnóstico de la pregunta",
+          description:
+            "Identificamos la decisión de negocio y la metodología cualitativa adecuada.",
+          icon: "services",
+        },
+        {
+          background:
+            "/imagenes-mindtec/generated/investigacion-cualitativa/proceso-02-diseno-metodologico-reclutamiento.webp",
+          badge: "5–7 días hábiles",
+          eyebrow: "Paso 02",
+          title: "Diseño metodológico y reclutamiento",
+          description:
+            "Definimos grupos, perfiles y guía de moderación con técnicas proyectivas.",
+          icon: "road",
+        },
+        {
+          background:
+            "/imagenes-mindtec/generated/investigacion-cualitativa/proceso-03-ejecucion-analisis-tiempo-real.webp",
+          badge: "1–3 semanas",
+          eyebrow: "Paso 03",
+          title: "Ejecución con análisis en tiempo real",
+          description:
+            "Moderación psicoantropológica con codificación facial asistida por IA.",
+          icon: "building",
+        },
+        {
+          background:
+            "/imagenes-mindtec/generated/investigacion-cualitativa/proceso-04-sintesis-presentacion-estrategica.webp",
+          badge: "7–10 días post-campo",
+          eyebrow: "Paso 04",
+          title: "Síntesis y presentación estratégica",
+          description:
+            "Reporte con interpretación estratégica y brief accionable para su equipo.",
+          icon: "airport",
+        },
+      ]}
+    />
 
     <!-- 6. SECTORES -->
-    <section class="problem-section bg-slate" style="padding: 5rem 0;">
-      <div class="container">
-        <div class="section-title-center" style="text-align: center; margin-bottom: 3rem;">
-          <span class="eyebrow">SECTORES</span>
-          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">¿Su sector está aquí?</h2>
-        </div>
-        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; list-style: none; padding: 0;">
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Consumo masivo y retail</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Banca y servicios financieros</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Telecomunicaciones y tecnología</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Salud y farmacéutico</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Agroindustria y alimentos</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Educación e instituciones</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">Moda, belleza y estilo de vida</li>
-          <li class="premium-card-white" style="padding: 1.5rem; text-align: center; font-weight: 700; color: var(--color-secondary); font-size: 0.95rem;">ONGs y organismos internacionales</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- 7. FAQ -->
-    <section style="padding: 5rem 0; background: #fff;">
-      <div class="container" style="max-width: 800px;">
-        <div style="text-align: center; margin-bottom: 3rem;">
-          <span class="eyebrow">PREGUNTAS FRECUENTES</span>
-          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;">Lo que suelen preguntar antes de contratar.</h2>
-        </div>
-        <dl style="display: flex; flex-direction: column; gap: 1rem;">
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-1-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Cuándo es más útil la investigación cualitativa que la cuantitativa?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-1-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">La investigación cualitativa es superior cuando necesita entender el por qué detrás de un comportamiento, no solo el qué o el cuánto. Es ideal para: explorar territorios de marca, entender barreras de adopción, identificar motivadores no declarados de compra, desarrollar conceptos antes de testearlos cuantitativamente, o diagnosticar por qué una campaña no conectó con el consumidor boliviano.</p>
-            </dd>
+    <StackedSections>
+      <section
+        class="problem-section bg-slate"
+        style="padding: 5rem 0;"
+        data-stack-section
+      >
+        <div class="container">
+          <div
+            class="section-title-center"
+            style="text-align: center; margin-bottom: 3rem;"
+          >
+            <span class="eyebrow">SECTORES</span>
+            <h2
+              class="text-navy"
+              style="font-size: 2.2rem; line-height: 1.2; margin-top: 1rem;"
+            >
+              ¿Su sector está aquí?
+            </h2>
           </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-2-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Qué es la psicoantropología y cómo se aplica en Bolivia?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-2-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">La psicoantropología combina psicología del comportamiento con antropología cultural para entender cómo los códigos culturales bolivianos influyen en las decisiones de compra. Mindtec es la única firma en Bolivia que aplica esta disciplina de forma sistemática en investigación de mercados, identificando los significados simbólicos que determinan la preferencia de marca en cada región.</p>
-            </dd>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-3-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Cuántos grupos focales necesita un estudio cualitativo?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-3-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Depende de la heterogeneidad de su mercado objetivo. Un estudio básico en una ciudad con un segmento homogéneo puede requerir 2 grupos. Un estudio que compare segmentos por ciudad, género o nivel socioeconómico puede necesitar entre 6 y 12 grupos para alcanzar saturación teórica. Diseñamos el número óptimo para responder su pregunta de investigación sin desperdiciar presupuesto.</p>
-            </dd>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-4-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Cuánto tarda una investigación cualitativa en Bolivia?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-4-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Un estudio cualitativo estándar (2–4 grupos focales en una ciudad) tarda entre 3 y 5 semanas. Estudios etnográficos o de mayor alcance geográfico pueden requerir de 6 a 10 semanas. La profundidad que requiere el análisis de psicoantropología toma tiempo, pero garantiza hallazgos que las encuestas nunca revelarán.</p>
-            </dd>
-          </div>
-
-          <div class="premium-card-white" style="padding: 0; overflow: hidden;">
-            <dt>
-              <button aria-expanded="false" aria-controls="faq-5-respuesta" style="width: 100%; text-align: left; padding: 1.5rem 2rem; border: none; background: none; font-size: 1rem; font-weight: 700; color: var(--color-secondary); cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
-                ¿Cómo integra Mindtec la IA en la investigación cualitativa?
-                <span aria-hidden="true" style="font-size: 1.25rem; color: var(--color-primary);">+</span>
-              </button>
-            </dt>
-            <dd id="faq-5-respuesta" hidden style="padding: 0 2rem 1.5rem; margin: 0;">
-              <p class="text-gray-dark" style="font-size: 0.95rem; line-height: 1.7;">Usamos IA para el análisis semántico de transcripciones, análisis facial en tiempo real durante las sesiones para detectar respuestas emocionales no verbalizadas, y síntesis asistida de grandes volúmenes de material etnográfico. Esto acelera el análisis sin sacrificar la profundidad interpretativa del equipo humano.</p>
-            </dd>
-          </div>
-
-        </dl>
-      </div>
-    </section>
-
-    <!-- 8. PRUEBA SOCIAL -->
-    <section style="padding: 4rem 0; background: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
-      <div class="container" style="text-align: center; max-width: 800px;">
-        <p class="text-navy" style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1.5rem; line-height: 1.5;">
-          Equipos de marketing, producto y comunicación de empresas en Bolivia han usado la investigación cualitativa de Mindtec para desarrollar campañas, posicionar lanzamientos y entender por qué sus estrategias no estaban funcionando.
-        </p>
-        <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; justify-content: center;">
-          <span style="background: #fff; border: 1px solid #e2e8f0; color: #475569; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Consumo masivo</span>
-          <span style="background: #fff; border: 1px solid #e2e8f0; color: #475569; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Banca y finanzas</span>
-          <span style="background: #fff; border: 1px solid #e2e8f0; color: #475569; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Retail y moda</span>
-          <span style="background: #fff; border: 1px solid #e2e8f0; color: #475569; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">Salud y farmacéutico</span>
-          <span style="background: #fff; border: 1px solid #e2e8f0; color: #475569; padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600;">ONGs internacionales</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- 9. PRODUCTOS RELACIONADOS -->
-    <section style="padding: 5rem 0; background: #fff;">
-      <div class="container" style="max-width: 900px;">
-        <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">También puede interesarle</h3>
-        <ul style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; list-style: none; padding: 0;">
-          <li>
-            <a href="/investigacion-cuantitativa-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none'">
-              <h4 style="font-size: 1.05rem; color: var(--color-secondary); margin-bottom: 0.5rem;">Investigación Cuantitativa en Bolivia</h4>
-              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; line-height: 1.5;">Cuando ya sabe el por qué, mida el cuánto con encuestas representativas y análisis estadístico.</p>
-              <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem;">Explorar →</span>
+          <div class="areas-grid">
+            <a class="area-panel" href="/contacto">
+              <span class="area-panel__icon" aria-hidden="true"
+                ><svg
+                  viewBox="0 0 256 256"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path d="M64 96V72a64 64 0 0 1 128 0v24"></path><rect
+                    x="40"
+                    y="96"
+                    width="176"
+                    height="128"
+                    rx="8"></rect></svg
+                ></span
+              >
+              <span class="area-panel__title">Consumo masivo y retail</span>
+              <span class="area-panel__arrow" aria-hidden="true">→</span>
             </a>
-          </li>
-          <li>
-            <a href="/focus-group-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none'">
-              <h4 style="font-size: 1.05rem; color: var(--color-secondary); margin-bottom: 0.5rem;">Focus Group Bolivia — Metodología Sensitive Groups</h4>
-              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; line-height: 1.5;">La evolución del focus group tradicional: 3 niveles de análisis con psicoantropología e IA.</p>
-              <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem;">Explorar →</span>
+            <a class="area-panel" href="/contacto">
+              <span class="area-panel__icon" aria-hidden="true"
+                ><svg
+                  viewBox="0 0 256 256"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path d="M32 96h192L128 32z"></path><path
+                    d="M48 96v104M96 96v104M160 96v104M208 96v104"></path><path
+                    d="M32 224h192"></path></svg
+                ></span
+              >
+              <span class="area-panel__title"
+                >Banca y servicios financieros</span
+              >
+              <span class="area-panel__arrow" aria-hidden="true">→</span>
             </a>
-          </li>
-          <li>
-            <a href="/neuromarketing-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)'" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none'">
-              <h4 style="font-size: 1.05rem; color: var(--color-secondary); margin-bottom: 0.5rem;">Neuromarketing en Bolivia</h4>
-              <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 1rem; line-height: 1.5;">Mida lo que el consumidor no puede verbalizar: atención, emoción y respuesta no consciente con biometría.</p>
-              <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem;">Explorar →</span>
+            <a class="area-panel" href="/contacto">
+              <span class="area-panel__icon" aria-hidden="true"
+                ><svg
+                  viewBox="0 0 256 256"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><circle cx="128" cy="128" r="16"></circle><path
+                    d="M88 88a56 56 0 0 1 80 0"></path><path
+                    d="M64 64a92 92 0 0 1 128 0"></path><path
+                    d="M112 152a24 24 0 0 1 32 0"></path></svg
+                ></span
+              >
+              <span class="area-panel__title"
+                >Telecomunicaciones y tecnología</span
+              >
+              <span class="area-panel__arrow" aria-hidden="true">→</span>
             </a>
-          </li>
-        </ul>
-        <div style="text-align: center; margin-top: 2rem;">
-          <a href="/servicios" style="color: var(--color-primary); font-weight: 700; text-decoration: none; font-size: 0.95rem;">Ver todos los servicios →</a>
+            <a class="area-panel" href="/contacto">
+              <span class="area-panel__icon" aria-hidden="true"
+                ><svg
+                  viewBox="0 0 256 256"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><circle cx="128" cy="128" r="96"></circle><path
+                    d="M128 88v80M88 128h80"></path></svg
+                ></span
+              >
+              <span class="area-panel__title">Salud y farmacéutico</span>
+              <span class="area-panel__arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="area-panel" href="/contacto">
+              <span class="area-panel__icon" aria-hidden="true"
+                ><svg
+                  viewBox="0 0 256 256"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path d="M128 224V64"></path><path
+                    d="M128 64c0 0-64 8-64 72 64 0 64-72 64-72z"></path><path
+                    d="M128 100c0 0 64 8 64 72-64 0-64-72-64-72z"></path></svg
+                ></span
+              >
+              <span class="area-panel__title">Agroindustria y alimentos</span>
+              <span class="area-panel__arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="area-panel" href="/contacto">
+              <span class="area-panel__icon" aria-hidden="true"
+                ><svg
+                  viewBox="0 0 256 256"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path d="M16 96l112-48 112 48-112 48z"></path><path
+                    d="M72 120v48c0 16 24 32 56 32s56-16 56-32v-48"></path><path
+                    d="M224 96v56"></path></svg
+                ></span
+              >
+              <span class="area-panel__title">Educación e instituciones</span>
+              <span class="area-panel__arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="area-panel" href="/contacto">
+              <span class="area-panel__icon" aria-hidden="true"
+                ><svg
+                  viewBox="0 0 256 256"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path d="M128 32v48M128 176v48M32 128h48M176 128h48"
+                  ></path><path
+                    d="M64 64l32 32M160 160l32 32M192 64l-32 32M96 160l-32 32"
+                  ></path></svg
+                ></span
+              >
+              <span class="area-panel__title"
+                >Moda, belleza y estilo de vida</span
+              >
+              <span class="area-panel__arrow" aria-hidden="true">→</span>
+            </a>
+            <a class="area-panel" href="/contacto">
+              <span class="area-panel__icon" aria-hidden="true"
+                ><svg
+                  viewBox="0 0 256 256"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><circle cx="128" cy="128" r="96"></circle><path
+                    d="M32 128h192"></path><path
+                    d="M128 32c40 32 40 160 0 192M128 32c-40 32-40 160 0 192"
+                  ></path></svg
+                ></span
+              >
+              <span class="area-panel__title"
+                >ONGs y organismos internacionales</span
+              >
+              <span class="area-panel__arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- 10. CTA FINAL -->
-    <section class="cta-section-modern" style="padding: 6rem 0;">
-      <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
-        <div class="cta-content-v2">
-          <h2 style="font-size: 2.8rem; line-height: 1.25; margin-bottom: 1.5rem;">¿Necesita entender por qué su consumidor boliviano actúa como actúa?</h2>
-          <p class="cta-subtitle" style="font-size: 1.2rem; margin-bottom: 2.5rem; opacity: 0.9;">
-            Hablemos 45 minutos. Definimos qué metodología cualitativa responde mejor a su pregunta de negocio y diseñamos el estudio que desbloquea el insight que sus datos cuantitativos no pueden explicar.
+      <!-- 7. FAQ -->
+      <div data-stack-section>
+        <FaqSplit
+          eyebrow="PREGUNTAS FRECUENTES"
+          title="Lo que suelen preguntar antes de contratar."
+          items={faqItems}
+        />
+      </div>
+
+      <!-- 8. PRUEBA SOCIAL -->
+      <section
+        style="padding: 4rem 0; background: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;"
+        data-stack-section
+      >
+        <div class="container" style="text-align: center; max-width: 1100px;">
+          <p
+            class="text-navy"
+            style="font-size: 1.2rem; font-weight: 700; margin-bottom: 2rem; line-height: 1.5;"
+          >
+            Equipos de marketing, producto y comunicación de empresas en Bolivia
+            han usado la investigación cualitativa de Mindtec para desarrollar
+            campañas, posicionar lanzamientos y entender por qué sus estrategias
+            no estaban funcionando.
           </p>
-          <div class="cta-actions" style="justify-content: center; flex-direction: column; align-items: center;">
-            <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar diagnóstico estratégico (45 min) →</a>
-            <p style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">Confidencial · Sin costo · Sin compromiso · Por Zoom o Teams</p>
+          <div class="proof-grid">
+            <div class="proof-panel">
+              <span class="proof-panel__icon" aria-hidden="true"
+                ><svg
+                  viewBox="0 0 256 256"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><circle cx="100" cy="220" r="14"></circle><circle
+                    cx="184"
+                    cy="220"
+                    r="14"></circle><path d="M24 40h32l28 128h116"></path><path
+                    d="M84 168h116l20-88H72"></path></svg
+                ></span
+              >
+              <span class="proof-panel__title">Consumo masivo</span>
+            </div>
+            <div class="proof-panel">
+              <span class="proof-panel__icon" aria-hidden="true"
+                ><svg
+                  viewBox="0 0 256 256"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path d="M32 96h192L128 32z"></path><path
+                    d="M48 96v104M96 96v104M160 96v104M208 96v104"></path><path
+                    d="M32 224h192"></path></svg
+                ></span
+              >
+              <span class="proof-panel__title">Banca y finanzas</span>
+            </div>
+            <div class="proof-panel">
+              <span class="proof-panel__icon" aria-hidden="true"
+                ><svg
+                  viewBox="0 0 256 256"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path
+                    d="M96 32l32 24 32-24 32 32-24 24 24 136H72L96 88l-24-24z"
+                  ></path></svg
+                ></span
+              >
+              <span class="proof-panel__title">Retail y moda</span>
+            </div>
+            <div class="proof-panel">
+              <span class="proof-panel__icon" aria-hidden="true"
+                ><svg
+                  viewBox="0 0 256 256"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><circle cx="128" cy="128" r="96"></circle><path
+                    d="M128 88v80M88 128h80"></path></svg
+                ></span
+              >
+              <span class="proof-panel__title">Salud y farmacéutico</span>
+            </div>
+            <div class="proof-panel">
+              <span class="proof-panel__icon" aria-hidden="true"
+                ><svg
+                  viewBox="0 0 256 256"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="15"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><circle cx="128" cy="128" r="96"></circle><path
+                    d="M32 128h192"></path><path
+                    d="M128 32c40 32 40 160 0 192M128 32c-40 32-40 160 0 192"
+                  ></path></svg
+                ></span
+              >
+              <span class="proof-panel__title">ONGs internacionales</span>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <!-- 9. PRODUCTOS RELACIONADOS -->
+      <section style="padding: 5rem 0; background: #fff;" data-stack-section>
+        <div class="container">
+          <h3
+            class="text-navy"
+            style="font-size: 1.8rem; margin-bottom: 2.5rem; text-align: center;"
+          >
+            También puede interesarle
+          </h3>
+        </div>
+        <div class="related-products-bleed">
+          <HoverStepCards items={relatedProductsCards} minColumnWidth="300px" />
+        </div>
+        <div class="container">
+          <div style="text-align: center; margin-top: 2.5rem;">
+            <a
+              href="/servicios"
+              style="color: var(--color-primary); font-weight: 700; text-decoration: none; font-size: 0.95rem;"
+              >Ver todos los servicios →</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. CTA FINAL -->
+      <section
+        class="cta-section-modern"
+        style="padding: 6rem 0; background: linear-gradient(135deg, var(--color-primary), #D94E10); color: #fff;"
+        data-stack-section
+      >
+        <div
+          class="container"
+          style="max-width: 900px; margin: 0 auto; text-align: center;"
+        >
+          <div
+            class="cta-content-v2"
+            style="background: none; box-shadow: none; padding: 0; max-width: none;"
+          >
+            <h2
+              style="font-size: 2.8rem; line-height: 1.25; margin-bottom: 1.5rem;"
+            >
+              ¿Necesita entender por qué su consumidor boliviano actúa como
+              actúa?
+            </h2>
+            <p
+              class="cta-subtitle"
+              style="font-size: 1.2rem; margin-bottom: 2.5rem; opacity: 0.9;"
+            >
+              Hablemos 45 minutos. Definimos qué metodología cualitativa
+              responde mejor a su pregunta de negocio y diseñamos el estudio que
+              desbloquea el insight que sus datos cuantitativos no pueden
+              explicar.
+            </p>
+            <div
+              class="cta-actions"
+              style="justify-content: center; flex-direction: column; align-items: center;"
+            >
+              <a
+                href="/contacto"
+                class="btn btn-primary lg"
+                style="font-size: 1.1rem; padding: 1rem 2.5rem;"
+                >Agendar diagnóstico estratégico (45 min) →</a
+              >
+              <p
+                style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;"
+              >
+                Confidencial · Sin costo · Sin compromiso · Por Zoom o Teams
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </StackedSections>
 
     <!-- BREADCRUMB -->
     <nav aria-label="Breadcrumb" class="breadcrumb-bottom">
       <div class="container">
         <ol>
-          <li><a href="/" style="color: rgba(255,255,255,0.6); text-decoration: none;">Inicio</a></li>
+          <li>
+            <a
+              href="/"
+              style="color: rgba(255,255,255,0.6); text-decoration: none;"
+              >Inicio</a
+            >
+          </li>
           <li style="color: rgba(255,255,255,0.3);">›</li>
-          <li><a href="/servicios" style="color: rgba(255,255,255,0.6); text-decoration: none;">Servicios</a></li>
+          <li>
+            <a
+              href="/servicios"
+              style="color: rgba(255,255,255,0.6); text-decoration: none;"
+              >Servicios</a
+            >
+          </li>
           <li style="color: rgba(255,255,255,0.3);">›</li>
-          <li aria-current="page" style="color: #fff; font-weight: 600;">Investigación Cualitativa en Bolivia</li>
+          <li aria-current="page" style="color: #fff; font-weight: 600;">
+            Investigación Cualitativa en Bolivia
+          </li>
         </ol>
       </div>
     </nav>
-
   </main>
 
-  <script>
-    document.querySelectorAll('dt button[aria-expanded]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const ddId = btn.getAttribute('aria-controls');
-        const dd = document.getElementById(ddId);
-        const expandido = btn.getAttribute('aria-expanded') === 'true';
-        btn.setAttribute('aria-expanded', expandido ? 'false' : 'true');
-        const icon = btn.querySelector('span[aria-hidden]');
-        if (icon) icon.textContent = expandido ? '+' : '−';
-        if (dd) dd.hidden = expandido;
-      });
-    });
-  </script>
+  <style>
+    .areas-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.55rem;
+      max-width: 1320px;
+      margin: 0 auto;
+      text-align: left;
+    }
 
+    .area-panel {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex: 1 1 calc((100% - 3 * 0.55rem) / 4);
+      max-width: calc((100% - 3 * 0.55rem) / 4);
+      min-height: 250px;
+      padding: 1.5rem 1.25rem;
+      overflow: hidden;
+      background: #082235;
+      border: 1px solid rgba(141, 191, 221, 0.72);
+      color: #fff;
+      text-decoration: none;
+      isolation: isolate;
+      transition:
+        transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
+        background-color 280ms cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .area-panel::after {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: linear-gradient(
+        145deg,
+        rgba(29, 82, 112, 0.42),
+        transparent 55%
+      );
+      content: "";
+      opacity: 0;
+      transition: opacity 280ms ease;
+    }
+
+    .area-panel:nth-child(odd) {
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 31%,
+        88% 31%,
+        88% 69%,
+        100% 69%,
+        100% 100%,
+        0 100%
+      );
+    }
+
+    .area-panel:nth-child(even) {
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 100%,
+        0 100%,
+        0 69%,
+        12% 69%,
+        12% 31%,
+        0 31%
+      );
+    }
+
+    .area-panel:hover {
+      transform: translateY(-6px);
+      background: #0b2c43;
+      border-color: var(--color-primary, #e7a548);
+    }
+
+    .area-panel:hover::after {
+      opacity: 1;
+    }
+
+    .area-panel:focus-visible {
+      outline: 3px solid var(--color-primary, #e7a548);
+      outline-offset: 4px;
+    }
+
+    .area-panel__icon {
+      display: grid;
+      width: 76px;
+      height: 76px;
+      place-items: center;
+      align-self: center;
+      margin: auto 0;
+      border: 1px solid rgba(168, 207, 232, 0.86);
+      border-radius: 50%;
+      color: #c5e3f3;
+      transition:
+        color 280ms ease,
+        border-color 280ms ease,
+        transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .area-panel:hover .area-panel__icon {
+      border-color: var(--color-primary, #e7a548);
+      color: var(--color-primary, #e7a548);
+      transform: scale(1.06);
+    }
+
+    .area-panel__icon svg {
+      width: 42px;
+      height: 42px;
+    }
+
+    .area-panel__title {
+      display: block;
+      max-width: 16ch;
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 1.3vw, 1.2rem);
+      font-weight: 700;
+      line-height: 1.17;
+      letter-spacing: -0.02em;
+    }
+
+    .area-panel__title small {
+      display: block;
+      margin-top: 0.15rem;
+      color: rgba(255, 255, 255, 0.66);
+      font-size: 0.78em;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    .area-panel__arrow {
+      position: absolute;
+      right: 1.2rem;
+      bottom: 1.15rem;
+      color: var(--color-primary, #e7a548);
+      font-size: 1.3rem;
+      line-height: 1;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition:
+        opacity 220ms ease,
+        transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .area-panel:hover .area-panel__arrow,
+    .area-panel:focus-visible .area-panel__arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    @media (max-width: 900px) {
+      .area-panel {
+        flex-basis: calc((100% - 0.55rem) / 2);
+        max-width: calc((100% - 0.55rem) / 2);
+      }
+
+      .area-panel,
+      .area-panel:nth-child(odd),
+      .area-panel:nth-child(even) {
+        min-height: 235px;
+        clip-path: none;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .area-panel {
+        flex-basis: 100%;
+        max-width: 100%;
+        min-height: 205px;
+      }
+
+      .area-panel__icon {
+        width: 64px;
+        height: 64px;
+      }
+
+      .area-panel__icon svg {
+        width: 35px;
+        height: 35px;
+      }
+    }
+
+    .proof-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.55rem;
+    }
+
+    .proof-panel {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.85rem;
+      flex: 1 1 calc((100% - 4 * 0.55rem) / 5);
+      max-width: calc((100% - 4 * 0.55rem) / 5);
+      min-height: 150px;
+      padding: 1.5rem 1rem;
+      overflow: hidden;
+      background: #082235;
+      border: 1px solid rgba(141, 191, 221, 0.72);
+      color: #fff;
+      isolation: isolate;
+      transition:
+        transform 280ms cubic-bezier(0.16, 1, 0.3, 1),
+        background-color 280ms cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .proof-panel::after {
+      position: absolute;
+      z-index: -1;
+      inset: 0;
+      background: linear-gradient(
+        145deg,
+        rgba(29, 82, 112, 0.42),
+        transparent 55%
+      );
+      content: "";
+      opacity: 0;
+      transition: opacity 280ms ease;
+    }
+
+    .proof-panel:nth-child(odd) {
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 31%,
+        88% 31%,
+        88% 69%,
+        100% 69%,
+        100% 100%,
+        0 100%
+      );
+    }
+
+    .proof-panel:nth-child(even) {
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 100%,
+        0 100%,
+        0 69%,
+        12% 69%,
+        12% 31%,
+        0 31%
+      );
+    }
+
+    .proof-panel:hover {
+      transform: translateY(-6px);
+      background: #0b2c43;
+      border-color: var(--color-primary, #e7a548);
+    }
+
+    .proof-panel:hover::after {
+      opacity: 1;
+    }
+
+    .proof-panel__icon {
+      display: grid;
+      width: 56px;
+      height: 56px;
+      place-items: center;
+      border: 1px solid rgba(168, 207, 232, 0.86);
+      border-radius: 50%;
+      color: #c5e3f3;
+      transition:
+        color 280ms ease,
+        border-color 280ms ease,
+        transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .proof-panel:hover .proof-panel__icon {
+      border-color: var(--color-primary, #e7a548);
+      color: var(--color-primary, #e7a548);
+      transform: scale(1.06);
+    }
+
+    .proof-panel__icon svg {
+      width: 30px;
+      height: 30px;
+    }
+
+    .proof-panel__title {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .proof-panel {
+        flex-basis: calc((100% - 2 * 0.55rem) / 3);
+        max-width: calc((100% - 2 * 0.55rem) / 3);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .proof-panel {
+        flex-basis: calc((100% - 0.55rem) / 2);
+        max-width: calc((100% - 0.55rem) / 2);
+      }
+
+      .proof-panel,
+      .proof-panel:nth-child(odd),
+      .proof-panel:nth-child(even) {
+        min-height: 135px;
+        clip-path: none;
+      }
+    }
+
+    /* 9. PRODUCTOS RELACIONADOS */
+    .related-products-bleed {
+      padding: 0 2rem;
+    }
+
+    @media (min-width: 900px) {
+      .related-products-bleed {
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        padding: 0 clamp(1.5rem, 4vw, 4rem);
+      }
+    }
+
+    /* Hero -> hero-details logo scroll transition */
+    .hero-visual-slot {
+      position: relative;
+    }
+
+    /* hero-details -> generated-insight: el logo continúa su recorrido y
+       se asienta como fondo centrado, detrás del contenido de la sección.
+       El z-index de la sección debe superar el z-index de reposo del logo
+       (ver script) para que el título y las tarjetas lo tapen, mientras el
+       fondo transparente deja verlo en los espacios vacíos. */
+    .generated-insight-section {
+      position: relative;
+      z-index: 2;
+      background: transparent;
+    }
+
+    /* Fondo propio (no el mismo navy plano del hero) para que las
+       partículas naranjas del logo -que se asientan detrás como marca de
+       agua- resalten con contraste; sobre blanco eran casi invisibles a
+       baja opacidad. Navy secundario (más claro que el hero) con un
+       degradado sutil y un resplandor naranja de marca en la esquina. */
+    .generated-insight-section--dark {
+      background:
+        radial-gradient(
+          circle at 18% 12%,
+          rgba(242, 101, 34, 0.16),
+          transparent 52%
+        ),
+        linear-gradient(
+          155deg,
+          #123853 0%,
+          var(--color-secondary, #0b2b40) 55%,
+          #081d2c 100%
+        );
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .generated-insight-logo-slot {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* generated-insight -> problem-section: el logo sigue viajando, pasa
+       primero al lado derecho de la sección y luego, mientras se hace
+       scroll dentro de ella, crece y se desplaza hasta el centro, quedando
+       detrás de la tarjeta (mismo truco de z-index que la sección anterior). */
+    .problem-section--logo-target {
+      z-index: 2;
+    }
+
+    .logo-slot-right {
+      position: absolute;
+      top: 8%;
+      right: 4%;
+      bottom: 8%;
+      width: min(30%, 320px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .logo-slot-center {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @media (max-width: 900px) {
+      .generated-insight-logo-slot,
+      .logo-slot-right,
+      .logo-slot-center {
+        display: none;
+      }
+    }
+
+    .hero-details-grid {
+      display: grid;
+      grid-template-columns: minmax(280px, 500px) 1fr;
+      gap: 3rem;
+      align-items: center;
+      max-width: 1200px;
+    }
+
+    .hero-details-logo-slot {
+      width: 100%;
+      max-width: 500px;
+      aspect-ratio: 1;
+    }
+
+    @media (max-width: 900px) {
+      .hero-details-grid {
+        grid-template-columns: 1fr;
+        max-width: 900px;
+      }
+
+      .hero-details-logo-slot {
+        display: none;
+      }
+    }
+  </style>
+
+  <script>
+    import gsap from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    type HeroLogoWindow = typeof window & {
+      __heroLogoTransitionEventsRegistered?: boolean;
+    };
+
+    let heroLogoContext: gsap.Context | undefined;
+
+    function destroyHeroLogoTransition(): void {
+      heroLogoContext?.revert();
+      heroLogoContext = undefined;
+    }
+
+    // Coordenadas en espacio de documento (no de viewport), para que el
+    // logo -posicionado en position:absolute sobre <body>- se desplace de
+    // forma natural junto con el scroll de la página.
+    function docRect(el: HTMLElement) {
+      const rect = el.getBoundingClientRect();
+      return {
+        top: rect.top + window.scrollY,
+        left: rect.left + window.scrollX,
+      };
+    }
+
+    function initHeroLogoTransition(): void {
+      destroyHeroLogoTransition();
+
+      const heroSection = document.querySelector<HTMLElement>(".hero-section");
+      const heroDetailsSection = document.querySelector<HTMLElement>(
+        ".hero-details-section",
+      );
+      const generatedInsightSection = document.querySelector<HTMLElement>(
+        ".generated-insight-section",
+      );
+      const problemSection = document.querySelector<HTMLElement>(
+        ".problem-section--logo-target",
+      );
+      const startSlot = document.querySelector<HTMLElement>(
+        '[data-logo-slot="start"]',
+      );
+      const endSlot = document.querySelector<HTMLElement>(
+        '[data-logo-slot="end"]',
+      );
+      const midSlot = document.querySelector<HTMLElement>(
+        '[data-logo-slot="mid"]',
+      );
+      const rightSlot = document.querySelector<HTMLElement>(
+        '[data-logo-slot="right"]',
+      );
+      const centerSlot = document.querySelector<HTMLElement>(
+        '[data-logo-slot="center"]',
+      );
+      const logo = startSlot?.querySelector<HTMLElement>(
+        "[data-neuro-orbit-logo]",
+      );
+
+      if (!heroSection || !startSlot || !endSlot || !logo) return;
+
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      const isDesktop = window.matchMedia("(min-width: 900px)").matches;
+
+      // En mobile o con reduced-motion el logo se queda tal cual quedó
+      // maquetado dentro del hero: sin flotar, sin animación de scroll.
+      if (prefersReducedMotion || !isDesktop) return;
+
+      heroLogoContext = gsap.context(() => {
+        document.body.appendChild(logo);
+
+        // Centrado sobre el slot (no top-left directo): el núcleo del
+        // logo puede ser más grande que la caja del slot que reserva su
+        // espacio en el layout, así que se alinea por el centro de ambos.
+        const startRect = startSlot.getBoundingClientRect();
+        const startDocInit = docRect(startSlot);
+        gsap.set(logo, {
+          position: "absolute",
+          top: startDocInit.top + startRect.height / 2 - logo.offsetHeight / 2,
+          left: startDocInit.left + startRect.width / 2 - logo.offsetWidth / 2,
+          zIndex: 5,
+          opacity: 1,
+        });
+
+        // quickTo evita crear tweens nuevos en cada tick de scroll: solo
+        // reapunta el mismo tween hacia el valor fresco, con una leve
+        // inercia (duration) que es justamente lo que da la sensación
+        // fluida al desplazamiento en X/Y.
+        const setTop = gsap.quickTo(logo, "top", {
+          duration: 0.5,
+          ease: "power3.out",
+        });
+        const setLeft = gsap.quickTo(logo, "left", {
+          duration: 0.5,
+          ease: "power3.out",
+        });
+        const setScale = gsap.quickTo(logo, "scale", {
+          duration: 0.4,
+          ease: "power2.out",
+        });
+        const setOpacity = gsap.quickTo(logo, "opacity", {
+          duration: 0.4,
+          ease: "power2.out",
+        });
+
+        // Tamaño natural (sin transform) del logo: offsetWidth/Height no
+        // se ven afectados por el scale aplicado, a diferencia de
+        // getBoundingClientRect, así el centrado no se retroalimenta con
+        // el propio crecimiento del logo.
+        const PEAK_SCALE_BUMP = 0.35;
+
+        // Valores de reposo compartidos entre tramos: el tramo 2 asienta
+        // el logo en estos valores, el tramo 3 lo vuelve a un tamaño
+        // "normal" (RIGHT_SCALE) al llegar al lado derecho de la sección
+        // del problema, y el tramo 4 crece desde ahí hasta PROBLEM_REST_SCALE
+        // al centrarse — así el crecimiento final se siente, en vez de ser
+        // un incremento pequeño sobre un logo que ya llegaba gigante.
+        const REST_SCALE = 2.6;
+        const REST_OPACITY = 0.32;
+        const RIGHT_SCALE = 1.1;
+        const RIGHT_OPACITY = 0.85;
+
+        ScrollTrigger.create({
+          trigger: heroSection,
+          start: "top top",
+          end: "bottom top",
+          invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            // Se recalcula en cada tick a partir de posiciones en vivo,
+            // en vez de usar valores fijados una sola vez, porque el
+            // slot de destino puede desplazarse por reflow (fuentes,
+            // resize) y necesitamos siempre el valor actual.
+            const startDoc = docRect(startSlot);
+            const startRect = startSlot.getBoundingClientRect();
+            const startTop =
+              startDoc.top + startRect.height / 2 - logo.offsetHeight / 2;
+            const startLeft =
+              startDoc.left + startRect.width / 2 - logo.offsetWidth / 2;
+
+            const endDoc = docRect(endSlot);
+            const endRect = endSlot.getBoundingClientRect();
+            const endTop =
+              endDoc.top + endRect.height / 2 - logo.offsetHeight / 2;
+            const endLeft =
+              endDoc.left + endRect.width / 2 - logo.offsetWidth / 2;
+
+            setTop(gsap.utils.interpolate(startTop, endTop, self.progress));
+            setLeft(gsap.utils.interpolate(startLeft, endLeft, self.progress));
+
+            // Curva en campana: 1 en los extremos (inicio y destino),
+            // pico en el centro del recorrido -> crece al pasar por la
+            // mitad de la pantalla y vuelve a su tamaño normal al llegar.
+            const bump = Math.sin(self.progress * Math.PI) * PEAK_SCALE_BUMP;
+            setScale(1 + bump);
+          },
+        });
+
+        // Segundo tramo: de "end" (columna izquierda de hero-details) hacia
+        // "mid" (centro de la sección "De la conversación al insight..."),
+        // donde el logo se asienta como fondo detrás del título y las
+        // tarjetas. Se agranda y se desvanece a lo largo del recorrido, y
+        // recién al final baja de z-index para quedar tapado por el
+        // contenido de esa sección (ver z-index en el CSS de la sección).
+        if (heroDetailsSection && midSlot) {
+          const REST_Z_THRESHOLD = 0.92;
+
+          ScrollTrigger.create({
+            trigger: heroDetailsSection,
+            start: "top top",
+            end: "bottom top",
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              const endDoc = docRect(endSlot);
+              const endRect = endSlot.getBoundingClientRect();
+              const endTop =
+                endDoc.top + endRect.height / 2 - logo.offsetHeight / 2;
+              const endLeft =
+                endDoc.left + endRect.width / 2 - logo.offsetWidth / 2;
+
+              const midDoc = docRect(midSlot);
+              const midRect = midSlot.getBoundingClientRect();
+              const midTop =
+                midDoc.top + midRect.height / 2 - logo.offsetHeight / 2;
+              const midLeft =
+                midDoc.left + midRect.width / 2 - logo.offsetWidth / 2;
+
+              setTop(gsap.utils.interpolate(endTop, midTop, self.progress));
+              setLeft(gsap.utils.interpolate(endLeft, midLeft, self.progress));
+              setScale(gsap.utils.interpolate(1, REST_SCALE, self.progress));
+              setOpacity(
+                gsap.utils.interpolate(1, REST_OPACITY, self.progress),
+              );
+
+              logo.style.zIndex = self.progress > REST_Z_THRESHOLD ? "1" : "5";
+            },
+          });
+        }
+
+        // Tercer tramo: de "mid" (centro de generated-insight, donde el
+        // logo estaba tapado por el título) hacia "right" (lado derecho de
+        // la sección "Saber cuántos no es suficiente..."). Vuelve a subir
+        // de z-index de inmediato para reaparecer por encima del contenido
+        // mientras viaja, y se achica a un tamaño "normal" para que el
+        // crecimiento del cuarto tramo se sienta con fuerza (si llegara ya
+        // gigante, crecer un poco más no se nota).
+        if (generatedInsightSection && rightSlot) {
+          ScrollTrigger.create({
+            trigger: generatedInsightSection,
+            start: "top top",
+            end: "bottom top",
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              const midDoc = docRect(midSlot);
+              const midRect = midSlot.getBoundingClientRect();
+              const midTop =
+                midDoc.top + midRect.height / 2 - logo.offsetHeight / 2;
+              const midLeft =
+                midDoc.left + midRect.width / 2 - logo.offsetWidth / 2;
+
+              const rightDoc = docRect(rightSlot);
+              const rightRect = rightSlot.getBoundingClientRect();
+              const rightTop =
+                rightDoc.top + rightRect.height / 2 - logo.offsetHeight / 2;
+              const rightLeft =
+                rightDoc.left + rightRect.width / 2 - logo.offsetWidth / 2;
+
+              setTop(gsap.utils.interpolate(midTop, rightTop, self.progress));
+              setLeft(
+                gsap.utils.interpolate(midLeft, rightLeft, self.progress),
+              );
+              setScale(
+                gsap.utils.interpolate(REST_SCALE, RIGHT_SCALE, self.progress),
+              );
+              setOpacity(
+                gsap.utils.interpolate(
+                  REST_OPACITY,
+                  RIGHT_OPACITY,
+                  self.progress,
+                ),
+              );
+
+              logo.style.zIndex = "5";
+            },
+          });
+        }
+
+        // Cuarto tramo: de "right" hacia "center" (centro de esa misma
+        // sección), creciendo de forma marcada a medida que se hace scroll
+        // hacia abajo, hasta asentarse -de nuevo como fondo, tapado por la
+        // tarjeta- en el centro, mucho más grande que en cualquier tramo
+        // anterior.
+        if (problemSection && rightSlot && centerSlot) {
+          const PROBLEM_REST_SCALE = 6;
+          const PROBLEM_REST_OPACITY = 0.4;
+          const PROBLEM_REST_Z_THRESHOLD = 0.92;
+
+          ScrollTrigger.create({
+            trigger: problemSection,
+            start: "top top",
+            end: "bottom top",
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              const rightDoc = docRect(rightSlot);
+              const rightRect = rightSlot.getBoundingClientRect();
+              const rightTop =
+                rightDoc.top + rightRect.height / 2 - logo.offsetHeight / 2;
+              const rightLeft =
+                rightDoc.left + rightRect.width / 2 - logo.offsetWidth / 2;
+
+              const centerDoc = docRect(centerSlot);
+              const centerRect = centerSlot.getBoundingClientRect();
+              const centerTop =
+                centerDoc.top + centerRect.height / 2 - logo.offsetHeight / 2;
+              const centerLeft =
+                centerDoc.left + centerRect.width / 2 - logo.offsetWidth / 2;
+
+              setTop(
+                gsap.utils.interpolate(rightTop, centerTop, self.progress),
+              );
+              setLeft(
+                gsap.utils.interpolate(rightLeft, centerLeft, self.progress),
+              );
+              setScale(
+                gsap.utils.interpolate(
+                  RIGHT_SCALE,
+                  PROBLEM_REST_SCALE,
+                  self.progress,
+                ),
+              );
+              setOpacity(
+                gsap.utils.interpolate(
+                  RIGHT_OPACITY,
+                  PROBLEM_REST_OPACITY,
+                  self.progress,
+                ),
+              );
+
+              logo.style.zIndex =
+                self.progress > PROBLEM_REST_Z_THRESHOLD ? "1" : "5";
+            },
+          });
+        }
+      });
+    }
+
+    initHeroLogoTransition();
+
+    const heroLogoWindow = window as HeroLogoWindow;
+
+    if (!heroLogoWindow.__heroLogoTransitionEventsRegistered) {
+      document.addEventListener("astro:page-load", initHeroLogoTransition);
+      document.addEventListener("astro:before-swap", destroyHeroLogoTransition);
+      heroLogoWindow.__heroLogoTransitionEventsRegistered = true;
+    }
+  </script>
 </Layout>

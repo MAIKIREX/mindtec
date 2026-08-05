@@ -1,0 +1,190 @@
+---
+interface Props {
+    zIndex?: number;
+    class?: string;
+    /**
+     * Forzado: si es true, siempre usa la estrategia de pineo al final
+     * (útil para contenido que se sabe que será muy largo)
+     */
+    forceEndPin?: boolean;
+}
+
+const {
+    zIndex = 1,
+    class: className = "",
+    forceEndPin = false,
+} = Astro.props;
+---
+
+<section
+    class:list={["pinned-section", className]}
+    data-pinned-section
+    data-z-index={zIndex}
+    data-force-end-pin={String(forceEndPin)}
+>
+    <slot />
+</section>
+
+<style>
+    .pinned-section {
+        position: relative;
+        width: 100%;
+    }
+
+    /*
+     * El z-index solo se aplica mientras la sección está
+     * activamente pineada (clase alternada por ScrollTrigger).
+     * Evita que quede "ganando" el stacking order para siempre
+     * una vez que el usuario ya hizo scroll más allá.
+     */
+    .pinned-section.is-pinned-active {
+        z-index: var(--pinned-z-index, 1);
+    }
+</style>
+
+<script>
+    import gsap from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    type PinnedSectionElement = HTMLElement & {
+        __pinnedSectionContext?: gsap.Context;
+    };
+
+    type PinnedSectionWindow = typeof window & {
+        __pinnedSectionEventsRegistered?: boolean;
+    };
+
+    function getNumber(element: HTMLElement, key: string, fallback: number): number {
+        const value = Number(element.dataset[key]);
+        return Number.isFinite(value) ? value : fallback;
+    }
+
+    function destroyPinnedSections(): void {
+        document
+            .querySelectorAll<PinnedSectionElement>("[data-pinned-section]")
+            .forEach((section) => {
+                section.__pinnedSectionContext?.revert();
+                delete section.__pinnedSectionContext;
+            });
+    }
+
+    function initPinnedSections(): void {
+        document
+            .querySelectorAll<PinnedSectionElement>("[data-pinned-section]")
+            .forEach((section) => {
+                /*
+                 * Evita duplicar animaciones cuando Astro
+                 * cambia de página.
+                 */
+                section.__pinnedSectionContext?.revert();
+
+                const zIndex = getNumber(section, "zIndex", 1);
+                const forceEndPin = section.dataset.forceEndPin === "true";
+
+                const prefersReducedMotion = window.matchMedia(
+                    "(prefers-reduced-motion: reduce)",
+                ).matches;
+
+                section.__pinnedSectionContext = gsap.context(() => {
+                    /*
+                     * Variable CSS inerte: solo tiene efecto cuando se
+                     * combina con la clase "is-pinned-active" (ver abajo),
+                     * así que fijarla aquí no afecta el stacking order.
+                     */
+                    section.style.setProperty(
+                        "--pinned-z-index",
+                        String(zIndex),
+                    );
+
+                    /*
+                     * Si el usuario prefiere menos movimiento,
+                     * no aplicamos pineo.
+                     */
+                    if (prefersReducedMotion) {
+                        gsap.set(section, {
+                            clearProps: "position,transform",
+                        });
+                        return;
+                    }
+
+                    /*
+                     * LÓGICA ADAPTATIVA DE PINEO (idéntica al componente React)
+                     */
+                    const sectionHeight = section.offsetHeight;
+                    const viewportHeight = window.innerHeight;
+
+                    /*
+                     * toggleClass activa el z-index únicamente mientras
+                     * la sección está pineada; al soltarse, vuelve a su
+                     * z-index normal (auto) y deja de competir por el
+                     * stacking order con el contenido posterior.
+                     */
+                    if (sectionHeight <= viewportHeight || forceEndPin) {
+                        /*
+                         * CASO 1: Sección cabe en viewport (o forzado)
+                         * Se fija al llegar arriba y se mantiene fija durante
+                         * su propia altura de scroll.
+                         *
+                         * pinSpacing: true reserva ese espacio automáticamente
+                         * (spacer de GSAP), así el layout de las secciones
+                         * externas al wrapper nunca se ve afectado.
+                         */
+                        ScrollTrigger.create({
+                            trigger: section,
+                            start: "top top",
+                            end: "bottom top",
+                            pin: true,
+                            pinSpacing: true,
+                            anticipatePin: 1,
+                            invalidateOnRefresh: true,
+                            toggleClass: {
+                                targets: section,
+                                className: "is-pinned-active",
+                            },
+                        });
+                    } else {
+                        /*
+                         * CASO 2: Sección es más alta que el viewport
+                         * Solo se fija en el tramo final, después de que el
+                         * usuario haya hecho scroll por todo el contenido.
+                         *
+                         * pinSpacing: true reserva ese espacio automáticamente
+                         * (spacer de GSAP), así el layout de las secciones
+                         * externas al wrapper nunca se ve afectado.
+                         */
+                        ScrollTrigger.create({
+                            trigger: section,
+                            start: () => `bottom bottom`,
+                            end: () => `bottom top`,
+                            pin: true,
+                            pinSpacing: true,
+                            anticipatePin: 1,
+                            invalidateOnRefresh: true,
+                            toggleClass: {
+                                targets: section,
+                                className: "is-pinned-active",
+                            },
+                        });
+                    }
+                }, section);
+            });
+
+        ScrollTrigger.refresh();
+    }
+
+    initPinnedSections();
+
+    /*
+     * Compatibilidad con Astro View Transitions.
+     */
+    const globalWindow = window as PinnedSectionWindow;
+
+    if (!globalWindow.__pinnedSectionEventsRegistered) {
+        document.addEventListener("astro:page-load", initPinnedSections);
+        document.addEventListener("astro:before-swap", destroyPinnedSections);
+
+        globalWindow.__pinnedSectionEventsRegistered = true;
+    }
+</script>

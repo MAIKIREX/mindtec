@@ -1,0 +1,226 @@
+---
+interface Props {
+  class?: string;
+  markers?: boolean;
+}
+
+const { class: className = "", markers = false } = Astro.props;
+---
+
+<div
+  class:list={["stacked-sections", className]}
+  data-stacked-sections
+  data-markers={markers ? "true" : undefined}
+>
+  <slot />
+</div>
+
+<script>
+  type WrapperElement = HTMLElement & {
+    stackedSectionsCleanup?: () => void;
+  };
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  function getViewportHeight() {
+    /*
+     * visualViewport ayuda especialmente en móviles cuando la barra
+     * del navegador cambia el alto visible de la pantalla.
+     */
+    return Math.round(window.visualViewport?.height ?? window.innerHeight);
+  }
+
+  function setupWrapper(root: WrapperElement) {
+    root.stackedSectionsCleanup?.();
+
+    const sections = Array.from(
+      root.querySelectorAll<HTMLElement>(":scope > [data-stack-section]"),
+    );
+
+    if (sections.length === 0) {
+      return;
+    }
+
+    let resizeFrame = 0;
+    let destroyed = false;
+
+    function updateSections() {
+      resizeFrame = 0;
+
+      if (destroyed) {
+        return;
+      }
+
+      const viewportHeight = getViewportHeight();
+
+      sections.forEach((section, index) => {
+        const isLastSection = index === sections.length - 1;
+
+        const sectionHeight = Math.round(
+          section.getBoundingClientRect().height,
+        );
+
+        /*
+         * Sección pequeña:
+         * viewportHeight - sectionHeight es positivo,
+         * por lo que usamos top: 0.
+         *
+         * Sección alta:
+         * viewportHeight - sectionHeight es negativo.
+         * Ese valor hace que la sección se fije solamente
+         * cuando su parte inferior llegue al final de la pantalla.
+         */
+        const stickyTop = Math.min(0, viewportHeight - sectionHeight);
+
+        section.style.zIndex = String(index + 1);
+
+        if (isLastSection || reducedMotion.matches) {
+          section.classList.remove("stacked-section--sticky");
+
+          section.style.removeProperty("--stack-sticky-top");
+
+          return;
+        }
+
+        section.classList.add("stacked-section--sticky");
+
+        section.style.setProperty("--stack-sticky-top", `${stickyTop}px`);
+      });
+    }
+
+    function scheduleUpdate() {
+      cancelAnimationFrame(resizeFrame);
+
+      resizeFrame = requestAnimationFrame(updateSections);
+    }
+
+    /*
+     * Detecta cambios reales de altura:
+     * imágenes cargadas, textos, acordeones, tarjetas, fuentes, etc.
+     *
+     * A diferencia de ScrollTrigger.refresh(), actualizar una variable
+     * CSS no desmonta ni vuelve a montar la sección.
+     */
+    const observer = new ResizeObserver(() => {
+      scheduleUpdate();
+    });
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
+    window.addEventListener("resize", scheduleUpdate, {
+      passive: true,
+    });
+
+    window.visualViewport?.addEventListener("resize", scheduleUpdate, {
+      passive: true,
+    });
+
+    /*
+     * Recalcula cuando terminan de cargar las fuentes.
+     */
+    document.fonts?.ready.then(() => {
+      if (!destroyed) {
+        scheduleUpdate();
+      }
+    });
+
+    updateSections();
+
+    root.stackedSectionsCleanup = () => {
+      destroyed = true;
+
+      observer.disconnect();
+      cancelAnimationFrame(resizeFrame);
+
+      window.removeEventListener("resize", scheduleUpdate);
+
+      window.visualViewport?.removeEventListener("resize", scheduleUpdate);
+
+      sections.forEach((section) => {
+        section.classList.remove("stacked-section--sticky");
+
+        section.style.removeProperty("--stack-sticky-top");
+
+        section.style.removeProperty("z-index");
+      });
+
+      delete root.stackedSectionsCleanup;
+    };
+  }
+
+  function initializeWrappers() {
+    document
+      .querySelectorAll<WrapperElement>("[data-stacked-sections]")
+      .forEach((root) => {
+        /*
+         * Evita reconstruir el wrapper si DOMContentLoaded
+         * y astro:page-load se ejecutan consecutivamente.
+         */
+        if (!root.stackedSectionsCleanup) {
+          setupWrapper(root);
+        }
+      });
+  }
+
+  function cleanupWrappers() {
+    document
+      .querySelectorAll<WrapperElement>("[data-stacked-sections]")
+      .forEach((root) => {
+        root.stackedSectionsCleanup?.();
+      });
+  }
+
+  function handleReducedMotionChange() {
+    cleanupWrappers();
+    initializeWrappers();
+  }
+
+  /*
+   * La inicialización se ejecuta de forma síncrona (sin requestAnimationFrame):
+   * rAF no se dispara mientras el documento no esté visible/componiendo
+   * frames (pestañas en segundo plano, iframes de preview ocultos, etc.),
+   * lo que dejaba el efecto sin aplicarse nunca en esos contextos.
+   */
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initializeWrappers, {
+      once: true,
+    });
+  } else {
+    initializeWrappers();
+  }
+
+  /*
+   * Compatibilidad con Astro View Transitions.
+   */
+  document.addEventListener("astro:page-load", initializeWrappers);
+
+  document.addEventListener("astro:before-swap", cleanupWrappers);
+
+  reducedMotion.addEventListener("change", handleReducedMotionChange);
+</script>
+
+<style>
+  .stacked-sections {
+    position: relative;
+    isolation: isolate;
+
+    /*
+         * Es necesario para que position: sticky no quede limitado
+         * dentro de este wrapper.
+         */
+    overflow: visible;
+  }
+
+  :global(.stacked-sections > [data-stack-section]) {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  :global(.stacked-sections > [data-stack-section].stacked-section--sticky) {
+    position: sticky;
+    top: var(--stack-sticky-top, 0px);
+  }
+</style>

@@ -1,0 +1,1065 @@
+---
+interface ScrollStoryLeftIntro {
+  background: string;
+  alt?: string;
+  number?: string;
+  eyebrow?: string;
+  title: string;
+  description: string;
+  eyebrowColor?: string;
+  titleColor?: string;
+  descriptionColor?: string;
+}
+
+type ScrollStoryLeftIcon =
+  | "airport"
+  | "road"
+  | "building"
+  | "services"
+  | "dashboard"
+  | "document"
+  | "matrix"
+  | "meeting";
+
+interface ScrollStoryLeftItem {
+  background: string;
+  alt?: string;
+  eyebrow?: string;
+  title: string;
+  description: string;
+  icon?: ScrollStoryLeftIcon;
+
+  /** Lista de puntos opcional, se renderiza debajo de la descripción. */
+  list?: string[];
+
+  eyebrowColor?: string;
+  titleColor?: string;
+  descriptionColor?: string;
+}
+
+interface Props {
+  intro: ScrollStoryLeftIntro;
+  items: ScrollStoryLeftItem[];
+  class?: string;
+
+  /** Suavidad con la que la animación sigue al scroll. */
+  scrub?: number;
+
+  /** Recorrido de scroll por escena. 1 equivale aproximadamente a 100vh. */
+  sceneDistance?: number;
+
+  /** Tamaño de la tarjeta horizontal inicial. Valores entre 0 y 1. */
+  introCardWidth?: number;
+  introCardHeight?: number;
+
+  /** Tamaño final de la tarjeta lateral izquierda. Valores entre 0 y 1. */
+  sideCardWidth?: number;
+  sideCardHeight?: number;
+
+  /** Colores de la tarjeta. */
+  cardBackground?: string;
+  cardTextColor?: string;
+  cardMutedColor?: string;
+}
+
+const {
+  intro,
+  items,
+  class: className = "",
+  scrub = 0.9,
+  sceneDistance = 1,
+  introCardWidth = 0.98,
+  introCardHeight = 0.6,
+  sideCardWidth = 0.48,
+  sideCardHeight = 0.82,
+  cardBackground = "#f7f7f5",
+  cardTextColor = "#080b20",
+  cardMutedColor = "rgba(8, 11, 32, 0.62)",
+} = Astro.props;
+
+const totalItems = items.length;
+---
+
+<section
+  class:list={["scroll-story-left", className]}
+  data-scroll-story-left
+  data-header-theme="dark"
+  data-scrub={scrub}
+  data-scene-distance={sceneDistance}
+  data-intro-card-width={introCardWidth}
+  data-intro-card-height={introCardHeight}
+  data-side-card-width={sideCardWidth}
+  data-side-card-height={sideCardHeight}
+  style={`--story-left-card-bg:${cardBackground};--story-left-card-color:${cardTextColor};--story-left-card-muted:${cardMutedColor};`}
+>
+  <div class="scroll-story-left__stage" data-story-left-stage>
+    <div class="scroll-story-left__backgrounds">
+      <!-- Fondo de la escena introductoria -->
+      <figure class="scroll-story-left__background" data-story-left-background>
+        <img src={intro.background} alt={intro.alt ?? ""} loading="eager" />
+
+        <div class="scroll-story-left__image-overlay"></div>
+      </figure>
+
+      <!-- Fondos dinámicos -->
+      {
+        items.map((item) => (
+          <figure
+            class="scroll-story-left__background"
+            data-story-left-background
+          >
+            <img src={item.background} alt={item.alt ?? ""} loading="lazy" />
+
+            <div class="scroll-story-left__image-overlay" />
+          </figure>
+        ))
+      }
+    </div>
+
+    <!-- Una sola tarjeta: primero horizontal y luego lateral izquierda -->
+    <article class="scroll-story-left__card" data-story-left-card>
+      <div class="scroll-story-left__card-shape">
+        <!-- Contenido de la tarjeta horizontal inicial -->
+        <section
+          class:list={[
+            "scroll-story-left__card-panel",
+            "scroll-story-left__card-panel--intro",
+          ]}
+          data-story-left-panel
+        >
+          <div class="scroll-story-left__intro-topline">
+            <div
+              class="scroll-story-left__intro-copy-small"
+              style={`color:${intro.descriptionColor ?? cardMutedColor};`}
+            >
+              {
+                intro.eyebrow && (
+                  <span
+                    class="scroll-story-left__card-eyebrow"
+                    style={`color:${intro.eyebrowColor ?? cardTextColor};`}
+                  >
+                    {intro.eyebrow}
+                  </span>
+                )
+              }
+
+              <span>{intro.description}</span>
+            </div>
+
+            <span class="scroll-story-left__intro-number">
+              {intro.number ?? "01"}
+            </span>
+          </div>
+
+          <div class="scroll-story-left__intro-heading">
+            <h2 style={`color:${intro.titleColor ?? cardTextColor};`}>{intro.title}</h2>
+          </div>
+
+          <footer class="scroll-story-left__intro-footer">
+            <span>01</span>
+            <div class="scroll-story-left__intro-footer-line"></div>
+            <span>Continúa</span>
+          </footer>
+        </section>
+
+        <!-- Paneles laterales dinámicos -->
+        {
+          items.map((item, index) => (
+            <section
+              class:list={[
+                "scroll-story-left__card-panel",
+                "scroll-story-left__card-panel--item",
+              ]}
+              data-story-left-panel
+            >
+              <header class="scroll-story-left__item-header">
+                <div>
+                  {item.eyebrow && (
+                    <span
+                      class="scroll-story-left__card-eyebrow"
+                      style={`color:${item.eyebrowColor ?? cardTextColor};`}
+                    >
+                      {item.eyebrow}
+                    </span>
+                  )}
+
+                  <h2 style={`color:${item.titleColor ?? cardTextColor};`}>{item.title}</h2>
+                </div>
+
+                <span class="scroll-story-left__item-number">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+              </header>
+
+              <div class="scroll-story-left__item-visual">
+                {item.icon === "airport" && (
+                  <svg viewBox="0 0 220 220" aria-hidden="true">
+                    <path d="M110 25 L121 93 L184 111 L184 123 L121 115 L121 166 L148 181 L148 191 L110 181 L72 191 L72 181 L99 166 L99 115 L36 123 L36 111 L99 93 Z" />
+                  </svg>
+                )}
+
+                {item.icon === "road" && (
+                  <svg viewBox="0 0 220 220" aria-hidden="true">
+                    <path d="M62 184 C66 139 76 91 102 36 L118 36 C144 91 154 139 158 184" />
+                    <path d="M110 49 V74" />
+                    <path d="M110 91 V119" />
+                    <path d="M110 137 V169" />
+                  </svg>
+                )}
+
+                {item.icon === "building" && (
+                  <svg viewBox="0 0 220 220" aria-hidden="true">
+                    <path d="M54 183 V65 H104 V42 H166 V183 Z" />
+                    <path d="M72 86 H88" />
+                    <path d="M72 108 H88" />
+                    <path d="M72 130 H88" />
+                    <path d="M72 152 H88" />
+                    <path d="M122 65 H145" />
+                    <path d="M122 89 H145" />
+                    <path d="M122 113 H145" />
+                    <path d="M122 137 H145" />
+                  </svg>
+                )}
+
+                {item.icon === "services" && (
+                  <svg viewBox="0 0 220 220" aria-hidden="true">
+                    <circle cx="110" cy="110" r="66" />
+                    <path d="M110 59 V110 L145 132" />
+                    <path d="M77 76 L64 63" />
+                    <path d="M143 76 L156 63" />
+                    <path d="M77 144 L64 157" />
+                    <path d="M143 144 L156 157" />
+                  </svg>
+                )}
+
+                {item.icon === "dashboard" && (
+                  <svg viewBox="0 0 220 220" aria-hidden="true">
+                    <path d="M40 152 A80 80 0 0 1 180 152" />
+                    <path d="M62 152 H74" />
+                    <path d="M146 152 H158" />
+                    <path d="M80 108 L88 118" />
+                    <path d="M140 108 L132 118" />
+                    <path d="M110 96 V110" />
+                    <path d="M110 152 L142 100" />
+                    <circle cx="110" cy="152" r="7" />
+                  </svg>
+                )}
+
+                {item.icon === "document" && (
+                  <svg viewBox="0 0 220 220" aria-hidden="true">
+                    <path d="M62 28 H132 L160 56 V192 H62 Z" />
+                    <path d="M132 28 V56 H160" />
+                    <path d="M80 92 H142" />
+                    <path d="M80 114 H142" />
+                    <path d="M80 136 H120" />
+                    <circle cx="152" cy="168" r="16" />
+                    <path d="M152 160 V170" />
+                    <path d="M152 176 V177" />
+                  </svg>
+                )}
+
+                {item.icon === "matrix" && (
+                  <svg viewBox="0 0 220 220" aria-hidden="true">
+                    <path d="M52 34 V182" />
+                    <path d="M52 182 H188" />
+                    <path d="M94 130 L162 62" />
+                    <circle cx="94" cy="130" r="7" />
+                    <circle cx="128" cy="96" r="7" />
+                    <circle cx="162" cy="62" r="7" />
+                    <circle cx="76" cy="156" r="7" />
+                  </svg>
+                )}
+
+                {item.icon === "meeting" && (
+                  <svg viewBox="0 0 220 220" aria-hidden="true">
+                    <circle cx="78" cy="76" r="24" />
+                    <path d="M42 178 C42 140 58 122 78 122 C98 122 114 140 114 178" />
+                    <circle cx="152" cy="88" r="20" />
+                    <path d="M124 178 C124 148 136 130 152 130 C168 130 180 148 180 178" />
+                  </svg>
+                )}
+
+                {!item.icon && (
+                  <div class="scroll-story-left__generic-visual">
+                    <span />
+                    <span />
+                    <span />
+                  </div>
+                )}
+              </div>
+
+              <div class="scroll-story-left__item-description">
+                <p style={`color:${item.descriptionColor ?? cardMutedColor};`}>{item.description}</p>
+
+                {
+                  item.list && item.list.length > 0 && (
+                    <ul class="scroll-story-left__item-list">
+                      {item.list.map((point) => (
+                        <li>{point}</li>
+                      ))}
+                    </ul>
+                  )
+                }
+              </div>
+
+              <footer class="scroll-story-left__item-footer">
+                <div
+                  class="scroll-story-left__progress"
+                  style={`--items-count: ${totalItems};`}
+                >
+                  {items.map((_, progressIndex) => (
+                    <span
+                      class:list={{
+                        "is-active": progressIndex === index,
+                      }}
+                    />
+                  ))}
+                </div>
+
+                <div class="scroll-story-left__pagination">
+                  <span>{index + 1}</span>
+                  <span>/ {totalItems}</span>
+                </div>
+              </footer>
+            </section>
+          ))
+        }
+      </div>
+    </article>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  type StoryLeftRoot = HTMLElement & {
+    __scrollStoryLeftContext?: gsap.Context;
+  };
+
+  type StoryLeftWindow = typeof window & {
+    __scrollStoryLeftEventsRegistered?: boolean;
+  };
+
+  function readNumber(
+    element: HTMLElement,
+    property: string,
+    fallback: number,
+  ): number {
+    const value = Number(element.dataset[property]);
+    return Number.isFinite(value) ? value : fallback;
+  }
+
+  function destroyScrollStoriesLeft(): void {
+    document
+      .querySelectorAll<StoryLeftRoot>("[data-scroll-story-left]")
+      .forEach((story) => {
+        story.__scrollStoryLeftContext?.revert();
+        delete story.__scrollStoryLeftContext;
+      });
+  }
+
+  function initScrollStoriesLeft(): void {
+    document
+      .querySelectorAll<StoryLeftRoot>("[data-scroll-story-left]")
+      .forEach((story) => {
+        story.__scrollStoryLeftContext?.revert();
+
+        const stage = story.querySelector<HTMLElement>(
+          "[data-story-left-stage]",
+        );
+
+        const card = story.querySelector<HTMLElement>("[data-story-left-card]");
+
+        const backgrounds = gsap.utils.toArray<HTMLElement>(
+          "[data-story-left-background]",
+          story,
+        );
+
+        const panels = gsap.utils.toArray<HTMLElement>(
+          "[data-story-left-panel]",
+          story,
+        );
+
+        if (!stage || !card || backgrounds.length < 2 || panels.length < 2) {
+          return;
+        }
+
+        const itemCount = panels.length - 1;
+        const scrub = readNumber(story, "scrub", 0.9);
+        const sceneDistance = readNumber(story, "sceneDistance", 1);
+        const introCardWidth = readNumber(story, "introCardWidth", 0.98);
+        const introCardHeight = readNumber(story, "introCardHeight", 0.6);
+        const sideCardWidth = readNumber(story, "sideCardWidth", 0.48);
+        const sideCardHeight = readNumber(story, "sideCardHeight", 0.82);
+
+        const prefersReducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)",
+        ).matches;
+
+        story.__scrollStoryLeftContext = gsap.context(() => {
+          const getIntroLayout = () => {
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            const width = viewportWidth * introCardWidth;
+
+            return {
+              left: (viewportWidth - width) / 2,
+              bottom: viewportHeight * 0.025,
+              width,
+              height: viewportHeight * introCardHeight,
+            };
+          };
+
+          const getLeftLayout = () => {
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+
+            if (viewportWidth <= 560) {
+              const width = viewportWidth * 0.92;
+
+              return {
+                left: (viewportWidth - width) / 2,
+                bottom: viewportHeight * 0.02,
+                width,
+                height: viewportHeight * 0.62,
+              };
+            }
+
+            if (viewportWidth <= 900) {
+              const width = viewportWidth * 0.65;
+
+              return {
+                left: viewportWidth * 0.025,
+                bottom: viewportHeight * 0.03,
+                width,
+                height: viewportHeight * 0.78,
+              };
+            }
+
+            return {
+              left: viewportWidth * 0.015,
+              bottom: viewportHeight * 0.03,
+              width: viewportWidth * sideCardWidth,
+              height: viewportHeight * sideCardHeight,
+            };
+          };
+
+          backgrounds.forEach((background, index) => {
+            gsap.set(background, {
+              yPercent: index === 0 ? 0 : 100,
+              zIndex: index + 1,
+            });
+
+            const image = background.querySelector("img");
+
+            if (image) {
+              gsap.set(image, {
+                scale: index === 0 ? 1.02 : 1.06,
+              });
+            }
+          });
+
+          panels.forEach((panel, index) => {
+            gsap.set(panel, {
+              autoAlpha: index === 0 ? 1 : 0,
+              yPercent: index === 0 ? 0 : 25,
+            });
+          });
+
+          const introLayout = getIntroLayout();
+
+          gsap.set(card, {
+            left: introLayout.left,
+            bottom: introLayout.bottom,
+            width: introLayout.width,
+            height: introLayout.height,
+            yPercent: 0,
+          });
+
+          if (prefersReducedMotion) {
+            const leftLayout = getLeftLayout();
+
+            backgrounds.forEach((background, index) => {
+              gsap.set(background, {
+                yPercent: index === backgrounds.length - 1 ? 0 : 100,
+              });
+            });
+
+            gsap.set(card, {
+              left: leftLayout.left,
+              bottom: leftLayout.bottom,
+              width: leftLayout.width,
+              height: leftLayout.height,
+              yPercent: 0,
+            });
+
+            panels.forEach((panel, index) => {
+              gsap.set(panel, {
+                autoAlpha: index === panels.length - 1 ? 1 : 0,
+                yPercent: 0,
+              });
+            });
+
+            return;
+          }
+
+          const transitionCount = 1 + itemCount;
+
+          const timeline = gsap.timeline({
+            defaults: {
+              ease: "none",
+            },
+
+            scrollTrigger: {
+              trigger: story,
+              start: "top top",
+              end: () =>
+                `+=${window.innerHeight * transitionCount * sceneDistance}`,
+              pin: stage,
+              pinSpacing: true,
+              scrub,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+              snap: {
+                snapTo: "labels",
+                delay: 0.05,
+                duration: { min: 0.15, max: 0.4 },
+                ease: "power1.out",
+                inertia: false,
+              },
+            },
+          });
+
+          timeline.addLabel("scene-cover", 0);
+
+          for (let itemIndex = 0; itemIndex < itemCount; itemIndex += 1) {
+            const label = `story-left-item-${itemIndex}`;
+            const currentBackground = backgrounds[itemIndex + 1];
+            const currentBackgroundImage =
+              currentBackground.querySelector("img");
+            const previousPanel = panels[itemIndex];
+            const currentPanel = panels[itemIndex + 1];
+
+            timeline.to(
+              currentBackground,
+              {
+                yPercent: 0,
+                duration: 1,
+              },
+              label,
+            );
+
+            if (currentBackgroundImage) {
+              timeline.to(
+                currentBackgroundImage,
+                {
+                  scale: 1,
+                  duration: 1,
+                },
+                label,
+              );
+            }
+
+            if (itemIndex === 0) {
+              timeline.to(
+                card,
+                {
+                  left: () => getLeftLayout().left,
+                  bottom: () => getLeftLayout().bottom,
+                  width: () => getLeftLayout().width,
+                  height: () => getLeftLayout().height,
+                  duration: 0.68,
+                  ease: "power2.inOut",
+                },
+                `${label}+=0.3`,
+              );
+            }
+
+            timeline.to(
+              previousPanel,
+              {
+                yPercent: -28,
+                autoAlpha: 0,
+                duration: 0.32,
+                ease: "power2.in",
+              },
+              `${label}+=0.3`,
+            );
+
+            timeline.fromTo(
+              currentPanel,
+              {
+                yPercent: 28,
+                autoAlpha: 0,
+              },
+              {
+                yPercent: 0,
+                autoAlpha: 1,
+                duration: 0.46,
+                ease: "power2.out",
+              },
+              `${label}+=0.5`,
+            );
+
+            timeline.addLabel(`scene-item-${itemIndex}`);
+          }
+        }, story);
+      });
+
+    ScrollTrigger.refresh();
+  }
+
+  initScrollStoriesLeft();
+
+  const globalWindow = window as StoryLeftWindow;
+
+  if (!globalWindow.__scrollStoryLeftEventsRegistered) {
+    document.addEventListener("astro:page-load", initScrollStoriesLeft);
+    document.addEventListener("astro:before-swap", destroyScrollStoriesLeft);
+    globalWindow.__scrollStoryLeftEventsRegistered = true;
+  }
+
+  if ("fonts" in document) {
+    document.fonts.ready.then(() => {
+      ScrollTrigger.refresh();
+    });
+  }
+</script>
+
+<style>
+  .scroll-story-left {
+    position: relative;
+    width: 100%;
+    min-height: 100svh;
+    isolation: isolate;
+    background: var(--color-secondary-deep, #061c2b);
+    font-family: var(--font-body, inherit);
+  }
+
+  .scroll-story-left h1,
+  .scroll-story-left h2 {
+    font-family: var(--font-display, inherit);
+  }
+
+  .scroll-story-left__stage {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    overflow: hidden;
+    background: var(--color-secondary-deep, #061c2b);
+  }
+
+  .scroll-story-left__backgrounds,
+  .scroll-story-left__background {
+    position: absolute;
+    inset: 0;
+  }
+
+  .scroll-story-left__background {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  .scroll-story-left__background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    will-change: transform;
+  }
+
+  .scroll-story-left__image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      rgba(4, 7, 19, 0.12),
+      rgba(4, 7, 19, 0.02) 48%,
+      rgba(4, 7, 19, 0.3)
+    );
+  }
+
+  .scroll-story-left__card {
+    position: absolute;
+    z-index: 30;
+    margin: 0;
+    will-change: left, bottom, width, height, transform;
+    filter: drop-shadow(0 24px 55px rgba(0, 0, 0, 0.24));
+  }
+
+  .scroll-story-left__card-shape {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    color: var(--story-left-card-color);
+    background: var(--story-left-card-bg);
+
+    /* Parte izquierda alta y escalón descendente hacia la derecha. */
+    clip-path: polygon(0 0, 52% 0, 52% 14%, 100% 14%, 100% 100%, 0 100%);
+  }
+
+  .scroll-story-left__card-panel {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .scroll-story-left__card-panel--intro {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: clamp(28px, 3.5vw, 62px);
+    padding-top: clamp(44px, 6vw, 92px);
+  }
+
+  .scroll-story-left__intro-topline {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .scroll-story-left__intro-copy-small {
+    max-width: 360px;
+    font-size: clamp(0.72rem, 1vw, 0.95rem);
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: var(--story-left-card-muted);
+  }
+
+  .scroll-story-left__intro-copy-small .scroll-story-left__card-eyebrow {
+    margin-bottom: 8px;
+  }
+
+  .scroll-story-left__intro-number,
+  .scroll-story-left__item-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 31px;
+    height: 31px;
+    color: var(--story-left-card-bg);
+    background: var(--story-left-card-color);
+    border-radius: 50%;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  .scroll-story-left__intro-heading {
+    align-self: end;
+  }
+
+  .scroll-story-left__intro-heading h2 {
+    max-width: 1500px;
+    margin: 0;
+    color: inherit;
+    font-size: clamp(2.8rem, 5vw, 6.8rem);
+    font-weight: 300;
+    line-height: 0.96;
+    letter-spacing: -0.052em;
+    text-transform: uppercase;
+  }
+
+  .scroll-story-left__intro-footer {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 22px;
+    margin-top: 28px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+  }
+
+  .scroll-story-left__intro-footer-line {
+    height: 1px;
+    background: color-mix(
+      in srgb,
+      var(--story-left-card-color) 20%,
+      transparent
+    );
+  }
+
+  .scroll-story-left__card-panel--item {
+    display: grid;
+    grid-template-rows: auto minmax(150px, 1fr) auto auto;
+    padding: clamp(30px, 3.5vw, 65px);
+    padding-top: clamp(65px, 7vw, 105px);
+  }
+
+  .scroll-story-left__item-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 24px;
+  }
+
+  .scroll-story-left__item-header > div {
+    text-align: left;
+  }
+
+  .scroll-story-left__item-header h2 {
+    max-width: 420px;
+    margin: 0;
+    color: inherit;
+    font-size: clamp(1.7rem, 3vw, 3.2rem);
+    font-weight: 400;
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+    text-transform: uppercase;
+  }
+
+  .scroll-story-left__item-visual {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+  }
+
+  .scroll-story-left__item-visual svg {
+    width: min(260px, 44%);
+    height: auto;
+    overflow: visible;
+    fill: none;
+    stroke: color-mix(in srgb, var(--story-left-card-color) 56%, transparent);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .scroll-story-left__generic-visual {
+    position: relative;
+    width: 180px;
+    height: 180px;
+    border: 1px solid
+      color-mix(in srgb, var(--story-left-card-color) 24%, transparent);
+    border-radius: 50%;
+  }
+
+  .scroll-story-left__generic-visual span {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--story-left-card-color);
+    border-radius: 50%;
+    box-shadow: 0 0 20px
+      color-mix(in srgb, var(--story-left-card-color) 44%, transparent);
+  }
+
+  .scroll-story-left__generic-visual span:nth-child(1) {
+    top: 25%;
+    left: 30%;
+  }
+
+  .scroll-story-left__generic-visual span:nth-child(2) {
+    top: 55%;
+    right: 22%;
+  }
+
+  .scroll-story-left__generic-visual span:nth-child(3) {
+    bottom: 20%;
+    left: 42%;
+  }
+
+  .scroll-story-left__item-description {
+    max-width: 560px;
+    max-height: 100%;
+
+    /*
+     * Nunca overflow-y:auto aquí: la tarjeta vive dentro de una
+     * sección con scroll-jacking (GSAP ScrollTrigger + scrub). Un
+     * scroll interno le roba el wheel al scroll de la página y
+     * traba el timeline pineado. overflow:hidden solo recorta en
+     * el peor caso.
+     */
+    overflow: hidden;
+  }
+
+  .scroll-story-left__item-description p {
+    margin: 0;
+    color: var(--story-left-card-muted);
+    font-size: clamp(0.9rem, 1.2vw, 1.15rem);
+    font-weight: 500;
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+
+  .scroll-story-left__item-list {
+    margin: 14px 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .scroll-story-left__item-list li {
+    position: relative;
+    padding-left: 18px;
+    color: var(--story-left-card-muted);
+    font-size: clamp(0.78rem, 1vw, 0.95rem);
+    font-weight: 500;
+    line-height: 1.3;
+    text-transform: uppercase;
+  }
+
+  .scroll-story-left__item-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.65;
+  }
+
+  .scroll-story-left__item-footer {
+    margin-top: 32px;
+  }
+
+  .scroll-story-left__progress {
+    display: grid;
+    grid-template-columns: repeat(var(--items-count, 3), minmax(0, 1fr));
+    gap: clamp(7px, 1vw, 18px);
+  }
+
+  .scroll-story-left__progress span {
+    position: relative;
+    display: block;
+    height: 1px;
+    overflow: hidden;
+    background: color-mix(
+      in srgb,
+      var(--story-left-card-color) 20%,
+      transparent
+    );
+  }
+
+  .scroll-story-left__progress span::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--story-left-card-color);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .scroll-story-left__progress span.is-active::after {
+    transform: scaleX(1);
+  }
+
+  .scroll-story-left__pagination {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 36px;
+    font-size: 0.72rem;
+  }
+
+  .scroll-story-left__pagination span:last-child {
+    color: var(--story-left-card-muted);
+  }
+
+  @media (max-width: 900px) {
+    .scroll-story-left__card-panel--intro {
+      padding: 64px 28px 32px;
+    }
+
+    .scroll-story-left__intro-heading h2 {
+      font-size: clamp(2.3rem, 7vw, 4.8rem);
+    }
+
+    .scroll-story-left__card-panel--item {
+      padding: 70px 30px 32px;
+    }
+
+    .scroll-story-left__item-header h2 {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+    }
+
+    .scroll-story-left__item-visual svg {
+      width: min(210px, 46%);
+    }
+  }
+
+  @media (max-width: 560px) {
+    .scroll-story-left__card-shape {
+      clip-path: polygon(0 0, 58% 0, 58% 10%, 100% 10%, 100% 100%, 0 100%);
+    }
+
+    .scroll-story-left__card-panel--intro {
+      display: flex;
+      flex-direction: column;
+      padding: 56px 20px 22px;
+    }
+
+    .scroll-story-left__intro-heading {
+      margin-top: auto;
+    }
+
+    .scroll-story-left__intro-heading h2 {
+      font-size: clamp(2rem, 10.5vw, 3.7rem);
+    }
+
+    .scroll-story-left__intro-footer {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .scroll-story-left__card-panel--item {
+      padding: 58px 20px 22px;
+    }
+
+    .scroll-story-left__item-header {
+      gap: 14px;
+    }
+
+    .scroll-story-left__item-header h2 {
+      max-width: 250px;
+      font-size: clamp(1.35rem, 7vw, 2rem);
+    }
+
+    .scroll-story-left__card-eyebrow {
+      margin-bottom: 10px;
+      font-size: 0.6rem;
+    }
+
+    .scroll-story-left__item-visual {
+      min-height: 120px;
+    }
+
+    .scroll-story-left__item-visual svg {
+      width: 130px;
+    }
+
+    .scroll-story-left__item-description p {
+      font-size: 0.78rem;
+    }
+
+    .scroll-story-left__item-list {
+      margin-top: 8px;
+      gap: 4px;
+    }
+
+    .scroll-story-left__item-list li {
+      font-size: 0.68rem;
+    }
+
+    .scroll-story-left__item-footer {
+      margin-top: 18px;
+    }
+
+    .scroll-story-left__pagination {
+      margin-top: 20px;
+    }
+  }
+</style>

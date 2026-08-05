@@ -1,0 +1,828 @@
+---
+export interface ScrollStoryCardsCover {
+  background: string;
+  alt?: string;
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  scrollLabel?: string;
+  textColor?: string;
+  titleColor?: string;
+  descriptionColor?: string;
+  eyebrowColor?: string;
+  scrollLabelColor?: string;
+}
+
+export interface ScrollStoryCardsIntro {
+  background: string;
+  alt?: string;
+  number?: string;
+  eyebrow?: string;
+  title: string;
+  description: string;
+  eyebrowColor?: string;
+  titleColor?: string;
+}
+
+interface Props {
+  cover: ScrollStoryCardsCover;
+  intro: ScrollStoryCardsIntro;
+  class?: string;
+
+  /** Suavidad con la que la animación sigue al scroll. */
+  scrub?: number;
+
+  /** Multiplicador del recorrido total de cada escena. */
+  sceneDistance?: number;
+
+  /** Pausa breve después de que cada escena termina de entrar. */
+  holdDistance?: number;
+
+  /** Retraso relativo de la tarjeta respecto al fondo. */
+  cardDelay?: number;
+
+  /** Desplazamiento interno de parallax dentro de las tarjetas. */
+  internalParallax?: number;
+
+  /** Tamaño de la tarjeta horizontal introductoria. */
+  introCardWidth?: number;
+  introCardHeight?: number;
+
+  /** Colores de la tarjeta horizontal introductoria. */
+  introCardBackground?: string;
+  introCardTextColor?: string;
+  introCardMutedColor?: string;
+}
+
+const {
+  cover,
+  intro,
+  class: className = "",
+  scrub = 0.9,
+  sceneDistance = 1,
+  holdDistance = 0.4,
+  cardDelay = 0.08,
+  internalParallax = 24,
+  introCardWidth = 0.98,
+  introCardHeight = 0.6,
+  introCardBackground = "#05091f",
+  introCardTextColor = "#ffffff",
+  introCardMutedColor = "rgba(255,255,255,0.64)"
+} = Astro.props;
+---
+
+<section
+  class:list={["scroll-story-cards", className]}
+  data-scroll-story-cards
+  data-header-theme="dark"
+  data-scrub={scrub}
+  data-scene-distance={sceneDistance}
+  data-hold-distance={holdDistance}
+  data-card-delay={cardDelay}
+  data-internal-parallax={internalParallax}
+  data-intro-card-width={introCardWidth}
+  data-intro-card-height={introCardHeight}
+  style={`--story-intro-bg:${introCardBackground};--story-intro-color:${introCardTextColor};--story-intro-muted:${introCardMutedColor};--story-cover-color:${cover.textColor ?? "#fff"};--story-cover-title-color:${cover.titleColor ?? cover.textColor ?? "#fff"};--story-cover-description-color:${cover.descriptionColor ?? cover.textColor ?? "#fff"};--story-cover-eyebrow-color:${cover.eyebrowColor ?? cover.textColor ?? "#fff"};--story-cover-scroll-label-color:${cover.scrollLabelColor ?? cover.textColor ?? "#fff"};--story-intro-eyebrow-color:${intro.eyebrowColor ?? introCardTextColor};--story-intro-title-color:${intro.titleColor ?? introCardTextColor};`}
+>
+  <div class="scroll-story-cards__stage" data-story-cards-stage>
+    <!-- Escena 1: portada -->
+    <section
+      class="scroll-story-cards__scene scroll-story-cards__scene--cover"
+      data-story-cards-cover
+    >
+      <img
+        class="scroll-story-cards__scene-image"
+        src={cover.background}
+        alt={cover.alt ?? ""}
+        loading="eager"
+      />
+
+      <div class="scroll-story-cards__scene-overlay"></div>
+
+      <div class="scroll-story-cards__cover-content">
+        {
+          cover.eyebrow && (
+            <span
+              class="scroll-story-cards__eyebrow"
+              style={`color:${cover.eyebrowColor ?? cover.textColor ?? "inherit"};`}
+            >
+              {cover.eyebrow}
+            </span>
+          )
+        }
+
+        <h1>{cover.title}</h1>
+
+        {
+          cover.description && (
+            <p>{cover.description}</p>
+          )
+        }
+
+        <div
+          class="scroll-story-cards__scroll-message"
+          style={`color:${cover.scrollLabelColor ?? cover.textColor ?? "inherit"};`}
+        >
+          <span>{cover.scrollLabel ?? "Desliza para explorar"}</span>
+          <span class="scroll-story-cards__scroll-line"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Escena 2: fondo y tarjeta horizontal -->
+    <section
+      class="scroll-story-cards__scene scroll-story-cards__scene--intro"
+      data-story-cards-intro
+    >
+      <img
+        class="scroll-story-cards__scene-image"
+        src={intro.background}
+        alt={intro.alt ?? ""}
+        loading="eager"
+      />
+
+      <div class="scroll-story-cards__scene-overlay"></div>
+
+      <article
+        class="scroll-story-cards__intro-card"
+        data-story-cards-intro-card
+      >
+        <div
+          class="scroll-story-cards__intro-card-inner"
+          data-story-cards-intro-content
+        >
+          <header class="scroll-story-cards__intro-header">
+            <div>
+              {
+                intro.eyebrow && (
+                  <span
+                    class="scroll-story-cards__card-eyebrow"
+                    style={`color:${intro.eyebrowColor ?? introCardTextColor};`}
+                  >
+                    {intro.eyebrow}
+                  </span>
+                )
+              }
+
+              <span class="scroll-story-cards__intro-description">
+                {intro.description}
+              </span>
+            </div>
+
+            <span class="scroll-story-cards__intro-number">
+              {intro.number ?? "01"}
+            </span>
+          </header>
+
+          <h2 style={`color:${intro.titleColor ?? introCardTextColor};`}>{intro.title}</h2>
+
+          <footer class="scroll-story-cards__intro-footer">
+            <span>01</span>
+            <div></div>
+            <span>Continúa</span>
+          </footer>
+        </div>
+      </article>
+    </section>
+
+    <!-- Los items se insertan como componentes hijos. -->
+    <div class="scroll-story-cards__items">
+      <slot />
+    </div>
+  </div>
+</section>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  type StoryCardsRoot = HTMLElement & {
+    __storyCardsContext?: gsap.Context;
+  };
+
+  type StoryCardsWindow = typeof window & {
+    __storyCardsEventsRegistered?: boolean;
+  };
+
+  function readNumber(
+    element: HTMLElement,
+    property: string,
+    fallback: number
+  ): number {
+    const value = Number(element.dataset[property]);
+    return Number.isFinite(value) ? value : fallback;
+  }
+
+  function destroyScrollStoryCards(): void {
+    document
+      .querySelectorAll<StoryCardsRoot>("[data-scroll-story-cards]")
+      .forEach((story) => {
+        story.__storyCardsContext?.revert();
+        delete story.__storyCardsContext;
+      });
+  }
+
+  function initScrollStoryCards(): void {
+    document
+      .querySelectorAll<StoryCardsRoot>("[data-scroll-story-cards]")
+      .forEach((story) => {
+        story.__storyCardsContext?.revert();
+
+        const stage = story.querySelector<HTMLElement>(
+          "[data-story-cards-stage]"
+        );
+
+        const coverScene = story.querySelector<HTMLElement>(
+          "[data-story-cards-cover]"
+        );
+
+        const introScene = story.querySelector<HTMLElement>(
+          "[data-story-cards-intro]"
+        );
+
+        const introCard = story.querySelector<HTMLElement>(
+          "[data-story-cards-intro-card]"
+        );
+
+        const introContent = story.querySelector<HTMLElement>(
+          "[data-story-cards-intro-content]"
+        );
+
+        const itemScenes = gsap.utils.toArray<HTMLElement>(
+          "[data-story-cards-item]",
+          story
+        );
+
+        if (
+          !stage ||
+          !coverScene ||
+          !introScene ||
+          !introCard ||
+          !introContent ||
+          itemScenes.length === 0
+        ) {
+          return;
+        }
+
+        const scrub = readNumber(story, "scrub", 0.9);
+        const sceneDistance = readNumber(story, "sceneDistance", 1);
+        const holdDistance = readNumber(story, "holdDistance", 0.4);
+        const defaultCardDelay = readNumber(story, "cardDelay", 0.08);
+        const internalParallax = readNumber(
+          story,
+          "internalParallax",
+          24
+        );
+        const introCardWidth = readNumber(
+          story,
+          "introCardWidth",
+          0.98
+        );
+        const introCardHeight = readNumber(
+          story,
+          "introCardHeight",
+          0.6
+        );
+
+        const reduceMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
+
+        story.__storyCardsContext = gsap.context(() => {
+          const getIntroLayout = () => {
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            const width = viewportWidth * introCardWidth;
+
+            return {
+              left: (viewportWidth - width) / 2,
+              bottom: viewportHeight * 0.025,
+              width,
+              height: viewportHeight * introCardHeight
+            };
+          };
+
+          const allScenes = [coverScene, introScene, ...itemScenes];
+
+          allScenes.forEach((scene, index) => {
+            gsap.set(scene, {
+              yPercent: index === 0 ? 0 : 100,
+              zIndex: index + 1
+            });
+
+            const image = scene.querySelector<HTMLElement>(
+              ".scroll-story-cards__scene-image, [data-story-cards-item-image]"
+            );
+
+            if (image) {
+              gsap.set(image, {
+                scale: index === 0 ? 1.02 : 1.06
+              });
+            }
+          });
+
+          const introLayout = getIntroLayout();
+
+          gsap.set(introCard, {
+            left: introLayout.left,
+            bottom: introLayout.bottom,
+            width: introLayout.width,
+            height: introLayout.height,
+            yPercent: 125
+          });
+
+          gsap.set(introContent, {
+            y: internalParallax
+          });
+
+          itemScenes.forEach((scene) => {
+            const card = scene.querySelector<HTMLElement>(
+              "[data-story-cards-item-card]"
+            );
+
+            const cardContent = scene.querySelector<HTMLElement>(
+              "[data-story-cards-item-content]"
+            );
+
+            if (card) {
+              gsap.set(card, {
+                yPercent: 118
+              });
+            }
+
+            if (cardContent) {
+              gsap.set(cardContent, {
+                y: internalParallax
+              });
+            }
+          });
+
+          if (reduceMotion) {
+            allScenes.forEach((scene, index) => {
+              gsap.set(scene, {
+                yPercent: index === allScenes.length - 1 ? 0 : 100
+              });
+            });
+
+            const lastItem = itemScenes[itemScenes.length - 1];
+            const lastCard = lastItem.querySelector<HTMLElement>(
+              "[data-story-cards-item-card]"
+            );
+            const lastContent = lastItem.querySelector<HTMLElement>(
+              "[data-story-cards-item-content]"
+            );
+
+            gsap.set(lastCard, { yPercent: 0 });
+            gsap.set(lastContent, { y: 0 });
+            return;
+          }
+
+          const totalUnits =
+            2 +
+            holdDistance +
+            itemScenes.length * (1 + holdDistance);
+
+          const timeline = gsap.timeline({
+            defaults: {
+              ease: "none"
+            },
+
+            scrollTrigger: {
+              trigger: story,
+              start: "top top",
+              end: () =>
+                `+=${
+                  window.innerHeight * totalUnits * sceneDistance
+                }`,
+              pin: stage,
+              pinSpacing: true,
+              scrub,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+              snap: {
+                snapTo: "labels",
+                delay: 0.05,
+                duration: { min: 0.15, max: 0.4 },
+                ease: "power1.out",
+                inertia: false
+              }
+            }
+          });
+
+          // El fondo introductorio sube primero.
+          timeline.addLabel("intro-background");
+
+          timeline.to(
+            coverScene,
+            {
+              yPercent: -10,
+              duration: 1
+            },
+            "intro-background"
+          );
+
+          timeline.to(
+            introScene,
+            {
+              yPercent: 0,
+              duration: 1
+            },
+            "intro-background"
+          );
+
+          const introImage = introScene.querySelector<HTMLElement>(
+            ".scroll-story-cards__scene-image"
+          );
+
+          if (introImage) {
+            timeline.to(
+              introImage,
+              {
+                scale: 1,
+                duration: 1
+              },
+              "intro-background"
+            );
+          }
+
+          // Después entra la tarjeta horizontal.
+          timeline.to(
+            introCard,
+            {
+              yPercent: 0,
+              duration: 1,
+              ease: "power2.out"
+            }
+          );
+
+          timeline.to(
+            introContent,
+            {
+              y: 0,
+              duration: 1,
+              ease: "power2.out"
+            },
+            "<"
+          );
+
+          // Pequeña permanencia para lectura.
+          timeline.to(introScene, {
+            yPercent: 0,
+            duration: holdDistance
+          });
+
+          itemScenes.forEach((currentScene, index) => {
+            const previousScene =
+              index === 0 ? introScene : itemScenes[index - 1];
+
+            const currentCard = currentScene.querySelector<HTMLElement>(
+              "[data-story-cards-item-card]"
+            );
+
+            const currentContent = currentScene.querySelector<HTMLElement>(
+              "[data-story-cards-item-content]"
+            );
+
+            const currentImage = currentScene.querySelector<HTMLElement>(
+              "[data-story-cards-item-image]"
+            );
+
+            const itemCardDelay = currentScene.dataset.cardDelay
+              ? Number(currentScene.dataset.cardDelay)
+              : defaultCardDelay;
+
+            const delay = Number.isFinite(itemCardDelay)
+              ? itemCardDelay
+              : defaultCardDelay;
+
+            const label = `story-cards-item-${index}`;
+            timeline.addLabel(label);
+
+            // La escena anterior también se desplaza suavemente hacia arriba.
+            timeline.to(
+              previousScene,
+              {
+                yPercent: -12,
+                duration: 1
+              },
+              label
+            );
+
+            // El nuevo fondo asciende y cubre al anterior.
+            timeline.to(
+              currentScene,
+              {
+                yPercent: 0,
+                duration: 1
+              },
+              label
+            );
+
+            if (currentImage) {
+              timeline.to(
+                currentImage,
+                {
+                  scale: 1,
+                  duration: 1
+                },
+                label
+              );
+            }
+
+            // La tarjeta sigue al fondo con un retraso breve.
+            if (currentCard) {
+              timeline.to(
+                currentCard,
+                {
+                  yPercent: 0,
+                  duration: Math.max(0.72, 1 - delay),
+                  ease: "power2.out"
+                },
+                `${label}+=${delay}`
+              );
+            }
+
+            // Parallax interno sutil.
+            if (currentContent) {
+              timeline.to(
+                currentContent,
+                {
+                  y: 0,
+                  duration: Math.max(0.72, 1 - delay),
+                  ease: "power2.out"
+                },
+                `${label}+=${delay}`
+              );
+            }
+
+            // Pausa breve con la escena completa en pantalla.
+            timeline.to(currentScene, {
+              yPercent: 0,
+              duration: holdDistance
+            });
+          });
+        }, story);
+      });
+
+    ScrollTrigger.refresh();
+  }
+
+  initScrollStoryCards();
+
+  const globalWindow = window as StoryCardsWindow;
+
+  if (!globalWindow.__storyCardsEventsRegistered) {
+    document.addEventListener("astro:page-load", initScrollStoryCards);
+    document.addEventListener(
+      "astro:before-swap",
+      destroyScrollStoryCards
+    );
+    globalWindow.__storyCardsEventsRegistered = true;
+  }
+
+  if ("fonts" in document) {
+    document.fonts.ready.then(() => {
+      ScrollTrigger.refresh();
+    });
+  }
+</script>
+
+<style>
+  .scroll-story-cards {
+    position: relative;
+    width: 100%;
+    min-height: 100svh;
+    isolation: isolate;
+    background: var(--color-secondary-deep, #061c2b);
+    font-family: var(--font-body, inherit);
+  }
+
+  .scroll-story-cards h1,
+  .scroll-story-cards h2 {
+    font-family: var(--font-display, inherit);
+  }
+
+  .scroll-story-cards__stage {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    overflow: hidden;
+    background: var(--color-secondary-deep, #061c2b);
+  }
+
+  .scroll-story-cards__scene,
+  .scroll-story-cards__items {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .scroll-story-cards__scene {
+    overflow: hidden;
+    will-change: transform;
+  }
+
+  .scroll-story-cards__scene-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    will-change: transform;
+  }
+
+  .scroll-story-cards__scene-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        90deg,
+        rgba(4, 7, 19, 0.3),
+        rgba(4, 7, 19, 0.03) 50%,
+        rgba(4, 7, 19, 0.16)
+      );
+  }
+
+  .scroll-story-cards__cover-content {
+    position: absolute;
+    z-index: 2;
+    left: clamp(28px, 7vw, 120px);
+    bottom: clamp(42px, 10vh, 120px);
+    width: min(880px, 82vw);
+    color: var(--story-cover-color);
+  }
+
+  .scroll-story-cards__eyebrow,
+  .scroll-story-cards__card-eyebrow {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  .scroll-story-cards__cover-content h1 {
+    max-width: 900px;
+    margin: 0;
+    color: var(--story-cover-title-color);
+    font-size: clamp(1.9rem, 4.2vw, 4.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .scroll-story-cards__cover-content p {
+    max-width: 640px;
+    margin: 30px 0 0;
+    color: var(--story-cover-description-color);
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    line-height: 1.65;
+    opacity: 0.75;
+  }
+
+  .scroll-story-cards__scroll-message {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 44px;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.55;
+  }
+
+  .scroll-story-cards__scroll-line {
+    width: 90px;
+    height: 1px;
+    background: currentColor;
+  }
+
+  .scroll-story-cards__intro-card {
+    position: absolute;
+    z-index: 5;
+    overflow: hidden;
+    color: var(--story-intro-color);
+    background: var(--story-intro-bg);
+    clip-path:
+      polygon(
+        0 14%,
+        34% 14%,
+        34% 0,
+        100% 0,
+        100% 100%,
+        0 100%
+      );
+    filter: drop-shadow(0 24px 55px rgba(0, 0, 0, 0.28));
+    will-change: transform;
+  }
+
+  .scroll-story-cards__intro-card-inner {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    width: 100%;
+    height: 100%;
+    padding: clamp(62px, 7vw, 112px) clamp(30px, 4vw, 70px)
+      clamp(30px, 4vw, 60px);
+    will-change: transform;
+  }
+
+  .scroll-story-cards__intro-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+  }
+
+  .scroll-story-cards__intro-description {
+    display: block;
+    max-width: 420px;
+    color: var(--story-intro-muted);
+    font-size: clamp(0.78rem, 1vw, 1rem);
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+
+  .scroll-story-cards__intro-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    flex: 0 0 auto;
+    color: var(--story-intro-bg);
+    background: var(--story-intro-color);
+    border-radius: 50%;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  .scroll-story-cards__intro-card h2 {
+    align-self: end;
+    max-width: 1500px;
+    margin: 0;
+    color: inherit;
+    font-size: clamp(2.8rem, 5.4vw, 7rem);
+    font-weight: 300;
+    line-height: 0.95;
+    letter-spacing: -0.055em;
+    text-transform: uppercase;
+  }
+
+  .scroll-story-cards__intro-footer {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 22px;
+    margin-top: 28px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+  }
+
+  .scroll-story-cards__intro-footer div {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  @media (max-width: 700px) {
+    .scroll-story-cards__cover-content {
+      left: 22px;
+      right: 22px;
+      bottom: 70px;
+      width: auto;
+    }
+
+    .scroll-story-cards__cover-content h1 {
+      font-size: clamp(1.7rem, 8vw, 2.8rem);
+      line-height: 1.12;
+    }
+
+    .scroll-story-cards__intro-card {
+      clip-path:
+        polygon(
+          0 10%,
+          32% 10%,
+          32% 0,
+          100% 0,
+          100% 100%,
+          0 100%
+        );
+    }
+
+    .scroll-story-cards__intro-card-inner {
+      padding: 58px 20px 22px;
+    }
+
+    .scroll-story-cards__intro-card h2 {
+      font-size: clamp(2rem, 10.5vw, 3.7rem);
+    }
+
+    .scroll-story-cards__intro-description {
+      font-size: 0.72rem;
+    }
+  }
+</style>

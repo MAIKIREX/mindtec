@@ -2,21 +2,314 @@
 import { getCollection } from 'astro:content';
 import ArticleLayout from '../../layouts/ArticleLayout.astro';
 
+// Generate static paths for all posts in the collection
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
   return posts.map(post => ({
     params: { slug: post.slug },
-    props: { post },
+    props: { post, allPosts: posts },
   }));
 }
 
-const { post } = Astro.props;
+interface Props {
+  post: any;
+  allPosts: any[];
+}
+
+const { post, allPosts } = Astro.props;
+
+// Render Markdown body content
 const { Content } = await post.render();
 
-const allPosts = await getCollection('posts');
+// Generate 3 suggested articles based on matching categories
 const suggestions = allPosts
   .filter(p => p.slug !== post.slug)
-  .slice(0, 3);
+  .map(p => {
+    // Score overlaps: 3 points if category matches, 0 otherwise
+    const score = p.data.category === post.data.category ? 3 : 0;
+    return { post: p, score };
+  })
+  .sort((a, b) => b.score - a.score)
+  .slice(0, 3)
+  .map(item => item.post);
+
+const articleVisuals = {
+  'que-es-el-neuromarketing': {
+    kicker: 'Mapa de medición',
+    title: 'Las 3 dimensiones que convierten una reacción en insight',
+    mode: 'cycle',
+    points: [
+      { label: 'Atención', detail: 'Eye tracking y EEG revelan qué captura la mirada y el foco cognitivo.' },
+      { label: 'Emoción', detail: 'Face analytics y GSR detectan activación emocional real, no declarada.' },
+      { label: 'Memoria', detail: 'La psicoantropología explica qué símbolos quedan grabados y por qué.' },
+    ],
+  },
+  'investigacion-de-mercado-en-bolivia-consumer-behavior': {
+    kicker: 'Lectura cultural',
+    title: 'Tres regiones, tres códigos de consumo para investigar Bolivia',
+    mode: 'matrix',
+    points: [
+      { label: 'Occidente', detail: 'Seguridad, historia familiar y validación comunitaria pesan más en la decisión.' },
+      { label: 'Centro', detail: 'Equilibrio entre practicidad, reputación y relaciones de confianza.' },
+      { label: 'Oriente', detail: 'Aspiración, dinamismo comercial y demostración social aceleran la compra.' },
+      { label: 'Síntesis', detail: 'La estrategia nace cuando el dato se cruza con cultura, emoción y contexto.' },
+    ],
+  },
+  'investigacion-de-mercado-en-pymes-paso-a-paso': {
+    kicker: 'Ruta pyme',
+    title: 'Proceso mínimo para investigar antes de invertir',
+    mode: 'flow',
+    points: [
+      { label: 'Pregunta', detail: 'Define qué decisión comercial debe reducir incertidumbre.' },
+      { label: 'Campo', detail: 'Observa clientes reales, no solo opiniones aisladas.' },
+      { label: 'Patrón', detail: 'Agrupa miedos, motivadores y objeciones repetidas.' },
+      { label: 'Acción', detail: 'Convierte hallazgos en precio, mensaje, oferta o canal.' },
+    ],
+  },
+  'investigacion-de-mercados-cuantitativa-vs-cualitativa': {
+    kicker: 'Doble lente',
+    title: 'Qué responde cada enfoque de investigación',
+    mode: 'compare',
+    points: [
+      { label: 'Cuantitativa', detail: 'Mide tamaño, frecuencia, proporción y tendencia. Responde qué pasa.' },
+      { label: 'Cualitativa', detail: 'Explora motivaciones, códigos y tensiones. Responde por qué pasa.' },
+    ],
+  },
+  'investigacion-de-mercados-consumidor': {
+    kicker: 'Verdad instintiva',
+    title: 'Del discurso declarado al insight que mueve la compra',
+    mode: 'flow',
+    points: [
+      { label: 'Dice', detail: 'La respuesta consciente intenta sonar lógica, correcta y justificable.' },
+      { label: 'Siente', detail: 'El cuerpo revela tensión, deseo, rechazo o entusiasmo antes del relato.' },
+      { label: 'Hace', detail: 'La conducta en contexto muestra el patrón que debe guiar la estrategia.' },
+    ],
+  },
+  'investigacion-de-mercados-con-neuromarketing': {
+    kicker: 'Modelo Mindtec',
+    title: 'La capa neurocientífica valida lo que el campo interpreta',
+    mode: 'stack',
+    points: [
+      { label: 'Estrategia', detail: 'Traducción a producto, comunicación, precio o experiencia.' },
+      { label: 'Neurociencia', detail: 'EEG, eye tracking, GSR y rostro confirman reacción real.' },
+      { label: 'Psicoantropología', detail: 'Campo, cultura y símbolos explican el origen del comportamiento.' },
+      { label: 'Problema de negocio', detail: 'La investigación parte de una decisión concreta que debe mejorar.' },
+    ],
+  },
+  'herramientas-recoleccion-datos-cualitativos': {
+    kicker: 'Caja de herramientas',
+    title: 'Cinco métodos para descubrir lo que una encuesta no alcanza',
+    mode: 'flow',
+    points: [
+      { label: 'Entrevista', detail: 'Profundiza en relatos, contradicciones y significado personal.' },
+      { label: 'Observación', detail: 'Mira hábitos reales donde ocurre la compra o el uso.' },
+      { label: 'Grupo', detail: 'Detecta lenguaje social, acuerdos, presión y fricciones.' },
+      { label: 'Semiótica', detail: 'Lee símbolos, códigos visuales y narrativas culturales.' },
+      { label: 'Neuro', detail: 'Mide atención y emoción para validar lo observado.' },
+    ],
+  },
+  'publicidad-efectiva-en-tu-campana-como-saber-si-lo-sera': {
+    kicker: 'Pre test publicitario',
+    title: 'Qué medir antes de lanzar una campaña',
+    mode: 'flow',
+    points: [
+      { label: 'Mirada', detail: 'El recorrido visual confirma si el mensaje clave se ve.' },
+      { label: 'Cerebro', detail: 'La carga cognitiva muestra si la pieza se entiende sin esfuerzo.' },
+      { label: 'Cuerpo', detail: 'La activación emocional indica si la campaña mueve algo real.' },
+      { label: 'Rostro', detail: 'Las microexpresiones ayudan a detectar agrado, duda o rechazo.' },
+    ],
+  },
+  'por-que-utilizar-neuromarketing-en-mi-publicidad': {
+    kicker: 'Impacto comercial',
+    title: 'Cuatro razones para validar publicidad con neuromarketing',
+    mode: 'matrix',
+    points: [
+      { label: 'Conocer', detail: 'Entiende al cliente más allá de lo que declara.' },
+      { label: 'Convertir', detail: 'Mejora experiencia, claridad y respuesta de compra.' },
+      { label: 'Optimizar', detail: 'Usa mejor el presupuesto antes de pautar.' },
+      { label: 'Proteger', detail: 'Reduce el riesgo de dañar percepción de marca.' },
+    ],
+  },
+  'sabes-la-diferencia-entre-marketing-de-emociones-y-neuromarketing': {
+    kicker: 'Diferencia clave',
+    title: 'Del recurso emocional a la medición científica',
+    mode: 'compare',
+    points: [
+      { label: 'Marketing emocional', detail: 'Diseña estímulos para provocar una emoción esperada.' },
+      { label: 'Neuromarketing', detail: 'Mide si esa emoción ocurrió, con qué intensidad y por qué.' },
+    ],
+  },
+  'mente_del_consumidor': {
+    kicker: 'Cerebro comprador',
+    title: 'La decisión avanza desde impulso hasta justificación',
+    mode: 'stack',
+    points: [
+      { label: 'Córtex', detail: 'Construye la explicación racional después de decidir.' },
+      { label: 'Límbico', detail: 'Asocia emoción, vínculo, placer o rechazo.' },
+      { label: 'Reptiliano', detail: 'Prioriza supervivencia, seguridad, estatus y ahorro de energía.' },
+    ],
+  },
+  'como-emocionar-a-mis-clientes': {
+    kicker: 'Valor simbólico',
+    title: 'Cómo transformar una oferta en una experiencia que se recuerda',
+    mode: 'flow',
+    points: [
+      { label: 'Código', detail: 'Identifica qué miedo o deseo profundo mueve la categoría.' },
+      { label: 'Historia', detail: 'Convierte el beneficio funcional en significado personal.' },
+      { label: 'Sensorialidad', detail: 'Activa vista, tacto, aroma, sonido o ritual de uso.' },
+      { label: 'Repetición', detail: 'Diseña momentos que el cliente quiera volver a vivir.' },
+    ],
+  },
+  'fidelizar_cliente': {
+    kicker: 'Lealtad cerebral',
+    title: 'El circuito que hace que un cliente quiera volver',
+    mode: 'cycle',
+    points: [
+      { label: 'Recompensa', detail: 'El cliente recibe alivio, placer o avance visible.' },
+      { label: 'Memoria', detail: 'La experiencia queda asociada a una emoción concreta.' },
+      { label: 'Reconocimiento', detail: 'La marca refuerza identidad, pertenencia o estatus.' },
+      { label: 'Retorno', detail: 'El cerebro busca repetir lo que resolvió bien.' },
+    ],
+  },
+  'conoce-las-5c-del-neuromarketing-y-potenciate': {
+    kicker: 'Framework 5C',
+    title: 'Cinco decisiones para comunicar al cerebro correcto',
+    mode: 'flow',
+    points: [
+      { label: 'Céntrate', detail: 'Apunta al miedo o deseo dominante.' },
+      { label: 'Conmueve', detail: 'Activa emoción antes de explicar.' },
+      { label: 'Conecta', detail: 'Usa más sentidos y contexto cultural.' },
+      { label: 'Contrasta', detail: 'Haz visible la diferencia sin esfuerzo.' },
+      { label: 'Cierra', detail: 'Refuerza comienzo y final del mensaje.' },
+    ],
+  },
+  '5-tips-diferenciar-tu-marca': {
+    kicker: 'Marca memorable',
+    title: 'Cinco palancas para salir del ruido competitivo',
+    mode: 'flow',
+    points: [
+      { label: 'Atención', detail: 'Gana los primeros segundos con contraste claro.' },
+      { label: 'Sentidos', detail: 'No dependas solo de lo visual.' },
+      { label: 'Simpleza', detail: 'Reduce carga cognitiva y facilita elección.' },
+      { label: 'Prueba', detail: 'Permite tocar, imaginar o vivir el beneficio.' },
+      { label: 'Reptil', detail: 'Habla a seguridad, estatus, ahorro o pertenencia.' },
+    ],
+  },
+  '3-ejemplos-de-neuromarketing-en-la-vida-diaria-que-quiza-no-sabias': {
+    kicker: 'Vida diaria',
+    title: 'Cinco estímulos comerciales que influyen sin pedir permiso',
+    mode: 'matrix',
+    points: [
+      { label: 'Orden', detail: 'La tienda guía recorridos y zonas calientes.' },
+      { label: 'Luz', detail: 'La iluminación cambia percepción de calidad.' },
+      { label: 'Tamaño', detail: 'El carrito altera la noción de cantidad normal.' },
+      { label: 'Espera', detail: 'La caja aprovecha impulso y microdecisiones.' },
+      { label: 'Aroma', detail: 'El olor crea memoria y deseo de retorno.' },
+    ],
+  },
+  'diferencias-hombres-y-mujeres-al-comprar-i': {
+    kicker: 'Diseño de mensaje',
+    title: 'Dos rutas de compra que exigen estrategias distintas',
+    mode: 'compare',
+    points: [
+      { label: 'Compra directa', detail: 'Prioriza logro, rapidez, función visible y decisión concreta.' },
+      { label: 'Compra relacional', detail: 'Valora proceso, contexto, confianza, comparación y acompañamiento.' },
+    ],
+  },
+  'codigo-cultural': {
+    kicker: 'Código cultural',
+    title: 'Cómo pasar de respuestas racionales a improntas profundas',
+    mode: 'flow',
+    points: [
+      { label: 'Desconfiar', detail: 'No tomar la primera explicación como verdad final.' },
+      { label: 'Emocionar', detail: 'Activar recuerdos y relatos, no opiniones correctas.' },
+      { label: 'Estructura', detail: 'Buscar patrones repetidos detrás de historias distintas.' },
+      { label: 'Impronta', detail: 'Encontrar el símbolo cultural que ordena la categoría.' },
+      { label: 'Código', detail: 'Traducirlo en estrategia, mensaje y experiencia.' },
+    ],
+  },
+  'eres-capaz-de-descubrir-mentiras-de-tu-cliente-aprende-como-hacerlo-parte-i': {
+    kicker: 'Lenguaje corporal',
+    title: 'Señales para contrastar relato, emoción y conducta',
+    mode: 'flow',
+    points: [
+      { label: 'Base', detail: 'Observa cómo se expresa la persona cuando está cómoda.' },
+      { label: 'Quiebre', detail: 'Detecta cambios de ritmo, mirada, postura o tensión.' },
+      { label: 'Contexto', detail: 'Interpreta la señal junto al tema y la situación.' },
+      { label: 'Validación', detail: 'Cruza lo corporal con preguntas y conducta posterior.' },
+    ],
+  },
+};
+
+const articleVisual = articleVisuals[post.slug] || {
+  kicker: 'Insight visual',
+  title: 'Del dato a la decisión estratégica',
+  mode: 'flow',
+  points: [
+    { label: 'Observar', detail: 'Detectar comportamiento real del consumidor.' },
+    { label: 'Medir', detail: 'Validar atención, emoción y recuerdo.' },
+    { label: 'Decidir', detail: 'Convertir el hallazgo en acción de negocio.' },
+  ],
+};
+
+const categorySignals = {
+  'Neuromarketing': [
+    { label: 'Atencion', detail: 'Lo primero es comprobar si el estimulo realmente se ve.', value: 92 },
+    { label: 'Emocion', detail: 'Despues se valida si genera una reaccion corporal medible.', value: 84 },
+    { label: 'Memoria', detail: 'Finalmente importa si deja una huella recordable.', value: 76 },
+  ],
+  'InvestigaciÃ³n de Mercados': [
+    { label: 'Problema', detail: 'Toda investigacion debe partir de una decision concreta.', value: 88 },
+    { label: 'Contexto', detail: 'El dato gana valor cuando se cruza con cultura y ocasion.', value: 82 },
+    { label: 'Accion', detail: 'El hallazgo debe traducirse en precio, mensaje, canal u oferta.', value: 90 },
+  ],
+  'PsicoantropologÃ­a': [
+    { label: 'Impronta', detail: 'Detecta los simbolos que organizan el deseo de la categoria.', value: 86 },
+    { label: 'Relato', detail: 'Busca patrones profundos detras de respuestas distintas.', value: 78 },
+    { label: 'Codigo', detail: 'Convierte la estructura cultural en estrategia comercial.', value: 91 },
+  ],
+  'Neuroventas': [
+    { label: 'Deseo', detail: 'Identifica el valor simbolico que el cliente quiere vivir.', value: 87 },
+    { label: 'Prueba', detail: 'Haz tangible el beneficio antes de pedir la compra.', value: 80 },
+    { label: 'Recompra', detail: 'Disena una experiencia que el cerebro quiera repetir.', value: 85 },
+  ],
+  'Lenguaje Corporal': [
+    { label: 'Linea base', detail: 'Primero entiende la expresion normal de la persona.', value: 76 },
+    { label: 'Cambio', detail: 'La senal relevante es el quiebre, no el gesto aislado.', value: 89 },
+    { label: 'Cruce', detail: 'Valida lo corporal con contexto, preguntas y conducta.', value: 82 },
+  ],
+};
+
+const categorySignal = categorySignals[post.data.category] || categorySignals['Neuromarketing'];
+const firstPoints = articleVisual.points.slice(0, 3);
+const lastPoints = articleVisual.points.slice(-3);
+
+const articleSupportVisuals = [
+  {
+    title: 'Checklist rapido para aplicar este articulo',
+    caption: 'Tres pasos para convertir la lectura en una decision accionable.',
+    type: 'checklist',
+    items: firstPoints.map((point) => ({
+      label: point.label,
+      detail: point.detail,
+    })),
+  },
+  {
+    title: 'Prioridades de lectura del consumidor',
+    caption: 'Senales que conviene medir o validar antes de invertir.',
+    type: 'bars',
+    items: categorySignal,
+  },
+  {
+    title: 'Matriz de decision para equipos comerciales',
+    caption: 'Usa estos criterios para decidir que cambiar primero.',
+    type: 'decision',
+    items: lastPoints.map((point) => ({
+      label: point.label,
+      detail: point.detail,
+    })),
+  },
+];
 ---
 
 <ArticleLayout
@@ -31,8 +324,9 @@ const suggestions = allPosts
   imgAlt={post.data.imgAlt}
   excerpt={post.data.excerpt}
   description={post.data.description}
-  keywords={post.data.keywords}
   suggestions={suggestions}
+  articleVisual={articleVisual}
+  articleSupportVisuals={articleSupportVisuals}
 >
   <Content />
 </ArticleLayout>

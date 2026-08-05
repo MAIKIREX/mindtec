@@ -1,0 +1,663 @@
+---
+interface Props {
+  /** CSS width of the map stage (it's locked to the 215/235 map aspect ratio). */
+  size?: string;
+  class?: string;
+}
+
+const { size = "clamp(280px, 34vw, 460px)", class: className = "" } = Astro.props;
+---
+
+<div
+  class:list={["bolivia-network-map", className]}
+  data-bolivia-network-map
+  style={`--bnm-size:${size};`}
+>
+  <div class="bolivia-network-map__stage" data-bnm-stage>
+    <div
+      class="bolivia-network-map__particles bolivia-network-map__particles--fill"
+      data-bnm-fill
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="bolivia-network-map__particles bolivia-network-map__particles--outline"
+      data-bnm-outline
+      aria-hidden="true"
+    >
+    </div>
+    <canvas
+      class="bolivia-network-map__connections"
+      data-bnm-connections
+      aria-hidden="true"></canvas>
+
+    <div class="bolivia-network-map__cities" data-bnm-cities aria-hidden="true">
+      <span
+        class="bolivia-network-map__city bolivia-network-map__city--la-paz"
+        style="left:16.74%; top:50.64%;"
+      >
+        <span class="bolivia-network-map__city-dot"></span>
+        <span class="bolivia-network-map__city-label">La Paz</span>
+      </span>
+      <span
+        class="bolivia-network-map__city bolivia-network-map__city--cochabamba"
+        style="left:32.09%; top:56.60%;"
+      >
+        <span class="bolivia-network-map__city-dot"></span>
+        <span class="bolivia-network-map__city-label">Cochabamba</span>
+      </span>
+      <span
+        class="bolivia-network-map__city bolivia-network-map__city--santa-cruz"
+        style="left:57.21%; top:57.45%;"
+      >
+        <span class="bolivia-network-map__city-dot"></span>
+        <span class="bolivia-network-map__city-label">Santa Cruz</span>
+      </span>
+    </div>
+
+    <!-- Static fallback: only shown when JS never runs the particle contour
+         (reduced motion). Otherwise hidden — the canvas-drawn dots carry it. -->
+    <svg
+      class="bolivia-network-map__fallback"
+      data-bnm-fallback-svg
+      viewBox="0 0 215 235"
+      role="img"
+      aria-label="Mapa de Bolivia con red de inteligencia de mercado conectando La Paz, Cochabamba y Santa Cruz"
+    >
+      <path
+        d="M80 13 L61 17 L33 35 L17 34 L31 59 L23 101 L17 100 L12 109 L27 117 L19 132 L36 164 L34 181 L42 192 L48 219 L58 217 L72 204 L93 206 L99 217 L106 204 L123 206 L129 180 L140 166 L173 162 L190 174 L198 146 L194 135 L186 130 L187 115 L159 114 L155 78 L116 57 L96 56 L82 40 Z"
+      ></path>
+    </svg>
+  </div>
+</div>
+
+<style>
+  .bolivia-network-map {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: var(--bnm-size, clamp(280px, 34vw, 460px));
+  }
+
+  .bolivia-network-map__stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 215 / 235;
+    --bnm-glow: 0px;
+    transform-style: preserve-3d;
+    will-change: transform;
+    filter: drop-shadow(0 0 var(--bnm-glow) rgba(242, 101, 34, 0.65));
+  }
+
+  .bolivia-network-map__particles {
+    position: absolute;
+    inset: 0;
+    transform: translateZ(0);
+  }
+
+  .bolivia-network-map__particles--fill {
+    z-index: 1;
+  }
+
+  .bolivia-network-map__particles--outline {
+    z-index: 2;
+  }
+
+  .bolivia-network-map__connections {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .bolivia-network-map__cities {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+  }
+
+  .bolivia-network-map__city {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+  }
+
+  .bolivia-network-map__city-dot {
+    position: relative;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--bnm-city-color, #19bfff);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 6px 1px var(--bnm-city-color, #19bfff);
+  }
+
+  .bolivia-network-map__city-dot::before {
+    content: "";
+    position: absolute;
+    inset: -9px;
+    border-radius: 50%;
+    background: var(--bnm-city-color, #19bfff);
+    opacity: 0.25;
+    filter: blur(3px);
+    animation: bnm-city-pulse 2.6s ease-in-out infinite;
+  }
+
+  .bolivia-network-map__city-label {
+    font-family: var(--font-display, "Outfit", sans-serif);
+    font-size: clamp(0.62rem, 1.6vw, 0.78rem);
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: #fff;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.65);
+  }
+
+  .bolivia-network-map__city--la-paz {
+    --bnm-city-color: #ff3b30;
+  }
+
+  .bolivia-network-map__city--cochabamba {
+    --bnm-city-color: #f6c445;
+  }
+
+  .bolivia-network-map__city--santa-cruz {
+    --bnm-city-color: #22c55e;
+  }
+
+  @keyframes bnm-city-pulse {
+    0%,
+    100% {
+      opacity: 0.18;
+      transform: scale(0.85);
+    }
+    50% {
+      opacity: 0.4;
+      transform: scale(1.15);
+    }
+  }
+
+  .bolivia-network-map__fallback {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    color: #19bfff;
+  }
+
+  .bolivia-network-map__fallback path {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.4;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bolivia-network-map__fallback {
+      display: block;
+    }
+
+    .bolivia-network-map__city-dot::before {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  // Runs once per page load — Astro only includes an identical component
+  // script once even if <BoliviaNetworkMap /> is used several times, so this
+  // sets up EVERY instance found on the page instead of assuming there's
+  // only one (no fixed element ids anywhere, all lookups are scoped to each
+  // instance's own root).
+  //
+  // Each instance loads TWO tsParticles containers (fill + outline). Without
+  // an explicit `id`, tsParticles auto-assigns ids from a shared counter —
+  // loading the second container then collides with the first's id and
+  // silently tears down its canvas. A per-instance counter keeps every
+  // container id unique across every <BoliviaNetworkMap /> on the page.
+  let bnmInstanceCounter = 0;
+
+  function setupBoliviaNetworkMap(root: HTMLElement) {
+    const instanceId = bnmInstanceCounter++;
+    const stageEl = root.querySelector<HTMLElement>("[data-bnm-stage]");
+    const fillEl = root.querySelector<HTMLElement>("[data-bnm-fill]");
+    const outlineEl = root.querySelector<HTMLElement>("[data-bnm-outline]");
+    const connectionsEl = root.querySelector<HTMLCanvasElement>(
+      "[data-bnm-connections]",
+    );
+    const cityEls = Array.from(
+      root.querySelectorAll<HTMLElement>("[data-bnm-cities] .bolivia-network-map__city"),
+    );
+    if (!stageEl || !fillEl || !outlineEl || !connectionsEl) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    // The mask svg (public/logos/bolivia-network-mask.svg) declares
+    // width="215" height="235" — the path coordinates were normalized to
+    // that same box, so scale = renderedStageWidth / MASK_WIDTH matches the
+    // on-screen map exactly (mirrors how NeuroOrbitLogo scales its brain mask).
+    const MASK_WIDTH = 215;
+    const MASK_HEIGHT = 235;
+    const MASK_URL = "/logos/bolivia-network-mask.svg";
+
+    // City coordinates in the same normalized (0–215, 0–235) space as the
+    // mask path, so they land exactly on the map without any extra offset math.
+    const CITY_DATA = [
+      { x: 36, y: 119 },
+      { x: 69, y: 133 },
+      { x: 123, y: 135 },
+    ];
+
+    let outlineContainer: any;
+    let fillContainer: any;
+
+    async function initParticles() {
+      const { tsParticles } = await import("@tsparticles/engine");
+      const { loadSlim } = await import("@tsparticles/slim");
+      const { loadPolygonMaskPlugin } = await import(
+        "@tsparticles/plugin-polygon-mask"
+      );
+      const { loadTwinkleUpdater } = await import(
+        "@tsparticles/updater-twinkle"
+      );
+      const { gsap } = await import("gsap");
+      await loadSlim(tsParticles);
+      await loadPolygonMaskPlugin(tsParticles);
+      await loadTwinkleUpdater(tsParticles);
+
+      const isMobile = window.matchMedia("(max-width: 768px)").matches;
+      const stageWidth = stageEl!.clientWidth;
+      const scale = stageWidth / MASK_WIDTH;
+
+      const buildOptions = (
+        count: number,
+        color: string,
+        polygonType: "inline" | "inside",
+        sizeRange: { min: number; max: number },
+      ) => ({
+        fullScreen: { enable: false },
+        fpsLimit: 60,
+        detectRetina: false,
+        pauseOnBlur: true,
+        pauseOnOutsideViewport: true,
+        particles: {
+          number: { value: count },
+          color: { value: color },
+          opacity: {
+            value: { min: 0.35, max: 1 },
+            animation: {
+              enable: true,
+              speed: 0.8,
+              sync: false,
+              startValue: "random",
+            },
+          },
+          size: { value: sizeRange },
+          links: { enable: false },
+          move: {
+            enable: false,
+            outModes: { default: "none" },
+          },
+        },
+        twinkle: {
+          particles: {
+            enable: true,
+            frequency: 0.035,
+            opacity: { min: 0.7, max: 1 },
+          },
+        },
+        polygon: {
+          enable: true,
+          type: polygonType,
+          url: MASK_URL,
+          scale,
+          inline: { arrangement: "equidistant" },
+          move: { radius: 0, type: "path" },
+          draw: { enable: false },
+        },
+        interactivity: {
+          events: { resize: { enable: true, delay: 0.5 } },
+        },
+      });
+
+      // The interior "fill" layer sits under the outline and reads as a
+      // glowing terrain of data points inside the country's borders.
+      fillContainer = await tsParticles.load({
+        id: `bnm-fill-${instanceId}`,
+        element: fillEl,
+        options: buildOptions(
+          isMobile ? 140 : 260,
+          "#F26522",
+          "inside",
+          { min: 1, max: 2.4 },
+        ),
+      });
+
+      // The "outline" layer traces the contour itself with evenly spaced
+      // points, same technique NeuroOrbitLogo uses for the brain silhouette.
+      outlineContainer = await tsParticles.load({
+        id: `bnm-outline-${instanceId}`,
+        element: outlineEl,
+        options: buildOptions(
+          isMobile ? 70 : 130,
+          "#19bfff",
+          "inline",
+          { min: 1.2, max: 2.6 },
+        ),
+      });
+
+      // --- City hub pixel positions: same scale, no offset needed since the
+      // stage aspect-ratio is locked to the mask's own 215×235 box. ---
+      let cityPositions = CITY_DATA.map((city) => ({
+        x: city.x * scale,
+        y: city.y * scale,
+      }));
+
+      const recalcCityPositions = () => {
+        const currentScale = stageEl!.clientWidth / MASK_WIDTH;
+        cityPositions = CITY_DATA.map((city) => ({
+          x: city.x * currentScale,
+          y: city.y * currentScale,
+        }));
+      };
+
+      // --- Synapse bursts: a single origin fires toward several nearby
+      // neighbours at once (fan-out), the way a real neuron radiates to
+      // multiple synapses. Reused from NeuroOrbitLogo's connection engine,
+      // merging both particle layers plus the three city hubs so bursts can
+      // travel between the map's contour, its interior and its cities. ---
+      const connectionsContext = connectionsEl!.getContext("2d");
+      let dotsRef: { getPosition: () => { x: number; y: number }; isCity?: boolean }[] = [];
+      let adjacency: number[][] = [];
+      let firingOrigins: number[] = [];
+      const activeConnections: any[] = [];
+      const maxActiveConnections = isMobile ? 10 : 20;
+      let nextBurstAt = 0;
+
+      const resizeConnections = () => {
+        const pixelRatio = window.devicePixelRatio || 1;
+        connectionsEl!.width = stageEl!.clientWidth * pixelRatio;
+        connectionsEl!.height = stageEl!.clientHeight * pixelRatio;
+        connectionsContext?.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+      };
+
+      const collectPairs = () => {
+        recalcCityPositions();
+
+        const outlineDots = outlineContainer.particles.filter(() => true);
+        const fillDots = fillContainer.particles.filter(() => true);
+        const cityDots = cityPositions.map((position) => ({
+          getPosition: () => position,
+          isCity: true,
+        }));
+
+        dotsRef = [...outlineDots, ...fillDots, ...cityDots];
+        adjacency = dotsRef.map(() => []);
+
+        const cityStart = outlineDots.length + fillDots.length;
+        const stageWidthNow = stageEl!.clientWidth || 1;
+        const dotMin = stageWidthNow * 0.035;
+        const dotMax = stageWidthNow * 0.16;
+        const cityMax = stageWidthNow * 0.5;
+
+        // The three city hubs always form a connected triangle — the
+        // network visibly links La Paz, Cochabamba and Santa Cruz.
+        for (let i = cityStart; i < dotsRef.length; i += 1) {
+          for (let j = i + 1; j < dotsRef.length; j += 1) {
+            adjacency[i].push(j);
+            adjacency[j].push(i);
+          }
+        }
+
+        for (let index = 0; index < dotsRef.length; index += 1) {
+          const isStartCity = index >= cityStart;
+          const start = dotsRef[index].getPosition();
+          for (
+            let targetIndex = index + 1;
+            targetIndex < dotsRef.length;
+            targetIndex += 1
+          ) {
+            const isTargetCity = targetIndex >= cityStart;
+            if (isStartCity && isTargetCity) continue; // already linked above
+
+            const end = dotsRef[targetIndex].getPosition();
+            const distance = Math.hypot(end.x - start.x, end.y - start.y);
+            const isCityPair = isStartCity || isTargetCity;
+            const min = isCityPair ? 0 : dotMin;
+            const max = isCityPair ? cityMax : dotMax;
+            if (distance > min && distance < max) {
+              adjacency[index].push(targetIndex);
+              adjacency[targetIndex].push(index);
+            }
+          }
+        }
+
+        // Only points with at least two nearby neighbours can "fire" a
+        // fan-out burst — a lone pair would look like a single flat line.
+        firingOrigins = adjacency
+          .map((neighbors, index) => (neighbors.length >= 2 ? index : -1))
+          .filter((index) => index >= 0);
+      };
+
+      const addBurst = (now: number) => {
+        if (firingOrigins.length === 0) return;
+        const originIndex =
+          firingOrigins[Math.floor(Math.random() * firingOrigins.length)];
+        const neighbors = adjacency[originIndex];
+        const branchCount = Math.min(
+          neighbors.length,
+          2 + Math.floor(Math.random() * 3),
+        );
+        const branches = [...neighbors]
+          .sort(() => Math.random() - 0.5)
+          .slice(0, branchCount);
+        const duration = 800 + Math.random() * 700;
+
+        branches.forEach((targetIndex, branchOrder) => {
+          activeConnections.push({
+            originIndex,
+            targetIndex,
+            bend: (Math.random() - 0.5) * 0.6,
+            start: now + branchOrder * 45,
+            duration,
+          });
+        });
+      };
+
+      const drawConnections = (now: number) => {
+        if (!connectionsContext || !dotsRef.length) {
+          requestAnimationFrame(drawConnections);
+          return;
+        }
+        connectionsContext.clearRect(
+          0,
+          0,
+          stageEl!.clientWidth,
+          stageEl!.clientHeight,
+        );
+
+        while (
+          activeConnections.length < maxActiveConnections &&
+          now >= nextBurstAt
+        ) {
+          addBurst(now);
+          nextBurstAt = now + 260 + Math.random() * 180;
+        }
+
+        for (
+          let index = activeConnections.length - 1;
+          index >= 0;
+          index -= 1
+        ) {
+          const connection = activeConnections[index];
+          if (now < connection.start) continue;
+
+          const progress = (now - connection.start) / connection.duration;
+          if (progress >= 1) {
+            activeConnections.splice(index, 1);
+            continue;
+          }
+
+          const origin = dotsRef[connection.originIndex];
+          const target = dotsRef[connection.targetIndex];
+          if (!origin || !target) {
+            activeConnections.splice(index, 1);
+            continue;
+          }
+
+          const from = origin.getPosition();
+          const to = target.getPosition();
+          const isCityBurst = !!origin.isCity;
+          const drawProgress = Math.min(progress * 2.4, 1);
+          const fade = Math.sin(Math.min(progress, 1) * Math.PI);
+          const midX = (from.x + to.x) / 2 - (to.y - from.y) * connection.bend;
+          const midY = (from.y + to.y) / 2 + (to.x - from.x) * connection.bend;
+          const inverse = 1 - drawProgress;
+          const endX =
+            inverse * inverse * from.x +
+            2 * inverse * drawProgress * midX +
+            drawProgress * drawProgress * to.x;
+          const endY =
+            inverse * inverse * from.y +
+            2 * inverse * drawProgress * midY +
+            drawProgress * drawProgress * to.y;
+
+          connectionsContext.beginPath();
+          connectionsContext.moveTo(from.x, from.y);
+          connectionsContext.quadraticCurveTo(midX, midY, endX, endY);
+          connectionsContext.strokeStyle = `rgba(255, 255, 255, ${fade * 0.85})`;
+          connectionsContext.lineWidth = isCityBurst ? 1.6 : 1.1;
+          connectionsContext.shadowColor = "rgba(255, 255, 255, 0.9)";
+          connectionsContext.shadowBlur = isCityBurst ? 11 : 8;
+          connectionsContext.stroke();
+
+          // Travelling spark at the drawing tip.
+          connectionsContext.beginPath();
+          connectionsContext.arc(endX, endY, isCityBurst ? 2.1 : 1.6, 0, Math.PI * 2);
+          connectionsContext.fillStyle = `rgba(255, 255, 255, ${fade})`;
+          connectionsContext.shadowBlur = 10;
+          connectionsContext.fill();
+
+          // Brief flash at the origin the instant a branch fires.
+          if (progress < 0.22) {
+            const flash = 1 - progress / 0.22;
+            connectionsContext.beginPath();
+            connectionsContext.arc(
+              from.x,
+              from.y,
+              (isCityBurst ? 3.2 : 2.4) * flash + 1,
+              0,
+              Math.PI * 2,
+            );
+            connectionsContext.fillStyle = `rgba(255, 255, 255, ${flash * 0.8})`;
+            connectionsContext.shadowBlur = 12;
+            connectionsContext.fill();
+          }
+        }
+
+        requestAnimationFrame(drawConnections);
+      };
+
+      resizeConnections();
+      collectPairs();
+      new ResizeObserver(() => {
+        resizeConnections();
+        collectPairs();
+      }).observe(stageEl!);
+      requestAnimationFrame(drawConnections);
+
+      // --- Pointer tilt: the whole map tilts and drifts with a small spring
+      // response, same feel as NeuroOrbitLogo but without the orbit sphere. ---
+      const tiltMap = (event: PointerEvent) => {
+        const bounds = root.getBoundingClientRect();
+        const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+        const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+
+        gsap.to(root, {
+          x: x * 14,
+          y: y * 10,
+          rotationY: x * 9,
+          rotationX: y * -7,
+          scale: 1.012,
+          duration: 0.55,
+          ease: "power3.out",
+          overwrite: "auto",
+        });
+        gsap.to(stageEl, {
+          "--bnm-glow": "16px",
+          duration: 0.35,
+          overwrite: "auto",
+        });
+      };
+
+      const resetTilt = () => {
+        gsap.to(root, {
+          x: 0,
+          y: 0,
+          rotationX: 0,
+          rotationY: 0,
+          scale: 1,
+          duration: 1.1,
+          ease: "elastic.out(1, 0.45)",
+          overwrite: "auto",
+        });
+        gsap.to(stageEl, {
+          "--bnm-glow": "0px",
+          duration: 0.8,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+      };
+
+      root.addEventListener("pointermove", tiltMap);
+      root.addEventListener("pointerleave", resetTilt);
+
+      // Extra safety: stop both particle instances when the tab isn't visible.
+      document.addEventListener("visibilitychange", () => {
+        if (!outlineContainer || !fillContainer) return;
+        if (document.hidden) {
+          outlineContainer.pause();
+          fillContainer.pause();
+        } else {
+          outlineContainer.play();
+          fillContainer.play();
+        }
+      });
+    }
+
+    // City labels are plain HTML, always present — only the particle
+    // contour needs a reduced-motion opt-out (the static SVG fallback
+    // covers that case via CSS).
+    void cityEls;
+
+    if (!prefersReducedMotion) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              initParticles();
+              observer.disconnect();
+              break;
+            }
+          }
+        },
+        { rootMargin: "200px" },
+      );
+      observer.observe(root);
+    }
+  }
+
+  document
+    .querySelectorAll<HTMLElement>("[data-bolivia-network-map]")
+    .forEach(setupBoliviaNetworkMap);
+</script>

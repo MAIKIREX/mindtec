@@ -1,0 +1,305 @@
+---
+interface Props {
+    class?: string;
+    scale?: number;
+    overlayOpacity?: number;
+    exitYOffset?: number;
+    revealOffset?: number;
+    scrub?: number;
+}
+
+const {
+    class: className = "",
+    scale = 0.965,
+    overlayOpacity = 0.42,
+    exitYOffset = 35,
+    revealOffset = 60,
+    scrub = 0.8,
+} = Astro.props;
+---
+
+<div
+    class:list={["scroll-stack", className]}
+    data-scroll-stack
+    data-scale={scale}
+    data-overlay-opacity={overlayOpacity}
+    data-exit-y-offset={exitYOffset}
+    data-reveal-offset={revealOffset}
+    data-scrub={scrub}
+>
+    <slot />
+</div>
+
+<script>
+    import gsap from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    type ScrollStackElement = HTMLElement & {
+        __scrollStackContext?: gsap.Context;
+    };
+
+    type ScrollStackWindow = typeof window & {
+        __scrollStackEventsRegistered?: boolean;
+    };
+
+    function getNumber(
+        element: HTMLElement,
+        key: string,
+        fallback: number,
+    ): number {
+        const value = Number(element.dataset[key]);
+
+        return Number.isFinite(value) ? value : fallback;
+    }
+
+    function destroyScrollStacks(): void {
+        document
+            .querySelectorAll<ScrollStackElement>("[data-scroll-stack]")
+            .forEach((stack) => {
+                stack.__scrollStackContext?.revert();
+                delete stack.__scrollStackContext;
+            });
+    }
+
+    function initScrollStacks(): void {
+        document
+            .querySelectorAll<ScrollStackElement>("[data-scroll-stack]")
+            .forEach((stack) => {
+                /*
+                 * Evita duplicar animaciones cuando Astro
+                 * cambia de página.
+                 */
+                stack.__scrollStackContext?.revert();
+
+                const sections = gsap.utils.toArray<HTMLElement>(
+                    "[data-stack-section]",
+                    stack,
+                );
+
+                if (sections.length === 0) return;
+
+                const scale = getNumber(stack, "scale", 0.965);
+
+                const overlayOpacity = getNumber(stack, "overlayOpacity", 0.42);
+
+                const exitYOffset = getNumber(stack, "exitYOffset", 35);
+
+                const revealOffset = getNumber(stack, "revealOffset", 60);
+
+                const scrub = getNumber(stack, "scrub", 0.8);
+
+                const prefersReducedMotion = window.matchMedia(
+                    "(prefers-reduced-motion: reduce)",
+                ).matches;
+
+                stack.__scrollStackContext = gsap.context(() => {
+                    sections.forEach((section, index) => {
+                        const pinElement =
+                            section.querySelector<HTMLElement>(
+                                "[data-stack-pin]",
+                            );
+
+                        const content = section.querySelector<HTMLElement>(
+                            "[data-stack-content]",
+                        );
+
+                        const overlay = section.querySelector<HTMLElement>(
+                            "[data-stack-overlay]",
+                        );
+
+                        const nextSection = sections[index + 1];
+
+                        if (!pinElement || !content || !overlay) {
+                            return;
+                        }
+
+                        /*
+                         * Cada nueva sección queda por encima
+                         * de la anterior.
+                         */
+                        gsap.set(section, {
+                            zIndex: index + 1,
+                        });
+
+                        /*
+                         * Estado inicial consistente.
+                         */
+                        gsap.set(content, {
+                            autoAlpha: 1,
+                            scale: 1,
+                            y: 0,
+                            transformOrigin: "center center",
+                        });
+
+                        gsap.set(overlay, {
+                            opacity: 0,
+                        });
+
+                        /*
+                         * Si el usuario prefiere menos movimiento,
+                         * desactivamos las animaciones.
+                         */
+                        if (prefersReducedMotion) {
+                            gsap.set(content, {
+                                clearProps: "transform,opacity,visibility",
+                            });
+
+                            gsap.set(overlay, {
+                                opacity: 0,
+                            });
+
+                            return;
+                        }
+
+                        /*
+                         * Animación de entrada del contenido.
+                         */
+                        gsap.fromTo(
+                            content,
+                            {
+                                autoAlpha: 0,
+                                y: revealOffset,
+                            },
+                            {
+                                autoAlpha: 1,
+                                y: 0,
+                                duration: 0.9,
+                                ease: "power3.out",
+
+                                scrollTrigger: {
+                                    trigger: section,
+                                    start: "top 88%",
+                                    toggleActions: "play none none reverse",
+                                },
+                            },
+                        );
+
+                        /*
+                         * La última sección no necesita ser fijada
+                         * esperando otra sección.
+                         */
+                        if (!nextSection) return;
+
+                        /*
+                         * Mantiene la sección actual fija hasta que
+                         * la siguiente llegue a la parte superior.
+                         */
+                        ScrollTrigger.create({
+                            trigger: section,
+
+                            start: "top top",
+
+                            endTrigger: nextSection,
+                            end: "top top",
+
+                            pin: pinElement,
+                            pinSpacing: true,
+
+                            anticipatePin: 1,
+                            invalidateOnRefresh: true,
+                        });
+
+                        /*
+                         * Transición gradual de salida.
+                         *
+                         * Se ejecuta mientras la siguiente sección
+                         * sube desde abajo hasta cubrir la pantalla.
+                         */
+                        const exitTimeline = gsap.timeline({
+                            scrollTrigger: {
+                                trigger: nextSection,
+
+                                start: "top bottom",
+                                end: "top top",
+
+                                scrub,
+
+                                invalidateOnRefresh: true,
+                            },
+                        });
+
+                        /*
+                         * Oscurecimiento progresivo.
+                         */
+                        exitTimeline.fromTo(
+                            overlay,
+                            {
+                                opacity: 0,
+                            },
+                            {
+                                opacity: overlayOpacity,
+                                duration: 1,
+                                ease: "none",
+                            },
+                            0,
+                        );
+
+                        /*
+                         * Escala y movimiento para dar profundidad.
+                         */
+                        exitTimeline.fromTo(
+                            content,
+                            {
+                                scale: 1,
+                                y: 0,
+                            },
+                            {
+                                scale,
+                                y: exitYOffset,
+                                duration: 1,
+                                ease: "none",
+                            },
+                            0,
+                        );
+
+                        /*
+                         * La opacidad baja únicamente en la parte
+                         * final de la transición.
+                         *
+                         * Esto evita que la sección se apague
+                         * de golpe.
+                         */
+                        exitTimeline.fromTo(
+                            content,
+                            {
+                                autoAlpha: 1,
+                            },
+                            {
+                                autoAlpha: 0.9,
+                                duration: 0.35,
+                                ease: "none",
+                            },
+                            0.65,
+                        );
+                    });
+                }, stack);
+            });
+
+        ScrollTrigger.refresh();
+    }
+
+    initScrollStacks();
+
+    /*
+     * Compatibilidad con Astro View Transitions.
+     */
+    const globalWindow = window as ScrollStackWindow;
+
+    if (!globalWindow.__scrollStackEventsRegistered) {
+        document.addEventListener("astro:page-load", initScrollStacks);
+
+        document.addEventListener("astro:before-swap", destroyScrollStacks);
+
+        globalWindow.__scrollStackEventsRegistered = true;
+    }
+</script>
+
+<style>
+    .scroll-stack {
+        position: relative;
+        isolation: isolate;
+        width: 100%;
+    }
+</style>

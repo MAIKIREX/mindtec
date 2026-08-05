@@ -1,6 +1,164 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
+import Layout from "../layouts/Layout.astro";
+import ServiceVisualSuite from "../components/sections/ServiceVisualSuite.astro";
+import FaqSplit from "../components/faq/FaqSplit.astro";
+import HoverStepCards from "../components/cards/HoverStepCards.astro";
+import AreaPanelCards from "../components/cards/AreaPanelCards.astro";
+import ComparisonRows from "../components/cards/ComparisonRows.astro";
+import StackedSections from "../components/scroll/StackedSections.astro";
+
+const problemScenarios = [
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M16 128s48-72 112-72 112 72 112 72-48 72-112 72-112-72-112-72z"></path><circle cx="128" cy="128" r="32"></circle></svg>`,
+    title: "Atención no verbalizable",
+    description:
+      "Incapacidad de verbalizar la atención: Un consumidor no puede decirle de forma consciente en qué parte exacta del empaque fijó su mirada durante los primeros 2.5 segundos cruciales de contacto visual.",
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M136 24 56 144h48l-16 88 96-128h-56z"></path></svg>`,
+    title: "Fricción cognitiva invisible",
+    description:
+      "Fricción cognitiva invisible: El cerebro registra confusión o rechazo ante un diseño saturado o un mensaje confuso mucho antes de que el sujeto lo reconozca conscientemente.",
+  },
+  {
+    icon: `<svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"><path d="M128 224s-88-56-88-120a56 56 0 0 1 88-44 56 56 0 0 1 88 44c0 64-88 120-88 120z"></path></svg>`,
+    title: "Emociones sin filtro social",
+    description:
+      "Emociones puras vs. respuestas filtradas: Mapeamos la actividad biológica espontánea, eliminando la censura social, la cortesía cultural y la intelectualización artificial del participante.",
+  },
+];
+
+const comparisonRows = [
+  {
+    before: 'Evaluación de gusto autodeclarativo ("¿Le agrada?")',
+    after: "Medición objetiva de la atención focal y respuesta galvánica",
+  },
+  {
+    before: "Respuestas lógicas y justificadas artificialmente",
+    after:
+      "Captura del procesamiento cognitivo no consciente (fricción o agrado)",
+  },
+  {
+    before: "Interpretación descriptiva y subjetiva del moderador",
+    after: "Visualización de datos biométricos estructurados de laboratorio",
+  },
+  {
+    before:
+      "Foco grupal (sesgado por la opinión del líder de opinión del focus)",
+    after:
+      "Auditoría y registros cuantitativos de atención individual por sujeto",
+  },
+  {
+    before: "Decisiones comerciales basadas en preferencias del director",
+    after: "Estrategias respaldadas por el comportamiento real de su mercado",
+  },
+];
+
+const mindtecModelItems = [
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.586a1 1 0 0 1-.293.707l-6.414 6.414a1 1 0 0 0-.293.707V21a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-3.586a1 1 0 0 0-.293-.707l-6.414-6.414a1 1 0 0 1-.293-.707V2z"/><line x1="8" y1="2" x2="16" y2="2"/></svg>`,
+    title: "Decodificación Psicoantropológica",
+    description:
+      "Cruzamos los registros cerebrales con la cosmovisión comercial local: la lógica de compra en El Alto y mercados abiertos difiere del canal corporativo formal.",
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>`,
+    title: "Traducción en Acciones",
+    description:
+      "No entregamos PDF técnicos ilegibles. Proveemos recomendaciones directas de reestructuración de empaque, orden visual y copywriting persuasivo.",
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>`,
+    title: "Alineación Estratégica B2B",
+    description:
+      "Enlazamos los indicadores no conscientes con las metas comerciales y financieras del directorio: elevar precios, ganar cuota o expandir la distribución.",
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+    title: "Simulación en Anaquel",
+    description:
+      "Testamos sus propuestas colocándolas físicamente junto a los líderes competidores reales para predecir la tracción neta en terreno comercial.",
+  },
+];
+
+const idealClientItems = [
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><path d="M9 9h.01M9 13h.01M9 17h.01"/></svg>`,
+    title: "01. Marcas de Consumo Masivo",
+    description:
+      "Gerencias de marketing que aprueban lanzamientos de packaging y campañas de alto presupuesto.",
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="m18 20-6-6-6 6"/><path d="M12 4v2"/></svg>`,
+    title: "02. Directores de Producto",
+    description:
+      "Líderes de producto que requieren respaldos científicos sólidos ante juntas de accionistas o directorios.",
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m7 16 4-5 3 3 5-7"/></svg>`,
+    title: "03. Firmas en Rebranding",
+    description:
+      "Compañías en proceso de actualización de marca que desean mitigar el riesgo de perder pregnancia.",
+  },
+  {
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 21h8M12 19v2"/><path d="m9 10 2 2-2 2M14 14h2"/></svg>`,
+    title: "04. E-commerce e Interfaces",
+    description:
+      "Equipos de UI/UX que buscan erradicar cuellos de botella no declarados en flujos digitales.",
+  },
+];
+
+const relatedProductsItems = [
+  {
+    eyebrow: "SERVICIO RELACIONADO",
+    title: "Percepción de Marca",
+    description:
+      "Audite el posicionamiento y la reputación mental real de su firma en el mercado.",
+    href: "/percepcion-de-marca-bolivia",
+    backgroundImage: "/cross-linking/percepcion-marca-card.jpg",
+  },
+  {
+    eyebrow: "SERVICIO RELACIONADO",
+    title: "Auditoría Retail",
+    description:
+      "Monitoree el canal físico para validar el cumplimiento de precios y planogramas.",
+    href: "/auditoria-retail-bolivia",
+    backgroundImage: "/cross-linking/auditoria-retail-card.jpg",
+  },
+  {
+    eyebrow: "SERVICIO RELACIONADO",
+    title: "Comportamiento del Consumidor Boliviano",
+    description:
+      "Datos reales de Mindtec sobre hábitos de compra por región y contexto económico.",
+    href: "/comportamiento-consumidor-boliviano",
+    backgroundImage: "/cross-linking/consumidor-boliviano-card.jpg",
+  },
+];
+
+const faqItems = [
+  {
+    question: "¿El neuromarketing reemplaza a las encuestas tradicionales?",
+    answer:
+      "No, actúan en complemento. Las encuestas tradicionales cuantifican y capturan opiniones declarativas conscientes. El neuromarketing audita la atención espontánea, respuesta emocional y rechazo biológico, removiendo sesgos.",
+  },
+  {
+    question: "¿Cuánto tiempo toma un estudio de neuromarketing en Bolivia?",
+    answer:
+      "Varía según el alcance. Desde auditorías de diseño rápidas en 7 días para piezas específicas, hasta validaciones complejas de 30 días para rediseños integrales de empaques o testeo de campañas.",
+  },
+  {
+    question:
+      "¿Pueden realizar estudios combinados con benchmark de competencia?",
+    answer:
+      "Es la práctica recomendada. Evaluamos sus piezas (anuncios o empaques) colocándolos en paralelo con los competidores líderes, midiendo cuál marca retiene el ojo del consumidor por más tiempo.",
+  },
+  {
+    question:
+      "¿Se puede testear el impacto visual en entornos móviles y de desktop?",
+    answer:
+      "Sí. El Eye Tracker de pantalla de Mindtec se calibra para flujos en e-commerce y aplicaciones móviles, registrando la facilidad de escaneo visual y la fricción que reduce la conversión.",
+  },
+];
 ---
 
 <Layout
@@ -9,523 +167,1155 @@ import ServiceVisualSuite from '../components/ServiceVisualSuite.astro';
   headerLightBg={false}
 >
   <script type="application/ld+json" slot="head">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Service",
-        "name": "Estudios de Neuromarketing en Bolivia",
-        "provider": {
-          "@type": "LocalBusiness",
-          "name": "Mindtec Bolivia"
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Service",
+          "name": "Estudios de Neuromarketing en Bolivia",
+          "provider": {
+            "@type": "LocalBusiness",
+            "name": "Mindtec Bolivia"
+          },
+          "description": "Estudios científicos de neuromarketing en Bolivia usando eye tracking, electroencefalograma (EEG) y codificación facial para validar empaques, publicidad y UX.",
+          "areaServed": ["La Paz", "Santa Cruz", "Cochabamba", "El Alto"]
         },
-        "description": "Estudios científicos de neuromarketing en Bolivia usando eye tracking, electroencefalograma (EEG) y codificación facial para validar empaques, publicidad y UX.",
-        "areaServed": ["La Paz", "Santa Cruz", "Cochabamba", "El Alto"]
-      },
-      {
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-          {"@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://www.mindtecbolivia.com/"},
-          {"@type": "ListItem", "position": 2, "name": "Servicios", "item": "https://www.mindtecbolivia.com/servicios"},
-          {"@type": "ListItem", "position": 3, "name": "Neuromarketing en Bolivia", "item": "https://www.mindtecbolivia.com/neuromarketing-bolivia"}
-        ]
-      }
-    ]
-  }
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Inicio",
+              "item": "https://www.mindtecbolivia.com/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Servicios",
+              "item": "https://www.mindtecbolivia.com/servicios"
+            },
+            {
+              "@type": "ListItem",
+              "position": 3,
+              "name": "Neuromarketing en Bolivia",
+              "item": "https://www.mindtecbolivia.com/neuromarketing-bolivia"
+            }
+          ]
+        }
+      ]
+    }
   </script>
   <script type="application/ld+json" slot="head">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "¿El neuromarketing reemplaza a las encuestas tradicionales?",
-        "acceptedAnswer": { "@type": "Answer", "text": "No, actúan en complemento. Las encuestas tradicionales cuantifican y capturan opiniones declarativas conscientes. El neuromarketing audita la atención espontánea, respuesta emocional y rechazo biológico, removiendo sesgos." }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Cuánto tiempo toma un estudio de neuromarketing en Bolivia?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Varía según el alcance. Desde auditorías de diseño rápidas en 7 días para piezas específicas, hasta validaciones complejas de 30 días para rediseños integrales de empaques o testeo de campañas." }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Pueden realizar estudios combinados con benchmark de competencia?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Es la práctica recomendada. Evaluamos sus piezas (anuncios o empaques) colocándolos en paralelo con los competidores líderes, midiendo cuál marca retiene el ojo del consumidor por más tiempo." }
-      },
-      {
-        "@type": "Question",
-        "name": "¿Se puede testear el impacto visual en entornos móviles y de desktop?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Sí. El Eye Tracker de pantalla de Mindtec se calibra para flujos en e-commerce y aplicaciones móviles, registrando la facilidad de escaneo visual y la fricción que reduce la conversión." }
-      }
-    ]
-  }
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿El neuromarketing reemplaza a las encuestas tradicionales?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No, actúan en complemento. Las encuestas tradicionales cuantifican y capturan opiniones declarativas conscientes. El neuromarketing audita la atención espontánea, respuesta emocional y rechazo biológico, removiendo sesgos."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Cuánto tiempo toma un estudio de neuromarketing en Bolivia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Varía según el alcance. Desde auditorías de diseño rápidas en 7 días para piezas específicas, hasta validaciones complejas de 30 días para rediseños integrales de empaques o testeo de campañas."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Pueden realizar estudios combinados con benchmark de competencia?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Es la práctica recomendada. Evaluamos sus piezas (anuncios o empaques) colocándolos en paralelo con los competidores líderes, midiendo cuál marca retiene el ojo del consumidor por más tiempo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Se puede testear el impacto visual en entornos móviles y de desktop?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí. El Eye Tracker de pantalla de Mindtec se calibra para flujos en e-commerce y aplicaciones móviles, registrando la facilidad de escaneo visual y la fricción que reduce la conversión."
+          }
+        }
+      ]
+    }
   </script>
   <main>
-    <!-- 🟦 1️⃣ HERO -->
-    <section class="hero-section" style="padding-bottom: 4rem; padding-top: 4rem;">
-      <!-- Geometric floating shapes (always visible, CSS-animated) -->
-      <div class="hero-shapes" aria-hidden="true">
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-        <div class="hero-shape"></div>
-      </div>
-      <!-- Mobile-first neural canvas background -->
-      <div class="hero-mobile-canvas" id="hero-mobile-canvas" aria-hidden="true"></div>
-      <div class="container hero-container">
-        <div class="hero-content">
-          <span class="eyebrow fade-in">MEDICIÓN DEL INCONSCIENTE Y VALIDACIÓN PREVIA</span>
-          <span class="freshness-tag">Actualizado: julio 2026</span>
-          <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;">
-            Estudios de Neuromarketing en Bolivia
-          </h1>
-          <div class="direct-answer-box">
-            <strong>En resumen</strong>
-            <p>Mindtec ofrece estudios científicos de neuromarketing en Bolivia usando eye tracking, EEG y codificación facial para validar empaques, publicidad y experiencia de usuario antes de invertir en producción o pauta masiva.</p>
-          </div>
-          <p class="hero-subtitle" style="font-size: 1.25rem; margin-bottom: 1.5rem; max-width: 800px;">
-            Antes de invertir en campañas, packaging o piezas creativas, mida lo que el consumidor no verbaliza. El neuromarketing reduce el riesgo al evaluar atención visual, respuesta emocional y aceptación no consciente.
-          </p>
-          <p style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.75); max-width: 800px; margin-bottom: 2.5rem;">
-            Integramos biometría en laboratorio, análisis cultural & validación estratégica para comités de dirección que requieren decisiones comerciales defendibles antes del lanzamiento comercial.
-          </p>
-          <div class="cta-actions" style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;">
-            <a href="/contacto" class="btn btn-primary lg">Agendar sesión de diagnóstico (45 min)</a>
-            <a href="/contacto" class="btn btn-navy-outline lg" style="border-color: rgba(255,255,255,0.4); color: #fff;">Evaluar pieza creativa o packaging</a>
-          </div>
-          <p style="margin-top: 1rem; font-size: 0.9rem; color: #64748b; font-weight: 500;">Sesión inicial: 45 minutos | Confidencial | Sin compromiso</p>
+    <StackedSections>
+      <!-- 🟦 1️⃣ HERO -->
+      <section
+        class="hero-section"
+        style="padding-bottom: 4rem; padding-top: 4rem;"
+        data-stack-section
+      >
+        <!-- Geometric floating shapes (always visible, CSS-animated) -->
+        <div class="hero-shapes" aria-hidden="true">
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
+          <div class="hero-shape"></div>
         </div>
-        <div class="hero-visual">
-          <div class="glass-card main-visual">
-            <div class="neuro-visual-bg" style="background-image: url('/heroes/hero-neuromarketing-bolivia.jpg');"></div>
+        <!-- Mobile-first neural canvas background -->
+        <div
+          class="hero-mobile-canvas"
+          id="hero-mobile-canvas"
+          aria-hidden="true"
+        >
+        </div>
+        <div class="container hero-container">
+          <div class="hero-content">
+            <span class="eyebrow fade-in"
+              >MEDICIÓN DEL INCONSCIENTE Y VALIDACIÓN PREVIA</span
+            >
+            <span class="freshness-tag">Actualizado: julio 2026</span>
+            <h1
+              class="hero-title"
+              style="font-size: 3.5rem; line-height: 1.25; margin-bottom: 1.5rem;"
+            >
+              Estudios de Neuromarketing en Bolivia
+            </h1>
+            <div class="direct-answer-box">
+              <strong>En resumen</strong>
+              <p>
+                Mindtec ofrece estudios científicos de neuromarketing en Bolivia
+                usando eye tracking, EEG y codificación facial para validar
+                empaques, publicidad y experiencia de usuario antes de invertir
+                en producción o pauta masiva.
+              </p>
+            </div>
+            <p
+              class="hero-subtitle"
+              style="font-size: 1.25rem; margin-bottom: 1.5rem; max-width: 800px;"
+            >
+              Antes de invertir en campañas, packaging o piezas creativas, mida
+              lo que el consumidor no verbaliza. El neuromarketing reduce el
+              riesgo al evaluar atención visual, respuesta emocional y
+              aceptación no consciente.
+            </p>
+            <p
+              style="font-size: 1.1rem; color: rgba(255, 255, 255, 0.75); max-width: 800px; margin-bottom: 2.5rem;"
+            >
+              Integramos biometría en laboratorio, análisis cultural &
+              validación estratégica para comités de dirección que requieren
+              decisiones comerciales defendibles antes del lanzamiento
+              comercial.
+            </p>
+            <div
+              class="cta-actions"
+              style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;"
+            >
+              <a href="/contacto" class="btn btn-primary lg"
+                >Agendar sesión de diagnóstico (45 min)</a
+              >
+              <a
+                href="/contacto"
+                class="btn btn-navy-outline lg"
+                style="border-color: rgba(255,255,255,0.4); color: #fff;"
+                >Evaluar pieza creativa o packaging</a
+              >
+            </div>
+            <p
+              style="margin-top: 1rem; font-size: 0.9rem; color: #64748b; font-weight: 500;"
+            >
+              Sesión inicial: 45 minutos | Confidencial | Sin compromiso
+            </p>
+          </div>
+          <div class="hero-visual">
+            <div class="glass-card main-visual">
+              <div
+                class="neuro-visual-bg"
+                style="background-image: url('/heroes/hero-neuromarketing-bolivia.jpg');"
+              >
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <ServiceVisualSuite variant="neuromarketing" />
+      <div data-stack-section>
+        <ServiceVisualSuite variant="neuromarketing" />
+      </div>
+    </StackedSections>
 
     <!-- MINI NAVEGACIÓN ANCLAS -->
-    <div style="background: rgba(11, 43, 64, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 1.25rem 0; position: sticky; top: 80px; z-index: 999; backdrop-filter: blur(10px);">
-      <div class="container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; align-items: center; font-size: 0.92rem; font-weight: 600; color: rgba(255, 255, 255, 0.7);">
-        <span style="color: var(--color-primary); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 1.5px; font-weight: 800;">En esta página:</span>
-        <a href="#problema" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">Decisión Racional</a>
+    <div
+      style="background: rgba(11, 43, 64, 0.95); border-bottom: 1px solid rgba(255, 255, 255, 0.08); padding: 1.25rem 0; position: sticky; top: 80px; z-index: 999; backdrop-filter: blur(10px);"
+    >
+      <div
+        class="container"
+        style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; align-items: center; font-size: 0.92rem; font-weight: 600; color: rgba(255, 255, 255, 0.7);"
+      >
+        <span
+          style="color: var(--color-primary); text-transform: uppercase; font-size: 0.78rem; letter-spacing: 1.5px; font-weight: 800;"
+          >En esta página:</span
+        >
+        <a
+          href="#problema"
+          style="color: #fff; text-decoration: none; transition: color 0.3s;"
+          onmouseover="this.style.color='var(--color-primary)'"
+          onmouseout="this.style.color='#fff'">Decisión Racional</a
+        >
         <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-        <a href="#medicion" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">Variables de Medición</a>
+        <a
+          href="#medicion"
+          style="color: #fff; text-decoration: none; transition: color 0.3s;"
+          onmouseover="this.style.color='var(--color-primary)'"
+          onmouseout="this.style.color='#fff'">Variables de Medición</a
+        >
         <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-        <a href="#aplicaciones" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">Casos de Uso</a>
+        <a
+          href="#aplicaciones"
+          style="color: #fff; text-decoration: none; transition: color 0.3s;"
+          onmouseover="this.style.color='var(--color-primary)'"
+          onmouseout="this.style.color='#fff'">Casos de Uso</a
+        >
         <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-        <a href="#modelo" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">Modelo Mindtec</a>
+        <a
+          href="#modelo"
+          style="color: #fff; text-decoration: none; transition: color 0.3s;"
+          onmouseover="this.style.color='var(--color-primary)'"
+          onmouseout="this.style.color='#fff'">Modelo Mindtec</a
+        >
         <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-        <a href="#comparativa" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">Tradicional vs. Neuro</a>
+        <a
+          href="#comparativa"
+          style="color: #fff; text-decoration: none; transition: color 0.3s;"
+          onmouseover="this.style.color='var(--color-primary)'"
+          onmouseout="this.style.color='#fff'">Tradicional vs. Neuro</a
+        >
         <span style="color: rgba(255, 255, 255, 0.3);">|</span>
-        <a href="#faqs" style="color: #fff; text-decoration: none; transition: color 0.3s;" onmouseover="this.style.color='var(--color-primary)'" onmouseout="this.style.color='#fff'">FAQs</a>
+        <a
+          href="#faqs"
+          style="color: #fff; text-decoration: none; transition: color 0.3s;"
+          onmouseover="this.style.color='var(--color-primary)'"
+          onmouseout="this.style.color='#fff'">FAQs</a
+        >
       </div>
     </div>
 
-    <!-- 🟦 2️⃣ EL PROBLEMA REAL -->
-    <section id="problema" class="problem-section bg-slate" style="padding: 5rem 0;">
-      <div class="container">
-        <div class="premium-card-white" style="max-width: 900px; margin: 0 auto; padding: 4rem;">
-          <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 2rem; line-height: 1.2;">Focus groups tradicionales: El arte involuntario de mentir por cortesía</h2>
-          <p class="text-gray-dark leading-relaxed" style="font-size: 1.2rem; margin-bottom: 2rem;">
-            Confiar el lanzamiento de un empaque o una costosa pauta publicitaria a la opinión lógica de un focus group tradicional es sumamente riesgoso. El consumidor no compra con la lógica; decide en milisegundos a nivel inconsciente y luego justifica racionalmente su acción. En una sala de reuniones, los participantes tienden a responder bajo el sesgo de complacencia o a seguir la opinión del miembro más ruidoso del grupo.
-          </p>
-          <p class="text-gray-dark leading-relaxed" style="font-size: 1.1rem; margin-bottom: 1.5rem; font-weight: 600;">
-            La respuesta neurofisiológica inconsciente es el único predictor real de éxito de su pauta o packaging:
-          </p>
-          <ul class="cap-list" style="margin-bottom: 2.5rem; font-size: 1.1rem;">
-            <li><strong class="text-navy">Incapacidad de verbalizar la atención:</strong> Un consumidor no puede decirle de forma consciente en qué parte exacta del empaque fijó su mirada durante los primeros 2.5 segundos cruciales de contacto visual.</li>
-            <li><strong class="text-navy">Fricción cognitiva invisible:</strong> El cerebro registra confusión o rechazo ante un diseño saturado o un mensaje confuso mucho antes de que el sujeto lo reconozca conscientemente.</li>
-            <li><strong class="text-navy">Emociones puras vs. respuestas filtradas:</strong> Mapeamos la actividad biológica espontánea, eliminando la censura social, la cortesía cultural y la intelectualización artificial del participante.</li>
-          </ul>
-          <div style="background-color: var(--color-secondary); color: white; padding: 1.5rem 2rem; border-radius: 8px; font-weight: 600; font-size: 1.2rem; text-align: center;">
-            No le pregunte al cliente si comprará su producto. Mida la reacción de su cerebro ante él.
+    <StackedSections>
+      <!-- 🟦 2️⃣ EL PROBLEMA REAL -->
+      <section
+        id="problema"
+        class="bg-slate"
+        style="padding: 5rem 0;"
+        data-stack-section
+      >
+        <div class="container">
+          <div style="max-width: 900px; margin: 0 auto;">
+            <span class="eyebrow">EL PROBLEMA REAL</span>
+            <h2
+              class="text-navy"
+              style="font-size: 2.5rem; margin-top: 1rem; margin-bottom: 2rem; line-height: 1.2;"
+            >
+              Focus groups tradicionales: El arte involuntario de mentir por
+              cortesía
+            </h2>
+            <p
+              class="text-gray-dark leading-relaxed"
+              style="font-size: 1.2rem; margin-bottom: 2rem;"
+            >
+              Confiar el lanzamiento de un empaque o una costosa pauta
+              publicitaria a la opinión lógica de un focus group tradicional es
+              sumamente riesgoso. El consumidor no compra con la lógica; decide
+              en milisegundos a nivel inconsciente y luego justifica
+              racionalmente su acción. En una sala de reuniones, los
+              participantes tienden a responder bajo el sesgo de complacencia o
+              a seguir la opinión del miembro más ruidoso del grupo.
+            </p>
+            <p
+              class="text-gray-dark leading-relaxed"
+              style="font-size: 1.1rem; line-height: 1.7; font-weight: 600;"
+            >
+              La respuesta neurofisiológica inconsciente es el único predictor
+              real de éxito de su pauta o packaging:
+            </p>
+          </div>
+
+          <AreaPanelCards
+            items={problemScenarios}
+            columns={3}
+            theme="navy"
+            class="problem-panels"
+          />
+
+          <div
+            style="max-width: 900px; margin: 2.5rem auto 0; background: var(--color-secondary); color: #fff; padding: 1.5rem 2rem; border-radius: var(--radius-md, 8px); font-weight: 600; font-size: 1.1rem; text-align: center;"
+          >
+            No le pregunte al cliente si comprará su producto. Mida la reacción
+            de su cerebro ante él.
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- 🟦 3️⃣ QUÉ SE MIDE (MÉTRICAS CLARAS Y ASOCIADAS A IMÁGENES) -->
-    <section id="medicion" class="premium-section-padding bg-light-gray" style="padding: 5rem 0;">
-      <div class="container">
-        <div class="section-title-center" style="margin-bottom: 4rem; text-align: center;">
-          <h2 class="text-navy" style="font-size: 2.5rem; line-height: 1.2;">Métricas de laboratorio: Traduciendo biometría en ahorro presupuestario</h2>
-          <p class="text-gray-dark" style="font-size: 1.1rem; margin-top: 1rem;">Optimice su presupuesto de marketing masivo e impresión validando científicamente el impacto en milisegundos.</p>
-        </div>
-        <div class="premium-grid-3">
-          <div class="premium-card-white" style="padding: 2.5rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 480px;">
-            <div>
-              <img src="/eyetracker-mindtec.webp" alt="Eye Tracker en el laboratorio de neuromarketing - Mindtec" class="img-card-visual" loading="lazy" style="height: 180px; width: 100%; object-fit: cover; border-radius: 6px; margin-bottom: 1.5rem;">
-              <h3 class="text-primary" style="font-size: 1.25rem; margin-bottom: 1rem; border-bottom: 2px solid rgba(11, 43, 64, 0.06); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; line-height: 1.2;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                Atención Visual (Eye Tracking)
-              </h3>
-              <ul class="cap-list text-gray-dark" style="font-size: 0.95rem;">
-                <li><strong class="text-navy">Ahorro en pauta publicitaria:</strong> Compruebe que el logotipo, marca y llamada a la acción realmente capturen la mirada en los primeros segundos, evitando desperdiciar presupuesto en spots ineficaces.</li>
-                <li><strong class="text-navy">Mapas de fijación reales:</strong> Mapee el flujo ocular exacto en empaques para reordenar la jerarquía gráfica antes de iniciar la impresión a gran escala.</li>
-                <li><strong class="text-navy">Detección de puntos ciegos:</strong> Aísle las zonas de su diseño que pasan completamente desapercibidas y no aportan a la decisión de compra.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="premium-card-white" style="padding: 2.5rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 480px;">
-            <div>
-              <img src="/eeg-mindtec.webp" alt="Electroencefalograma (EEG) en laboratorio - Mindtec" class="img-card-visual" loading="lazy" style="height: 180px; width: 100%; object-fit: cover; border-radius: 6px; margin-bottom: 1.5rem;">
-              <h3 class="text-primary" style="font-size: 1.25rem; margin-bottom: 1rem; border-bottom: 2px solid rgba(11, 43, 64, 0.06); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; line-height: 1.2;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1 0-3.12 3 3 0 0 1 0-3.88 2.5 2.5 0 0 1 0-3.12A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 0-3.12 3 3 0 0 0 0-3.88 2.5 2.5 0 0 0 0-3.12A2.5 2.5 0 0 0 14.5 2Z"/></svg>
-                Respuesta Emocional (EEG & GSR)
-              </h3>
-              <ul class="cap-list text-gray-dark" style="font-size: 0.95rem;">
-                <li><strong class="text-navy">Medición de la conexión:</strong> Registre la intensidad emocional que genera su anuncio comercial, asegurando que la pauta digital o en medios tradicionales evoque la reacción esperada.</li>
-                <li><strong class="text-navy">Prevención de sobrecarga:</strong> Identifique picos de estrés o fatiga cognitiva al navegar por su e-commerce o app que provoquen el abandono del carrito.</li>
-                <li><strong class="text-navy">Fricción galvánica:</strong> Cuantifique la respuesta de micro-sudoración de la piel para medir la excitación o el rechazo no conscientes ante estímulos visuales específicos.</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="premium-card-white" style="padding: 2.5rem; display: flex; flex-direction: column; justify-content: space-between; min-height: 480px;">
-            <div>
-              <img src="/heatmap.webp" alt="Mapa de calor de atención visual - Mindtec" class="img-card-visual" loading="lazy" style="height: 180px; width: 100%; object-fit: cover; border-radius: 6px; margin-bottom: 1.5rem;">
-              <h3 class="text-primary" style="font-size: 1.25rem; margin-bottom: 1rem; border-bottom: 2px solid rgba(11, 43, 64, 0.06); padding-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; line-height: 1.2;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                Reconocimiento Facial (Facial Coding)
-              </h3>
-              <ul class="cap-list text-gray-dark" style="font-size: 0.95rem;">
-                <li><strong class="text-navy">Optimización del guion:</strong> Localice el segundo exacto donde un video publicitario genera confusión, desinterés o incomodidad en los espectadores.</li>
-                <li><strong class="text-navy">Categorización de emociones:</strong> Clasifique la micro-gesticulación facial involuntaria (sorpresa, escepticismo, alegría) ante su propuesta de valor.</li>
-                <li><strong class="text-navy">Validación de claridad:</strong> Asegure que el tono comunicativo de sus campañas B2B o masivas resuene de forma limpia con el target seleccionado.</li>
-              </ul>
-            </div>
+      <!-- 🟦 3️⃣ QUÉ SE MIDE (MÉTRICAS CLARAS Y ASOCIADAS A IMÁGENES) -->
+      <section
+        id="medicion"
+        class="measurement-section bg-light-gray"
+        data-stack-section
+      >
+        <div class="container measurement-section__intro">
+          <div class="section-title-center" style="text-align: center;">
+            <h2 class="text-navy" style="font-size: 2.5rem; line-height: 1.2;">
+              Métricas de laboratorio: Traduciendo biometría en ahorro
+              presupuestario
+            </h2>
+            <p
+              class="text-gray-dark"
+              style="font-size: 1.1rem; margin-top: 1rem;"
+            >
+              Optimice su presupuesto de marketing masivo e impresión validando
+              científicamente el impacto en milisegundos.
+            </p>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- 🟦 4️⃣ APLICACIONES (CASOS DE USO) -->
-    <section id="aplicaciones" class="premium-section-padding bg-white" style="padding: 5rem 0;">
-      <div class="container text-center" style="max-width: 900px;">
-        <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 3rem;">Escenarios de negocio críticos para Neurociencia</h2>
-        
-        <div style="text-align: left; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-          <div class="premium-card-white" style="border-left: 4px solid var(--color-primary); padding: 2rem;">
-            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-              <h3 style="font-size: 1.15rem; color: #0f172a; margin: 0;">Packaging y Anaquel</h3>
-            </div>
-            <p class="text-gray-dark" style="font-size: 0.95rem; margin: 0;">Validación de la velocidad de contraste visual y lectura de marca en góndolas reales.</p>
-          </div>
-
-          <div class="premium-card-white" style="border-left: 4px solid var(--color-primary); padding: 2rem;">
-            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
-              <h3 style="font-size: 1.15rem; color: #0f172a; margin: 0;">Spots y Publicidad</h3>
-            </div>
-            <p class="text-gray-dark" style="font-size: 0.95rem; margin: 0;">Auditoría segundo a segundo de piezas publicitarias audiovisuales antes de la inversión en pauta.</p>
-          </div>
-
-          <div class="premium-card-white" style="border-left: 4px solid var(--color-primary); padding: 2rem;">
-            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-              <h3 style="font-size: 1.15rem; color: #0f172a; margin: 0;">Diseño de Tienda (Retail)</h3>
-            </div>
-            <p class="text-gray-dark" style="font-size: 0.95rem; margin: 0;">Mapeo de la navegación visual del consumidor al ingresar al circuito de su punto de venta.</p>
-          </div>
-
-          <div class="premium-card-white" style="border-left: 4px solid var(--color-primary); padding: 2rem;">
-            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-              <h3 style="font-size: 1.15rem; color: #0f172a; margin: 0;">UX/UI Digital</h3>
-            </div>
-            <p class="text-gray-dark" style="font-size: 0.95rem; margin: 0;">Detección de puntos de confusión en pasarelas de pago, aplicaciones de banca o e-commerce.</p>
-          </div>
-
-          <div class="premium-card-white" style="border-left: 4px solid var(--color-primary); padding: 2rem;">
-            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              <h3 style="font-size: 1.15rem; color: #0f172a; margin: 0;">Pre-Rebranding</h3>
-            </div>
-            <p class="text-gray-dark" style="font-size: 0.95rem; margin: 0;">Validación de la pregnancia y asociación emocional inconsciente del nuevo isotipo.</p>
-          </div>
-        </div>
-        <p style="font-size: 1.4rem; font-weight: 700; color: var(--color-primary); margin-top: 3rem;">
-          Tome decisiones respaldadas en el comportamiento biológico de su audiencia.
-        </p>
-      </div>
-    </section>
-
-    <!-- 🟦 5️⃣ MODELO MINDTEC: NEURO + ESTRATEGIA + CULTURA -->
-    <section id="modelo" class="premium-section-padding bg-slate" style="padding: 5rem 0;">
-      <div class="container">
-        <div class="section-title-center" style="max-width: 800px; margin: 0 auto 3rem auto; text-align: center;">
-          <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2;">El Enfoque Mindtec: Los datos biométricos puros no bastan</h2>
-          <p class="text-gray-dark" style="font-size: 1.1rem; margin-top: 1rem;">Un mapa de calor de laboratorio no sirve de nada si se ignora el contexto de compra en el eje troncal y los mercados populares de Bolivia.</p>
-        </div>
-
-        <div class="premium-grid-4">
-          <div class="premium-card-white text-center" style="padding: 2.5rem 1.5rem;">
-            <div style="margin: 0 auto 1.5rem auto; display: inline-flex; justify-content: center; align-items: center; width: 50px; height: 50px; border-radius: 50%; background: rgba(242, 101, 34, 0.08);">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.586a1 1 0 0 1-.293.707l-6.414 6.414a1 1 0 0 0-.293.707V21a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1v-3.586a1 1 0 0 0-.293-.707l-6.414-6.414a1 1 0 0 1-.293-.707V2z"/><line x1="8" y1="2" x2="16" y2="2"/></svg>
-            </div>
-            <h3 style="font-size: 1.1rem; color: #0f172a; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3;">Decodificación Psicoantropológica</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; margin: 0; line-height: 1.5;">Cruzamos los registros cerebrales con la cosmovisión comercial local: la lógica de compra en El Alto y mercados abiertos difiere del canal corporativo formal.</p>
-          </div>
-
-          <div class="premium-card-white text-center" style="padding: 2.5rem 1.5rem;">
-            <div style="margin: 0 auto 1.5rem auto; display: inline-flex; justify-content: center; align-items: center; width: 50px; height: 50px; border-radius: 50%; background: rgba(242, 101, 34, 0.08);">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="2" y1="20" x2="22" y2="20"/></svg>
-            </div>
-            <h3 style="font-size: 1.1rem; color: #0f172a; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3;">Traducción en Acciones</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; margin: 0; line-height: 1.5;">No entregamos PDF técnicos ilegibles. Proveemos recomendaciones directas de reestructuración de empaque, orden visual y copywriting persuasivo.</p>
-          </div>
-
-          <div class="premium-card-white text-center" style="padding: 2.5rem 1.5rem;">
-            <div style="margin: 0 auto 1.5rem auto; display: inline-flex; justify-content: center; align-items: center; width: 50px; height: 50px; border-radius: 50%; background: rgba(242, 101, 34, 0.08);">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-            </div>
-            <h3 style="font-size: 1.1rem; color: #0f172a; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3;">Alineación Estratégica B2B</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; margin: 0; line-height: 1.5;">Enlazamos los indicadores no conscientes con las metas comerciales y financieras del directorio (elevar precios, ganar cuota o expandir la distribución).</p>
-          </div>
-
-          <div class="premium-card-white text-center" style="padding: 2.5rem 1.5rem;">
-            <div style="margin: 0 auto 1.5rem auto; display: inline-flex; justify-content: center; align-items: center; width: 50px; height: 50px; border-radius: 50%; background: rgba(242, 101, 34, 0.08);">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <h3 style="font-size: 1.1rem; color: #0f172a; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3;">Simulación en Anaquel</h3>
-            <p class="text-gray-dark" style="font-size: 0.9rem; margin: 0; line-height: 1.5;">Testamos sus propuestas colocándolas físicamente junto a los líderes competidores reales para predecir la tracción neta en terreno comercial.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 🟦 6️⃣ TABLA COMPARATIVA -->
-    <section id="comparativa" class="premium-section-padding bg-white" style="padding: 5rem 0;">
-      <div class="container">
-        <div class="section-title-center" style="max-width: 800px; margin: 0 auto 3rem auto; text-align: center;">
-          <h2 class="text-navy" style="font-size: 2.2rem;">Por qué neuromarketing supera la validación tradicional</h2>
-          <p class="text-gray-dark" style="font-size: 1.1rem; margin-top: 1rem;">Mapeamos reacciones neurofisiológicas en lugar de recabar opiniones racionales.</p>
-        </div>
-
-        <div class="comparison-table-wrapper">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th>Validación e Investigación Tradicional</th>
-                <th>Estudio Científico de Neuromarketing Mindtec</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Evaluación de gusto autodeclarativo ("¿Le agrada?")</td>
-                <td>Medición objetiva de la atención focal y respuesta galvánica</td>
-              </tr>
-              <tr>
-                <td>Respuestas lógicas y justificadas artificialmente</td>
-                <td>Captura del procesamiento cognitivo no consciente (fricción o agrado)</td>
-              </tr>
-              <tr>
-                <td>Interpretación descriptiva y subjetiva del moderador</td>
-                <td>Visualización de datos biométricos estructurados de laboratorio</td>
-              </tr>
-              <tr>
-                <td>Foco grupal (sesgado por la opinión del líder de opinión del focus)</td>
-                <td>Auditoría y registros cuantitativos de atención individual por sujeto</td>
-              </tr>
-              <tr>
-                <td>Decisiones comerciales basadas en preferencias del director</td>
-                <td>Estrategias respaldadas por el comportamiento real de su mercado</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- 🟦 7️⃣ ENTREGABLES PARA EL DIRECTORIO -->
-    <section class="premium-section-padding bg-slate" style="padding: 5rem 0;">
-      <div class="container premium-grid-2-split" style="align-items: center;">
-        <div>
-          <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Lo que recibe la Gerencia General</h2>
-          <p class="text-gray-dark" style="font-size: 1.1rem; margin-bottom: 2rem;">Los hallazgos de laboratorio se consolidan en informes corporativos listos para comité directivo:</p>
-          <ul class="cap-list text-gray-dark" style="margin-bottom: 3rem; font-size: 1.05rem;">
-            <li><strong>Executive Brief:</strong> Resumen conciso para tomadores de decisiones.</li>
-            <li><strong>Mapas de Calor Visuales:</strong> Evidencia de fijación y lectura en las áreas críticas de marca.</li>
-            <li><strong>Métricas de Fricción Cognitiva:</strong> Identificación de segundos exactos de distracción o desinterés.</li>
-            <li><strong>Recomendaciones Priorizadas:</strong> Lineamientos específicos de diseño y pauta digital a implementar.</li>
-          </ul>
-        </div>
-        <div>
-          <div class="premium-card-white" style="background: linear-gradient(145deg, #ffffff, #f8fafc); border: 1px solid #e2e8f0; padding: 3rem;">
-            <div style="display: flex; align-items: center; margin-bottom: 1.5rem; gap: 1rem;">
-              <div class="cap-icon" style="width: 44px; height: 44px; min-width: 44px; margin: 0; display: flex; align-items: center; justify-content: center; background: rgba(11, 43, 64, 0.05); border-radius: 6px;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B2B40" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1 0-3.12 3 3 0 0 1 0-3.88 2.5 2.5 0 0 1 0-3.12A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 0-3.12 3 3 0 0 0 0-3.88 2.5 2.5 0 0 0 0-3.12A2.5 2.5 0 0 0 14.5 2Z"/></svg>
+        <div class="measurement-windows">
+          <article class="measurement-window">
+            <div class="measurement-window__content">
+              <div class="measurement-window__copy">
+                <span class="measurement-window__eyebrow">01 / Atención</span>
+                <h3 class="text-primary">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
+                    ></path><circle cx="12" cy="12" r="3"></circle></svg
+                  >
+                  Atención Visual (Eye Tracking)
+                </h3>
+                <ul class="cap-list text-gray-dark" style="font-size: 0.95rem;">
+                  <li>
+                    <strong class="text-navy"
+                      >Ahorro en pauta publicitaria:</strong
+                    > Compruebe que el logotipo, marca y llamada a la acción realmente
+                    capturen la mirada en los primeros segundos, evitando desperdiciar
+                    presupuesto en spots ineficaces.
+                  </li>
+                  <li>
+                    <strong class="text-navy">Mapas de fijación reales:</strong> Mapee
+                    el flujo ocular exacto en empaques para reordenar la jerarquía
+                    gráfica antes de iniciar la impresión a gran escala.
+                  </li>
+                  <li>
+                    <strong class="text-navy"
+                      >Detección de puntos ciegos:</strong
+                    > Aísle las zonas de su diseño que pasan completamente desapercibidas
+                    y no aportan a la decisión de compra.
+                  </li>
+                </ul>
               </div>
-              <h3 class="text-navy" style="margin: 0; font-size: 1.4rem;">Dashboard Ejecutivo de Testeo</h3>
             </div>
-            <ul class="cap-list text-gray-dark" style="font-size: 0.95rem;">
-              <li>Visualice comparaciones A/B de spots o versiones de logos en tiempo real.</li>
-              <li>Segmente las reacciones biométricas por ciudad (Cochabamba, Santa Cruz, La Paz).</li>
-              <li>Exporte los hallazgos prioritarios para presentarlos ante agencias creativas asociadas.</li>
+            <div class="measurement-window__media">
+              <img
+                src="/laboratorio/IMG 3.webp"
+                alt="Eye Tracker en el laboratorio de neuromarketing - Mindtec"
+                loading="lazy"
+              />
+            </div>
+          </article>
+
+          <article class="measurement-window measurement-window--reverse">
+            <div class="measurement-window__content">
+              <div class="measurement-window__copy">
+                <span class="measurement-window__eyebrow">02 / Emoción</span>
+                <h3 class="text-primary">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path
+                      d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1 0-3.12 3 3 0 0 1 0-3.88 2.5 2.5 0 0 1 0-3.12A2.5 2.5 0 0 1 9.5 2Z"
+                    ></path><path
+                      d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 0-3.12 3 3 0 0 0 0-3.88 2.5 2.5 0 0 0 0-3.12A2.5 2.5 0 0 0 14.5 2Z"
+                    ></path></svg
+                  >
+                  Respuesta Emocional (EEG & GSR)
+                </h3>
+                <ul class="cap-list text-gray-dark" style="font-size: 0.95rem;">
+                  <li>
+                    <strong class="text-navy">Medición de la conexión:</strong> Registre
+                    la intensidad emocional que genera su anuncio comercial, asegurando
+                    que la pauta digital o en medios tradicionales evoque la reacción
+                    esperada.
+                  </li>
+                  <li>
+                    <strong class="text-navy">Prevención de sobrecarga:</strong> Identifique
+                    picos de estrés o fatiga cognitiva al navegar por su e-commerce
+                    o app que provoquen el abandono del carrito.
+                  </li>
+                  <li>
+                    <strong class="text-navy">Fricción galvánica:</strong> Cuantifique
+                    la respuesta de micro-sudoración de la piel para medir la excitación
+                    o el rechazo no conscientes ante estímulos visuales específicos.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="measurement-window__media">
+              <img
+                src="/laboratorio/IMG 21.webp"
+                alt="Electroencefalograma (EEG) en laboratorio - Mindtec"
+                loading="lazy"
+              />
+            </div>
+          </article>
+
+          <article class="measurement-window">
+            <div class="measurement-window__content">
+              <div class="measurement-window__copy">
+                <span class="measurement-window__eyebrow">03 / Reacción</span>
+                <h3 class="text-primary">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path
+                      d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"
+                    ></path><circle cx="12" cy="13" r="4"></circle></svg
+                  >
+                  Reconocimiento Facial (Facial Coding)
+                </h3>
+                <ul class="cap-list text-gray-dark" style="font-size: 0.95rem;">
+                  <li>
+                    <strong class="text-navy">Optimización del guion:</strong> Localice
+                    el segundo exacto donde un video publicitario genera confusión,
+                    desinterés o incomodidad en los espectadores.
+                  </li>
+                  <li>
+                    <strong class="text-navy"
+                      >Categorización de emociones:</strong
+                    > Clasifique la micro-gesticulación facial involuntaria (sorpresa,
+                    escepticismo, alegría) ante su propuesta de valor.
+                  </li>
+                  <li>
+                    <strong class="text-navy">Validación de claridad:</strong> Asegure
+                    que el tono comunicativo de sus campañas B2B o masivas resuene
+                    de forma limpia con el target seleccionado.
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="measurement-window__media">
+              <img
+                src="/heatmap.webp"
+                alt="Mapa de calor de atención visual - Mindtec"
+                loading="lazy"
+              />
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- 🟦 4️⃣ APLICACIONES (CASOS DE USO) -->
+      <section
+        id="aplicaciones"
+        class="premium-section-padding bg-white"
+        style="padding: 5rem 0;"
+        data-stack-section
+      >
+        <div class="container text-center" style="max-width: 900px;">
+          <h2 class="text-navy" style="font-size: 2.5rem; margin-bottom: 3rem;">
+            Escenarios de negocio críticos para Neurociencia
+          </h2>
+
+          <div
+            style="text-align: left; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;"
+          >
+            <div
+              class="premium-card-white"
+              style="border-left: 4px solid var(--color-primary); padding: 2rem;"
+            >
+              <div
+                style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#F26522"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path
+                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+                  ></path></svg
+                >
+                <h4 style="font-size: 1.15rem; color: #0f172a; margin: 0;">
+                  Packaging y Anaquel
+                </h4>
+              </div>
+              <p class="text-gray-dark" style="font-size: 0.95rem; margin: 0;">
+                Validación de la velocidad de contraste visual y lectura de
+                marca en góndolas reales.
+              </p>
+            </div>
+
+            <div
+              class="premium-card-white"
+              style="border-left: 4px solid var(--color-primary); padding: 2rem;"
+            >
+              <div
+                style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#F26522"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path
+                    d="M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg
+                >
+                <h4 style="font-size: 1.15rem; color: #0f172a; margin: 0;">
+                  Spots y Publicidad
+                </h4>
+              </div>
+              <p class="text-gray-dark" style="font-size: 0.95rem; margin: 0;">
+                Auditoría segundo a segundo de piezas publicitarias
+                audiovisuales antes de la inversión en pauta.
+              </p>
+            </div>
+
+            <div
+              class="premium-card-white"
+              style="border-left: 4px solid var(--color-primary); padding: 2rem;"
+            >
+              <div
+                style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#F26522"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><circle cx="9" cy="21" r="1"></circle><circle
+                    cx="20"
+                    cy="21"
+                    r="1"></circle><path
+                    d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                  ></path></svg
+                >
+                <h4 style="font-size: 1.15rem; color: #0f172a; margin: 0;">
+                  Diseño de Tienda (Retail)
+                </h4>
+              </div>
+              <p class="text-gray-dark" style="font-size: 0.95rem; margin: 0;">
+                Mapeo de la navegación visual del consumidor al ingresar al
+                circuito de su punto de venta.
+              </p>
+            </div>
+
+            <div
+              class="premium-card-white"
+              style="border-left: 4px solid var(--color-primary); padding: 2rem;"
+            >
+              <div
+                style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#F26522"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><rect x="5" y="2" width="14" height="20" rx="2" ry="2"
+                  ></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg
+                >
+                <h4 style="font-size: 1.15rem; color: #0f172a; margin: 0;">
+                  UX/UI Digital
+                </h4>
+              </div>
+              <p class="text-gray-dark" style="font-size: 0.95rem; margin: 0;">
+                Detección de puntos de confusión en pasarelas de pago,
+                aplicaciones de banca o e-commerce.
+              </p>
+            </div>
+
+            <div
+              class="premium-card-white"
+              style="border-left: 4px solid var(--color-primary); padding: 2rem;"
+            >
+              <div
+                style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem;"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#F26522"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+                  ></path></svg
+                >
+                <h4 style="font-size: 1.15rem; color: #0f172a; margin: 0;">
+                  Pre-Rebranding
+                </h4>
+              </div>
+              <p class="text-gray-dark" style="font-size: 0.95rem; margin: 0;">
+                Validación de la pregnancia y asociación emocional inconsciente
+                del nuevo isotipo.
+              </p>
+            </div>
+          </div>
+          <p
+            style="font-size: 1.4rem; font-weight: 700; color: var(--color-primary); margin-top: 3rem;"
+          >
+            Tome decisiones respaldadas en el comportamiento biológico de su
+            audiencia.
+          </p>
+        </div>
+      </section>
+
+      <!-- 🟦 5️⃣ MODELO MINDTEC: NEURO + ESTRATEGIA + CULTURA -->
+      <section
+        id="modelo"
+        class="premium-section-padding bg-slate"
+        style="padding: 5rem 0;"
+        data-stack-section
+      >
+        <div class="container">
+          <div
+            class="section-title-center"
+            style="max-width: 800px; margin: 0 auto 3rem auto; text-align: center;"
+          >
+            <h2 class="text-navy" style="font-size: 2.2rem; line-height: 1.2;">
+              El Enfoque Mindtec: Los datos biométricos puros no bastan
+            </h2>
+            <p
+              class="text-gray-dark"
+              style="font-size: 1.1rem; margin-top: 1rem;"
+            >
+              Un mapa de calor de laboratorio no sirve de nada si se ignora el
+              contexto de compra en el eje troncal y los mercados populares de
+              Bolivia.
+            </p>
+          </div>
+
+          <AreaPanelCards items={mindtecModelItems} columns={4} />
+        </div>
+      </section>
+
+      <!-- 🟦 6️⃣ TABLA COMPARATIVA -->
+      <section
+        id="comparativa"
+        class="premium-section-padding bg-white"
+        style="padding: 5rem 0;"
+        data-stack-section
+      >
+        <div class="container">
+          <div
+            class="section-title-center"
+            style="max-width: 800px; margin: 0 auto 3rem auto; text-align: center;"
+          >
+            <h2 class="text-navy" style="font-size: 2.2rem;">
+              Por qué neuromarketing supera la validación tradicional
+            </h2>
+            <p
+              class="text-gray-dark"
+              style="font-size: 1.1rem; margin-top: 1rem;"
+            >
+              Mapeamos reacciones neurofisiológicas en lugar de recabar
+              opiniones racionales.
+            </p>
+          </div>
+
+          <ComparisonRows
+            columnLabels={{
+              left: "Validación e Investigación Tradicional",
+              right: "Estudio Científico de Neuromarketing Mindtec",
+            }}
+            rows={comparisonRows}
+          />
+        </div>
+      </section>
+
+      <!-- 🟦 7️⃣ ENTREGABLES PARA EL DIRECTORIO -->
+      <section
+        class="premium-section-padding bg-slate"
+        style="padding: 5rem 0;"
+        data-stack-section
+      >
+        <div
+          class="container premium-grid-2-split"
+          style="align-items: center;"
+        >
+          <div>
+            <h2
+              class="text-navy"
+              style="font-size: 2.5rem; margin-bottom: 1.5rem;"
+            >
+              Lo que recibe la Gerencia General
+            </h2>
+            <p
+              class="text-gray-dark"
+              style="font-size: 1.1rem; margin-bottom: 2rem;"
+            >
+              Los hallazgos de laboratorio se consolidan en informes
+              corporativos listos para comité directivo:
+            </p>
+            <ul
+              class="cap-list text-gray-dark"
+              style="margin-bottom: 3rem; font-size: 1.05rem;"
+            >
+              <li>
+                <strong>Executive Brief:</strong> Resumen conciso para tomadores de
+                decisiones.
+              </li>
+              <li>
+                <strong>Mapas de Calor Visuales:</strong> Evidencia de fijación y
+                lectura en las áreas críticas de marca.
+              </li>
+              <li>
+                <strong>Métricas de Fricción Cognitiva:</strong> Identificación de
+                segundos exactos de distracción o desinterés.
+              </li>
+              <li>
+                <strong>Recomendaciones Priorizadas:</strong> Lineamientos específicos
+                de diseño y pauta digital a implementar.
+              </li>
             </ul>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 🟦 8️⃣ RETAIL + RED TERRITORIAL (DIFERENCIADOR) -->
-    <section class="premium-section-padding bg-white" style="padding: 5rem 0;">
-      <div class="container">
-        <div class="premium-card-white" style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-left: 6px solid var(--color-primary); padding: 4rem;">
-          <div style="display: flex; align-items: center; margin-bottom: 2rem; gap: 1rem;">
-            <div class="cap-icon" style="width: 44px; height: 44px; min-width: 44px; margin: 0; display: flex; align-items: center; justify-content: center; background: rgba(242, 101, 34, 0.08); border-radius: 6px;">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F26522" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <div>
+            <div
+              class="premium-card-white"
+              style="background: linear-gradient(145deg, #ffffff, #f8fafc); border: 1px solid #e2e8f0; padding: 3rem;"
+            >
+              <div
+                style="display: flex; align-items: center; margin-bottom: 1.5rem; gap: 1rem;"
+              >
+                <div
+                  class="cap-icon"
+                  style="width: 44px; height: 44px; min-width: 44px; margin: 0; display: flex; align-items: center; justify-content: center; background: rgba(11, 43, 64, 0.05); border-radius: 6px;"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="#0B2B40"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><path
+                      d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1 0-3.12 3 3 0 0 1 0-3.88 2.5 2.5 0 0 1 0-3.12A2.5 2.5 0 0 1 9.5 2Z"
+                    ></path><path
+                      d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 0-3.12 3 3 0 0 0 0-3.88 2.5 2.5 0 0 0 0-3.12A2.5 2.5 0 0 0 14.5 2Z"
+                    ></path></svg
+                  >
+                </div>
+                <h3 class="text-navy" style="margin: 0; font-size: 1.4rem;">
+                  Dashboard Ejecutivo de Testeo
+                </h3>
+              </div>
+              <ul class="cap-list text-gray-dark" style="font-size: 0.95rem;">
+                <li>
+                  Visualice comparaciones A/B de spots o versiones de logos en
+                  tiempo real.
+                </li>
+                <li>
+                  Segmente las reacciones biométricas por ciudad (Cochabamba,
+                  Santa Cruz, La Paz).
+                </li>
+                <li>
+                  Exporte los hallazgos prioritarios para presentarlos ante
+                  agencias creativas asociadas.
+                </li>
+              </ul>
             </div>
-            <h2 class="text-navy" style="font-size: 2rem; margin: 0;">Neurociencia aplicada a Retail: El anaquel como campo de batalla</h2>
           </div>
-          <p class="text-gray-dark" style="font-size: 1.15rem; margin-bottom: 2rem; line-height: 1.6;">
-            Los activos no se miden en aislamiento. Los hallazgos de biometría en laboratorio se conectan con la red operativa de campo de Mindtec para simular la visibilidad del producto en los canales de venta reales.
+        </div>
+      </section>
+
+      <!-- 🟦 8️⃣ RETAIL + RED TERRITORIAL (DIFERENCIADOR) -->
+      <section
+        class="premium-section-padding bg-white"
+        style="padding: 5rem 0;"
+        data-stack-section
+      >
+        <div class="container">
+          <div
+            class="premium-card-white"
+            style="background-color: #f8fafc; border: 1px solid #e2e8f0; border-left: 6px solid var(--color-primary); padding: 4rem;"
+          >
+            <div
+              style="display: flex; align-items: center; margin-bottom: 2rem; gap: 1rem;"
+            >
+              <div
+                class="cap-icon"
+                style="width: 44px; height: 44px; min-width: 44px; margin: 0; display: flex; align-items: center; justify-content: center; background: rgba(242, 101, 34, 0.08); border-radius: 6px;"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#F26522"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  ><circle cx="9" cy="21" r="1"></circle><circle
+                    cx="20"
+                    cy="21"
+                    r="1"></circle><path
+                    d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                  ></path></svg
+                >
+              </div>
+              <h2 class="text-navy" style="font-size: 2rem; margin: 0;">
+                Neurociencia aplicada a Retail: El anaquel como campo de batalla
+              </h2>
+            </div>
+            <p
+              class="text-gray-dark"
+              style="font-size: 1.15rem; margin-bottom: 2rem; line-height: 1.6;"
+            >
+              Los activos no se miden en aislamiento. Los hallazgos de biometría
+              en laboratorio se conectan con la red operativa de campo de
+              Mindtec para simular la visibilidad del producto en los canales de
+              venta reales.
+            </p>
+            <ul
+              class="cap-list text-gray-dark"
+              style="font-size: 1.05rem; margin-bottom: 2rem;"
+            >
+              <li>
+                <strong>Visibilidad Táctica (Eye Tracking Móvil):</strong> Medición
+                del comportamiento ocular del sujeto en supermercados reales.
+              </li>
+              <li>
+                <strong>Contraste en Anaquel:</strong> Identifique si los colores
+                y empaque compiten exitosamente contra marcas vecinas.
+              </li>
+              <li>
+                <strong>Análisis de Planogramas:</strong> Validación del impacto visual
+                según la repisa asignada en góndola.
+              </li>
+            </ul>
+            <p
+              style="font-size: 1.15rem; font-weight: 700; color: var(--color-secondary); margin: 0;"
+            >
+              Esto une la precisión del laboratorio neurocientífico con la
+              realidad del mercado comercial boliviano.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 🟦 9️⃣ CLIENTES IDEALES -->
+      <section
+        class="premium-section-padding bg-slate"
+        style="padding: 5rem 0; background: #f8fafc;"
+        data-stack-section
+      >
+        <div class="container" style="max-width: 1320px;">
+          <h2
+            class="text-navy text-center"
+            style="font-size: 2.5rem; margin-bottom: 3.5rem;"
+          >
+            Organizaciones que más se benefician de la Neurociencia
+          </h2>
+          <AreaPanelCards
+            items={idealClientItems}
+            columns={2}
+            theme="orange"
+            size="large"
+          />
+        </div>
+      </section>
+
+      <!-- 🟦 1️⃣0️⃣ PREGUNTAS FRECUENTES (FAQ) -->
+      <div data-stack-section>
+        <FaqSplit id="faqs" title="Preguntas Frecuentes" items={faqItems} />
+      </div>
+
+      <!-- 🟦 1️⃣1️⃣ CROSS-LINKING ESTRATÉGICO -->
+      <section style="padding: 5rem 0; background: #fff;" data-stack-section>
+        <div class="container">
+          <h3
+            class="text-navy"
+            style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;"
+          >
+            Otras soluciones de inteligencia relacionadas
+          </h3>
+        </div>
+        <div class="related-products-bleed">
+          <HoverStepCards items={relatedProductsItems} minColumnWidth="340px" />
+        </div>
+        <div class="container">
+          <div style="text-align: center; margin-top: 2rem;">
+            <a
+              href="/servicios"
+              style="color: var(--color-primary); font-weight: 700; text-decoration: none; font-size: 0.95rem;"
+              >Ver todos los servicios →</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- 🟦 OBJECIÓN DE PRECIO (COPYWRITING) -->
+      <section
+        style="padding: 5rem 0; background: #ffffff; border-bottom: 1px solid #e2e8f0;"
+        data-stack-section
+      >
+        <div class="container" style="max-width: 800px; text-align: center;">
+          <h3
+            class="text-navy"
+            style="font-size: 2rem; margin-bottom: 1.5rem; line-height: 1.3;"
+          >
+            ¿Cuánto cuesta un error de lanzamiento en Bolivia?
+          </h3>
+          <p
+            class="text-gray-dark"
+            style="font-size: 1.15rem; line-height: 1.7; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;"
+          >
+            Validar científicamente su packaging o pauta publicitaria representa
+            menos del <strong>3% del presupuesto</strong> de una campaña fallida o
+            de un inventario estancado que deba liquidar con descuentos. El neuromarketing
+            no es un gasto de investigación; es un seguro contra pérdidas de capital
+            y reputación ante su Directorio.
           </p>
-          <ul class="cap-list text-gray-dark" style="font-size: 1.05rem; margin-bottom: 2rem;">
-            <li><strong>Visibilidad Táctica (Eye Tracking Móvil):</strong> Medición del comportamiento ocular del sujeto en supermercados reales.</li>
-            <li><strong>Contraste en Anaquel:</strong> Identifique si los colores y empaque compiten exitosamente contra marcas vecinas.</li>
-            <li><strong>Análisis de Planogramas:</strong> Validación del impacto visual según la repisa asignada en góndola.</li>
-          </ul>
-          <p style="font-size: 1.15rem; font-weight: 700; color: var(--color-secondary); margin: 0;">
-            Esto une la precisión del laboratorio neurocientífico con la realidad del mercado comercial boliviano.
-          </p>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- 🟦 9️⃣ CLIENTES IDEALES -->
-    <section class="premium-section-padding bg-slate" style="padding: 5rem 0; background: #f8fafc;">
-      <div class="container" style="max-width: 900px;">
-        <h2 class="text-navy text-center" style="font-size: 2.5rem; margin-bottom: 3.5rem;">Organizaciones que más se benefician de la Neurociencia</h2>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 1.5rem;">
-          <div class="premium-card-white" style="padding: 2rem; border-left: 4px solid var(--color-primary); display: flex; flex-direction: column; justify-content: center;">
-            <span style="font-weight: 800; color: var(--color-primary); font-size: 1.25rem; display: block; margin-bottom: 0.5rem;">01. Marcas de Consumo Masivo</span>
-            <p style="font-size: 0.95rem; color: #475569; margin: 0; line-height: 1.6;">Gerencias de marketing que aprueban lanzamientos de packaging y campañas de alto presupuesto.</p>
-          </div>
-          
-          <div class="premium-card-white" style="padding: 2rem; border-left: 4px solid var(--color-primary); display: flex; flex-direction: column; justify-content: center;">
-            <span style="font-weight: 800; color: var(--color-primary); font-size: 1.25rem; display: block; margin-bottom: 0.5rem;">02. Directores de Producto</span>
-            <p style="font-size: 0.95rem; color: #475569; margin: 0; line-height: 1.6;">Líderes de producto que requieren respaldos científicos sólidos ante juntas de accionistas o directorios.</p>
-          </div>
-
-          <div class="premium-card-white" style="padding: 2rem; border-left: 4px solid var(--color-primary); display: flex; flex-direction: column; justify-content: center;">
-            <span style="font-weight: 800; color: var(--color-primary); font-size: 1.25rem; display: block; margin-bottom: 0.5rem;">03. Firmas en Rebranding</span>
-            <p style="font-size: 0.95rem; color: #475569; margin: 0; line-height: 1.6;">Compañías en proceso de actualización de marca que desean mitigar el riesgo de perder pregnancia.</p>
-          </div>
-
-          <div class="premium-card-white" style="padding: 2rem; border-left: 4px solid var(--color-primary); display: flex; flex-direction: column; justify-content: center;">
-            <span style="font-weight: 800; color: var(--color-primary); font-size: 1.25rem; display: block; margin-bottom: 0.5rem;">04. E-commerce e Interfaces</span>
-            <p style="font-size: 0.95rem; color: #475569; margin: 0; line-height: 1.6;">Equipos de UI/UX que buscan erradicar cuellos de botella no declarados en flujos digitales.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 🟦 1️⃣0️⃣ PREGUNTAS FRECUENTES (FAQ) -->
-    <section class="premium-section-padding bg-white" style="padding: 5rem 0;">
-      <div class="container" style="max-width: 800px;">
-        <h2 class="text-navy text-center" style="font-size: 2.5rem; margin-bottom: 3rem;">Preguntas Frecuentes</h2>
-
-        <div class="faq-list">
-          <div class="faq-item">
-            <h3>¿El neuromarketing reemplaza a las encuestas tradicionales?</h3>
-            <p>No, actúan en complemento. Las encuestas tradicionales cuantifican y capturan opiniones declarativas conscientes. El neuromarketing audita la atención espontánea, respuesta emocional y rechazo biológico, removiendo sesgos.</p>
-          </div>
-          <div class="faq-item">
-            <h3>¿Cuánto tiempo toma un estudio de neuromarketing en Bolivia?</h3>
-            <p>Varía según el alcance. Desde auditorías de diseño rápidas en 7 días para piezas específicas, hasta validaciones complejas de 30 días para rediseños integrales de empaques o testeo de campañas.</p>
-          </div>
-          <div class="faq-item">
-            <h3>¿Pueden realizar estudios combinados con benchmark de competencia?</h3>
-            <p>Es la práctica recomendada. Evaluamos sus piezas (anuncios o empaques) colocándolos en paralelo con los competidores líderes, midiendo cuál marca retiene el ojo del consumidor por más tiempo.</p>
-          </div>
-          <div class="faq-item">
-            <h3>¿Se puede testear el impacto visual en entornos móviles y de desktop?</h3>
-            <p>Sí. El Eye Tracker de pantalla de Mindtec se calibra para flujos en e-commerce y aplicaciones móviles, registrando la facilidad de escaneo visual y la fricción que reduce la conversión.</p>
+      <!-- 🟦 1️⃣2️⃣ FINAL CTA -->
+      <section
+        class="cta-section-modern"
+        style="padding: 6rem 0;"
+        data-stack-section
+      >
+        <div
+          class="container"
+          style="max-width: 900px; margin: 0 auto; text-align: center;"
+        >
+          <div class="cta-content-v2">
+            <h2
+              style="font-size: 3rem; line-height: 1.25; margin-bottom: 1.5rem;"
+            >
+              Antes de invertir en campañas o empaques, valide el impacto real.
+            </h2>
+            <p
+              class="cta-subtitle"
+              style="font-size: 1.25rem; margin-bottom: 2.5rem; opacity: 0.9;"
+            >
+              Descubra qué elementos visuales capturan la atención de su mercado
+              y cuáles representan fricciones no deseadas.
+            </p>
+            <div
+              class="cta-actions"
+              style="justify-content: center; flex-direction: column; align-items: center;"
+            >
+              <a
+                href="/contacto"
+                class="btn btn-primary lg"
+                style="font-size: 1.1rem; padding: 1rem 2.5rem;"
+                >Agendar sesión de diagnóstico (45 min)</a
+              >
+              <p
+                style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;"
+              >
+                Sesión inicial: 45 minutos | Plan y testeo preliminar |
+                Confidencial
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- 🟦 1️⃣1️⃣ CROSS-LINKING ESTRATÉGICO -->
-    <section class="premium-section-padding bg-slate" style="padding: 5rem 0; background-color: #f8fafc; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;">
-      <div class="container" style="max-width: 900px;">
-        <h3 class="text-navy" style="font-size: 1.8rem; margin-bottom: 2rem; text-align: center;">Otras soluciones de inteligencia relacionadas</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
-          <a href="/percepcion-de-marca-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)';" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none';this.style.boxShadow='none';">
-            <h4 style="font-size: 1.1rem; color: var(--color-secondary); margin-bottom: 0.5rem; line-height: 1.3;">Percepción de Marca</h4>
-            <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.5;">Audite el posicionamiento y la reputación mental real de su firma en el mercado.</p>
-            <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem; text-transform: uppercase;">Explorar →</span>
-          </a>
-          <a href="/auditoria-retail-bolivia" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)';" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none';this.style.boxShadow='none';">
-            <h4 style="font-size: 1.1rem; color: var(--color-secondary); margin-bottom: 0.5rem; line-height: 1.3;">Auditoría Retail</h4>
-            <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.5;">Monitoree el canal físico para validar el cumplimiento de precios y planogramas.</p>
-            <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem; text-transform: uppercase;">Explorar →</span>
-          </a>
-          <a href="/comportamiento-consumidor-boliviano" style="display: block; background: #fff; padding: 2rem; border-radius: 8px; border: 1px solid #e2e8f0; text-decoration: none; transition: all 0.3s;" onmouseover="this.style.borderColor='var(--color-primary)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 20px rgba(0,0,0,0.05)';" onmouseout="this.style.borderColor='#e2e8f0';this.style.transform='none';this.style.boxShadow='none';">
-            <h4 style="font-size: 1.1rem; color: var(--color-secondary); margin-bottom: 0.5rem; line-height: 1.3;">Comportamiento del Consumidor Boliviano</h4>
-            <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 1.5rem; line-height: 1.5;">Datos reales de Mindtec sobre hábitos de compra por región y contexto económico.</p>
-            <span style="font-weight: 700; color: var(--color-primary); font-size: 0.9rem; text-transform: uppercase;">Explorar →</span>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- 🟦 OBJECIÓN DE PRECIO (COPYWRITING) -->
-    <section style="padding: 5rem 0; background: #ffffff; border-bottom: 1px solid #e2e8f0;">
-      <div class="container" style="max-width: 800px; text-align: center;">
-        <h3 class="text-navy" style="font-size: 2rem; margin-bottom: 1.5rem; line-height: 1.3;">¿Cuánto cuesta un error de lanzamiento en Bolivia?</h3>
-        <p class="text-gray-dark" style="font-size: 1.15rem; line-height: 1.7; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
-          Validar científicamente su packaging o pauta publicitaria representa menos del <strong>3% del presupuesto</strong> de una campaña fallida o de un inventario estancado que deba liquidar con descuentos. El neuromarketing no es un gasto de investigación; es un seguro contra pérdidas de capital y reputación ante su Directorio.
-        </p>
-      </div>
-    </section>
-
-    <!-- 🟦 1️⃣2️⃣ FINAL CTA -->
-    <section class="cta-section-modern" style="padding: 6rem 0;">
-      <div class="container" style="max-width: 900px; margin: 0 auto; text-align: center;">
-        <div class="cta-content-v2">
-          <h2 style="font-size: 3rem; line-height: 1.25; margin-bottom: 1.5rem;">Antes de invertir en campañas o empaques, valide el impacto real.</h2>
-          <p class="cta-subtitle" style="font-size: 1.25rem; margin-bottom: 2.5rem; opacity: 0.9;">
-            Descubra qué elementos visuales capturan la atención de su mercado y cuáles representan fricciones no deseadas.
-          </p>
-          <div class="cta-actions" style="justify-content: center; flex-direction: column; align-items: center;">
-            <a href="/contacto" class="btn btn-primary lg" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Agendar sesión de diagnóstico (45 min)</a>
-            <p style="margin-top: 1.5rem; font-size: 0.95rem; color: rgba(255,255,255,0.7); font-weight: 500;">Sesión inicial: 45 minutos | Plan y testeo preliminar | Confidencial</p>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </StackedSections>
 
     <!-- BREADCRUMB -->
     <nav aria-label="Breadcrumb" class="breadcrumb-bottom">
       <div class="container">
         <ol>
-          <li><a href="/" style="color: rgba(255,255,255,0.6); text-decoration: none;">Inicio</a></li>
+          <li>
+            <a
+              href="/"
+              style="color: rgba(255,255,255,0.6); text-decoration: none;"
+              >Inicio</a
+            >
+          </li>
           <li style="color: rgba(255,255,255,0.3);">›</li>
-          <li><a href="/servicios" style="color: rgba(255,255,255,0.6); text-decoration: none;">Servicios</a></li>
+          <li>
+            <a
+              href="/servicios"
+              style="color: rgba(255,255,255,0.6); text-decoration: none;"
+              >Servicios</a
+            >
+          </li>
           <li style="color: rgba(255,255,255,0.3);">›</li>
-          <li aria-current="page" style="color: #fff; font-weight: 600;">Neuromarketing en Bolivia</li>
+          <li aria-current="page" style="color: #fff; font-weight: 600;">
+            Neuromarketing en Bolivia
+          </li>
         </ol>
       </div>
     </nav>
   </main>
 </Layout>
+
+<style>
+  .measurement-section__intro {
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+  }
+
+  .measurement-windows {
+    display: grid;
+    gap: 1px;
+    background: rgba(11, 43, 64, 0.1);
+  }
+
+  .measurement-window {
+    display: grid;
+    grid-template-columns: 1fr;
+    background: #ffffff;
+  }
+
+  .measurement-window__content {
+    display: flex;
+    align-items: center;
+    padding: clamp(3rem, 8vw, 7rem) clamp(1.5rem, 9vw, 10rem);
+  }
+
+  .measurement-window__copy {
+    width: 100%;
+    max-width: 39rem;
+  }
+
+  .measurement-window__eyebrow {
+    display: block;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+  }
+
+  .measurement-window h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 0 0 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid rgba(11, 43, 64, 0.08);
+    font-size: clamp(1.55rem, 2.4vw, 2.4rem);
+    line-height: 1.15;
+  }
+
+  .measurement-window h3 svg {
+    flex: 0 0 auto;
+  }
+
+  .measurement-window__media {
+    min-height: 22rem;
+    overflow: hidden;
+  }
+
+  .measurement-window__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .measurement-window:hover .measurement-window__media img {
+    transform: scale(1.035);
+  }
+
+  @media (min-width: 900px) {
+    .measurement-section__intro {
+      padding-bottom: 4rem;
+    }
+
+    .measurement-window {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      min-height: 100dvh;
+    }
+
+    .measurement-window--reverse .measurement-window__content {
+      order: 2;
+    }
+
+    .measurement-window--reverse .measurement-window__media {
+      order: 1;
+    }
+
+    .measurement-window__media {
+      min-height: 100%;
+    }
+  }
+
+  .related-products-bleed {
+    padding: 0 2rem;
+  }
+
+  @media (min-width: 900px) {
+    .related-products-bleed {
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+      padding: 0 clamp(1.5rem, 4vw, 4rem);
+    }
+  }
+</style>

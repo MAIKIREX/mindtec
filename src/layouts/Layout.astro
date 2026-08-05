@@ -9,6 +9,7 @@ interface Props {
   ogImage?: string;
   ogType?: string;
   canonicalUrl?: string;
+  showIntroLoader?: boolean;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   ogImage,
   ogType = 'website',
   canonicalUrl,
+  showIntroLoader = false,
 } = Astro.props;
 
 // Determine active state for navigation links
@@ -204,7 +206,7 @@ const isCurrent = (path: string) => {
     <slot name="head" />
 </head>
 
-<body>
+<body class={showIntroLoader ? 'loader-active' : ''}>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M4SXR5MW"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -301,7 +303,7 @@ const isCurrent = (path: string) => {
             </div>
 
             <div class="footer-col links">
-                <h3>Empresa</h3>
+                <h4>Empresa</h4>
                 <ul>
                     <li><a href="/servicios">Servicios</a></li>
                     <li><a href="/metodologia">Metodología</a></li>
@@ -311,7 +313,7 @@ const isCurrent = (path: string) => {
                 </ul>
             </div>
             <div class="footer-col links">
-                <h3>Soluciones Mindtec</h3>
+                <h4>Soluciones Mindtec</h4>
                 <ul>
                     <li><a href="/estudio-de-mercado-bolivia">Estudio de mercado en Bolivia</a></li>
                     <li><a href="/inteligencia-de-mercados-b2b-bolivia">Inteligencia de Mercados B2B</a></li>
@@ -330,7 +332,7 @@ const isCurrent = (path: string) => {
             </div>
 
             <div class="footer-col contact">
-                <h3>Contacto</h3>
+                <h4>Contacto</h4>
                 <p class="company-name">Neuromarketing & Consulting (Mindtec)</p>
                 <p class="nit-info">Paola Paniagua Urresti - NIT: 6961311013</p>
                 <p class="address-info">Calle 8 de Calacoto esq. Av. Costanera #8330, Zona Sur, La Paz, Bolivia</p>
@@ -342,7 +344,7 @@ const isCurrent = (path: string) => {
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Mindtec Bolivia. Investigación de Mercados y Análisis Competitivo en Bolivia. · <a href="/witmind-consulting">Witmind Consulting LLC</a></p>
+            <p>&copy; 2026 Mindtec Bolivia. Investigación de Mercados y Análisis Competitivo en Bolivia.</p>
         </div>
     </footer>
 

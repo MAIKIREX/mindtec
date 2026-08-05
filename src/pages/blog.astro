@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import StackedSections from '../components/scroll/StackedSections.astro';
 
 // Fetch all blog posts
 const posts = await getCollection('posts');
@@ -65,8 +66,9 @@ const getFilterSlug = (category: string) => {
     </script>
 
     <main class="elementor-content">
+        <StackedSections>
         <!-- Hero Section -->
-        <section class="hero-section elementor-section" style="padding: 160px 0 80px; min-height: auto; background: var(--color-secondary);">
+        <section class="hero-section elementor-section" style="padding: 160px 0 80px; min-height: auto; background: var(--color-secondary);" data-stack-section>
             <!-- Floating shapes -->
             <div class="hero-shapes" aria-hidden="true">
                 <div class="hero-shape" style="width: 300px; height: 300px; top: -50px; right: 10%; background: radial-gradient(circle, rgba(242,101,34,0.12), transparent 70%);"></div>
@@ -104,7 +106,7 @@ const getFilterSlug = (category: string) => {
         </section>
 
         <!-- Blog Articles Grid Section -->
-        <section class="elementor-section" style="padding: 5rem 0 9rem; background: #fcfcfc;">
+        <section class="elementor-section" style="padding: 5rem 0 9rem; background: #fcfcfc;" data-stack-section>
             <div class="container elementor-container" style="max-width: 1200px;">
                 
                 {featuredPost && (
@@ -163,12 +165,13 @@ const getFilterSlug = (category: string) => {
             </div>
         </section>
     
-        <section class="elementor-section bg-white" style="padding: 3rem 0; text-align: center;">
+        <section class="elementor-section bg-white" style="padding: 3rem 0; text-align: center;" data-stack-section>
             <div class="container">
                 <p style="color: #64748b; margin-bottom: 1rem;">La investigación profunda sustenta cada área de negocio.</p>
                 <a href="/servicios" style="color: var(--color-primary); font-weight: 600; text-decoration: none;">Conozca las áreas de consultoría →</a>
             </div>
         </section>
+        </StackedSections>
     </main>
 
     <!-- Blog dynamic filtering and search script -->
