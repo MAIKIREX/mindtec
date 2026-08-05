@@ -208,7 +208,7 @@ const cardStyle = (card: ScrollCard) => {
                     <img
                       src={card.media.src}
                       alt={card.media.alt ?? ""}
-                      loading="lazy"
+                      loading="eager"
                       decoding="async"
                       style={`object-position:${card.media.objectPosition ?? "center"};`}
                     />

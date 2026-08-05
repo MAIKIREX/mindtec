@@ -166,7 +166,7 @@ const introTitleLineHeight = introTitleFontSize ? "1.15" : undefined;
       {
         items.map((item) => (
           <figure class="scroll-story__background" data-story-background>
-            <img src={item.background} alt={item.alt ?? ""} loading="lazy" />
+            <img src={item.background} alt={item.alt ?? ""} loading="eager" />
 
             <div class="scroll-story__image-overlay" />
           </figure>
